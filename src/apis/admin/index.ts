@@ -19,27 +19,38 @@ import {admin_directory_v1} from './directory_v1';
 import {admin_reports_v1} from './reports_v1';
 
 export const VERSIONS = {
-  'datatransfer_v1': admin_datatransfer_v1.Admin,
-  'directory_v1': admin_directory_v1.Admin,
-  'reports_v1': admin_reports_v1.Admin,
+  datatransfer_v1: admin_datatransfer_v1.Admin,
+  directory_v1: admin_directory_v1.Admin,
+  reports_v1: admin_reports_v1.Admin,
 };
 
 export function admin(version: 'datatransfer_v1'): admin_datatransfer_v1.Admin;
-export function admin(options: admin_datatransfer_v1.Options):
-    admin_datatransfer_v1.Admin;
+export function admin(
+  options: admin_datatransfer_v1.Options
+): admin_datatransfer_v1.Admin;
 export function admin(version: 'directory_v1'): admin_directory_v1.Admin;
-export function admin(options: admin_directory_v1.Options):
-    admin_directory_v1.Admin;
+export function admin(
+  options: admin_directory_v1.Options
+): admin_directory_v1.Admin;
 export function admin(version: 'reports_v1'): admin_reports_v1.Admin;
-export function admin(options: admin_reports_v1.Options):
-    admin_reports_v1.Admin;
+export function admin(
+  options: admin_reports_v1.Options
+): admin_reports_v1.Admin;
 export function admin<
-    T = admin_datatransfer_v1.Admin | admin_directory_v1.Admin |
-        admin_reports_v1.Admin>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'datatransfer_v1'|
-    admin_datatransfer_v1.Options|'directory_v1'|
-    admin_directory_v1.Options|'reports_v1'|admin_reports_v1.Options) {
+  T =
+    | admin_datatransfer_v1.Admin
+    | admin_directory_v1.Admin
+    | admin_reports_v1.Admin
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'datatransfer_v1'
+    | admin_datatransfer_v1.Options
+    | 'directory_v1'
+    | admin_directory_v1.Options
+    | 'reports_v1'
+    | admin_reports_v1.Options
+) {
   return getAPI<T>('admin', versionOrOptions, VERSIONS, this);
 }
 

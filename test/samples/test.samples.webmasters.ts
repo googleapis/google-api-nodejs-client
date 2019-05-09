@@ -19,7 +19,7 @@ nock.disableNetConnect();
 
 // tslint:disable: no-any
 const samples: any = {
-  query: require('../../../samples/webmasters/query')
+  query: require('../../../samples/webmasters/query'),
 };
 
 for (const p in samples) {
@@ -35,9 +35,12 @@ describe('webmaster samples', () => {
 
   it('should query analytics', async () => {
     const siteUrl = 'http://jbeckwith.com';
-    const path = `/webmasters/v3/sites/${
-        encodeURIComponent(siteUrl)}/searchAnalytics/query`;
-    const scope = nock(Utils.baseUrl).post(path).reply(200, {});
+    const path = `/webmasters/v3/sites/${encodeURIComponent(
+      siteUrl
+    )}/searchAnalytics/query`;
+    const scope = nock(Utils.baseUrl)
+      .post(path)
+      .reply(200, {});
     const data = await samples.query.runSample();
     assert(data);
     scope.done();

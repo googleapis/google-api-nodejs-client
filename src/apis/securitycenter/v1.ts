@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -135,7 +147,7 @@ export namespace securitycenter_v1 {
      * Resource managed properties. These properties are managed and defined by
      * the GCP resource and cannot be modified by the user.
      */
-    resourceProperties?: {[key: string]: any;};
+    resourceProperties?: {[key: string]: any};
     /**
      * Cloud SCC managed properties. These properties are managed by Cloud SCC
      * and cannot be modified by the user.
@@ -351,7 +363,7 @@ export namespace securitycenter_v1 {
      * be between 1 and 255 characters, and must start with a letter and contain
      * alphanumeric characters or underscores only.
      */
-    sourceProperties?: {[key: string]: any;};
+    sourceProperties?: {[key: string]: any};
     /**
      * The state of the finding.
      */
@@ -609,7 +621,7 @@ export namespace securitycenter_v1 {
     /**
      * Properties matching the groupBy fields in the request.
      */
-    properties?: {[key: string]: any;};
+    properties?: {[key: string]: any};
   }
   /**
    * IAM Policy information associated with the GCP resource described by the
@@ -741,7 +753,7 @@ export namespace securitycenter_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -757,7 +769,7 @@ export namespace securitycenter_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * User specified settings that are attached to the Cloud Security Command
@@ -880,7 +892,7 @@ export namespace securitycenter_v1 {
      * leading and trailing whitespace trimmed, remaining     characters must be
      * between 1 - 4096 characters (inclusive)
      */
-    marks?: {[key: string]: string;};
+    marks?: {[key: string]: string};
     /**
      * The relative resource name of the SecurityMarks. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
@@ -999,7 +1011,7 @@ export namespace securitycenter_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1030,7 +1042,6 @@ export namespace securitycenter_v1 {
     permissions?: string[];
   }
 
-
   export class Resource$Organizations {
     context: APIRequestContext;
     assets: Resource$Organizations$Assets;
@@ -1042,7 +1053,6 @@ export namespace securitycenter_v1 {
       this.operations = new Resource$Organizations$Operations(this.context);
       this.sources = new Resource$Organizations$Sources(this.context);
     }
-
 
     /**
      * securitycenter.organizations.getOrganizationSettings
@@ -1057,28 +1067,34 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     getOrganizationSettings(
-        params?: Params$Resource$Organizations$Getorganizationsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$OrganizationSettings>;
+      params?: Params$Resource$Organizations$Getorganizationsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrganizationSettings>;
     getOrganizationSettings(
-        params: Params$Resource$Organizations$Getorganizationsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrganizationSettings>,
-        callback: BodyResponseCallback<Schema$OrganizationSettings>): void;
+      params: Params$Resource$Organizations$Getorganizationsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrganizationSettings>,
+      callback: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void;
     getOrganizationSettings(
-        params: Params$Resource$Organizations$Getorganizationsettings,
-        callback: BodyResponseCallback<Schema$OrganizationSettings>): void;
+      params: Params$Resource$Organizations$Getorganizationsettings,
+      callback: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void;
     getOrganizationSettings(
-        callback: BodyResponseCallback<Schema$OrganizationSettings>): void;
+      callback: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void;
     getOrganizationSettings(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Getorganizationsettings|
-        BodyResponseCallback<Schema$OrganizationSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrganizationSettings>,
-        callback?: BodyResponseCallback<Schema$OrganizationSettings>):
-        void|GaxiosPromise<Schema$OrganizationSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Getorganizationsettings;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getorganizationsettings
+        | BodyResponseCallback<Schema$OrganizationSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrganizationSettings>,
+      callback?: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void | GaxiosPromise<Schema$OrganizationSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getorganizationsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1093,18 +1109,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrganizationSettings>(parameters, callback);
@@ -1112,7 +1129,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$OrganizationSettings>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.updateOrganizationSettings
@@ -1129,28 +1145,34 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     updateOrganizationSettings(
-        params?: Params$Resource$Organizations$Updateorganizationsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$OrganizationSettings>;
+      params?: Params$Resource$Organizations$Updateorganizationsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrganizationSettings>;
     updateOrganizationSettings(
-        params: Params$Resource$Organizations$Updateorganizationsettings,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrganizationSettings>,
-        callback: BodyResponseCallback<Schema$OrganizationSettings>): void;
+      params: Params$Resource$Organizations$Updateorganizationsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrganizationSettings>,
+      callback: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void;
     updateOrganizationSettings(
-        params: Params$Resource$Organizations$Updateorganizationsettings,
-        callback: BodyResponseCallback<Schema$OrganizationSettings>): void;
+      params: Params$Resource$Organizations$Updateorganizationsettings,
+      callback: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void;
     updateOrganizationSettings(
-        callback: BodyResponseCallback<Schema$OrganizationSettings>): void;
+      callback: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void;
     updateOrganizationSettings(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Updateorganizationsettings|
-        BodyResponseCallback<Schema$OrganizationSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrganizationSettings>,
-        callback?: BodyResponseCallback<Schema$OrganizationSettings>):
-        void|GaxiosPromise<Schema$OrganizationSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Updateorganizationsettings;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updateorganizationsettings
+        | BodyResponseCallback<Schema$OrganizationSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrganizationSettings>,
+      callback?: BodyResponseCallback<Schema$OrganizationSettings>
+    ): void | GaxiosPromise<Schema$OrganizationSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updateorganizationsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1165,18 +1187,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrganizationSettings>(parameters, callback);
@@ -1186,12 +1209,12 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Getorganizationsettings extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Getorganizationsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the organization to get organization settings for. Its format is
@@ -1200,11 +1223,11 @@ export namespace securitycenter_v1 {
     name?: string;
   }
   export interface Params$Resource$Organizations$Updateorganizationsettings
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The relative resource name of the settings. See:
@@ -1230,7 +1253,6 @@ export namespace securitycenter_v1 {
       this.context = context;
     }
 
-
     /**
      * securitycenter.organizations.assets.group
      * @desc Filters an organization's assets and  groups them by their
@@ -1246,25 +1268,30 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     group(
-        params?: Params$Resource$Organizations$Assets$Group,
-        options?: MethodOptions): GaxiosPromise<Schema$GroupAssetsResponse>;
+      params?: Params$Resource$Organizations$Assets$Group,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupAssetsResponse>;
     group(
-        params: Params$Resource$Organizations$Assets$Group,
-        options: MethodOptions|BodyResponseCallback<Schema$GroupAssetsResponse>,
-        callback: BodyResponseCallback<Schema$GroupAssetsResponse>): void;
+      params: Params$Resource$Organizations$Assets$Group,
+      options: MethodOptions | BodyResponseCallback<Schema$GroupAssetsResponse>,
+      callback: BodyResponseCallback<Schema$GroupAssetsResponse>
+    ): void;
     group(
-        params: Params$Resource$Organizations$Assets$Group,
-        callback: BodyResponseCallback<Schema$GroupAssetsResponse>): void;
+      params: Params$Resource$Organizations$Assets$Group,
+      callback: BodyResponseCallback<Schema$GroupAssetsResponse>
+    ): void;
     group(callback: BodyResponseCallback<Schema$GroupAssetsResponse>): void;
     group(
-        paramsOrCallback?: Params$Resource$Organizations$Assets$Group|
-        BodyResponseCallback<Schema$GroupAssetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupAssetsResponse>,
-        callback?: BodyResponseCallback<Schema$GroupAssetsResponse>):
-        void|GaxiosPromise<Schema$GroupAssetsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Assets$Group;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Assets$Group
+        | BodyResponseCallback<Schema$GroupAssetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$GroupAssetsResponse>
+    ): void | GaxiosPromise<Schema$GroupAssetsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Assets$Group;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1279,19 +1306,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/assets:group')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/assets:group').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupAssetsResponse>(parameters, callback);
@@ -1299,7 +1329,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$GroupAssetsResponse>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.assets.list
@@ -1321,25 +1350,30 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Assets$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListAssetsResponse>;
+      params?: Params$Resource$Organizations$Assets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAssetsResponse>;
     list(
-        params: Params$Resource$Organizations$Assets$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
-        callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
+      params: Params$Resource$Organizations$Assets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAssetsResponse>,
+      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Assets$List,
-        callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
+      params: Params$Resource$Organizations$Assets$List,
+      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Assets$List|
-        BodyResponseCallback<Schema$ListAssetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAssetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAssetsResponse>):
-        void|GaxiosPromise<Schema$ListAssetsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Assets$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Assets$List
+        | BodyResponseCallback<Schema$ListAssetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void | GaxiosPromise<Schema$ListAssetsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1354,19 +1388,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/assets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/assets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
@@ -1374,7 +1411,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$ListAssetsResponse>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.assets.runDiscovery
@@ -1393,25 +1429,30 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     runDiscovery(
-        params?: Params$Resource$Organizations$Assets$Rundiscovery,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Organizations$Assets$Rundiscovery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     runDiscovery(
-        params: Params$Resource$Organizations$Assets$Rundiscovery,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Organizations$Assets$Rundiscovery,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     runDiscovery(
-        params: Params$Resource$Organizations$Assets$Rundiscovery,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Organizations$Assets$Rundiscovery,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     runDiscovery(callback: BodyResponseCallback<Schema$Operation>): void;
     runDiscovery(
-        paramsOrCallback?: Params$Resource$Organizations$Assets$Rundiscovery|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Assets$Rundiscovery;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Assets$Rundiscovery
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Assets$Rundiscovery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1426,19 +1467,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/assets:runDiscovery')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/assets:runDiscovery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1446,7 +1490,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.assets.updateSecurityMarks
@@ -1464,27 +1507,32 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     updateSecurityMarks(
-        params?: Params$Resource$Organizations$Assets$Updatesecuritymarks,
-        options?: MethodOptions): GaxiosPromise<Schema$SecurityMarks>;
+      params?: Params$Resource$Organizations$Assets$Updatesecuritymarks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecurityMarks>;
     updateSecurityMarks(
-        params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
-        options: MethodOptions|BodyResponseCallback<Schema$SecurityMarks>,
-        callback: BodyResponseCallback<Schema$SecurityMarks>): void;
+      params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
+      options: MethodOptions | BodyResponseCallback<Schema$SecurityMarks>,
+      callback: BodyResponseCallback<Schema$SecurityMarks>
+    ): void;
     updateSecurityMarks(
-        params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
-        callback: BodyResponseCallback<Schema$SecurityMarks>): void;
-    updateSecurityMarks(callback: BodyResponseCallback<Schema$SecurityMarks>):
-        void;
+      params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
+      callback: BodyResponseCallback<Schema$SecurityMarks>
+    ): void;
     updateSecurityMarks(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Assets$Updatesecuritymarks|
-        BodyResponseCallback<Schema$SecurityMarks>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SecurityMarks>,
-        callback?: BodyResponseCallback<Schema$SecurityMarks>):
-        void|GaxiosPromise<Schema$SecurityMarks> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Assets$Updatesecuritymarks;
+      callback: BodyResponseCallback<Schema$SecurityMarks>
+    ): void;
+    updateSecurityMarks(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Assets$Updatesecuritymarks
+        | BodyResponseCallback<Schema$SecurityMarks>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SecurityMarks>,
+      callback?: BodyResponseCallback<Schema$SecurityMarks>
+    ): void | GaxiosPromise<Schema$SecurityMarks> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Assets$Updatesecuritymarks;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1499,18 +1547,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SecurityMarks>(parameters, callback);
@@ -1520,12 +1569,12 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Assets$Group extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Group
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the organization to groupBy. Its format is
@@ -1538,12 +1587,12 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupAssetsRequest;
   }
-  export interface Params$Resource$Organizations$Assets$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Assets$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When compare_duration is set, the ListAssetsResult's "state_change"
@@ -1635,12 +1684,12 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Organizations$Assets$Rundiscovery extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Rundiscovery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the organization to run asset discovery for. Its format is
@@ -1654,11 +1703,11 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$RunAssetDiscoveryRequest;
   }
   export interface Params$Resource$Organizations$Assets$Updatesecuritymarks
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The relative resource name of the SecurityMarks. See:
@@ -1687,13 +1736,11 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$SecurityMarks;
   }
 
-
   export class Resource$Organizations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * securitycenter.organizations.operations.cancel
@@ -1716,24 +1763,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Organizations$Operations$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Organizations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Organizations$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(
-        params: Params$Resource$Organizations$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Organizations$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1748,19 +1799,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1768,7 +1819,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.operations.delete
@@ -1786,24 +1836,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Organizations$Operations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Organizations$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Organizations$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Organizations$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Organizations$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1818,18 +1872,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1837,7 +1892,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.operations.get
@@ -1853,22 +1907,31 @@ export namespace securitycenter_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Organizations$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Organizations$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Organizations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Organizations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1883,18 +1946,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1902,7 +1966,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.operations.list
@@ -1928,26 +1991,32 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Organizations$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Organizations$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Organizations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Organizations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1962,18 +2031,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1983,48 +2053,48 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -2044,7 +2114,6 @@ export namespace securitycenter_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Organizations$Sources {
     context: APIRequestContext;
     findings: Resource$Organizations$Sources$Findings;
@@ -2052,7 +2121,6 @@ export namespace securitycenter_v1 {
       this.context = context;
       this.findings = new Resource$Organizations$Sources$Findings(this.context);
     }
-
 
     /**
      * securitycenter.organizations.sources.create
@@ -2068,24 +2136,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Organizations$Sources$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Source>;
+      params?: Params$Resource$Organizations$Sources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Source>;
     create(
-        params: Params$Resource$Organizations$Sources$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Source>,
-        callback: BodyResponseCallback<Schema$Source>): void;
+      params: Params$Resource$Organizations$Sources$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Source>,
+      callback: BodyResponseCallback<Schema$Source>
+    ): void;
     create(
-        params: Params$Resource$Organizations$Sources$Create,
-        callback: BodyResponseCallback<Schema$Source>): void;
+      params: Params$Resource$Organizations$Sources$Create,
+      callback: BodyResponseCallback<Schema$Source>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Source>): void;
     create(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$Create|
-        BodyResponseCallback<Schema$Source>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Source>,
-        callback?: BodyResponseCallback<Schema$Source>):
-        void|GaxiosPromise<Schema$Source> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Create;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Create
+        | BodyResponseCallback<Schema$Source>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Source>,
+      callback?: BodyResponseCallback<Schema$Source>
+    ): void | GaxiosPromise<Schema$Source> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2100,19 +2172,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/sources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/sources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Source>(parameters, callback);
@@ -2120,7 +2195,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Source>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.get
@@ -2134,21 +2208,29 @@ export namespace securitycenter_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Sources$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Source>;
-    get(params: Params$Resource$Organizations$Sources$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Source>,
-        callback: BodyResponseCallback<Schema$Source>): void;
-    get(params: Params$Resource$Organizations$Sources$Get,
-        callback: BodyResponseCallback<Schema$Source>): void;
+    get(
+      params?: Params$Resource$Organizations$Sources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Source>;
+    get(
+      params: Params$Resource$Organizations$Sources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Source>,
+      callback: BodyResponseCallback<Schema$Source>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Sources$Get,
+      callback: BodyResponseCallback<Schema$Source>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Source>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Sources$Get|
-        BodyResponseCallback<Schema$Source>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Source>,
-        callback?: BodyResponseCallback<Schema$Source>):
-        void|GaxiosPromise<Schema$Source> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Sources$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Get
+        | BodyResponseCallback<Schema$Source>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Source>,
+      callback?: BodyResponseCallback<Schema$Source>
+    ): void | GaxiosPromise<Schema$Source> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2163,18 +2245,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Source>(parameters, callback);
@@ -2182,7 +2265,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Source>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.getIamPolicy
@@ -2198,24 +2280,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Organizations$Sources$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Organizations$Sources$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Organizations$Sources$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Sources$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Organizations$Sources$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Sources$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2230,19 +2316,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2250,7 +2339,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.list
@@ -2267,25 +2355,30 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Sources$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListSourcesResponse>;
+      params?: Params$Resource$Organizations$Sources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSourcesResponse>;
     list(
-        params: Params$Resource$Organizations$Sources$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSourcesResponse>,
-        callback: BodyResponseCallback<Schema$ListSourcesResponse>): void;
+      params: Params$Resource$Organizations$Sources$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListSourcesResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Sources$List,
-        callback: BodyResponseCallback<Schema$ListSourcesResponse>): void;
+      params: Params$Resource$Organizations$Sources$List,
+      callback: BodyResponseCallback<Schema$ListSourcesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSourcesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$List|
-        BodyResponseCallback<Schema$ListSourcesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSourcesResponse>,
-        callback?: BodyResponseCallback<Schema$ListSourcesResponse>):
-        void|GaxiosPromise<Schema$ListSourcesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$List
+        | BodyResponseCallback<Schema$ListSourcesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListSourcesResponse>
+    ): void | GaxiosPromise<Schema$ListSourcesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2300,19 +2393,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/sources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/sources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSourcesResponse>(parameters, callback);
@@ -2320,7 +2416,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$ListSourcesResponse>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.patch
@@ -2337,24 +2432,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Organizations$Sources$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Source>;
+      params?: Params$Resource$Organizations$Sources$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Source>;
     patch(
-        params: Params$Resource$Organizations$Sources$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Source>,
-        callback: BodyResponseCallback<Schema$Source>): void;
+      params: Params$Resource$Organizations$Sources$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Source>,
+      callback: BodyResponseCallback<Schema$Source>
+    ): void;
     patch(
-        params: Params$Resource$Organizations$Sources$Patch,
-        callback: BodyResponseCallback<Schema$Source>): void;
+      params: Params$Resource$Organizations$Sources$Patch,
+      callback: BodyResponseCallback<Schema$Source>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Source>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$Patch|
-        BodyResponseCallback<Schema$Source>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Source>,
-        callback?: BodyResponseCallback<Schema$Source>):
-        void|GaxiosPromise<Schema$Source> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Patch
+        | BodyResponseCallback<Schema$Source>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Source>,
+      callback?: BodyResponseCallback<Schema$Source>
+    ): void | GaxiosPromise<Schema$Source> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2369,18 +2468,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Source>(parameters, callback);
@@ -2388,7 +2488,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Source>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.setIamPolicy
@@ -2404,24 +2503,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Organizations$Sources$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Organizations$Sources$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Organizations$Sources$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Sources$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Organizations$Sources$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Sources$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2436,19 +2539,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2456,7 +2562,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.testIamPermissions
@@ -2472,32 +2577,34 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Organizations$Sources$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Organizations$Sources$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Organizations$Sources$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Sources$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Organizations$Sources$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Sources$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Sources$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2512,35 +2619,40 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Sources$Create extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the new source's parent. Its format should be
@@ -2553,12 +2665,12 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Organizations$Sources$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Relative resource name of the source. Its format is
@@ -2566,12 +2678,12 @@ export namespace securitycenter_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -2584,12 +2696,12 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Sources$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of results to return in a single response. Default is
@@ -2608,12 +2720,12 @@ export namespace securitycenter_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The relative resource name of this source. See:
@@ -2632,12 +2744,12 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Organizations$Sources$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -2651,11 +2763,11 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Organizations$Sources$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -2675,7 +2787,6 @@ export namespace securitycenter_v1 {
       this.context = context;
     }
 
-
     /**
      * securitycenter.organizations.sources.findings.create
      * @desc Creates a finding. The corresponding source must exist for finding
@@ -2692,25 +2803,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Organizations$Sources$Findings$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Finding>;
+      params?: Params$Resource$Organizations$Sources$Findings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Finding>;
     create(
-        params: Params$Resource$Organizations$Sources$Findings$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback: BodyResponseCallback<Schema$Finding>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
     create(
-        params: Params$Resource$Organizations$Sources$Findings$Create,
-        callback: BodyResponseCallback<Schema$Finding>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Create,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Finding>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Sources$Findings$Create|
-        BodyResponseCallback<Schema$Finding>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback?: BodyResponseCallback<Schema$Finding>):
-        void|GaxiosPromise<Schema$Finding> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Findings$Create;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$Create
+        | BodyResponseCallback<Schema$Finding>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback?: BodyResponseCallback<Schema$Finding>
+    ): void | GaxiosPromise<Schema$Finding> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2725,19 +2839,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/findings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/findings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Finding>(parameters, callback);
@@ -2745,7 +2862,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Finding>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.findings.group
@@ -2763,26 +2879,32 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     group(
-        params?: Params$Resource$Organizations$Sources$Findings$Group,
-        options?: MethodOptions): GaxiosPromise<Schema$GroupFindingsResponse>;
+      params?: Params$Resource$Organizations$Sources$Findings$Group,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupFindingsResponse>;
     group(
-        params: Params$Resource$Organizations$Sources$Findings$Group,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GroupFindingsResponse>,
-        callback: BodyResponseCallback<Schema$GroupFindingsResponse>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Group,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupFindingsResponse>,
+      callback: BodyResponseCallback<Schema$GroupFindingsResponse>
+    ): void;
     group(
-        params: Params$Resource$Organizations$Sources$Findings$Group,
-        callback: BodyResponseCallback<Schema$GroupFindingsResponse>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Group,
+      callback: BodyResponseCallback<Schema$GroupFindingsResponse>
+    ): void;
     group(callback: BodyResponseCallback<Schema$GroupFindingsResponse>): void;
     group(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$Findings$Group|
-        BodyResponseCallback<Schema$GroupFindingsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupFindingsResponse>,
-        callback?: BodyResponseCallback<Schema$GroupFindingsResponse>):
-        void|GaxiosPromise<Schema$GroupFindingsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Findings$Group;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$Group
+        | BodyResponseCallback<Schema$GroupFindingsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupFindingsResponse>,
+      callback?: BodyResponseCallback<Schema$GroupFindingsResponse>
+    ): void | GaxiosPromise<Schema$GroupFindingsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$Group;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2797,19 +2919,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/findings:group')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/findings:group').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupFindingsResponse>(parameters, callback);
@@ -2817,7 +2942,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$GroupFindingsResponse>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.findings.list
@@ -2841,26 +2965,32 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Sources$Findings$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListFindingsResponse>;
+      params?: Params$Resource$Organizations$Sources$Findings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFindingsResponse>;
     list(
-        params: Params$Resource$Organizations$Sources$Findings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListFindingsResponse>,
-        callback: BodyResponseCallback<Schema$ListFindingsResponse>): void;
+      params: Params$Resource$Organizations$Sources$Findings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Sources$Findings$List,
-        callback: BodyResponseCallback<Schema$ListFindingsResponse>): void;
+      params: Params$Resource$Organizations$Sources$Findings$List,
+      callback: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListFindingsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$Findings$List|
-        BodyResponseCallback<Schema$ListFindingsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFindingsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFindingsResponse>):
-        void|GaxiosPromise<Schema$ListFindingsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Findings$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$List
+        | BodyResponseCallback<Schema$ListFindingsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFindingsResponse>,
+      callback?: BodyResponseCallback<Schema$ListFindingsResponse>
+    ): void | GaxiosPromise<Schema$ListFindingsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2875,19 +3005,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/findings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/findings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingsResponse>(parameters, callback);
@@ -2895,7 +3028,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$ListFindingsResponse>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.findings.patch
@@ -2913,24 +3045,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Organizations$Sources$Findings$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Finding>;
+      params?: Params$Resource$Organizations$Sources$Findings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Finding>;
     patch(
-        params: Params$Resource$Organizations$Sources$Findings$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback: BodyResponseCallback<Schema$Finding>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
     patch(
-        params: Params$Resource$Organizations$Sources$Findings$Patch,
-        callback: BodyResponseCallback<Schema$Finding>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Patch,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Finding>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Organizations$Sources$Findings$Patch|
-        BodyResponseCallback<Schema$Finding>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback?: BodyResponseCallback<Schema$Finding>):
-        void|GaxiosPromise<Schema$Finding> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Findings$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$Patch
+        | BodyResponseCallback<Schema$Finding>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback?: BodyResponseCallback<Schema$Finding>
+    ): void | GaxiosPromise<Schema$Finding> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2945,18 +3081,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Finding>(parameters, callback);
@@ -2964,7 +3101,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Finding>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.findings.setState
@@ -2980,25 +3116,28 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     setState(
-        params?: Params$Resource$Organizations$Sources$Findings$Setstate,
-        options?: MethodOptions): GaxiosPromise<Schema$Finding>;
+      params?: Params$Resource$Organizations$Sources$Findings$Setstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Finding>;
     setState(
-        params: Params$Resource$Organizations$Sources$Findings$Setstate,
-        options: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback: BodyResponseCallback<Schema$Finding>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Setstate,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
     setState(
-        params: Params$Resource$Organizations$Sources$Findings$Setstate,
-        callback: BodyResponseCallback<Schema$Finding>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Setstate,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
     setState(callback: BodyResponseCallback<Schema$Finding>): void;
     setState(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Sources$Findings$Setstate|
-        BodyResponseCallback<Schema$Finding>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Finding>,
-        callback?: BodyResponseCallback<Schema$Finding>):
-        void|GaxiosPromise<Schema$Finding> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Findings$Setstate;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$Setstate
+        | BodyResponseCallback<Schema$Finding>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback?: BodyResponseCallback<Schema$Finding>
+    ): void | GaxiosPromise<Schema$Finding> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$Setstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3013,19 +3152,22 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:setState')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:setState').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Finding>(parameters, callback);
@@ -3033,7 +3175,6 @@ export namespace securitycenter_v1 {
         return createAPIRequest<Schema$Finding>(parameters);
       }
     }
-
 
     /**
      * securitycenter.organizations.sources.findings.updateSecurityMarks
@@ -3051,36 +3192,37 @@ export namespace securitycenter_v1 {
      * @return {object} Request object
      */
     updateSecurityMarks(
-        params?:
-            Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
-        options?: MethodOptions): GaxiosPromise<Schema$SecurityMarks>;
+      params?: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecurityMarks>;
     updateSecurityMarks(
-        params:
-            Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
-        options: MethodOptions|BodyResponseCallback<Schema$SecurityMarks>,
-        callback: BodyResponseCallback<Schema$SecurityMarks>): void;
+      params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
+      options: MethodOptions | BodyResponseCallback<Schema$SecurityMarks>,
+      callback: BodyResponseCallback<Schema$SecurityMarks>
+    ): void;
     updateSecurityMarks(
-        params:
-            Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
-        callback: BodyResponseCallback<Schema$SecurityMarks>): void;
-    updateSecurityMarks(callback: BodyResponseCallback<Schema$SecurityMarks>):
-        void;
+      params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
+      callback: BodyResponseCallback<Schema$SecurityMarks>
+    ): void;
     updateSecurityMarks(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks|
-        BodyResponseCallback<Schema$SecurityMarks>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SecurityMarks>,
-        callback?: BodyResponseCallback<Schema$SecurityMarks>):
-        void|GaxiosPromise<Schema$SecurityMarks> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
+      callback: BodyResponseCallback<Schema$SecurityMarks>
+    ): void;
+    updateSecurityMarks(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
+        | BodyResponseCallback<Schema$SecurityMarks>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SecurityMarks>,
+      callback?: BodyResponseCallback<Schema$SecurityMarks>
+    ): void | GaxiosPromise<Schema$SecurityMarks> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
+        params = {} as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
         options = {};
       }
 
@@ -3090,18 +3232,19 @@ export namespace securitycenter_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://securitycenter.googleapis.com/';
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SecurityMarks>(parameters, callback);
@@ -3111,12 +3254,12 @@ export namespace securitycenter_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sources$Findings$Create extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier provided by the client within the parent scope. It must
@@ -3135,12 +3278,12 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Group extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Group
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the source to groupBy. Its format is
@@ -3155,12 +3298,12 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$GroupFindingsRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When compare_duration is set, the ListFindingsResult's "state_change"
@@ -3247,12 +3390,12 @@ export namespace securitycenter_v1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The relative resource name of this finding. See:
@@ -3276,11 +3419,11 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$Finding;
   }
   export interface Params$Resource$Organizations$Sources$Findings$Setstate
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The relative resource name of the finding. See:
@@ -3295,11 +3438,11 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$SetFindingStateRequest;
   }
   export interface Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The relative resource name of the SecurityMarks. See:

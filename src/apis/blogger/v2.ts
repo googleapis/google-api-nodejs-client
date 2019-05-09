@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -113,7 +125,7 @@ export namespace blogger_v2 {
     /**
      * The locale this Blog is set to.
      */
-    locale?: {country?: string; language?: string; variant?: string;};
+    locale?: {country?: string; language?: string; variant?: string};
     /**
      * The name of this blog. This is displayed as the title.
      */
@@ -121,11 +133,11 @@ export namespace blogger_v2 {
     /**
      * The container of pages in this blog.
      */
-    pages?: {selfLink?: string; totalItems?: number;};
+    pages?: {selfLink?: string; totalItems?: number};
     /**
      * The container of posts in this blog.
      */
-    posts?: {selfLink?: string; totalItems?: number;};
+    posts?: {selfLink?: string; totalItems?: number};
     /**
      * RFC 3339 date-time when this blog was published.
      */
@@ -160,13 +172,13 @@ export namespace blogger_v2 {
     author?: {
       displayName?: string;
       id?: string;
-      image?: {url?: string;};
+      image?: {url?: string};
       url?: string;
     };
     /**
      * Data about the blog containing this comment.
      */
-    blog?: {id?: string;};
+    blog?: {id?: string};
     /**
      * The actual content of the comment. May include HTML markup.
      */
@@ -178,7 +190,7 @@ export namespace blogger_v2 {
     /**
      * Data about the comment this is in reply to.
      */
-    inReplyTo?: {id?: string;};
+    inReplyTo?: {id?: string};
     /**
      * The kind of this entry. Always blogger#comment
      */
@@ -186,7 +198,7 @@ export namespace blogger_v2 {
     /**
      * Data about the post containing this comment.
      */
-    post?: {id?: string;};
+    post?: {id?: string};
     /**
      * RFC 3339 date-time when this comment was published.
      */
@@ -225,13 +237,13 @@ export namespace blogger_v2 {
     author?: {
       displayName?: string;
       id?: string;
-      image?: {url?: string;};
+      image?: {url?: string};
       url?: string;
     };
     /**
      * Data about the blog containing this Page.
      */
-    blog?: {id?: string;};
+    blog?: {id?: string};
     /**
      * The body content of this Page, in HTML.
      */
@@ -283,13 +295,13 @@ export namespace blogger_v2 {
     author?: {
       displayName?: string;
       id?: string;
-      image?: {url?: string;};
+      image?: {url?: string};
       url?: string;
     };
     /**
      * Data about the blog containing this Post.
      */
-    blog?: {id?: string;};
+    blog?: {id?: string};
     /**
      * The content of the Post. May contain HTML markup.
      */
@@ -313,7 +325,7 @@ export namespace blogger_v2 {
     /**
      * The container of comments on this Post.
      */
-    replies?: {selfLink?: string; totalItems?: string;};
+    replies?: {selfLink?: string; totalItems?: string};
     /**
      * The API REST URL to fetch this resource from.
      */
@@ -357,7 +369,7 @@ export namespace blogger_v2 {
     /**
      * The container of blogs for this user.
      */
-    blogs?: {selfLink?: string;};
+    blogs?: {selfLink?: string};
     /**
      * The timestamp of when this profile was created, in seconds since epoch.
      */
@@ -377,7 +389,7 @@ export namespace blogger_v2 {
     /**
      * This user&#39;s locale
      */
-    locale?: {country?: string; language?: string; variant?: string;};
+    locale?: {country?: string; language?: string; variant?: string};
     /**
      * The API REST URL to fetch this resource from.
      */
@@ -388,13 +400,11 @@ export namespace blogger_v2 {
     url?: string;
   }
 
-
   export class Resource$Blogs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * blogger.blogs.get
@@ -408,19 +418,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Blogs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Blog>;
-    get(params: Params$Resource$Blogs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Blog>,
-        callback: BodyResponseCallback<Schema$Blog>): void;
-    get(params: Params$Resource$Blogs$Get,
-        callback: BodyResponseCallback<Schema$Blog>): void;
+    get(
+      params?: Params$Resource$Blogs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Blog>;
+    get(
+      params: Params$Resource$Blogs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Blog>,
+      callback: BodyResponseCallback<Schema$Blog>
+    ): void;
+    get(
+      params: Params$Resource$Blogs$Get,
+      callback: BodyResponseCallback<Schema$Blog>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Blog>): void;
-    get(paramsOrCallback?: Params$Resource$Blogs$Get|
-        BodyResponseCallback<Schema$Blog>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Blog>,
-        callback?: BodyResponseCallback<Schema$Blog>):
-        void|GaxiosPromise<Schema$Blog> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Blogs$Get
+        | BodyResponseCallback<Schema$Blog>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Blog>,
+      callback?: BodyResponseCallback<Schema$Blog>
+    ): void | GaxiosPromise<Schema$Blog> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -438,16 +456,19 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Blog>(parameters, callback);
@@ -461,7 +482,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the blog to get.
@@ -469,13 +490,11 @@ export namespace blogger_v2 {
     blogId?: string;
   }
 
-
   export class Resource$Comments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * blogger.comments.get
@@ -491,19 +510,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
-    get(params: Params$Resource$Comments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
-    get(params: Params$Resource$Comments$Get,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(
+      params?: Params$Resource$Comments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    get(
+      params: Params$Resource$Comments$Get,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Comment>): void;
-    get(paramsOrCallback?: Params$Resource$Comments$Get|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Comments$Get
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -521,18 +548,19 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -540,7 +568,6 @@ export namespace blogger_v2 {
         return createAPIRequest<Schema$Comment>(parameters);
       }
     }
-
 
     /**
      * blogger.comments.list
@@ -559,23 +586,29 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentList>;
     list(
-        params: Params$Resource$Comments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
-        callback: BodyResponseCallback<Schema$CommentList>): void;
+      params?: Params$Resource$Comments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentList>;
     list(
-        params: Params$Resource$Comments$List,
-        callback: BodyResponseCallback<Schema$CommentList>): void;
+      params: Params$Resource$Comments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentList>,
+      callback: BodyResponseCallback<Schema$CommentList>
+    ): void;
+    list(
+      params: Params$Resource$Comments$List,
+      callback: BodyResponseCallback<Schema$CommentList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CommentList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Comments$List|
-        BodyResponseCallback<Schema$CommentList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentList>,
-        callback?: BodyResponseCallback<Schema$CommentList>):
-        void|GaxiosPromise<Schema$CommentList> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$List
+        | BodyResponseCallback<Schema$CommentList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentList>,
+      callback?: BodyResponseCallback<Schema$CommentList>
+    ): void | GaxiosPromise<Schema$CommentList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -593,17 +626,18 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/blogger/v2/blogs/{blogId}/posts/{postId}/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}/comments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -617,7 +651,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the blog to containing the comment.
@@ -636,7 +670,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the blog to fetch comments from.
@@ -664,13 +698,11 @@ export namespace blogger_v2 {
     startDate?: string;
   }
 
-
   export class Resource$Pages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * blogger.pages.get
@@ -685,19 +717,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Pages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Page>;
-    get(params: Params$Resource$Pages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback: BodyResponseCallback<Schema$Page>): void;
-    get(params: Params$Resource$Pages$Get,
-        callback: BodyResponseCallback<Schema$Page>): void;
+    get(
+      params?: Params$Resource$Pages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Page>;
+    get(
+      params: Params$Resource$Pages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Page>,
+      callback: BodyResponseCallback<Schema$Page>
+    ): void;
+    get(
+      params: Params$Resource$Pages$Get,
+      callback: BodyResponseCallback<Schema$Page>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Page>): void;
-    get(paramsOrCallback?: Params$Resource$Pages$Get|
-        BodyResponseCallback<Schema$Page>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>):
-        void|GaxiosPromise<Schema$Page> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Pages$Get
+        | BodyResponseCallback<Schema$Page>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Page>,
+      callback?: BodyResponseCallback<Schema$Page>
+    ): void | GaxiosPromise<Schema$Page> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -715,16 +755,18 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -732,7 +774,6 @@ export namespace blogger_v2 {
         return createAPIRequest<Schema$Page>(parameters);
       }
     }
-
 
     /**
      * blogger.pages.list
@@ -747,22 +788,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Pages$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PageList>;
     list(
-        params: Params$Resource$Pages$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PageList>,
-        callback: BodyResponseCallback<Schema$PageList>): void;
+      params?: Params$Resource$Pages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PageList>;
     list(
-        params: Params$Resource$Pages$List,
-        callback: BodyResponseCallback<Schema$PageList>): void;
+      params: Params$Resource$Pages$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PageList>,
+      callback: BodyResponseCallback<Schema$PageList>
+    ): void;
+    list(
+      params: Params$Resource$Pages$List,
+      callback: BodyResponseCallback<Schema$PageList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PageList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Pages$List|
-        BodyResponseCallback<Schema$PageList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PageList>,
-        callback?: BodyResponseCallback<Schema$PageList>):
-        void|GaxiosPromise<Schema$PageList> {
+      paramsOrCallback?:
+        | Params$Resource$Pages$List
+        | BodyResponseCallback<Schema$PageList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PageList>,
+      callback?: BodyResponseCallback<Schema$PageList>
+    ): void | GaxiosPromise<Schema$PageList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -780,16 +826,19 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PageList>(parameters, callback);
@@ -803,7 +852,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the blog containing the page.
@@ -818,7 +867,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the blog to fetch pages from.
@@ -830,13 +879,11 @@ export namespace blogger_v2 {
     fetchBodies?: boolean;
   }
 
-
   export class Resource$Posts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * blogger.posts.get
@@ -851,19 +898,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Posts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Post>;
-    get(params: Params$Resource$Posts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback: BodyResponseCallback<Schema$Post>): void;
-    get(params: Params$Resource$Posts$Get,
-        callback: BodyResponseCallback<Schema$Post>): void;
+    get(
+      params?: Params$Resource$Posts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Post>;
+    get(
+      params: Params$Resource$Posts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Post>,
+      callback: BodyResponseCallback<Schema$Post>
+    ): void;
+    get(
+      params: Params$Resource$Posts$Get,
+      callback: BodyResponseCallback<Schema$Post>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Post>): void;
-    get(paramsOrCallback?: Params$Resource$Posts$Get|
-        BodyResponseCallback<Schema$Post>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>):
-        void|GaxiosPromise<Schema$Post> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Posts$Get
+        | BodyResponseCallback<Schema$Post>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Post>,
+      callback?: BodyResponseCallback<Schema$Post>
+    ): void | GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -881,16 +936,18 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -898,7 +955,6 @@ export namespace blogger_v2 {
         return createAPIRequest<Schema$Post>(parameters);
       }
     }
-
 
     /**
      * blogger.posts.list
@@ -916,22 +972,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Posts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PostList>;
     list(
-        params: Params$Resource$Posts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PostList>,
-        callback: BodyResponseCallback<Schema$PostList>): void;
+      params?: Params$Resource$Posts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PostList>;
     list(
-        params: Params$Resource$Posts$List,
-        callback: BodyResponseCallback<Schema$PostList>): void;
+      params: Params$Resource$Posts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PostList>,
+      callback: BodyResponseCallback<Schema$PostList>
+    ): void;
+    list(
+      params: Params$Resource$Posts$List,
+      callback: BodyResponseCallback<Schema$PostList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PostList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Posts$List|
-        BodyResponseCallback<Schema$PostList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PostList>,
-        callback?: BodyResponseCallback<Schema$PostList>):
-        void|GaxiosPromise<Schema$PostList> {
+      paramsOrCallback?:
+        | Params$Resource$Posts$List
+        | BodyResponseCallback<Schema$PostList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PostList>,
+      callback?: BodyResponseCallback<Schema$PostList>
+    ): void | GaxiosPromise<Schema$PostList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -949,16 +1010,19 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PostList>(parameters, callback);
@@ -972,7 +1036,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the blog to fetch the post from.
@@ -987,7 +1051,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the blog to fetch posts from.
@@ -1011,7 +1075,6 @@ export namespace blogger_v2 {
     startDate?: string;
   }
 
-
   export class Resource$Users {
     context: APIRequestContext;
     blogs: Resource$Users$Blogs;
@@ -1019,7 +1082,6 @@ export namespace blogger_v2 {
       this.context = context;
       this.blogs = new Resource$Users$Blogs(this.context);
     }
-
 
     /**
      * blogger.users.get
@@ -1033,19 +1095,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$User>;
-    get(params: Params$Resource$Users$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback: BodyResponseCallback<Schema$User>): void;
-    get(params: Params$Resource$Users$Get,
-        callback: BodyResponseCallback<Schema$User>): void;
+    get(
+      params?: Params$Resource$Users$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    get(
+      params: Params$Resource$Users$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(
+      params: Params$Resource$Users$Get,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
     get(callback: BodyResponseCallback<Schema$User>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Get|
-        BodyResponseCallback<Schema$User>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>):
-        void|GaxiosPromise<Schema$User> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Get
+        | BodyResponseCallback<Schema$User>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback?: BodyResponseCallback<Schema$User>
+    ): void | GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1063,16 +1133,19 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/users/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/blogger/v2/users/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -1086,7 +1159,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the user to get.
@@ -1100,7 +1173,6 @@ export namespace blogger_v2 {
       this.context = context;
     }
 
-
     /**
      * blogger.users.blogs.list
      * @desc Retrieves a list of blogs, possibly filtered.
@@ -1113,22 +1185,27 @@ export namespace blogger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$Blogs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$BlogList>;
     list(
-        params: Params$Resource$Users$Blogs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$BlogList>,
-        callback: BodyResponseCallback<Schema$BlogList>): void;
+      params?: Params$Resource$Users$Blogs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BlogList>;
     list(
-        params: Params$Resource$Users$Blogs$List,
-        callback: BodyResponseCallback<Schema$BlogList>): void;
+      params: Params$Resource$Users$Blogs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$BlogList>,
+      callback: BodyResponseCallback<Schema$BlogList>
+    ): void;
+    list(
+      params: Params$Resource$Users$Blogs$List,
+      callback: BodyResponseCallback<Schema$BlogList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$BlogList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Blogs$List|
-        BodyResponseCallback<Schema$BlogList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$BlogList>,
-        callback?: BodyResponseCallback<Schema$BlogList>):
-        void|GaxiosPromise<Schema$BlogList> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Blogs$List
+        | BodyResponseCallback<Schema$BlogList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$BlogList>,
+      callback?: BodyResponseCallback<Schema$BlogList>
+    ): void | GaxiosPromise<Schema$BlogList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Blogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1146,16 +1223,19 @@ export namespace blogger_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/blogger/v2/users/{userId}/blogs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/blogger/v2/users/{userId}/blogs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BlogList>(parameters, callback);
@@ -1169,7 +1249,7 @@ export namespace blogger_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the user whose blogs are to be fetched. Either the word 'self'

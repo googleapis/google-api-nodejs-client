@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -198,7 +210,7 @@ export namespace cloudtrace_v1 {
      * `/http/status_code` *   `/http/url` *   `/http/user_agent` *   `/pid` *
      * `/stacktrace` *   `/tid`
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Name of the span. Must be less than 128 bytes. The span name is sanitized
      * and displayed in the Stackdriver Trace tool in the Google Cloud Platform
@@ -223,7 +235,6 @@ export namespace cloudtrace_v1 {
     startTime?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     traces: Resource$Projects$Traces;
@@ -231,7 +242,6 @@ export namespace cloudtrace_v1 {
       this.context = context;
       this.traces = new Resource$Projects$Traces(this.context);
     }
-
 
     /**
      * cloudtrace.projects.patchTraces
@@ -307,24 +317,28 @@ export namespace cloudtrace_v1 {
      * @return {object} Request object
      */
     patchTraces(
-        params?: Params$Resource$Projects$Patchtraces,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Patchtraces,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     patchTraces(
-        params: Params$Resource$Projects$Patchtraces,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Patchtraces,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     patchTraces(
-        params: Params$Resource$Projects$Patchtraces,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Patchtraces,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     patchTraces(callback: BodyResponseCallback<Schema$Empty>): void;
     patchTraces(
-        paramsOrCallback?: Params$Resource$Projects$Patchtraces|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Patchtraces;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Patchtraces
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Patchtraces;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -341,16 +355,19 @@ export namespace cloudtrace_v1 {
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/traces')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/traces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -360,12 +377,12 @@ export namespace cloudtrace_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Patchtraces extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Patchtraces
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the Cloud project where the trace data is stored.
@@ -383,7 +400,6 @@ export namespace cloudtrace_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudtrace.projects.traces.get
@@ -454,21 +470,29 @@ export namespace cloudtrace_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Traces$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Trace>;
-    get(params: Params$Resource$Projects$Traces$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Trace>,
-        callback: BodyResponseCallback<Schema$Trace>): void;
-    get(params: Params$Resource$Projects$Traces$Get,
-        callback: BodyResponseCallback<Schema$Trace>): void;
+    get(
+      params?: Params$Resource$Projects$Traces$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Trace>;
+    get(
+      params: Params$Resource$Projects$Traces$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Trace>,
+      callback: BodyResponseCallback<Schema$Trace>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Traces$Get,
+      callback: BodyResponseCallback<Schema$Trace>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Trace>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Traces$Get|
-        BodyResponseCallback<Schema$Trace>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trace>,
-        callback?: BodyResponseCallback<Schema$Trace>):
-        void|GaxiosPromise<Schema$Trace> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Traces$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Traces$Get
+        | BodyResponseCallback<Schema$Trace>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trace>,
+      callback?: BodyResponseCallback<Schema$Trace>
+    ): void | GaxiosPromise<Schema$Trace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Traces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -485,16 +509,18 @@ export namespace cloudtrace_v1 {
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/traces/{traceId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/traces/{traceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'traceId'],
         pathParams: ['projectId', 'traceId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Trace>(parameters, callback);
@@ -502,7 +528,6 @@ export namespace cloudtrace_v1 {
         return createAPIRequest<Schema$Trace>(parameters);
       }
     }
-
 
     /**
      * cloudtrace.projects.traces.list
@@ -591,25 +616,30 @@ export namespace cloudtrace_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Traces$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTracesResponse>;
+      params?: Params$Resource$Projects$Traces$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTracesResponse>;
     list(
-        params: Params$Resource$Projects$Traces$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
-        callback: BodyResponseCallback<Schema$ListTracesResponse>): void;
+      params: Params$Resource$Projects$Traces$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListTracesResponse>,
+      callback: BodyResponseCallback<Schema$ListTracesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Traces$List,
-        callback: BodyResponseCallback<Schema$ListTracesResponse>): void;
+      params: Params$Resource$Projects$Traces$List,
+      callback: BodyResponseCallback<Schema$ListTracesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTracesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Traces$List|
-        BodyResponseCallback<Schema$ListTracesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTracesResponse>,
-        callback?: BodyResponseCallback<Schema$ListTracesResponse>):
-        void|GaxiosPromise<Schema$ListTracesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Traces$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Traces$List
+        | BodyResponseCallback<Schema$ListTracesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTracesResponse>,
+      callback?: BodyResponseCallback<Schema$ListTracesResponse>
+    ): void | GaxiosPromise<Schema$ListTracesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Traces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -626,16 +656,19 @@ export namespace cloudtrace_v1 {
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/traces')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/traces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTracesResponse>(parameters, callback);
@@ -645,12 +678,12 @@ export namespace cloudtrace_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Traces$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Traces$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the Cloud project where the trace data is stored.
@@ -661,12 +694,12 @@ export namespace cloudtrace_v1 {
      */
     traceId?: string;
   }
-  export interface Params$Resource$Projects$Traces$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Traces$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * End of the time interval (inclusive) during which the trace data was

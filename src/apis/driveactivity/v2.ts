@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -910,13 +922,11 @@ export namespace driveactivity_v2 {
     unknownUser?: Schema$UnknownUser;
   }
 
-
   export class Resource$Activity {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * driveactivity.activity.query
@@ -930,27 +940,33 @@ export namespace driveactivity_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: Params$Resource$Activity$Query, options?: MethodOptions):
-        GaxiosPromise<Schema$QueryDriveActivityResponse>;
     query(
-        params: Params$Resource$Activity$Query,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$QueryDriveActivityResponse>,
-        callback: BodyResponseCallback<Schema$QueryDriveActivityResponse>):
-        void;
+      params?: Params$Resource$Activity$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryDriveActivityResponse>;
     query(
-        params: Params$Resource$Activity$Query,
-        callback: BodyResponseCallback<Schema$QueryDriveActivityResponse>):
-        void;
-    query(callback: BodyResponseCallback<Schema$QueryDriveActivityResponse>):
-        void;
+      params: Params$Resource$Activity$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
+      callback: BodyResponseCallback<Schema$QueryDriveActivityResponse>
+    ): void;
     query(
-        paramsOrCallback?: Params$Resource$Activity$Query|
-        BodyResponseCallback<Schema$QueryDriveActivityResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QueryDriveActivityResponse>,
-        callback?: BodyResponseCallback<Schema$QueryDriveActivityResponse>):
-        void|GaxiosPromise<Schema$QueryDriveActivityResponse> {
+      params: Params$Resource$Activity$Query,
+      callback: BodyResponseCallback<Schema$QueryDriveActivityResponse>
+    ): void;
+    query(
+      callback: BodyResponseCallback<Schema$QueryDriveActivityResponse>
+    ): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Activity$Query
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
+      callback?: BodyResponseCallback<Schema$QueryDriveActivityResponse>
+    ): void | GaxiosPromise<Schema$QueryDriveActivityResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activity$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -966,23 +982,25 @@ export namespace driveactivity_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://driveactivity.googleapis.com/';
+        options.rootUrl || 'https://driveactivity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/activity:query')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/activity:query').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QueryDriveActivityResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$QueryDriveActivityResponse>(parameters);
       }
@@ -993,8 +1011,7 @@ export namespace driveactivity_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

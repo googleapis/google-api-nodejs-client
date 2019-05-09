@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {translate_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': translate_v2.Translate,
+  v2: translate_v2.Translate,
 };
 
 export function translate(version: 'v2'): translate_v2.Translate;
-export function translate(options: translate_v2.Options):
-    translate_v2.Translate;
+export function translate(
+  options: translate_v2.Options
+): translate_v2.Translate;
 export function translate<T = translate_v2.Translate>(
-    this: GoogleConfigurable, versionOrOptions: 'v2'|translate_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | translate_v2.Options
+) {
   return getAPI<T>('translate', versionOrOptions, VERSIONS, this);
 }
 

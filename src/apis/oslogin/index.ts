@@ -19,24 +19,33 @@ import {oslogin_v1alpha} from './v1alpha';
 import {oslogin_v1beta} from './v1beta';
 
 export const VERSIONS = {
-  'v1': oslogin_v1.Oslogin,
-  'v1alpha': oslogin_v1alpha.Oslogin,
-  'v1beta': oslogin_v1beta.Oslogin,
+  v1: oslogin_v1.Oslogin,
+  v1alpha: oslogin_v1alpha.Oslogin,
+  v1beta: oslogin_v1beta.Oslogin,
 };
 
 export function oslogin(version: 'v1'): oslogin_v1.Oslogin;
 export function oslogin(options: oslogin_v1.Options): oslogin_v1.Oslogin;
 export function oslogin(version: 'v1alpha'): oslogin_v1alpha.Oslogin;
-export function oslogin(options: oslogin_v1alpha.Options):
-    oslogin_v1alpha.Oslogin;
+export function oslogin(
+  options: oslogin_v1alpha.Options
+): oslogin_v1alpha.Oslogin;
 export function oslogin(version: 'v1beta'): oslogin_v1beta.Oslogin;
-export function oslogin(options: oslogin_v1beta.Options):
-    oslogin_v1beta.Oslogin;
+export function oslogin(
+  options: oslogin_v1beta.Options
+): oslogin_v1beta.Oslogin;
 export function oslogin<
-    T = oslogin_v1.Oslogin | oslogin_v1alpha.Oslogin | oslogin_v1beta.Oslogin>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|oslogin_v1.Options|'v1alpha'|
-    oslogin_v1alpha.Options|'v1beta'|oslogin_v1beta.Options) {
+  T = oslogin_v1.Oslogin | oslogin_v1alpha.Oslogin | oslogin_v1beta.Oslogin
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | oslogin_v1.Options
+    | 'v1alpha'
+    | oslogin_v1alpha.Options
+    | 'v1beta'
+    | oslogin_v1beta.Options
+) {
   return getAPI<T>('oslogin', versionOrOptions, VERSIONS, this);
 }
 

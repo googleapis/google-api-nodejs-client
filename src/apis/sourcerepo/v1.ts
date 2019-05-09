@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -332,7 +344,7 @@ export namespace sourcerepo_v1 {
      * How this project publishes a change in the repositories through Cloud
      * Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: {[key: string]: Schema$PubsubConfig;};
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig};
   }
   /**
    * Configuration to publish a Cloud Pub/Sub message.
@@ -377,7 +389,7 @@ export namespace sourcerepo_v1 {
      * How this repository publishes a change in the repository through Cloud
      * Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: {[key: string]: Schema$PubsubConfig;};
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig};
     /**
      * The disk usage of the repo, in bytes. Read-only field. Size is only
      * returned by GetRepo.
@@ -461,7 +473,6 @@ export namespace sourcerepo_v1 {
     updateMask?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     repos: Resource$Projects$Repos;
@@ -469,7 +480,6 @@ export namespace sourcerepo_v1 {
       this.context = context;
       this.repos = new Resource$Projects$Repos(this.context);
     }
-
 
     /**
      * sourcerepo.projects.getConfig
@@ -484,25 +494,30 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     getConfig(
-        params?: Params$Resource$Projects$Getconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$ProjectConfig>;
+      params?: Params$Resource$Projects$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectConfig>;
     getConfig(
-        params: Params$Resource$Projects$Getconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$ProjectConfig>,
-        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+      params: Params$Resource$Projects$Getconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectConfig>,
+      callback: BodyResponseCallback<Schema$ProjectConfig>
+    ): void;
     getConfig(
-        params: Params$Resource$Projects$Getconfig,
-        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+      params: Params$Resource$Projects$Getconfig,
+      callback: BodyResponseCallback<Schema$ProjectConfig>
+    ): void;
     getConfig(callback: BodyResponseCallback<Schema$ProjectConfig>): void;
     getConfig(
-        paramsOrCallback?: Params$Resource$Projects$Getconfig|
-        BodyResponseCallback<Schema$ProjectConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectConfig>,
-        callback?: BodyResponseCallback<Schema$ProjectConfig>):
-        void|GaxiosPromise<Schema$ProjectConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getconfig;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getconfig
+        | BodyResponseCallback<Schema$ProjectConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectConfig>,
+      callback?: BodyResponseCallback<Schema$ProjectConfig>
+    ): void | GaxiosPromise<Schema$ProjectConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -519,16 +534,16 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/config')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/config').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -536,7 +551,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$ProjectConfig>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.updateConfig
@@ -552,25 +566,30 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     updateConfig(
-        params?: Params$Resource$Projects$Updateconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$ProjectConfig>;
+      params?: Params$Resource$Projects$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectConfig>;
     updateConfig(
-        params: Params$Resource$Projects$Updateconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$ProjectConfig>,
-        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+      params: Params$Resource$Projects$Updateconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectConfig>,
+      callback: BodyResponseCallback<Schema$ProjectConfig>
+    ): void;
     updateConfig(
-        params: Params$Resource$Projects$Updateconfig,
-        callback: BodyResponseCallback<Schema$ProjectConfig>): void;
+      params: Params$Resource$Projects$Updateconfig,
+      callback: BodyResponseCallback<Schema$ProjectConfig>
+    ): void;
     updateConfig(callback: BodyResponseCallback<Schema$ProjectConfig>): void;
     updateConfig(
-        paramsOrCallback?: Params$Resource$Projects$Updateconfig|
-        BodyResponseCallback<Schema$ProjectConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectConfig>,
-        callback?: BodyResponseCallback<Schema$ProjectConfig>):
-        void|GaxiosPromise<Schema$ProjectConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Updateconfig;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updateconfig
+        | BodyResponseCallback<Schema$ProjectConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectConfig>,
+      callback?: BodyResponseCallback<Schema$ProjectConfig>
+    ): void | GaxiosPromise<Schema$ProjectConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -587,16 +606,16 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/config')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/config').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -606,12 +625,12 @@ export namespace sourcerepo_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getconfig extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the requested project. Values are of the form
@@ -619,12 +638,12 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updateconfig extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Updateconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the requested project. Values are of the form
@@ -644,7 +663,6 @@ export namespace sourcerepo_v1 {
       this.context = context;
     }
 
-
     /**
      * sourcerepo.projects.repos.create
      * @desc Creates a repo in the given project with the given name.  If the
@@ -660,24 +678,28 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Repos$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Repo>;
+      params?: Params$Resource$Projects$Repos$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Repo>;
     create(
-        params: Params$Resource$Projects$Repos$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback: BodyResponseCallback<Schema$Repo>): void;
+      params: Params$Resource$Projects$Repos$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Repo>,
+      callback: BodyResponseCallback<Schema$Repo>
+    ): void;
     create(
-        params: Params$Resource$Projects$Repos$Create,
-        callback: BodyResponseCallback<Schema$Repo>): void;
+      params: Params$Resource$Projects$Repos$Create,
+      callback: BodyResponseCallback<Schema$Repo>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Repo>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Repos$Create|
-        BodyResponseCallback<Schema$Repo>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback?: BodyResponseCallback<Schema$Repo>):
-        void|GaxiosPromise<Schema$Repo> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$Create
+        | BodyResponseCallback<Schema$Repo>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Repo>,
+      callback?: BodyResponseCallback<Schema$Repo>
+    ): void | GaxiosPromise<Schema$Repo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -694,16 +716,19 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/repos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/repos').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -711,7 +736,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$Repo>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.repos.delete
@@ -726,24 +750,28 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Repos$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Repos$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Repos$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Repos$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Repos$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Repos$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Repos$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -760,15 +788,16 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -776,7 +805,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.repos.get
@@ -790,21 +818,29 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Repos$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Repo>;
-    get(params: Params$Resource$Projects$Repos$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback: BodyResponseCallback<Schema$Repo>): void;
-    get(params: Params$Resource$Projects$Repos$Get,
-        callback: BodyResponseCallback<Schema$Repo>): void;
+    get(
+      params?: Params$Resource$Projects$Repos$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Repo>;
+    get(
+      params: Params$Resource$Projects$Repos$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Repo>,
+      callback: BodyResponseCallback<Schema$Repo>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Repos$Get,
+      callback: BodyResponseCallback<Schema$Repo>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Repo>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Repos$Get|
-        BodyResponseCallback<Schema$Repo>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback?: BodyResponseCallback<Schema$Repo>):
-        void|GaxiosPromise<Schema$Repo> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$Get
+        | BodyResponseCallback<Schema$Repo>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Repo>,
+      callback?: BodyResponseCallback<Schema$Repo>
+    ): void | GaxiosPromise<Schema$Repo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -821,15 +857,16 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -837,7 +874,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$Repo>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.repos.getIamPolicy
@@ -853,24 +889,28 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Repos$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Repos$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Repos$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Repos$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Repos$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Repos$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Repos$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Repos$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -887,16 +927,19 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -904,7 +947,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.repos.list
@@ -921,25 +963,31 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$Repos$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListReposResponse>;
     list(
-        params: Params$Resource$Projects$Repos$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListReposResponse>,
-        callback: BodyResponseCallback<Schema$ListReposResponse>): void;
+      params?: Params$Resource$Projects$Repos$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReposResponse>;
     list(
-        params: Params$Resource$Projects$Repos$List,
-        callback: BodyResponseCallback<Schema$ListReposResponse>): void;
+      params: Params$Resource$Projects$Repos$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListReposResponse>,
+      callback: BodyResponseCallback<Schema$ListReposResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Repos$List,
+      callback: BodyResponseCallback<Schema$ListReposResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListReposResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Repos$List|
-        BodyResponseCallback<Schema$ListReposResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReposResponse>,
-        callback?: BodyResponseCallback<Schema$ListReposResponse>):
-        void|GaxiosPromise<Schema$ListReposResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$List
+        | BodyResponseCallback<Schema$ListReposResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReposResponse>,
+      callback?: BodyResponseCallback<Schema$ListReposResponse>
+    ): void | GaxiosPromise<Schema$ListReposResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -956,16 +1004,16 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/{+name}/repos').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/repos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReposResponse>(parameters, callback);
@@ -973,7 +1021,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$ListReposResponse>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.repos.patch
@@ -989,24 +1036,28 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Repos$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Repo>;
+      params?: Params$Resource$Projects$Repos$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Repo>;
     patch(
-        params: Params$Resource$Projects$Repos$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback: BodyResponseCallback<Schema$Repo>): void;
+      params: Params$Resource$Projects$Repos$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Repo>,
+      callback: BodyResponseCallback<Schema$Repo>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Repos$Patch,
-        callback: BodyResponseCallback<Schema$Repo>): void;
+      params: Params$Resource$Projects$Repos$Patch,
+      callback: BodyResponseCallback<Schema$Repo>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Repo>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Repos$Patch|
-        BodyResponseCallback<Schema$Repo>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback?: BodyResponseCallback<Schema$Repo>):
-        void|GaxiosPromise<Schema$Repo> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$Patch
+        | BodyResponseCallback<Schema$Repo>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Repo>,
+      callback?: BodyResponseCallback<Schema$Repo>
+    ): void | GaxiosPromise<Schema$Repo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1023,15 +1074,16 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -1039,7 +1091,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$Repo>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.repos.setIamPolicy
@@ -1056,24 +1107,28 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Repos$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Repos$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Repos$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Repos$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Repos$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Repos$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Repos$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Repos$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1090,16 +1145,19 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1107,7 +1165,6 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * sourcerepo.projects.repos.testIamPermissions
@@ -1125,31 +1182,34 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Repos$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Repos$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Repos$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Repos$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Repos$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Repos$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Projects$Repos$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Repos$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Repos$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Repos$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1166,32 +1226,37 @@ export namespace sourcerepo_v1 {
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Repos$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which to create the repo. Values are of the form
@@ -1204,12 +1269,12 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$Repo;
   }
-  export interface Params$Resource$Projects$Repos$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the repo to delete. Values are of the form
@@ -1217,12 +1282,12 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Repos$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the requested repository. Values are of the form
@@ -1230,12 +1295,12 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Repos$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -1243,12 +1308,12 @@ export namespace sourcerepo_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Repos$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID whose repos should be listed. Values are of the form
@@ -1267,12 +1332,12 @@ export namespace sourcerepo_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Repos$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the requested repository. Values are of the form
@@ -1285,12 +1350,12 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$UpdateRepoRequest;
   }
-  export interface Params$Resource$Projects$Repos$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -1303,12 +1368,12 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Repos$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Repos$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.

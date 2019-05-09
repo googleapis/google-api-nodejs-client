@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -92,8 +104,9 @@ export namespace admin_reports_v1 {
 
       this.activities = new Resource$Activities(this.context);
       this.channels = new Resource$Channels(this.context);
-      this.customerUsageReports =
-          new Resource$Customerusagereports(this.context);
+      this.customerUsageReports = new Resource$Customerusagereports(
+        this.context
+      );
       this.entityUsageReports = new Resource$Entityusagereports(this.context);
       this.userUsageReport = new Resource$Userusagereport(this.context);
     }
@@ -199,7 +212,7 @@ export namespace admin_reports_v1 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string;};
+    params?: {[key: string]: string};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -256,7 +269,7 @@ export namespace admin_reports_v1 {
       boolValue?: boolean;
       datetimeValue?: string;
       intValue?: string;
-      msgValue?: Array<{[key: string]: any;}>;
+      msgValue?: Array<{[key: string]: any}>;
       name?: string;
       stringValue?: string;
     }>;
@@ -286,18 +299,16 @@ export namespace admin_reports_v1 {
      */
     warnings?: Array<{
       code?: string;
-      data?: Array<{key?: string; value?: string;}>;
+      data?: Array<{key?: string; value?: string}>;
       message?: string;
     }>;
   }
-
 
   export class Resource$Activities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * reports.activities.list
@@ -322,23 +333,29 @@ export namespace admin_reports_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Activities>;
     list(
-        params: Params$Resource$Activities$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Activities>,
-        callback: BodyResponseCallback<Schema$Activities>): void;
+      params?: Params$Resource$Activities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Activities>;
     list(
-        params: Params$Resource$Activities$List,
-        callback: BodyResponseCallback<Schema$Activities>): void;
+      params: Params$Resource$Activities$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Activities>,
+      callback: BodyResponseCallback<Schema$Activities>
+    ): void;
+    list(
+      params: Params$Resource$Activities$List,
+      callback: BodyResponseCallback<Schema$Activities>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Activities>): void;
     list(
-        paramsOrCallback?: Params$Resource$Activities$List|
-        BodyResponseCallback<Schema$Activities>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Activities>,
-        callback?: BodyResponseCallback<Schema$Activities>):
-        void|GaxiosPromise<Schema$Activities> {
+      paramsOrCallback?:
+        | Params$Resource$Activities$List
+        | BodyResponseCallback<Schema$Activities>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Activities>,
+      callback?: BodyResponseCallback<Schema$Activities>
+    ): void | GaxiosPromise<Schema$Activities> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -356,18 +373,19 @@ export namespace admin_reports_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Activities>(parameters, callback);
@@ -375,7 +393,6 @@ export namespace admin_reports_v1 {
         return createAPIRequest<Schema$Activities>(parameters);
       }
     }
-
 
     /**
      * reports.activities.watch
@@ -400,22 +417,27 @@ export namespace admin_reports_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Activities$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Activities$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Activities$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Activities$Watch,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Activities$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    watch(
+      params: Params$Resource$Activities$Watch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Activities$Watch|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Activities$Watch
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -433,18 +455,19 @@ export namespace admin_reports_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -458,7 +481,7 @@ export namespace admin_reports_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * IP Address of host where the event was performed. Supports both IPv4 and
@@ -514,7 +537,7 @@ export namespace admin_reports_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * IP Address of host where the event was performed. Supports both IPv4 and
@@ -572,13 +595,11 @@ export namespace admin_reports_v1 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Channels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * admin.channels.stop
@@ -592,21 +613,27 @@ export namespace admin_reports_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Channels$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channels$Stop,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      callback: BodyResponseCallback<void>
+    ): void;
     stop(callback: BodyResponseCallback<void>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Channels$Stop|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$Stop
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -624,17 +651,18 @@ export namespace admin_reports_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/admin/reports/v1/admin/reports_v1/channels/stop')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/admin/reports/v1/admin/reports_v1/channels/stop'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -648,8 +676,7 @@ export namespace admin_reports_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -657,13 +684,11 @@ export namespace admin_reports_v1 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Customerusagereports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * reports.customerUsageReports.get
@@ -681,22 +706,31 @@ export namespace admin_reports_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Customerusagereports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UsageReports>;
-    get(params: Params$Resource$Customerusagereports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UsageReports>,
-        callback: BodyResponseCallback<Schema$UsageReports>): void;
-    get(params: Params$Resource$Customerusagereports$Get,
-        callback: BodyResponseCallback<Schema$UsageReports>): void;
+    get(
+      params?: Params$Resource$Customerusagereports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UsageReports>;
+    get(
+      params: Params$Resource$Customerusagereports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UsageReports>,
+      callback: BodyResponseCallback<Schema$UsageReports>
+    ): void;
+    get(
+      params: Params$Resource$Customerusagereports$Get,
+      callback: BodyResponseCallback<Schema$UsageReports>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UsageReports>): void;
-    get(paramsOrCallback?: Params$Resource$Customerusagereports$Get|
-        BodyResponseCallback<Schema$UsageReports>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UsageReports>,
-        callback?: BodyResponseCallback<Schema$UsageReports>):
-        void|GaxiosPromise<Schema$UsageReports> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Customerusagereports$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customerusagereports$Get
+        | BodyResponseCallback<Schema$UsageReports>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UsageReports>,
+      callback?: BodyResponseCallback<Schema$UsageReports>
+    ): void | GaxiosPromise<Schema$UsageReports> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customerusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -713,16 +747,19 @@ export namespace admin_reports_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/admin/reports/v1/usage/dates/{date}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/admin/reports/v1/usage/dates/{date}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['date'],
         pathParams: ['date'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -732,12 +769,12 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Customerusagereports$Get extends
-      StandardParameters {
+  export interface Params$Resource$Customerusagereports$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Represents the customer for which the data is to be fetched.
@@ -759,13 +796,11 @@ export namespace admin_reports_v1 {
     parameters?: string;
   }
 
-
   export class Resource$Entityusagereports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * reports.entityUsageReports.get
@@ -787,22 +822,31 @@ export namespace admin_reports_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Entityusagereports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UsageReports>;
-    get(params: Params$Resource$Entityusagereports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UsageReports>,
-        callback: BodyResponseCallback<Schema$UsageReports>): void;
-    get(params: Params$Resource$Entityusagereports$Get,
-        callback: BodyResponseCallback<Schema$UsageReports>): void;
+    get(
+      params?: Params$Resource$Entityusagereports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UsageReports>;
+    get(
+      params: Params$Resource$Entityusagereports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UsageReports>,
+      callback: BodyResponseCallback<Schema$UsageReports>
+    ): void;
+    get(
+      params: Params$Resource$Entityusagereports$Get,
+      callback: BodyResponseCallback<Schema$UsageReports>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UsageReports>): void;
-    get(paramsOrCallback?: Params$Resource$Entityusagereports$Get|
-        BodyResponseCallback<Schema$UsageReports>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UsageReports>,
-        callback?: BodyResponseCallback<Schema$UsageReports>):
-        void|GaxiosPromise<Schema$UsageReports> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Entityusagereports$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Entityusagereports$Get
+        | BodyResponseCallback<Schema$UsageReports>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UsageReports>,
+      callback?: BodyResponseCallback<Schema$UsageReports>
+    ): void | GaxiosPromise<Schema$UsageReports> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Entityusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -819,18 +863,19 @@ export namespace admin_reports_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/admin/reports/v1/usage/{entityType}/{entityKey}/dates/{date}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/admin/reports/v1/usage/{entityType}/{entityKey}/dates/{date}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['entityType', 'entityKey', 'date'],
         pathParams: ['date', 'entityKey', 'entityType'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -840,12 +885,12 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Entityusagereports$Get extends
-      StandardParameters {
+  export interface Params$Resource$Entityusagereports$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Represents the customer for which the data is to be fetched.
@@ -883,13 +928,11 @@ export namespace admin_reports_v1 {
     parameters?: string;
   }
 
-
   export class Resource$Userusagereport {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * reports.userUsageReport.get
@@ -911,22 +954,31 @@ export namespace admin_reports_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userusagereport$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UsageReports>;
-    get(params: Params$Resource$Userusagereport$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UsageReports>,
-        callback: BodyResponseCallback<Schema$UsageReports>): void;
-    get(params: Params$Resource$Userusagereport$Get,
-        callback: BodyResponseCallback<Schema$UsageReports>): void;
+    get(
+      params?: Params$Resource$Userusagereport$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UsageReports>;
+    get(
+      params: Params$Resource$Userusagereport$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UsageReports>,
+      callback: BodyResponseCallback<Schema$UsageReports>
+    ): void;
+    get(
+      params: Params$Resource$Userusagereport$Get,
+      callback: BodyResponseCallback<Schema$UsageReports>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UsageReports>): void;
-    get(paramsOrCallback?: Params$Resource$Userusagereport$Get|
-        BodyResponseCallback<Schema$UsageReports>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UsageReports>,
-        callback?: BodyResponseCallback<Schema$UsageReports>):
-        void|GaxiosPromise<Schema$UsageReports> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Userusagereport$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userusagereport$Get
+        | BodyResponseCallback<Schema$UsageReports>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UsageReports>,
+      callback?: BodyResponseCallback<Schema$UsageReports>
+    ): void | GaxiosPromise<Schema$UsageReports> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userusagereport$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -943,17 +995,18 @@ export namespace admin_reports_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/admin/reports/v1/usage/users/{userKey}/dates/{date}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/admin/reports/v1/usage/users/{userKey}/dates/{date}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userKey', 'date'],
         pathParams: ['date', 'userKey'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -963,12 +1016,12 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Userusagereport$Get extends
-      StandardParameters {
+  export interface Params$Resource$Userusagereport$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Represents the customer for which the data is to be fetched.

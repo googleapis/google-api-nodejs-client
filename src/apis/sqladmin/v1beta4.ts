@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -392,7 +404,7 @@ export namespace sqladmin_v1beta4 {
      * The name and status of the failover replica. This property is applicable
      * only to Second Generation instances.
      */
-    failoverReplica?: {available?: boolean; name?: string;};
+    failoverReplica?: {available?: boolean; name?: string};
     /**
      * The Compute Engine zone that the instance is currently serving from. This
      * value could be different from the zone that was specified when the
@@ -617,7 +629,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for exporting data as CSV.
      */
-    csvExportOptions?: {selectQuery?: string;};
+    csvExportOptions?: {selectQuery?: string};
     /**
      * Databases to be exported. MySQL instances: If fileType is SQL and no
      * database is specified, all databases are exported, except for the mysql
@@ -642,7 +654,7 @@ export namespace sqladmin_v1beta4 {
      * Options for exporting data as SQL statements.
      */
     sqlExportOptions?: {
-      mysqlExportOptions?: {masterData?: number;};
+      mysqlExportOptions?: {masterData?: number};
       schemaOnly?: boolean;
       tables?: string[];
     };
@@ -736,7 +748,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for importing data as CSV.
      */
-    csvImportOptions?: {columns?: string[]; table?: string;};
+    csvImportOptions?: {columns?: string[]; table?: string};
     /**
      * The target database for the import. If fileType is SQL, this field is
      * required only if the import file does not specify a database, and is
@@ -1338,7 +1350,7 @@ export namespace sqladmin_v1beta4 {
      * User-provided labels, represented as a dictionary where each label is a
      * single key value pair.
      */
-    userLabels?: {[key: string]: string;};
+    userLabels?: {[key: string]: string};
   }
   /**
    * SslCerts Resource
@@ -1568,13 +1580,11 @@ export namespace sqladmin_v1beta4 {
     nextPageToken?: string;
   }
 
-
   export class Resource$Backupruns {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.backupRuns.delete
@@ -1590,25 +1600,31 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Backupruns$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Backupruns$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Backupruns$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Backupruns$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Backupruns$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Backupruns$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Backupruns$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Backupruns$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Backupruns$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Backupruns$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1625,18 +1641,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1644,7 +1661,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.backupRuns.get
@@ -1660,20 +1676,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Backupruns$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$BackupRun>;
-    get(params: Params$Resource$Backupruns$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$BackupRun>,
-        callback: BodyResponseCallback<Schema$BackupRun>): void;
-    get(params: Params$Resource$Backupruns$Get,
-        callback: BodyResponseCallback<Schema$BackupRun>): void;
+    get(
+      params?: Params$Resource$Backupruns$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BackupRun>;
+    get(
+      params: Params$Resource$Backupruns$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BackupRun>,
+      callback: BodyResponseCallback<Schema$BackupRun>
+    ): void;
+    get(
+      params: Params$Resource$Backupruns$Get,
+      callback: BodyResponseCallback<Schema$BackupRun>
+    ): void;
     get(callback: BodyResponseCallback<Schema$BackupRun>): void;
-    get(paramsOrCallback?: Params$Resource$Backupruns$Get|
-        BodyResponseCallback<Schema$BackupRun>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BackupRun>,
-        callback?: BodyResponseCallback<Schema$BackupRun>):
-        void|GaxiosPromise<Schema$BackupRun> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Backupruns$Get
+        | BodyResponseCallback<Schema$BackupRun>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BackupRun>,
+      callback?: BodyResponseCallback<Schema$BackupRun>
+    ): void | GaxiosPromise<Schema$BackupRun> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1691,18 +1716,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BackupRun>(parameters, callback);
@@ -1710,7 +1736,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$BackupRun>(parameters);
       }
     }
-
 
     /**
      * sql.backupRuns.insert
@@ -1727,25 +1752,31 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Backupruns$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Backupruns$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Backupruns$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Backupruns$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Backupruns$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Backupruns$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Backupruns$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Backupruns$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Backupruns$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Backupruns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1762,18 +1793,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1781,7 +1813,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.backupRuns.list
@@ -1800,24 +1831,31 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Backupruns$List, options?: MethodOptions):
-        GaxiosPromise<Schema$BackupRunsListResponse>;
     list(
-        params: Params$Resource$Backupruns$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BackupRunsListResponse>,
-        callback: BodyResponseCallback<Schema$BackupRunsListResponse>): void;
+      params?: Params$Resource$Backupruns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BackupRunsListResponse>;
     list(
-        params: Params$Resource$Backupruns$List,
-        callback: BodyResponseCallback<Schema$BackupRunsListResponse>): void;
+      params: Params$Resource$Backupruns$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BackupRunsListResponse>,
+      callback: BodyResponseCallback<Schema$BackupRunsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Backupruns$List,
+      callback: BodyResponseCallback<Schema$BackupRunsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$BackupRunsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Backupruns$List|
-        BodyResponseCallback<Schema$BackupRunsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BackupRunsListResponse>,
-        callback?: BodyResponseCallback<Schema$BackupRunsListResponse>):
-        void|GaxiosPromise<Schema$BackupRunsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Backupruns$List
+        | BodyResponseCallback<Schema$BackupRunsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BackupRunsListResponse>,
+      callback?: BodyResponseCallback<Schema$BackupRunsListResponse>
+    ): void | GaxiosPromise<Schema$BackupRunsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1835,18 +1873,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BackupRunsListResponse>(parameters, callback);
@@ -1856,12 +1895,12 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Backupruns$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Backupruns$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the Backup Run to delete. To find a Backup Run ID, use the list
@@ -1881,7 +1920,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of this Backup Run.
@@ -1896,12 +1935,12 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Backupruns$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -1921,7 +1960,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -1942,13 +1981,11 @@ export namespace sqladmin_v1beta4 {
     project?: string;
   }
 
-
   export class Resource$Databases {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.databases.delete
@@ -1964,23 +2001,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Databases$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Databases$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Databases$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Databases$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Databases$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Databases$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Databases$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Databases$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1998,18 +2041,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2017,7 +2061,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.databases.get
@@ -2034,19 +2077,27 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Databases$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Database>;
-    get(params: Params$Resource$Databases$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Database>,
-        callback: BodyResponseCallback<Schema$Database>): void;
-    get(params: Params$Resource$Databases$Get,
-        callback: BodyResponseCallback<Schema$Database>): void;
+    get(
+      params?: Params$Resource$Databases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Database>;
+    get(
+      params: Params$Resource$Databases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Database>,
+      callback: BodyResponseCallback<Schema$Database>
+    ): void;
+    get(
+      params: Params$Resource$Databases$Get,
+      callback: BodyResponseCallback<Schema$Database>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Database>): void;
-    get(paramsOrCallback?: Params$Resource$Databases$Get|
-        BodyResponseCallback<Schema$Database>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Database>,
-        callback?: BodyResponseCallback<Schema$Database>):
-        void|GaxiosPromise<Schema$Database> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Databases$Get
+        | BodyResponseCallback<Schema$Database>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Database>,
+      callback?: BodyResponseCallback<Schema$Database>
+    ): void | GaxiosPromise<Schema$Database> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2064,18 +2115,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -2083,7 +2135,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Database>(parameters);
       }
     }
-
 
     /**
      * sql.databases.insert
@@ -2100,23 +2151,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Databases$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Databases$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Databases$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Databases$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Databases$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Databases$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Databases$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Databases$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2134,18 +2191,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/databases')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/databases'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2153,7 +2211,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.databases.list
@@ -2168,24 +2225,31 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Databases$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DatabasesListResponse>;
     list(
-        params: Params$Resource$Databases$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DatabasesListResponse>,
-        callback: BodyResponseCallback<Schema$DatabasesListResponse>): void;
+      params?: Params$Resource$Databases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatabasesListResponse>;
     list(
-        params: Params$Resource$Databases$List,
-        callback: BodyResponseCallback<Schema$DatabasesListResponse>): void;
+      params: Params$Resource$Databases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatabasesListResponse>,
+      callback: BodyResponseCallback<Schema$DatabasesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Databases$List,
+      callback: BodyResponseCallback<Schema$DatabasesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DatabasesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Databases$List|
-        BodyResponseCallback<Schema$DatabasesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatabasesListResponse>,
-        callback?: BodyResponseCallback<Schema$DatabasesListResponse>):
-        void|GaxiosPromise<Schema$DatabasesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Databases$List
+        | BodyResponseCallback<Schema$DatabasesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatabasesListResponse>,
+      callback?: BodyResponseCallback<Schema$DatabasesListResponse>
+    ): void | GaxiosPromise<Schema$DatabasesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2203,18 +2267,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/databases')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/databases'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatabasesListResponse>(parameters, callback);
@@ -2222,7 +2287,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$DatabasesListResponse>(parameters);
       }
     }
-
 
     /**
      * sql.databases.patch
@@ -2240,23 +2304,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Databases$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Databases$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Databases$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Databases$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Databases$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Databases$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Databases$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Databases$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2274,18 +2344,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2293,7 +2364,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.databases.update
@@ -2311,23 +2381,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Databases$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Databases$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Databases$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Databases$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Databases$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Databases$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Databases$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Databases$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2345,18 +2421,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2370,7 +2447,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the database to be deleted in the instance.
@@ -2389,7 +2466,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the database in the instance.
@@ -2408,7 +2485,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Database instance ID. This does not include the project ID.
@@ -2428,7 +2505,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -2443,7 +2520,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the database to be updated in the instance.
@@ -2467,7 +2544,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the database to be updated in the instance.
@@ -2488,13 +2565,11 @@ export namespace sqladmin_v1beta4 {
     requestBody?: Schema$Database;
   }
 
-
   export class Resource$Flags {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.flags.list
@@ -2508,23 +2583,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Flags$List, options?: MethodOptions):
-        GaxiosPromise<Schema$FlagsListResponse>;
     list(
-        params: Params$Resource$Flags$List,
-        options: MethodOptions|BodyResponseCallback<Schema$FlagsListResponse>,
-        callback: BodyResponseCallback<Schema$FlagsListResponse>): void;
+      params?: Params$Resource$Flags$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FlagsListResponse>;
     list(
-        params: Params$Resource$Flags$List,
-        callback: BodyResponseCallback<Schema$FlagsListResponse>): void;
+      params: Params$Resource$Flags$List,
+      options: MethodOptions | BodyResponseCallback<Schema$FlagsListResponse>,
+      callback: BodyResponseCallback<Schema$FlagsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Flags$List,
+      callback: BodyResponseCallback<Schema$FlagsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$FlagsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Flags$List|
-        BodyResponseCallback<Schema$FlagsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FlagsListResponse>,
-        callback?: BodyResponseCallback<Schema$FlagsListResponse>):
-        void|GaxiosPromise<Schema$FlagsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Flags$List
+        | BodyResponseCallback<Schema$FlagsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FlagsListResponse>,
+      callback?: BodyResponseCallback<Schema$FlagsListResponse>
+    ): void | GaxiosPromise<Schema$FlagsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2542,16 +2623,16 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/sql/v1beta4/flags')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/sql/v1beta4/flags').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FlagsListResponse>(parameters, callback);
@@ -2565,7 +2646,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Database type and version you want to retrieve flags for. By default,
@@ -2574,13 +2655,11 @@ export namespace sqladmin_v1beta4 {
     databaseVersion?: string;
   }
 
-
   export class Resource$Instances {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.instances.addServerCa
@@ -2600,25 +2679,30 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     addServerCa(
-        params?: Params$Resource$Instances$Addserverca,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Addserverca,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     addServerCa(
-        params: Params$Resource$Instances$Addserverca,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Addserverca,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     addServerCa(
-        params: Params$Resource$Instances$Addserverca,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Addserverca,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     addServerCa(callback: BodyResponseCallback<Schema$Operation>): void;
     addServerCa(
-        paramsOrCallback?: Params$Resource$Instances$Addserverca|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Addserverca;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Addserverca
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Addserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2635,18 +2719,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/addServerCa')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/addServerCa'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2654,7 +2739,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.clone
@@ -2670,23 +2754,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clone(params?: Params$Resource$Instances$Clone, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     clone(
-        params: Params$Resource$Instances$Clone,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Instances$Clone,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     clone(
-        params: Params$Resource$Instances$Clone,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Clone,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    clone(
+      params: Params$Resource$Instances$Clone,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     clone(callback: BodyResponseCallback<Schema$Operation>): void;
     clone(
-        paramsOrCallback?: Params$Resource$Instances$Clone|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Instances$Clone
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Clone;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2704,18 +2794,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/clone')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/clone'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2723,7 +2814,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.delete
@@ -2738,23 +2828,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Instances$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Instances$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Instances$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Instances$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Instances$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Instances$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2772,17 +2868,18 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/sql/v1beta4/projects/{project}/instances/{instance}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2790,7 +2887,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.demoteMaster
@@ -2808,25 +2904,30 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     demoteMaster(
-        params?: Params$Resource$Instances$Demotemaster,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Demotemaster,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     demoteMaster(
-        params: Params$Resource$Instances$Demotemaster,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Demotemaster,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     demoteMaster(
-        params: Params$Resource$Instances$Demotemaster,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Demotemaster,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     demoteMaster(callback: BodyResponseCallback<Schema$Operation>): void;
     demoteMaster(
-        paramsOrCallback?: Params$Resource$Instances$Demotemaster|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Demotemaster;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Demotemaster
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Demotemaster;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2843,18 +2944,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/demoteMaster')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/demoteMaster'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2862,7 +2964,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.export
@@ -2879,23 +2980,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: Params$Resource$Instances$Export, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     export(
-        params: Params$Resource$Instances$Export,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Instances$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     export(
-        params: Params$Resource$Instances$Export,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(
+      params: Params$Resource$Instances$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     export(callback: BodyResponseCallback<Schema$Operation>): void;
     export(
-        paramsOrCallback?: Params$Resource$Instances$Export|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Instances$Export
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2913,18 +3020,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/export')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/export'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2932,7 +3040,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.failover
@@ -2949,25 +3056,30 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     failover(
-        params?: Params$Resource$Instances$Failover,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Failover,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     failover(
-        params: Params$Resource$Instances$Failover,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Failover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     failover(
-        params: Params$Resource$Instances$Failover,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Failover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     failover(callback: BodyResponseCallback<Schema$Operation>): void;
     failover(
-        paramsOrCallback?: Params$Resource$Instances$Failover|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Failover;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Failover
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Failover;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2984,18 +3096,19 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/failover')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/failover'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3003,7 +3116,6 @@ export namespace sqladmin_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.get
@@ -3019,20 +3131,29 @@ export namespace sqladmin_v1beta4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Instances$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DatabaseInstance>;
-    get(params: Params$Resource$Instances$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DatabaseInstance>,
-        callback: BodyResponseCallback<Schema$DatabaseInstance>): void;
-    get(params: Params$Resource$Instances$Get,
-        callback: BodyResponseCallback<Schema$DatabaseInstance>): void;
+    get(
+      params?: Params$Resource$Instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatabaseInstance>;
+    get(
+      params: Params$Resource$Instances$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DatabaseInstance>,
+      callback: BodyResponseCallback<Schema$DatabaseInstance>
+    ): void;
+    get(
+      params: Params$Resource$Instances$Get,
+      callback: BodyResponseCallback<Schema$DatabaseInstance>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DatabaseInstance>): void;
-    get(paramsOrCallback?: Params$Resource$Instances$Get|
-        BodyResponseCallback<Schema$DatabaseInstance>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatabaseInstance>,
-        callback?: BodyResponseCallback<Schema$DatabaseInstance>):
-        void|GaxiosPromise<Schema$DatabaseInstance> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Get
+        | BodyResponseCallback<Schema$DatabaseInstance>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatabaseInstance>,
+      callback?: BodyResponseCallback<Schema$DatabaseInstance>
+    ): void | GaxiosPromise<Schema$DatabaseInstance> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3050,17 +3171,18 @@ export namespace sqladmin_v1beta4 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/sql/v1beta4/projects/{project}/instances/{instance}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatabaseInstance>(parameters, callback);
@@ -3069,75 +3191,118 @@ export namespace sqladmin_v1beta4 {
       }
     }
 
+    /**
+     * sql.instances.import
+     * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in
+     * Cloud Storage.
+     * @alias sql.instances.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {().InstancesImportRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Instances$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Instances$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Instances$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Import
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Instances$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
 
-/**
- * sql.instances.import
- * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in
- * Cloud Storage.
- * @alias sql.instances.import
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
- * @param {string} params.project Project ID of the project that contains the instance.
- * @param {().InstancesImportRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-import(params?: Params$Resource$Instances$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-import(params: Params$Resource$Instances$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
-import(params: Params$Resource$Instances$Import, callback: BodyResponseCallback<Schema$Operation>): void;
-import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Instances$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Import;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                                           if(typeof paramsOrCallback === 'function') {
-    callback = paramsOrCallback;
-    params = {} as Params$Resource$Instances$Import;
-    options = {};
-                                                                                                                                                                                                                                                                           }
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                                           if(typeof optionsOrCallback === 'function') {
-    callback = optionsOrCallback;
-    options = {};
-                                                                                                                                                                                                                                                                           }
-
-                                                                                                                                                                                                                                                                           const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context: this.context}; if(callback) {
-    createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                           } else {
-    return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                           }}
-
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/import'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
 
     /**
- * sql.instances.insert
- * @desc Creates a new Cloud SQL instance.
- * @alias sql.instances.insert
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
-      * @param {().DatabaseInstance} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-    insert(params?: Params$Resource$Instances$Insert, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+     * sql.instances.insert
+     * @desc Creates a new Cloud SQL instance.
+     * @alias sql.instances.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+     * @param {().DatabaseInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
     insert(
-        params: Params$Resource$Instances$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Instances$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Instances$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Instances$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Instances$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Instances$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3155,16 +3320,18 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/sql/v1beta4/projects/{project}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/instances'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3172,7 +3339,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.list
@@ -3190,24 +3356,31 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Instances$List, options?: MethodOptions):
-        GaxiosPromise<Schema$InstancesListResponse>;
     list(
-        params: Params$Resource$Instances$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$InstancesListResponse>,
-        callback: BodyResponseCallback<Schema$InstancesListResponse>): void;
+      params?: Params$Resource$Instances$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstancesListResponse>;
     list(
-        params: Params$Resource$Instances$List,
-        callback: BodyResponseCallback<Schema$InstancesListResponse>): void;
+      params: Params$Resource$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstancesListResponse>,
+      callback: BodyResponseCallback<Schema$InstancesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Instances$List,
+      callback: BodyResponseCallback<Schema$InstancesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$InstancesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Instances$List|
-        BodyResponseCallback<Schema$InstancesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InstancesListResponse>,
-        callback?: BodyResponseCallback<Schema$InstancesListResponse>):
-        void|GaxiosPromise<Schema$InstancesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Instances$List
+        | BodyResponseCallback<Schema$InstancesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstancesListResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesListResponse>
+    ): void | GaxiosPromise<Schema$InstancesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3225,16 +3398,18 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/sql/v1beta4/projects/{project}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/instances'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListResponse>(parameters, callback);
@@ -3242,7 +3417,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$InstancesListResponse>(parameters);
       }
     }
-
 
     /**
      * sql.instances.listServerCas
@@ -3262,31 +3436,34 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     listServerCas(
-        params?: Params$Resource$Instances$Listservercas,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$InstancesListServerCasResponse>;
+      params?: Params$Resource$Instances$Listservercas,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstancesListServerCasResponse>;
     listServerCas(
-        params: Params$Resource$Instances$Listservercas,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$InstancesListServerCasResponse>,
-        callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
-        void;
+      params: Params$Resource$Instances$Listservercas,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstancesListServerCasResponse>,
+      callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>
+    ): void;
     listServerCas(
-        params: Params$Resource$Instances$Listservercas,
-        callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
-        void;
+      params: Params$Resource$Instances$Listservercas,
+      callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>
+    ): void;
     listServerCas(
-        callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$InstancesListServerCasResponse>
+    ): void;
     listServerCas(
-        paramsOrCallback?: Params$Resource$Instances$Listservercas|
-        BodyResponseCallback<Schema$InstancesListServerCasResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InstancesListServerCasResponse>,
-        callback?: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
-        void|GaxiosPromise<Schema$InstancesListServerCasResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Listservercas;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Listservercas
+        | BodyResponseCallback<Schema$InstancesListServerCasResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstancesListServerCasResponse>,
+      callback?: BodyResponseCallback<Schema$InstancesListServerCasResponse>
+    ): void | GaxiosPromise<Schema$InstancesListServerCasResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Listservercas;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3303,28 +3480,31 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/listServerCas')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/listServerCas'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListServerCasResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$InstancesListServerCasResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * sql.instances.patch
@@ -3343,23 +3523,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Instances$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Instances$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Instances$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Instances$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Instances$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Instances$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Instances$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3377,17 +3563,18 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/sql/v1beta4/projects/{project}/instances/{instance}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3395,7 +3582,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.promoteReplica
@@ -3412,25 +3598,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     promoteReplica(
-        params?: Params$Resource$Instances$Promotereplica,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Promotereplica,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     promoteReplica(
-        params: Params$Resource$Instances$Promotereplica,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Promotereplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     promoteReplica(
-        params: Params$Resource$Instances$Promotereplica,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Promotereplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     promoteReplica(callback: BodyResponseCallback<Schema$Operation>): void;
     promoteReplica(
-        paramsOrCallback?: Params$Resource$Instances$Promotereplica|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Promotereplica;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Promotereplica
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Promotereplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3447,18 +3638,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3466,7 +3658,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.resetSslConfig
@@ -3483,25 +3674,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     resetSslConfig(
-        params?: Params$Resource$Instances$Resetsslconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Resetsslconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     resetSslConfig(
-        params: Params$Resource$Instances$Resetsslconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Resetsslconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     resetSslConfig(
-        params: Params$Resource$Instances$Resetsslconfig,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Resetsslconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     resetSslConfig(callback: BodyResponseCallback<Schema$Operation>): void;
     resetSslConfig(
-        paramsOrCallback?: Params$Resource$Instances$Resetsslconfig|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Resetsslconfig;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Resetsslconfig
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Resetsslconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3518,18 +3714,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3537,7 +3734,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.restart
@@ -3553,25 +3749,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     restart(
-        params?: Params$Resource$Instances$Restart,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Restart,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     restart(
-        params: Params$Resource$Instances$Restart,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Restart,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     restart(
-        params: Params$Resource$Instances$Restart,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Restart,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     restart(callback: BodyResponseCallback<Schema$Operation>): void;
     restart(
-        paramsOrCallback?: Params$Resource$Instances$Restart|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Restart;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Restart
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3588,18 +3789,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/restart')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/restart'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3607,7 +3809,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.restoreBackup
@@ -3624,25 +3825,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     restoreBackup(
-        params?: Params$Resource$Instances$Restorebackup,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Restorebackup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     restoreBackup(
-        params: Params$Resource$Instances$Restorebackup,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Restorebackup,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     restoreBackup(
-        params: Params$Resource$Instances$Restorebackup,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Restorebackup,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     restoreBackup(callback: BodyResponseCallback<Schema$Operation>): void;
     restoreBackup(
-        paramsOrCallback?: Params$Resource$Instances$Restorebackup|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Restorebackup;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Restorebackup
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Restorebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3659,18 +3865,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3678,7 +3885,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.rotateServerCa
@@ -3696,25 +3902,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     rotateServerCa(
-        params?: Params$Resource$Instances$Rotateserverca,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Rotateserverca,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     rotateServerCa(
-        params: Params$Resource$Instances$Rotateserverca,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Rotateserverca,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     rotateServerCa(
-        params: Params$Resource$Instances$Rotateserverca,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Rotateserverca,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     rotateServerCa(callback: BodyResponseCallback<Schema$Operation>): void;
     rotateServerCa(
-        paramsOrCallback?: Params$Resource$Instances$Rotateserverca|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Rotateserverca;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Rotateserverca
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Rotateserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3731,18 +3942,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/rotateServerCa')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/rotateServerCa'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3750,7 +3962,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.startReplica
@@ -3766,25 +3977,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     startReplica(
-        params?: Params$Resource$Instances$Startreplica,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Startreplica,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     startReplica(
-        params: Params$Resource$Instances$Startreplica,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Startreplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     startReplica(
-        params: Params$Resource$Instances$Startreplica,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Startreplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     startReplica(callback: BodyResponseCallback<Schema$Operation>): void;
     startReplica(
-        paramsOrCallback?: Params$Resource$Instances$Startreplica|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Startreplica;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Startreplica
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Startreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3801,18 +4017,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/startReplica')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/startReplica'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3820,7 +4037,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.stopReplica
@@ -3836,25 +4052,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     stopReplica(
-        params?: Params$Resource$Instances$Stopreplica,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Stopreplica,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     stopReplica(
-        params: Params$Resource$Instances$Stopreplica,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Stopreplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     stopReplica(
-        params: Params$Resource$Instances$Stopreplica,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Stopreplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     stopReplica(callback: BodyResponseCallback<Schema$Operation>): void;
     stopReplica(
-        paramsOrCallback?: Params$Resource$Instances$Stopreplica|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Stopreplica;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Stopreplica
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Stopreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3871,18 +4092,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3890,7 +4112,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.truncateLog
@@ -3907,25 +4128,30 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     truncateLog(
-        params?: Params$Resource$Instances$Truncatelog,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Instances$Truncatelog,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     truncateLog(
-        params: Params$Resource$Instances$Truncatelog,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Truncatelog,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     truncateLog(
-        params: Params$Resource$Instances$Truncatelog,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Truncatelog,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     truncateLog(callback: BodyResponseCallback<Schema$Operation>): void;
     truncateLog(
-        paramsOrCallback?: Params$Resource$Instances$Truncatelog|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Instances$Truncatelog;
+      paramsOrCallback?:
+        | Params$Resource$Instances$Truncatelog
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Truncatelog;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3942,18 +4168,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/truncateLog')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/truncateLog'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3961,7 +4188,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.instances.update
@@ -3979,23 +4205,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Instances$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Instances$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Instances$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Instances$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Instances$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Instances$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Instances$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Instances$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4013,17 +4245,18 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/sql/v1beta4/projects/{project}/instances/{instance}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4033,12 +4266,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Instances$Addserverca extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Addserverca
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4053,7 +4286,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the Cloud SQL instance to be cloned (source). This does not
@@ -4074,7 +4307,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4085,12 +4318,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Demotemaster extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Demotemaster
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance name.
@@ -4110,7 +4343,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4126,12 +4359,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesExportRequest;
   }
-  export interface Params$Resource$Instances$Failover extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Failover
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4151,7 +4384,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Database instance ID. This does not include the project ID.
@@ -4166,7 +4399,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4186,7 +4419,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID of the project to which the newly created Cloud SQL instances
@@ -4203,7 +4436,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An expression for filtering the results of the request, such as by name
@@ -4224,12 +4457,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Listservercas extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Listservercas
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4244,7 +4477,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4260,12 +4493,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$Promotereplica extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Promotereplica
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL read replica instance name.
@@ -4276,12 +4509,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Resetsslconfig extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Resetsslconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4292,12 +4525,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restart extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Restart
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4308,12 +4541,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restorebackup extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Restorebackup
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4329,12 +4562,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
   }
-  export interface Params$Resource$Instances$Rotateserverca extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Rotateserverca
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4350,12 +4583,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRotateServerCaRequest;
   }
-  export interface Params$Resource$Instances$Startreplica extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Startreplica
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL read replica instance name.
@@ -4366,12 +4599,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Stopreplica extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Stopreplica
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL read replica instance name.
@@ -4382,12 +4615,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Truncatelog extends
-      StandardParameters {
+  export interface Params$Resource$Instances$Truncatelog
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4407,7 +4640,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4424,13 +4657,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     requestBody?: Schema$DatabaseInstance;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.operations.get
@@ -4446,20 +4677,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4477,17 +4717,18 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/sql/v1beta4/projects/{project}/operations/{operation}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/operations/{operation}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4495,7 +4736,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.operations.list
@@ -4513,24 +4753,31 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$OperationsListResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OperationsListResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      callback: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        callback?: BodyResponseCallback<Schema$OperationsListResponse>):
-        void|GaxiosPromise<Schema$OperationsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void | GaxiosPromise<Schema$OperationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4548,16 +4795,18 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/sql/v1beta4/projects/{project}/operations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/projects/{project}/operations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -4571,7 +4820,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Instance operation ID.
@@ -4586,7 +4835,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4607,13 +4856,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     project?: string;
   }
 
-
   export class Resource$Sslcerts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.sslCerts.createEphemeral
@@ -4633,24 +4880,28 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     createEphemeral(
-        params?: Params$Resource$Sslcerts$Createephemeral,
-        options?: MethodOptions): GaxiosPromise<Schema$SslCert>;
+      params?: Params$Resource$Sslcerts$Createephemeral,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SslCert>;
     createEphemeral(
-        params: Params$Resource$Sslcerts$Createephemeral,
-        options: MethodOptions|BodyResponseCallback<Schema$SslCert>,
-        callback: BodyResponseCallback<Schema$SslCert>): void;
+      params: Params$Resource$Sslcerts$Createephemeral,
+      options: MethodOptions | BodyResponseCallback<Schema$SslCert>,
+      callback: BodyResponseCallback<Schema$SslCert>
+    ): void;
     createEphemeral(
-        params: Params$Resource$Sslcerts$Createephemeral,
-        callback: BodyResponseCallback<Schema$SslCert>): void;
+      params: Params$Resource$Sslcerts$Createephemeral,
+      callback: BodyResponseCallback<Schema$SslCert>
+    ): void;
     createEphemeral(callback: BodyResponseCallback<Schema$SslCert>): void;
     createEphemeral(
-        paramsOrCallback?: Params$Resource$Sslcerts$Createephemeral|
-        BodyResponseCallback<Schema$SslCert>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SslCert>,
-        callback?: BodyResponseCallback<Schema$SslCert>):
-        void|GaxiosPromise<Schema$SslCert> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sslcerts$Createephemeral;
+      paramsOrCallback?:
+        | Params$Resource$Sslcerts$Createephemeral
+        | BodyResponseCallback<Schema$SslCert>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SslCert>,
+      callback?: BodyResponseCallback<Schema$SslCert>
+    ): void | GaxiosPromise<Schema$SslCert> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sslcerts$Createephemeral;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4667,18 +4918,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4686,7 +4938,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$SslCert>(parameters);
       }
     }
-
 
     /**
      * sql.sslCerts.delete
@@ -4703,23 +4954,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Sslcerts$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Sslcerts$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Sslcerts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Sslcerts$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Sslcerts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Sslcerts$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Sslcerts$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Sslcerts$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4737,18 +4994,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4756,7 +5014,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.sslCerts.get
@@ -4774,19 +5031,27 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sslcerts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SslCert>;
-    get(params: Params$Resource$Sslcerts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$SslCert>,
-        callback: BodyResponseCallback<Schema$SslCert>): void;
-    get(params: Params$Resource$Sslcerts$Get,
-        callback: BodyResponseCallback<Schema$SslCert>): void;
+    get(
+      params?: Params$Resource$Sslcerts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SslCert>;
+    get(
+      params: Params$Resource$Sslcerts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SslCert>,
+      callback: BodyResponseCallback<Schema$SslCert>
+    ): void;
+    get(
+      params: Params$Resource$Sslcerts$Get,
+      callback: BodyResponseCallback<Schema$SslCert>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SslCert>): void;
-    get(paramsOrCallback?: Params$Resource$Sslcerts$Get|
-        BodyResponseCallback<Schema$SslCert>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SslCert>,
-        callback?: BodyResponseCallback<Schema$SslCert>):
-        void|GaxiosPromise<Schema$SslCert> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sslcerts$Get
+        | BodyResponseCallback<Schema$SslCert>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SslCert>,
+      callback?: BodyResponseCallback<Schema$SslCert>
+    ): void | GaxiosPromise<Schema$SslCert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4804,18 +5069,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4823,7 +5089,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$SslCert>(parameters);
       }
     }
-
 
     /**
      * sql.sslCerts.insert
@@ -4841,24 +5106,31 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Sslcerts$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$SslCertsInsertResponse>;
     insert(
-        params: Params$Resource$Sslcerts$Insert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SslCertsInsertResponse>,
-        callback: BodyResponseCallback<Schema$SslCertsInsertResponse>): void;
+      params?: Params$Resource$Sslcerts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SslCertsInsertResponse>;
     insert(
-        params: Params$Resource$Sslcerts$Insert,
-        callback: BodyResponseCallback<Schema$SslCertsInsertResponse>): void;
+      params: Params$Resource$Sslcerts$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertsInsertResponse>,
+      callback: BodyResponseCallback<Schema$SslCertsInsertResponse>
+    ): void;
+    insert(
+      params: Params$Resource$Sslcerts$Insert,
+      callback: BodyResponseCallback<Schema$SslCertsInsertResponse>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$SslCertsInsertResponse>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Sslcerts$Insert|
-        BodyResponseCallback<Schema$SslCertsInsertResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SslCertsInsertResponse>,
-        callback?: BodyResponseCallback<Schema$SslCertsInsertResponse>):
-        void|GaxiosPromise<Schema$SslCertsInsertResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sslcerts$Insert
+        | BodyResponseCallback<Schema$SslCertsInsertResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertsInsertResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsInsertResponse>
+    ): void | GaxiosPromise<Schema$SslCertsInsertResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4876,18 +5148,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsInsertResponse>(parameters, callback);
@@ -4895,7 +5168,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$SslCertsInsertResponse>(parameters);
       }
     }
-
 
     /**
      * sql.sslCerts.list
@@ -4910,24 +5182,31 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sslcerts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SslCertsListResponse>;
     list(
-        params: Params$Resource$Sslcerts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SslCertsListResponse>,
-        callback: BodyResponseCallback<Schema$SslCertsListResponse>): void;
+      params?: Params$Resource$Sslcerts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SslCertsListResponse>;
     list(
-        params: Params$Resource$Sslcerts$List,
-        callback: BodyResponseCallback<Schema$SslCertsListResponse>): void;
+      params: Params$Resource$Sslcerts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertsListResponse>,
+      callback: BodyResponseCallback<Schema$SslCertsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sslcerts$List,
+      callback: BodyResponseCallback<Schema$SslCertsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SslCertsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sslcerts$List|
-        BodyResponseCallback<Schema$SslCertsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SslCertsListResponse>,
-        callback?: BodyResponseCallback<Schema$SslCertsListResponse>):
-        void|GaxiosPromise<Schema$SslCertsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sslcerts$List
+        | BodyResponseCallback<Schema$SslCertsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SslCertsListResponse>,
+      callback?: BodyResponseCallback<Schema$SslCertsListResponse>
+    ): void | GaxiosPromise<Schema$SslCertsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4945,18 +5224,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsListResponse>(parameters, callback);
@@ -4966,12 +5246,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Sslcerts$Createephemeral extends
-      StandardParameters {
+  export interface Params$Resource$Sslcerts$Createephemeral
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -4991,7 +5271,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -5010,7 +5290,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -5029,7 +5309,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -5049,7 +5329,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -5061,13 +5341,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     project?: string;
   }
 
-
   export class Resource$Tiers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.tiers.list
@@ -5082,23 +5360,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Tiers$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TiersListResponse>;
     list(
-        params: Params$Resource$Tiers$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TiersListResponse>,
-        callback: BodyResponseCallback<Schema$TiersListResponse>): void;
+      params?: Params$Resource$Tiers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TiersListResponse>;
     list(
-        params: Params$Resource$Tiers$List,
-        callback: BodyResponseCallback<Schema$TiersListResponse>): void;
+      params: Params$Resource$Tiers$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TiersListResponse>,
+      callback: BodyResponseCallback<Schema$TiersListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Tiers$List,
+      callback: BodyResponseCallback<Schema$TiersListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TiersListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Tiers$List|
-        BodyResponseCallback<Schema$TiersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TiersListResponse>,
-        callback?: BodyResponseCallback<Schema$TiersListResponse>):
-        void|GaxiosPromise<Schema$TiersListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Tiers$List
+        | BodyResponseCallback<Schema$TiersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TiersListResponse>,
+      callback?: BodyResponseCallback<Schema$TiersListResponse>
+    ): void | GaxiosPromise<Schema$TiersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tiers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5116,16 +5400,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/sql/v1beta4/projects/{project}/tiers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/sql/v1beta4/projects/{project}/tiers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TiersListResponse>(parameters, callback);
@@ -5139,7 +5426,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID of the project for which to list tiers.
@@ -5147,13 +5434,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     project?: string;
   }
 
-
   export class Resource$Users {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * sql.users.delete
@@ -5170,23 +5455,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Users$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Users$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Users$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Users$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Users$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5204,18 +5495,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/users')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'host', 'name'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5223,7 +5515,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.users.insert
@@ -5239,23 +5530,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Users$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Users$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Users$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Users$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Users$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Users$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Users$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5273,18 +5570,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/users')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5292,7 +5590,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * sql.users.list
@@ -5307,23 +5604,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$List, options?: MethodOptions):
-        GaxiosPromise<Schema$UsersListResponse>;
     list(
-        params: Params$Resource$Users$List,
-        options: MethodOptions|BodyResponseCallback<Schema$UsersListResponse>,
-        callback: BodyResponseCallback<Schema$UsersListResponse>): void;
+      params?: Params$Resource$Users$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UsersListResponse>;
     list(
-        params: Params$Resource$Users$List,
-        callback: BodyResponseCallback<Schema$UsersListResponse>): void;
+      params: Params$Resource$Users$List,
+      options: MethodOptions | BodyResponseCallback<Schema$UsersListResponse>,
+      callback: BodyResponseCallback<Schema$UsersListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$List,
+      callback: BodyResponseCallback<Schema$UsersListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$UsersListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$List|
-        BodyResponseCallback<Schema$UsersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UsersListResponse>,
-        callback?: BodyResponseCallback<Schema$UsersListResponse>):
-        void|GaxiosPromise<Schema$UsersListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Users$List
+        | BodyResponseCallback<Schema$UsersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UsersListResponse>,
+      callback?: BodyResponseCallback<Schema$UsersListResponse>
+    ): void | GaxiosPromise<Schema$UsersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5341,18 +5644,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/users')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(parameters, callback);
@@ -5360,7 +5664,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         return createAPIRequest<Schema$UsersListResponse>(parameters);
       }
     }
-
 
     /**
      * sql.users.update
@@ -5378,23 +5681,29 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Users$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Users$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Users$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Users$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Users$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Users$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Users$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5412,18 +5721,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/sql/v1beta4/projects/{project}/instances/{instance}/users')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'instance', 'name'],
         pathParams: ['instance', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5437,7 +5747,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Host of the user in the instance.
@@ -5460,7 +5770,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Database instance ID. This does not include the project ID.
@@ -5480,7 +5790,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Database instance ID. This does not include the project ID.
@@ -5495,7 +5805,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Host of the user in the instance.

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -222,7 +234,7 @@ export namespace proximitybeacon_v1beta1 {
      * Properties of the beacon device, for example battery type or firmware
      * version. Optional.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
     /**
      * Some beacons may require a user to provide an authorization key before
      * changing any of its configuration (e.g. broadcast frames, transmit
@@ -610,13 +622,11 @@ export namespace proximitybeacon_v1beta1 {
     timestampMs?: string;
   }
 
-
   export class Resource$Beaconinfo {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * proximitybeacon.beaconinfo.getforobserved
@@ -635,35 +645,34 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     getforobserved(
-        params?: Params$Resource$Beaconinfo$Getforobserved,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetInfoForObservedBeaconsResponse>;
+      params?: Params$Resource$Beaconinfo$Getforobserved,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetInfoForObservedBeaconsResponse>;
     getforobserved(
-        params: Params$Resource$Beaconinfo$Getforobserved,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
-        callback:
-            BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
-        void;
+      params: Params$Resource$Beaconinfo$Getforobserved,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
+      callback: BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>
+    ): void;
     getforobserved(
-        params: Params$Resource$Beaconinfo$Getforobserved,
-        callback:
-            BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
-        void;
+      params: Params$Resource$Beaconinfo$Getforobserved,
+      callback: BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>
+    ): void;
     getforobserved(
-        callback:
-            BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>
+    ): void;
     getforobserved(
-        paramsOrCallback?: Params$Resource$Beaconinfo$Getforobserved|
-        BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
-        void|GaxiosPromise<Schema$GetInfoForObservedBeaconsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Beaconinfo$Getforobserved;
+      paramsOrCallback?:
+        | Params$Resource$Beaconinfo$Getforobserved
+        | BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
+      callback?: BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>
+    ): void | GaxiosPromise<Schema$GetInfoForObservedBeaconsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beaconinfo$Getforobserved;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -678,44 +687,48 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/beaconinfo:getforobserved')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/beaconinfo:getforobserved').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Beaconinfo$Getforobserved extends
-      StandardParameters {
+  export interface Params$Resource$Beaconinfo$Getforobserved
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$GetInfoForObservedBeaconsRequest;
   }
-
 
   export class Resource$Beacons {
     context: APIRequestContext;
@@ -726,7 +739,6 @@ export namespace proximitybeacon_v1beta1 {
       this.attachments = new Resource$Beacons$Attachments(this.context);
       this.diagnostics = new Resource$Beacons$Diagnostics(this.context);
     }
-
 
     /**
      * proximitybeacon.beacons.activate
@@ -748,22 +760,26 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     activate(
-        params?: Params$Resource$Beacons$Activate,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Beacons$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     activate(
-        params: Params$Resource$Beacons$Activate,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     activate(
-        params: Params$Resource$Beacons$Activate,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Activate,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     activate(callback: BodyResponseCallback<Schema$Empty>): void;
     activate(
-        paramsOrCallback?: Params$Resource$Beacons$Activate|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Activate
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -779,19 +795,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}:activate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}:activate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -799,7 +818,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.deactivate
@@ -822,24 +840,28 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     deactivate(
-        params?: Params$Resource$Beacons$Deactivate,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Beacons$Deactivate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     deactivate(
-        params: Params$Resource$Beacons$Deactivate,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Deactivate,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deactivate(
-        params: Params$Resource$Beacons$Deactivate,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Deactivate,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deactivate(callback: BodyResponseCallback<Schema$Empty>): void;
     deactivate(
-        paramsOrCallback?: Params$Resource$Beacons$Deactivate|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Beacons$Deactivate;
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Deactivate
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beacons$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -854,19 +876,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}:deactivate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}:deactivate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -874,7 +899,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.decommission
@@ -896,24 +920,28 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     decommission(
-        params?: Params$Resource$Beacons$Decommission,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Beacons$Decommission,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     decommission(
-        params: Params$Resource$Beacons$Decommission,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Decommission,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     decommission(
-        params: Params$Resource$Beacons$Decommission,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Decommission,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     decommission(callback: BodyResponseCallback<Schema$Empty>): void;
     decommission(
-        paramsOrCallback?: Params$Resource$Beacons$Decommission|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Beacons$Decommission;
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Decommission
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beacons$Decommission;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -928,19 +956,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}:decommission')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}:decommission').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -948,7 +979,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.delete
@@ -969,22 +999,27 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Beacons$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Beacons$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Beacons$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Beacons$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Beacons$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Beacons$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1000,19 +1035,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1020,7 +1058,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.get
@@ -1044,19 +1081,27 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Beacons$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Beacon>;
-    get(params: Params$Resource$Beacons$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback: BodyResponseCallback<Schema$Beacon>): void;
-    get(params: Params$Resource$Beacons$Get,
-        callback: BodyResponseCallback<Schema$Beacon>): void;
+    get(
+      params?: Params$Resource$Beacons$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Beacon>;
+    get(
+      params: Params$Resource$Beacons$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Beacon>,
+      callback: BodyResponseCallback<Schema$Beacon>
+    ): void;
+    get(
+      params: Params$Resource$Beacons$Get,
+      callback: BodyResponseCallback<Schema$Beacon>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Beacon>): void;
-    get(paramsOrCallback?: Params$Resource$Beacons$Get|
-        BodyResponseCallback<Schema$Beacon>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback?: BodyResponseCallback<Schema$Beacon>):
-        void|GaxiosPromise<Schema$Beacon> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Get
+        | BodyResponseCallback<Schema$Beacon>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>
+    ): void | GaxiosPromise<Schema$Beacon> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1072,19 +1117,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1092,7 +1140,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$Beacon>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.list
@@ -1114,23 +1161,29 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Beacons$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListBeaconsResponse>;
     list(
-        params: Params$Resource$Beacons$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListBeaconsResponse>,
-        callback: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
+      params?: Params$Resource$Beacons$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBeaconsResponse>;
     list(
-        params: Params$Resource$Beacons$List,
-        callback: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
+      params: Params$Resource$Beacons$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBeaconsResponse>,
+      callback: BodyResponseCallback<Schema$ListBeaconsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Beacons$List,
+      callback: BodyResponseCallback<Schema$ListBeaconsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListBeaconsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Beacons$List|
-        BodyResponseCallback<Schema$ListBeaconsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListBeaconsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBeaconsResponse>):
-        void|GaxiosPromise<Schema$ListBeaconsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Beacons$List
+        | BodyResponseCallback<Schema$ListBeaconsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBeaconsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBeaconsResponse>
+    ): void | GaxiosPromise<Schema$ListBeaconsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1146,18 +1199,19 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/beacons').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/beacons').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconsResponse>(parameters, callback);
@@ -1165,7 +1219,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$ListBeaconsResponse>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.register
@@ -1186,22 +1239,26 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     register(
-        params?: Params$Resource$Beacons$Register,
-        options?: MethodOptions): GaxiosPromise<Schema$Beacon>;
+      params?: Params$Resource$Beacons$Register,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Beacon>;
     register(
-        params: Params$Resource$Beacons$Register,
-        options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback: BodyResponseCallback<Schema$Beacon>): void;
+      params: Params$Resource$Beacons$Register,
+      options: MethodOptions | BodyResponseCallback<Schema$Beacon>,
+      callback: BodyResponseCallback<Schema$Beacon>
+    ): void;
     register(
-        params: Params$Resource$Beacons$Register,
-        callback: BodyResponseCallback<Schema$Beacon>): void;
+      params: Params$Resource$Beacons$Register,
+      callback: BodyResponseCallback<Schema$Beacon>
+    ): void;
     register(callback: BodyResponseCallback<Schema$Beacon>): void;
     register(
-        paramsOrCallback?: Params$Resource$Beacons$Register|
-        BodyResponseCallback<Schema$Beacon>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback?: BodyResponseCallback<Schema$Beacon>):
-        void|GaxiosPromise<Schema$Beacon> {
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Register
+        | BodyResponseCallback<Schema$Beacon>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>
+    ): void | GaxiosPromise<Schema$Beacon> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1217,19 +1274,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/beacons:register')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/beacons:register').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1237,7 +1297,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$Beacon>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.update
@@ -1262,22 +1321,27 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Beacons$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Beacon>;
     update(
-        params: Params$Resource$Beacons$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback: BodyResponseCallback<Schema$Beacon>): void;
+      params?: Params$Resource$Beacons$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Beacon>;
     update(
-        params: Params$Resource$Beacons$Update,
-        callback: BodyResponseCallback<Schema$Beacon>): void;
+      params: Params$Resource$Beacons$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Beacon>,
+      callback: BodyResponseCallback<Schema$Beacon>
+    ): void;
+    update(
+      params: Params$Resource$Beacons$Update,
+      callback: BodyResponseCallback<Schema$Beacon>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Beacon>): void;
     update(
-        paramsOrCallback?: Params$Resource$Beacons$Update|
-        BodyResponseCallback<Schema$Beacon>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
-        callback?: BodyResponseCallback<Schema$Beacon>):
-        void|GaxiosPromise<Schema$Beacon> {
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Update
+        | BodyResponseCallback<Schema$Beacon>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Beacon>,
+      callback?: BodyResponseCallback<Schema$Beacon>
+    ): void | GaxiosPromise<Schema$Beacon> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1293,19 +1357,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1319,7 +1386,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Beacon that should be activated. A beacon name has the format
@@ -1337,12 +1404,12 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Deactivate extends
-      StandardParameters {
+  export interface Params$Resource$Beacons$Deactivate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Beacon that should be deactivated. A beacon name has the format
@@ -1360,12 +1427,12 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Decommission extends
-      StandardParameters {
+  export interface Params$Resource$Beacons$Decommission
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Beacon that should be decommissioned. A beacon name has the format
@@ -1387,7 +1454,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Beacon that should be deleted. A beacon name has the format
@@ -1408,7 +1475,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of this beacon. A beacon name has the format
@@ -1430,7 +1497,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of records to return for this request, up to a
@@ -1504,7 +1571,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project id of the project the beacon will be registered to. If the
@@ -1522,7 +1589,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of this beacon. A beacon name has the format
@@ -1552,7 +1619,6 @@ export namespace proximitybeacon_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * proximitybeacon.beacons.attachments.batchDelete
      * @desc Deletes multiple attachments on a given beacon. This operation is
@@ -1576,28 +1642,34 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     batchDelete(
-        params?: Params$Resource$Beacons$Attachments$Batchdelete,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DeleteAttachmentsResponse>;
+      params?: Params$Resource$Beacons$Attachments$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteAttachmentsResponse>;
     batchDelete(
-        params: Params$Resource$Beacons$Attachments$Batchdelete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
-        callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>): void;
+      params: Params$Resource$Beacons$Attachments$Batchdelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>
+    ): void;
     batchDelete(
-        params: Params$Resource$Beacons$Attachments$Batchdelete,
-        callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>): void;
+      params: Params$Resource$Beacons$Attachments$Batchdelete,
+      callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>
+    ): void;
     batchDelete(
-        callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>): void;
+      callback: BodyResponseCallback<Schema$DeleteAttachmentsResponse>
+    ): void;
     batchDelete(
-        paramsOrCallback?: Params$Resource$Beacons$Attachments$Batchdelete|
-        BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
-        callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>):
-        void|GaxiosPromise<Schema$DeleteAttachmentsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Beacons$Attachments$Batchdelete;
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Attachments$Batchdelete
+        | BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>
+    ): void | GaxiosPromise<Schema$DeleteAttachmentsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beacons$Attachments$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1612,28 +1684,31 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}/attachments:batchDelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta1/{+beaconName}/attachments:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeleteAttachmentsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DeleteAttachmentsResponse>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.attachments.create
@@ -1660,25 +1735,30 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Beacons$Attachments$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$BeaconAttachment>;
+      params?: Params$Resource$Beacons$Attachments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BeaconAttachment>;
     create(
-        params: Params$Resource$Beacons$Attachments$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
-        callback: BodyResponseCallback<Schema$BeaconAttachment>): void;
+      params: Params$Resource$Beacons$Attachments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$BeaconAttachment>,
+      callback: BodyResponseCallback<Schema$BeaconAttachment>
+    ): void;
     create(
-        params: Params$Resource$Beacons$Attachments$Create,
-        callback: BodyResponseCallback<Schema$BeaconAttachment>): void;
+      params: Params$Resource$Beacons$Attachments$Create,
+      callback: BodyResponseCallback<Schema$BeaconAttachment>
+    ): void;
     create(callback: BodyResponseCallback<Schema$BeaconAttachment>): void;
     create(
-        paramsOrCallback?: Params$Resource$Beacons$Attachments$Create|
-        BodyResponseCallback<Schema$BeaconAttachment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BeaconAttachment>,
-        callback?: BodyResponseCallback<Schema$BeaconAttachment>):
-        void|GaxiosPromise<Schema$BeaconAttachment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Beacons$Attachments$Create;
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Attachments$Create
+        | BodyResponseCallback<Schema$BeaconAttachment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BeaconAttachment>,
+      callback?: BodyResponseCallback<Schema$BeaconAttachment>
+    ): void | GaxiosPromise<Schema$BeaconAttachment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beacons$Attachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1693,19 +1773,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}/attachments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}/attachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BeaconAttachment>(parameters, callback);
@@ -1713,7 +1796,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$BeaconAttachment>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.attachments.delete
@@ -1736,24 +1818,28 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Beacons$Attachments$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Beacons$Attachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Beacons$Attachments$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Attachments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Beacons$Attachments$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Beacons$Attachments$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Beacons$Attachments$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Beacons$Attachments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Attachments$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beacons$Attachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1768,19 +1854,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+attachmentName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+attachmentName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['attachmentName'],
         pathParams: ['attachmentName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1788,7 +1877,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.beacons.attachments.list
@@ -1813,30 +1901,34 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Beacons$Attachments$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListBeaconAttachmentsResponse>;
+      params?: Params$Resource$Beacons$Attachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBeaconAttachmentsResponse>;
     list(
-        params: Params$Resource$Beacons$Attachments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
-        callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
-        void;
+      params: Params$Resource$Beacons$Attachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>
+    ): void;
     list(
-        params: Params$Resource$Beacons$Attachments$List,
-        callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
-        void;
+      params: Params$Resource$Beacons$Attachments$List,
+      callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Beacons$Attachments$List|
-        BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
-        void|GaxiosPromise<Schema$ListBeaconAttachmentsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Beacons$Attachments$List;
+      callback: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Attachments$List
+        | BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>
+    ): void | GaxiosPromise<Schema$ListBeaconAttachmentsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beacons$Attachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1851,36 +1943,42 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}/attachments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}/attachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconAttachmentsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListBeaconAttachmentsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Beacons$Attachments$Batchdelete extends
-      StandardParameters {
+  export interface Params$Resource$Beacons$Attachments$Batchdelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The beacon whose attachments should be deleted. A beacon name has the
@@ -1906,12 +2004,12 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Attachments$Create extends
-      StandardParameters {
+  export interface Params$Resource$Beacons$Attachments$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Beacon on which the attachment should be created. A beacon name has the
@@ -1934,12 +2032,12 @@ export namespace proximitybeacon_v1beta1 {
      */
     requestBody?: Schema$BeaconAttachment;
   }
-  export interface Params$Resource$Beacons$Attachments$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Beacons$Attachments$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The attachment name (`attachmentName`) of the attachment to remove. For
@@ -1955,12 +2053,12 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Attachments$List extends
-      StandardParameters {
+  export interface Params$Resource$Beacons$Attachments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Beacon whose attachments should be fetched. A beacon name has the format
@@ -1987,13 +2085,11 @@ export namespace proximitybeacon_v1beta1 {
     projectId?: string;
   }
 
-
   export class Resource$Beacons$Diagnostics {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * proximitybeacon.beacons.diagnostics.list
@@ -2018,26 +2114,32 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Beacons$Diagnostics$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDiagnosticsResponse>;
+      params?: Params$Resource$Beacons$Diagnostics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDiagnosticsResponse>;
     list(
-        params: Params$Resource$Beacons$Diagnostics$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDiagnosticsResponse>,
-        callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
+      params: Params$Resource$Beacons$Diagnostics$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiagnosticsResponse>,
+      callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>
+    ): void;
     list(
-        params: Params$Resource$Beacons$Diagnostics$List,
-        callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
+      params: Params$Resource$Beacons$Diagnostics$List,
+      callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDiagnosticsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Beacons$Diagnostics$List|
-        BodyResponseCallback<Schema$ListDiagnosticsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDiagnosticsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>):
-        void|GaxiosPromise<Schema$ListDiagnosticsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Beacons$Diagnostics$List;
+      paramsOrCallback?:
+        | Params$Resource$Beacons$Diagnostics$List
+        | BodyResponseCallback<Schema$ListDiagnosticsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiagnosticsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>
+    ): void | GaxiosPromise<Schema$ListDiagnosticsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Beacons$Diagnostics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2052,19 +2154,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+beaconName}/diagnostics')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+beaconName}/diagnostics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDiagnosticsResponse>(parameters, callback);
@@ -2074,12 +2179,12 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beacons$Diagnostics$List extends
-      StandardParameters {
+  export interface Params$Resource$Beacons$Diagnostics$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Requests only beacons that have the given alert. For example, to find
@@ -2108,14 +2213,11 @@ export namespace proximitybeacon_v1beta1 {
     projectId?: string;
   }
 
-
-
   export class Resource$Namespaces {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * proximitybeacon.namespaces.list
@@ -2135,24 +2237,31 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Namespaces$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListNamespacesResponse>;
     list(
-        params: Params$Resource$Namespaces$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListNamespacesResponse>,
-        callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
+      params?: Params$Resource$Namespaces$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNamespacesResponse>;
     list(
-        params: Params$Resource$Namespaces$List,
-        callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
+      params: Params$Resource$Namespaces$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNamespacesResponse>,
+      callback: BodyResponseCallback<Schema$ListNamespacesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Namespaces$List,
+      callback: BodyResponseCallback<Schema$ListNamespacesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Namespaces$List|
-        BodyResponseCallback<Schema$ListNamespacesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListNamespacesResponse>,
-        callback?: BodyResponseCallback<Schema$ListNamespacesResponse>):
-        void|GaxiosPromise<Schema$ListNamespacesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$List
+        | BodyResponseCallback<Schema$ListNamespacesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNamespacesResponse>,
+      callback?: BodyResponseCallback<Schema$ListNamespacesResponse>
+    ): void | GaxiosPromise<Schema$ListNamespacesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Namespaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2168,19 +2277,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/namespaces')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/namespaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListNamespacesResponse>(parameters, callback);
@@ -2188,7 +2300,6 @@ export namespace proximitybeacon_v1beta1 {
         return createAPIRequest<Schema$ListNamespacesResponse>(parameters);
       }
     }
-
 
     /**
      * proximitybeacon.namespaces.update
@@ -2205,25 +2316,31 @@ export namespace proximitybeacon_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Namespaces$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Namespace>;
     update(
-        params: Params$Resource$Namespaces$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Namespace>,
-        callback: BodyResponseCallback<Schema$Namespace>): void;
+      params?: Params$Resource$Namespaces$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Namespace>;
     update(
-        params: Params$Resource$Namespaces$Update,
-        callback: BodyResponseCallback<Schema$Namespace>): void;
+      params: Params$Resource$Namespaces$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Namespace>,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    update(
+      params: Params$Resource$Namespaces$Update,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Namespace>): void;
     update(
-        paramsOrCallback?: Params$Resource$Namespaces$Update|
-        BodyResponseCallback<Schema$Namespace>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Namespace>,
-        callback?: BodyResponseCallback<Schema$Namespace>):
-        void|GaxiosPromise<Schema$Namespace> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Namespaces$Update;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Update
+        | BodyResponseCallback<Schema$Namespace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Namespace>,
+      callback?: BodyResponseCallback<Schema$Namespace>
+    ): void | GaxiosPromise<Schema$Namespace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2238,19 +2355,22 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+namespaceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+namespaceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['namespaceName'],
         pathParams: ['namespaceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Namespace>(parameters, callback);
@@ -2264,19 +2384,19 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project id to list namespaces under. Optional.
      */
     projectId?: string;
   }
-  export interface Params$Resource$Namespaces$Update extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of this namespace. Namespaces names have the format:
@@ -2296,13 +2416,11 @@ export namespace proximitybeacon_v1beta1 {
     requestBody?: Schema$Namespace;
   }
 
-
   export class Resource$V1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * proximitybeacon.getEidparams
@@ -2322,30 +2440,34 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     getEidparams(
-        params?: Params$Resource$V1beta1$Geteidparams, options?: MethodOptions):
-        GaxiosPromise<Schema$EphemeralIdRegistrationParams>;
+      params?: Params$Resource$V1beta1$Geteidparams,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EphemeralIdRegistrationParams>;
     getEidparams(
-        params: Params$Resource$V1beta1$Geteidparams,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
-        callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
-        void;
+      params: Params$Resource$V1beta1$Geteidparams,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
+      callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>
+    ): void;
     getEidparams(
-        params: Params$Resource$V1beta1$Geteidparams,
-        callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
-        void;
+      params: Params$Resource$V1beta1$Geteidparams,
+      callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>
+    ): void;
     getEidparams(
-        callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
-        void;
+      callback: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>
+    ): void;
     getEidparams(
-        paramsOrCallback?: Params$Resource$V1beta1$Geteidparams|
-        BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
-        callback?: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
-        void|GaxiosPromise<Schema$EphemeralIdRegistrationParams> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1beta1$Geteidparams;
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Geteidparams
+        | BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
+      callback?: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>
+    ): void | GaxiosPromise<Schema$EphemeralIdRegistrationParams> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Geteidparams;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2360,35 +2482,38 @@ export namespace proximitybeacon_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://proximitybeacon.googleapis.com/';
+        options.rootUrl || 'https://proximitybeacon.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/eidparams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/eidparams').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EphemeralIdRegistrationParams>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$EphemeralIdRegistrationParams>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$V1beta1$Geteidparams extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Geteidparams
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 }

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -206,7 +218,7 @@ export namespace cloudshell_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -222,7 +234,7 @@ export namespace cloudshell_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * A public SSH key, corresponding to a private SSH key held by the client.
@@ -312,7 +324,7 @@ export namespace cloudshell_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -321,13 +333,11 @@ export namespace cloudshell_v1 {
     message?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudshell.operations.cancel
@@ -350,24 +360,29 @@ export namespace cloudshell_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -384,16 +399,16 @@ export namespace cloudshell_v1 {
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -401,7 +416,6 @@ export namespace cloudshell_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudshell.operations.delete
@@ -418,24 +432,29 @@ export namespace cloudshell_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -452,15 +471,16 @@ export namespace cloudshell_v1 {
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -468,7 +488,6 @@ export namespace cloudshell_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudshell.operations.get
@@ -484,20 +503,29 @@ export namespace cloudshell_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -515,15 +543,16 @@ export namespace cloudshell_v1 {
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -531,7 +560,6 @@ export namespace cloudshell_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudshell.operations.list
@@ -556,24 +584,31 @@ export namespace cloudshell_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -591,15 +626,16 @@ export namespace cloudshell_v1 {
       const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -609,12 +645,12 @@ export namespace cloudshell_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
@@ -626,12 +662,12 @@ export namespace cloudshell_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
@@ -642,7 +678,7 @@ export namespace cloudshell_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -653,7 +689,7 @@ export namespace cloudshell_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.

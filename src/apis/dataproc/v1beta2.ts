@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -294,7 +306,7 @@ export namespace dataproc_v1beta2 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. Contains cluster daemon metrics such as HDFS and YARN
      * stats.Beta Feature: This report is available for testing purposes only.
@@ -395,11 +407,11 @@ export namespace dataproc_v1beta2 {
     /**
      * The HDFS metrics.
      */
-    hdfsMetrics?: {[key: string]: string;};
+    hdfsMetrics?: {[key: string]: string};
     /**
      * The YARN metrics.
      */
-    yarnMetrics?: {[key: string]: string;};
+    yarnMetrics?: {[key: string]: string};
   }
   /**
    * The cluster operation triggered by a workflow.
@@ -437,7 +449,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. Labels associated with the operation
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. The operation type.
      */
@@ -483,7 +495,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The cluster labels. Cluster must have all labels to match.
      */
-    clusterLabels?: {[key: string]: string;};
+    clusterLabels?: {[key: string]: string};
     /**
      * Optional. The zone where workflow process executes. This parameter does
      * not affect the selection of the cluster.If unspecified, the zone of the
@@ -581,7 +593,7 @@ export namespace dataproc_v1beta2 {
      * Output only. The map of port descriptions to URLs. Will only be populated
      * if enable_http_port_access is true.
      */
-    httpPorts?: {[key: string]: string;};
+    httpPorts?: {[key: string]: string};
   }
   /**
    * Represents an expression text. Example: title: &quot;User account
@@ -631,7 +643,7 @@ export namespace dataproc_v1beta2 {
      * and instance metadata
      * (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      */
-    metadata?: {[key: string]: string;};
+    metadata?: {[key: string]: string};
     /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
@@ -750,7 +762,7 @@ export namespace dataproc_v1beta2 {
      * API may be overwritten. Can include properties set in
      * /etc/hadoop/conf/*-site and classes in user code.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
   }
   /**
    * A Cloud Dataproc job for running Apache Hive (https://hive.apache.org/)
@@ -774,7 +786,7 @@ export namespace dataproc_v1beta2 {
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
     /**
      * The HCFS URI of the script that contains Hive queries.
      */
@@ -787,7 +799,7 @@ export namespace dataproc_v1beta2 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: {[key: string]: string;};
+    scriptVariables?: {[key: string]: string};
   }
   /**
    * Configuration for the size bounds of an instance group, including its
@@ -878,7 +890,7 @@ export namespace dataproc_v1beta2 {
      * Optional. Map from parameter names to values that should be used for
      * those parameters. Values may not exceed 100 characters.
      */
-    parameters?: {[key: string]: string;};
+    parameters?: {[key: string]: string};
     /**
      * Optional. A tag that prevents multiple concurrent workflow instances with
      * the same tag from running. This mitigates risk of concurrent instances
@@ -933,7 +945,7 @@ export namespace dataproc_v1beta2 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Job is a Pig job.
      */
@@ -1244,7 +1256,7 @@ export namespace dataproc_v1beta2 {
      * &#39;com.google = FATAL&#39;, &#39;root = INFO&#39;, &#39;org.apache =
      * DEBUG&#39;
      */
-    driverLogLevels?: {[key: string]: string;};
+    driverLogLevels?: {[key: string]: string};
   }
   /**
    * Cluster that is managed by the workflow.
@@ -1270,7 +1282,7 @@ export namespace dataproc_v1beta2 {
      * expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be
      * associated with a given cluster.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
   }
   /**
    * Specifies the resources used to actively manage an instance group.
@@ -1324,7 +1336,7 @@ export namespace dataproc_v1beta2 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -1340,7 +1352,7 @@ export namespace dataproc_v1beta2 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * A job executed by the workflow.
@@ -1362,7 +1374,7 @@ export namespace dataproc_v1beta2 {
      * \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a
      * given job.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Job is a Pig job.
      */
@@ -1437,7 +1449,7 @@ export namespace dataproc_v1beta2 {
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
     /**
      * The HCFS URI of the script that contains the Pig queries.
      */
@@ -1450,7 +1462,7 @@ export namespace dataproc_v1beta2 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Pig command: name=[value]).
      */
-    scriptVariables?: {[key: string]: string;};
+    scriptVariables?: {[key: string]: string};
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -1524,7 +1536,7 @@ export namespace dataproc_v1beta2 {
      * (https://prestodb.io/docs/current/sql/set-session.html) Equivalent to
      * using the --session flag in the Presto CLI
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
     /**
      * The HCFS URI of the script that contains SQL queries.
      */
@@ -1576,7 +1588,7 @@ export namespace dataproc_v1beta2 {
      * API may be overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
     /**
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
@@ -1672,7 +1684,7 @@ export namespace dataproc_v1beta2 {
      * pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more
      * information, see Cluster properties.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
   }
   /**
    * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/)
@@ -1720,7 +1732,7 @@ export namespace dataproc_v1beta2 {
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
   }
   /**
    * A Cloud Dataproc job for running Apache SparkR
@@ -1759,7 +1771,7 @@ export namespace dataproc_v1beta2 {
      * API may be overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
   }
   /**
    * A Cloud Dataproc job for running Apache Spark SQL
@@ -1779,7 +1791,7 @@ export namespace dataproc_v1beta2 {
      * SQL&#39;s SparkConf. Properties that conflict with values set by the
      * Cloud Dataproc API may be overwritten.
      */
-    properties?: {[key: string]: string;};
+    properties?: {[key: string]: string};
     /**
      * The HCFS URI of the script that contains SQL queries.
      */
@@ -1792,7 +1804,7 @@ export namespace dataproc_v1beta2 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: {[key: string]: string;};
+    scriptVariables?: {[key: string]: string};
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -1838,7 +1850,7 @@ export namespace dataproc_v1beta2 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1994,7 +2006,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Map from parameter names to values that were used for those parameters.
      */
-    parameters?: {[key: string]: string;};
+    parameters?: {[key: string]: string};
     /**
      * Output only. Workflow start time.
      */
@@ -2065,7 +2077,7 @@ export namespace dataproc_v1beta2 {
      * to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels
      * can be associated with a template.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. The &quot;resource name&quot; of the template, as described
      * in https://cloud.google.com/apis/design/resource_names of the form
@@ -2141,7 +2153,6 @@ export namespace dataproc_v1beta2 {
     trackingUrl?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -2153,27 +2164,26 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     autoscalingPolicies: Resource$Projects$Locations$Autoscalingpolicies;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.autoscalingPolicies =
-          new Resource$Projects$Locations$Autoscalingpolicies(this.context);
-      this.workflowTemplates =
-          new Resource$Projects$Locations$Workflowtemplates(this.context);
+      this.autoscalingPolicies = new Resource$Projects$Locations$Autoscalingpolicies(
+        this.context
+      );
+      this.workflowTemplates = new Resource$Projects$Locations$Workflowtemplates(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Locations$Autoscalingpolicies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.create
@@ -2189,32 +2199,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoscalingPolicy>;
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
     create(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Create|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback?: BodyResponseCallback<Schema$AutoscalingPolicy>):
-        void|GaxiosPromise<Schema$AutoscalingPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Create
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
         options = {};
       }
 
@@ -2226,16 +2239,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
@@ -2243,7 +2259,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.delete
@@ -2259,31 +2274,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
         options = {};
       }
 
@@ -2295,15 +2312,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2311,7 +2329,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.get
@@ -2325,29 +2342,36 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoscalingPolicy>;
-    get(params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
-    get(params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    get(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Get|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback?: BodyResponseCallback<Schema$AutoscalingPolicy>):
-        void|GaxiosPromise<Schema$AutoscalingPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Get
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
         options = {};
       }
 
@@ -2359,15 +2383,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
@@ -2375,7 +2400,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.getIamPolicy
@@ -2391,34 +2415,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
         options = {};
       }
 
@@ -2430,16 +2453,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2447,7 +2473,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.list
@@ -2464,39 +2489,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
-        callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$List|
-        BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$List;
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$List
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$List;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
         options = {};
       }
 
@@ -2508,26 +2533,31 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.setIamPolicy
@@ -2544,34 +2574,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
         options = {};
       }
 
@@ -2583,16 +2612,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2600,7 +2632,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.testIamPermissions
@@ -2620,41 +2651,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
         options = {};
       }
 
@@ -2666,25 +2695,29 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.update
@@ -2701,32 +2734,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoscalingPolicy>;
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
     update(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     update(
-        params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Update|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback?: BodyResponseCallback<Schema$AutoscalingPolicy>):
-        void|GaxiosPromise<Schema$AutoscalingPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Update
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
         options = {};
       }
 
@@ -2738,15 +2774,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
@@ -2757,11 +2794,11 @@ export namespace dataproc_v1beta2 {
   }
 
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the region, as described in
@@ -2776,11 +2813,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$AutoscalingPolicy;
   }
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the autoscaling policy, as described in
@@ -2790,11 +2827,11 @@ export namespace dataproc_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the autoscaling policy, as described in
@@ -2804,11 +2841,11 @@ export namespace dataproc_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -2817,11 +2854,11 @@ export namespace dataproc_v1beta2 {
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return in each response.
@@ -2840,11 +2877,11 @@ export namespace dataproc_v1beta2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -2858,11 +2895,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -2876,11 +2913,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. The "resource name" of the policy, as described in
@@ -2895,13 +2932,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$AutoscalingPolicy;
   }
 
-
   export class Resource$Projects$Locations$Workflowtemplates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.create
@@ -2917,32 +2952,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Workflowtemplates$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowTemplate>;
     create(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     create(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Create|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|GaxiosPromise<Schema$WorkflowTemplate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Create
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Create;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Create;
         options = {};
       }
 
@@ -2954,16 +2992,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -2971,7 +3012,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.delete
@@ -2988,31 +3028,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Delete;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Delete;
         options = {};
       }
 
@@ -3024,15 +3066,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3040,7 +3083,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.get
@@ -3056,23 +3098,31 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Workflowtemplates$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
-    get(params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
-    get(params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    get(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     get(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Get|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|GaxiosPromise<Schema$WorkflowTemplate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Get
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3089,15 +3139,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -3105,7 +3156,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.getIamPolicy
@@ -3121,34 +3171,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
         options = {};
       }
 
@@ -3160,16 +3209,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3177,7 +3229,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.instantiate
@@ -3199,35 +3250,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiate(
-        params?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     instantiate(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiate(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiate(callback: BodyResponseCallback<Schema$Operation>): void;
     instantiate(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Instantiate
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
         options = {};
       }
 
@@ -3239,16 +3290,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}:instantiate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}:instantiate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3256,7 +3310,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.instantiateInline
@@ -3282,35 +3335,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiateInline(
-        params?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     instantiateInline(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiateInline(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiateInline(callback: BodyResponseCallback<Schema$Operation>): void;
     instantiateInline(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
         options = {};
       }
 
@@ -3322,17 +3375,18 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta2/{+parent}/workflowTemplates:instantiateInline')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta2/{+parent}/workflowTemplates:instantiateInline'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3340,7 +3394,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.list
@@ -3357,37 +3410,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Workflowtemplates$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$List,
-        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+      callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$List|
-        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void|GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$List;
+      callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$List
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+      callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void | GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$List;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$List;
         options = {};
       }
 
@@ -3399,26 +3454,31 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.setIamPolicy
@@ -3435,34 +3495,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
         options = {};
       }
 
@@ -3474,16 +3533,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3491,7 +3553,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.testIamPermissions
@@ -3511,41 +3572,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
         options = {};
       }
 
@@ -3557,25 +3616,29 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.locations.workflowTemplates.update
@@ -3592,32 +3655,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Locations$Workflowtemplates$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
+      params?: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowTemplate>;
     update(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     update(
-        params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     update(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Workflowtemplates$Update|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|GaxiosPromise<Schema$WorkflowTemplate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workflowtemplates$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflowtemplates$Update
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Workflowtemplates$Update;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Update;
         options = {};
       }
 
@@ -3629,15 +3695,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -3648,11 +3715,11 @@ export namespace dataproc_v1beta2 {
   }
 
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the region, as described in
@@ -3667,11 +3734,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the workflow template, as described in
@@ -3687,11 +3754,11 @@ export namespace dataproc_v1beta2 {
     version?: number;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the workflow template, as described in
@@ -3707,11 +3774,11 @@ export namespace dataproc_v1beta2 {
     version?: number;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -3720,11 +3787,11 @@ export namespace dataproc_v1beta2 {
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the workflow template, as described in
@@ -3739,11 +3806,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Deprecated. Please use request_id field instead.
@@ -3771,11 +3838,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return in each response.
@@ -3794,11 +3861,11 @@ export namespace dataproc_v1beta2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -3812,11 +3879,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -3830,11 +3897,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. The "resource name" of the template, as described in
@@ -3849,8 +3916,6 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$WorkflowTemplate;
   }
 
-
-
   export class Resource$Projects$Regions {
     context: APIRequestContext;
     autoscalingPolicies: Resource$Projects$Regions$Autoscalingpolicies;
@@ -3860,23 +3925,23 @@ export namespace dataproc_v1beta2 {
     workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.autoscalingPolicies =
-          new Resource$Projects$Regions$Autoscalingpolicies(this.context);
+      this.autoscalingPolicies = new Resource$Projects$Regions$Autoscalingpolicies(
+        this.context
+      );
       this.clusters = new Resource$Projects$Regions$Clusters(this.context);
       this.jobs = new Resource$Projects$Regions$Jobs(this.context);
       this.operations = new Resource$Projects$Regions$Operations(this.context);
-      this.workflowTemplates =
-          new Resource$Projects$Regions$Workflowtemplates(this.context);
+      this.workflowTemplates = new Resource$Projects$Regions$Workflowtemplates(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Regions$Autoscalingpolicies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.create
@@ -3892,32 +3957,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoscalingPolicy>;
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
     create(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     create(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Create|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback?: BodyResponseCallback<Schema$AutoscalingPolicy>):
-        void|GaxiosPromise<Schema$AutoscalingPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Create
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
         options = {};
       }
 
@@ -3929,16 +3997,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
@@ -3946,7 +4017,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.delete
@@ -3962,31 +4032,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
         options = {};
       }
 
@@ -3998,15 +4070,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4014,7 +4087,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.get
@@ -4028,23 +4100,31 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoscalingPolicy>;
-    get(params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
-    get(params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    get(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    get(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Get|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback?: BodyResponseCallback<Schema$AutoscalingPolicy>):
-        void|GaxiosPromise<Schema$AutoscalingPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Get
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4061,15 +4141,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
@@ -4077,7 +4158,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.getIamPolicy
@@ -4094,34 +4174,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
         options = {};
       }
 
@@ -4133,16 +4212,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4150,7 +4232,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.list
@@ -4167,39 +4248,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
     list(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
-        callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$List|
-        BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$List;
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$List
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Autoscalingpolicies$List;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
         options = {};
       }
 
@@ -4211,26 +4292,31 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.setIamPolicy
@@ -4247,34 +4333,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
         options = {};
       }
 
@@ -4286,16 +4371,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4303,7 +4391,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.testIamPermissions
@@ -4323,41 +4410,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
         options = {};
       }
 
@@ -4369,25 +4454,29 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.update
@@ -4404,32 +4493,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoscalingPolicy>;
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
     update(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     update(
-        params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
-        callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Update|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoscalingPolicy>,
-        callback?: BodyResponseCallback<Schema$AutoscalingPolicy>):
-        void|GaxiosPromise<Schema$AutoscalingPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Update
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
         options = {};
       }
 
@@ -4441,15 +4533,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
@@ -4460,11 +4553,11 @@ export namespace dataproc_v1beta2 {
   }
 
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the region, as described in
@@ -4479,11 +4572,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$AutoscalingPolicy;
   }
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the autoscaling policy, as described in
@@ -4493,11 +4586,11 @@ export namespace dataproc_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the autoscaling policy, as described in
@@ -4507,11 +4600,11 @@ export namespace dataproc_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -4525,11 +4618,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return in each response.
@@ -4548,11 +4641,11 @@ export namespace dataproc_v1beta2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -4566,11 +4659,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -4584,11 +4677,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. The "resource name" of the policy, as described in
@@ -4603,13 +4696,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$AutoscalingPolicy;
   }
 
-
   export class Resource$Projects$Regions$Clusters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataproc.projects.regions.clusters.create
@@ -4627,25 +4718,30 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Regions$Clusters$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Regions$Clusters$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Regions$Clusters$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Regions$Clusters$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4662,17 +4758,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta2/projects/{projectId}/regions/{region}/clusters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4680,7 +4778,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.delete
@@ -4699,25 +4796,30 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Regions$Clusters$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Regions$Clusters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Projects$Regions$Clusters$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Regions$Clusters$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4734,18 +4836,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4753,7 +4856,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.diagnose
@@ -4772,25 +4874,30 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     diagnose(
-        params?: Params$Resource$Projects$Regions$Clusters$Diagnose,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Regions$Clusters$Diagnose,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     diagnose(
-        params: Params$Resource$Projects$Regions$Clusters$Diagnose,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     diagnose(
-        params: Params$Resource$Projects$Regions$Clusters$Diagnose,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     diagnose(callback: BodyResponseCallback<Schema$Operation>): void;
     diagnose(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Diagnose|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Diagnose;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Diagnose
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Diagnose;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4807,18 +4914,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}:diagnose')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}:diagnose'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4826,7 +4934,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.get
@@ -4842,21 +4949,29 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Regions$Clusters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Cluster>;
-    get(params: Params$Resource$Projects$Regions$Clusters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
-        callback: BodyResponseCallback<Schema$Cluster>): void;
-    get(params: Params$Resource$Projects$Regions$Clusters$Get,
-        callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(
+      params?: Params$Resource$Projects$Regions$Clusters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Cluster>;
+    get(
+      params: Params$Resource$Projects$Regions$Clusters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Cluster>,
+      callback: BodyResponseCallback<Schema$Cluster>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Clusters$Get,
+      callback: BodyResponseCallback<Schema$Cluster>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Cluster>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Get|
-        BodyResponseCallback<Schema$Cluster>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
-        callback?: BodyResponseCallback<Schema$Cluster>):
-        void|GaxiosPromise<Schema$Cluster> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Get
+        | BodyResponseCallback<Schema$Cluster>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Cluster>,
+      callback?: BodyResponseCallback<Schema$Cluster>
+    ): void | GaxiosPromise<Schema$Cluster> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4873,18 +4988,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -4892,7 +5008,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Cluster>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.getIamPolicy
@@ -4908,25 +5023,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Clusters$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4943,16 +5061,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4960,7 +5081,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.list
@@ -4979,26 +5099,32 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Regions$Clusters$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListClustersResponse>;
+      params?: Params$Resource$Projects$Regions$Clusters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListClustersResponse>;
     list(
-        params: Params$Resource$Projects$Regions$Clusters$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListClustersResponse>,
-        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+      params: Params$Resource$Projects$Regions$Clusters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListClustersResponse>,
+      callback: BodyResponseCallback<Schema$ListClustersResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Regions$Clusters$List,
-        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+      params: Params$Resource$Projects$Regions$Clusters$List,
+      callback: BodyResponseCallback<Schema$ListClustersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$List|
-        BodyResponseCallback<Schema$ListClustersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListClustersResponse>,
-        callback?: BodyResponseCallback<Schema$ListClustersResponse>):
-        void|GaxiosPromise<Schema$ListClustersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$List
+        | BodyResponseCallback<Schema$ListClustersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListClustersResponse>,
+      callback?: BodyResponseCallback<Schema$ListClustersResponse>
+    ): void | GaxiosPromise<Schema$ListClustersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5015,17 +5141,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta2/projects/{projectId}/regions/{region}/clusters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -5033,7 +5161,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$ListClustersResponse>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.patch
@@ -5054,25 +5181,30 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Regions$Clusters$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Regions$Clusters$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Projects$Regions$Clusters$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Regions$Clusters$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5089,18 +5221,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5108,7 +5241,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.setIamPolicy
@@ -5125,25 +5257,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Clusters$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5160,16 +5295,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5177,7 +5315,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.clusters.testIamPermissions
@@ -5197,38 +5334,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Clusters$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Clusters$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Clusters$Testiampermissions;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Testiampermissions;
         options = {};
       }
 
@@ -5240,32 +5378,37 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Clusters$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The ID of the Google Cloud Platform project that the cluster
@@ -5293,12 +5436,12 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The cluster name.
@@ -5330,12 +5473,12 @@ export namespace dataproc_v1beta2 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Diagnose extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Diagnose
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The cluster name.
@@ -5356,12 +5499,12 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$DiagnoseClusterRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The cluster name.
@@ -5378,11 +5521,11 @@ export namespace dataproc_v1beta2 {
     region?: string;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -5390,12 +5533,12 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. A filter constraining the clusters to list. Filters are
@@ -5430,12 +5573,12 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Clusters$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The cluster name.
@@ -5506,11 +5649,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$Cluster;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -5524,11 +5667,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -5542,13 +5685,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-
   export class Resource$Projects$Regions$Jobs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataproc.projects.regions.jobs.cancel
@@ -5568,24 +5709,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Projects$Regions$Jobs$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Regions$Jobs$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     cancel(
-        params: Params$Resource$Projects$Regions$Jobs$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     cancel(
-        params: Params$Resource$Projects$Regions$Jobs$Cancel,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Cancel,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Job>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Cancel|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Cancel
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5602,18 +5747,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}:cancel')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}:cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5621,7 +5767,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.delete
@@ -5639,24 +5784,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Regions$Jobs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Regions$Jobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Regions$Jobs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Regions$Jobs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5673,18 +5822,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5692,7 +5842,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.get
@@ -5708,21 +5857,29 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Regions$Jobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    get(params: Params$Resource$Projects$Regions$Jobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    get(params: Params$Resource$Projects$Regions$Jobs$Get,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      params?: Params$Resource$Projects$Regions$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Projects$Regions$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Job>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Get|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Regions$Jobs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Get
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5739,18 +5896,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5758,7 +5916,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.getIamPolicy
@@ -5774,24 +5931,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5808,16 +5969,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5825,7 +5989,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.list
@@ -5846,25 +6009,30 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Regions$Jobs$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListJobsResponse>;
+      params?: Params$Resource$Projects$Regions$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Projects$Regions$Jobs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Regions$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Regions$Jobs$List,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Regions$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$List|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|GaxiosPromise<Schema$ListJobsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$List
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5881,17 +6049,18 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta2/projects/{projectId}/regions/{region}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta2/projects/{projectId}/regions/{region}/jobs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -5899,7 +6068,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.patch
@@ -5918,24 +6086,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Regions$Jobs$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Regions$Jobs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     patch(
-        params: Params$Resource$Projects$Regions$Jobs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Regions$Jobs$Patch,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Patch,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Job>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Patch|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Patch
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5952,18 +6124,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/jobs/{jobId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5971,7 +6144,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.setIamPolicy
@@ -5988,24 +6160,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6022,16 +6198,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -6039,7 +6218,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.submit
@@ -6056,24 +6234,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     submit(
-        params?: Params$Resource$Projects$Regions$Jobs$Submit,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Regions$Jobs$Submit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     submit(
-        params: Params$Resource$Projects$Regions$Jobs$Submit,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Submit,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     submit(
-        params: Params$Resource$Projects$Regions$Jobs$Submit,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Regions$Jobs$Submit,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     submit(callback: BodyResponseCallback<Schema$Job>): void;
     submit(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Submit|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$Submit;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Submit
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6090,18 +6272,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1beta2/projects/{projectId}/regions/{region}/jobs:submit')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/jobs:submit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -6109,7 +6292,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.jobs.testIamPermissions
@@ -6129,32 +6311,34 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Jobs$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Jobs$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6171,32 +6355,37 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Jobs$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The job ID.
@@ -6217,12 +6406,12 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The job ID.
@@ -6238,12 +6427,12 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The job ID.
@@ -6259,12 +6448,12 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -6272,12 +6461,12 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. If set, the returned jobs list includes only jobs that were
@@ -6319,12 +6508,12 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The job ID.
@@ -6354,12 +6543,12 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -6372,12 +6561,12 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Submit extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Jobs$Submit
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The ID of the Google Cloud Platform project that the job
@@ -6395,11 +6584,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SubmitJobRequest;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -6413,13 +6602,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-
   export class Resource$Projects$Regions$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataproc.projects.regions.operations.cancel
@@ -6442,24 +6629,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Projects$Regions$Operations$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Regions$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Projects$Regions$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(
-        params: Params$Resource$Projects$Regions$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6476,16 +6667,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6493,7 +6687,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.operations.delete
@@ -6511,24 +6704,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Regions$Operations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Regions$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Regions$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Regions$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6545,15 +6742,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6561,7 +6759,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.operations.get
@@ -6577,22 +6774,31 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Regions$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Regions$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Regions$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Regions$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Regions$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6609,15 +6815,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6625,7 +6832,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.operations.getIamPolicy
@@ -6641,25 +6847,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Regions$Operations$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Operations$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Operations$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Operations$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Operations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6676,16 +6885,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -6693,7 +6905,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.operations.list
@@ -6719,26 +6930,32 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Regions$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Projects$Regions$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Projects$Regions$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Regions$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Regions$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Regions$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6755,15 +6972,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -6771,7 +6989,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.operations.setIamPolicy
@@ -6788,25 +7005,28 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Regions$Operations$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Operations$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Operations$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Operations$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Operations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6823,16 +7043,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -6840,7 +7063,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.operations.testIamPermissions
@@ -6860,38 +7082,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Regions$Operations$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Operations$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Operations$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Operations$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Operations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Operations$Testiampermissions;
+        params = {} as Params$Resource$Projects$Regions$Operations$Testiampermissions;
         options = {};
       }
 
@@ -6903,56 +7126,61 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -6960,11 +7188,11 @@ export namespace dataproc_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -6972,12 +7200,12 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Regions$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -6997,11 +7225,11 @@ export namespace dataproc_v1beta2 {
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -7015,11 +7243,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Operations$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -7033,13 +7261,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-
   export class Resource$Projects$Regions$Workflowtemplates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.create
@@ -7055,32 +7281,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Regions$Workflowtemplates$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowTemplate>;
     create(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     create(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     create(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Create|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|GaxiosPromise<Schema$WorkflowTemplate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Create
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Create;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Create;
         options = {};
       }
 
@@ -7092,16 +7321,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -7109,7 +7341,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.delete
@@ -7126,31 +7357,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Delete;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Delete;
         options = {};
       }
 
@@ -7162,15 +7395,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7178,7 +7412,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.get
@@ -7194,23 +7427,31 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Regions$Workflowtemplates$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
-    get(params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
-    get(params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowTemplate>;
+    get(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     get(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Get|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|GaxiosPromise<Schema$WorkflowTemplate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Get
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7227,15 +7468,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -7243,7 +7485,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.getIamPolicy
@@ -7259,32 +7500,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
         options = {};
       }
 
@@ -7296,16 +7538,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7313,7 +7558,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.instantiate
@@ -7335,32 +7579,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiate(
-        params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     instantiate(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiate(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiate(callback: BodyResponseCallback<Schema$Operation>): void;
     instantiate(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Instantiate|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Instantiate
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
         options = {};
       }
 
@@ -7372,16 +7619,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}:instantiate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}:instantiate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7389,7 +7639,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.instantiateInline
@@ -7415,35 +7664,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiateInline(
-        params?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     instantiateInline(
-        params:
-            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiateInline(
-        params:
-            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     instantiateInline(callback: BodyResponseCallback<Schema$Operation>): void;
     instantiateInline(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
         options = {};
       }
 
@@ -7455,17 +7704,18 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta2/{+parent}/workflowTemplates:instantiateInline')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta2/{+parent}/workflowTemplates:instantiateInline'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7473,7 +7723,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.list
@@ -7490,31 +7739,34 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Regions$Workflowtemplates$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
     list(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$List,
-        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+      callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$List|
-        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void|GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$List;
+      callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$List
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+      callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+    ): void | GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7531,26 +7783,31 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/workflowTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.setIamPolicy
@@ -7567,32 +7824,33 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
         options = {};
       }
 
@@ -7604,16 +7862,19 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7621,7 +7882,6 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.testIamPermissions
@@ -7641,41 +7901,39 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
         options = {};
       }
 
@@ -7687,25 +7945,29 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * dataproc.projects.regions.workflowTemplates.update
@@ -7722,32 +7984,35 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Regions$Workflowtemplates$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
+      params?: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowTemplate>;
     update(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     update(
-        params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
-        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+      callback: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void;
     update(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Projects$Regions$Workflowtemplates$Update|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|GaxiosPromise<Schema$WorkflowTemplate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Regions$Workflowtemplates$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Workflowtemplates$Update
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>,
+      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Regions$Workflowtemplates$Update;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Update;
         options = {};
       }
 
@@ -7759,15 +8024,16 @@ export namespace dataproc_v1beta2 {
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -7778,11 +8044,11 @@ export namespace dataproc_v1beta2 {
   }
 
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the region, as described in
@@ -7797,11 +8063,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the workflow template, as described in
@@ -7817,11 +8083,11 @@ export namespace dataproc_v1beta2 {
     version?: number;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the workflow template, as described in
@@ -7837,11 +8103,11 @@ export namespace dataproc_v1beta2 {
     version?: number;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -7850,11 +8116,11 @@ export namespace dataproc_v1beta2 {
     resource?: string;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The "resource name" of the workflow template, as described in
@@ -7869,11 +8135,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Deprecated. Please use request_id field instead.
@@ -7901,11 +8167,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$WorkflowTemplate;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return in each response.
@@ -7924,11 +8190,11 @@ export namespace dataproc_v1beta2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -7942,11 +8208,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -7960,11 +8226,11 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. The "resource name" of the template, as described in

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -161,13 +173,11 @@ export namespace androidpublisher_v1_1 {
     validUntilTimestampMsec?: string;
   }
 
-
   export class Resource$Inapppurchases {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.inapppurchases.get
@@ -183,22 +193,31 @@ export namespace androidpublisher_v1_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Inapppurchases$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$InappPurchase>;
-    get(params: Params$Resource$Inapppurchases$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$InappPurchase>,
-        callback: BodyResponseCallback<Schema$InappPurchase>): void;
-    get(params: Params$Resource$Inapppurchases$Get,
-        callback: BodyResponseCallback<Schema$InappPurchase>): void;
+    get(
+      params?: Params$Resource$Inapppurchases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InappPurchase>;
+    get(
+      params: Params$Resource$Inapppurchases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InappPurchase>,
+      callback: BodyResponseCallback<Schema$InappPurchase>
+    ): void;
+    get(
+      params: Params$Resource$Inapppurchases$Get,
+      callback: BodyResponseCallback<Schema$InappPurchase>
+    ): void;
     get(callback: BodyResponseCallback<Schema$InappPurchase>): void;
-    get(paramsOrCallback?: Params$Resource$Inapppurchases$Get|
-        BodyResponseCallback<Schema$InappPurchase>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InappPurchase>,
-        callback?: BodyResponseCallback<Schema$InappPurchase>):
-        void|GaxiosPromise<Schema$InappPurchase> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inapppurchases$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Inapppurchases$Get
+        | BodyResponseCallback<Schema$InappPurchase>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InappPurchase>,
+      callback?: BodyResponseCallback<Schema$InappPurchase>
+    ): void | GaxiosPromise<Schema$InappPurchase> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inapppurchases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -215,18 +234,19 @@ export namespace androidpublisher_v1_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v1.1/applications/{packageName}/inapp/{productId}/purchases/{token}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v1.1/applications/{packageName}/inapp/{productId}/purchases/{token}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'productId', 'token'],
         pathParams: ['packageName', 'productId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InappPurchase>(parameters, callback);
@@ -236,12 +256,12 @@ export namespace androidpublisher_v1_1 {
     }
   }
 
-  export interface Params$Resource$Inapppurchases$Get extends
-      StandardParameters {
+  export interface Params$Resource$Inapppurchases$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application the inapp product was sold in (for
@@ -259,13 +279,11 @@ export namespace androidpublisher_v1_1 {
     token?: string;
   }
 
-
   export class Resource$Purchases {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.purchases.cancel
@@ -282,21 +300,27 @@ export namespace androidpublisher_v1_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Purchases$Cancel, options?: MethodOptions):
-        GaxiosPromise<void>;
     cancel(
-        params: Params$Resource$Purchases$Cancel,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Purchases$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     cancel(
-        params: Params$Resource$Purchases$Cancel,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Purchases$Cancel,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    cancel(
+      params: Params$Resource$Purchases$Cancel,
+      callback: BodyResponseCallback<void>
+    ): void;
     cancel(callback: BodyResponseCallback<void>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Purchases$Cancel|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Cancel
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -314,18 +338,19 @@ export namespace androidpublisher_v1_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -333,7 +358,6 @@ export namespace androidpublisher_v1_1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.purchases.get
@@ -350,21 +374,31 @@ export namespace androidpublisher_v1_1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Purchases$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SubscriptionPurchase>;
-    get(params: Params$Resource$Purchases$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionPurchase>,
-        callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-    get(params: Params$Resource$Purchases$Get,
-        callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
+    get(
+      params?: Params$Resource$Purchases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionPurchase>;
+    get(
+      params: Params$Resource$Purchases$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
+    ): void;
+    get(
+      params: Params$Resource$Purchases$Get,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-    get(paramsOrCallback?: Params$Resource$Purchases$Get|
-        BodyResponseCallback<Schema$SubscriptionPurchase>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionPurchase>,
-        callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
-        void|GaxiosPromise<Schema$SubscriptionPurchase> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Get
+        | BodyResponseCallback<Schema$SubscriptionPurchase>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>
+    ): void | GaxiosPromise<Schema$SubscriptionPurchase> {
       let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -382,18 +416,19 @@ export namespace androidpublisher_v1_1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
@@ -407,7 +442,7 @@ export namespace androidpublisher_v1_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application for which this subscription was
@@ -428,7 +463,7 @@ export namespace androidpublisher_v1_1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application for which this subscription was

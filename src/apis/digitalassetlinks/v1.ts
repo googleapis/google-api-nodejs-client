@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -287,13 +299,11 @@ export namespace digitalassetlinks_v1 {
     site?: string;
   }
 
-
   export class Resource$Assetlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * digitalassetlinks.assetlinks.check
@@ -331,23 +341,29 @@ export namespace digitalassetlinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check(params?: Params$Resource$Assetlinks$Check, options?: MethodOptions):
-        GaxiosPromise<Schema$CheckResponse>;
     check(
-        params: Params$Resource$Assetlinks$Check,
-        options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
-        callback: BodyResponseCallback<Schema$CheckResponse>): void;
+      params?: Params$Resource$Assetlinks$Check,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckResponse>;
     check(
-        params: Params$Resource$Assetlinks$Check,
-        callback: BodyResponseCallback<Schema$CheckResponse>): void;
+      params: Params$Resource$Assetlinks$Check,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckResponse>,
+      callback: BodyResponseCallback<Schema$CheckResponse>
+    ): void;
+    check(
+      params: Params$Resource$Assetlinks$Check,
+      callback: BodyResponseCallback<Schema$CheckResponse>
+    ): void;
     check(callback: BodyResponseCallback<Schema$CheckResponse>): void;
     check(
-        paramsOrCallback?: Params$Resource$Assetlinks$Check|
-        BodyResponseCallback<Schema$CheckResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CheckResponse>,
-        callback?: BodyResponseCallback<Schema$CheckResponse>):
-        void|GaxiosPromise<Schema$CheckResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Assetlinks$Check
+        | BodyResponseCallback<Schema$CheckResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckResponse>,
+      callback?: BodyResponseCallback<Schema$CheckResponse>
+    ): void | GaxiosPromise<Schema$CheckResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assetlinks$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -363,19 +379,22 @@ export namespace digitalassetlinks_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
+        options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/assetlinks:check')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/assetlinks:check').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(parameters, callback);
@@ -389,7 +408,7 @@ export namespace digitalassetlinks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query string for the relation.  We identify relations with strings of the
@@ -493,13 +512,11 @@ export namespace digitalassetlinks_v1 {
     'target.web.site'?: string;
   }
 
-
   export class Resource$Statements {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * digitalassetlinks.statements.list
@@ -529,23 +546,29 @@ export namespace digitalassetlinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Statements$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListResponse>;
     list(
-        params: Params$Resource$Statements$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
-        callback: BodyResponseCallback<Schema$ListResponse>): void;
+      params?: Params$Resource$Statements$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListResponse>;
     list(
-        params: Params$Resource$Statements$List,
-        callback: BodyResponseCallback<Schema$ListResponse>): void;
+      params: Params$Resource$Statements$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListResponse>,
+      callback: BodyResponseCallback<Schema$ListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Statements$List,
+      callback: BodyResponseCallback<Schema$ListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Statements$List|
-        BodyResponseCallback<Schema$ListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListResponse>,
-        callback?: BodyResponseCallback<Schema$ListResponse>):
-        void|GaxiosPromise<Schema$ListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Statements$List
+        | BodyResponseCallback<Schema$ListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListResponse>,
+      callback?: BodyResponseCallback<Schema$ListResponse>
+    ): void | GaxiosPromise<Schema$ListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Statements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -561,19 +584,22 @@ export namespace digitalassetlinks_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
+        options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/statements:list')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/statements:list').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListResponse>(parameters, callback);
@@ -587,7 +613,7 @@ export namespace digitalassetlinks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Use only associations that match the specified relation.  See the

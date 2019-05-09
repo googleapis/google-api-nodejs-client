@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -343,7 +355,7 @@ export namespace cloudresourcemanager_v2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -359,7 +371,7 @@ export namespace cloudresourcemanager_v2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -541,7 +553,7 @@ export namespace cloudresourcemanager_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -576,13 +588,11 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$UndeleteFolderRequest {}
 
-
   export class Resource$Folders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.folders.create
@@ -614,23 +624,29 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Folders$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Folders$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Folders$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Folders$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Folders$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Folders$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Folders$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -646,18 +662,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -665,7 +682,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.delete
@@ -684,22 +700,27 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Folders$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Folder>;
     delete(
-        params: Params$Resource$Folders$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params?: Params$Resource$Folders$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
     delete(
-        params: Params$Resource$Folders$Delete,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Folders$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Delete,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Folder>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Folders$Delete|
-        BodyResponseCallback<Schema$Folder>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>):
-        void|GaxiosPromise<Schema$Folder> {
+      paramsOrCallback?:
+        | Params$Resource$Folders$Delete
+        | BodyResponseCallback<Schema$Folder>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>
+    ): void | GaxiosPromise<Schema$Folder> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -715,18 +736,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -734,7 +756,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Folder>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.get
@@ -751,19 +772,27 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Folders$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
-    get(params: Params$Resource$Folders$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback: BodyResponseCallback<Schema$Folder>): void;
-    get(params: Params$Resource$Folders$Get,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+    get(
+      params?: Params$Resource$Folders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
+    get(
+      params: Params$Resource$Folders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Get,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Folder>): void;
-    get(paramsOrCallback?: Params$Resource$Folders$Get|
-        BodyResponseCallback<Schema$Folder>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>):
-        void|GaxiosPromise<Schema$Folder> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Get
+        | BodyResponseCallback<Schema$Folder>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>
+    ): void | GaxiosPromise<Schema$Folder> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -779,18 +808,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -798,7 +828,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Folder>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.getIamPolicy
@@ -818,24 +847,28 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Folders$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Folders$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Folders$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Folders$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Folders$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Folders$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -850,19 +883,22 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -870,7 +906,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.list
@@ -892,23 +927,29 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Folders$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListFoldersResponse>;
     list(
-        params: Params$Resource$Folders$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
-        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+      params?: Params$Resource$Folders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFoldersResponse>;
     list(
-        params: Params$Resource$Folders$List,
-        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+      params: Params$Resource$Folders$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListFoldersResponse>,
+      callback: BodyResponseCallback<Schema$ListFoldersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$List,
+      callback: BodyResponseCallback<Schema$ListFoldersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Folders$List|
-        BodyResponseCallback<Schema$ListFoldersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFoldersResponse>,
-        callback?: BodyResponseCallback<Schema$ListFoldersResponse>):
-        void|GaxiosPromise<Schema$ListFoldersResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Folders$List
+        | BodyResponseCallback<Schema$ListFoldersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFoldersResponse>,
+      callback?: BodyResponseCallback<Schema$ListFoldersResponse>
+    ): void | GaxiosPromise<Schema$ListFoldersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -924,18 +965,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/folders').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -943,7 +985,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$ListFoldersResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.move
@@ -970,23 +1011,29 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move(params?: Params$Resource$Folders$Move, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     move(
-        params: Params$Resource$Folders$Move,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Folders$Move,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     move(
-        params: Params$Resource$Folders$Move,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Folders$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    move(
+      params: Params$Resource$Folders$Move,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     move(callback: BodyResponseCallback<Schema$Operation>): void;
     move(
-        paramsOrCallback?: Params$Resource$Folders$Move|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Folders$Move
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1002,18 +1049,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1021,7 +1069,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.patch
@@ -1047,22 +1094,27 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Folders$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Folder>;
     patch(
-        params: Params$Resource$Folders$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params?: Params$Resource$Folders$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
     patch(
-        params: Params$Resource$Folders$Patch,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Folders$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Patch,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Folder>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Folders$Patch|
-        BodyResponseCallback<Schema$Folder>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>):
-        void|GaxiosPromise<Schema$Folder> {
+      paramsOrCallback?:
+        | Params$Resource$Folders$Patch
+        | BodyResponseCallback<Schema$Folder>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>
+    ): void | GaxiosPromise<Schema$Folder> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1078,18 +1130,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1097,7 +1150,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Folder>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.search
@@ -1115,24 +1167,31 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Folders$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchFoldersResponse>;
     search(
-        params: Params$Resource$Folders$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchFoldersResponse>,
-        callback: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
+      params?: Params$Resource$Folders$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchFoldersResponse>;
     search(
-        params: Params$Resource$Folders$Search,
-        callback: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
+      params: Params$Resource$Folders$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchFoldersResponse>,
+      callback: BodyResponseCallback<Schema$SearchFoldersResponse>
+    ): void;
+    search(
+      params: Params$Resource$Folders$Search,
+      callback: BodyResponseCallback<Schema$SearchFoldersResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Folders$Search|
-        BodyResponseCallback<Schema$SearchFoldersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchFoldersResponse>,
-        callback?: BodyResponseCallback<Schema$SearchFoldersResponse>):
-        void|GaxiosPromise<Schema$SearchFoldersResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Folders$Search
+        | BodyResponseCallback<Schema$SearchFoldersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchFoldersResponse>,
+      callback?: BodyResponseCallback<Schema$SearchFoldersResponse>
+    ): void | GaxiosPromise<Schema$SearchFoldersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1148,19 +1207,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/folders:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/folders:search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchFoldersResponse>(parameters, callback);
@@ -1168,7 +1227,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$SearchFoldersResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.setIamPolicy
@@ -1188,24 +1246,28 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Folders$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Folders$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Folders$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Folders$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Folders$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Folders$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1220,19 +1282,22 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1240,7 +1305,6 @@ export namespace cloudresourcemanager_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.testIamPermissions
@@ -1259,31 +1323,34 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Folders$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Folders$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Folders$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Folders$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Folders$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Folders$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Folders$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1298,28 +1365,32 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.undelete
@@ -1341,22 +1412,26 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Folders$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
+      params?: Params$Resource$Folders$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
     undelete(
-        params: Params$Resource$Folders$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Folders$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     undelete(
-        params: Params$Resource$Folders$Undelete,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Folders$Undelete,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Folder>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Folders$Undelete|
-        BodyResponseCallback<Schema$Folder>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>):
-        void|GaxiosPromise<Schema$Folder> {
+      paramsOrCallback?:
+        | Params$Resource$Folders$Undelete
+        | BodyResponseCallback<Schema$Folder>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>
+    ): void | GaxiosPromise<Schema$Folder> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1372,19 +1447,22 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1398,7 +1476,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the new Folder's parent. Must be of the form
@@ -1415,7 +1493,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * the resource name of the Folder to be deleted. Must be of the form
@@ -1427,7 +1505,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Folder to retrieve. Must be of the form
@@ -1435,12 +1513,12 @@ export namespace cloudresourcemanager_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -1457,7 +1535,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of Folders to return in the response. This field is
@@ -1487,7 +1565,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Folder to move. Must be of the form
@@ -1504,7 +1582,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. The resource name of the Folder. Its format is
@@ -1525,20 +1603,19 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchFoldersRequest;
   }
-  export interface Params$Resource$Folders$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -1551,12 +1628,12 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Folders$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -1573,7 +1650,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Folder to undelete. Must be of the form
@@ -1587,13 +1664,11 @@ export namespace cloudresourcemanager_v2 {
     requestBody?: Schema$UndeleteFolderRequest;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.operations.get
@@ -1609,20 +1684,29 @@ export namespace cloudresourcemanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1638,18 +1722,19 @@ export namespace cloudresourcemanager_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1663,7 +1748,7 @@ export namespace cloudresourcemanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.

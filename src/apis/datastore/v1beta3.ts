@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -227,7 +239,7 @@ export namespace datastore_v1beta3 {
      * name is forbidden in certain documented contexts. The name must not
      * contain more than 500 characters. The name cannot be `&quot;&quot;`.
      */
-    properties?: {[key: string]: Schema$Value;};
+    properties?: {[key: string]: Schema$Value};
   }
   /**
    * The result of fetching an entity from Datastore.
@@ -276,7 +288,7 @@ export namespace datastore_v1beta3 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -413,7 +425,7 @@ export namespace datastore_v1beta3 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -571,7 +583,7 @@ export namespace datastore_v1beta3 {
      * must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not
      * be `&quot;&quot;`.
      */
-    namedBindings?: {[key: string]: Schema$GqlQueryParameter;};
+    namedBindings?: {[key: string]: Schema$GqlQueryParameter};
     /**
      * Numbered binding site @1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.  For each
@@ -1108,13 +1120,11 @@ export namespace datastore_v1beta3 {
     timestampValue?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * datastore.projects.allocateIds
@@ -1131,26 +1141,32 @@ export namespace datastore_v1beta3 {
      * @return {object} Request object
      */
     allocateIds(
-        params?: Params$Resource$Projects$Allocateids,
-        options?: MethodOptions): GaxiosPromise<Schema$AllocateIdsResponse>;
+      params?: Params$Resource$Projects$Allocateids,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AllocateIdsResponse>;
     allocateIds(
-        params: Params$Resource$Projects$Allocateids,
-        options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
-        callback: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
+      params: Params$Resource$Projects$Allocateids,
+      options: MethodOptions | BodyResponseCallback<Schema$AllocateIdsResponse>,
+      callback: BodyResponseCallback<Schema$AllocateIdsResponse>
+    ): void;
     allocateIds(
-        params: Params$Resource$Projects$Allocateids,
-        callback: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
-    allocateIds(callback: BodyResponseCallback<Schema$AllocateIdsResponse>):
-        void;
+      params: Params$Resource$Projects$Allocateids,
+      callback: BodyResponseCallback<Schema$AllocateIdsResponse>
+    ): void;
     allocateIds(
-        paramsOrCallback?: Params$Resource$Projects$Allocateids|
-        BodyResponseCallback<Schema$AllocateIdsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AllocateIdsResponse>,
-        callback?: BodyResponseCallback<Schema$AllocateIdsResponse>):
-        void|GaxiosPromise<Schema$AllocateIdsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Allocateids;
+      callback: BodyResponseCallback<Schema$AllocateIdsResponse>
+    ): void;
+    allocateIds(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Allocateids
+        | BodyResponseCallback<Schema$AllocateIdsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AllocateIdsResponse>,
+      callback?: BodyResponseCallback<Schema$AllocateIdsResponse>
+    ): void | GaxiosPromise<Schema$AllocateIdsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Allocateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1167,16 +1183,18 @@ export namespace datastore_v1beta3 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta3/projects/{projectId}:allocateIds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta3/projects/{projectId}:allocateIds'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AllocateIdsResponse>(parameters, callback);
@@ -1184,7 +1202,6 @@ export namespace datastore_v1beta3 {
         return createAPIRequest<Schema$AllocateIdsResponse>(parameters);
       }
     }
-
 
     /**
      * datastore.projects.beginTransaction
@@ -1200,28 +1217,34 @@ export namespace datastore_v1beta3 {
      * @return {object} Request object
      */
     beginTransaction(
-        params?: Params$Resource$Projects$Begintransaction,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BeginTransactionResponse>;
+      params?: Params$Resource$Projects$Begintransaction,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BeginTransactionResponse>;
     beginTransaction(
-        params: Params$Resource$Projects$Begintransaction,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BeginTransactionResponse>,
-        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+      params: Params$Resource$Projects$Begintransaction,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BeginTransactionResponse>,
+      callback: BodyResponseCallback<Schema$BeginTransactionResponse>
+    ): void;
     beginTransaction(
-        params: Params$Resource$Projects$Begintransaction,
-        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+      params: Params$Resource$Projects$Begintransaction,
+      callback: BodyResponseCallback<Schema$BeginTransactionResponse>
+    ): void;
     beginTransaction(
-        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+      callback: BodyResponseCallback<Schema$BeginTransactionResponse>
+    ): void;
     beginTransaction(
-        paramsOrCallback?: Params$Resource$Projects$Begintransaction|
-        BodyResponseCallback<Schema$BeginTransactionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BeginTransactionResponse>,
-        callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
-        void|GaxiosPromise<Schema$BeginTransactionResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Begintransaction;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Begintransaction
+        | BodyResponseCallback<Schema$BeginTransactionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BeginTransactionResponse>,
+      callback?: BodyResponseCallback<Schema$BeginTransactionResponse>
+    ): void | GaxiosPromise<Schema$BeginTransactionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1238,16 +1261,18 @@ export namespace datastore_v1beta3 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta3/projects/{projectId}:beginTransaction')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta3/projects/{projectId}:beginTransaction'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
@@ -1255,7 +1280,6 @@ export namespace datastore_v1beta3 {
         return createAPIRequest<Schema$BeginTransactionResponse>(parameters);
       }
     }
-
 
     /**
      * datastore.projects.commit
@@ -1271,23 +1295,29 @@ export namespace datastore_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit(params?: Params$Resource$Projects$Commit, options?: MethodOptions):
-        GaxiosPromise<Schema$CommitResponse>;
     commit(
-        params: Params$Resource$Projects$Commit,
-        options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+      params?: Params$Resource$Projects$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommitResponse>;
     commit(
-        params: Params$Resource$Projects$Commit,
-        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+      params: Params$Resource$Projects$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$CommitResponse>,
+      callback: BodyResponseCallback<Schema$CommitResponse>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Commit,
+      callback: BodyResponseCallback<Schema$CommitResponse>
+    ): void;
     commit(callback: BodyResponseCallback<Schema$CommitResponse>): void;
     commit(
-        paramsOrCallback?: Params$Resource$Projects$Commit|
-        BodyResponseCallback<Schema$CommitResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommitResponse>,
-        callback?: BodyResponseCallback<Schema$CommitResponse>):
-        void|GaxiosPromise<Schema$CommitResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Commit
+        | BodyResponseCallback<Schema$CommitResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>
+    ): void | GaxiosPromise<Schema$CommitResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1305,16 +1335,19 @@ export namespace datastore_v1beta3 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta3/projects/{projectId}:commit')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:commit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -1322,7 +1355,6 @@ export namespace datastore_v1beta3 {
         return createAPIRequest<Schema$CommitResponse>(parameters);
       }
     }
-
 
     /**
      * datastore.projects.lookup
@@ -1337,23 +1369,29 @@ export namespace datastore_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lookup(params?: Params$Resource$Projects$Lookup, options?: MethodOptions):
-        GaxiosPromise<Schema$LookupResponse>;
     lookup(
-        params: Params$Resource$Projects$Lookup,
-        options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
-        callback: BodyResponseCallback<Schema$LookupResponse>): void;
+      params?: Params$Resource$Projects$Lookup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LookupResponse>;
     lookup(
-        params: Params$Resource$Projects$Lookup,
-        callback: BodyResponseCallback<Schema$LookupResponse>): void;
+      params: Params$Resource$Projects$Lookup,
+      options: MethodOptions | BodyResponseCallback<Schema$LookupResponse>,
+      callback: BodyResponseCallback<Schema$LookupResponse>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Lookup,
+      callback: BodyResponseCallback<Schema$LookupResponse>
+    ): void;
     lookup(callback: BodyResponseCallback<Schema$LookupResponse>): void;
     lookup(
-        paramsOrCallback?: Params$Resource$Projects$Lookup|
-        BodyResponseCallback<Schema$LookupResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LookupResponse>,
-        callback?: BodyResponseCallback<Schema$LookupResponse>):
-        void|GaxiosPromise<Schema$LookupResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Lookup
+        | BodyResponseCallback<Schema$LookupResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupResponse>,
+      callback?: BodyResponseCallback<Schema$LookupResponse>
+    ): void | GaxiosPromise<Schema$LookupResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1371,16 +1409,19 @@ export namespace datastore_v1beta3 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta3/projects/{projectId}:lookup')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:lookup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LookupResponse>(parameters, callback);
@@ -1388,7 +1429,6 @@ export namespace datastore_v1beta3 {
         return createAPIRequest<Schema$LookupResponse>(parameters);
       }
     }
-
 
     /**
      * datastore.projects.reserveIds
@@ -1405,25 +1445,30 @@ export namespace datastore_v1beta3 {
      * @return {object} Request object
      */
     reserveIds(
-        params?: Params$Resource$Projects$Reserveids,
-        options?: MethodOptions): GaxiosPromise<Schema$ReserveIdsResponse>;
+      params?: Params$Resource$Projects$Reserveids,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReserveIdsResponse>;
     reserveIds(
-        params: Params$Resource$Projects$Reserveids,
-        options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
-        callback: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
+      params: Params$Resource$Projects$Reserveids,
+      options: MethodOptions | BodyResponseCallback<Schema$ReserveIdsResponse>,
+      callback: BodyResponseCallback<Schema$ReserveIdsResponse>
+    ): void;
     reserveIds(
-        params: Params$Resource$Projects$Reserveids,
-        callback: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
+      params: Params$Resource$Projects$Reserveids,
+      callback: BodyResponseCallback<Schema$ReserveIdsResponse>
+    ): void;
     reserveIds(callback: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
     reserveIds(
-        paramsOrCallback?: Params$Resource$Projects$Reserveids|
-        BodyResponseCallback<Schema$ReserveIdsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReserveIdsResponse>,
-        callback?: BodyResponseCallback<Schema$ReserveIdsResponse>):
-        void|GaxiosPromise<Schema$ReserveIdsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Reserveids;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Reserveids
+        | BodyResponseCallback<Schema$ReserveIdsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReserveIdsResponse>,
+      callback?: BodyResponseCallback<Schema$ReserveIdsResponse>
+    ): void | GaxiosPromise<Schema$ReserveIdsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Reserveids;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1440,16 +1485,19 @@ export namespace datastore_v1beta3 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta3/projects/{projectId}:reserveIds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:reserveIds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReserveIdsResponse>(parameters, callback);
@@ -1457,7 +1505,6 @@ export namespace datastore_v1beta3 {
         return createAPIRequest<Schema$ReserveIdsResponse>(parameters);
       }
     }
-
 
     /**
      * datastore.projects.rollback
@@ -1473,25 +1520,30 @@ export namespace datastore_v1beta3 {
      * @return {object} Request object
      */
     rollback(
-        params?: Params$Resource$Projects$Rollback,
-        options?: MethodOptions): GaxiosPromise<Schema$RollbackResponse>;
+      params?: Params$Resource$Projects$Rollback,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RollbackResponse>;
     rollback(
-        params: Params$Resource$Projects$Rollback,
-        options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
-        callback: BodyResponseCallback<Schema$RollbackResponse>): void;
+      params: Params$Resource$Projects$Rollback,
+      options: MethodOptions | BodyResponseCallback<Schema$RollbackResponse>,
+      callback: BodyResponseCallback<Schema$RollbackResponse>
+    ): void;
     rollback(
-        params: Params$Resource$Projects$Rollback,
-        callback: BodyResponseCallback<Schema$RollbackResponse>): void;
+      params: Params$Resource$Projects$Rollback,
+      callback: BodyResponseCallback<Schema$RollbackResponse>
+    ): void;
     rollback(callback: BodyResponseCallback<Schema$RollbackResponse>): void;
     rollback(
-        paramsOrCallback?: Params$Resource$Projects$Rollback|
-        BodyResponseCallback<Schema$RollbackResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RollbackResponse>,
-        callback?: BodyResponseCallback<Schema$RollbackResponse>):
-        void|GaxiosPromise<Schema$RollbackResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Rollback;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Rollback
+        | BodyResponseCallback<Schema$RollbackResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RollbackResponse>,
+      callback?: BodyResponseCallback<Schema$RollbackResponse>
+    ): void | GaxiosPromise<Schema$RollbackResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1508,16 +1560,19 @@ export namespace datastore_v1beta3 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta3/projects/{projectId}:rollback')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RollbackResponse>(parameters, callback);
@@ -1525,7 +1580,6 @@ export namespace datastore_v1beta3 {
         return createAPIRequest<Schema$RollbackResponse>(parameters);
       }
     }
-
 
     /**
      * datastore.projects.runQuery
@@ -1541,25 +1595,30 @@ export namespace datastore_v1beta3 {
      * @return {object} Request object
      */
     runQuery(
-        params?: Params$Resource$Projects$Runquery,
-        options?: MethodOptions): GaxiosPromise<Schema$RunQueryResponse>;
+      params?: Params$Resource$Projects$Runquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RunQueryResponse>;
     runQuery(
-        params: Params$Resource$Projects$Runquery,
-        options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
-        callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+      params: Params$Resource$Projects$Runquery,
+      options: MethodOptions | BodyResponseCallback<Schema$RunQueryResponse>,
+      callback: BodyResponseCallback<Schema$RunQueryResponse>
+    ): void;
     runQuery(
-        params: Params$Resource$Projects$Runquery,
-        callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+      params: Params$Resource$Projects$Runquery,
+      callback: BodyResponseCallback<Schema$RunQueryResponse>
+    ): void;
     runQuery(callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
     runQuery(
-        paramsOrCallback?: Params$Resource$Projects$Runquery|
-        BodyResponseCallback<Schema$RunQueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RunQueryResponse>,
-        callback?: BodyResponseCallback<Schema$RunQueryResponse>):
-        void|GaxiosPromise<Schema$RunQueryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Runquery;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Runquery
+        | BodyResponseCallback<Schema$RunQueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RunQueryResponse>,
+      callback?: BodyResponseCallback<Schema$RunQueryResponse>
+    ): void | GaxiosPromise<Schema$RunQueryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1576,16 +1635,19 @@ export namespace datastore_v1beta3 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta3/projects/{projectId}:runQuery')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:runQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
@@ -1595,12 +1657,12 @@ export namespace datastore_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Allocateids extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Allocateids
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the project against which to make the request.
@@ -1612,12 +1674,12 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$AllocateIdsRequest;
   }
-  export interface Params$Resource$Projects$Begintransaction extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Begintransaction
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the project against which to make the request.
@@ -1633,7 +1695,7 @@ export namespace datastore_v1beta3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the project against which to make the request.
@@ -1649,7 +1711,7 @@ export namespace datastore_v1beta3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the project against which to make the request.
@@ -1661,12 +1723,12 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$LookupRequest;
   }
-  export interface Params$Resource$Projects$Reserveids extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Reserveids
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the project against which to make the request.
@@ -1678,12 +1740,12 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$ReserveIdsRequest;
   }
-  export interface Params$Resource$Projects$Rollback extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Rollback
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the project against which to make the request.
@@ -1695,12 +1757,12 @@ export namespace datastore_v1beta3 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Runquery extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Runquery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the project against which to make the request.

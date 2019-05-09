@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1399,7 +1411,7 @@ export namespace cloudsearch_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1415,7 +1427,7 @@ export namespace cloudsearch_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * This field contains information about the person being suggested.
@@ -2354,7 +2366,7 @@ export namespace cloudsearch_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2629,7 +2641,6 @@ export namespace cloudsearch_v1 {
     value?: Schema$Value;
   }
 
-
   export class Resource$Debug {
     context: APIRequestContext;
     datasources: Resource$Debug$Datasources;
@@ -2641,7 +2652,6 @@ export namespace cloudsearch_v1 {
     }
   }
 
-
   export class Resource$Debug$Datasources {
     context: APIRequestContext;
     items: Resource$Debug$Datasources$Items;
@@ -2651,16 +2661,15 @@ export namespace cloudsearch_v1 {
     }
   }
 
-
   export class Resource$Debug$Datasources$Items {
     context: APIRequestContext;
     unmappedids: Resource$Debug$Datasources$Items$Unmappedids;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.unmappedids =
-          new Resource$Debug$Datasources$Items$Unmappedids(this.context);
+      this.unmappedids = new Resource$Debug$Datasources$Items$Unmappedids(
+        this.context
+      );
     }
-
 
     /**
      * cloudsearch.debug.datasources.items.checkAccess
@@ -2677,26 +2686,32 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     checkAccess(
-        params?: Params$Resource$Debug$Datasources$Items$Checkaccess,
-        options?: MethodOptions): GaxiosPromise<Schema$CheckAccessResponse>;
+      params?: Params$Resource$Debug$Datasources$Items$Checkaccess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckAccessResponse>;
     checkAccess(
-        params: Params$Resource$Debug$Datasources$Items$Checkaccess,
-        options: MethodOptions|BodyResponseCallback<Schema$CheckAccessResponse>,
-        callback: BodyResponseCallback<Schema$CheckAccessResponse>): void;
+      params: Params$Resource$Debug$Datasources$Items$Checkaccess,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckAccessResponse>,
+      callback: BodyResponseCallback<Schema$CheckAccessResponse>
+    ): void;
     checkAccess(
-        params: Params$Resource$Debug$Datasources$Items$Checkaccess,
-        callback: BodyResponseCallback<Schema$CheckAccessResponse>): void;
-    checkAccess(callback: BodyResponseCallback<Schema$CheckAccessResponse>):
-        void;
+      params: Params$Resource$Debug$Datasources$Items$Checkaccess,
+      callback: BodyResponseCallback<Schema$CheckAccessResponse>
+    ): void;
     checkAccess(
-        paramsOrCallback?: Params$Resource$Debug$Datasources$Items$Checkaccess|
-        BodyResponseCallback<Schema$CheckAccessResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CheckAccessResponse>,
-        callback?: BodyResponseCallback<Schema$CheckAccessResponse>):
-        void|GaxiosPromise<Schema$CheckAccessResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debug$Datasources$Items$Checkaccess;
+      callback: BodyResponseCallback<Schema$CheckAccessResponse>
+    ): void;
+    checkAccess(
+      paramsOrCallback?:
+        | Params$Resource$Debug$Datasources$Items$Checkaccess
+        | BodyResponseCallback<Schema$CheckAccessResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckAccessResponse>,
+      callback?: BodyResponseCallback<Schema$CheckAccessResponse>
+    ): void | GaxiosPromise<Schema$CheckAccessResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debug$Datasources$Items$Checkaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2713,16 +2728,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/debug/{+name}:checkAccess')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/debug/{+name}:checkAccess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CheckAccessResponse>(parameters, callback);
@@ -2730,7 +2748,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$CheckAccessResponse>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.debug.datasources.items.searchByViewUrl
@@ -2747,32 +2764,34 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     searchByViewUrl(
-        params?: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SearchItemsByViewUrlResponse>;
+      params?: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchItemsByViewUrlResponse>;
     searchByViewUrl(
-        params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
-        callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
-        void;
+      params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
+      callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
+    ): void;
     searchByViewUrl(
-        params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
-        callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
-        void;
+      params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+      callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
+    ): void;
     searchByViewUrl(
-        callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
+    ): void;
     searchByViewUrl(
-        paramsOrCallback?:
-            Params$Resource$Debug$Datasources$Items$Searchbyviewurl|
-        BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
-        callback?: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
-        void|GaxiosPromise<Schema$SearchItemsByViewUrlResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debug$Datasources$Items$Searchbyviewurl;
+      paramsOrCallback?:
+        | Params$Resource$Debug$Datasources$Items$Searchbyviewurl
+        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
+      callback?: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>
+    ): void | GaxiosPromise<Schema$SearchItemsByViewUrlResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debug$Datasources$Items$Searchbyviewurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2789,33 +2808,39 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/debug/{+name}/items:searchByViewUrl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/debug/{+name}/items:searchByViewUrl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Debug$Datasources$Items$Checkaccess extends
-      StandardParameters {
+  export interface Params$Resource$Debug$Datasources$Items$Checkaccess
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -2833,11 +2858,11 @@ export namespace cloudsearch_v1 {
     requestBody?: Schema$Principal;
   }
   export interface Params$Resource$Debug$Datasources$Items$Searchbyviewurl
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Source name, format: datasources/{source_id}
@@ -2856,7 +2881,6 @@ export namespace cloudsearch_v1 {
       this.context = context;
     }
 
-
     /**
      * cloudsearch.debug.datasources.items.unmappedids.list
      * @desc List all unmapped identities for a specific item.
@@ -2873,31 +2897,34 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
+      params?: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
     list(
-        params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-        callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void;
+      params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+      callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void;
     list(
-        params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
-        callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void;
+      params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
+      callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Debug$Datasources$Items$Unmappedids$List|
-        BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-        callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void|GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debug$Datasources$Items$Unmappedids$List;
+      callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Debug$Datasources$Items$Unmappedids$List
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+      callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void | GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debug$Datasources$Items$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2914,33 +2941,39 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/debug/{+parent}/unmappedids')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/debug/{+parent}/unmappedids').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Debug$Datasources$Items$Unmappedids$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -2962,8 +2995,6 @@ export namespace cloudsearch_v1 {
     parent?: string;
   }
 
-
-
   export class Resource$Debug$Identitysources {
     context: APIRequestContext;
     items: Resource$Debug$Identitysources$Items;
@@ -2971,18 +3002,17 @@ export namespace cloudsearch_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.items = new Resource$Debug$Identitysources$Items(this.context);
-      this.unmappedids =
-          new Resource$Debug$Identitysources$Unmappedids(this.context);
+      this.unmappedids = new Resource$Debug$Identitysources$Unmappedids(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Debug$Identitysources$Items {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.debug.identitysources.items.listForunmappedidentity
@@ -3002,42 +3032,47 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     listForunmappedidentity(
-        params?:
-            Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse>;
+      params?: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse>;
     listForunmappedidentity(
-        params:
-            Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListItemNamesForUnmappedIdentityResponse>): void;
+      params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
+      callback: BodyResponseCallback<
+        Schema$ListItemNamesForUnmappedIdentityResponse
+      >
+    ): void;
     listForunmappedidentity(
-        params:
-            Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
-        callback: BodyResponseCallback<
-            Schema$ListItemNamesForUnmappedIdentityResponse>): void;
-    listForunmappedidentity(callback: BodyResponseCallback<
-                            Schema$ListItemNamesForUnmappedIdentityResponse>):
-        void;
+      params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
+      callback: BodyResponseCallback<
+        Schema$ListItemNamesForUnmappedIdentityResponse
+      >
+    ): void;
     listForunmappedidentity(
-        paramsOrCallback?:
-            Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity|
-        BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListItemNamesForUnmappedIdentityResponse>):
-        void|GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
+      callback: BodyResponseCallback<
+        Schema$ListItemNamesForUnmappedIdentityResponse
+      >
+    ): void;
+    listForunmappedidentity(
+      paramsOrCallback?:
+        | Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity
+        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ListItemNamesForUnmappedIdentityResponse
+      >
+    ): void | GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
+        params = {} as Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
         options = {};
       }
 
@@ -3049,33 +3084,38 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/debug/{+parent}/items:forunmappedidentity')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/debug/{+parent}/items:forunmappedidentity'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListItemNamesForUnmappedIdentityResponse>(parameters);
+          Schema$ListItemNamesForUnmappedIdentityResponse
+        >(parameters);
       }
     }
   }
 
   export interface Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -3105,13 +3145,11 @@ export namespace cloudsearch_v1 {
     userResourceName?: string;
   }
 
-
   export class Resource$Debug$Identitysources$Unmappedids {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.debug.identitysources.unmappedids.list
@@ -3130,31 +3168,34 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Debug$Identitysources$Unmappedids$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
+      params?: Params$Resource$Debug$Identitysources$Unmappedids$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
     list(
-        params: Params$Resource$Debug$Identitysources$Unmappedids$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-        callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void;
+      params: Params$Resource$Debug$Identitysources$Unmappedids$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+      callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void;
     list(
-        params: Params$Resource$Debug$Identitysources$Unmappedids$List,
-        callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void;
+      params: Params$Resource$Debug$Identitysources$Unmappedids$List,
+      callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Debug$Identitysources$Unmappedids$List|
-        BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
-        callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void|GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debug$Identitysources$Unmappedids$List;
+      callback: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Debug$Identitysources$Unmappedids$List
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
+      callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>
+    ): void | GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debug$Identitysources$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3171,33 +3212,39 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/debug/{+parent}/unmappedids')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/debug/{+parent}/unmappedids').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Debug$Identitysources$Unmappedids$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -3223,8 +3270,6 @@ export namespace cloudsearch_v1 {
     resolutionStatusCode?: string;
   }
 
-
-
   export class Resource$Indexing {
     context: APIRequestContext;
     datasources: Resource$Indexing$Datasources;
@@ -3234,7 +3279,6 @@ export namespace cloudsearch_v1 {
     }
   }
 
-
   export class Resource$Indexing$Datasources {
     context: APIRequestContext;
     items: Resource$Indexing$Datasources$Items;
@@ -3242,7 +3286,6 @@ export namespace cloudsearch_v1 {
       this.context = context;
       this.items = new Resource$Indexing$Datasources$Items(this.context);
     }
-
 
     /**
      * cloudsearch.indexing.datasources.deleteSchema
@@ -3258,25 +3301,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     deleteSchema(
-        params?: Params$Resource$Indexing$Datasources$Deleteschema,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Indexing$Datasources$Deleteschema,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     deleteSchema(
-        params: Params$Resource$Indexing$Datasources$Deleteschema,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Deleteschema,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deleteSchema(
-        params: Params$Resource$Indexing$Datasources$Deleteschema,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Deleteschema,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deleteSchema(callback: BodyResponseCallback<Schema$Operation>): void;
     deleteSchema(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Deleteschema|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Deleteschema;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Deleteschema
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Deleteschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3293,16 +3341,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}/schema')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}/schema').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3310,7 +3361,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.getSchema
@@ -3326,24 +3376,28 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     getSchema(
-        params?: Params$Resource$Indexing$Datasources$Getschema,
-        options?: MethodOptions): GaxiosPromise<Schema$Schema>;
+      params?: Params$Resource$Indexing$Datasources$Getschema,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Schema>;
     getSchema(
-        params: Params$Resource$Indexing$Datasources$Getschema,
-        options: MethodOptions|BodyResponseCallback<Schema$Schema>,
-        callback: BodyResponseCallback<Schema$Schema>): void;
+      params: Params$Resource$Indexing$Datasources$Getschema,
+      options: MethodOptions | BodyResponseCallback<Schema$Schema>,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
     getSchema(
-        params: Params$Resource$Indexing$Datasources$Getschema,
-        callback: BodyResponseCallback<Schema$Schema>): void;
+      params: Params$Resource$Indexing$Datasources$Getschema,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
     getSchema(callback: BodyResponseCallback<Schema$Schema>): void;
     getSchema(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Getschema|
-        BodyResponseCallback<Schema$Schema>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
-        callback?: BodyResponseCallback<Schema$Schema>):
-        void|GaxiosPromise<Schema$Schema> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Getschema;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Getschema
+        | BodyResponseCallback<Schema$Schema>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Schema>,
+      callback?: BodyResponseCallback<Schema$Schema>
+    ): void | GaxiosPromise<Schema$Schema> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Getschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3360,16 +3414,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}/schema')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}/schema').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Schema>(parameters, callback);
@@ -3377,7 +3434,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Schema>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.updateSchema
@@ -3393,25 +3449,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     updateSchema(
-        params?: Params$Resource$Indexing$Datasources$Updateschema,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Indexing$Datasources$Updateschema,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     updateSchema(
-        params: Params$Resource$Indexing$Datasources$Updateschema,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Updateschema,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     updateSchema(
-        params: Params$Resource$Indexing$Datasources$Updateschema,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Updateschema,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     updateSchema(callback: BodyResponseCallback<Schema$Operation>): void;
     updateSchema(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Updateschema|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Updateschema;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Updateschema
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Updateschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3428,16 +3489,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}/schema')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}/schema').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3447,12 +3511,12 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Indexing$Datasources$Deleteschema extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Deleteschema
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -3465,12 +3529,12 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Getschema extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Getschema
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -3482,12 +3546,12 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Updateschema extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Updateschema
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the data source to update Schema.  Format:
@@ -3507,7 +3571,6 @@ export namespace cloudsearch_v1 {
       this.context = context;
     }
 
-
     /**
      * cloudsearch.indexing.datasources.items.delete
      * @desc Deletes Item resource for the specified resource name.
@@ -3525,25 +3588,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Indexing$Datasources$Items$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Indexing$Datasources$Items$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Indexing$Datasources$Items$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Indexing$Datasources$Items$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3560,16 +3628,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3577,7 +3648,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.deleteQueueItems
@@ -3594,32 +3664,35 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     deleteQueueItems(
-        params?: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     deleteQueueItems(
-        params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deleteQueueItems(
-        params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deleteQueueItems(callback: BodyResponseCallback<Schema$Operation>): void;
     deleteQueueItems(
-        paramsOrCallback?:
-            Params$Resource$Indexing$Datasources$Items$Deletequeueitems|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Deletequeueitems
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
+        params = {} as Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
         options = {};
       }
 
@@ -3631,16 +3704,18 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}/items:deleteQueueItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/indexing/{+name}/items:deleteQueueItems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3648,7 +3723,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.get
@@ -3664,21 +3738,29 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Indexing$Datasources$Items$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Item>;
-    get(params: Params$Resource$Indexing$Datasources$Items$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Item>,
-        callback: BodyResponseCallback<Schema$Item>): void;
-    get(params: Params$Resource$Indexing$Datasources$Items$Get,
-        callback: BodyResponseCallback<Schema$Item>): void;
+    get(
+      params?: Params$Resource$Indexing$Datasources$Items$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Item>;
+    get(
+      params: Params$Resource$Indexing$Datasources$Items$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Item>,
+      callback: BodyResponseCallback<Schema$Item>
+    ): void;
+    get(
+      params: Params$Resource$Indexing$Datasources$Items$Get,
+      callback: BodyResponseCallback<Schema$Item>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Item>): void;
-    get(paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$Get|
-        BodyResponseCallback<Schema$Item>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Item>,
-        callback?: BodyResponseCallback<Schema$Item>):
-        void|GaxiosPromise<Schema$Item> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Get
+        | BodyResponseCallback<Schema$Item>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Item>,
+      callback?: BodyResponseCallback<Schema$Item>
+    ): void | GaxiosPromise<Schema$Item> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3695,16 +3777,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Item>(parameters, callback);
@@ -3712,7 +3797,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Item>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.index
@@ -3730,25 +3814,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     index(
-        params?: Params$Resource$Indexing$Datasources$Items$Index,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Indexing$Datasources$Items$Index,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     index(
-        params: Params$Resource$Indexing$Datasources$Items$Index,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Index,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     index(
-        params: Params$Resource$Indexing$Datasources$Items$Index,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Index,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     index(callback: BodyResponseCallback<Schema$Operation>): void;
     index(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$Index|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Index;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Index
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Index;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3765,16 +3854,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}:index')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}:index').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3782,7 +3874,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.list
@@ -3802,25 +3893,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Indexing$Datasources$Items$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListItemsResponse>;
+      params?: Params$Resource$Indexing$Datasources$Items$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListItemsResponse>;
     list(
-        params: Params$Resource$Indexing$Datasources$Items$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListItemsResponse>,
-        callback: BodyResponseCallback<Schema$ListItemsResponse>): void;
+      params: Params$Resource$Indexing$Datasources$Items$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListItemsResponse>,
+      callback: BodyResponseCallback<Schema$ListItemsResponse>
+    ): void;
     list(
-        params: Params$Resource$Indexing$Datasources$Items$List,
-        callback: BodyResponseCallback<Schema$ListItemsResponse>): void;
+      params: Params$Resource$Indexing$Datasources$Items$List,
+      callback: BodyResponseCallback<Schema$ListItemsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListItemsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$List|
-        BodyResponseCallback<Schema$ListItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListItemsResponse>,
-        callback?: BodyResponseCallback<Schema$ListItemsResponse>):
-        void|GaxiosPromise<Schema$ListItemsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$List;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$List
+        | BodyResponseCallback<Schema$ListItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListItemsResponse>,
+      callback?: BodyResponseCallback<Schema$ListItemsResponse>
+    ): void | GaxiosPromise<Schema$ListItemsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3837,16 +3933,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}/items')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}/items').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListItemsResponse>(parameters, callback);
@@ -3854,7 +3953,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$ListItemsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.poll
@@ -3878,25 +3976,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     poll(
-        params?: Params$Resource$Indexing$Datasources$Items$Poll,
-        options?: MethodOptions): GaxiosPromise<Schema$PollItemsResponse>;
+      params?: Params$Resource$Indexing$Datasources$Items$Poll,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PollItemsResponse>;
     poll(
-        params: Params$Resource$Indexing$Datasources$Items$Poll,
-        options: MethodOptions|BodyResponseCallback<Schema$PollItemsResponse>,
-        callback: BodyResponseCallback<Schema$PollItemsResponse>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Poll,
+      options: MethodOptions | BodyResponseCallback<Schema$PollItemsResponse>,
+      callback: BodyResponseCallback<Schema$PollItemsResponse>
+    ): void;
     poll(
-        params: Params$Resource$Indexing$Datasources$Items$Poll,
-        callback: BodyResponseCallback<Schema$PollItemsResponse>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Poll,
+      callback: BodyResponseCallback<Schema$PollItemsResponse>
+    ): void;
     poll(callback: BodyResponseCallback<Schema$PollItemsResponse>): void;
     poll(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$Poll|
-        BodyResponseCallback<Schema$PollItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PollItemsResponse>,
-        callback?: BodyResponseCallback<Schema$PollItemsResponse>):
-        void|GaxiosPromise<Schema$PollItemsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Poll;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Poll
+        | BodyResponseCallback<Schema$PollItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PollItemsResponse>,
+      callback?: BodyResponseCallback<Schema$PollItemsResponse>
+    ): void | GaxiosPromise<Schema$PollItemsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Poll;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3913,16 +4016,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}/items:poll')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}/items:poll').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PollItemsResponse>(parameters, callback);
@@ -3930,7 +4036,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$PollItemsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.push
@@ -3946,24 +4051,28 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     push(
-        params?: Params$Resource$Indexing$Datasources$Items$Push,
-        options?: MethodOptions): GaxiosPromise<Schema$Item>;
+      params?: Params$Resource$Indexing$Datasources$Items$Push,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Item>;
     push(
-        params: Params$Resource$Indexing$Datasources$Items$Push,
-        options: MethodOptions|BodyResponseCallback<Schema$Item>,
-        callback: BodyResponseCallback<Schema$Item>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Push,
+      options: MethodOptions | BodyResponseCallback<Schema$Item>,
+      callback: BodyResponseCallback<Schema$Item>
+    ): void;
     push(
-        params: Params$Resource$Indexing$Datasources$Items$Push,
-        callback: BodyResponseCallback<Schema$Item>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Push,
+      callback: BodyResponseCallback<Schema$Item>
+    ): void;
     push(callback: BodyResponseCallback<Schema$Item>): void;
     push(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$Push|
-        BodyResponseCallback<Schema$Item>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Item>,
-        callback?: BodyResponseCallback<Schema$Item>):
-        void|GaxiosPromise<Schema$Item> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Push;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Push
+        | BodyResponseCallback<Schema$Item>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Item>,
+      callback?: BodyResponseCallback<Schema$Item>
+    ): void | GaxiosPromise<Schema$Item> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Push;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3980,16 +4089,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}:push')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}:push').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Item>(parameters, callback);
@@ -3997,7 +4109,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Item>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.unreserve
@@ -4015,25 +4126,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     unreserve(
-        params?: Params$Resource$Indexing$Datasources$Items$Unreserve,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Indexing$Datasources$Items$Unreserve,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     unreserve(
-        params: Params$Resource$Indexing$Datasources$Items$Unreserve,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Unreserve,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     unreserve(
-        params: Params$Resource$Indexing$Datasources$Items$Unreserve,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Unreserve,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     unreserve(callback: BodyResponseCallback<Schema$Operation>): void;
     unreserve(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$Unreserve|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Unreserve;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Unreserve
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Unreserve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4050,16 +4166,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}/items:unreserve')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}/items:unreserve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4067,7 +4186,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.indexing.datasources.items.upload
@@ -4085,25 +4203,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     upload(
-        params?: Params$Resource$Indexing$Datasources$Items$Upload,
-        options?: MethodOptions): GaxiosPromise<Schema$UploadItemRef>;
+      params?: Params$Resource$Indexing$Datasources$Items$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadItemRef>;
     upload(
-        params: Params$Resource$Indexing$Datasources$Items$Upload,
-        options: MethodOptions|BodyResponseCallback<Schema$UploadItemRef>,
-        callback: BodyResponseCallback<Schema$UploadItemRef>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Upload,
+      options: MethodOptions | BodyResponseCallback<Schema$UploadItemRef>,
+      callback: BodyResponseCallback<Schema$UploadItemRef>
+    ): void;
     upload(
-        params: Params$Resource$Indexing$Datasources$Items$Upload,
-        callback: BodyResponseCallback<Schema$UploadItemRef>): void;
+      params: Params$Resource$Indexing$Datasources$Items$Upload,
+      callback: BodyResponseCallback<Schema$UploadItemRef>
+    ): void;
     upload(callback: BodyResponseCallback<Schema$UploadItemRef>): void;
     upload(
-        paramsOrCallback?: Params$Resource$Indexing$Datasources$Items$Upload|
-        BodyResponseCallback<Schema$UploadItemRef>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UploadItemRef>,
-        callback?: BodyResponseCallback<Schema$UploadItemRef>):
-        void|GaxiosPromise<Schema$UploadItemRef> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Indexing$Datasources$Items$Upload;
+      paramsOrCallback?:
+        | Params$Resource$Indexing$Datasources$Items$Upload
+        | BodyResponseCallback<Schema$UploadItemRef>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadItemRef>,
+      callback?: BodyResponseCallback<Schema$UploadItemRef>
+    ): void | GaxiosPromise<Schema$UploadItemRef> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Indexing$Datasources$Items$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4120,16 +4243,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/indexing/{+name}:upload')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/indexing/{+name}:upload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UploadItemRef>(parameters, callback);
@@ -4139,12 +4265,12 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Indexing$Datasources$Items$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of connector making this call. <br />Format:
@@ -4177,11 +4303,11 @@ export namespace cloudsearch_v1 {
     version?: string;
   }
   export interface Params$Resource$Indexing$Datasources$Items$Deletequeueitems
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the Data Source to delete items in a queue. Format:
@@ -4194,12 +4320,12 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$DeleteQueueItemsRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Get extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of connector making this call. <br />Format:
@@ -4217,12 +4343,12 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Index extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Index
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the Item. Format: datasources/{source_id}/items/{item_id} <br
@@ -4235,12 +4361,12 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$IndexItemRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$List extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When set to true, the indexing system only populates the following
@@ -4273,12 +4399,12 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Poll extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Poll
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the Data Source to poll items. Format: datasources/{source_id}
@@ -4290,12 +4416,12 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$PollItemsRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Push extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Push
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the item to push into the indexing queue.<br /> Format:
@@ -4309,12 +4435,12 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$PushItemRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Unreserve extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Unreserve
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the Data Source to unreserve all items. Format:
@@ -4327,12 +4453,12 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$UnreserveItemsRequest;
   }
-  export interface Params$Resource$Indexing$Datasources$Items$Upload extends
-      StandardParameters {
+  export interface Params$Resource$Indexing$Datasources$Items$Upload
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the Item to start a resumable upload. Format:
@@ -4346,14 +4472,11 @@ export namespace cloudsearch_v1 {
     requestBody?: Schema$StartUploadItemRequest;
   }
 
-
-
   export class Resource$Media {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.media.upload
@@ -4378,22 +4501,27 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    upload(params?: Params$Resource$Media$Upload, options?: MethodOptions):
-        GaxiosPromise<Schema$Media>;
     upload(
-        params: Params$Resource$Media$Upload,
-        options: MethodOptions|BodyResponseCallback<Schema$Media>,
-        callback: BodyResponseCallback<Schema$Media>): void;
+      params?: Params$Resource$Media$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Media>;
     upload(
-        params: Params$Resource$Media$Upload,
-        callback: BodyResponseCallback<Schema$Media>): void;
+      params: Params$Resource$Media$Upload,
+      options: MethodOptions | BodyResponseCallback<Schema$Media>,
+      callback: BodyResponseCallback<Schema$Media>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      callback: BodyResponseCallback<Schema$Media>
+    ): void;
     upload(callback: BodyResponseCallback<Schema$Media>): void;
     upload(
-        paramsOrCallback?: Params$Resource$Media$Upload|
-        BodyResponseCallback<Schema$Media>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Media>,
-        callback?: BodyResponseCallback<Schema$Media>):
-        void|GaxiosPromise<Schema$Media> {
+      paramsOrCallback?:
+        | Params$Resource$Media$Upload
+        | BodyResponseCallback<Schema$Media>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Media>,
+      callback?: BodyResponseCallback<Schema$Media>
+    ): void | GaxiosPromise<Schema$Media> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4411,18 +4539,23 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/media/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/media/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/v1/media/{+resourceName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/v1/media/{+resourceName}').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Media>(parameters, callback);
@@ -4436,7 +4569,7 @@ export namespace cloudsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the media that is being downloaded.  See
@@ -4465,13 +4598,11 @@ export namespace cloudsearch_v1 {
     };
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.operations.get
@@ -4487,20 +4618,29 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4518,15 +4658,16 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4540,14 +4681,13 @@ export namespace cloudsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-
 
   export class Resource$Query {
     context: APIRequestContext;
@@ -4556,7 +4696,6 @@ export namespace cloudsearch_v1 {
       this.context = context;
       this.sources = new Resource$Query$Sources(this.context);
     }
-
 
     /**
      * cloudsearch.query.search
@@ -4573,23 +4712,29 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Query$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchResponse>;
     search(
-        params: Params$Resource$Query$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
-        callback: BodyResponseCallback<Schema$SearchResponse>): void;
+      params?: Params$Resource$Query$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchResponse>;
     search(
-        params: Params$Resource$Query$Search,
-        callback: BodyResponseCallback<Schema$SearchResponse>): void;
+      params: Params$Resource$Query$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Query$Search,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$SearchResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Query$Search|
-        BodyResponseCallback<Schema$SearchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchResponse>,
-        callback?: BodyResponseCallback<Schema$SearchResponse>):
-        void|GaxiosPromise<Schema$SearchResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Query$Search
+        | BodyResponseCallback<Schema$SearchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>,
+      callback?: BodyResponseCallback<Schema$SearchResponse>
+    ): void | GaxiosPromise<Schema$SearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4607,15 +4752,16 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/query/search').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/query/search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(parameters, callback);
@@ -4623,7 +4769,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$SearchResponse>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.query.suggest
@@ -4637,23 +4782,29 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    suggest(params?: Params$Resource$Query$Suggest, options?: MethodOptions):
-        GaxiosPromise<Schema$SuggestResponse>;
     suggest(
-        params: Params$Resource$Query$Suggest,
-        options: MethodOptions|BodyResponseCallback<Schema$SuggestResponse>,
-        callback: BodyResponseCallback<Schema$SuggestResponse>): void;
+      params?: Params$Resource$Query$Suggest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SuggestResponse>;
     suggest(
-        params: Params$Resource$Query$Suggest,
-        callback: BodyResponseCallback<Schema$SuggestResponse>): void;
+      params: Params$Resource$Query$Suggest,
+      options: MethodOptions | BodyResponseCallback<Schema$SuggestResponse>,
+      callback: BodyResponseCallback<Schema$SuggestResponse>
+    ): void;
+    suggest(
+      params: Params$Resource$Query$Suggest,
+      callback: BodyResponseCallback<Schema$SuggestResponse>
+    ): void;
     suggest(callback: BodyResponseCallback<Schema$SuggestResponse>): void;
     suggest(
-        paramsOrCallback?: Params$Resource$Query$Suggest|
-        BodyResponseCallback<Schema$SuggestResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SuggestResponse>,
-        callback?: BodyResponseCallback<Schema$SuggestResponse>):
-        void|GaxiosPromise<Schema$SuggestResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Query$Suggest
+        | BodyResponseCallback<Schema$SuggestResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SuggestResponse>,
+      callback?: BodyResponseCallback<Schema$SuggestResponse>
+    ): void | GaxiosPromise<Schema$SuggestResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Suggest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4671,16 +4822,16 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/query/suggest').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/query/suggest').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SuggestResponse>(parameters, callback);
@@ -4694,8 +4845,7 @@ export namespace cloudsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -4706,8 +4856,7 @@ export namespace cloudsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -4720,7 +4869,6 @@ export namespace cloudsearch_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.query.sources.list
@@ -4739,26 +4887,33 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Query$Sources$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListQuerySourcesResponse>;
     list(
-        params: Params$Resource$Query$Sources$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListQuerySourcesResponse>,
-        callback: BodyResponseCallback<Schema$ListQuerySourcesResponse>): void;
+      params?: Params$Resource$Query$Sources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListQuerySourcesResponse>;
     list(
-        params: Params$Resource$Query$Sources$List,
-        callback: BodyResponseCallback<Schema$ListQuerySourcesResponse>): void;
+      params: Params$Resource$Query$Sources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListQuerySourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Query$Sources$List,
+      callback: BodyResponseCallback<Schema$ListQuerySourcesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListQuerySourcesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Query$Sources$List|
-        BodyResponseCallback<Schema$ListQuerySourcesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListQuerySourcesResponse>,
-        callback?: BodyResponseCallback<Schema$ListQuerySourcesResponse>):
-        void|GaxiosPromise<Schema$ListQuerySourcesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Query$Sources$List;
+      paramsOrCallback?:
+        | Params$Resource$Query$Sources$List
+        | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListQuerySourcesResponse>
+    ): void | GaxiosPromise<Schema$ListQuerySourcesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Query$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4775,16 +4930,16 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/query/sources').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/query/sources').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListQuerySourcesResponse>(parameters, callback);
@@ -4794,12 +4949,12 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Query$Sources$List extends
-      StandardParameters {
+  export interface Params$Resource$Query$Sources$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Number of sources to return in the response.
@@ -4833,8 +4988,6 @@ export namespace cloudsearch_v1 {
     'requestOptions.timeZone'?: string;
   }
 
-
-
   export class Resource$Settings {
     context: APIRequestContext;
     datasources: Resource$Settings$Datasources;
@@ -4842,18 +4995,17 @@ export namespace cloudsearch_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.datasources = new Resource$Settings$Datasources(this.context);
-      this.searchapplications =
-          new Resource$Settings$Searchapplications(this.context);
+      this.searchapplications = new Resource$Settings$Searchapplications(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Settings$Datasources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.settings.datasources.create
@@ -4868,25 +5020,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Settings$Datasources$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Settings$Datasources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Settings$Datasources$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Datasources$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Settings$Datasources$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Datasources$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Settings$Datasources$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Datasources$Create;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Datasources$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4903,16 +5060,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/datasources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/datasources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4920,7 +5080,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.datasources.delete
@@ -4936,25 +5095,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Settings$Datasources$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Settings$Datasources$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Settings$Datasources$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Datasources$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Settings$Datasources$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Datasources$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Settings$Datasources$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Datasources$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Datasources$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4971,16 +5135,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4988,7 +5155,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.datasources.get
@@ -5003,22 +5169,31 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Settings$Datasources$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
-    get(params: Params$Resource$Settings$Datasources$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(params: Params$Resource$Settings$Datasources$Get,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+    get(
+      params?: Params$Resource$Settings$Datasources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Settings$Datasources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
+    get(
+      params: Params$Resource$Settings$Datasources$Get,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(paramsOrCallback?: Params$Resource$Settings$Datasources$Get|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Settings$Datasources$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Settings$Datasources$Get
+        | BodyResponseCallback<Schema$DataSource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>
+    ): void | GaxiosPromise<Schema$DataSource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5035,16 +5210,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -5052,7 +5230,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.datasources.list
@@ -5069,26 +5246,32 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Settings$Datasources$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDataSourceResponse>;
+      params?: Params$Resource$Settings$Datasources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDataSourceResponse>;
     list(
-        params: Params$Resource$Settings$Datasources$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourceResponse>,
-        callback: BodyResponseCallback<Schema$ListDataSourceResponse>): void;
+      params: Params$Resource$Settings$Datasources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourceResponse>,
+      callback: BodyResponseCallback<Schema$ListDataSourceResponse>
+    ): void;
     list(
-        params: Params$Resource$Settings$Datasources$List,
-        callback: BodyResponseCallback<Schema$ListDataSourceResponse>): void;
+      params: Params$Resource$Settings$Datasources$List,
+      callback: BodyResponseCallback<Schema$ListDataSourceResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDataSourceResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Settings$Datasources$List|
-        BodyResponseCallback<Schema$ListDataSourceResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourceResponse>,
-        callback?: BodyResponseCallback<Schema$ListDataSourceResponse>):
-        void|GaxiosPromise<Schema$ListDataSourceResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Settings$Datasources$List;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Datasources$List
+        | BodyResponseCallback<Schema$ListDataSourceResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourceResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourceResponse>
+    ): void | GaxiosPromise<Schema$ListDataSourceResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5105,16 +5288,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/datasources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/datasources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourceResponse>(parameters, callback);
@@ -5122,7 +5308,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$ListDataSourceResponse>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.datasources.update
@@ -5138,25 +5323,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Settings$Datasources$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Settings$Datasources$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Settings$Datasources$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Datasources$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Settings$Datasources$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Datasources$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Settings$Datasources$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Datasources$Update;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Datasources$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5173,16 +5363,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5192,25 +5385,24 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Settings$Datasources$Create extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Settings$Datasources$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -5222,12 +5414,12 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Datasources$Get extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -5239,12 +5431,12 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Datasources$List extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Datasources$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -5261,12 +5453,12 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Settings$Datasources$Update extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Datasources$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the datasource resource. Format: datasources/{source_id}. <br
@@ -5280,13 +5472,11 @@ export namespace cloudsearch_v1 {
     requestBody?: Schema$UpdateDataSourceRequest;
   }
 
-
   export class Resource$Settings$Searchapplications {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.settings.searchapplications.create
@@ -5301,25 +5491,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Settings$Searchapplications$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Settings$Searchapplications$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Settings$Searchapplications$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Settings$Searchapplications$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Settings$Searchapplications$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Searchapplications$Create;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Searchapplications$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Searchapplications$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5336,16 +5531,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/searchapplications')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/searchapplications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5353,7 +5551,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.searchapplications.delete
@@ -5369,25 +5566,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Settings$Searchapplications$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Settings$Searchapplications$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Settings$Searchapplications$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Settings$Searchapplications$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Settings$Searchapplications$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Searchapplications$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Searchapplications$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Searchapplications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5404,16 +5606,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5421,7 +5626,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.searchapplications.get
@@ -5436,22 +5640,31 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Settings$Searchapplications$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SearchApplication>;
-    get(params: Params$Resource$Settings$Searchapplications$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchApplication>,
-        callback: BodyResponseCallback<Schema$SearchApplication>): void;
-    get(params: Params$Resource$Settings$Searchapplications$Get,
-        callback: BodyResponseCallback<Schema$SearchApplication>): void;
+    get(
+      params?: Params$Resource$Settings$Searchapplications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchApplication>;
+    get(
+      params: Params$Resource$Settings$Searchapplications$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchApplication>,
+      callback: BodyResponseCallback<Schema$SearchApplication>
+    ): void;
+    get(
+      params: Params$Resource$Settings$Searchapplications$Get,
+      callback: BodyResponseCallback<Schema$SearchApplication>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SearchApplication>): void;
-    get(paramsOrCallback?: Params$Resource$Settings$Searchapplications$Get|
-        BodyResponseCallback<Schema$SearchApplication>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchApplication>,
-        callback?: BodyResponseCallback<Schema$SearchApplication>):
-        void|GaxiosPromise<Schema$SearchApplication> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Searchapplications$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Settings$Searchapplications$Get
+        | BodyResponseCallback<Schema$SearchApplication>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchApplication>,
+      callback?: BodyResponseCallback<Schema$SearchApplication>
+    ): void | GaxiosPromise<Schema$SearchApplication> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Searchapplications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5468,16 +5681,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchApplication>(parameters, callback);
@@ -5485,7 +5701,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$SearchApplication>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.searchapplications.list
@@ -5502,30 +5717,34 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Settings$Searchapplications$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListSearchApplicationsResponse>;
+      params?: Params$Resource$Settings$Searchapplications$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSearchApplicationsResponse>;
     list(
-        params: Params$Resource$Settings$Searchapplications$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
-        callback: BodyResponseCallback<Schema$ListSearchApplicationsResponse>):
-        void;
+      params: Params$Resource$Settings$Searchapplications$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
+      callback: BodyResponseCallback<Schema$ListSearchApplicationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Settings$Searchapplications$List,
-        callback: BodyResponseCallback<Schema$ListSearchApplicationsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListSearchApplicationsResponse>):
-        void;
+      params: Params$Resource$Settings$Searchapplications$List,
+      callback: BodyResponseCallback<Schema$ListSearchApplicationsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Settings$Searchapplications$List|
-        BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSearchApplicationsResponse>):
-        void|GaxiosPromise<Schema$ListSearchApplicationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Searchapplications$List;
+      callback: BodyResponseCallback<Schema$ListSearchApplicationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Settings$Searchapplications$List
+        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSearchApplicationsResponse>
+    ): void | GaxiosPromise<Schema$ListSearchApplicationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Searchapplications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5542,26 +5761,31 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/searchapplications')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/searchapplications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSearchApplicationsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListSearchApplicationsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * cloudsearch.settings.searchapplications.reset
@@ -5578,25 +5802,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     reset(
-        params?: Params$Resource$Settings$Searchapplications$Reset,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Settings$Searchapplications$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     reset(
-        params: Params$Resource$Settings$Searchapplications$Reset,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Reset,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     reset(
-        params: Params$Resource$Settings$Searchapplications$Reset,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Reset,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     reset(callback: BodyResponseCallback<Schema$Operation>): void;
     reset(
-        paramsOrCallback?: Params$Resource$Settings$Searchapplications$Reset|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Searchapplications$Reset;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Searchapplications$Reset
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Searchapplications$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5613,16 +5842,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/{+name}:reset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/{+name}:reset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5630,7 +5862,6 @@ export namespace cloudsearch_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudsearch.settings.searchapplications.update
@@ -5646,25 +5877,30 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Settings$Searchapplications$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Settings$Searchapplications$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Settings$Searchapplications$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Settings$Searchapplications$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Settings$Searchapplications$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Settings$Searchapplications$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Settings$Searchapplications$Update;
+      paramsOrCallback?:
+        | Params$Resource$Settings$Searchapplications$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Searchapplications$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5681,16 +5917,19 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/settings/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/settings/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5700,25 +5939,24 @@ export namespace cloudsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Settings$Searchapplications$Create extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchApplication;
   }
-  export interface Params$Resource$Settings$Searchapplications$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -5731,12 +5969,12 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Searchapplications$Get extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -5749,12 +5987,12 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Settings$Searchapplications$List extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If you are asked by Google to help with debugging, set this field.
@@ -5771,12 +6009,12 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Settings$Searchapplications$Reset extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Reset
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the search application to be reset. <br />Format:
@@ -5789,12 +6027,12 @@ export namespace cloudsearch_v1 {
      */
     requestBody?: Schema$ResetSearchApplicationRequest;
   }
-  export interface Params$Resource$Settings$Searchapplications$Update extends
-      StandardParameters {
+  export interface Params$Resource$Settings$Searchapplications$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the Search Application. <br />Format:
@@ -5808,8 +6046,6 @@ export namespace cloudsearch_v1 {
     requestBody?: Schema$SearchApplication;
   }
 
-
-
   export class Resource$Stats {
     context: APIRequestContext;
     index: Resource$Stats$Index;
@@ -5817,7 +6053,6 @@ export namespace cloudsearch_v1 {
       this.context = context;
       this.index = new Resource$Stats$Index(this.context);
     }
-
 
     /**
      * cloudsearch.stats.getIndex
@@ -5838,28 +6073,33 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIndex(params?: Params$Resource$Stats$Getindex, options?: MethodOptions):
-        GaxiosPromise<Schema$GetCustomerIndexStatsResponse>;
     getIndex(
-        params: Params$Resource$Stats$Getindex,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
-        callback: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>):
-        void;
+      params?: Params$Resource$Stats$Getindex,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerIndexStatsResponse>;
     getIndex(
-        params: Params$Resource$Stats$Getindex,
-        callback: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>):
-        void;
-    getIndex(callback:
-                 BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>):
-        void;
+      params: Params$Resource$Stats$Getindex,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
+    ): void;
     getIndex(
-        paramsOrCallback?: Params$Resource$Stats$Getindex|
-        BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
-        callback?: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>):
-        void|GaxiosPromise<Schema$GetCustomerIndexStatsResponse> {
+      params: Params$Resource$Stats$Getindex,
+      callback: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
+    ): void;
+    getIndex(
+      callback: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
+    ): void;
+    getIndex(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getindex
+        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
+      callback?: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>
+    ): void | GaxiosPromise<Schema$GetCustomerIndexStatsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getindex;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5877,22 +6117,26 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/stats/index').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/stats/index').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
@@ -5901,7 +6145,7 @@ export namespace cloudsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
@@ -5938,13 +6182,11 @@ export namespace cloudsearch_v1 {
     }
   }
 
-
   export class Resource$Stats$Index$Datasources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudsearch.stats.index.datasources.get
@@ -5964,28 +6206,35 @@ export namespace cloudsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Stats$Index$Datasources$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetDataSourceIndexStatsResponse>;
-    get(params: Params$Resource$Stats$Index$Datasources$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
-        callback: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>):
-        void;
-    get(params: Params$Resource$Stats$Index$Datasources$Get,
-        callback: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>):
-        void;
-    get(callback: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>):
-        void;
-    get(paramsOrCallback?: Params$Resource$Stats$Index$Datasources$Get|
-        BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>):
-        void|GaxiosPromise<Schema$GetDataSourceIndexStatsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Stats$Index$Datasources$Get;
+    get(
+      params?: Params$Resource$Stats$Index$Datasources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetDataSourceIndexStatsResponse>;
+    get(
+      params: Params$Resource$Stats$Index$Datasources$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
+    ): void;
+    get(
+      params: Params$Resource$Stats$Index$Datasources$Get,
+      callback: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Index$Datasources$Get
+        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
+      callback?: BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>
+    ): void | GaxiosPromise<Schema$GetDataSourceIndexStatsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$Index$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6002,33 +6251,39 @@ export namespace cloudsearch_v1 {
       const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/stats/index/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/stats/index/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Stats$Index$Datasources$Get extends
-      StandardParameters {
+  export interface Params$Resource$Stats$Index$Datasources$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.

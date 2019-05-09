@@ -39,7 +39,9 @@ export {alertcenter_v1beta1} from './apis/alertcenter/v1beta1';
 export {analytics_v2_4} from './apis/analytics/v2.4';
 export {analytics_v3} from './apis/analytics/v3';
 export {analyticsreporting_v4} from './apis/analyticsreporting/v4';
-export {androiddeviceprovisioning_v1} from './apis/androiddeviceprovisioning/v1';
+export {
+  androiddeviceprovisioning_v1,
+} from './apis/androiddeviceprovisioning/v1';
 export {androidenterprise_v1} from './apis/androidenterprise/v1';
 export {androidmanagement_v1} from './apis/androidmanagement/v1';
 export {androidpublisher_v1_1} from './apis/androidpublisher/v1.1';
@@ -77,12 +79,18 @@ export {cloudidentity_v1beta1} from './apis/cloudidentity/v1beta1';
 export {cloudiot_v1} from './apis/cloudiot/v1';
 export {cloudkms_v1} from './apis/cloudkms/v1';
 export {cloudprivatecatalog_v1beta1} from './apis/cloudprivatecatalog/v1beta1';
-export {cloudprivatecatalogproducer_v1beta1} from './apis/cloudprivatecatalogproducer/v1beta1';
+export {
+  cloudprivatecatalogproducer_v1beta1,
+} from './apis/cloudprivatecatalogproducer/v1beta1';
 export {cloudprofiler_v2} from './apis/cloudprofiler/v2';
 export {cloudresourcemanager_v1} from './apis/cloudresourcemanager/v1';
-export {cloudresourcemanager_v1beta1} from './apis/cloudresourcemanager/v1beta1';
+export {
+  cloudresourcemanager_v1beta1,
+} from './apis/cloudresourcemanager/v1beta1';
 export {cloudresourcemanager_v2} from './apis/cloudresourcemanager/v2';
-export {cloudresourcemanager_v2beta1} from './apis/cloudresourcemanager/v2beta1';
+export {
+  cloudresourcemanager_v2beta1,
+} from './apis/cloudresourcemanager/v2beta1';
 export {cloudscheduler_v1} from './apis/cloudscheduler/v1';
 export {cloudscheduler_v1beta1} from './apis/cloudscheduler/v1beta1';
 export {cloudsearch_v1} from './apis/cloudsearch/v1';
@@ -145,8 +153,12 @@ export {fitness_v1} from './apis/fitness/v1';
 export {fusiontables_v1} from './apis/fusiontables/v1';
 export {fusiontables_v2} from './apis/fusiontables/v2';
 export {games_v1} from './apis/games/v1';
-export {gamesConfiguration_v1configuration} from './apis/gamesConfiguration/v1configuration';
-export {gamesManagement_v1management} from './apis/gamesManagement/v1management';
+export {
+  gamesConfiguration_v1configuration,
+} from './apis/gamesConfiguration/v1configuration';
+export {
+  gamesManagement_v1management,
+} from './apis/gamesManagement/v1management';
 export {genomics_v1} from './apis/genomics/v1';
 export {genomics_v1alpha2} from './apis/genomics/v1alpha2';
 export {genomics_v2alpha1} from './apis/genomics/v2alpha1';
@@ -197,7 +209,9 @@ export {pubsub_v1beta2} from './apis/pubsub/v1beta2';
 export {redis_v1} from './apis/redis/v1';
 export {redis_v1beta1} from './apis/redis/v1beta1';
 export {remotebuildexecution_v1} from './apis/remotebuildexecution/v1';
-export {remotebuildexecution_v1alpha} from './apis/remotebuildexecution/v1alpha';
+export {
+  remotebuildexecution_v1alpha,
+} from './apis/remotebuildexecution/v1alpha';
 export {remotebuildexecution_v2} from './apis/remotebuildexecution/v2';
 export {replicapool_v1beta1} from './apis/replicapool/v1beta1';
 export {reseller_v1} from './apis/reseller/v1';
@@ -213,7 +227,9 @@ export {securitycenter_v1beta1} from './apis/securitycenter/v1beta1';
 export {servicebroker_v1} from './apis/servicebroker/v1';
 export {servicebroker_v1alpha1} from './apis/servicebroker/v1alpha1';
 export {servicebroker_v1beta1} from './apis/servicebroker/v1beta1';
-export {serviceconsumermanagement_v1} from './apis/serviceconsumermanagement/v1';
+export {
+  serviceconsumermanagement_v1,
+} from './apis/serviceconsumermanagement/v1';
 export {servicecontrol_v1} from './apis/servicecontrol/v1';
 export {servicemanagement_v1} from './apis/servicemanagement/v1';
 export {servicenetworking_v1} from './apis/servicenetworking/v1';

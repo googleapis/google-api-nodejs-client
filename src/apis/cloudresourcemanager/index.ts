@@ -20,41 +20,54 @@ import {cloudresourcemanager_v2} from './v2';
 import {cloudresourcemanager_v2beta1} from './v2beta1';
 
 export const VERSIONS = {
-  'v1': cloudresourcemanager_v1.Cloudresourcemanager,
-  'v1beta1': cloudresourcemanager_v1beta1.Cloudresourcemanager,
-  'v2': cloudresourcemanager_v2.Cloudresourcemanager,
-  'v2beta1': cloudresourcemanager_v2beta1.Cloudresourcemanager,
+  v1: cloudresourcemanager_v1.Cloudresourcemanager,
+  v1beta1: cloudresourcemanager_v1beta1.Cloudresourcemanager,
+  v2: cloudresourcemanager_v2.Cloudresourcemanager,
+  v2beta1: cloudresourcemanager_v2beta1.Cloudresourcemanager,
 };
 
-export function cloudresourcemanager(version: 'v1'):
-    cloudresourcemanager_v1.Cloudresourcemanager;
-export function cloudresourcemanager(options: cloudresourcemanager_v1.Options):
-    cloudresourcemanager_v1.Cloudresourcemanager;
-export function cloudresourcemanager(version: 'v1beta1'):
-    cloudresourcemanager_v1beta1.Cloudresourcemanager;
 export function cloudresourcemanager(
-    options: cloudresourcemanager_v1beta1.Options):
-    cloudresourcemanager_v1beta1.Cloudresourcemanager;
-export function cloudresourcemanager(version: 'v2'):
-    cloudresourcemanager_v2.Cloudresourcemanager;
-export function cloudresourcemanager(options: cloudresourcemanager_v2.Options):
-    cloudresourcemanager_v2.Cloudresourcemanager;
-export function cloudresourcemanager(version: 'v2beta1'):
-    cloudresourcemanager_v2beta1.Cloudresourcemanager;
+  version: 'v1'
+): cloudresourcemanager_v1.Cloudresourcemanager;
 export function cloudresourcemanager(
-    options: cloudresourcemanager_v2beta1.Options):
-    cloudresourcemanager_v2beta1.Cloudresourcemanager;
+  options: cloudresourcemanager_v1.Options
+): cloudresourcemanager_v1.Cloudresourcemanager;
+export function cloudresourcemanager(
+  version: 'v1beta1'
+): cloudresourcemanager_v1beta1.Cloudresourcemanager;
+export function cloudresourcemanager(
+  options: cloudresourcemanager_v1beta1.Options
+): cloudresourcemanager_v1beta1.Cloudresourcemanager;
+export function cloudresourcemanager(
+  version: 'v2'
+): cloudresourcemanager_v2.Cloudresourcemanager;
+export function cloudresourcemanager(
+  options: cloudresourcemanager_v2.Options
+): cloudresourcemanager_v2.Cloudresourcemanager;
+export function cloudresourcemanager(
+  version: 'v2beta1'
+): cloudresourcemanager_v2beta1.Cloudresourcemanager;
+export function cloudresourcemanager(
+  options: cloudresourcemanager_v2beta1.Options
+): cloudresourcemanager_v2beta1.Cloudresourcemanager;
 export function cloudresourcemanager<
-    T = cloudresourcemanager_v1.Cloudresourcemanager |
-        cloudresourcemanager_v1beta1.Cloudresourcemanager |
-        cloudresourcemanager_v2.Cloudresourcemanager |
-        cloudresourcemanager_v2beta1.Cloudresourcemanager>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|
-    cloudresourcemanager_v1.Options|'v1beta1'|
-    cloudresourcemanager_v1beta1.Options|'v2'|
-    cloudresourcemanager_v2.Options|'v2beta1'|
-    cloudresourcemanager_v2beta1.Options) {
+  T =
+    | cloudresourcemanager_v1.Cloudresourcemanager
+    | cloudresourcemanager_v1beta1.Cloudresourcemanager
+    | cloudresourcemanager_v2.Cloudresourcemanager
+    | cloudresourcemanager_v2beta1.Cloudresourcemanager
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | cloudresourcemanager_v1.Options
+    | 'v1beta1'
+    | cloudresourcemanager_v1beta1.Options
+    | 'v2'
+    | cloudresourcemanager_v2.Options
+    | 'v2beta1'
+    | cloudresourcemanager_v2beta1.Options
+) {
   return getAPI<T>('cloudresourcemanager', versionOrOptions, VERSIONS, this);
 }
 

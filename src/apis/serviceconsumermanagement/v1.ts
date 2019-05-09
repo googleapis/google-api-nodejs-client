@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1335,7 +1347,7 @@ export namespace serviceconsumermanagement_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: {[key: string]: string;};
+    metricCosts?: {[key: string]: string};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1540,7 +1552,7 @@ export namespace serviceconsumermanagement_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1556,7 +1568,7 @@ export namespace serviceconsumermanagement_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1577,7 +1589,7 @@ export namespace serviceconsumermanagement_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: {[key: string]: any;};
+    value?: {[key: string]: any};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1743,7 +1755,7 @@ export namespace serviceconsumermanagement_v1 {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: {[key: string]: string;};
+    values?: {[key: string]: string};
   }
   /**
    * Request message to remove a tenant project resource from the tenancy unit.
@@ -1958,7 +1970,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: Array<{[key: string]: any;}>;
+    sourceFiles?: Array<{[key: string]: any}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2005,7 +2017,7 @@ export namespace serviceconsumermanagement_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2131,7 +2143,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Labels that are applied to this project.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Configuration for the IAM service account on the tenant project.
      */
@@ -2343,7 +2355,7 @@ export namespace serviceconsumermanagement_v1 {
      * valid keys other than &quot;region&quot; or &quot;zone&quot; must also
      * appear in the map.
      */
-    dimensions?: {[key: string]: string;};
+    dimensions?: {[key: string]: string};
     /**
      * The name of the metric to which this override applies.  An example name
      * would be: `compute.googleapis.com/cpus`
@@ -2443,13 +2455,11 @@ export namespace serviceconsumermanagement_v1 {
     uniqueId?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * serviceconsumermanagement.operations.cancel
@@ -2472,24 +2482,29 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2503,20 +2518,20 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2524,7 +2539,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.operations.delete
@@ -2541,24 +2555,29 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2572,19 +2591,20 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2592,7 +2612,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.operations.get
@@ -2608,20 +2627,29 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2636,19 +2664,20 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2656,7 +2685,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.operations.list
@@ -2681,24 +2709,31 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2713,19 +2748,20 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2735,12 +2771,12 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
@@ -2752,12 +2788,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
@@ -2768,7 +2804,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -2779,7 +2815,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -2799,7 +2835,6 @@ export namespace serviceconsumermanagement_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Services {
     context: APIRequestContext;
     tenancyUnits: Resource$Services$Tenancyunits;
@@ -2807,7 +2842,6 @@ export namespace serviceconsumermanagement_v1 {
       this.context = context;
       this.tenancyUnits = new Resource$Services$Tenancyunits(this.context);
     }
-
 
     /**
      * serviceconsumermanagement.services.search
@@ -2824,27 +2858,33 @@ export namespace serviceconsumermanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Services$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchTenancyUnitsResponse>;
     search(
-        params: Params$Resource$Services$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
-        callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void;
+      params?: Params$Resource$Services$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchTenancyUnitsResponse>;
     search(
-        params: Params$Resource$Services$Search,
-        callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void;
-    search(callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void;
+      params: Params$Resource$Services$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
+      callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Services$Search|
-        BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void|GaxiosPromise<Schema$SearchTenancyUnitsResponse> {
+      params: Params$Resource$Services$Search,
+      callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Services$Search
+        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>
+    ): void | GaxiosPromise<Schema$SearchTenancyUnitsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2859,24 +2899,29 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchTenancyUnitsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SearchTenancyUnitsResponse>(parameters);
       }
@@ -2887,7 +2932,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of results returned by this request. Currently, the
@@ -2930,7 +2975,6 @@ export namespace serviceconsumermanagement_v1 {
       this.context = context;
     }
 
-
     /**
      * serviceconsumermanagement.services.tenancyUnits.addProject
      * @desc Add a new tenant project to the tenancy unit. There can be a
@@ -2949,25 +2993,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     addProject(
-        params?: Params$Resource$Services$Tenancyunits$Addproject,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Tenancyunits$Addproject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     addProject(
-        params: Params$Resource$Services$Tenancyunits$Addproject,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Addproject,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     addProject(
-        params: Params$Resource$Services$Tenancyunits$Addproject,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Addproject,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     addProject(callback: BodyResponseCallback<Schema$Operation>): void;
     addProject(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Addproject|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Addproject;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Addproject
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Addproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2981,20 +3030,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:addProject')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:addProject').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3002,7 +3054,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
@@ -3030,26 +3081,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     applyProjectConfig(
-        params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     applyProjectConfig(
-        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     applyProjectConfig(
-        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     applyProjectConfig(callback: BodyResponseCallback<Schema$Operation>): void;
     applyProjectConfig(
-        paramsOrCallback?:
-            Params$Resource$Services$Tenancyunits$Applyprojectconfig|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Applyprojectconfig;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Applyprojectconfig
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Applyprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3063,20 +3118,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:applyProjectConfig')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:applyProjectConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3084,7 +3142,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.attachProject
@@ -3109,25 +3166,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     attachProject(
-        params?: Params$Resource$Services$Tenancyunits$Attachproject,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Tenancyunits$Attachproject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     attachProject(
-        params: Params$Resource$Services$Tenancyunits$Attachproject,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Attachproject,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     attachProject(
-        params: Params$Resource$Services$Tenancyunits$Attachproject,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Attachproject,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     attachProject(callback: BodyResponseCallback<Schema$Operation>): void;
     attachProject(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Attachproject|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Attachproject;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Attachproject
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Attachproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3141,20 +3203,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:attachProject')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:attachProject').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3162,7 +3227,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.create
@@ -3178,25 +3242,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Services$Tenancyunits$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$TenancyUnit>;
+      params?: Params$Resource$Services$Tenancyunits$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TenancyUnit>;
     create(
-        params: Params$Resource$Services$Tenancyunits$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$TenancyUnit>,
-        callback: BodyResponseCallback<Schema$TenancyUnit>): void;
+      params: Params$Resource$Services$Tenancyunits$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TenancyUnit>,
+      callback: BodyResponseCallback<Schema$TenancyUnit>
+    ): void;
     create(
-        params: Params$Resource$Services$Tenancyunits$Create,
-        callback: BodyResponseCallback<Schema$TenancyUnit>): void;
+      params: Params$Resource$Services$Tenancyunits$Create,
+      callback: BodyResponseCallback<Schema$TenancyUnit>
+    ): void;
     create(callback: BodyResponseCallback<Schema$TenancyUnit>): void;
     create(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Create|
-        BodyResponseCallback<Schema$TenancyUnit>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TenancyUnit>,
-        callback?: BodyResponseCallback<Schema$TenancyUnit>):
-        void|GaxiosPromise<Schema$TenancyUnit> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Create;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Create
+        | BodyResponseCallback<Schema$TenancyUnit>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TenancyUnit>,
+      callback?: BodyResponseCallback<Schema$TenancyUnit>
+    ): void | GaxiosPromise<Schema$TenancyUnit> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3210,20 +3279,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/tenancyUnits')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/tenancyUnits').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TenancyUnit>(parameters, callback);
@@ -3231,7 +3303,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$TenancyUnit>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.delete
@@ -3248,25 +3319,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Services$Tenancyunits$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Tenancyunits$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Services$Tenancyunits$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Services$Tenancyunits$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3280,19 +3356,20 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3300,7 +3377,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.deleteProject
@@ -3323,25 +3399,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     deleteProject(
-        params?: Params$Resource$Services$Tenancyunits$Deleteproject,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Tenancyunits$Deleteproject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     deleteProject(
-        params: Params$Resource$Services$Tenancyunits$Deleteproject,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Deleteproject,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deleteProject(
-        params: Params$Resource$Services$Tenancyunits$Deleteproject,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Deleteproject,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deleteProject(callback: BodyResponseCallback<Schema$Operation>): void;
     deleteProject(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Deleteproject|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Deleteproject;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Deleteproject
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Deleteproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3355,20 +3436,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:deleteProject')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:deleteProject').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3376,7 +3460,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.list
@@ -3398,27 +3481,32 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Services$Tenancyunits$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTenancyUnitsResponse>;
+      params?: Params$Resource$Services$Tenancyunits$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTenancyUnitsResponse>;
     list(
-        params: Params$Resource$Services$Tenancyunits$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
-        callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
+      params: Params$Resource$Services$Tenancyunits$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
+      callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>
+    ): void;
     list(
-        params: Params$Resource$Services$Tenancyunits$List,
-        callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
+      params: Params$Resource$Services$Tenancyunits$List,
+      callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$List|
-        BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTenancyUnitsResponse>):
-        void|GaxiosPromise<Schema$ListTenancyUnitsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$List;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$List
+        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTenancyUnitsResponse>
+    ): void | GaxiosPromise<Schema$ListTenancyUnitsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3432,20 +3520,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/tenancyUnits')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/tenancyUnits').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters, callback);
@@ -3453,7 +3544,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.removeProject
@@ -3475,25 +3565,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     removeProject(
-        params?: Params$Resource$Services$Tenancyunits$Removeproject,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Tenancyunits$Removeproject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     removeProject(
-        params: Params$Resource$Services$Tenancyunits$Removeproject,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Removeproject,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     removeProject(
-        params: Params$Resource$Services$Tenancyunits$Removeproject,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Removeproject,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     removeProject(callback: BodyResponseCallback<Schema$Operation>): void;
     removeProject(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Removeproject|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Removeproject;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Removeproject
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Removeproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3507,20 +3602,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:removeProject')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:removeProject').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3528,7 +3626,6 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.undeleteProject
@@ -3548,26 +3645,30 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     undeleteProject(
-        params?: Params$Resource$Services$Tenancyunits$Undeleteproject,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Tenancyunits$Undeleteproject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     undeleteProject(
-        params: Params$Resource$Services$Tenancyunits$Undeleteproject,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Undeleteproject,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     undeleteProject(
-        params: Params$Resource$Services$Tenancyunits$Undeleteproject,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Tenancyunits$Undeleteproject,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     undeleteProject(callback: BodyResponseCallback<Schema$Operation>): void;
     undeleteProject(
-        paramsOrCallback?:
-            Params$Resource$Services$Tenancyunits$Undeleteproject|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Undeleteproject;
+      paramsOrCallback?:
+        | Params$Resource$Services$Tenancyunits$Undeleteproject
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Tenancyunits$Undeleteproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3581,20 +3682,23 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://serviceconsumermanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:undeleteProject')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:undeleteProject').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3604,12 +3708,12 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Tenancyunits$Addproject extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Addproject
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the tenancy unit.
@@ -3622,11 +3726,11 @@ export namespace serviceconsumermanagement_v1 {
     requestBody?: Schema$AddTenantProjectRequest;
   }
   export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the tenancy unit.
@@ -3638,12 +3742,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$ApplyTenantProjectConfigRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Attachproject extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Attachproject
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the tenancy unit that the project will be attached to.
@@ -3655,12 +3759,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$AttachTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Create extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * services/{service}/{collection id}/{resource id} {collection id} is the
@@ -3677,24 +3781,24 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CreateTenancyUnitRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the tenancy unit to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$Deleteproject extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Deleteproject
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the tenancy unit. Such as
@@ -3707,12 +3811,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$DeleteTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$List extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Filter expression over tenancy resources field. Optional.
@@ -3738,12 +3842,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$Removeproject extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Removeproject
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the tenancy unit. Such as
@@ -3756,12 +3860,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$RemoveTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Undeleteproject extends
-      StandardParameters {
+  export interface Params$Resource$Services$Tenancyunits$Undeleteproject
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the tenancy unit. Such as

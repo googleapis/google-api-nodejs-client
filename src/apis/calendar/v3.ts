@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -157,7 +169,7 @@ export namespace calendar_v3 {
     /**
      * The scope of the rule.
      */
-    scope?: {type?: string; value?: string;};
+    scope?: {type?: string; value?: string};
   }
   export interface Schema$Calendar {
     /**
@@ -302,7 +314,7 @@ export namespace calendar_v3 {
      * The notifications that the authenticated user is receiving for this
      * calendar.
      */
-    notificationSettings?: {notifications?: Schema$CalendarNotification[];};
+    notificationSettings?: {notifications?: Schema$CalendarNotification[]};
     /**
      * Whether the calendar is the primary calendar of the authenticated user.
      * Read-only. Optional. The default is False.
@@ -373,7 +385,7 @@ export namespace calendar_v3 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string;};
+    params?: {[key: string]: string};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -414,13 +426,13 @@ export namespace calendar_v3 {
      * definition. A calendarListEntry resource refers to one of these color IDs
      * in its color field. Read-only.
      */
-    calendar?: {[key: string]: Schema$ColorDefinition;};
+    calendar?: {[key: string]: Schema$ColorDefinition};
     /**
      * A global palette of event colors, mapping from the color ID to its
      * definition. An event resource may refer to one of these color IDs in its
      * color field. Read-only.
      */
-    event?: {[key: string]: Schema$ColorDefinition;};
+    event?: {[key: string]: Schema$ColorDefinition};
     /**
      * Type of the resource (&quot;calendar#colors&quot;).
      */
@@ -486,7 +498,7 @@ export namespace calendar_v3 {
     addOnParameters?: Schema$ConferenceParametersAddOnParameters;
   }
   export interface Schema$ConferenceParametersAddOnParameters {
-    parameters?: {[key: string]: string;};
+    parameters?: {[key: string]: string};
   }
   export interface Schema$ConferenceProperties {
     /**
@@ -695,8 +707,12 @@ export namespace calendar_v3 {
     /**
      * The creator of the event. Read-only.
      */
-    creator?:
-        {displayName?: string; email?: string; id?: string; self?: boolean;};
+    creator?: {
+      displayName?: string;
+      email?: string;
+      id?: string;
+      self?: boolean;
+    };
     /**
      * Description of the event. Optional.
      */
@@ -720,8 +736,8 @@ export namespace calendar_v3 {
      * Extended properties of the event.
      */
     extendedProperties?: {
-      private?: {[key: string]: string;};
-      shared?: {[key: string]: string;};
+      private?: {[key: string]: string};
+      shared?: {[key: string]: string};
     };
     /**
      * A gadget that extends this event.
@@ -731,7 +747,7 @@ export namespace calendar_v3 {
       height?: number;
       iconLink?: string;
       link?: string;
-      preferences?: {[key: string]: string;};
+      preferences?: {[key: string]: string};
       title?: string;
       type?: string;
       width?: number;
@@ -808,8 +824,12 @@ export namespace calendar_v3 {
      * to True. To change the organizer, use the move operation. Read-only,
      * except when importing an event.
      */
-    organizer?:
-        {displayName?: string; email?: string; id?: string; self?: boolean;};
+    organizer?: {
+      displayName?: string;
+      email?: string;
+      id?: string;
+      self?: boolean;
+    };
     /**
      * For an instance of a recurring event, this is the time at which this
      * event would start according to the recurrence data in the recurring event
@@ -840,7 +860,7 @@ export namespace calendar_v3 {
     /**
      * Information about the event&#39;s reminders for the authenticated user.
      */
-    reminders?: {overrides?: Schema$EventReminder[]; useDefault?: boolean;};
+    reminders?: {overrides?: Schema$EventReminder[]; useDefault?: boolean};
     /**
      * Sequence number as per iCalendar.
      */
@@ -850,7 +870,7 @@ export namespace calendar_v3 {
      * email message or any document identifiable by an URL with HTTP or HTTPS
      * scheme. Can only be seen or modified by the creator of the event.
      */
-    source?: {title?: string; url?: string;};
+    source?: {title?: string; url?: string};
     /**
      * The (inclusive) start time of the event. For a recurring event, this is
      * the start time of the first instance.
@@ -1155,11 +1175,11 @@ export namespace calendar_v3 {
     /**
      * List of free/busy information for calendars.
      */
-    calendars?: {[key: string]: Schema$FreeBusyCalendar;};
+    calendars?: {[key: string]: Schema$FreeBusyCalendar};
     /**
      * Expansion of groups.
      */
-    groups?: {[key: string]: Schema$FreeBusyGroup;};
+    groups?: {[key: string]: Schema$FreeBusyGroup};
     /**
      * Type of the resource (&quot;calendar#freeBusy&quot;).
      */
@@ -1229,13 +1249,11 @@ export namespace calendar_v3 {
     start?: string;
   }
 
-
   export class Resource$Acl {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.acl.delete
@@ -1250,21 +1268,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Acl$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Acl$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Acl$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Acl$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Acl$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Acl$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Acl$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Acl$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1282,17 +1306,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1300,7 +1325,6 @@ export namespace calendar_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * calendar.acl.get
@@ -1315,19 +1339,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Acl$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AclRule>;
-    get(params: Params$Resource$Acl$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
-    get(params: Params$Resource$Acl$Get,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
+    get(
+      params?: Params$Resource$Acl$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AclRule>;
+    get(
+      params: Params$Resource$Acl$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
+    get(
+      params: Params$Resource$Acl$Get,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AclRule>): void;
-    get(paramsOrCallback?: Params$Resource$Acl$Get|
-        BodyResponseCallback<Schema$AclRule>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback?: BodyResponseCallback<Schema$AclRule>):
-        void|GaxiosPromise<Schema$AclRule> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Acl$Get
+        | BodyResponseCallback<Schema$AclRule>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>
+    ): void | GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1345,17 +1377,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1363,7 +1396,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
     }
-
 
     /**
      * calendar.acl.insert
@@ -1379,22 +1411,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Acl$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$AclRule>;
     insert(
-        params: Params$Resource$Acl$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
+      params?: Params$Resource$Acl$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AclRule>;
     insert(
-        params: Params$Resource$Acl$Insert,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
+      params: Params$Resource$Acl$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
+    insert(
+      params: Params$Resource$Acl$Insert,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$AclRule>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Acl$Insert|
-        BodyResponseCallback<Schema$AclRule>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback?: BodyResponseCallback<Schema$AclRule>):
-        void|GaxiosPromise<Schema$AclRule> {
+      paramsOrCallback?:
+        | Params$Resource$Acl$Insert
+        | BodyResponseCallback<Schema$AclRule>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>
+    ): void | GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1412,16 +1449,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1429,7 +1469,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
     }
-
 
     /**
      * calendar.acl.list
@@ -1447,22 +1486,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Acl$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Acl>;
     list(
-        params: Params$Resource$Acl$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Acl>,
-        callback: BodyResponseCallback<Schema$Acl>): void;
+      params?: Params$Resource$Acl$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Acl>;
     list(
-        params: Params$Resource$Acl$List,
-        callback: BodyResponseCallback<Schema$Acl>): void;
+      params: Params$Resource$Acl$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Acl>,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
+    list(
+      params: Params$Resource$Acl$List,
+      callback: BodyResponseCallback<Schema$Acl>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Acl>): void;
     list(
-        paramsOrCallback?: Params$Resource$Acl$List|
-        BodyResponseCallback<Schema$Acl>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Acl>,
-        callback?: BodyResponseCallback<Schema$Acl>):
-        void|GaxiosPromise<Schema$Acl> {
+      paramsOrCallback?:
+        | Params$Resource$Acl$List
+        | BodyResponseCallback<Schema$Acl>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Acl>,
+      callback?: BodyResponseCallback<Schema$Acl>
+    ): void | GaxiosPromise<Schema$Acl> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1480,16 +1524,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Acl>(parameters, callback);
@@ -1497,7 +1544,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$Acl>(parameters);
       }
     }
-
 
     /**
      * calendar.acl.patch
@@ -1515,22 +1561,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Acl$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$AclRule>;
     patch(
-        params: Params$Resource$Acl$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
+      params?: Params$Resource$Acl$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AclRule>;
     patch(
-        params: Params$Resource$Acl$Patch,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
+      params: Params$Resource$Acl$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
+    patch(
+      params: Params$Resource$Acl$Patch,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AclRule>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Acl$Patch|
-        BodyResponseCallback<Schema$AclRule>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback?: BodyResponseCallback<Schema$AclRule>):
-        void|GaxiosPromise<Schema$AclRule> {
+      paramsOrCallback?:
+        | Params$Resource$Acl$Patch
+        | BodyResponseCallback<Schema$AclRule>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>
+    ): void | GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1548,17 +1599,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1566,7 +1618,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
     }
-
 
     /**
      * calendar.acl.update
@@ -1583,22 +1634,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Acl$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$AclRule>;
     update(
-        params: Params$Resource$Acl$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
+      params?: Params$Resource$Acl$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AclRule>;
     update(
-        params: Params$Resource$Acl$Update,
-        callback: BodyResponseCallback<Schema$AclRule>): void;
+      params: Params$Resource$Acl$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
+    update(
+      params: Params$Resource$Acl$Update,
+      callback: BodyResponseCallback<Schema$AclRule>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AclRule>): void;
     update(
-        paramsOrCallback?: Params$Resource$Acl$Update|
-        BodyResponseCallback<Schema$AclRule>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-        callback?: BodyResponseCallback<Schema$AclRule>):
-        void|GaxiosPromise<Schema$AclRule> {
+      paramsOrCallback?:
+        | Params$Resource$Acl$Update
+        | BodyResponseCallback<Schema$AclRule>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>
+    ): void | GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1616,17 +1672,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1634,7 +1691,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
     }
-
 
     /**
      * calendar.acl.watch
@@ -1653,22 +1709,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Acl$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Acl$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Acl$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Acl$Watch,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Acl$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    watch(
+      params: Params$Resource$Acl$Watch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Acl$Watch|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Acl$Watch
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1686,16 +1747,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -1709,7 +1772,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -1726,7 +1789,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -1743,7 +1806,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -1766,7 +1829,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -1807,7 +1870,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -1835,7 +1898,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -1863,7 +1926,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -1906,13 +1969,11 @@ export namespace calendar_v3 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Calendarlist {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.calendarList.delete
@@ -1927,23 +1988,28 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Calendarlist$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Calendarlist$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Calendarlist$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Calendarlist$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Calendarlist$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Calendarlist$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Calendarlist$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Calendarlist$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Calendarlist$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Calendarlist$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1960,16 +2026,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1977,7 +2045,6 @@ export namespace calendar_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * calendar.calendarList.get
@@ -1991,20 +2058,29 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Calendarlist$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CalendarListEntry>;
-    get(params: Params$Resource$Calendarlist$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
-    get(params: Params$Resource$Calendarlist$Get,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
+    get(
+      params?: Params$Resource$Calendarlist$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CalendarListEntry>;
+    get(
+      params: Params$Resource$Calendarlist$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
+    get(
+      params: Params$Resource$Calendarlist$Get,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
-    get(paramsOrCallback?: Params$Resource$Calendarlist$Get|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|GaxiosPromise<Schema$CalendarListEntry> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Calendarlist$Get
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void | GaxiosPromise<Schema$CalendarListEntry> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendarlist$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2022,16 +2098,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2039,7 +2117,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
     }
-
 
     /**
      * calendar.calendarList.insert
@@ -2055,25 +2132,30 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Calendarlist$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CalendarListEntry>;
+      params?: Params$Resource$Calendarlist$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CalendarListEntry>;
     insert(
-        params: Params$Resource$Calendarlist$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
+      params: Params$Resource$Calendarlist$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
     insert(
-        params: Params$Resource$Calendarlist$Insert,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
+      params: Params$Resource$Calendarlist$Insert,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Calendarlist$Insert|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|GaxiosPromise<Schema$CalendarListEntry> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Calendarlist$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Calendarlist$Insert
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void | GaxiosPromise<Schema$CalendarListEntry> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Calendarlist$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2090,16 +2172,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/calendarList')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2107,7 +2192,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
     }
-
 
     /**
      * calendar.calendarList.list
@@ -2126,25 +2210,31 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Calendarlist$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CalendarList>;
     list(
-        params: Params$Resource$Calendarlist$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CalendarList>,
-        callback: BodyResponseCallback<Schema$CalendarList>): void;
+      params?: Params$Resource$Calendarlist$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CalendarList>;
     list(
-        params: Params$Resource$Calendarlist$List,
-        callback: BodyResponseCallback<Schema$CalendarList>): void;
+      params: Params$Resource$Calendarlist$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CalendarList>,
+      callback: BodyResponseCallback<Schema$CalendarList>
+    ): void;
+    list(
+      params: Params$Resource$Calendarlist$List,
+      callback: BodyResponseCallback<Schema$CalendarList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CalendarList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Calendarlist$List|
-        BodyResponseCallback<Schema$CalendarList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CalendarList>,
-        callback?: BodyResponseCallback<Schema$CalendarList>):
-        void|GaxiosPromise<Schema$CalendarList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Calendarlist$List;
+      paramsOrCallback?:
+        | Params$Resource$Calendarlist$List
+        | BodyResponseCallback<Schema$CalendarList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CalendarList>,
+      callback?: BodyResponseCallback<Schema$CalendarList>
+    ): void | GaxiosPromise<Schema$CalendarList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Calendarlist$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2161,16 +2251,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/calendarList')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CalendarList>(parameters, callback);
@@ -2178,7 +2271,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$CalendarList>(parameters);
       }
     }
-
 
     /**
      * calendar.calendarList.patch
@@ -2195,25 +2287,31 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Calendarlist$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$CalendarListEntry>;
     patch(
-        params: Params$Resource$Calendarlist$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
+      params?: Params$Resource$Calendarlist$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CalendarListEntry>;
     patch(
-        params: Params$Resource$Calendarlist$Patch,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
+      params: Params$Resource$Calendarlist$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
+    patch(
+      params: Params$Resource$Calendarlist$Patch,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Calendarlist$Patch|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|GaxiosPromise<Schema$CalendarListEntry> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Calendarlist$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Calendarlist$Patch
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void | GaxiosPromise<Schema$CalendarListEntry> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Calendarlist$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2230,16 +2328,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2247,7 +2347,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
     }
-
 
     /**
      * calendar.calendarList.update
@@ -2264,25 +2363,30 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Calendarlist$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CalendarListEntry>;
+      params?: Params$Resource$Calendarlist$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CalendarListEntry>;
     update(
-        params: Params$Resource$Calendarlist$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
+      params: Params$Resource$Calendarlist$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
     update(
-        params: Params$Resource$Calendarlist$Update,
-        callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
+      params: Params$Resource$Calendarlist$Update,
+      callback: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
     update(
-        paramsOrCallback?: Params$Resource$Calendarlist$Update|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CalendarListEntry>,
-        callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|GaxiosPromise<Schema$CalendarListEntry> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Calendarlist$Update;
+      paramsOrCallback?:
+        | Params$Resource$Calendarlist$Update
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>
+    ): void | GaxiosPromise<Schema$CalendarListEntry> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Calendarlist$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2299,16 +2403,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2316,7 +2422,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
     }
-
 
     /**
      * calendar.calendarList.watch
@@ -2336,24 +2441,29 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Calendarlist$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Calendarlist$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Calendarlist$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Calendarlist$Watch,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Calendarlist$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    watch(
+      params: Params$Resource$Calendarlist$Watch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Calendarlist$Watch|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Calendarlist$Watch;
+      paramsOrCallback?:
+        | Params$Resource$Calendarlist$Watch
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Calendarlist$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2370,16 +2480,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/calendarList/watch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/watch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -2389,12 +2502,12 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Calendarlist$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Calendarlist$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -2407,7 +2520,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -2416,12 +2529,12 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendarlist$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Calendarlist$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to use the foregroundColor and backgroundColor fields to write
@@ -2436,12 +2549,12 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$List extends
-      StandardParameters {
+  export interface Params$Resource$Calendarlist$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of entries returned on one result page. By default the
@@ -2484,12 +2597,12 @@ export namespace calendar_v3 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Calendarlist$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Calendarlist$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -2510,12 +2623,12 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Update extends
-      StandardParameters {
+  export interface Params$Resource$Calendarlist$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -2536,12 +2649,12 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Watch extends
-      StandardParameters {
+  export interface Params$Resource$Calendarlist$Watch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of entries returned on one result page. By default the
@@ -2590,13 +2703,11 @@ export namespace calendar_v3 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Calendars {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.calendars.clear
@@ -2611,21 +2722,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear(params?: Params$Resource$Calendars$Clear, options?: MethodOptions):
-        GaxiosPromise<void>;
     clear(
-        params: Params$Resource$Calendars$Clear,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Calendars$Clear,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     clear(
-        params: Params$Resource$Calendars$Clear,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Calendars$Clear,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    clear(
+      params: Params$Resource$Calendars$Clear,
+      callback: BodyResponseCallback<void>
+    ): void;
     clear(callback: BodyResponseCallback<void>): void;
     clear(
-        paramsOrCallback?: Params$Resource$Calendars$Clear|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Calendars$Clear
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2643,16 +2760,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/clear')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/clear'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2660,7 +2779,6 @@ export namespace calendar_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * calendar.calendars.delete
@@ -2675,21 +2793,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Calendars$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Calendars$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Calendars$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Calendars$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Calendars$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Calendars$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Calendars$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Calendars$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2707,16 +2831,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2724,7 +2851,6 @@ export namespace calendar_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * calendar.calendars.get
@@ -2738,19 +2864,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Calendars$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Calendar>;
-    get(params: Params$Resource$Calendars$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
-    get(params: Params$Resource$Calendars$Get,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
+    get(
+      params?: Params$Resource$Calendars$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Calendar>;
+    get(
+      params: Params$Resource$Calendars$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
+    get(
+      params: Params$Resource$Calendars$Get,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Calendar>): void;
-    get(paramsOrCallback?: Params$Resource$Calendars$Get|
-        BodyResponseCallback<Schema$Calendar>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback?: BodyResponseCallback<Schema$Calendar>):
-        void|GaxiosPromise<Schema$Calendar> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Calendars$Get
+        | BodyResponseCallback<Schema$Calendar>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>
+    ): void | GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2768,16 +2902,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2785,7 +2922,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$Calendar>(parameters);
       }
     }
-
 
     /**
      * calendar.calendars.insert
@@ -2799,22 +2935,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Calendars$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Calendar>;
     insert(
-        params: Params$Resource$Calendars$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
+      params?: Params$Resource$Calendars$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Calendar>;
     insert(
-        params: Params$Resource$Calendars$Insert,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
+      params: Params$Resource$Calendars$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
+    insert(
+      params: Params$Resource$Calendars$Insert,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Calendar>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Calendars$Insert|
-        BodyResponseCallback<Schema$Calendar>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback?: BodyResponseCallback<Schema$Calendar>):
-        void|GaxiosPromise<Schema$Calendar> {
+      paramsOrCallback?:
+        | Params$Resource$Calendars$Insert
+        | BodyResponseCallback<Schema$Calendar>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>
+    ): void | GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2832,16 +2973,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/calendars').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2849,7 +2993,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$Calendar>(parameters);
       }
     }
-
 
     /**
      * calendar.calendars.patch
@@ -2865,22 +3008,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Calendars$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Calendar>;
     patch(
-        params: Params$Resource$Calendars$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
+      params?: Params$Resource$Calendars$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Calendar>;
     patch(
-        params: Params$Resource$Calendars$Patch,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
+      params: Params$Resource$Calendars$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
+    patch(
+      params: Params$Resource$Calendars$Patch,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Calendar>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Calendars$Patch|
-        BodyResponseCallback<Schema$Calendar>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback?: BodyResponseCallback<Schema$Calendar>):
-        void|GaxiosPromise<Schema$Calendar> {
+      paramsOrCallback?:
+        | Params$Resource$Calendars$Patch
+        | BodyResponseCallback<Schema$Calendar>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>
+    ): void | GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2898,16 +3046,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2915,7 +3066,6 @@ export namespace calendar_v3 {
         return createAPIRequest<Schema$Calendar>(parameters);
       }
     }
-
 
     /**
      * calendar.calendars.update
@@ -2930,22 +3080,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Calendars$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Calendar>;
     update(
-        params: Params$Resource$Calendars$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
+      params?: Params$Resource$Calendars$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Calendar>;
     update(
-        params: Params$Resource$Calendars$Update,
-        callback: BodyResponseCallback<Schema$Calendar>): void;
+      params: Params$Resource$Calendars$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
+    update(
+      params: Params$Resource$Calendars$Update,
+      callback: BodyResponseCallback<Schema$Calendar>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Calendar>): void;
     update(
-        paramsOrCallback?: Params$Resource$Calendars$Update|
-        BodyResponseCallback<Schema$Calendar>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-        callback?: BodyResponseCallback<Schema$Calendar>):
-        void|GaxiosPromise<Schema$Calendar> {
+      paramsOrCallback?:
+        | Params$Resource$Calendars$Update
+        | BodyResponseCallback<Schema$Calendar>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>
+    ): void | GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2963,16 +3118,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2986,7 +3144,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -2999,7 +3157,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -3012,7 +3170,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -3025,8 +3183,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3037,7 +3194,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -3055,7 +3212,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -3070,13 +3227,11 @@ export namespace calendar_v3 {
     requestBody?: Schema$Calendar;
   }
 
-
   export class Resource$Channels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.channels.stop
@@ -3090,21 +3245,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Channels$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channels$Stop,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      callback: BodyResponseCallback<void>
+    ): void;
     stop(callback: BodyResponseCallback<void>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Channels$Stop|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$Stop
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3122,16 +3283,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/channels/stop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/channels/stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3145,8 +3309,7 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3154,13 +3317,11 @@ export namespace calendar_v3 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Colors {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.colors.get
@@ -3173,19 +3334,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Colors$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Colors>;
-    get(params: Params$Resource$Colors$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Colors>,
-        callback: BodyResponseCallback<Schema$Colors>): void;
-    get(params: Params$Resource$Colors$Get,
-        callback: BodyResponseCallback<Schema$Colors>): void;
+    get(
+      params?: Params$Resource$Colors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Colors>;
+    get(
+      params: Params$Resource$Colors$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Colors>,
+      callback: BodyResponseCallback<Schema$Colors>
+    ): void;
+    get(
+      params: Params$Resource$Colors$Get,
+      callback: BodyResponseCallback<Schema$Colors>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Colors>): void;
-    get(paramsOrCallback?: Params$Resource$Colors$Get|
-        BodyResponseCallback<Schema$Colors>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Colors>,
-        callback?: BodyResponseCallback<Schema$Colors>):
-        void|GaxiosPromise<Schema$Colors> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Colors$Get
+        | BodyResponseCallback<Schema$Colors>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Colors>,
+      callback?: BodyResponseCallback<Schema$Colors>
+    ): void | GaxiosPromise<Schema$Colors> {
       let params = (paramsOrCallback || {}) as Params$Resource$Colors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3203,16 +3372,19 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/colors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/colors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Colors>(parameters, callback);
@@ -3226,16 +3398,14 @@ export namespace calendar_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Events {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.events.delete
@@ -3252,21 +3422,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Events$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Events$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Events$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Events$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Events$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Events$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Events$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3284,17 +3460,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3302,7 +3479,6 @@ export namespace calendar_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * calendar.events.get
@@ -3320,19 +3496,27 @@ export namespace calendar_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Events$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Event>;
-    get(params: Params$Resource$Events$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback: BodyResponseCallback<Schema$Event>): void;
-    get(params: Params$Resource$Events$Get,
-        callback: BodyResponseCallback<Schema$Event>): void;
+    get(
+      params?: Params$Resource$Events$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Event>;
+    get(
+      params: Params$Resource$Events$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    get(
+      params: Params$Resource$Events$Get,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Event>): void;
-    get(paramsOrCallback?: Params$Resource$Events$Get|
-        BodyResponseCallback<Schema$Event>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback?: BodyResponseCallback<Schema$Event>):
-        void|GaxiosPromise<Schema$Event> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Events$Get
+        | BodyResponseCallback<Schema$Event>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>
+    ): void | GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3350,17 +3534,18 @@ export namespace calendar_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3369,80 +3554,119 @@ export namespace calendar_v3 {
       }
     }
 
+    /**
+     * calendar.events.import
+     * @desc Imports an event. This operation is used to add a private copy of an
+     * existing event to a calendar.
+     * @alias calendar.events.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+     * @param {().Event} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Events$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Event>;
+    import(
+      params: Params$Resource$Events$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    import(
+      params: Params$Resource$Events$Import,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Event>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Events$Import
+        | BodyResponseCallback<Schema$Event>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>
+    ): void | GaxiosPromise<Schema$Event> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Events$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
 
-/**
- * calendar.events.import
- * @desc Imports an event. This operation is used to add a private copy of an
- * existing event to a calendar.
- * @alias calendar.events.import
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
- * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
- * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
- * @param {().Event} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-import(params?: Params$Resource$Events$Import, options?: MethodOptions): GaxiosPromise<Schema$Event>;
-import(params: Params$Resource$Events$Import, options: MethodOptions|BodyResponseCallback<Schema$Event>, callback: BodyResponseCallback<Schema$Event>): void;
-import(params: Params$Resource$Events$Import, callback: BodyResponseCallback<Schema$Event>): void;
-import(callback: BodyResponseCallback<Schema$Event>): void;
-import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Schema$Event>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>, callback?: BodyResponseCallback<Schema$Event>): void|GaxiosPromise<Schema$Event> {let params = (paramsOrCallback || {}) as Params$Resource$Events$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Events$Import;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                        if(typeof paramsOrCallback === 'function') {
-    callback = paramsOrCallback;
-    params = {} as Params$Resource$Events$Import;
-    options = {};
-                                                                                                                                                                                                                                                        }
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                        if(typeof optionsOrCallback === 'function') {
-    callback = optionsOrCallback;
-    options = {};
-                                                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context: this.context}; if(callback) {
-    createAPIRequest<Schema$Event>(parameters, callback);
-                                                                                                                                                                                                                                                        } else {
-    return createAPIRequest<Schema$Event>(parameters);
-                                                                                                                                                                                                                                                        }}
-
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events/import'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['calendarId'],
+        pathParams: ['calendarId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Event>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Event>(parameters);
+      }
+    }
 
     /**
- * calendar.events.insert
- * @desc Creates an event.
- * @alias calendar.events.insert
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
- * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
- * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
- * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
- * @param {string=} params.sendUpdates Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.
- * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-      * @param {().Event} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-    insert(params?: Params$Resource$Events$Insert, options?: MethodOptions): GaxiosPromise<Schema$Event>;
+     * calendar.events.insert
+     * @desc Creates an event.
+     * @alias calendar.events.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.
+     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+     * @param {().Event} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
     insert(
-        params: Params$Resource$Events$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params?: Params$Resource$Events$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Event>;
     insert(
-        params: Params$Resource$Events$Insert,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params: Params$Resource$Events$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    insert(
+      params: Params$Resource$Events$Insert,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Event>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Events$Insert|
-        BodyResponseCallback<Schema$Event>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback?: BodyResponseCallback<Schema$Event>):
-        void|GaxiosPromise<Schema$Event> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Insert
+        | BodyResponseCallback<Schema$Event>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>
+    ): void | GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3460,16 +3684,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3477,7 +3703,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Event>(parameters);
       }
     }
-
 
     /**
      * calendar.events.instances
@@ -3502,22 +3727,26 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     instances(
-        params?: Params$Resource$Events$Instances,
-        options?: MethodOptions): GaxiosPromise<Schema$Events>;
+      params?: Params$Resource$Events$Instances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Events>;
     instances(
-        params: Params$Resource$Events$Instances,
-        options: MethodOptions|BodyResponseCallback<Schema$Events>,
-        callback: BodyResponseCallback<Schema$Events>): void;
+      params: Params$Resource$Events$Instances,
+      options: MethodOptions | BodyResponseCallback<Schema$Events>,
+      callback: BodyResponseCallback<Schema$Events>
+    ): void;
     instances(
-        params: Params$Resource$Events$Instances,
-        callback: BodyResponseCallback<Schema$Events>): void;
+      params: Params$Resource$Events$Instances,
+      callback: BodyResponseCallback<Schema$Events>
+    ): void;
     instances(callback: BodyResponseCallback<Schema$Events>): void;
     instances(
-        paramsOrCallback?: Params$Resource$Events$Instances|
-        BodyResponseCallback<Schema$Events>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Events>,
-        callback?: BodyResponseCallback<Schema$Events>):
-        void|GaxiosPromise<Schema$Events> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Instances
+        | BodyResponseCallback<Schema$Events>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Events>,
+      callback?: BodyResponseCallback<Schema$Events>
+    ): void | GaxiosPromise<Schema$Events> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Instances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3535,18 +3764,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Events>(parameters, callback);
@@ -3554,7 +3784,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Events>(parameters);
       }
     }
-
 
     /**
      * calendar.events.list
@@ -3585,22 +3814,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Events$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Events>;
     list(
-        params: Params$Resource$Events$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Events>,
-        callback: BodyResponseCallback<Schema$Events>): void;
+      params?: Params$Resource$Events$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Events>;
     list(
-        params: Params$Resource$Events$List,
-        callback: BodyResponseCallback<Schema$Events>): void;
+      params: Params$Resource$Events$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Events>,
+      callback: BodyResponseCallback<Schema$Events>
+    ): void;
+    list(
+      params: Params$Resource$Events$List,
+      callback: BodyResponseCallback<Schema$Events>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Events>): void;
     list(
-        paramsOrCallback?: Params$Resource$Events$List|
-        BodyResponseCallback<Schema$Events>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Events>,
-        callback?: BodyResponseCallback<Schema$Events>):
-        void|GaxiosPromise<Schema$Events> {
+      paramsOrCallback?:
+        | Params$Resource$Events$List
+        | BodyResponseCallback<Schema$Events>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Events>,
+      callback?: BodyResponseCallback<Schema$Events>
+    ): void | GaxiosPromise<Schema$Events> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3618,16 +3852,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Events>(parameters, callback);
@@ -3635,7 +3871,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Events>(parameters);
       }
     }
-
 
     /**
      * calendar.events.move
@@ -3654,22 +3889,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move(params?: Params$Resource$Events$Move, options?: MethodOptions):
-        GaxiosPromise<Schema$Event>;
     move(
-        params: Params$Resource$Events$Move,
-        options: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params?: Params$Resource$Events$Move,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Event>;
     move(
-        params: Params$Resource$Events$Move,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params: Params$Resource$Events$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    move(
+      params: Params$Resource$Events$Move,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
     move(callback: BodyResponseCallback<Schema$Event>): void;
     move(
-        paramsOrCallback?: Params$Resource$Events$Move|
-        BodyResponseCallback<Schema$Event>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback?: BodyResponseCallback<Schema$Event>):
-        void|GaxiosPromise<Schema$Event> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Move
+        | BodyResponseCallback<Schema$Event>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>
+    ): void | GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3687,17 +3927,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}/move')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/calendar/v3/calendars/{calendarId}/events/{eventId}/move'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'eventId', 'destination'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3705,7 +3947,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Event>(parameters);
       }
     }
-
 
     /**
      * calendar.events.patch
@@ -3727,22 +3968,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Events$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Event>;
     patch(
-        params: Params$Resource$Events$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params?: Params$Resource$Events$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Event>;
     patch(
-        params: Params$Resource$Events$Patch,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params: Params$Resource$Events$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    patch(
+      params: Params$Resource$Events$Patch,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Event>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Events$Patch|
-        BodyResponseCallback<Schema$Event>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback?: BodyResponseCallback<Schema$Event>):
-        void|GaxiosPromise<Schema$Event> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Patch
+        | BodyResponseCallback<Schema$Event>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>
+    ): void | GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3760,17 +4006,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3778,7 +4025,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Event>(parameters);
       }
     }
-
 
     /**
      * calendar.events.quickAdd
@@ -3795,22 +4041,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    quickAdd(params?: Params$Resource$Events$Quickadd, options?: MethodOptions):
-        GaxiosPromise<Schema$Event>;
     quickAdd(
-        params: Params$Resource$Events$Quickadd,
-        options: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params?: Params$Resource$Events$Quickadd,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Event>;
     quickAdd(
-        params: Params$Resource$Events$Quickadd,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params: Params$Resource$Events$Quickadd,
+      options: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    quickAdd(
+      params: Params$Resource$Events$Quickadd,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
     quickAdd(callback: BodyResponseCallback<Schema$Event>): void;
     quickAdd(
-        paramsOrCallback?: Params$Resource$Events$Quickadd|
-        BodyResponseCallback<Schema$Event>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback?: BodyResponseCallback<Schema$Event>):
-        void|GaxiosPromise<Schema$Event> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Quickadd
+        | BodyResponseCallback<Schema$Event>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>
+    ): void | GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Quickadd;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3828,17 +4079,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/quickAdd')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events/quickAdd'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'text'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3846,7 +4098,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Event>(parameters);
       }
     }
-
 
     /**
      * calendar.events.update
@@ -3868,22 +4119,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Events$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Event>;
     update(
-        params: Params$Resource$Events$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params?: Params$Resource$Events$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Event>;
     update(
-        params: Params$Resource$Events$Update,
-        callback: BodyResponseCallback<Schema$Event>): void;
+      params: Params$Resource$Events$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
+    update(
+      params: Params$Resource$Events$Update,
+      callback: BodyResponseCallback<Schema$Event>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Event>): void;
     update(
-        paramsOrCallback?: Params$Resource$Events$Update|
-        BodyResponseCallback<Schema$Event>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
-        callback?: BodyResponseCallback<Schema$Event>):
-        void|GaxiosPromise<Schema$Event> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Update
+        | BodyResponseCallback<Schema$Event>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>
+    ): void | GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3901,17 +4157,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events/{eventId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3919,7 +4176,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Event>(parameters);
       }
     }
-
 
     /**
      * calendar.events.watch
@@ -3951,22 +4207,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Events$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Events$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Events$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Events$Watch,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Events$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    watch(
+      params: Params$Resource$Events$Watch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Events$Watch|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Watch
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3984,17 +4245,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -4008,7 +4270,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -4036,7 +4298,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to always include a value in the email field for the organizer,
@@ -4073,7 +4335,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -4104,7 +4366,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -4153,7 +4415,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to always include a value in the email field for the organizer,
@@ -4222,7 +4484,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to always include a value in the email field for the organizer,
@@ -4354,7 +4616,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier of the source calendar where the event currently is
@@ -4387,7 +4649,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to always include a value in the email field for the organizer,
@@ -4449,7 +4711,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list
@@ -4478,7 +4740,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to always include a value in the email field for the organizer,
@@ -4540,7 +4802,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to always include a value in the email field for the organizer,
@@ -4674,13 +4936,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Freebusy {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.freebusy.query
@@ -4694,23 +4954,29 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: Params$Resource$Freebusy$Query, options?: MethodOptions):
-        GaxiosPromise<Schema$FreeBusyResponse>;
     query(
-        params: Params$Resource$Freebusy$Query,
-        options: MethodOptions|BodyResponseCallback<Schema$FreeBusyResponse>,
-        callback: BodyResponseCallback<Schema$FreeBusyResponse>): void;
+      params?: Params$Resource$Freebusy$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FreeBusyResponse>;
     query(
-        params: Params$Resource$Freebusy$Query,
-        callback: BodyResponseCallback<Schema$FreeBusyResponse>): void;
+      params: Params$Resource$Freebusy$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$FreeBusyResponse>,
+      callback: BodyResponseCallback<Schema$FreeBusyResponse>
+    ): void;
+    query(
+      params: Params$Resource$Freebusy$Query,
+      callback: BodyResponseCallback<Schema$FreeBusyResponse>
+    ): void;
     query(callback: BodyResponseCallback<Schema$FreeBusyResponse>): void;
     query(
-        paramsOrCallback?: Params$Resource$Freebusy$Query|
-        BodyResponseCallback<Schema$FreeBusyResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FreeBusyResponse>,
-        callback?: BodyResponseCallback<Schema$FreeBusyResponse>):
-        void|GaxiosPromise<Schema$FreeBusyResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Freebusy$Query
+        | BodyResponseCallback<Schema$FreeBusyResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FreeBusyResponse>,
+      callback?: BodyResponseCallback<Schema$FreeBusyResponse>
+    ): void | GaxiosPromise<Schema$FreeBusyResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Freebusy$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4728,16 +4994,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/freeBusy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/freeBusy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FreeBusyResponse>(parameters, callback);
@@ -4751,8 +5020,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -4760,13 +5028,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     requestBody?: Schema$FreeBusyRequest;
   }
 
-
   export class Resource$Settings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * calendar.settings.get
@@ -4780,19 +5046,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Settings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Setting>;
-    get(params: Params$Resource$Settings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Setting>,
-        callback: BodyResponseCallback<Schema$Setting>): void;
-    get(params: Params$Resource$Settings$Get,
-        callback: BodyResponseCallback<Schema$Setting>): void;
+    get(
+      params?: Params$Resource$Settings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Setting>;
+    get(
+      params: Params$Resource$Settings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Setting>,
+      callback: BodyResponseCallback<Schema$Setting>
+    ): void;
+    get(
+      params: Params$Resource$Settings$Get,
+      callback: BodyResponseCallback<Schema$Setting>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Setting>): void;
-    get(paramsOrCallback?: Params$Resource$Settings$Get|
-        BodyResponseCallback<Schema$Setting>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Setting>,
-        callback?: BodyResponseCallback<Schema$Setting>):
-        void|GaxiosPromise<Schema$Setting> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Settings$Get
+        | BodyResponseCallback<Schema$Setting>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Setting>,
+      callback?: BodyResponseCallback<Schema$Setting>
+    ): void | GaxiosPromise<Schema$Setting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4810,16 +5084,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/settings/{setting}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/users/me/settings/{setting}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['setting'],
         pathParams: ['setting'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Setting>(parameters, callback);
@@ -4827,7 +5104,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Setting>(parameters);
       }
     }
-
 
     /**
      * calendar.settings.list
@@ -4843,22 +5119,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Settings$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Settings>;
     list(
-        params: Params$Resource$Settings$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params?: Params$Resource$Settings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Settings>;
     list(
-        params: Params$Resource$Settings$List,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$Settings$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
+    list(
+      params: Params$Resource$Settings$List,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Settings>): void;
     list(
-        paramsOrCallback?: Params$Resource$Settings$List|
-        BodyResponseCallback<Schema$Settings>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback?: BodyResponseCallback<Schema$Settings>):
-        void|GaxiosPromise<Schema$Settings> {
+      paramsOrCallback?:
+        | Params$Resource$Settings$List
+        | BodyResponseCallback<Schema$Settings>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback?: BodyResponseCallback<Schema$Settings>
+    ): void | GaxiosPromise<Schema$Settings> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4876,16 +5157,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/settings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/users/me/settings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -4893,7 +5177,6 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         return createAPIRequest<Schema$Settings>(parameters);
       }
     }
-
 
     /**
      * calendar.settings.watch
@@ -4910,22 +5193,27 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Settings$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Settings$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Settings$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Settings$Watch,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Settings$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    watch(
+      params: Params$Resource$Settings$Watch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Settings$Watch|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Settings$Watch
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4943,16 +5231,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/calendar/v3/users/me/settings/watch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/calendar/v3/users/me/settings/watch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -4966,7 +5257,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of the user setting.
@@ -4977,7 +5268,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of entries returned on one result page. By default the
@@ -5004,7 +5295,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of entries returned on one result page. By default the

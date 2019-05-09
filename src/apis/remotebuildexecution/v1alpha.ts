@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -164,8 +176,7 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * The details of the execution that originally produced this result.
      */
-    executionMetadata?:
-        Schema$BuildBazelRemoteExecutionV2ExecutedActionMetadata;
+    executionMetadata?: Schema$BuildBazelRemoteExecutionV2ExecutedActionMetadata;
     /**
      * The exit code of the command.
      */
@@ -291,8 +302,7 @@ export namespace remotebuildexecution_v1alpha {
      * name. Sorting of strings is done by code point, equivalently, by the
      * UTF-8 bytes.
      */
-    environmentVariables?:
-        Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable[];
+    environmentVariables?: Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable[];
     /**
      * A list of the output directories that the client expects to retrieve from
      * the action. Only the listed directories will be returned (an entire
@@ -548,7 +558,7 @@ export namespace remotebuildexecution_v1alpha {
      * worker&#39;s setup phase. The keys SHOULD be human readable so that a
      * client can display them to a user.
      */
-    serverLogs?: {[key: string]: Schema$BuildBazelRemoteExecutionV2LogFile;};
+    serverLogs?: {[key: string]: Schema$BuildBazelRemoteExecutionV2LogFile};
     /**
      * If the status has a code other than `OK`, it indicates that the action
      * did not finish execution. For example, if the operation times out during
@@ -876,8 +886,7 @@ export namespace remotebuildexecution_v1alpha {
      * Specifies the worker pool to create. The name in the worker pool, if
      * specified, is ignored.
      */
-    workerPool?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
+    workerPool?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
   }
   /**
    * The request used for `DeleteInstance`.
@@ -970,8 +979,7 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * The list of worker pools in a given instance.
      */
-    workerPools?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
+    workerPools?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
   }
   /**
    * The request used for UpdateWorkerPool.
@@ -990,8 +998,7 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * Specifies the worker pool to update.
      */
-    workerPool?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
+    workerPool?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
   }
   /**
    * Defines the configuration to be used for a creating workers in the worker
@@ -1047,8 +1054,7 @@ export namespace remotebuildexecution_v1alpha {
      * Specifies the properties, such as machine type and disk size, used for
      * creating workers in a worker pool.
      */
-    workerConfig?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig;
+    workerConfig?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig;
     /**
      * The desired number of workers in the worker pool. Must be a value between
      * 0 and 1000.
@@ -1087,8 +1093,7 @@ export namespace remotebuildexecution_v1alpha {
      * &quot;b2c941073e...&quot;,           size: 1294,         },
      * is_executable: true       }     ]   } } ```
      */
-    outputDirectories?:
-        Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory[];
+    outputDirectories?: Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory[];
     /**
      * The output files of the action. For each output file requested in the
      * `output_files` field of the Action, if the corresponding file existed
@@ -1155,8 +1160,7 @@ export namespace remotebuildexecution_v1alpha {
      * name. Sorting of strings is done by code point, equivalently, by the
      * UTF-8 bytes.
      */
-    environmentVariables?:
-        Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable[];
+    environmentVariables?: Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable[];
   }
   /**
    * An `EnvironmentVariable` is one variable to set in the running
@@ -1303,8 +1307,9 @@ export namespace remotebuildexecution_v1alpha {
      * worker&#39;s setup phase. The keys SHOULD be human readable so that a
      * client can display them to a user.
      */
-    serverLogs?:
-        {[key: string]: Schema$GoogleDevtoolsRemoteexecutionV1testLogFile;};
+    serverLogs?: {
+      [key: string]: Schema$GoogleDevtoolsRemoteexecutionV1testLogFile;
+    };
     /**
      * If the status has a code other than `OK`, it indicates that the action
      * did not finish execution. For example, if the operation times out during
@@ -1564,7 +1569,7 @@ export namespace remotebuildexecution_v1alpha {
      * considered an error for the bot to provide the server with a field that
      * it doesn&#39;t know about.
      */
-    metadata?: Array<{[key: string]: any;}>;
+    metadata?: Array<{[key: string]: any}>;
     /**
      * The output files. The blob referenced by the digest should contain one of
      * the following (implementation-dependent):    * A marshalled
@@ -1592,8 +1597,7 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * The expected outputs from the task.
      */
-    expectedOutputs?:
-        Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs;
+    expectedOutputs?: Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs;
     /**
      * The inputs to the task.
      */
@@ -1621,8 +1625,7 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * All environment variables required by the task.
      */
-    environmentVariables?:
-        Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable[];
+    environmentVariables?: Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable[];
     /**
      * The input filesystem to be set up prior to the task beginning. The
      * contents should be a repeated set of FileMetadata messages though other
@@ -1822,7 +1825,7 @@ export namespace remotebuildexecution_v1alpha {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1838,7 +1841,7 @@ export namespace remotebuildexecution_v1alpha {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1885,7 +1888,7 @@ export namespace remotebuildexecution_v1alpha {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1893,7 +1896,6 @@ export namespace remotebuildexecution_v1alpha {
      */
     message?: string;
   }
-
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1906,16 +1908,15 @@ export namespace remotebuildexecution_v1alpha {
     }
   }
 
-
   export class Resource$Projects$Instances {
     context: APIRequestContext;
     workerpools: Resource$Projects$Instances$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.workerpools =
-          new Resource$Projects$Instances$Workerpools(this.context);
+      this.workerpools = new Resource$Projects$Instances$Workerpools(
+        this.context
+      );
     }
-
 
     /**
      * remotebuildexecution.projects.instances.create
@@ -1934,30 +1935,34 @@ export namespace remotebuildexecution_v1alpha {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Create,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Instances$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
-        params: Params$Resource$Projects$Instances$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Create,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    create(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Create|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Create;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1971,29 +1976,33 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+parent}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.projects.instances.delete
@@ -2010,30 +2019,34 @@ export namespace remotebuildexecution_v1alpha {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Delete,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     delete(
-        params: Params$Resource$Projects$Instances$Delete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Delete,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    delete(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Delete|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Delete;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2047,28 +2060,30 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.projects.instances.get
@@ -2082,33 +2097,53 @@ export namespace remotebuildexecution_v1alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Get,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>;
-    get(params: Params$Resource$Projects$Instances$Get,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>):
-        void;
-    get(params: Params$Resource$Projects$Instances$Get,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>):
-        void;
-    get(callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Get|
-        BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>):
-        void|GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Get;
+    get(
+      params?: Params$Resource$Projects$Instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+    >;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+      >
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Get
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2122,31 +2157,31 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>(
-            parameters, callback);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>(
-            parameters);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+        >(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.projects.instances.list
@@ -2161,37 +2196,52 @@ export namespace remotebuildexecution_v1alpha {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$List,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>;
+      params?: Params$Resource$Projects$Instances$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+    >;
     list(
-        params: Params$Resource$Projects$Instances$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>):
-        void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$List|
-        BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$List
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2205,39 +2255,42 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+parent}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>(
-            parameters, callback);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>(
-            parameters);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the project containing the instance. Format:
@@ -2248,15 +2301,14 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * Request body metadata
      */
-    requestBody?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest;
+    requestBody?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the instance to delete. Format:
@@ -2264,12 +2316,12 @@ export namespace remotebuildexecution_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the instance to retrieve. Format:
@@ -2277,12 +2329,12 @@ export namespace remotebuildexecution_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the project. Format: `projects/[PROJECT_ID]`.
@@ -2295,7 +2347,6 @@ export namespace remotebuildexecution_v1alpha {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * remotebuildexecution.projects.instances.workerpools.create
@@ -2314,31 +2365,34 @@ export namespace remotebuildexecution_v1alpha {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Workerpools$Create,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Instances$Workerpools$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
-        params: Params$Resource$Projects$Instances$Workerpools$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Workerpools$Create,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    create(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Workerpools$Create|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Workerpools$Create;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Workerpools$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2352,29 +2406,33 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+parent}/workerpools')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/workerpools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.projects.instances.workerpools.delete
@@ -2392,31 +2450,34 @@ export namespace remotebuildexecution_v1alpha {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Workerpools$Delete,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Instances$Workerpools$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     delete(
-        params: Params$Resource$Projects$Instances$Workerpools$Delete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Workerpools$Delete,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    delete(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Workerpools$Delete|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Workerpools$Delete;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Workerpools$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2430,28 +2491,30 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.projects.instances.workerpools.get
@@ -2465,33 +2528,53 @@ export namespace remotebuildexecution_v1alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Workerpools$Get,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>;
-    get(params: Params$Resource$Projects$Instances$Workerpools$Get,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>):
-        void;
-    get(params: Params$Resource$Projects$Instances$Workerpools$Get,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>):
-        void;
-    get(callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Workerpools$Get|
-        BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>):
-        void|GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Workerpools$Get;
+    get(
+      params?: Params$Resource$Projects$Instances$Workerpools$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+    >;
+    get(
+      params: Params$Resource$Projects$Instances$Workerpools$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+      >
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Workerpools$Get,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Workerpools$Get
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Workerpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2505,31 +2588,31 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>(
-            parameters, callback);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>(
-            parameters);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+        >(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.projects.instances.workerpools.list
@@ -2544,37 +2627,52 @@ export namespace remotebuildexecution_v1alpha {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Workerpools$List,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>;
+      params?: Params$Resource$Projects$Instances$Workerpools$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+    >;
     list(
-        params: Params$Resource$Projects$Instances$Workerpools$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Workerpools$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>):
-        void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Workerpools$List|
-        BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Workerpools$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Workerpools$List
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Workerpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2588,32 +2686,34 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+parent}/workerpools')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/workerpools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>(
-            parameters, callback);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>(
-            parameters);
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.projects.instances.workerpools.patch
@@ -2632,30 +2732,34 @@ export namespace remotebuildexecution_v1alpha {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Instances$Workerpools$Patch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Instances$Workerpools$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     patch(
-        params: Params$Resource$Projects$Instances$Workerpools$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Instances$Workerpools$Patch,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    patch(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Instances$Workerpools$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Workerpools$Patch|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Workerpools$Patch;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Workerpools$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Workerpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2669,35 +2773,38 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Workerpools$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Workerpools$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the instance in which to create the new worker pool.
@@ -2708,15 +2815,14 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * Request body metadata
      */
-    requestBody?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest;
+    requestBody?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest;
   }
-  export interface Params$Resource$Projects$Instances$Workerpools$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Workerpools$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the worker pool to delete. Format:
@@ -2724,12 +2830,12 @@ export namespace remotebuildexecution_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Workerpools$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Workerpools$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the worker pool to retrieve. Format:
@@ -2737,12 +2843,12 @@ export namespace remotebuildexecution_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Workerpools$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Workerpools$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the instance. Format:
@@ -2750,12 +2856,12 @@ export namespace remotebuildexecution_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Workerpools$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Workerpools$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * WorkerPool resource name formatted as:
@@ -2768,18 +2874,14 @@ export namespace remotebuildexecution_v1alpha {
     /**
      * Request body metadata
      */
-    requestBody?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest;
+    requestBody?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest;
   }
-
-
 
   export class Resource$Projects$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * remotebuildexecution.projects.operations.get
@@ -2795,27 +2897,35 @@ export namespace remotebuildexecution_v1alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Operations$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    get(params: Params$Resource$Projects$Operations$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    get(params: Params$Resource$Projects$Operations$Get,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    get(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
+    get(
+      params?: Params$Resource$Projects$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2829,35 +2939,38 @@ export namespace remotebuildexecution_v1alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://admin-remotebuildexecution.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://admin-remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.

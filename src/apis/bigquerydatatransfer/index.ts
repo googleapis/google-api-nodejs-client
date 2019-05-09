@@ -17,17 +17,21 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {bigquerydatatransfer_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': bigquerydatatransfer_v1.Bigquerydatatransfer,
+  v1: bigquerydatatransfer_v1.Bigquerydatatransfer,
 };
 
-export function bigquerydatatransfer(version: 'v1'):
-    bigquerydatatransfer_v1.Bigquerydatatransfer;
-export function bigquerydatatransfer(options: bigquerydatatransfer_v1.Options):
-    bigquerydatatransfer_v1.Bigquerydatatransfer;
-export function
-bigquerydatatransfer<T = bigquerydatatransfer_v1.Bigquerydatatransfer>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|bigquerydatatransfer_v1.Options) {
+export function bigquerydatatransfer(
+  version: 'v1'
+): bigquerydatatransfer_v1.Bigquerydatatransfer;
+export function bigquerydatatransfer(
+  options: bigquerydatatransfer_v1.Options
+): bigquerydatatransfer_v1.Bigquerydatatransfer;
+export function bigquerydatatransfer<
+  T = bigquerydatatransfer_v1.Bigquerydatatransfer
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | bigquerydatatransfer_v1.Options
+) {
   return getAPI<T>('bigquerydatatransfer', versionOrOptions, VERSIONS, this);
 }
 

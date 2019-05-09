@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -431,7 +443,7 @@ export namespace bigquery_v2 {
      * updating a dataset. See Creating and Updating Dataset Labels for more
      * information.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * [Output-only] The date when this dataset or any of its tables was last
      * modified, in milliseconds since the epoch.
@@ -461,7 +473,7 @@ export namespace bigquery_v2 {
       friendlyName?: string;
       id?: string;
       kind?: string;
-      labels?: {[key: string]: string;};
+      labels?: {[key: string]: string};
       location?: string;
     }>;
     /**
@@ -513,7 +525,7 @@ export namespace bigquery_v2 {
      * table is newly created. If the table already exists and labels are
      * different than the current labels are provided, the job will fail.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
   }
   export interface Schema$EncryptionConfiguration {
     /**
@@ -937,7 +949,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * [Pick one] Configures a load job.
      */
@@ -1299,7 +1311,7 @@ export namespace bigquery_v2 {
      * source. By defining these properties, the data source can then be queried
      * as if it were a standard BigQuery table.
      */
-    tableDefinitions?: {[key: string]: Schema$ExternalDataConfiguration;};
+    tableDefinitions?: {[key: string]: Schema$ExternalDataConfiguration};
     /**
      * Time-based partitioning specification for the destination table. Only one
      * of timePartitioning and rangePartitioning should be specified.
@@ -1467,7 +1479,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{name?: string; slotMs?: string;}>;
+    reservationUsage?: Array<{name?: string; slotMs?: string}>;
     /**
      * [Output-only] Start time of this job, in milliseconds since the epoch.
      * This field will be present when the job transitions from the PENDING
@@ -1547,7 +1559,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{name?: string; slotMs?: string;}>;
+    reservationUsage?: Array<{name?: string; slotMs?: string}>;
     /**
      * [Output-only] The schema of the results. Present only for successful dry
      * run of non-legacy SQL queries.
@@ -1689,7 +1701,7 @@ export namespace bigquery_v2 {
      * options are immutable for subsequent training runs. Default values are
      * used for any options not specified in the input query.
      */
-    modelOptions?: {labels?: string[]; lossType?: string; modelType?: string;};
+    modelOptions?: {labels?: string[]; lossType?: string; modelType?: string};
     /**
      * [Output-only, Beta] Information about ml training runs, each training run
      * comprises of multiple iterations and there may be multiple training runs
@@ -1776,7 +1788,7 @@ export namespace bigquery_v2 {
      * [Optional] The struct field values, in order of the struct type&#39;s
      * declaration.
      */
-    structValues?: {[key: string]: Schema$QueryParameterValue;};
+    structValues?: {[key: string]: Schema$QueryParameterValue};
     /**
      * [Optional] The value of this value, if a simple scalar type.
      */
@@ -1956,7 +1968,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {end?: string; interval?: string; start?: string;};
+    range?: {end?: string; interval?: string; start?: string};
   }
   export interface Schema$RoutineReference {
     /**
@@ -2053,7 +2065,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * [Output-only] The time when this table was last modified, in milliseconds
      * since the epoch.
@@ -2160,7 +2172,7 @@ export namespace bigquery_v2 {
     /**
      * The rows to insert.
      */
-    rows?: Array<{insertId?: string; json?: Schema$JsonObject;}>;
+    rows?: Array<{insertId?: string; json?: Schema$JsonObject}>;
     /**
      * [Optional] Insert all valid rows of a request, even if invalid rows
      * exist. The default value is false, which causes the entire request to
@@ -2181,7 +2193,7 @@ export namespace bigquery_v2 {
     /**
      * An array of errors for rows that were not inserted.
      */
-    insertErrors?: Array<{errors?: Schema$ErrorProto[]; index?: number;}>;
+    insertErrors?: Array<{errors?: Schema$ErrorProto[]; index?: number}>;
     /**
      * The resource type of the response.
      */
@@ -2216,7 +2228,7 @@ export namespace bigquery_v2 {
      * [Optional] The categories attached to this field, used for field-level
      * access control.
      */
-    categories?: {names?: string[];};
+    categories?: {names?: string[]};
     /**
      * [Optional] The field description. The maximum length is 1,024 characters.
      */
@@ -2269,11 +2281,11 @@ export namespace bigquery_v2 {
       friendlyName?: string;
       id?: string;
       kind?: string;
-      labels?: {[key: string]: string;};
+      labels?: {[key: string]: string};
       tableReference?: Schema$TableReference;
       timePartitioning?: Schema$TimePartitioning;
       type?: string;
-      view?: {useLegacySql?: boolean;};
+      view?: {useLegacySql?: boolean};
     }>;
     /**
      * The total number of tables in the dataset.
@@ -2362,13 +2374,11 @@ export namespace bigquery_v2 {
     userDefinedFunctionResources?: Schema$UserDefinedFunctionResource[];
   }
 
-
   export class Resource$Datasets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigquery.datasets.delete
@@ -2440,21 +2450,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Datasets$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Datasets$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Datasets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Datasets$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Datasets$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Datasets$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Datasets$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2472,17 +2488,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2490,7 +2507,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * bigquery.datasets.get
@@ -2561,19 +2577,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Datasets$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
-    get(params: Params$Resource$Datasets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(params: Params$Resource$Datasets$Get,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(
+      params?: Params$Resource$Datasets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
+    get(
+      params: Params$Resource$Datasets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    get(
+      params: Params$Resource$Datasets$Get,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(paramsOrCallback?: Params$Resource$Datasets$Get|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Get
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2591,17 +2615,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2609,7 +2634,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
     }
-
 
     /**
      * bigquery.datasets.insert
@@ -2681,22 +2705,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Datasets$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Dataset>;
     insert(
-        params: Params$Resource$Datasets$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params?: Params$Resource$Datasets$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
     insert(
-        params: Params$Resource$Datasets$Insert,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params: Params$Resource$Datasets$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    insert(
+      params: Params$Resource$Datasets$Insert,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Dataset>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Datasets$Insert|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Insert
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2714,16 +2743,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/datasets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2731,7 +2762,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
     }
-
 
     /**
      * bigquery.datasets.list
@@ -2816,23 +2846,29 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Datasets$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DatasetList>;
     list(
-        params: Params$Resource$Datasets$List,
-        options: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
-        callback: BodyResponseCallback<Schema$DatasetList>): void;
+      params?: Params$Resource$Datasets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatasetList>;
     list(
-        params: Params$Resource$Datasets$List,
-        callback: BodyResponseCallback<Schema$DatasetList>): void;
+      params: Params$Resource$Datasets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$DatasetList>,
+      callback: BodyResponseCallback<Schema$DatasetList>
+    ): void;
+    list(
+      params: Params$Resource$Datasets$List,
+      callback: BodyResponseCallback<Schema$DatasetList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DatasetList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Datasets$List|
-        BodyResponseCallback<Schema$DatasetList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DatasetList>,
-        callback?: BodyResponseCallback<Schema$DatasetList>):
-        void|GaxiosPromise<Schema$DatasetList> {
+      paramsOrCallback?:
+        | Params$Resource$Datasets$List
+        | BodyResponseCallback<Schema$DatasetList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DatasetList>,
+      callback?: BodyResponseCallback<Schema$DatasetList>
+    ): void | GaxiosPromise<Schema$DatasetList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2850,16 +2886,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/bigquery/v2/projects/{projectId}/datasets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/datasets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DatasetList>(parameters, callback);
@@ -2867,7 +2905,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$DatasetList>(parameters);
       }
     }
-
 
     /**
      * bigquery.datasets.patch
@@ -2948,22 +2985,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Datasets$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Dataset>;
     patch(
-        params: Params$Resource$Datasets$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params?: Params$Resource$Datasets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
     patch(
-        params: Params$Resource$Datasets$Patch,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params: Params$Resource$Datasets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    patch(
+      params: Params$Resource$Datasets$Patch,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Dataset>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Datasets$Patch|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Patch
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2981,17 +3023,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2999,7 +3042,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
     }
-
 
     /**
      * bigquery.datasets.update
@@ -3079,22 +3121,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Datasets$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Dataset>;
     update(
-        params: Params$Resource$Datasets$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params?: Params$Resource$Datasets$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
     update(
-        params: Params$Resource$Datasets$Update,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params: Params$Resource$Datasets$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    update(
+      params: Params$Resource$Datasets$Update,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Dataset>): void;
     update(
-        paramsOrCallback?: Params$Resource$Datasets$Update|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Update
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3112,17 +3159,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/bigquery/v2/projects/{projectId}/datasets/{datasetId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/datasets/{datasetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -3136,7 +3184,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of dataset being deleted
@@ -3156,7 +3204,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the requested dataset
@@ -3171,7 +3219,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID of the new dataset
@@ -3187,7 +3235,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to list all datasets, including hidden ones
@@ -3219,7 +3267,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the dataset being updated
@@ -3239,7 +3287,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the dataset being updated
@@ -3256,13 +3304,11 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Dataset;
   }
 
-
   export class Resource$Jobs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigquery.jobs.cancel
@@ -3337,23 +3383,29 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Jobs$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$JobCancelResponse>;
     cancel(
-        params: Params$Resource$Jobs$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
-        callback: BodyResponseCallback<Schema$JobCancelResponse>): void;
+      params?: Params$Resource$Jobs$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$JobCancelResponse>;
     cancel(
-        params: Params$Resource$Jobs$Cancel,
-        callback: BodyResponseCallback<Schema$JobCancelResponse>): void;
+      params: Params$Resource$Jobs$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$JobCancelResponse>,
+      callback: BodyResponseCallback<Schema$JobCancelResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Jobs$Cancel,
+      callback: BodyResponseCallback<Schema$JobCancelResponse>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$JobCancelResponse>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Jobs$Cancel|
-        BodyResponseCallback<Schema$JobCancelResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$JobCancelResponse>,
-        callback?: BodyResponseCallback<Schema$JobCancelResponse>):
-        void|GaxiosPromise<Schema$JobCancelResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Cancel
+        | BodyResponseCallback<Schema$JobCancelResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$JobCancelResponse>,
+      callback?: BodyResponseCallback<Schema$JobCancelResponse>
+    ): void | GaxiosPromise<Schema$JobCancelResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3371,17 +3423,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$JobCancelResponse>(parameters, callback);
@@ -3389,7 +3442,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$JobCancelResponse>(parameters);
       }
     }
-
 
     /**
      * bigquery.jobs.get
@@ -3463,19 +3515,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Jobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    get(params: Params$Resource$Jobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    get(params: Params$Resource$Jobs$Get,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      params?: Params$Resource$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Job>): void;
-    get(paramsOrCallback?: Params$Resource$Jobs$Get|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Get
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3493,16 +3553,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/jobs/{jobId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3510,7 +3572,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * bigquery.jobs.getQueryResults
@@ -3600,27 +3661,34 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     getQueryResults(
-        params?: Params$Resource$Jobs$Getqueryresults,
-        options?: MethodOptions): GaxiosPromise<Schema$GetQueryResultsResponse>;
+      params?: Params$Resource$Jobs$Getqueryresults,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetQueryResultsResponse>;
     getQueryResults(
-        params: Params$Resource$Jobs$Getqueryresults,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetQueryResultsResponse>,
-        callback: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
+      params: Params$Resource$Jobs$Getqueryresults,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetQueryResultsResponse>,
+      callback: BodyResponseCallback<Schema$GetQueryResultsResponse>
+    ): void;
     getQueryResults(
-        params: Params$Resource$Jobs$Getqueryresults,
-        callback: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
+      params: Params$Resource$Jobs$Getqueryresults,
+      callback: BodyResponseCallback<Schema$GetQueryResultsResponse>
+    ): void;
     getQueryResults(
-        callback: BodyResponseCallback<Schema$GetQueryResultsResponse>): void;
+      callback: BodyResponseCallback<Schema$GetQueryResultsResponse>
+    ): void;
     getQueryResults(
-        paramsOrCallback?: Params$Resource$Jobs$Getqueryresults|
-        BodyResponseCallback<Schema$GetQueryResultsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetQueryResultsResponse>,
-        callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>):
-        void|GaxiosPromise<Schema$GetQueryResultsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Jobs$Getqueryresults;
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Getqueryresults
+        | BodyResponseCallback<Schema$GetQueryResultsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetQueryResultsResponse>,
+      callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>
+    ): void | GaxiosPromise<Schema$GetQueryResultsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Jobs$Getqueryresults;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3637,17 +3705,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/bigquery/v2/projects/{projectId}/queries/{jobId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/queries/{jobId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetQueryResultsResponse>(parameters, callback);
@@ -3655,7 +3724,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$GetQueryResultsResponse>(parameters);
       }
     }
-
 
     /**
      * bigquery.jobs.insert
@@ -3737,22 +3805,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Jobs$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Job>;
     insert(
-        params: Params$Resource$Jobs$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params?: Params$Resource$Jobs$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     insert(
-        params: Params$Resource$Jobs$Insert,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Jobs$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    insert(
+      params: Params$Resource$Jobs$Insert,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Job>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Jobs$Insert|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Insert
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3770,18 +3843,22 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/bigquery/v2/projects/{projectId}/jobs'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3789,7 +3866,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * bigquery.jobs.list
@@ -3880,22 +3956,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$JobList>;
     list(
-        params: Params$Resource$Jobs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$JobList>,
-        callback: BodyResponseCallback<Schema$JobList>): void;
+      params?: Params$Resource$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$JobList>;
     list(
-        params: Params$Resource$Jobs$List,
-        callback: BodyResponseCallback<Schema$JobList>): void;
+      params: Params$Resource$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$JobList>,
+      callback: BodyResponseCallback<Schema$JobList>
+    ): void;
+    list(
+      params: Params$Resource$Jobs$List,
+      callback: BodyResponseCallback<Schema$JobList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$JobList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Jobs$List|
-        BodyResponseCallback<Schema$JobList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$JobList>,
-        callback?: BodyResponseCallback<Schema$JobList>):
-        void|GaxiosPromise<Schema$JobList> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$List
+        | BodyResponseCallback<Schema$JobList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$JobList>,
+      callback?: BodyResponseCallback<Schema$JobList>
+    ): void | GaxiosPromise<Schema$JobList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3913,16 +3994,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/bigquery/v2/projects/{projectId}/jobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$JobList>(parameters, callback);
@@ -3930,7 +4014,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$JobList>(parameters);
       }
     }
-
 
     /**
      * bigquery.jobs.query
@@ -4003,23 +4086,29 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: Params$Resource$Jobs$Query, options?: MethodOptions):
-        GaxiosPromise<Schema$QueryResponse>;
     query(
-        params: Params$Resource$Jobs$Query,
-        options: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
-        callback: BodyResponseCallback<Schema$QueryResponse>): void;
+      params?: Params$Resource$Jobs$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryResponse>;
     query(
-        params: Params$Resource$Jobs$Query,
-        callback: BodyResponseCallback<Schema$QueryResponse>): void;
+      params: Params$Resource$Jobs$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryResponse>,
+      callback: BodyResponseCallback<Schema$QueryResponse>
+    ): void;
+    query(
+      params: Params$Resource$Jobs$Query,
+      callback: BodyResponseCallback<Schema$QueryResponse>
+    ): void;
     query(callback: BodyResponseCallback<Schema$QueryResponse>): void;
     query(
-        paramsOrCallback?: Params$Resource$Jobs$Query|
-        BodyResponseCallback<Schema$QueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QueryResponse>,
-        callback?: BodyResponseCallback<Schema$QueryResponse>):
-        void|GaxiosPromise<Schema$QueryResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Query
+        | BodyResponseCallback<Schema$QueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryResponse>,
+      callback?: BodyResponseCallback<Schema$QueryResponse>
+    ): void | GaxiosPromise<Schema$QueryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4037,16 +4126,18 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/bigquery/v2/projects/{projectId}/queries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/queries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);
@@ -4060,7 +4151,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Required] Job ID of the job to cancel
@@ -4081,7 +4172,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Required] Job ID of the requested job
@@ -4098,12 +4189,12 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Getqueryresults extends
-      StandardParameters {
+  export interface Params$Resource$Jobs$Getqueryresults
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Required] Job ID of the query job
@@ -4143,7 +4234,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID of the project that will be billed for the job
@@ -4174,7 +4265,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to display jobs owned by all users in the project. Default false
@@ -4216,7 +4307,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID of the project billed for the query
@@ -4229,13 +4320,11 @@ export namespace bigquery_v2 {
     requestBody?: Schema$QueryRequest;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigquery.projects.getServiceAccount
@@ -4304,28 +4393,34 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     getServiceAccount(
-        params?: Params$Resource$Projects$Getserviceaccount,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetServiceAccountResponse>;
+      params?: Params$Resource$Projects$Getserviceaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetServiceAccountResponse>;
     getServiceAccount(
-        params: Params$Resource$Projects$Getserviceaccount,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetServiceAccountResponse>,
-        callback: BodyResponseCallback<Schema$GetServiceAccountResponse>): void;
+      params: Params$Resource$Projects$Getserviceaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetServiceAccountResponse>,
+      callback: BodyResponseCallback<Schema$GetServiceAccountResponse>
+    ): void;
     getServiceAccount(
-        params: Params$Resource$Projects$Getserviceaccount,
-        callback: BodyResponseCallback<Schema$GetServiceAccountResponse>): void;
+      params: Params$Resource$Projects$Getserviceaccount,
+      callback: BodyResponseCallback<Schema$GetServiceAccountResponse>
+    ): void;
     getServiceAccount(
-        callback: BodyResponseCallback<Schema$GetServiceAccountResponse>): void;
+      callback: BodyResponseCallback<Schema$GetServiceAccountResponse>
+    ): void;
     getServiceAccount(
-        paramsOrCallback?: Params$Resource$Projects$Getserviceaccount|
-        BodyResponseCallback<Schema$GetServiceAccountResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetServiceAccountResponse>,
-        callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>):
-        void|GaxiosPromise<Schema$GetServiceAccountResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Getserviceaccount;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getserviceaccount
+        | BodyResponseCallback<Schema$GetServiceAccountResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetServiceAccountResponse>,
+      callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>
+    ): void | GaxiosPromise<Schema$GetServiceAccountResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4342,26 +4437,28 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/bigquery/v2/projects/{projectId}/serviceAccount')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/bigquery/v2/projects/{projectId}/serviceAccount'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetServiceAccountResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetServiceAccountResponse>(parameters);
       }
     }
-
 
     /**
      * bigquery.projects.list
@@ -4439,23 +4536,29 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ProjectList>;
     list(
-        params: Params$Resource$Projects$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
-        callback: BodyResponseCallback<Schema$ProjectList>): void;
+      params?: Params$Resource$Projects$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectList>;
     list(
-        params: Params$Resource$Projects$List,
-        callback: BodyResponseCallback<Schema$ProjectList>): void;
+      params: Params$Resource$Projects$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectList>,
+      callback: BodyResponseCallback<Schema$ProjectList>
+    ): void;
+    list(
+      params: Params$Resource$Projects$List,
+      callback: BodyResponseCallback<Schema$ProjectList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ProjectList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$List|
-        BodyResponseCallback<Schema$ProjectList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectList>,
-        callback?: BodyResponseCallback<Schema$ProjectList>):
-        void|GaxiosPromise<Schema$ProjectList> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$List
+        | BodyResponseCallback<Schema$ProjectList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectList>,
+      callback?: BodyResponseCallback<Schema$ProjectList>
+    ): void | GaxiosPromise<Schema$ProjectList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4473,16 +4576,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/bigquery/v2/projects')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/bigquery/v2/projects').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectList>(parameters, callback);
@@ -4492,12 +4598,12 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getserviceaccount extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getserviceaccount
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID for which the service account is requested.
@@ -4508,7 +4614,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results to return
@@ -4521,13 +4627,11 @@ export namespace bigquery_v2 {
     pageToken?: string;
   }
 
-
   export class Resource$Tabledata {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigquery.tabledata.insertAll
@@ -4609,30 +4713,34 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     insertAll(
-        params?: Params$Resource$Tabledata$Insertall, options?: MethodOptions):
-        GaxiosPromise<Schema$TableDataInsertAllResponse>;
+      params?: Params$Resource$Tabledata$Insertall,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TableDataInsertAllResponse>;
     insertAll(
-        params: Params$Resource$Tabledata$Insertall,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TableDataInsertAllResponse>,
-        callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
-        void;
+      params: Params$Resource$Tabledata$Insertall,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TableDataInsertAllResponse>,
+      callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>
+    ): void;
     insertAll(
-        params: Params$Resource$Tabledata$Insertall,
-        callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
-        void;
-    insertAll(callback:
-                  BodyResponseCallback<Schema$TableDataInsertAllResponse>):
-        void;
+      params: Params$Resource$Tabledata$Insertall,
+      callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>
+    ): void;
     insertAll(
-        paramsOrCallback?: Params$Resource$Tabledata$Insertall|
-        BodyResponseCallback<Schema$TableDataInsertAllResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TableDataInsertAllResponse>,
-        callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
-        void|GaxiosPromise<Schema$TableDataInsertAllResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Tabledata$Insertall;
+      callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>
+    ): void;
+    insertAll(
+      paramsOrCallback?:
+        | Params$Resource$Tabledata$Insertall
+        | BodyResponseCallback<Schema$TableDataInsertAllResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TableDataInsertAllResponse>,
+      callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>
+    ): void | GaxiosPromise<Schema$TableDataInsertAllResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tabledata$Insertall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4649,27 +4757,29 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TableDataInsertAllResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TableDataInsertAllResponse>(parameters);
       }
     }
-
 
     /**
      * bigquery.tabledata.list
@@ -4762,23 +4872,29 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Tabledata$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TableDataList>;
     list(
-        params: Params$Resource$Tabledata$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
-        callback: BodyResponseCallback<Schema$TableDataList>): void;
+      params?: Params$Resource$Tabledata$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TableDataList>;
     list(
-        params: Params$Resource$Tabledata$List,
-        callback: BodyResponseCallback<Schema$TableDataList>): void;
+      params: Params$Resource$Tabledata$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TableDataList>,
+      callback: BodyResponseCallback<Schema$TableDataList>
+    ): void;
+    list(
+      params: Params$Resource$Tabledata$List,
+      callback: BodyResponseCallback<Schema$TableDataList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TableDataList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Tabledata$List|
-        BodyResponseCallback<Schema$TableDataList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TableDataList>,
-        callback?: BodyResponseCallback<Schema$TableDataList>):
-        void|GaxiosPromise<Schema$TableDataList> {
+      paramsOrCallback?:
+        | Params$Resource$Tabledata$List
+        | BodyResponseCallback<Schema$TableDataList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TableDataList>,
+      callback?: BodyResponseCallback<Schema$TableDataList>
+    ): void | GaxiosPromise<Schema$TableDataList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tabledata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4796,18 +4912,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TableDataList>(parameters, callback);
@@ -4817,12 +4934,12 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tabledata$Insertall extends
-      StandardParameters {
+  export interface Params$Resource$Tabledata$Insertall
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the destination table.
@@ -4846,7 +4963,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the table to read
@@ -4879,13 +4996,11 @@ export namespace bigquery_v2 {
     tableId?: string;
   }
 
-
   export class Resource$Tables {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigquery.tables.delete
@@ -4958,21 +5073,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Tables$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Tables$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Tables$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Tables$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Tables$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Tables$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Tables$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Tables$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4990,18 +5111,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5009,7 +5131,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * bigquery.tables.get
@@ -5087,19 +5208,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Tables$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Table>;
-    get(params: Params$Resource$Tables$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
-    get(params: Params$Resource$Tables$Get,
-        callback: BodyResponseCallback<Schema$Table>): void;
+    get(
+      params?: Params$Resource$Tables$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
+    get(
+      params: Params$Resource$Tables$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    get(
+      params: Params$Resource$Tables$Get,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Table>): void;
-    get(paramsOrCallback?: Params$Resource$Tables$Get|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Tables$Get
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5117,18 +5246,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5136,7 +5266,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * bigquery.tables.insert
@@ -5212,22 +5341,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Tables$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Table>;
     insert(
-        params: Params$Resource$Tables$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params?: Params$Resource$Tables$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     insert(
-        params: Params$Resource$Tables$Insert,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Tables$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    insert(
+      params: Params$Resource$Tables$Insert,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Table>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Tables$Insert|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+      paramsOrCallback?:
+        | Params$Resource$Tables$Insert
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5245,18 +5379,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5264,7 +5399,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * bigquery.tables.list
@@ -5351,23 +5485,29 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Tables$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TableList>;
     list(
-        params: Params$Resource$Tables$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TableList>,
-        callback: BodyResponseCallback<Schema$TableList>): void;
+      params?: Params$Resource$Tables$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TableList>;
     list(
-        params: Params$Resource$Tables$List,
-        callback: BodyResponseCallback<Schema$TableList>): void;
+      params: Params$Resource$Tables$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TableList>,
+      callback: BodyResponseCallback<Schema$TableList>
+    ): void;
+    list(
+      params: Params$Resource$Tables$List,
+      callback: BodyResponseCallback<Schema$TableList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TableList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Tables$List|
-        BodyResponseCallback<Schema$TableList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TableList>,
-        callback?: BodyResponseCallback<Schema$TableList>):
-        void|GaxiosPromise<Schema$TableList> {
+      paramsOrCallback?:
+        | Params$Resource$Tables$List
+        | BodyResponseCallback<Schema$TableList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TableList>,
+      callback?: BodyResponseCallback<Schema$TableList>
+    ): void | GaxiosPromise<Schema$TableList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5385,18 +5525,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -5404,7 +5545,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$TableList>(parameters);
       }
     }
-
 
     /**
      * bigquery.tables.patch
@@ -5489,22 +5629,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Tables$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Table>;
     patch(
-        params: Params$Resource$Tables$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params?: Params$Resource$Tables$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     patch(
-        params: Params$Resource$Tables$Patch,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Tables$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    patch(
+      params: Params$Resource$Tables$Patch,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Table>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Tables$Patch|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+      paramsOrCallback?:
+        | Params$Resource$Tables$Patch
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5522,18 +5667,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5541,7 +5687,6 @@ export namespace bigquery_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * bigquery.tables.update
@@ -5625,22 +5770,27 @@ export namespace bigquery_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Tables$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Table>;
     update(
-        params: Params$Resource$Tables$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params?: Params$Resource$Tables$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     update(
-        params: Params$Resource$Tables$Update,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Tables$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    update(
+      params: Params$Resource$Tables$Update,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Table>): void;
     update(
-        paramsOrCallback?: Params$Resource$Tables$Update|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
+      paramsOrCallback?:
+        | Params$Resource$Tables$Update
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5658,18 +5808,19 @@ export namespace bigquery_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5683,7 +5834,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the table to delete
@@ -5702,7 +5853,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the requested table
@@ -5726,7 +5877,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the new table
@@ -5746,7 +5897,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the tables to list
@@ -5770,7 +5921,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the table to update
@@ -5794,7 +5945,7 @@ export namespace bigquery_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset ID of the table to update

@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {webfonts_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': webfonts_v1.Webfonts,
+  v1: webfonts_v1.Webfonts,
 };
 
 export function webfonts(version: 'v1'): webfonts_v1.Webfonts;
 export function webfonts(options: webfonts_v1.Options): webfonts_v1.Webfonts;
 export function webfonts<T = webfonts_v1.Webfonts>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|webfonts_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | webfonts_v1.Options
+) {
   return getAPI<T>('webfonts', versionOrOptions, VERSIONS, this);
 }
 

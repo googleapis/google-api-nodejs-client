@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -391,13 +403,11 @@ export namespace groupssettings_v1 {
     whoCanViewMembership?: string;
   }
 
-
   export class Resource$Groups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * groupsSettings.groups.get
@@ -411,19 +421,27 @@ export namespace groupssettings_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Groups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Groups>;
-    get(params: Params$Resource$Groups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback: BodyResponseCallback<Schema$Groups>): void;
-    get(params: Params$Resource$Groups$Get,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+    get(
+      params?: Params$Resource$Groups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Groups>;
+    get(
+      params: Params$Resource$Groups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
+    get(
+      params: Params$Resource$Groups$Get,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Groups>): void;
-    get(paramsOrCallback?: Params$Resource$Groups$Get|
-        BodyResponseCallback<Schema$Groups>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>):
-        void|GaxiosPromise<Schema$Groups> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Get
+        | BodyResponseCallback<Schema$Groups>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>
+    ): void | GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -441,16 +459,19 @@ export namespace groupssettings_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -458,7 +479,6 @@ export namespace groupssettings_v1 {
         return createAPIRequest<Schema$Groups>(parameters);
       }
     }
-
 
     /**
      * groupsSettings.groups.patch
@@ -473,22 +493,27 @@ export namespace groupssettings_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Groups$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Groups>;
     patch(
-        params: Params$Resource$Groups$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params?: Params$Resource$Groups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Groups>;
     patch(
-        params: Params$Resource$Groups$Patch,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params: Params$Resource$Groups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
+    patch(
+      params: Params$Resource$Groups$Patch,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Groups>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Groups$Patch|
-        BodyResponseCallback<Schema$Groups>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>):
-        void|GaxiosPromise<Schema$Groups> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Patch
+        | BodyResponseCallback<Schema$Groups>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>
+    ): void | GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -506,16 +531,19 @@ export namespace groupssettings_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -523,7 +551,6 @@ export namespace groupssettings_v1 {
         return createAPIRequest<Schema$Groups>(parameters);
       }
     }
-
 
     /**
      * groupsSettings.groups.update
@@ -538,22 +565,27 @@ export namespace groupssettings_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Groups>;
     update(
-        params: Params$Resource$Groups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params?: Params$Resource$Groups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Groups>;
     update(
-        params: Params$Resource$Groups$Update,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params: Params$Resource$Groups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
+    update(
+      params: Params$Resource$Groups$Update,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Groups>): void;
     update(
-        paramsOrCallback?: Params$Resource$Groups$Update|
-        BodyResponseCallback<Schema$Groups>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>):
-        void|GaxiosPromise<Schema$Groups> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Update
+        | BodyResponseCallback<Schema$Groups>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>
+    ): void | GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -571,16 +603,19 @@ export namespace groupssettings_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -594,7 +629,7 @@ export namespace groupssettings_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource ID
@@ -605,7 +640,7 @@ export namespace groupssettings_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource ID
@@ -621,7 +656,7 @@ export namespace groupssettings_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource ID

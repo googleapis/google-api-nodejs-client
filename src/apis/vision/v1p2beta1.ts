@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -659,8 +671,7 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p1beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p1beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -673,8 +684,7 @@ export namespace vision_v1p2beta1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p1beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p1beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -682,13 +692,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p1beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p1beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p1beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -1269,8 +1277,7 @@ export namespace vision_v1p2beta1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -1441,13 +1448,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -1476,25 +1481,21 @@ export namespace vision_v1p2beta1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -1554,8 +1555,7 @@ export namespace vision_v1p2beta1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -1565,8 +1565,7 @@ export namespace vision_v1p2beta1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -1669,8 +1668,7 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p2beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p2beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -1683,8 +1681,7 @@ export namespace vision_v1p2beta1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p2beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p2beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -1692,13 +1689,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p2beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p2beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p2beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -2487,8 +2482,7 @@ export namespace vision_v1p2beta1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -2659,13 +2653,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -2694,25 +2686,21 @@ export namespace vision_v1p2beta1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -2781,8 +2769,7 @@ export namespace vision_v1p2beta1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -2792,8 +2779,7 @@ export namespace vision_v1p2beta1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -2878,8 +2864,7 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p3beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p3beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -2892,8 +2877,7 @@ export namespace vision_v1p2beta1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p3beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p3beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -2901,13 +2885,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p3beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p3beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p3beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -3526,8 +3508,7 @@ export namespace vision_v1p2beta1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -3724,13 +3705,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -3759,25 +3738,21 @@ export namespace vision_v1p2beta1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -3837,8 +3812,7 @@ export namespace vision_v1p2beta1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -3848,8 +3822,7 @@ export namespace vision_v1p2beta1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -3938,8 +3911,7 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p4beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p4beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -3952,8 +3924,7 @@ export namespace vision_v1p2beta1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p4beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p4beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -3961,13 +3932,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p4beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p4beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p4beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p4beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -4613,8 +4582,7 @@ export namespace vision_v1p2beta1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p4beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p4beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -4811,13 +4779,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -4846,25 +4812,21 @@ export namespace vision_v1p2beta1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -4924,8 +4886,7 @@ export namespace vision_v1p2beta1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -4935,8 +4896,7 @@ export namespace vision_v1p2beta1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -5161,7 +5121,7 @@ export namespace vision_v1p2beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -5177,7 +5137,7 @@ export namespace vision_v1p2beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -5488,7 +5448,7 @@ export namespace vision_v1p2beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -5707,13 +5667,11 @@ export namespace vision_v1p2beta1 {
     symbols?: Schema$Symbol[];
   }
 
-
   export class Resource$Files {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.files.asyncBatchAnnotate
@@ -5733,25 +5691,30 @@ export namespace vision_v1p2beta1 {
      * @return {object} Request object
      */
     asyncBatchAnnotate(
-        params?: Params$Resource$Files$Asyncbatchannotate,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Files$Asyncbatchannotate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     asyncBatchAnnotate(
-        params: Params$Resource$Files$Asyncbatchannotate,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Files$Asyncbatchannotate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     asyncBatchAnnotate(
-        params: Params$Resource$Files$Asyncbatchannotate,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Files$Asyncbatchannotate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     asyncBatchAnnotate(callback: BodyResponseCallback<Schema$Operation>): void;
     asyncBatchAnnotate(
-        paramsOrCallback?: Params$Resource$Files$Asyncbatchannotate|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
+      paramsOrCallback?:
+        | Params$Resource$Files$Asyncbatchannotate
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5768,16 +5731,19 @@ export namespace vision_v1p2beta1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1p2beta1/files:asyncBatchAnnotate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1p2beta1/files:asyncBatchAnnotate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5787,28 +5753,24 @@ export namespace vision_v1p2beta1 {
     }
   }
 
-  export interface Params$Resource$Files$Asyncbatchannotate extends
-      StandardParameters {
+  export interface Params$Resource$Files$Asyncbatchannotate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
-    requestBody?:
-        Schema$GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest;
+    requestBody?: Schema$GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest;
   }
-
 
   export class Resource$Images {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.images.annotate
@@ -5822,33 +5784,51 @@ export namespace vision_v1p2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotate(params?: Params$Resource$Images$Annotate, options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
     annotate(
-        params: Params$Resource$Images$Annotate,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
-        void;
+      params?: Params$Resource$Images$Annotate,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+    >;
     annotate(
-        params: Params$Resource$Images$Annotate,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
-        void;
-    annotate(callback: BodyResponseCallback<
-             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
-        void;
+      params: Params$Resource$Images$Annotate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+      >
+    ): void;
     annotate(
-        paramsOrCallback?: Params$Resource$Images$Annotate|BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse> {
+      params: Params$Resource$Images$Annotate,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+      >
+    ): void;
+    annotate(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+      >
+    ): void;
+    annotate(
+      paramsOrCallback?:
+        | Params$Resource$Images$Annotate
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+    > {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5866,25 +5846,28 @@ export namespace vision_v1p2beta1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1p2beta1/images:annotate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1p2beta1/images:annotate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
-            parameters, callback);
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
-            parameters);
+          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
+        >(parameters);
       }
     }
   }
@@ -5893,8 +5876,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

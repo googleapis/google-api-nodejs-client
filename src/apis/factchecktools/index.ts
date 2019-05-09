@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {factchecktools_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
-  'v1alpha1': factchecktools_v1alpha1.Factchecktools,
+  v1alpha1: factchecktools_v1alpha1.Factchecktools,
 };
 
-export function factchecktools(version: 'v1alpha1'):
-    factchecktools_v1alpha1.Factchecktools;
-export function factchecktools(options: factchecktools_v1alpha1.Options):
-    factchecktools_v1alpha1.Factchecktools;
+export function factchecktools(
+  version: 'v1alpha1'
+): factchecktools_v1alpha1.Factchecktools;
+export function factchecktools(
+  options: factchecktools_v1alpha1.Options
+): factchecktools_v1alpha1.Factchecktools;
 export function factchecktools<T = factchecktools_v1alpha1.Factchecktools>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1alpha1'|factchecktools_v1alpha1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1alpha1' | factchecktools_v1alpha1.Options
+) {
   return getAPI<T>('factchecktools', versionOrOptions, VERSIONS, this);
 }
 

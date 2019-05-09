@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -245,7 +257,7 @@ export namespace monitoring_v3 {
      * smaller. Labels and values can contain only lowercase letters, numerals,
      * underscores, and dashes. Keys must begin with a letter.
      */
-    userLabels?: {[key: string]: string;};
+    userLabels?: {[key: string]: string};
   }
   /**
    * A type of authentication to perform against the specified resource or URL
@@ -304,7 +316,7 @@ export namespace monitoring_v3 {
     /**
      * The measurement metadata. Example: &quot;process_id&quot; -&gt; 12345
      */
-    metadata?: {[key: string]: Schema$TypedValue;};
+    metadata?: {[key: string]: Schema$TypedValue};
     /**
      * The name of the plugin. Example: &quot;disk&quot;.
      */
@@ -577,7 +589,7 @@ export namespace monitoring_v3 {
     /**
      * Map from label to its value, for all labels dropped in any aggregation.
      */
-    label?: {[key: string]: string;};
+    label?: {[key: string]: string};
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -603,7 +615,7 @@ export namespace monitoring_v3 {
      * may be only a single attachment of any given message type in a single
      * exemplar, and this is enforced by the system.
      */
-    attachments?: Array<{[key: string]: any;}>;
+    attachments?: Array<{[key: string]: any}>;
     /**
      * The observation (sampling) time of the above value.
      */
@@ -805,7 +817,7 @@ export namespace monitoring_v3 {
      * to be overwritten by the second. The maximum number of headers allowed is
      * 100.
      */
-    headers?: {[key: string]: string;};
+    headers?: {[key: string]: string};
     /**
      * Boolean specifiying whether to encrypt the header information. Encryption
      * should be specified for any headers related to authentication that you do
@@ -1092,7 +1104,7 @@ export namespace monitoring_v3 {
      * The set of label values that uniquely identify this metric. All labels
      * listed in the MetricDescriptor must be assigned values.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * An existing metric type, see google.api.MetricDescriptor. For example,
      * custom.googleapis.com/invoice/paid/amount.
@@ -1349,7 +1361,7 @@ export namespace monitoring_v3 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
@@ -1422,11 +1434,11 @@ export namespace monitoring_v3 {
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: {[key: string]: any;};
+    systemLabels?: {[key: string]: any};
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: {[key: string]: string;};
+    userLabels?: {[key: string]: string};
   }
   /**
    * Describes a change made to a configuration.
@@ -1477,7 +1489,7 @@ export namespace monitoring_v3 {
      * NotificationChannelDescriptor.labels of the NotificationChannelDescriptor
      * corresponding to the type field.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The full REST resource name for this channel. The syntax is:
      * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID]
@@ -1499,7 +1511,7 @@ export namespace monitoring_v3 {
      * letters, numerals, underscores, and dashes. Keys must begin with a
      * letter.
      */
-    userLabels?: {[key: string]: string;};
+    userLabels?: {[key: string]: string};
     /**
      * Indicates whether this channel has been verified or not. On a
      * ListNotificationChannels or GetNotificationChannel operation, this field
@@ -1575,7 +1587,7 @@ export namespace monitoring_v3 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: {[key: string]: any;};
+    value?: {[key: string]: any};
   }
   /**
    * A single data point in a time series.
@@ -1701,7 +1713,7 @@ export namespace monitoring_v3 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1981,47 +1993,48 @@ export namespace monitoring_v3 {
     code?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     alertPolicies: Resource$Projects$Alertpolicies;
     collectdTimeSeries: Resource$Projects$Collectdtimeseries;
     groups: Resource$Projects$Groups;
     metricDescriptors: Resource$Projects$Metricdescriptors;
-    monitoredResourceDescriptors:
-        Resource$Projects$Monitoredresourcedescriptors;
-    notificationChannelDescriptors:
-        Resource$Projects$Notificationchanneldescriptors;
+    monitoredResourceDescriptors: Resource$Projects$Monitoredresourcedescriptors;
+    notificationChannelDescriptors: Resource$Projects$Notificationchanneldescriptors;
     notificationChannels: Resource$Projects$Notificationchannels;
     timeSeries: Resource$Projects$Timeseries;
     uptimeCheckConfigs: Resource$Projects$Uptimecheckconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.alertPolicies = new Resource$Projects$Alertpolicies(this.context);
-      this.collectdTimeSeries =
-          new Resource$Projects$Collectdtimeseries(this.context);
+      this.collectdTimeSeries = new Resource$Projects$Collectdtimeseries(
+        this.context
+      );
       this.groups = new Resource$Projects$Groups(this.context);
-      this.metricDescriptors =
-          new Resource$Projects$Metricdescriptors(this.context);
-      this.monitoredResourceDescriptors =
-          new Resource$Projects$Monitoredresourcedescriptors(this.context);
-      this.notificationChannelDescriptors =
-          new Resource$Projects$Notificationchanneldescriptors(this.context);
-      this.notificationChannels =
-          new Resource$Projects$Notificationchannels(this.context);
+      this.metricDescriptors = new Resource$Projects$Metricdescriptors(
+        this.context
+      );
+      this.monitoredResourceDescriptors = new Resource$Projects$Monitoredresourcedescriptors(
+        this.context
+      );
+      this.notificationChannelDescriptors = new Resource$Projects$Notificationchanneldescriptors(
+        this.context
+      );
+      this.notificationChannels = new Resource$Projects$Notificationchannels(
+        this.context
+      );
       this.timeSeries = new Resource$Projects$Timeseries(this.context);
-      this.uptimeCheckConfigs =
-          new Resource$Projects$Uptimecheckconfigs(this.context);
+      this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Alertpolicies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.alertPolicies.create
@@ -2037,25 +2050,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Alertpolicies$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AlertPolicy>;
+      params?: Params$Resource$Projects$Alertpolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AlertPolicy>;
     create(
-        params: Params$Resource$Projects$Alertpolicies$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+      params: Params$Resource$Projects$Alertpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AlertPolicy>,
+      callback: BodyResponseCallback<Schema$AlertPolicy>
+    ): void;
     create(
-        params: Params$Resource$Projects$Alertpolicies$Create,
-        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+      params: Params$Resource$Projects$Alertpolicies$Create,
+      callback: BodyResponseCallback<Schema$AlertPolicy>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AlertPolicy>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Create|
-        BodyResponseCallback<Schema$AlertPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AlertPolicy>,
-        callback?: BodyResponseCallback<Schema$AlertPolicy>):
-        void|GaxiosPromise<Schema$AlertPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Alertpolicies$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Alertpolicies$Create
+        | BodyResponseCallback<Schema$AlertPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>
+    ): void | GaxiosPromise<Schema$AlertPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Alertpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2072,16 +2090,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/alertPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/alertPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2089,7 +2110,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.alertPolicies.delete
@@ -2104,24 +2124,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Alertpolicies$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Alertpolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Alertpolicies$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Alertpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Alertpolicies$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Alertpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Alertpolicies$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Alertpolicies$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Alertpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2138,15 +2162,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2154,7 +2179,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.alertPolicies.get
@@ -2168,22 +2192,31 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Alertpolicies$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AlertPolicy>;
-    get(params: Params$Resource$Projects$Alertpolicies$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
-    get(params: Params$Resource$Projects$Alertpolicies$Get,
-        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+    get(
+      params?: Params$Resource$Projects$Alertpolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AlertPolicy>;
+    get(
+      params: Params$Resource$Projects$Alertpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AlertPolicy>,
+      callback: BodyResponseCallback<Schema$AlertPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Alertpolicies$Get,
+      callback: BodyResponseCallback<Schema$AlertPolicy>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AlertPolicy>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Get|
-        BodyResponseCallback<Schema$AlertPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AlertPolicy>,
-        callback?: BodyResponseCallback<Schema$AlertPolicy>):
-        void|GaxiosPromise<Schema$AlertPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Alertpolicies$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Alertpolicies$Get
+        | BodyResponseCallback<Schema$AlertPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>
+    ): void | GaxiosPromise<Schema$AlertPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Alertpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2200,15 +2233,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2216,7 +2250,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.alertPolicies.list
@@ -2235,28 +2268,34 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Alertpolicies$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAlertPoliciesResponse>;
+      params?: Params$Resource$Projects$Alertpolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAlertPoliciesResponse>;
     list(
-        params: Params$Resource$Projects$Alertpolicies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>): void;
+      params: Params$Resource$Projects$Alertpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Alertpolicies$List,
-        callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>):
-        void;
+      params: Params$Resource$Projects$Alertpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$List|
-        BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListAlertPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListAlertPoliciesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Alertpolicies$List;
+      callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Alertpolicies$List
+        | BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAlertPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListAlertPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Alertpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2273,25 +2312,29 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/alertPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/alertPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertPoliciesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAlertPoliciesResponse>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.alertPolicies.patch
@@ -2311,25 +2354,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Alertpolicies$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$AlertPolicy>;
+      params?: Params$Resource$Projects$Alertpolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AlertPolicy>;
     patch(
-        params: Params$Resource$Projects$Alertpolicies$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+      params: Params$Resource$Projects$Alertpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AlertPolicy>,
+      callback: BodyResponseCallback<Schema$AlertPolicy>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Alertpolicies$Patch,
-        callback: BodyResponseCallback<Schema$AlertPolicy>): void;
+      params: Params$Resource$Projects$Alertpolicies$Patch,
+      callback: BodyResponseCallback<Schema$AlertPolicy>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AlertPolicy>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Alertpolicies$Patch|
-        BodyResponseCallback<Schema$AlertPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AlertPolicy>,
-        callback?: BodyResponseCallback<Schema$AlertPolicy>):
-        void|GaxiosPromise<Schema$AlertPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Alertpolicies$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Alertpolicies$Patch
+        | BodyResponseCallback<Schema$AlertPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>
+    ): void | GaxiosPromise<Schema$AlertPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Alertpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2346,15 +2394,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2364,12 +2413,12 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Alertpolicies$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which to create the alerting policy. The format is
@@ -2387,12 +2436,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$AlertPolicy;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The alerting policy to delete. The format is:
@@ -2401,12 +2450,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The alerting policy to retrieve. The format is
@@ -2414,12 +2463,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If provided, this field specifies the criteria that must be met by alert
@@ -2452,12 +2501,12 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Alertpolicies$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required if the policy exists. The resource name for this policy. The
@@ -2494,13 +2543,11 @@ export namespace monitoring_v3 {
     requestBody?: Schema$AlertPolicy;
   }
 
-
   export class Resource$Projects$Collectdtimeseries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.collectdTimeSeries.create
@@ -2562,34 +2609,34 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Collectdtimeseries$Create,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CreateCollectdTimeSeriesResponse>;
+      params?: Params$Resource$Projects$Collectdtimeseries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateCollectdTimeSeriesResponse>;
     create(
-        params: Params$Resource$Projects$Collectdtimeseries$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
-        callback:
-            BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
-        void;
+      params: Params$Resource$Projects$Collectdtimeseries$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
+      callback: BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>
+    ): void;
     create(
-        params: Params$Resource$Projects$Collectdtimeseries$Create,
-        callback:
-            BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
-        void;
-    create(callback:
-               BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
-        void;
+      params: Params$Resource$Projects$Collectdtimeseries$Create,
+      callback: BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>
+    ): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Collectdtimeseries$Create|
-        BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
-        void|GaxiosPromise<Schema$CreateCollectdTimeSeriesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Collectdtimeseries$Create;
+      callback: BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Collectdtimeseries$Create
+        | BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>
+    ): void | GaxiosPromise<Schema$CreateCollectdTimeSeriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Collectdtimeseries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2606,33 +2653,39 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/collectdTimeSeries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/collectdTimeSeries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Projects$Collectdtimeseries$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Collectdtimeseries$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which to create the time series. The format is
@@ -2646,7 +2699,6 @@ export namespace monitoring_v3 {
     requestBody?: Schema$CreateCollectdTimeSeriesRequest;
   }
 
-
   export class Resource$Projects$Groups {
     context: APIRequestContext;
     members: Resource$Projects$Groups$Members;
@@ -2654,7 +2706,6 @@ export namespace monitoring_v3 {
       this.context = context;
       this.members = new Resource$Projects$Groups$Members(this.context);
     }
-
 
     /**
      * monitoring.projects.groups.create
@@ -2718,24 +2769,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Groups$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Group>;
+      params?: Params$Resource$Projects$Groups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
     create(
-        params: Params$Resource$Projects$Groups$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Projects$Groups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     create(
-        params: Params$Resource$Projects$Groups$Create,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Projects$Groups$Create,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Group>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Groups$Create|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$Create
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2752,16 +2807,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/groups')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -2769,7 +2824,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Group>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.groups.delete
@@ -2832,24 +2886,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Groups$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Groups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Groups$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Groups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Groups$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Groups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Groups$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2866,15 +2924,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2882,7 +2941,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.groups.get
@@ -2943,21 +3001,29 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Groups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Group>;
-    get(params: Params$Resource$Projects$Groups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
-    get(params: Params$Resource$Projects$Groups$Get,
-        callback: BodyResponseCallback<Schema$Group>): void;
+    get(
+      params?: Params$Resource$Projects$Groups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
+    get(
+      params: Params$Resource$Projects$Groups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Groups$Get,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Group>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Groups$Get|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$Get
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2974,15 +3040,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -2990,7 +3057,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Group>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.groups.list
@@ -3063,25 +3129,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Groups$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListGroupsResponse>;
+      params?: Params$Resource$Projects$Groups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupsResponse>;
     list(
-        params: Params$Resource$Projects$Groups$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
-        callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+      params: Params$Resource$Projects$Groups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Groups$List,
-        callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+      params: Params$Resource$Projects$Groups$List,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Groups$List|
-        BodyResponseCallback<Schema$ListGroupsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupsResponse>):
-        void|GaxiosPromise<Schema$ListGroupsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$List
+        | BodyResponseCallback<Schema$ListGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void | GaxiosPromise<Schema$ListGroupsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3098,16 +3169,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/groups')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -3115,7 +3186,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.groups.update
@@ -3186,24 +3256,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Groups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Group>;
+      params?: Params$Resource$Projects$Groups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
     update(
-        params: Params$Resource$Projects$Groups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Projects$Groups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     update(
-        params: Params$Resource$Projects$Groups$Update,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Projects$Groups$Update,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Group>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Groups$Update|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$Update
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3220,15 +3294,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -3238,12 +3313,12 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which to create the group. The format is
@@ -3260,12 +3335,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Groups$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The group to delete. The format is
@@ -3279,12 +3354,12 @@ export namespace monitoring_v3 {
      */
     recursive?: boolean;
   }
-  export interface Params$Resource$Projects$Groups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The group to retrieve. The format is
@@ -3292,12 +3367,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A group name: "projects/{project_id_or_number}/groups/{group_id}".
@@ -3336,12 +3411,12 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Groups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. The name of this group. The format is
@@ -3367,7 +3442,6 @@ export namespace monitoring_v3 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.groups.members.list
@@ -3441,27 +3515,32 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Groups$Members$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListGroupMembersResponse>;
+      params?: Params$Resource$Projects$Groups$Members$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupMembersResponse>;
     list(
-        params: Params$Resource$Projects$Groups$Members$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupMembersResponse>,
-        callback: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
+      params: Params$Resource$Projects$Groups$Members$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupMembersResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupMembersResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Groups$Members$List,
-        callback: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
+      params: Params$Resource$Projects$Groups$Members$List,
+      callback: BodyResponseCallback<Schema$ListGroupMembersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Groups$Members$List|
-        BodyResponseCallback<Schema$ListGroupMembersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupMembersResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupMembersResponse>):
-        void|GaxiosPromise<Schema$ListGroupMembersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Groups$Members$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$Members$List
+        | BodyResponseCallback<Schema$ListGroupMembersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupMembersResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupMembersResponse>
+    ): void | GaxiosPromise<Schema$ListGroupMembersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$Members$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3478,16 +3557,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/members')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/members').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupMembersResponse>(parameters, callback);
@@ -3497,12 +3579,12 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Members$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$Members$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An optional list filter describing the members to be returned. The filter
@@ -3539,14 +3621,11 @@ export namespace monitoring_v3 {
     pageToken?: string;
   }
 
-
-
   export class Resource$Projects$Metricdescriptors {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.metricDescriptors.create
@@ -3607,25 +3686,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Metricdescriptors$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$MetricDescriptor>;
+      params?: Params$Resource$Projects$Metricdescriptors$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MetricDescriptor>;
     create(
-        params: Params$Resource$Projects$Metricdescriptors$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
-        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+      params: Params$Resource$Projects$Metricdescriptors$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$MetricDescriptor>,
+      callback: BodyResponseCallback<Schema$MetricDescriptor>
+    ): void;
     create(
-        params: Params$Resource$Projects$Metricdescriptors$Create,
-        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+      params: Params$Resource$Projects$Metricdescriptors$Create,
+      callback: BodyResponseCallback<Schema$MetricDescriptor>
+    ): void;
     create(callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$Create|
-        BodyResponseCallback<Schema$MetricDescriptor>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MetricDescriptor>,
-        callback?: BodyResponseCallback<Schema$MetricDescriptor>):
-        void|GaxiosPromise<Schema$MetricDescriptor> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Metricdescriptors$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metricdescriptors$Create
+        | BodyResponseCallback<Schema$MetricDescriptor>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MetricDescriptor>,
+      callback?: BodyResponseCallback<Schema$MetricDescriptor>
+    ): void | GaxiosPromise<Schema$MetricDescriptor> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metricdescriptors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3642,16 +3726,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/metricDescriptors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/metricDescriptors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -3659,7 +3746,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$MetricDescriptor>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.metricDescriptors.delete
@@ -3722,24 +3808,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Metricdescriptors$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Metricdescriptors$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Metricdescriptors$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Metricdescriptors$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Metricdescriptors$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Metricdescriptors$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Metricdescriptors$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metricdescriptors$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metricdescriptors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3756,15 +3846,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3772,7 +3863,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.metricDescriptors.get
@@ -3834,22 +3924,31 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Metricdescriptors$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$MetricDescriptor>;
-    get(params: Params$Resource$Projects$Metricdescriptors$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
-        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
-    get(params: Params$Resource$Projects$Metricdescriptors$Get,
-        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    get(
+      params?: Params$Resource$Projects$Metricdescriptors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MetricDescriptor>;
+    get(
+      params: Params$Resource$Projects$Metricdescriptors$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MetricDescriptor>,
+      callback: BodyResponseCallback<Schema$MetricDescriptor>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Metricdescriptors$Get,
+      callback: BodyResponseCallback<Schema$MetricDescriptor>
+    ): void;
     get(callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$Get|
-        BodyResponseCallback<Schema$MetricDescriptor>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MetricDescriptor>,
-        callback?: BodyResponseCallback<Schema$MetricDescriptor>):
-        void|GaxiosPromise<Schema$MetricDescriptor> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Metricdescriptors$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metricdescriptors$Get
+        | BodyResponseCallback<Schema$MetricDescriptor>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MetricDescriptor>,
+      callback?: BodyResponseCallback<Schema$MetricDescriptor>
+    ): void | GaxiosPromise<Schema$MetricDescriptor> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metricdescriptors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3866,15 +3965,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -3882,7 +3982,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$MetricDescriptor>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.metricDescriptors.list
@@ -3954,30 +4053,34 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Metricdescriptors$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListMetricDescriptorsResponse>;
+      params?: Params$Resource$Projects$Metricdescriptors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMetricDescriptorsResponse>;
     list(
-        params: Params$Resource$Projects$Metricdescriptors$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
-        callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
-        void;
+      params: Params$Resource$Projects$Metricdescriptors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+      callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Metricdescriptors$List,
-        callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
-        void;
+      params: Params$Resource$Projects$Metricdescriptors$List,
+      callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Metricdescriptors$List|
-        BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
-        callback?: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
-        void|GaxiosPromise<Schema$ListMetricDescriptorsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Metricdescriptors$List;
+      callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metricdescriptors$List
+        | BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+      callback?: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>
+    ): void | GaxiosPromise<Schema$ListMetricDescriptorsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metricdescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3994,33 +4097,39 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/metricDescriptors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/metricDescriptors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMetricDescriptorsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListMetricDescriptorsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Projects$Metricdescriptors$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project on which to execute the request. The format is
@@ -4033,12 +4142,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$MetricDescriptor;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The metric descriptor on which to execute the request. The format is
@@ -4047,12 +4156,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The metric descriptor on which to execute the request. The format is
@@ -4062,12 +4171,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metricdescriptors$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If this field is empty, all custom and system-defined metric descriptors
@@ -4093,13 +4202,11 @@ export namespace monitoring_v3 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects$Monitoredresourcedescriptors {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.monitoredResourceDescriptors.get
@@ -4163,34 +4270,40 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$MonitoredResourceDescriptor>;
-    get(params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
-        callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
-        void;
-    get(params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
-        callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
-        void;
-    get(callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
-        void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Monitoredresourcedescriptors$Get|
-        BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
-        callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
-        void|GaxiosPromise<Schema$MonitoredResourceDescriptor> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Monitoredresourcedescriptors$Get;
+    get(
+      params?: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MonitoredResourceDescriptor>;
+    get(
+      params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+      callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
+      callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Monitoredresourcedescriptors$Get
+        | BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+      callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>
+    ): void | GaxiosPromise<Schema$MonitoredResourceDescriptor> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Monitoredresourcedescriptors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Monitoredresourcedescriptors$Get;
+        params = {} as Params$Resource$Projects$Monitoredresourcedescriptors$Get;
         options = {};
       }
 
@@ -4202,24 +4315,26 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MonitoredResourceDescriptor>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$MonitoredResourceDescriptor>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.monitoredResourceDescriptors.list
@@ -4292,38 +4407,47 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Monitoredresourcedescriptors$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+      params?: Params$Resource$Projects$Monitoredresourcedescriptors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
     list(
-        params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListMonitoredResourceDescriptorsResponse>): void;
+      params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
-        callback: BodyResponseCallback<
-            Schema$ListMonitoredResourceDescriptorsResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$ListMonitoredResourceDescriptorsResponse>): void;
+      params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Monitoredresourcedescriptors$List|
-        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListMonitoredResourceDescriptorsResponse>):
-        void|GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Monitoredresourcedescriptors$List;
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Monitoredresourcedescriptors$List
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Monitoredresourcedescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Monitoredresourcedescriptors$List;
+        params = {} as Params$Resource$Projects$Monitoredresourcedescriptors$List;
         options = {};
       }
 
@@ -4335,33 +4459,39 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/monitoredResourceDescriptors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/monitoredResourceDescriptors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListMonitoredResourceDescriptorsResponse>(parameters);
+          Schema$ListMonitoredResourceDescriptorsResponse
+        >(parameters);
       }
     }
   }
 
   export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The monitored resource descriptor to get. The format is
@@ -4371,11 +4501,11 @@ export namespace monitoring_v3 {
     name?: string;
   }
   export interface Params$Resource$Projects$Monitoredresourcedescriptors$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An optional filter describing the descriptors to be returned. The filter
@@ -4401,13 +4531,11 @@ export namespace monitoring_v3 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects$Notificationchanneldescriptors {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.notificationChannelDescriptors.get
@@ -4423,34 +4551,40 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Notificationchanneldescriptors$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$NotificationChannelDescriptor>;
-    get(params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$NotificationChannelDescriptor>,
-        callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
-        void;
-    get(params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
-        callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
-        void;
-    get(callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
-        void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Notificationchanneldescriptors$Get|
-        BodyResponseCallback<Schema$NotificationChannelDescriptor>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$NotificationChannelDescriptor>,
-        callback?: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
-        void|GaxiosPromise<Schema$NotificationChannelDescriptor> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchanneldescriptors$Get;
+    get(
+      params?: Params$Resource$Projects$Notificationchanneldescriptors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationChannelDescriptor>;
+    get(
+      params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationChannelDescriptor>,
+      callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
+      callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$NotificationChannelDescriptor>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchanneldescriptors$Get
+        | BodyResponseCallback<Schema$NotificationChannelDescriptor>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationChannelDescriptor>,
+      callback?: BodyResponseCallback<Schema$NotificationChannelDescriptor>
+    ): void | GaxiosPromise<Schema$NotificationChannelDescriptor> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchanneldescriptors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Notificationchanneldescriptors$Get;
+        params = {} as Params$Resource$Projects$Notificationchanneldescriptors$Get;
         options = {};
       }
 
@@ -4462,25 +4596,28 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannelDescriptor>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$NotificationChannelDescriptor>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannelDescriptors.list
@@ -4499,38 +4636,53 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Notificationchanneldescriptors$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListNotificationChannelDescriptorsResponse>;
+      params?: Params$Resource$Projects$Notificationchanneldescriptors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNotificationChannelDescriptorsResponse>;
     list(
-        params: Params$Resource$Projects$Notificationchanneldescriptors$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListNotificationChannelDescriptorsResponse>): void;
+      params: Params$Resource$Projects$Notificationchanneldescriptors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListNotificationChannelDescriptorsResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Notificationchanneldescriptors$List,
-        callback: BodyResponseCallback<
-            Schema$ListNotificationChannelDescriptorsResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$ListNotificationChannelDescriptorsResponse>): void;
+      params: Params$Resource$Projects$Notificationchanneldescriptors$List,
+      callback: BodyResponseCallback<
+        Schema$ListNotificationChannelDescriptorsResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Notificationchanneldescriptors$List|
-        BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListNotificationChannelDescriptorsResponse>):
-        void|GaxiosPromise<Schema$ListNotificationChannelDescriptorsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchanneldescriptors$List;
+      callback: BodyResponseCallback<
+        Schema$ListNotificationChannelDescriptorsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchanneldescriptors$List
+        | BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ListNotificationChannelDescriptorsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListNotificationChannelDescriptorsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchanneldescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Notificationchanneldescriptors$List;
+        params = {} as Params$Resource$Projects$Notificationchanneldescriptors$List;
         options = {};
       }
 
@@ -4542,33 +4694,38 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/notificationChannelDescriptors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v3/{+name}/notificationChannelDescriptors'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListNotificationChannelDescriptorsResponse>(parameters);
+          Schema$ListNotificationChannelDescriptorsResponse
+        >(parameters);
       }
     }
   }
 
   export interface Params$Resource$Projects$Notificationchanneldescriptors$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channel type for which to execute the request. The format is
@@ -4577,11 +4734,11 @@ export namespace monitoring_v3 {
     name?: string;
   }
   export interface Params$Resource$Projects$Notificationchanneldescriptors$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The REST resource name of the parent from which to retrieve the
@@ -4604,13 +4761,11 @@ export namespace monitoring_v3 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects$Notificationchannels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.notificationChannels.create
@@ -4628,25 +4783,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Notificationchannels$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$NotificationChannel>;
+      params?: Params$Resource$Projects$Notificationchannels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationChannel>;
     create(
-        params: Params$Resource$Projects$Notificationchannels$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+      params: Params$Resource$Projects$Notificationchannels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationChannel>,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
     create(
-        params: Params$Resource$Projects$Notificationchannels$Create,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+      params: Params$Resource$Projects$Notificationchannels$Create,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
     create(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Create|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>):
-        void|GaxiosPromise<Schema$NotificationChannel> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$Create
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>
+    ): void | GaxiosPromise<Schema$NotificationChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4663,16 +4823,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/notificationChannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/notificationChannels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4680,7 +4843,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannels.delete
@@ -4696,24 +4858,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Notificationchannels$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Notificationchannels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Notificationchannels$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Notificationchannels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Notificationchannels$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Notificationchannels$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4730,15 +4896,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4746,7 +4913,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannels.get
@@ -4764,22 +4930,31 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Notificationchannels$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$NotificationChannel>;
-    get(params: Params$Resource$Projects$Notificationchannels$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
-    get(params: Params$Resource$Projects$Notificationchannels$Get,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+    get(
+      params?: Params$Resource$Projects$Notificationchannels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationChannel>;
+    get(
+      params: Params$Resource$Projects$Notificationchannels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationChannel>,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Notificationchannels$Get,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
     get(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Get|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>):
-        void|GaxiosPromise<Schema$NotificationChannel> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$Get
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>
+    ): void | GaxiosPromise<Schema$NotificationChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4796,15 +4971,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4812,7 +4988,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannels.getVerificationCode
@@ -4847,43 +5022,55 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     getVerificationCode(
-        params?:
-            Params$Resource$Projects$Notificationchannels$Getverificationcode,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse>;
+      params?: Params$Resource$Projects$Notificationchannels$Getverificationcode,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse>;
     getVerificationCode(
-        params:
-            Params$Resource$Projects$Notificationchannels$Getverificationcode,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse>,
-        callback: BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse>): void;
+      params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GetNotificationChannelVerificationCodeResponse
+      >
+    ): void;
     getVerificationCode(
-        params:
-            Params$Resource$Projects$Notificationchannels$Getverificationcode,
-        callback: BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse>): void;
-    getVerificationCode(callback: BodyResponseCallback<
-                        Schema$GetNotificationChannelVerificationCodeResponse>):
-        void;
+      params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
+      callback: BodyResponseCallback<
+        Schema$GetNotificationChannelVerificationCodeResponse
+      >
+    ): void;
     getVerificationCode(
-        paramsOrCallback?:
-            Params$Resource$Projects$Notificationchannels$Getverificationcode|
-        BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse>): void|
-        GaxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$Getverificationcode;
+      callback: BodyResponseCallback<
+        Schema$GetNotificationChannelVerificationCodeResponse
+      >
+    ): void;
+    getVerificationCode(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$Getverificationcode
+        | BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GetNotificationChannelVerificationCodeResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GetNotificationChannelVerificationCodeResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$Getverificationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Notificationchannels$Getverificationcode;
+        params = {} as Params$Resource$Projects$Notificationchannels$Getverificationcode;
         options = {};
       }
 
@@ -4895,26 +5082,31 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}:getVerificationCode')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}:getVerificationCode').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GetNotificationChannelVerificationCodeResponse>(parameters);
+          Schema$GetNotificationChannelVerificationCodeResponse
+        >(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannels.list
@@ -4934,34 +5126,34 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Notificationchannels$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListNotificationChannelsResponse>;
+      params?: Params$Resource$Projects$Notificationchannels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNotificationChannelsResponse>;
     list(
-        params: Params$Resource$Projects$Notificationchannels$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
-        callback:
-            BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
-        void;
+      params: Params$Resource$Projects$Notificationchannels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
+      callback: BodyResponseCallback<Schema$ListNotificationChannelsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Notificationchannels$List,
-        callback:
-            BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
-        void;
+      params: Params$Resource$Projects$Notificationchannels$List,
+      callback: BodyResponseCallback<Schema$ListNotificationChannelsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$List|
-        BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
-        void|GaxiosPromise<Schema$ListNotificationChannelsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$List;
+      callback: BodyResponseCallback<Schema$ListNotificationChannelsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$List
+        | BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
+      callback?: BodyResponseCallback<Schema$ListNotificationChannelsResponse>
+    ): void | GaxiosPromise<Schema$ListNotificationChannelsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4978,26 +5170,31 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/notificationChannels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/notificationChannels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListNotificationChannelsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannels.patch
@@ -5015,25 +5212,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Notificationchannels$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$NotificationChannel>;
+      params?: Params$Resource$Projects$Notificationchannels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationChannel>;
     patch(
-        params: Params$Resource$Projects$Notificationchannels$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+      params: Params$Resource$Projects$Notificationchannels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationChannel>,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Notificationchannels$Patch,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+      params: Params$Resource$Projects$Notificationchannels$Patch,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Patch|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>):
-        void|GaxiosPromise<Schema$NotificationChannel> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$Patch
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>
+    ): void | GaxiosPromise<Schema$NotificationChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5050,15 +5252,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5066,7 +5269,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannels.sendVerificationCode
@@ -5083,34 +5285,33 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     sendVerificationCode(
-        params?:
-            Params$Resource$Projects$Notificationchannels$Sendverificationcode,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Notificationchannels$Sendverificationcode,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     sendVerificationCode(
-        params:
-            Params$Resource$Projects$Notificationchannels$Sendverificationcode,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Notificationchannels$Sendverificationcode,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     sendVerificationCode(
-        params:
-            Params$Resource$Projects$Notificationchannels$Sendverificationcode,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Notificationchannels$Sendverificationcode,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     sendVerificationCode(callback: BodyResponseCallback<Schema$Empty>): void;
     sendVerificationCode(
-        paramsOrCallback?:
-            Params$Resource$Projects$Notificationchannels$Sendverificationcode|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$Sendverificationcode;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$Sendverificationcode
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$Sendverificationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Notificationchannels$Sendverificationcode;
+        params = {} as Params$Resource$Projects$Notificationchannels$Sendverificationcode;
         options = {};
       }
 
@@ -5122,16 +5323,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}:sendVerificationCode')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}:sendVerificationCode').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5139,7 +5343,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.notificationChannels.verify
@@ -5157,25 +5360,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     verify(
-        params?: Params$Resource$Projects$Notificationchannels$Verify,
-        options?: MethodOptions): GaxiosPromise<Schema$NotificationChannel>;
+      params?: Params$Resource$Projects$Notificationchannels$Verify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationChannel>;
     verify(
-        params: Params$Resource$Projects$Notificationchannels$Verify,
-        options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+      params: Params$Resource$Projects$Notificationchannels$Verify,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationChannel>,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
     verify(
-        params: Params$Resource$Projects$Notificationchannels$Verify,
-        callback: BodyResponseCallback<Schema$NotificationChannel>): void;
+      params: Params$Resource$Projects$Notificationchannels$Verify,
+      callback: BodyResponseCallback<Schema$NotificationChannel>
+    ): void;
     verify(callback: BodyResponseCallback<Schema$NotificationChannel>): void;
     verify(
-        paramsOrCallback?: Params$Resource$Projects$Notificationchannels$Verify|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$NotificationChannel>,
-        callback?: BodyResponseCallback<Schema$NotificationChannel>):
-        void|GaxiosPromise<Schema$NotificationChannel> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notificationchannels$Verify;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationchannels$Verify
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>
+    ): void | GaxiosPromise<Schema$NotificationChannel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationchannels$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5192,16 +5400,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}:verify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}:verify').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5211,12 +5419,12 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationchannels$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project on which to execute the request. The format is:
@@ -5233,12 +5441,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$NotificationChannel;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If true, the notification channel will be deleted regardless of its use
@@ -5253,12 +5461,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channel for which to execute the request. The format is
@@ -5267,11 +5475,11 @@ export namespace monitoring_v3 {
     name?: string;
   }
   export interface Params$Resource$Projects$Notificationchannels$Getverificationcode
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The notification channel for which a verification code is to be generated
@@ -5285,12 +5493,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$GetNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If provided, this field specifies the criteria that must be met by
@@ -5325,12 +5533,12 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The full REST resource name for this channel. The syntax is:
@@ -5349,11 +5557,11 @@ export namespace monitoring_v3 {
     requestBody?: Schema$NotificationChannel;
   }
   export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The notification channel to which to send a verification code.
@@ -5365,12 +5573,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$SendNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Verify extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notificationchannels$Verify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The notification channel to verify.
@@ -5383,13 +5591,11 @@ export namespace monitoring_v3 {
     requestBody?: Schema$VerifyNotificationChannelRequest;
   }
 
-
   export class Resource$Projects$Timeseries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.timeSeries.create
@@ -5455,24 +5661,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Timeseries$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Timeseries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     create(
-        params: Params$Resource$Projects$Timeseries$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Timeseries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     create(
-        params: Params$Resource$Projects$Timeseries$Create,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Timeseries$Create,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Empty>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Timeseries$Create|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Timeseries$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Timeseries$Create
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Timeseries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5489,16 +5699,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/timeSeries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/timeSeries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5506,7 +5719,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.timeSeries.list
@@ -5586,26 +5798,32 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Timeseries$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTimeSeriesResponse>;
+      params?: Params$Resource$Projects$Timeseries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTimeSeriesResponse>;
     list(
-        params: Params$Resource$Projects$Timeseries$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTimeSeriesResponse>,
-        callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+      params: Params$Resource$Projects$Timeseries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+      callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Timeseries$List,
-        callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+      params: Params$Resource$Projects$Timeseries$List,
+      callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Timeseries$List|
-        BodyResponseCallback<Schema$ListTimeSeriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTimeSeriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>):
-        void|GaxiosPromise<Schema$ListTimeSeriesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Timeseries$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Timeseries$List
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>
+    ): void | GaxiosPromise<Schema$ListTimeSeriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Timeseries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5622,16 +5840,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}/timeSeries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}/timeSeries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTimeSeriesResponse>(parameters, callback);
@@ -5641,12 +5862,12 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Timeseries$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Timeseries$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project on which to execute the request. The format is
@@ -5659,12 +5880,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$CreateTimeSeriesRequest;
   }
-  export interface Params$Resource$Projects$Timeseries$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Timeseries$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The alignment period for per-time series alignment. If present,
@@ -5761,13 +5982,11 @@ export namespace monitoring_v3 {
     view?: string;
   }
 
-
   export class Resource$Projects$Uptimecheckconfigs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.projects.uptimeCheckConfigs.create
@@ -5783,25 +6002,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Uptimecheckconfigs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$UptimeCheckConfig>;
+      params?: Params$Resource$Projects$Uptimecheckconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UptimeCheckConfig>;
     create(
-        params: Params$Resource$Projects$Uptimecheckconfigs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void;
     create(
-        params: Params$Resource$Projects$Uptimecheckconfigs$Create,
-        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$Create,
+      callback: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void;
     create(callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Create|
-        BodyResponseCallback<Schema$UptimeCheckConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
-        void|GaxiosPromise<Schema$UptimeCheckConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Uptimecheckconfigs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Uptimecheckconfigs$Create
+        | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void | GaxiosPromise<Schema$UptimeCheckConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Uptimecheckconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5818,16 +6042,19 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+parent}/uptimeCheckConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+parent}/uptimeCheckConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -5835,7 +6062,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.uptimeCheckConfigs.delete
@@ -5853,24 +6079,28 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Uptimecheckconfigs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Uptimecheckconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Uptimecheckconfigs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Uptimecheckconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Uptimecheckconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5887,15 +6117,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5903,7 +6134,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.uptimeCheckConfigs.get
@@ -5917,22 +6147,31 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Uptimecheckconfigs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UptimeCheckConfig>;
-    get(params: Params$Resource$Projects$Uptimecheckconfigs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
-    get(params: Params$Resource$Projects$Uptimecheckconfigs$Get,
-        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+    get(
+      params?: Params$Resource$Projects$Uptimecheckconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UptimeCheckConfig>;
+    get(
+      params: Params$Resource$Projects$Uptimecheckconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Uptimecheckconfigs$Get,
+      callback: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Get|
-        BodyResponseCallback<Schema$UptimeCheckConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
-        void|GaxiosPromise<Schema$UptimeCheckConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Uptimecheckconfigs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Uptimecheckconfigs$Get
+        | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void | GaxiosPromise<Schema$UptimeCheckConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Uptimecheckconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5949,15 +6188,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -5965,7 +6205,6 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
       }
     }
-
 
     /**
      * monitoring.projects.uptimeCheckConfigs.list
@@ -5983,30 +6222,34 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Uptimecheckconfigs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListUptimeCheckConfigsResponse>;
+      params?: Params$Resource$Projects$Uptimecheckconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUptimeCheckConfigsResponse>;
     list(
-        params: Params$Resource$Projects$Uptimecheckconfigs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
-        callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Uptimecheckconfigs$List,
-        callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$List,
+      callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$List|
-        BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
-        void|GaxiosPromise<Schema$ListUptimeCheckConfigsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Uptimecheckconfigs$List;
+      callback: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Uptimecheckconfigs$List
+        | BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListUptimeCheckConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Uptimecheckconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6023,26 +6266,31 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+parent}/uptimeCheckConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+parent}/uptimeCheckConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * monitoring.projects.uptimeCheckConfigs.patch
@@ -6062,25 +6310,30 @@ export namespace monitoring_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Uptimecheckconfigs$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$UptimeCheckConfig>;
+      params?: Params$Resource$Projects$Uptimecheckconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UptimeCheckConfig>;
     patch(
-        params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
-        callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+      params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
+      callback: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Uptimecheckconfigs$Patch|
-        BodyResponseCallback<Schema$UptimeCheckConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UptimeCheckConfig>,
-        callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
-        void|GaxiosPromise<Schema$UptimeCheckConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Uptimecheckconfigs$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Uptimecheckconfigs$Patch
+        | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>
+    ): void | GaxiosPromise<Schema$UptimeCheckConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Uptimecheckconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6097,15 +6350,16 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -6115,12 +6369,12 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which to create the uptime check. The format  is
@@ -6133,12 +6387,12 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$UptimeCheckConfig;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The uptime check configuration to delete. The format  is
@@ -6146,12 +6400,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The uptime check configuration to retrieve. The format  is
@@ -6159,12 +6413,12 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of results to return in a single response. The server
@@ -6185,12 +6439,12 @@ export namespace monitoring_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A unique resource name for this UptimeCheckConfig. The format
@@ -6214,14 +6468,11 @@ export namespace monitoring_v3 {
     requestBody?: Schema$UptimeCheckConfig;
   }
 
-
-
   export class Resource$Uptimecheckips {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * monitoring.uptimeCheckIps.list
@@ -6236,29 +6487,35 @@ export namespace monitoring_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Uptimecheckips$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListUptimeCheckIpsResponse>;
     list(
-        params: Params$Resource$Uptimecheckips$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
-        callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
-        void;
+      params?: Params$Resource$Uptimecheckips$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUptimeCheckIpsResponse>;
     list(
-        params: Params$Resource$Uptimecheckips$List,
-        callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
-        void;
+      params: Params$Resource$Uptimecheckips$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
+      callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Uptimecheckips$List|
-        BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
-        callback?: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
-        void|GaxiosPromise<Schema$ListUptimeCheckIpsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Uptimecheckips$List;
+      params: Params$Resource$Uptimecheckips$List,
+      callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Uptimecheckips$List
+        | BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>
+    ): void | GaxiosPromise<Schema$ListUptimeCheckIpsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Uptimecheckips$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6275,32 +6532,34 @@ export namespace monitoring_v3 {
       const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/uptimeCheckIps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/uptimeCheckIps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckIpsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListUptimeCheckIpsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Uptimecheckips$List extends
-      StandardParameters {
+  export interface Params$Resource$Uptimecheckips$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of results to return in a single response. The server

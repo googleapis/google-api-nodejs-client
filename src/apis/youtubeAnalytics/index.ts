@@ -19,31 +19,44 @@ import {youtubeAnalytics_v1beta1} from './v1beta1';
 import {youtubeAnalytics_v2} from './v2';
 
 export const VERSIONS = {
-  'v1': youtubeAnalytics_v1.Youtubeanalytics,
-  'v1beta1': youtubeAnalytics_v1beta1.Youtubeanalytics,
-  'v2': youtubeAnalytics_v2.Youtubeanalytics,
+  v1: youtubeAnalytics_v1.Youtubeanalytics,
+  v1beta1: youtubeAnalytics_v1beta1.Youtubeanalytics,
+  v2: youtubeAnalytics_v2.Youtubeanalytics,
 };
 
-export function youtubeAnalytics(version: 'v1'):
-    youtubeAnalytics_v1.Youtubeanalytics;
-export function youtubeAnalytics(options: youtubeAnalytics_v1.Options):
-    youtubeAnalytics_v1.Youtubeanalytics;
-export function youtubeAnalytics(version: 'v1beta1'):
-    youtubeAnalytics_v1beta1.Youtubeanalytics;
-export function youtubeAnalytics(options: youtubeAnalytics_v1beta1.Options):
-    youtubeAnalytics_v1beta1.Youtubeanalytics;
-export function youtubeAnalytics(version: 'v2'):
-    youtubeAnalytics_v2.Youtubeanalytics;
-export function youtubeAnalytics(options: youtubeAnalytics_v2.Options):
-    youtubeAnalytics_v2.Youtubeanalytics;
+export function youtubeAnalytics(
+  version: 'v1'
+): youtubeAnalytics_v1.Youtubeanalytics;
+export function youtubeAnalytics(
+  options: youtubeAnalytics_v1.Options
+): youtubeAnalytics_v1.Youtubeanalytics;
+export function youtubeAnalytics(
+  version: 'v1beta1'
+): youtubeAnalytics_v1beta1.Youtubeanalytics;
+export function youtubeAnalytics(
+  options: youtubeAnalytics_v1beta1.Options
+): youtubeAnalytics_v1beta1.Youtubeanalytics;
+export function youtubeAnalytics(
+  version: 'v2'
+): youtubeAnalytics_v2.Youtubeanalytics;
+export function youtubeAnalytics(
+  options: youtubeAnalytics_v2.Options
+): youtubeAnalytics_v2.Youtubeanalytics;
 export function youtubeAnalytics<
-    T = youtubeAnalytics_v1.Youtubeanalytics |
-        youtubeAnalytics_v1beta1.Youtubeanalytics |
-        youtubeAnalytics_v2.Youtubeanalytics>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|
-    youtubeAnalytics_v1.Options|'v1beta1'|
-    youtubeAnalytics_v1beta1.Options|'v2'|youtubeAnalytics_v2.Options) {
+  T =
+    | youtubeAnalytics_v1.Youtubeanalytics
+    | youtubeAnalytics_v1beta1.Youtubeanalytics
+    | youtubeAnalytics_v2.Youtubeanalytics
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | youtubeAnalytics_v1.Options
+    | 'v1beta1'
+    | youtubeAnalytics_v1beta1.Options
+    | 'v2'
+    | youtubeAnalytics_v2.Options
+) {
   return getAPI<T>('youtubeAnalytics', versionOrOptions, VERSIONS, this);
 }
 

@@ -17,15 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {servicecontrol_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': servicecontrol_v1.Servicecontrol,
+  v1: servicecontrol_v1.Servicecontrol,
 };
 
 export function servicecontrol(version: 'v1'): servicecontrol_v1.Servicecontrol;
-export function servicecontrol(options: servicecontrol_v1.Options):
-    servicecontrol_v1.Servicecontrol;
+export function servicecontrol(
+  options: servicecontrol_v1.Options
+): servicecontrol_v1.Servicecontrol;
 export function servicecontrol<T = servicecontrol_v1.Servicecontrol>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|servicecontrol_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | servicecontrol_v1.Options
+) {
   return getAPI<T>('servicecontrol', versionOrOptions, VERSIONS, this);
 }
 

@@ -22,37 +22,53 @@ import {androidpublisher_v3} from './v3';
 
 export const VERSIONS = {
   'v1.1': androidpublisher_v1_1.Androidpublisher,
-  'v1': androidpublisher_v1.Androidpublisher,
-  'v2': androidpublisher_v2.Androidpublisher,
-  'v3': androidpublisher_v3.Androidpublisher,
+  v1: androidpublisher_v1.Androidpublisher,
+  v2: androidpublisher_v2.Androidpublisher,
+  v3: androidpublisher_v3.Androidpublisher,
 };
 
-export function androidpublisher(version: 'v1.1'):
-    androidpublisher_v1_1.Androidpublisher;
-export function androidpublisher(options: androidpublisher_v1_1.Options):
-    androidpublisher_v1_1.Androidpublisher;
-export function androidpublisher(version: 'v1'):
-    androidpublisher_v1.Androidpublisher;
-export function androidpublisher(options: androidpublisher_v1.Options):
-    androidpublisher_v1.Androidpublisher;
-export function androidpublisher(version: 'v2'):
-    androidpublisher_v2.Androidpublisher;
-export function androidpublisher(options: androidpublisher_v2.Options):
-    androidpublisher_v2.Androidpublisher;
-export function androidpublisher(version: 'v3'):
-    androidpublisher_v3.Androidpublisher;
-export function androidpublisher(options: androidpublisher_v3.Options):
-    androidpublisher_v3.Androidpublisher;
+export function androidpublisher(
+  version: 'v1.1'
+): androidpublisher_v1_1.Androidpublisher;
+export function androidpublisher(
+  options: androidpublisher_v1_1.Options
+): androidpublisher_v1_1.Androidpublisher;
+export function androidpublisher(
+  version: 'v1'
+): androidpublisher_v1.Androidpublisher;
+export function androidpublisher(
+  options: androidpublisher_v1.Options
+): androidpublisher_v1.Androidpublisher;
+export function androidpublisher(
+  version: 'v2'
+): androidpublisher_v2.Androidpublisher;
+export function androidpublisher(
+  options: androidpublisher_v2.Options
+): androidpublisher_v2.Androidpublisher;
+export function androidpublisher(
+  version: 'v3'
+): androidpublisher_v3.Androidpublisher;
+export function androidpublisher(
+  options: androidpublisher_v3.Options
+): androidpublisher_v3.Androidpublisher;
 export function androidpublisher<
-    T = androidpublisher_v1_1.Androidpublisher |
-        androidpublisher_v1.Androidpublisher |
-        androidpublisher_v2.Androidpublisher |
-        androidpublisher_v3.Androidpublisher>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1.1'|
-    androidpublisher_v1_1.Options|'v1'|
-    androidpublisher_v1.Options|'v2'|
-    androidpublisher_v2.Options|'v3'|androidpublisher_v3.Options) {
+  T =
+    | androidpublisher_v1_1.Androidpublisher
+    | androidpublisher_v1.Androidpublisher
+    | androidpublisher_v2.Androidpublisher
+    | androidpublisher_v3.Androidpublisher
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1.1'
+    | androidpublisher_v1_1.Options
+    | 'v1'
+    | androidpublisher_v1.Options
+    | 'v2'
+    | androidpublisher_v2.Options
+    | 'v3'
+    | androidpublisher_v3.Options
+) {
   return getAPI<T>('androidpublisher', versionOrOptions, VERSIONS, this);
 }
 

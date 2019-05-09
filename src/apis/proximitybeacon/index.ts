@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {proximitybeacon_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1beta1': proximitybeacon_v1beta1.Proximitybeacon,
+  v1beta1: proximitybeacon_v1beta1.Proximitybeacon,
 };
 
-export function proximitybeacon(version: 'v1beta1'):
-    proximitybeacon_v1beta1.Proximitybeacon;
-export function proximitybeacon(options: proximitybeacon_v1beta1.Options):
-    proximitybeacon_v1beta1.Proximitybeacon;
+export function proximitybeacon(
+  version: 'v1beta1'
+): proximitybeacon_v1beta1.Proximitybeacon;
+export function proximitybeacon(
+  options: proximitybeacon_v1beta1.Options
+): proximitybeacon_v1beta1.Proximitybeacon;
 export function proximitybeacon<T = proximitybeacon_v1beta1.Proximitybeacon>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|proximitybeacon_v1beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta1' | proximitybeacon_v1beta1.Options
+) {
   return getAPI<T>('proximitybeacon', versionOrOptions, VERSIONS, this);
 }
 

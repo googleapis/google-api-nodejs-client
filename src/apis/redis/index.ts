@@ -18,8 +18,8 @@ import {redis_v1} from './v1';
 import {redis_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1': redis_v1.Redis,
-  'v1beta1': redis_v1beta1.Redis,
+  v1: redis_v1.Redis,
+  v1beta1: redis_v1beta1.Redis,
 };
 
 export function redis(version: 'v1'): redis_v1.Redis;
@@ -27,8 +27,9 @@ export function redis(options: redis_v1.Options): redis_v1.Redis;
 export function redis(version: 'v1beta1'): redis_v1beta1.Redis;
 export function redis(options: redis_v1beta1.Options): redis_v1beta1.Redis;
 export function redis<T = redis_v1.Redis | redis_v1beta1.Redis>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|redis_v1.Options|'v1beta1'|redis_v1beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | redis_v1.Options | 'v1beta1' | redis_v1beta1.Options
+) {
   return getAPI<T>('redis', versionOrOptions, VERSIONS, this);
 }
 

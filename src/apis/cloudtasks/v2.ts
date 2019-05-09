@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -181,7 +193,7 @@ export namespace cloudtasks_v2 {
      * there is a limit on the maximum size of the Task. For more information,
      * see the CreateTask documentation.
      */
-    headers?: {[key: string]: string;};
+    headers?: {[key: string]: string};
     /**
      * The HTTP method to use for the request. The default is POST.  The
      * app&#39;s request handler for the task&#39;s target URL must be able to
@@ -454,7 +466,7 @@ export namespace cloudtasks_v2 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -463,7 +475,7 @@ export namespace cloudtasks_v2 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -782,7 +794,7 @@ export namespace cloudtasks_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -900,7 +912,6 @@ export namespace cloudtasks_v2 {
     permissions?: string[];
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -910,7 +921,6 @@ export namespace cloudtasks_v2 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     queues: Resource$Projects$Locations$Queues;
@@ -918,7 +928,6 @@ export namespace cloudtasks_v2 {
       this.context = context;
       this.queues = new Resource$Projects$Locations$Queues(this.context);
     }
-
 
     /**
      * cloudtasks.projects.locations.get
@@ -932,21 +941,29 @@ export namespace cloudtasks_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Location>;
-    get(params: Params$Resource$Projects$Locations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback: BodyResponseCallback<Schema$Location>): void;
-    get(params: Params$Resource$Projects$Locations$Get,
-        callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
-        BodyResponseCallback<Schema$Location>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>):
-        void|GaxiosPromise<Schema$Location> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -963,15 +980,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -979,7 +997,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Location>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.list
@@ -997,26 +1014,32 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1033,16 +1056,19 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1052,24 +1078,24 @@ export namespace cloudtasks_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -1097,7 +1123,6 @@ export namespace cloudtasks_v2 {
       this.tasks = new Resource$Projects$Locations$Queues$Tasks(this.context);
     }
 
-
     /**
      * cloudtasks.projects.locations.queues.create
      * @desc Creates a queue.  Queues created with this method allow tasks to
@@ -1119,24 +1144,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Queues$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
+      params?: Params$Resource$Projects$Locations$Queues$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Queue>;
     create(
-        params: Params$Resource$Projects$Locations$Queues$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Queues$Create,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Create,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Queue>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Create|
-        BodyResponseCallback<Schema$Queue>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>):
-        void|GaxiosPromise<Schema$Queue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Create
+        | BodyResponseCallback<Schema$Queue>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback?: BodyResponseCallback<Schema$Queue>
+    ): void | GaxiosPromise<Schema$Queue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1153,16 +1182,19 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/queues')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/queues').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1170,7 +1202,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Queue>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.delete
@@ -1192,24 +1223,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Queues$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Queues$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Queues$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Queues$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Queues$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Queues$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1226,15 +1261,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1242,7 +1278,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.get
@@ -1256,21 +1291,29 @@ export namespace cloudtasks_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Queues$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
-    get(params: Params$Resource$Projects$Locations$Queues$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback: BodyResponseCallback<Schema$Queue>): void;
-    get(params: Params$Resource$Projects$Locations$Queues$Get,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Queues$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Queue>;
+    get(
+      params: Params$Resource$Projects$Locations$Queues$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Queues$Get,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Queue>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Get|
-        BodyResponseCallback<Schema$Queue>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>):
-        void|GaxiosPromise<Schema$Queue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Get
+        | BodyResponseCallback<Schema$Queue>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback?: BodyResponseCallback<Schema$Queue>
+    ): void | GaxiosPromise<Schema$Queue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1287,15 +1330,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1303,7 +1347,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Queue>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.getIamPolicy
@@ -1323,25 +1366,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Locations$Queues$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Queues$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Queues$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1358,16 +1404,19 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1375,7 +1424,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.list
@@ -1393,25 +1441,30 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Queues$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListQueuesResponse>;
+      params?: Params$Resource$Projects$Locations$Queues$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListQueuesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Queues$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListQueuesResponse>,
-        callback: BodyResponseCallback<Schema$ListQueuesResponse>): void;
+      params: Params$Resource$Projects$Locations$Queues$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListQueuesResponse>,
+      callback: BodyResponseCallback<Schema$ListQueuesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Queues$List,
-        callback: BodyResponseCallback<Schema$ListQueuesResponse>): void;
+      params: Params$Resource$Projects$Locations$Queues$List,
+      callback: BodyResponseCallback<Schema$ListQueuesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListQueuesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$List|
-        BodyResponseCallback<Schema$ListQueuesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListQueuesResponse>,
-        callback?: BodyResponseCallback<Schema$ListQueuesResponse>):
-        void|GaxiosPromise<Schema$ListQueuesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$List
+        | BodyResponseCallback<Schema$ListQueuesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQueuesResponse>,
+      callback?: BodyResponseCallback<Schema$ListQueuesResponse>
+    ): void | GaxiosPromise<Schema$ListQueuesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1428,16 +1481,19 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/queues')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/queues').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListQueuesResponse>(parameters, callback);
@@ -1445,7 +1501,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$ListQueuesResponse>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.patch
@@ -1470,24 +1525,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Queues$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
+      params?: Params$Resource$Projects$Locations$Queues$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Queue>;
     patch(
-        params: Params$Resource$Projects$Locations$Queues$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Queues$Patch,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Patch,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Queue>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Patch|
-        BodyResponseCallback<Schema$Queue>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>):
-        void|GaxiosPromise<Schema$Queue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Patch
+        | BodyResponseCallback<Schema$Queue>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback?: BodyResponseCallback<Schema$Queue>
+    ): void | GaxiosPromise<Schema$Queue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1504,15 +1563,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1520,7 +1580,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Queue>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.pause
@@ -1539,24 +1598,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     pause(
-        params?: Params$Resource$Projects$Locations$Queues$Pause,
-        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
+      params?: Params$Resource$Projects$Locations$Queues$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Queue>;
     pause(
-        params: Params$Resource$Projects$Locations$Queues$Pause,
-        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     pause(
-        params: Params$Resource$Projects$Locations$Queues$Pause,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Pause,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     pause(callback: BodyResponseCallback<Schema$Queue>): void;
     pause(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Pause|
-        BodyResponseCallback<Schema$Queue>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>):
-        void|GaxiosPromise<Schema$Queue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Pause;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Pause
+        | BodyResponseCallback<Schema$Queue>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback?: BodyResponseCallback<Schema$Queue>
+    ): void | GaxiosPromise<Schema$Queue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1573,16 +1636,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v2/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1590,7 +1653,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Queue>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.purge
@@ -1609,24 +1671,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     purge(
-        params?: Params$Resource$Projects$Locations$Queues$Purge,
-        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
+      params?: Params$Resource$Projects$Locations$Queues$Purge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Queue>;
     purge(
-        params: Params$Resource$Projects$Locations$Queues$Purge,
-        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Purge,
+      options: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     purge(
-        params: Params$Resource$Projects$Locations$Queues$Purge,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Purge,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     purge(callback: BodyResponseCallback<Schema$Queue>): void;
     purge(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Purge|
-        BodyResponseCallback<Schema$Queue>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>):
-        void|GaxiosPromise<Schema$Queue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Purge;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Purge
+        | BodyResponseCallback<Schema$Queue>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback?: BodyResponseCallback<Schema$Queue>
+    ): void | GaxiosPromise<Schema$Queue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1643,16 +1709,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v2/{+name}:purge').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:purge').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1660,7 +1726,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Queue>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.resume
@@ -1682,24 +1747,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     resume(
-        params?: Params$Resource$Projects$Locations$Queues$Resume,
-        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
+      params?: Params$Resource$Projects$Locations$Queues$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Queue>;
     resume(
-        params: Params$Resource$Projects$Locations$Queues$Resume,
-        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     resume(
-        params: Params$Resource$Projects$Locations$Queues$Resume,
-        callback: BodyResponseCallback<Schema$Queue>): void;
+      params: Params$Resource$Projects$Locations$Queues$Resume,
+      callback: BodyResponseCallback<Schema$Queue>
+    ): void;
     resume(callback: BodyResponseCallback<Schema$Queue>): void;
     resume(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Resume|
-        BodyResponseCallback<Schema$Queue>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>):
-        void|GaxiosPromise<Schema$Queue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Resume;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Resume
+        | BodyResponseCallback<Schema$Queue>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Queue>,
+      callback?: BodyResponseCallback<Schema$Queue>
+    ): void | GaxiosPromise<Schema$Queue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1716,16 +1785,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:resume')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1733,7 +1802,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Queue>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.setIamPolicy
@@ -1754,25 +1822,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Locations$Queues$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Queues$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Queues$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1789,16 +1860,19 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1806,7 +1880,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.testIamPermissions
@@ -1826,38 +1899,39 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Locations$Queues$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Queues$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Queues$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Queues$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Queues$Testiampermissions;
         options = {};
       }
 
@@ -1869,32 +1943,37 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The location name in which the queue will be created. For
@@ -1909,12 +1988,12 @@ export namespace cloudtasks_v2 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The queue name. For example:
@@ -1922,12 +2001,12 @@ export namespace cloudtasks_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The resource name of the queue. For example:
@@ -1936,11 +2015,11 @@ export namespace cloudtasks_v2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -1953,12 +2032,12 @@ export namespace cloudtasks_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * `filter` can be used to specify a subset of queues. Any Queue field can
@@ -1991,12 +2070,12 @@ export namespace cloudtasks_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Caller-specified and required in CreateQueue, after which it becomes
@@ -2024,12 +2103,12 @@ export namespace cloudtasks_v2 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Pause extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Pause
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The queue name. For example:
@@ -2042,12 +2121,12 @@ export namespace cloudtasks_v2 {
      */
     requestBody?: Schema$PauseQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Purge extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Purge
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The queue name. For example:
@@ -2060,12 +2139,12 @@ export namespace cloudtasks_v2 {
      */
     requestBody?: Schema$PurgeQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Resume extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Resume
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The queue name. For example:
@@ -2079,11 +2158,11 @@ export namespace cloudtasks_v2 {
     requestBody?: Schema$ResumeQueueRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -2097,11 +2176,11 @@ export namespace cloudtasks_v2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -2121,7 +2200,6 @@ export namespace cloudtasks_v2 {
       this.context = context;
     }
 
-
     /**
      * cloudtasks.projects.locations.queues.tasks.create
      * @desc Creates a task and adds it to a queue.  Tasks cannot be updated
@@ -2138,25 +2216,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Queues$Tasks$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Task>;
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
     create(
-        params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
-        callback: BodyResponseCallback<Schema$Task>): void;
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Task>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Queues$Tasks$Create|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Tasks$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Create
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2173,16 +2254,19 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/tasks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/tasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2190,7 +2274,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.tasks.delete
@@ -2207,25 +2290,28 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Queues$Tasks$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Tasks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2242,15 +2328,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2258,7 +2345,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.tasks.get
@@ -2273,21 +2359,29 @@ export namespace cloudtasks_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Queues$Tasks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Task>;
-    get(params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
-    get(params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
-        callback: BodyResponseCallback<Schema$Task>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
+    get(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Task>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Tasks$Get|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Tasks$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Get
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2304,15 +2398,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2320,7 +2415,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.tasks.list
@@ -2341,25 +2435,30 @@ export namespace cloudtasks_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Queues$Tasks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTasksResponse>;
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTasksResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Queues$Tasks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListTasksResponse>,
-        callback: BodyResponseCallback<Schema$ListTasksResponse>): void;
+      params: Params$Resource$Projects$Locations$Queues$Tasks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListTasksResponse>,
+      callback: BodyResponseCallback<Schema$ListTasksResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Queues$Tasks$List,
-        callback: BodyResponseCallback<Schema$ListTasksResponse>): void;
+      params: Params$Resource$Projects$Locations$Queues$Tasks$List,
+      callback: BodyResponseCallback<Schema$ListTasksResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTasksResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Tasks$List|
-        BodyResponseCallback<Schema$ListTasksResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTasksResponse>,
-        callback?: BodyResponseCallback<Schema$ListTasksResponse>):
-        void|GaxiosPromise<Schema$ListTasksResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Tasks$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$List
+        | BodyResponseCallback<Schema$ListTasksResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTasksResponse>,
+      callback?: BodyResponseCallback<Schema$ListTasksResponse>
+    ): void | GaxiosPromise<Schema$ListTasksResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2376,16 +2475,19 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/tasks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/tasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTasksResponse>(parameters, callback);
@@ -2393,7 +2495,6 @@ export namespace cloudtasks_v2 {
         return createAPIRequest<Schema$ListTasksResponse>(parameters);
       }
     }
-
 
     /**
      * cloudtasks.projects.locations.queues.tasks.run
@@ -2420,21 +2521,29 @@ export namespace cloudtasks_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: Params$Resource$Projects$Locations$Queues$Tasks$Run,
-        options?: MethodOptions): GaxiosPromise<Schema$Task>;
-    run(params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
-        options: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback: BodyResponseCallback<Schema$Task>): void;
-    run(params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
-        callback: BodyResponseCallback<Schema$Task>): void;
+    run(
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Task>;
+    run(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
+      callback: BodyResponseCallback<Schema$Task>
+    ): void;
     run(callback: BodyResponseCallback<Schema$Task>): void;
-    run(paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Tasks$Run|
-        BodyResponseCallback<Schema$Task>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>):
-        void|GaxiosPromise<Schema$Task> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Queues$Tasks$Run;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Run
+        | BodyResponseCallback<Schema$Task>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>
+    ): void | GaxiosPromise<Schema$Task> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2451,15 +2560,16 @@ export namespace cloudtasks_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2470,11 +2580,11 @@ export namespace cloudtasks_v2 {
   }
 
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The queue name. For example:
@@ -2489,11 +2599,11 @@ export namespace cloudtasks_v2 {
     requestBody?: Schema$CreateTaskRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The task name. For example:
@@ -2501,12 +2611,12 @@ export namespace cloudtasks_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The task name. For example:
@@ -2524,12 +2634,12 @@ export namespace cloudtasks_v2 {
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Requested page size. Fewer tasks than requested might be returned.  The
@@ -2563,12 +2673,12 @@ export namespace cloudtasks_v2 {
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The task name. For example:

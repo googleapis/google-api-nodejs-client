@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {groupsmigration_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': groupsmigration_v1.Groupsmigration,
+  v1: groupsmigration_v1.Groupsmigration,
 };
 
-export function groupsmigration(version: 'v1'):
-    groupsmigration_v1.Groupsmigration;
-export function groupsmigration(options: groupsmigration_v1.Options):
-    groupsmigration_v1.Groupsmigration;
+export function groupsmigration(
+  version: 'v1'
+): groupsmigration_v1.Groupsmigration;
+export function groupsmigration(
+  options: groupsmigration_v1.Options
+): groupsmigration_v1.Groupsmigration;
 export function groupsmigration<T = groupsmigration_v1.Groupsmigration>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|groupsmigration_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | groupsmigration_v1.Options
+) {
   return getAPI<T>('groupsmigration', versionOrOptions, VERSIONS, this);
 }
 

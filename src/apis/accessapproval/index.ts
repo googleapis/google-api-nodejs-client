@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {accessapproval_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1beta1': accessapproval_v1beta1.Accessapproval,
+  v1beta1: accessapproval_v1beta1.Accessapproval,
 };
 
-export function accessapproval(version: 'v1beta1'):
-    accessapproval_v1beta1.Accessapproval;
-export function accessapproval(options: accessapproval_v1beta1.Options):
-    accessapproval_v1beta1.Accessapproval;
+export function accessapproval(
+  version: 'v1beta1'
+): accessapproval_v1beta1.Accessapproval;
+export function accessapproval(
+  options: accessapproval_v1beta1.Options
+): accessapproval_v1beta1.Accessapproval;
 export function accessapproval<T = accessapproval_v1beta1.Accessapproval>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|accessapproval_v1beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta1' | accessapproval_v1beta1.Options
+) {
   return getAPI<T>('accessapproval', versionOrOptions, VERSIONS, this);
 }
 

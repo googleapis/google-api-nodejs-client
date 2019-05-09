@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {androidenterprise_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': androidenterprise_v1.Androidenterprise,
+  v1: androidenterprise_v1.Androidenterprise,
 };
 
-export function androidenterprise(version: 'v1'):
-    androidenterprise_v1.Androidenterprise;
-export function androidenterprise(options: androidenterprise_v1.Options):
-    androidenterprise_v1.Androidenterprise;
+export function androidenterprise(
+  version: 'v1'
+): androidenterprise_v1.Androidenterprise;
+export function androidenterprise(
+  options: androidenterprise_v1.Options
+): androidenterprise_v1.Androidenterprise;
 export function androidenterprise<T = androidenterprise_v1.Androidenterprise>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|androidenterprise_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | androidenterprise_v1.Options
+) {
   return getAPI<T>('androidenterprise', versionOrOptions, VERSIONS, this);
 }
 

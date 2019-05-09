@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -509,7 +521,6 @@ export namespace firebaserules_v1 {
     value?: any;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     releases: Resource$Projects$Releases;
@@ -519,7 +530,6 @@ export namespace firebaserules_v1 {
       this.releases = new Resource$Projects$Releases(this.context);
       this.rulesets = new Resource$Projects$Rulesets(this.context);
     }
-
 
     /**
      * firebaserules.projects.test
@@ -546,23 +556,29 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    test(params?: Params$Resource$Projects$Test, options?: MethodOptions):
-        GaxiosPromise<Schema$TestRulesetResponse>;
     test(
-        params: Params$Resource$Projects$Test,
-        options: MethodOptions|BodyResponseCallback<Schema$TestRulesetResponse>,
-        callback: BodyResponseCallback<Schema$TestRulesetResponse>): void;
+      params?: Params$Resource$Projects$Test,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestRulesetResponse>;
     test(
-        params: Params$Resource$Projects$Test,
-        callback: BodyResponseCallback<Schema$TestRulesetResponse>): void;
+      params: Params$Resource$Projects$Test,
+      options: MethodOptions | BodyResponseCallback<Schema$TestRulesetResponse>,
+      callback: BodyResponseCallback<Schema$TestRulesetResponse>
+    ): void;
+    test(
+      params: Params$Resource$Projects$Test,
+      callback: BodyResponseCallback<Schema$TestRulesetResponse>
+    ): void;
     test(callback: BodyResponseCallback<Schema$TestRulesetResponse>): void;
     test(
-        paramsOrCallback?: Params$Resource$Projects$Test|
-        BodyResponseCallback<Schema$TestRulesetResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestRulesetResponse>,
-        callback?: BodyResponseCallback<Schema$TestRulesetResponse>):
-        void|GaxiosPromise<Schema$TestRulesetResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Test
+        | BodyResponseCallback<Schema$TestRulesetResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestRulesetResponse>,
+      callback?: BodyResponseCallback<Schema$TestRulesetResponse>
+    ): void | GaxiosPromise<Schema$TestRulesetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Test;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -578,18 +594,19 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:test').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:test').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestRulesetResponse>(parameters, callback);
@@ -603,7 +620,7 @@ export namespace firebaserules_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Tests may either provide `source` or a `Ruleset` resource name.  For
@@ -625,7 +642,6 @@ export namespace firebaserules_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firebaserules.projects.releases.create
@@ -655,24 +671,28 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Releases$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Release>;
+      params?: Params$Resource$Projects$Releases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
     create(
-        params: Params$Resource$Projects$Releases$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback: BodyResponseCallback<Schema$Release>): void;
+      params: Params$Resource$Projects$Releases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
     create(
-        params: Params$Resource$Projects$Releases$Create,
-        callback: BodyResponseCallback<Schema$Release>): void;
+      params: Params$Resource$Projects$Releases$Create,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Release>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Releases$Create|
-        BodyResponseCallback<Schema$Release>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback?: BodyResponseCallback<Schema$Release>):
-        void|GaxiosPromise<Schema$Release> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Releases$Create
+        | BodyResponseCallback<Schema$Release>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>
+    ): void | GaxiosPromise<Schema$Release> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -687,19 +707,22 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/releases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -707,7 +730,6 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$Release>(parameters);
       }
     }
-
 
     /**
      * firebaserules.projects.releases.delete
@@ -722,24 +744,28 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Releases$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Releases$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Releases$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Releases$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Releases$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Releases$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Releases$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Releases$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Releases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -754,18 +780,19 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -773,7 +800,6 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * firebaserules.projects.releases.get
@@ -787,21 +813,29 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Releases$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Release>;
-    get(params: Params$Resource$Projects$Releases$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback: BodyResponseCallback<Schema$Release>): void;
-    get(params: Params$Resource$Projects$Releases$Get,
-        callback: BodyResponseCallback<Schema$Release>): void;
+    get(
+      params?: Params$Resource$Projects$Releases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    get(
+      params: Params$Resource$Projects$Releases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Releases$Get,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Release>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Releases$Get|
-        BodyResponseCallback<Schema$Release>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback?: BodyResponseCallback<Schema$Release>):
-        void|GaxiosPromise<Schema$Release> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Releases$Get
+        | BodyResponseCallback<Schema$Release>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>
+    ): void | GaxiosPromise<Schema$Release> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -816,18 +850,19 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -835,7 +870,6 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$Release>(parameters);
       }
     }
-
 
     /**
      * firebaserules.projects.releases.getExecutable
@@ -851,31 +885,34 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     getExecutable(
-        params?: Params$Resource$Projects$Releases$Getexecutable,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetReleaseExecutableResponse>;
+      params?: Params$Resource$Projects$Releases$Getexecutable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetReleaseExecutableResponse>;
     getExecutable(
-        params: Params$Resource$Projects$Releases$Getexecutable,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
-        callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
-        void;
+      params: Params$Resource$Projects$Releases$Getexecutable,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
+      callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>
+    ): void;
     getExecutable(
-        params: Params$Resource$Projects$Releases$Getexecutable,
-        callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
-        void;
+      params: Params$Resource$Projects$Releases$Getexecutable,
+      callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>
+    ): void;
     getExecutable(
-        callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>
+    ): void;
     getExecutable(
-        paramsOrCallback?: Params$Resource$Projects$Releases$Getexecutable|
-        BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
-        callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
-        void|GaxiosPromise<Schema$GetReleaseExecutableResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Releases$Getexecutable;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Releases$Getexecutable
+        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
+      callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>
+    ): void | GaxiosPromise<Schema$GetReleaseExecutableResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Releases$Getexecutable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -890,29 +927,34 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:getExecutable')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:getExecutable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetReleaseExecutableResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetReleaseExecutableResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * firebaserules.projects.releases.list
@@ -932,26 +974,32 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Releases$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListReleasesResponse>;
+      params?: Params$Resource$Projects$Releases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReleasesResponse>;
     list(
-        params: Params$Resource$Projects$Releases$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListReleasesResponse>,
-        callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+      params: Params$Resource$Projects$Releases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Releases$List,
-        callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+      params: Params$Resource$Projects$Releases$List,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Releases$List|
-        BodyResponseCallback<Schema$ListReleasesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReleasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListReleasesResponse>):
-        void|GaxiosPromise<Schema$ListReleasesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Releases$List
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -966,19 +1014,22 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/releases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
@@ -986,7 +1037,6 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
       }
     }
-
 
     /**
      * firebaserules.projects.releases.patch
@@ -1004,24 +1054,28 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Releases$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Release>;
+      params?: Params$Resource$Projects$Releases$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
     patch(
-        params: Params$Resource$Projects$Releases$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback: BodyResponseCallback<Schema$Release>): void;
+      params: Params$Resource$Projects$Releases$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Releases$Patch,
-        callback: BodyResponseCallback<Schema$Release>): void;
+      params: Params$Resource$Projects$Releases$Patch,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Release>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Releases$Patch|
-        BodyResponseCallback<Schema$Release>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback?: BodyResponseCallback<Schema$Release>):
-        void|GaxiosPromise<Schema$Release> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Releases$Patch
+        | BodyResponseCallback<Schema$Release>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>
+    ): void | GaxiosPromise<Schema$Release> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Releases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1036,18 +1090,19 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -1057,12 +1112,12 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Releases$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Releases$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the project which owns this `Release`.  Format:
@@ -1075,12 +1130,12 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Releases$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Releases$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the `Release` to delete.  Format:
@@ -1088,12 +1143,12 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Releases$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the `Release`.  Format:
@@ -1101,12 +1156,12 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Getexecutable extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Releases$Getexecutable
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The requested runtime executable version. Defaults to
@@ -1119,12 +1174,12 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Releases$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * `Release` filter. The list method supports filters with restrictions on
@@ -1164,12 +1219,12 @@ export namespace firebaserules_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Releases$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Releases$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the project which owns this `Release`.  Format:
@@ -1183,13 +1238,11 @@ export namespace firebaserules_v1 {
     requestBody?: Schema$UpdateReleaseRequest;
   }
 
-
   export class Resource$Projects$Rulesets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firebaserules.projects.rulesets.create
@@ -1209,24 +1262,28 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Rulesets$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Ruleset>;
+      params?: Params$Resource$Projects$Rulesets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Ruleset>;
     create(
-        params: Params$Resource$Projects$Rulesets$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-        callback: BodyResponseCallback<Schema$Ruleset>): void;
+      params: Params$Resource$Projects$Rulesets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
+      callback: BodyResponseCallback<Schema$Ruleset>
+    ): void;
     create(
-        params: Params$Resource$Projects$Rulesets$Create,
-        callback: BodyResponseCallback<Schema$Ruleset>): void;
+      params: Params$Resource$Projects$Rulesets$Create,
+      callback: BodyResponseCallback<Schema$Ruleset>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Ruleset>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Rulesets$Create|
-        BodyResponseCallback<Schema$Ruleset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-        callback?: BodyResponseCallback<Schema$Ruleset>):
-        void|GaxiosPromise<Schema$Ruleset> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Rulesets$Create
+        | BodyResponseCallback<Schema$Ruleset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
+      callback?: BodyResponseCallback<Schema$Ruleset>
+    ): void | GaxiosPromise<Schema$Ruleset> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Rulesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1241,19 +1298,22 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/rulesets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/rulesets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1261,7 +1321,6 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$Ruleset>(parameters);
       }
     }
-
 
     /**
      * firebaserules.projects.rulesets.delete
@@ -1277,24 +1336,28 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Rulesets$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Rulesets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Rulesets$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Rulesets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Rulesets$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Rulesets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Rulesets$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Rulesets$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Rulesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1309,18 +1372,19 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1328,7 +1392,6 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * firebaserules.projects.rulesets.get
@@ -1342,21 +1405,29 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Rulesets$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Ruleset>;
-    get(params: Params$Resource$Projects$Rulesets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-        callback: BodyResponseCallback<Schema$Ruleset>): void;
-    get(params: Params$Resource$Projects$Rulesets$Get,
-        callback: BodyResponseCallback<Schema$Ruleset>): void;
+    get(
+      params?: Params$Resource$Projects$Rulesets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Ruleset>;
+    get(
+      params: Params$Resource$Projects$Rulesets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
+      callback: BodyResponseCallback<Schema$Ruleset>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Rulesets$Get,
+      callback: BodyResponseCallback<Schema$Ruleset>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Ruleset>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Rulesets$Get|
-        BodyResponseCallback<Schema$Ruleset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-        callback?: BodyResponseCallback<Schema$Ruleset>):
-        void|GaxiosPromise<Schema$Ruleset> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Rulesets$Get
+        | BodyResponseCallback<Schema$Ruleset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
+      callback?: BodyResponseCallback<Schema$Ruleset>
+    ): void | GaxiosPromise<Schema$Ruleset> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Rulesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1371,18 +1442,19 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1390,7 +1462,6 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$Ruleset>(parameters);
       }
     }
-
 
     /**
      * firebaserules.projects.rulesets.list
@@ -1410,26 +1481,32 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Rulesets$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListRulesetsResponse>;
+      params?: Params$Resource$Projects$Rulesets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRulesetsResponse>;
     list(
-        params: Params$Resource$Projects$Rulesets$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListRulesetsResponse>,
-        callback: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
+      params: Params$Resource$Projects$Rulesets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRulesetsResponse>,
+      callback: BodyResponseCallback<Schema$ListRulesetsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Rulesets$List,
-        callback: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
+      params: Params$Resource$Projects$Rulesets$List,
+      callback: BodyResponseCallback<Schema$ListRulesetsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Rulesets$List|
-        BodyResponseCallback<Schema$ListRulesetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRulesetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListRulesetsResponse>):
-        void|GaxiosPromise<Schema$ListRulesetsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Rulesets$List
+        | BodyResponseCallback<Schema$ListRulesetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRulesetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListRulesetsResponse>
+    ): void | GaxiosPromise<Schema$ListRulesetsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Rulesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1444,19 +1521,22 @@ export namespace firebaserules_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebaserules.googleapis.com/';
+        options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/rulesets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/rulesets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRulesetsResponse>(parameters, callback);
@@ -1466,12 +1546,12 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Rulesets$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for Project which owns this `Ruleset`.  Format:
@@ -1484,12 +1564,12 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Ruleset;
   }
-  export interface Params$Resource$Projects$Rulesets$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the ruleset to delete.  Format:
@@ -1497,12 +1577,12 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the ruleset to get.  Format:
@@ -1510,12 +1590,12 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Rulesets$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * `Ruleset` filter. The list method supports filters with restrictions on

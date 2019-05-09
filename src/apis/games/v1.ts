@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -99,8 +111,9 @@ export namespace games_v1 {
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {_options: options || {}, google};
 
-      this.achievementDefinitions =
-          new Resource$Achievementdefinitions(this.context);
+      this.achievementDefinitions = new Resource$Achievementdefinitions(
+        this.context
+      );
       this.achievements = new Resource$Achievements(this.context);
       this.applications = new Resource$Applications(this.context);
       this.events = new Resource$Events(this.context);
@@ -1322,7 +1335,7 @@ export namespace games_v1 {
      * An object representation of the individual components of the player&#39;s
      * name. For some players, these fields may not be present.
      */
-    name?: {familyName?: string; givenName?: string;};
+    name?: {familyName?: string; givenName?: string};
     /**
      * The player ID that was used for this player the first time they signed
      * into the game in question. This is only populated for calls to player.get
@@ -1727,7 +1740,7 @@ export namespace games_v1 {
     /**
      * A push token ID for iOS devices.
      */
-    ios?: {apns_device_token?: string; apns_environment?: string;};
+    ios?: {apns_device_token?: string; apns_environment?: string};
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#pushTokenId.
@@ -2943,13 +2956,11 @@ export namespace games_v1 {
     results?: Schema$ParticipantResult[];
   }
 
-
   export class Resource$Achievementdefinitions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.achievementDefinitions.list
@@ -2966,34 +2977,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Achievementdefinitions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementDefinitionsListResponse>;
+      params?: Params$Resource$Achievementdefinitions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementDefinitionsListResponse>;
     list(
-        params: Params$Resource$Achievementdefinitions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
-        void;
+      params: Params$Resource$Achievementdefinitions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
+      callback: BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Achievementdefinitions$List,
-        callback:
-            BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
-        void;
+      params: Params$Resource$Achievementdefinitions$List,
+      callback: BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Achievementdefinitions$List|
-        BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
-        void|GaxiosPromise<Schema$AchievementDefinitionsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Achievementdefinitions$List;
+      callback: BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Achievementdefinitions$List
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+    ): void | GaxiosPromise<Schema$AchievementDefinitionsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievementdefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3010,33 +3021,39 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/achievements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/achievements').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementDefinitionsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AchievementDefinitionsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Achievementdefinitions$List extends
-      StandardParameters {
+  export interface Params$Resource$Achievementdefinitions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -3054,13 +3071,11 @@ export namespace games_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Achievements {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.achievements.increment
@@ -3078,31 +3093,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     increment(
-        params?: Params$Resource$Achievements$Increment,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementIncrementResponse>;
+      params?: Params$Resource$Achievements$Increment,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementIncrementResponse>;
     increment(
-        params: Params$Resource$Achievements$Increment,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementIncrementResponse>,
-        callback: BodyResponseCallback<Schema$AchievementIncrementResponse>):
-        void;
+      params: Params$Resource$Achievements$Increment,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>,
+      callback: BodyResponseCallback<Schema$AchievementIncrementResponse>
+    ): void;
     increment(
-        params: Params$Resource$Achievements$Increment,
-        callback: BodyResponseCallback<Schema$AchievementIncrementResponse>):
-        void;
-    increment(callback:
-                  BodyResponseCallback<Schema$AchievementIncrementResponse>):
-        void;
+      params: Params$Resource$Achievements$Increment,
+      callback: BodyResponseCallback<Schema$AchievementIncrementResponse>
+    ): void;
     increment(
-        paramsOrCallback?: Params$Resource$Achievements$Increment|
-        BodyResponseCallback<Schema$AchievementIncrementResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementIncrementResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementIncrementResponse>):
-        void|GaxiosPromise<Schema$AchievementIncrementResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Achievements$Increment;
+      callback: BodyResponseCallback<Schema$AchievementIncrementResponse>
+    ): void;
+    increment(
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Increment
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementIncrementResponse>
+    ): void | GaxiosPromise<Schema$AchievementIncrementResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Increment;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3119,27 +3137,30 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/games/v1/achievements/{achievementId}/increment')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/achievements/{achievementId}/increment'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['achievementId', 'stepsToIncrement'],
         pathParams: ['achievementId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementIncrementResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AchievementIncrementResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * games.achievements.list
@@ -3158,29 +3179,35 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Achievements$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlayerAchievementListResponse>;
     list(
-        params: Params$Resource$Achievements$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlayerAchievementListResponse>,
-        callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
-        void;
+      params?: Params$Resource$Achievements$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerAchievementListResponse>;
     list(
-        params: Params$Resource$Achievements$List,
-        callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
-        void;
+      params: Params$Resource$Achievements$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>,
+      callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Achievements$List|
-        BodyResponseCallback<Schema$PlayerAchievementListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerAchievementListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
-        void|GaxiosPromise<Schema$PlayerAchievementListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Achievements$List;
+      params: Params$Resource$Achievements$List,
+      callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$PlayerAchievementListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Achievements$List
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerAchievementListResponse>
+    ): void | GaxiosPromise<Schema$PlayerAchievementListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3197,26 +3224,30 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/players/{playerId}/achievements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/players/{playerId}/achievements'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerAchievementListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PlayerAchievementListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * games.achievements.reveal
@@ -3232,27 +3263,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     reveal(
-        params?: Params$Resource$Achievements$Reveal, options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementRevealResponse>;
+      params?: Params$Resource$Achievements$Reveal,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementRevealResponse>;
     reveal(
-        params: Params$Resource$Achievements$Reveal,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementRevealResponse>,
-        callback: BodyResponseCallback<Schema$AchievementRevealResponse>): void;
+      params: Params$Resource$Achievements$Reveal,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementRevealResponse>,
+      callback: BodyResponseCallback<Schema$AchievementRevealResponse>
+    ): void;
     reveal(
-        params: Params$Resource$Achievements$Reveal,
-        callback: BodyResponseCallback<Schema$AchievementRevealResponse>): void;
-    reveal(callback: BodyResponseCallback<Schema$AchievementRevealResponse>):
-        void;
+      params: Params$Resource$Achievements$Reveal,
+      callback: BodyResponseCallback<Schema$AchievementRevealResponse>
+    ): void;
     reveal(
-        paramsOrCallback?: Params$Resource$Achievements$Reveal|
-        BodyResponseCallback<Schema$AchievementRevealResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementRevealResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementRevealResponse>):
-        void|GaxiosPromise<Schema$AchievementRevealResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Achievements$Reveal;
+      callback: BodyResponseCallback<Schema$AchievementRevealResponse>
+    ): void;
+    reveal(
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Reveal
+        | BodyResponseCallback<Schema$AchievementRevealResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementRevealResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementRevealResponse>
+    ): void | GaxiosPromise<Schema$AchievementRevealResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Reveal;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3269,25 +3307,28 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/achievements/{achievementId}/reveal')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/achievements/{achievementId}/reveal'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementRevealResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AchievementRevealResponse>(parameters);
       }
     }
-
 
     /**
      * games.achievements.setStepsAtLeast
@@ -3306,35 +3347,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     setStepsAtLeast(
-        params?: Params$Resource$Achievements$Setstepsatleast,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
+      params?: Params$Resource$Achievements$Setstepsatleast,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
     setStepsAtLeast(
-        params: Params$Resource$Achievements$Setstepsatleast,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
-        callback:
-            BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
-        void;
+      params: Params$Resource$Achievements$Setstepsatleast,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
+      callback: BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+    ): void;
     setStepsAtLeast(
-        params: Params$Resource$Achievements$Setstepsatleast,
-        callback:
-            BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
-        void;
+      params: Params$Resource$Achievements$Setstepsatleast,
+      callback: BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+    ): void;
     setStepsAtLeast(
-        callback:
-            BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+    ): void;
     setStepsAtLeast(
-        paramsOrCallback?: Params$Resource$Achievements$Setstepsatleast|
-        BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
-        void|GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Achievements$Setstepsatleast;
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Setstepsatleast
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+    ): void | GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Setstepsatleast;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3351,27 +3391,30 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1/achievements/{achievementId}/setStepsAtLeast')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/achievements/{achievementId}/setStepsAtLeast'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['achievementId', 'steps'],
         pathParams: ['achievementId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * games.achievements.unlock
@@ -3387,27 +3430,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     unlock(
-        params?: Params$Resource$Achievements$Unlock, options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementUnlockResponse>;
+      params?: Params$Resource$Achievements$Unlock,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementUnlockResponse>;
     unlock(
-        params: Params$Resource$Achievements$Unlock,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementUnlockResponse>,
-        callback: BodyResponseCallback<Schema$AchievementUnlockResponse>): void;
+      params: Params$Resource$Achievements$Unlock,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
+      callback: BodyResponseCallback<Schema$AchievementUnlockResponse>
+    ): void;
     unlock(
-        params: Params$Resource$Achievements$Unlock,
-        callback: BodyResponseCallback<Schema$AchievementUnlockResponse>): void;
-    unlock(callback: BodyResponseCallback<Schema$AchievementUnlockResponse>):
-        void;
+      params: Params$Resource$Achievements$Unlock,
+      callback: BodyResponseCallback<Schema$AchievementUnlockResponse>
+    ): void;
     unlock(
-        paramsOrCallback?: Params$Resource$Achievements$Unlock|
-        BodyResponseCallback<Schema$AchievementUnlockResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementUnlockResponse>,
-        callback?: BodyResponseCallback<Schema$AchievementUnlockResponse>):
-        void|GaxiosPromise<Schema$AchievementUnlockResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Achievements$Unlock;
+      callback: BodyResponseCallback<Schema$AchievementUnlockResponse>
+    ): void;
+    unlock(
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Unlock
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementUnlockResponse>
+    ): void | GaxiosPromise<Schema$AchievementUnlockResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Unlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3424,25 +3474,28 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/achievements/{achievementId}/unlock')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/achievements/{achievementId}/unlock'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUnlockResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AchievementUnlockResponse>(parameters);
       }
     }
-
 
     /**
      * games.achievements.updateMultiple
@@ -3459,35 +3512,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     updateMultiple(
-        params?: Params$Resource$Achievements$Updatemultiple,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AchievementUpdateMultipleResponse>;
+      params?: Params$Resource$Achievements$Updatemultiple,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AchievementUpdateMultipleResponse>;
     updateMultiple(
-        params: Params$Resource$Achievements$Updatemultiple,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
-        callback:
-            BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
-        void;
+      params: Params$Resource$Achievements$Updatemultiple,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
+      callback: BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+    ): void;
     updateMultiple(
-        params: Params$Resource$Achievements$Updatemultiple,
-        callback:
-            BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
-        void;
+      params: Params$Resource$Achievements$Updatemultiple,
+      callback: BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+    ): void;
     updateMultiple(
-        callback:
-            BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+    ): void;
     updateMultiple(
-        paramsOrCallback?: Params$Resource$Achievements$Updatemultiple|
-        BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
-        void|GaxiosPromise<Schema$AchievementUpdateMultipleResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Achievements$Updatemultiple;
+      paramsOrCallback?:
+        | Params$Resource$Achievements$Updatemultiple
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
+      callback?: BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+    ): void | GaxiosPromise<Schema$AchievementUpdateMultipleResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Achievements$Updatemultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3504,33 +3556,39 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/achievements/updateMultiple')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/achievements/updateMultiple').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Achievements$Increment extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Increment
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the achievement used by this method.
@@ -3547,12 +3605,12 @@ export namespace games_v1 {
      */
     stepsToIncrement?: number;
   }
-  export interface Params$Resource$Achievements$List extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -3579,24 +3637,24 @@ export namespace games_v1 {
      */
     state?: string;
   }
-  export interface Params$Resource$Achievements$Reveal extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Reveal
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Setstepsatleast extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Setstepsatleast
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the achievement used by this method.
@@ -3607,12 +3665,12 @@ export namespace games_v1 {
      */
     steps?: number;
   }
-  export interface Params$Resource$Achievements$Unlock extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Unlock
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the achievement used by this method.
@@ -3623,12 +3681,12 @@ export namespace games_v1 {
      */
     builtinGameId?: string;
   }
-  export interface Params$Resource$Achievements$Updatemultiple extends
-      StandardParameters {
+  export interface Params$Resource$Achievements$Updatemultiple
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Override used only by built-in games in Play Games application.
@@ -3641,13 +3699,11 @@ export namespace games_v1 {
     requestBody?: Schema$AchievementUpdateMultipleRequest;
   }
 
-
   export class Resource$Applications {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.applications.get
@@ -3665,20 +3721,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Applications$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Application>;
-    get(params: Params$Resource$Applications$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Application>,
-        callback: BodyResponseCallback<Schema$Application>): void;
-    get(params: Params$Resource$Applications$Get,
-        callback: BodyResponseCallback<Schema$Application>): void;
+    get(
+      params?: Params$Resource$Applications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Application>;
+    get(
+      params: Params$Resource$Applications$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Application>,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
+    get(
+      params: Params$Resource$Applications$Get,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Application>): void;
-    get(paramsOrCallback?: Params$Resource$Applications$Get|
-        BodyResponseCallback<Schema$Application>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Application>,
-        callback?: BodyResponseCallback<Schema$Application>):
-        void|GaxiosPromise<Schema$Application> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Get
+        | BodyResponseCallback<Schema$Application>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Application>,
+      callback?: BodyResponseCallback<Schema$Application>
+    ): void | GaxiosPromise<Schema$Application> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3696,16 +3761,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/applications/{applicationId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/applications/{applicationId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -3713,7 +3781,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Application>(parameters);
       }
     }
-
 
     /**
      * games.applications.played
@@ -3729,23 +3796,28 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     played(
-        params?: Params$Resource$Applications$Played,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Applications$Played,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     played(
-        params: Params$Resource$Applications$Played,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Applications$Played,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     played(
-        params: Params$Resource$Applications$Played,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Applications$Played,
+      callback: BodyResponseCallback<void>
+    ): void;
     played(callback: BodyResponseCallback<void>): void;
     played(
-        paramsOrCallback?: Params$Resource$Applications$Played|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Applications$Played;
+      paramsOrCallback?:
+        | Params$Resource$Applications$Played
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Played;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3762,16 +3834,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/applications/played')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/applications/played').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3779,7 +3854,6 @@ export namespace games_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * games.applications.verify
@@ -3796,27 +3870,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     verify(
-        params?: Params$Resource$Applications$Verify, options?: MethodOptions):
-        GaxiosPromise<Schema$ApplicationVerifyResponse>;
+      params?: Params$Resource$Applications$Verify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApplicationVerifyResponse>;
     verify(
-        params: Params$Resource$Applications$Verify,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ApplicationVerifyResponse>,
-        callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>): void;
+      params: Params$Resource$Applications$Verify,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
+      callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>
+    ): void;
     verify(
-        params: Params$Resource$Applications$Verify,
-        callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>): void;
-    verify(callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>):
-        void;
+      params: Params$Resource$Applications$Verify,
+      callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>
+    ): void;
     verify(
-        paramsOrCallback?: Params$Resource$Applications$Verify|
-        BodyResponseCallback<Schema$ApplicationVerifyResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApplicationVerifyResponse>,
-        callback?: BodyResponseCallback<Schema$ApplicationVerifyResponse>):
-        void|GaxiosPromise<Schema$ApplicationVerifyResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Applications$Verify;
+      callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>
+    ): void;
+    verify(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Verify
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
+      callback?: BodyResponseCallback<Schema$ApplicationVerifyResponse>
+    ): void | GaxiosPromise<Schema$ApplicationVerifyResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3833,20 +3914,24 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/applications/{applicationId}/verify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/applications/{applicationId}/verify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApplicationVerifyResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ApplicationVerifyResponse>(parameters);
       }
@@ -3857,7 +3942,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The application ID from the Google Play developer console.
@@ -3872,24 +3957,24 @@ export namespace games_v1 {
      */
     platformType?: string;
   }
-  export interface Params$Resource$Applications$Played extends
-      StandardParameters {
+  export interface Params$Resource$Applications$Played
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Override used only by built-in games in Play Games application.
      */
     builtinGameId?: string;
   }
-  export interface Params$Resource$Applications$Verify extends
-      StandardParameters {
+  export interface Params$Resource$Applications$Verify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The application ID from the Google Play developer console.
@@ -3897,13 +3982,11 @@ export namespace games_v1 {
     applicationId?: string;
   }
 
-
   export class Resource$Events {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.events.listByPlayer
@@ -3921,27 +4004,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listByPlayer(
-        params?: Params$Resource$Events$Listbyplayer,
-        options?: MethodOptions): GaxiosPromise<Schema$PlayerEventListResponse>;
+      params?: Params$Resource$Events$Listbyplayer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerEventListResponse>;
     listByPlayer(
-        params: Params$Resource$Events$Listbyplayer,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlayerEventListResponse>,
-        callback: BodyResponseCallback<Schema$PlayerEventListResponse>): void;
+      params: Params$Resource$Events$Listbyplayer,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerEventListResponse>,
+      callback: BodyResponseCallback<Schema$PlayerEventListResponse>
+    ): void;
     listByPlayer(
-        params: Params$Resource$Events$Listbyplayer,
-        callback: BodyResponseCallback<Schema$PlayerEventListResponse>): void;
+      params: Params$Resource$Events$Listbyplayer,
+      callback: BodyResponseCallback<Schema$PlayerEventListResponse>
+    ): void;
     listByPlayer(
-        callback: BodyResponseCallback<Schema$PlayerEventListResponse>): void;
+      callback: BodyResponseCallback<Schema$PlayerEventListResponse>
+    ): void;
     listByPlayer(
-        paramsOrCallback?: Params$Resource$Events$Listbyplayer|
-        BodyResponseCallback<Schema$PlayerEventListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerEventListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerEventListResponse>):
-        void|GaxiosPromise<Schema$PlayerEventListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Events$Listbyplayer;
+      paramsOrCallback?:
+        | Params$Resource$Events$Listbyplayer
+        | BodyResponseCallback<Schema$PlayerEventListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerEventListResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerEventListResponse>
+    ): void | GaxiosPromise<Schema$PlayerEventListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Events$Listbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3958,15 +4048,16 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerEventListResponse>(parameters, callback);
@@ -3974,7 +4065,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$PlayerEventListResponse>(parameters);
       }
     }
-
 
     /**
      * games.events.listDefinitions
@@ -3991,31 +4081,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listDefinitions(
-        params?: Params$Resource$Events$Listdefinitions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$EventDefinitionListResponse>;
+      params?: Params$Resource$Events$Listdefinitions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventDefinitionListResponse>;
     listDefinitions(
-        params: Params$Resource$Events$Listdefinitions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$EventDefinitionListResponse>,
-        callback: BodyResponseCallback<Schema$EventDefinitionListResponse>):
-        void;
+      params: Params$Resource$Events$Listdefinitions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>,
+      callback: BodyResponseCallback<Schema$EventDefinitionListResponse>
+    ): void;
     listDefinitions(
-        params: Params$Resource$Events$Listdefinitions,
-        callback: BodyResponseCallback<Schema$EventDefinitionListResponse>):
-        void;
+      params: Params$Resource$Events$Listdefinitions,
+      callback: BodyResponseCallback<Schema$EventDefinitionListResponse>
+    ): void;
     listDefinitions(
-        callback: BodyResponseCallback<Schema$EventDefinitionListResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$EventDefinitionListResponse>
+    ): void;
     listDefinitions(
-        paramsOrCallback?: Params$Resource$Events$Listdefinitions|
-        BodyResponseCallback<Schema$EventDefinitionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EventDefinitionListResponse>,
-        callback?: BodyResponseCallback<Schema$EventDefinitionListResponse>):
-        void|GaxiosPromise<Schema$EventDefinitionListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Events$Listdefinitions;
+      paramsOrCallback?:
+        | Params$Resource$Events$Listdefinitions
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>,
+      callback?: BodyResponseCallback<Schema$EventDefinitionListResponse>
+    ): void | GaxiosPromise<Schema$EventDefinitionListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Events$Listdefinitions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4032,25 +4125,29 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/eventDefinitions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/eventDefinitions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EventDefinitionListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$EventDefinitionListResponse>(parameters);
       }
     }
-
 
     /**
      * games.events.record
@@ -4066,23 +4163,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    record(params?: Params$Resource$Events$Record, options?: MethodOptions):
-        GaxiosPromise<Schema$EventUpdateResponse>;
     record(
-        params: Params$Resource$Events$Record,
-        options: MethodOptions|BodyResponseCallback<Schema$EventUpdateResponse>,
-        callback: BodyResponseCallback<Schema$EventUpdateResponse>): void;
+      params?: Params$Resource$Events$Record,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventUpdateResponse>;
     record(
-        params: Params$Resource$Events$Record,
-        callback: BodyResponseCallback<Schema$EventUpdateResponse>): void;
+      params: Params$Resource$Events$Record,
+      options: MethodOptions | BodyResponseCallback<Schema$EventUpdateResponse>,
+      callback: BodyResponseCallback<Schema$EventUpdateResponse>
+    ): void;
+    record(
+      params: Params$Resource$Events$Record,
+      callback: BodyResponseCallback<Schema$EventUpdateResponse>
+    ): void;
     record(callback: BodyResponseCallback<Schema$EventUpdateResponse>): void;
     record(
-        paramsOrCallback?: Params$Resource$Events$Record|
-        BodyResponseCallback<Schema$EventUpdateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EventUpdateResponse>,
-        callback?: BodyResponseCallback<Schema$EventUpdateResponse>):
-        void|GaxiosPromise<Schema$EventUpdateResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Events$Record
+        | BodyResponseCallback<Schema$EventUpdateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$EventUpdateResponse>
+    ): void | GaxiosPromise<Schema$EventUpdateResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Record;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4100,15 +4203,16 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/events').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EventUpdateResponse>(parameters, callback);
@@ -4118,12 +4222,12 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Events$Listbyplayer extends
-      StandardParameters {
+  export interface Params$Resource$Events$Listbyplayer
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -4140,12 +4244,12 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Events$Listdefinitions extends
-      StandardParameters {
+  export interface Params$Resource$Events$Listdefinitions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -4166,7 +4270,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -4179,13 +4283,11 @@ export namespace games_v1 {
     requestBody?: Schema$EventRecordRequest;
   }
 
-
   export class Resource$Leaderboards {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.leaderboards.get
@@ -4200,20 +4302,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Leaderboards$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Leaderboard>;
-    get(params: Params$Resource$Leaderboards$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Leaderboard>,
-        callback: BodyResponseCallback<Schema$Leaderboard>): void;
-    get(params: Params$Resource$Leaderboards$Get,
-        callback: BodyResponseCallback<Schema$Leaderboard>): void;
+    get(
+      params?: Params$Resource$Leaderboards$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Leaderboard>;
+    get(
+      params: Params$Resource$Leaderboards$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Leaderboard>,
+      callback: BodyResponseCallback<Schema$Leaderboard>
+    ): void;
+    get(
+      params: Params$Resource$Leaderboards$Get,
+      callback: BodyResponseCallback<Schema$Leaderboard>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Leaderboard>): void;
-    get(paramsOrCallback?: Params$Resource$Leaderboards$Get|
-        BodyResponseCallback<Schema$Leaderboard>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Leaderboard>,
-        callback?: BodyResponseCallback<Schema$Leaderboard>):
-        void|GaxiosPromise<Schema$Leaderboard> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Leaderboards$Get
+        | BodyResponseCallback<Schema$Leaderboard>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Leaderboard>,
+      callback?: BodyResponseCallback<Schema$Leaderboard>
+    ): void | GaxiosPromise<Schema$Leaderboard> {
       let params = (paramsOrCallback || {}) as Params$Resource$Leaderboards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4231,16 +4342,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Leaderboard>(parameters, callback);
@@ -4248,7 +4362,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Leaderboard>(parameters);
       }
     }
-
 
     /**
      * games.leaderboards.list
@@ -4264,26 +4377,33 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Leaderboards$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LeaderboardListResponse>;
     list(
-        params: Params$Resource$Leaderboards$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LeaderboardListResponse>,
-        callback: BodyResponseCallback<Schema$LeaderboardListResponse>): void;
+      params?: Params$Resource$Leaderboards$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LeaderboardListResponse>;
     list(
-        params: Params$Resource$Leaderboards$List,
-        callback: BodyResponseCallback<Schema$LeaderboardListResponse>): void;
+      params: Params$Resource$Leaderboards$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaderboardListResponse>,
+      callback: BodyResponseCallback<Schema$LeaderboardListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Leaderboards$List,
+      callback: BodyResponseCallback<Schema$LeaderboardListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LeaderboardListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Leaderboards$List|
-        BodyResponseCallback<Schema$LeaderboardListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LeaderboardListResponse>,
-        callback?: BodyResponseCallback<Schema$LeaderboardListResponse>):
-        void|GaxiosPromise<Schema$LeaderboardListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Leaderboards$List;
+      paramsOrCallback?:
+        | Params$Resource$Leaderboards$List
+        | BodyResponseCallback<Schema$LeaderboardListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaderboardListResponse>,
+      callback?: BodyResponseCallback<Schema$LeaderboardListResponse>
+    ): void | GaxiosPromise<Schema$LeaderboardListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Leaderboards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4300,16 +4420,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/leaderboards')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/leaderboards').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardListResponse>(parameters, callback);
@@ -4323,7 +4446,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -4334,12 +4457,12 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Leaderboards$List extends
-      StandardParameters {
+  export interface Params$Resource$Leaderboards$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -4357,13 +4480,11 @@ export namespace games_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Metagame {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.metagame.getMetagameConfig
@@ -4377,26 +4498,32 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     getMetagameConfig(
-        params?: Params$Resource$Metagame$Getmetagameconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$MetagameConfig>;
+      params?: Params$Resource$Metagame$Getmetagameconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MetagameConfig>;
     getMetagameConfig(
-        params: Params$Resource$Metagame$Getmetagameconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$MetagameConfig>,
-        callback: BodyResponseCallback<Schema$MetagameConfig>): void;
+      params: Params$Resource$Metagame$Getmetagameconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$MetagameConfig>,
+      callback: BodyResponseCallback<Schema$MetagameConfig>
+    ): void;
     getMetagameConfig(
-        params: Params$Resource$Metagame$Getmetagameconfig,
-        callback: BodyResponseCallback<Schema$MetagameConfig>): void;
-    getMetagameConfig(callback: BodyResponseCallback<Schema$MetagameConfig>):
-        void;
+      params: Params$Resource$Metagame$Getmetagameconfig,
+      callback: BodyResponseCallback<Schema$MetagameConfig>
+    ): void;
     getMetagameConfig(
-        paramsOrCallback?: Params$Resource$Metagame$Getmetagameconfig|
-        BodyResponseCallback<Schema$MetagameConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MetagameConfig>,
-        callback?: BodyResponseCallback<Schema$MetagameConfig>):
-        void|GaxiosPromise<Schema$MetagameConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Metagame$Getmetagameconfig;
+      callback: BodyResponseCallback<Schema$MetagameConfig>
+    ): void;
+    getMetagameConfig(
+      paramsOrCallback?:
+        | Params$Resource$Metagame$Getmetagameconfig
+        | BodyResponseCallback<Schema$MetagameConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MetagameConfig>,
+      callback?: BodyResponseCallback<Schema$MetagameConfig>
+    ): void | GaxiosPromise<Schema$MetagameConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Metagame$Getmetagameconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4413,16 +4540,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/metagameConfig')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/metagameConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MetagameConfig>(parameters, callback);
@@ -4430,7 +4560,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$MetagameConfig>(parameters);
       }
     }
-
 
     /**
      * games.metagame.listCategoriesByPlayer
@@ -4450,27 +4579,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listCategoriesByPlayer(
-        params?: Params$Resource$Metagame$Listcategoriesbyplayer,
-        options?: MethodOptions): GaxiosPromise<Schema$CategoryListResponse>;
+      params?: Params$Resource$Metagame$Listcategoriesbyplayer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CategoryListResponse>;
     listCategoriesByPlayer(
-        params: Params$Resource$Metagame$Listcategoriesbyplayer,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CategoryListResponse>,
-        callback: BodyResponseCallback<Schema$CategoryListResponse>): void;
+      params: Params$Resource$Metagame$Listcategoriesbyplayer,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CategoryListResponse>,
+      callback: BodyResponseCallback<Schema$CategoryListResponse>
+    ): void;
     listCategoriesByPlayer(
-        params: Params$Resource$Metagame$Listcategoriesbyplayer,
-        callback: BodyResponseCallback<Schema$CategoryListResponse>): void;
+      params: Params$Resource$Metagame$Listcategoriesbyplayer,
+      callback: BodyResponseCallback<Schema$CategoryListResponse>
+    ): void;
     listCategoriesByPlayer(
-        callback: BodyResponseCallback<Schema$CategoryListResponse>): void;
+      callback: BodyResponseCallback<Schema$CategoryListResponse>
+    ): void;
     listCategoriesByPlayer(
-        paramsOrCallback?: Params$Resource$Metagame$Listcategoriesbyplayer|
-        BodyResponseCallback<Schema$CategoryListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CategoryListResponse>,
-        callback?: BodyResponseCallback<Schema$CategoryListResponse>):
-        void|GaxiosPromise<Schema$CategoryListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Metagame$Listcategoriesbyplayer;
+      paramsOrCallback?:
+        | Params$Resource$Metagame$Listcategoriesbyplayer
+        | BodyResponseCallback<Schema$CategoryListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$CategoryListResponse>
+    ): void | GaxiosPromise<Schema$CategoryListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Metagame$Listcategoriesbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4487,17 +4623,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1/players/{playerId}/categories/{collection}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/players/{playerId}/categories/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['playerId', 'collection'],
         pathParams: ['collection', 'playerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CategoryListResponse>(parameters, callback);
@@ -4507,19 +4644,19 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Metagame$Getmetagameconfig extends
-      StandardParameters {
+  export interface Params$Resource$Metagame$Getmetagameconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Metagame$Listcategoriesbyplayer extends
-      StandardParameters {
+  export interface Params$Resource$Metagame$Listcategoriesbyplayer
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The collection of categories for which data will be returned.
@@ -4546,13 +4683,11 @@ export namespace games_v1 {
     playerId?: string;
   }
 
-
   export class Resource$Players {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.players.get
@@ -4568,19 +4703,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Players$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Player>;
-    get(params: Params$Resource$Players$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Player>,
-        callback: BodyResponseCallback<Schema$Player>): void;
-    get(params: Params$Resource$Players$Get,
-        callback: BodyResponseCallback<Schema$Player>): void;
+    get(
+      params?: Params$Resource$Players$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Player>;
+    get(
+      params: Params$Resource$Players$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Player>,
+      callback: BodyResponseCallback<Schema$Player>
+    ): void;
+    get(
+      params: Params$Resource$Players$Get,
+      callback: BodyResponseCallback<Schema$Player>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Player>): void;
-    get(paramsOrCallback?: Params$Resource$Players$Get|
-        BodyResponseCallback<Schema$Player>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Player>,
-        callback?: BodyResponseCallback<Schema$Player>):
-        void|GaxiosPromise<Schema$Player> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Players$Get
+        | BodyResponseCallback<Schema$Player>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Player>,
+      callback?: BodyResponseCallback<Schema$Player>
+    ): void | GaxiosPromise<Schema$Player> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4598,16 +4741,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/players/{playerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/players/{playerId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Player>(parameters, callback);
@@ -4615,7 +4761,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Player>(parameters);
       }
     }
-
 
     /**
      * games.players.list
@@ -4632,23 +4777,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Players$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlayerListResponse>;
     list(
-        params: Params$Resource$Players$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PlayerListResponse>,
-        callback: BodyResponseCallback<Schema$PlayerListResponse>): void;
+      params?: Params$Resource$Players$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerListResponse>;
     list(
-        params: Params$Resource$Players$List,
-        callback: BodyResponseCallback<Schema$PlayerListResponse>): void;
+      params: Params$Resource$Players$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PlayerListResponse>,
+      callback: BodyResponseCallback<Schema$PlayerListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Players$List,
+      callback: BodyResponseCallback<Schema$PlayerListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PlayerListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Players$List|
-        BodyResponseCallback<Schema$PlayerListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerListResponse>):
-        void|GaxiosPromise<Schema$PlayerListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Players$List
+        | BodyResponseCallback<Schema$PlayerListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerListResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerListResponse>
+    ): void | GaxiosPromise<Schema$PlayerListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4666,16 +4817,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/players/me/players/{collection}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/players/me/players/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['collection'],
         pathParams: ['collection'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerListResponse>(parameters, callback);
@@ -4689,7 +4842,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -4705,7 +4858,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Collection of players being retrieved
@@ -4727,13 +4880,11 @@ export namespace games_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Pushtokens {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.pushtokens.remove
@@ -4748,23 +4899,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove(params?: Params$Resource$Pushtokens$Remove, options?: MethodOptions):
-        GaxiosPromise<void>;
     remove(
-        params: Params$Resource$Pushtokens$Remove,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Pushtokens$Remove,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     remove(
-        params: Params$Resource$Pushtokens$Remove,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pushtokens$Remove,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    remove(
+      params: Params$Resource$Pushtokens$Remove,
+      callback: BodyResponseCallback<void>
+    ): void;
     remove(callback: BodyResponseCallback<void>): void;
     remove(
-        paramsOrCallback?: Params$Resource$Pushtokens$Remove|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pushtokens$Remove;
+      paramsOrCallback?:
+        | Params$Resource$Pushtokens$Remove
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pushtokens$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4781,16 +4938,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/pushtokens/remove')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/pushtokens/remove').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4798,7 +4958,6 @@ export namespace games_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * games.pushtokens.update
@@ -4812,23 +4971,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Pushtokens$Update, options?: MethodOptions):
-        GaxiosPromise<void>;
     update(
-        params: Params$Resource$Pushtokens$Update,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Pushtokens$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     update(
-        params: Params$Resource$Pushtokens$Update,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pushtokens$Update,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    update(
+      params: Params$Resource$Pushtokens$Update,
+      callback: BodyResponseCallback<void>
+    ): void;
     update(callback: BodyResponseCallback<void>): void;
     update(
-        paramsOrCallback?: Params$Resource$Pushtokens$Update|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pushtokens$Update;
+      paramsOrCallback?:
+        | Params$Resource$Pushtokens$Update
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pushtokens$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4845,16 +5010,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/pushtokens')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/pushtokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4864,26 +5032,24 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Pushtokens$Remove extends
-      StandardParameters {
+  export interface Params$Resource$Pushtokens$Remove
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$PushTokenId;
   }
-  export interface Params$Resource$Pushtokens$Update extends
-      StandardParameters {
+  export interface Params$Resource$Pushtokens$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -4891,13 +5057,11 @@ export namespace games_v1 {
     requestBody?: Schema$PushToken;
   }
 
-
   export class Resource$Questmilestones {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.questMilestones.claim
@@ -4916,23 +5080,28 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     claim(
-        params?: Params$Resource$Questmilestones$Claim,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Questmilestones$Claim,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     claim(
-        params: Params$Resource$Questmilestones$Claim,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Questmilestones$Claim,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     claim(
-        params: Params$Resource$Questmilestones$Claim,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Questmilestones$Claim,
+      callback: BodyResponseCallback<void>
+    ): void;
     claim(callback: BodyResponseCallback<void>): void;
     claim(
-        paramsOrCallback?: Params$Resource$Questmilestones$Claim|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Questmilestones$Claim;
+      paramsOrCallback?:
+        | Params$Resource$Questmilestones$Claim
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Questmilestones$Claim;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4949,17 +5118,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/games/v1/quests/{questId}/milestones/{milestoneId}/claim')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1/quests/{questId}/milestones/{milestoneId}/claim'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['questId', 'milestoneId', 'requestId'],
         pathParams: ['milestoneId', 'questId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4969,12 +5140,12 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Questmilestones$Claim extends
-      StandardParameters {
+  export interface Params$Resource$Questmilestones$Claim
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the milestone.
@@ -4991,13 +5162,11 @@ export namespace games_v1 {
     requestId?: string;
   }
 
-
   export class Resource$Quests {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.quests.accept
@@ -5013,22 +5182,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept(params?: Params$Resource$Quests$Accept, options?: MethodOptions):
-        GaxiosPromise<Schema$Quest>;
     accept(
-        params: Params$Resource$Quests$Accept,
-        options: MethodOptions|BodyResponseCallback<Schema$Quest>,
-        callback: BodyResponseCallback<Schema$Quest>): void;
+      params?: Params$Resource$Quests$Accept,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Quest>;
     accept(
-        params: Params$Resource$Quests$Accept,
-        callback: BodyResponseCallback<Schema$Quest>): void;
+      params: Params$Resource$Quests$Accept,
+      options: MethodOptions | BodyResponseCallback<Schema$Quest>,
+      callback: BodyResponseCallback<Schema$Quest>
+    ): void;
+    accept(
+      params: Params$Resource$Quests$Accept,
+      callback: BodyResponseCallback<Schema$Quest>
+    ): void;
     accept(callback: BodyResponseCallback<Schema$Quest>): void;
     accept(
-        paramsOrCallback?: Params$Resource$Quests$Accept|
-        BodyResponseCallback<Schema$Quest>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Quest>,
-        callback?: BodyResponseCallback<Schema$Quest>):
-        void|GaxiosPromise<Schema$Quest> {
+      paramsOrCallback?:
+        | Params$Resource$Quests$Accept
+        | BodyResponseCallback<Schema$Quest>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Quest>,
+      callback?: BodyResponseCallback<Schema$Quest>
+    ): void | GaxiosPromise<Schema$Quest> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5046,16 +5220,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/quests/{questId}/accept')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/quests/{questId}/accept').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Quest>(parameters, callback);
@@ -5063,7 +5240,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Quest>(parameters);
       }
     }
-
 
     /**
      * games.quests.list
@@ -5081,23 +5257,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Quests$List, options?: MethodOptions):
-        GaxiosPromise<Schema$QuestListResponse>;
     list(
-        params: Params$Resource$Quests$List,
-        options: MethodOptions|BodyResponseCallback<Schema$QuestListResponse>,
-        callback: BodyResponseCallback<Schema$QuestListResponse>): void;
+      params?: Params$Resource$Quests$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QuestListResponse>;
     list(
-        params: Params$Resource$Quests$List,
-        callback: BodyResponseCallback<Schema$QuestListResponse>): void;
+      params: Params$Resource$Quests$List,
+      options: MethodOptions | BodyResponseCallback<Schema$QuestListResponse>,
+      callback: BodyResponseCallback<Schema$QuestListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Quests$List,
+      callback: BodyResponseCallback<Schema$QuestListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$QuestListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Quests$List|
-        BodyResponseCallback<Schema$QuestListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QuestListResponse>,
-        callback?: BodyResponseCallback<Schema$QuestListResponse>):
-        void|GaxiosPromise<Schema$QuestListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Quests$List
+        | BodyResponseCallback<Schema$QuestListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QuestListResponse>,
+      callback?: BodyResponseCallback<Schema$QuestListResponse>
+    ): void | GaxiosPromise<Schema$QuestListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5115,16 +5297,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/players/{playerId}/quests')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/players/{playerId}/quests').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QuestListResponse>(parameters, callback);
@@ -5138,7 +5323,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5153,7 +5338,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5177,13 +5362,11 @@ export namespace games_v1 {
     playerId?: string;
   }
 
-
   export class Resource$Revisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.revisions.check
@@ -5197,24 +5380,31 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check(params?: Params$Resource$Revisions$Check, options?: MethodOptions):
-        GaxiosPromise<Schema$RevisionCheckResponse>;
     check(
-        params: Params$Resource$Revisions$Check,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RevisionCheckResponse>,
-        callback: BodyResponseCallback<Schema$RevisionCheckResponse>): void;
+      params?: Params$Resource$Revisions$Check,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevisionCheckResponse>;
     check(
-        params: Params$Resource$Revisions$Check,
-        callback: BodyResponseCallback<Schema$RevisionCheckResponse>): void;
+      params: Params$Resource$Revisions$Check,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevisionCheckResponse>,
+      callback: BodyResponseCallback<Schema$RevisionCheckResponse>
+    ): void;
+    check(
+      params: Params$Resource$Revisions$Check,
+      callback: BodyResponseCallback<Schema$RevisionCheckResponse>
+    ): void;
     check(callback: BodyResponseCallback<Schema$RevisionCheckResponse>): void;
     check(
-        paramsOrCallback?: Params$Resource$Revisions$Check|
-        BodyResponseCallback<Schema$RevisionCheckResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevisionCheckResponse>,
-        callback?: BodyResponseCallback<Schema$RevisionCheckResponse>):
-        void|GaxiosPromise<Schema$RevisionCheckResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Revisions$Check
+        | BodyResponseCallback<Schema$RevisionCheckResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevisionCheckResponse>,
+      callback?: BodyResponseCallback<Schema$RevisionCheckResponse>
+    ): void | GaxiosPromise<Schema$RevisionCheckResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5232,16 +5422,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/revisions/check')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/revisions/check').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['clientRevision'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevisionCheckResponse>(parameters, callback);
@@ -5255,7 +5448,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The revision of the client SDK used by your application. Format:
@@ -5266,13 +5459,11 @@ export namespace games_v1 {
     clientRevision?: string;
   }
 
-
   export class Resource$Rooms {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.rooms.create
@@ -5288,22 +5479,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Rooms$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Room>;
     create(
-        params: Params$Resource$Rooms$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params?: Params$Resource$Rooms$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Room>;
     create(
-        params: Params$Resource$Rooms$Create,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params: Params$Resource$Rooms$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
+    create(
+      params: Params$Resource$Rooms$Create,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Room>): void;
     create(
-        paramsOrCallback?: Params$Resource$Rooms$Create|
-        BodyResponseCallback<Schema$Room>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>):
-        void|GaxiosPromise<Schema$Room> {
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Create
+        | BodyResponseCallback<Schema$Room>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback?: BodyResponseCallback<Schema$Room>
+    ): void | GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5321,16 +5517,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms/create')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms/create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5338,7 +5537,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Room>(parameters);
       }
     }
-
 
     /**
      * games.rooms.decline
@@ -5354,22 +5552,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decline(params?: Params$Resource$Rooms$Decline, options?: MethodOptions):
-        GaxiosPromise<Schema$Room>;
     decline(
-        params: Params$Resource$Rooms$Decline,
-        options: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params?: Params$Resource$Rooms$Decline,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Room>;
     decline(
-        params: Params$Resource$Rooms$Decline,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params: Params$Resource$Rooms$Decline,
+      options: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
+    decline(
+      params: Params$Resource$Rooms$Decline,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
     decline(callback: BodyResponseCallback<Schema$Room>): void;
     decline(
-        paramsOrCallback?: Params$Resource$Rooms$Decline|
-        BodyResponseCallback<Schema$Room>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>):
-        void|GaxiosPromise<Schema$Room> {
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Decline
+        | BodyResponseCallback<Schema$Room>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback?: BodyResponseCallback<Schema$Room>
+    ): void | GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5387,16 +5590,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms/{roomId}/decline')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms/{roomId}/decline').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5404,7 +5610,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Room>(parameters);
       }
     }
-
 
     /**
      * games.rooms.dismiss
@@ -5419,21 +5624,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dismiss(params?: Params$Resource$Rooms$Dismiss, options?: MethodOptions):
-        GaxiosPromise<void>;
     dismiss(
-        params: Params$Resource$Rooms$Dismiss,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Rooms$Dismiss,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     dismiss(
-        params: Params$Resource$Rooms$Dismiss,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Rooms$Dismiss,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    dismiss(
+      params: Params$Resource$Rooms$Dismiss,
+      callback: BodyResponseCallback<void>
+    ): void;
     dismiss(callback: BodyResponseCallback<void>): void;
     dismiss(
-        paramsOrCallback?: Params$Resource$Rooms$Dismiss|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Dismiss
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5451,16 +5662,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms/{roomId}/dismiss')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms/{roomId}/dismiss').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5468,7 +5682,6 @@ export namespace games_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * games.rooms.get
@@ -5483,19 +5696,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Rooms$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Room>;
-    get(params: Params$Resource$Rooms$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback: BodyResponseCallback<Schema$Room>): void;
-    get(params: Params$Resource$Rooms$Get,
-        callback: BodyResponseCallback<Schema$Room>): void;
+    get(
+      params?: Params$Resource$Rooms$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Room>;
+    get(
+      params: Params$Resource$Rooms$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
+    get(
+      params: Params$Resource$Rooms$Get,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Room>): void;
-    get(paramsOrCallback?: Params$Resource$Rooms$Get|
-        BodyResponseCallback<Schema$Room>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>):
-        void|GaxiosPromise<Schema$Room> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Get
+        | BodyResponseCallback<Schema$Room>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback?: BodyResponseCallback<Schema$Room>
+    ): void | GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5513,16 +5734,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms/{roomId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms/{roomId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5530,7 +5754,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Room>(parameters);
       }
     }
-
 
     /**
      * games.rooms.join
@@ -5547,22 +5770,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    join(params?: Params$Resource$Rooms$Join, options?: MethodOptions):
-        GaxiosPromise<Schema$Room>;
     join(
-        params: Params$Resource$Rooms$Join,
-        options: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params?: Params$Resource$Rooms$Join,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Room>;
     join(
-        params: Params$Resource$Rooms$Join,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params: Params$Resource$Rooms$Join,
+      options: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
+    join(
+      params: Params$Resource$Rooms$Join,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
     join(callback: BodyResponseCallback<Schema$Room>): void;
     join(
-        paramsOrCallback?: Params$Resource$Rooms$Join|
-        BodyResponseCallback<Schema$Room>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>):
-        void|GaxiosPromise<Schema$Room> {
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Join
+        | BodyResponseCallback<Schema$Room>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback?: BodyResponseCallback<Schema$Room>
+    ): void | GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5580,16 +5808,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms/{roomId}/join')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms/{roomId}/join').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5597,7 +5828,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Room>(parameters);
       }
     }
-
 
     /**
      * games.rooms.leave
@@ -5614,22 +5844,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    leave(params?: Params$Resource$Rooms$Leave, options?: MethodOptions):
-        GaxiosPromise<Schema$Room>;
     leave(
-        params: Params$Resource$Rooms$Leave,
-        options: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params?: Params$Resource$Rooms$Leave,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Room>;
     leave(
-        params: Params$Resource$Rooms$Leave,
-        callback: BodyResponseCallback<Schema$Room>): void;
+      params: Params$Resource$Rooms$Leave,
+      options: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
+    leave(
+      params: Params$Resource$Rooms$Leave,
+      callback: BodyResponseCallback<Schema$Room>
+    ): void;
     leave(callback: BodyResponseCallback<Schema$Room>): void;
     leave(
-        paramsOrCallback?: Params$Resource$Rooms$Leave|
-        BodyResponseCallback<Schema$Room>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
-        callback?: BodyResponseCallback<Schema$Room>):
-        void|GaxiosPromise<Schema$Room> {
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Leave
+        | BodyResponseCallback<Schema$Room>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
+      callback?: BodyResponseCallback<Schema$Room>
+    ): void | GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5647,16 +5882,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms/{roomId}/leave')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms/{roomId}/leave').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5664,7 +5902,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Room>(parameters);
       }
     }
-
 
     /**
      * games.rooms.list
@@ -5680,22 +5917,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Rooms$List, options?: MethodOptions):
-        GaxiosPromise<Schema$RoomList>;
     list(
-        params: Params$Resource$Rooms$List,
-        options: MethodOptions|BodyResponseCallback<Schema$RoomList>,
-        callback: BodyResponseCallback<Schema$RoomList>): void;
+      params?: Params$Resource$Rooms$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RoomList>;
     list(
-        params: Params$Resource$Rooms$List,
-        callback: BodyResponseCallback<Schema$RoomList>): void;
+      params: Params$Resource$Rooms$List,
+      options: MethodOptions | BodyResponseCallback<Schema$RoomList>,
+      callback: BodyResponseCallback<Schema$RoomList>
+    ): void;
+    list(
+      params: Params$Resource$Rooms$List,
+      callback: BodyResponseCallback<Schema$RoomList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$RoomList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Rooms$List|
-        BodyResponseCallback<Schema$RoomList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$RoomList>,
-        callback?: BodyResponseCallback<Schema$RoomList>):
-        void|GaxiosPromise<Schema$RoomList> {
+      paramsOrCallback?:
+        | Params$Resource$Rooms$List
+        | BodyResponseCallback<Schema$RoomList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$RoomList>,
+      callback?: BodyResponseCallback<Schema$RoomList>
+    ): void | GaxiosPromise<Schema$RoomList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5713,15 +5955,16 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RoomList>(parameters, callback);
@@ -5729,7 +5972,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$RoomList>(parameters);
       }
     }
-
 
     /**
      * games.rooms.reportStatus
@@ -5748,25 +5990,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     reportStatus(
-        params?: Params$Resource$Rooms$Reportstatus,
-        options?: MethodOptions): GaxiosPromise<Schema$RoomStatus>;
+      params?: Params$Resource$Rooms$Reportstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RoomStatus>;
     reportStatus(
-        params: Params$Resource$Rooms$Reportstatus,
-        options: MethodOptions|BodyResponseCallback<Schema$RoomStatus>,
-        callback: BodyResponseCallback<Schema$RoomStatus>): void;
+      params: Params$Resource$Rooms$Reportstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$RoomStatus>,
+      callback: BodyResponseCallback<Schema$RoomStatus>
+    ): void;
     reportStatus(
-        params: Params$Resource$Rooms$Reportstatus,
-        callback: BodyResponseCallback<Schema$RoomStatus>): void;
+      params: Params$Resource$Rooms$Reportstatus,
+      callback: BodyResponseCallback<Schema$RoomStatus>
+    ): void;
     reportStatus(callback: BodyResponseCallback<Schema$RoomStatus>): void;
     reportStatus(
-        paramsOrCallback?: Params$Resource$Rooms$Reportstatus|
-        BodyResponseCallback<Schema$RoomStatus>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RoomStatus>,
-        callback?: BodyResponseCallback<Schema$RoomStatus>):
-        void|GaxiosPromise<Schema$RoomStatus> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Rooms$Reportstatus;
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Reportstatus
+        | BodyResponseCallback<Schema$RoomStatus>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RoomStatus>,
+      callback?: BodyResponseCallback<Schema$RoomStatus>
+    ): void | GaxiosPromise<Schema$RoomStatus> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rooms$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5783,16 +6030,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/rooms/{roomId}/reportstatus')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/rooms/{roomId}/reportstatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RoomStatus>(parameters, callback);
@@ -5806,7 +6056,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5822,7 +6072,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5837,7 +6087,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the room.
@@ -5848,7 +6098,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5863,7 +6113,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5883,7 +6133,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5903,7 +6153,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5920,12 +6170,12 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Rooms$Reportstatus extends
-      StandardParameters {
+  export interface Params$Resource$Rooms$Reportstatus
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -5942,13 +6192,11 @@ export namespace games_v1 {
     requestBody?: Schema$RoomP2PStatuses;
   }
 
-
   export class Resource$Scores {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.scores.get
@@ -5972,28 +6220,33 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Scores$Get, options?: MethodOptions):
-        GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
-    get(params: Params$Resource$Scores$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
-        callback:
-            BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
-        void;
-    get(params: Params$Resource$Scores$Get,
-        callback:
-            BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
-        void;
-    get(callback:
-            BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
-        void;
-    get(paramsOrCallback?: Params$Resource$Scores$Get|
-        BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
-        void|GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse> {
+    get(
+      params?: Params$Resource$Scores$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
+    get(
+      params: Params$Resource$Scores$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
+      callback: BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+    ): void;
+    get(
+      params: Params$Resource$Scores$Get,
+      callback: BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Scores$Get
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+    ): void | GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6011,28 +6264,31 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['playerId', 'leaderboardId', 'timeSpan'],
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * games.scores.list
@@ -6051,23 +6307,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Scores$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LeaderboardScores>;
     list(
-        params: Params$Resource$Scores$List,
-        options: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
-        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+      params?: Params$Resource$Scores$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LeaderboardScores>;
     list(
-        params: Params$Resource$Scores$List,
-        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+      params: Params$Resource$Scores$List,
+      options: MethodOptions | BodyResponseCallback<Schema$LeaderboardScores>,
+      callback: BodyResponseCallback<Schema$LeaderboardScores>
+    ): void;
+    list(
+      params: Params$Resource$Scores$List,
+      callback: BodyResponseCallback<Schema$LeaderboardScores>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
     list(
-        paramsOrCallback?: Params$Resource$Scores$List|
-        BodyResponseCallback<Schema$LeaderboardScores>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LeaderboardScores>,
-        callback?: BodyResponseCallback<Schema$LeaderboardScores>):
-        void|GaxiosPromise<Schema$LeaderboardScores> {
+      paramsOrCallback?:
+        | Params$Resource$Scores$List
+        | BodyResponseCallback<Schema$LeaderboardScores>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaderboardScores>,
+      callback?: BodyResponseCallback<Schema$LeaderboardScores>
+    ): void | GaxiosPromise<Schema$LeaderboardScores> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6085,18 +6347,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1/leaderboards/{leaderboardId}/scores/{collection}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1/leaderboards/{leaderboardId}/scores/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6104,7 +6367,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
       }
     }
-
 
     /**
      * games.scores.listWindow
@@ -6127,25 +6389,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listWindow(
-        params?: Params$Resource$Scores$Listwindow,
-        options?: MethodOptions): GaxiosPromise<Schema$LeaderboardScores>;
+      params?: Params$Resource$Scores$Listwindow,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LeaderboardScores>;
     listWindow(
-        params: Params$Resource$Scores$Listwindow,
-        options: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
-        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+      params: Params$Resource$Scores$Listwindow,
+      options: MethodOptions | BodyResponseCallback<Schema$LeaderboardScores>,
+      callback: BodyResponseCallback<Schema$LeaderboardScores>
+    ): void;
     listWindow(
-        params: Params$Resource$Scores$Listwindow,
-        callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
+      params: Params$Resource$Scores$Listwindow,
+      callback: BodyResponseCallback<Schema$LeaderboardScores>
+    ): void;
     listWindow(callback: BodyResponseCallback<Schema$LeaderboardScores>): void;
     listWindow(
-        paramsOrCallback?: Params$Resource$Scores$Listwindow|
-        BodyResponseCallback<Schema$LeaderboardScores>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LeaderboardScores>,
-        callback?: BodyResponseCallback<Schema$LeaderboardScores>):
-        void|GaxiosPromise<Schema$LeaderboardScores> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Scores$Listwindow;
+      paramsOrCallback?:
+        | Params$Resource$Scores$Listwindow
+        | BodyResponseCallback<Schema$LeaderboardScores>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaderboardScores>,
+      callback?: BodyResponseCallback<Schema$LeaderboardScores>
+    ): void | GaxiosPromise<Schema$LeaderboardScores> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Scores$Listwindow;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6162,18 +6429,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/games/v1/leaderboards/{leaderboardId}/window/{collection}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/games/v1/leaderboards/{leaderboardId}/window/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6181,7 +6449,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
       }
     }
-
 
     /**
      * games.scores.submit
@@ -6198,23 +6465,29 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit(params?: Params$Resource$Scores$Submit, options?: MethodOptions):
-        GaxiosPromise<Schema$PlayerScoreResponse>;
     submit(
-        params: Params$Resource$Scores$Submit,
-        options: MethodOptions|BodyResponseCallback<Schema$PlayerScoreResponse>,
-        callback: BodyResponseCallback<Schema$PlayerScoreResponse>): void;
+      params?: Params$Resource$Scores$Submit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerScoreResponse>;
     submit(
-        params: Params$Resource$Scores$Submit,
-        callback: BodyResponseCallback<Schema$PlayerScoreResponse>): void;
+      params: Params$Resource$Scores$Submit,
+      options: MethodOptions | BodyResponseCallback<Schema$PlayerScoreResponse>,
+      callback: BodyResponseCallback<Schema$PlayerScoreResponse>
+    ): void;
+    submit(
+      params: Params$Resource$Scores$Submit,
+      callback: BodyResponseCallback<Schema$PlayerScoreResponse>
+    ): void;
     submit(callback: BodyResponseCallback<Schema$PlayerScoreResponse>): void;
     submit(
-        paramsOrCallback?: Params$Resource$Scores$Submit|
-        BodyResponseCallback<Schema$PlayerScoreResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreResponse>):
-        void|GaxiosPromise<Schema$PlayerScoreResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Scores$Submit
+        | BodyResponseCallback<Schema$PlayerScoreResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerScoreResponse>
+    ): void | GaxiosPromise<Schema$PlayerScoreResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6232,16 +6505,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/leaderboards/{leaderboardId}/scores'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['leaderboardId', 'score'],
         pathParams: ['leaderboardId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResponse>(parameters, callback);
@@ -6249,7 +6524,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$PlayerScoreResponse>(parameters);
       }
     }
-
 
     /**
      * games.scores.submitMultiple
@@ -6265,27 +6539,34 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     submitMultiple(
-        params?: Params$Resource$Scores$Submitmultiple,
-        options?: MethodOptions): GaxiosPromise<Schema$PlayerScoreListResponse>;
+      params?: Params$Resource$Scores$Submitmultiple,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlayerScoreListResponse>;
     submitMultiple(
-        params: Params$Resource$Scores$Submitmultiple,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreListResponse>,
-        callback: BodyResponseCallback<Schema$PlayerScoreListResponse>): void;
+      params: Params$Resource$Scores$Submitmultiple,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
+      callback: BodyResponseCallback<Schema$PlayerScoreListResponse>
+    ): void;
     submitMultiple(
-        params: Params$Resource$Scores$Submitmultiple,
-        callback: BodyResponseCallback<Schema$PlayerScoreListResponse>): void;
+      params: Params$Resource$Scores$Submitmultiple,
+      callback: BodyResponseCallback<Schema$PlayerScoreListResponse>
+    ): void;
     submitMultiple(
-        callback: BodyResponseCallback<Schema$PlayerScoreListResponse>): void;
+      callback: BodyResponseCallback<Schema$PlayerScoreListResponse>
+    ): void;
     submitMultiple(
-        paramsOrCallback?: Params$Resource$Scores$Submitmultiple|
-        BodyResponseCallback<Schema$PlayerScoreListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlayerScoreListResponse>,
-        callback?: BodyResponseCallback<Schema$PlayerScoreListResponse>):
-        void|GaxiosPromise<Schema$PlayerScoreListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Scores$Submitmultiple;
+      paramsOrCallback?:
+        | Params$Resource$Scores$Submitmultiple
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
+      callback?: BodyResponseCallback<Schema$PlayerScoreListResponse>
+    ): void | GaxiosPromise<Schema$PlayerScoreListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Scores$Submitmultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6302,16 +6583,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/leaderboards/scores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/leaderboards/scores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreListResponse>(parameters, callback);
@@ -6325,7 +6609,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The types of ranks to return. If the parameter is omitted, no ranks will
@@ -6365,7 +6649,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The collection of scores you're requesting.
@@ -6394,12 +6678,12 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$Listwindow extends
-      StandardParameters {
+  export interface Params$Resource$Scores$Listwindow
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The collection of scores you're requesting.
@@ -6444,7 +6728,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -6470,12 +6754,12 @@ export namespace games_v1 {
      */
     scoreTag?: string;
   }
-  export interface Params$Resource$Scores$Submitmultiple extends
-      StandardParameters {
+  export interface Params$Resource$Scores$Submitmultiple
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -6488,13 +6772,11 @@ export namespace games_v1 {
     requestBody?: Schema$PlayerScoreSubmissionList;
   }
 
-
   export class Resource$Snapshots {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.snapshots.get
@@ -6509,19 +6791,27 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Snapshots$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Snapshot>;
-    get(params: Params$Resource$Snapshots$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback: BodyResponseCallback<Schema$Snapshot>): void;
-    get(params: Params$Resource$Snapshots$Get,
-        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(
+      params?: Params$Resource$Snapshots$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Snapshots$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(
+      params: Params$Resource$Snapshots$Get,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Snapshot>): void;
-    get(paramsOrCallback?: Params$Resource$Snapshots$Get|
-        BodyResponseCallback<Schema$Snapshot>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback?: BodyResponseCallback<Schema$Snapshot>):
-        void|GaxiosPromise<Schema$Snapshot> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Snapshots$Get
+        | BodyResponseCallback<Schema$Snapshot>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback?: BodyResponseCallback<Schema$Snapshot>
+    ): void | GaxiosPromise<Schema$Snapshot> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6539,16 +6829,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/snapshots/{snapshotId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/snapshots/{snapshotId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['snapshotId'],
         pathParams: ['snapshotId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -6556,7 +6849,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$Snapshot>(parameters);
       }
     }
-
 
     /**
      * games.snapshots.list
@@ -6574,24 +6866,31 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Snapshots$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SnapshotListResponse>;
     list(
-        params: Params$Resource$Snapshots$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SnapshotListResponse>,
-        callback: BodyResponseCallback<Schema$SnapshotListResponse>): void;
+      params?: Params$Resource$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SnapshotListResponse>;
     list(
-        params: Params$Resource$Snapshots$List,
-        callback: BodyResponseCallback<Schema$SnapshotListResponse>): void;
+      params: Params$Resource$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SnapshotListResponse>,
+      callback: BodyResponseCallback<Schema$SnapshotListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Snapshots$List,
+      callback: BodyResponseCallback<Schema$SnapshotListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SnapshotListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Snapshots$List|
-        BodyResponseCallback<Schema$SnapshotListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SnapshotListResponse>,
-        callback?: BodyResponseCallback<Schema$SnapshotListResponse>):
-        void|GaxiosPromise<Schema$SnapshotListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Snapshots$List
+        | BodyResponseCallback<Schema$SnapshotListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SnapshotListResponse>,
+      callback?: BodyResponseCallback<Schema$SnapshotListResponse>
+    ): void | GaxiosPromise<Schema$SnapshotListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6609,16 +6908,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/players/{playerId}/snapshots')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/players/{playerId}/snapshots').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SnapshotListResponse>(parameters, callback);
@@ -6632,7 +6934,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -6647,7 +6949,7 @@ export namespace games_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -6670,13 +6972,11 @@ export namespace games_v1 {
     playerId?: string;
   }
 
-
   export class Resource$Turnbasedmatches {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * games.turnBasedMatches.cancel
@@ -6691,23 +6991,28 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Turnbasedmatches$Cancel,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Turnbasedmatches$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     cancel(
-        params: Params$Resource$Turnbasedmatches$Cancel,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Cancel,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     cancel(
-        params: Params$Resource$Turnbasedmatches$Cancel,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Cancel,
+      callback: BodyResponseCallback<void>
+    ): void;
     cancel(callback: BodyResponseCallback<void>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Cancel|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Cancel
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6724,16 +7029,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6741,7 +7048,6 @@ export namespace games_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.create
@@ -6757,25 +7063,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Turnbasedmatches$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
+      params?: Params$Resource$Turnbasedmatches$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
     create(
-        params: Params$Resource$Turnbasedmatches$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     create(
-        params: Params$Resource$Turnbasedmatches$Create,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Create,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     create(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
     create(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Create|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Create;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Create
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6792,16 +7103,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/create')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/turnbasedmatches/create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -6809,7 +7123,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.decline
@@ -6825,25 +7138,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     decline(
-        params?: Params$Resource$Turnbasedmatches$Decline,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
+      params?: Params$Resource$Turnbasedmatches$Decline,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
     decline(
-        params: Params$Resource$Turnbasedmatches$Decline,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Decline,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     decline(
-        params: Params$Resource$Turnbasedmatches$Decline,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Decline,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     decline(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
     decline(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Decline|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Decline;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Decline
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6860,16 +7178,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/decline')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/decline'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -6877,7 +7197,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.dismiss
@@ -6893,23 +7212,28 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     dismiss(
-        params?: Params$Resource$Turnbasedmatches$Dismiss,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Turnbasedmatches$Dismiss,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     dismiss(
-        params: Params$Resource$Turnbasedmatches$Dismiss,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Dismiss,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     dismiss(
-        params: Params$Resource$Turnbasedmatches$Dismiss,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Turnbasedmatches$Dismiss,
+      callback: BodyResponseCallback<void>
+    ): void;
     dismiss(callback: BodyResponseCallback<void>): void;
     dismiss(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Dismiss|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Dismiss;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Dismiss
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6926,16 +7250,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/dismiss')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/dismiss'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6943,7 +7269,6 @@ export namespace games_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.finish
@@ -6962,25 +7287,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     finish(
-        params?: Params$Resource$Turnbasedmatches$Finish,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
+      params?: Params$Resource$Turnbasedmatches$Finish,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
     finish(
-        params: Params$Resource$Turnbasedmatches$Finish,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Finish,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     finish(
-        params: Params$Resource$Turnbasedmatches$Finish,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Finish,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     finish(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
     finish(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Finish|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Finish;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Finish
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Finish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6997,16 +7327,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/finish')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/finish'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7014,7 +7346,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.get
@@ -7030,22 +7361,31 @@ export namespace games_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Turnbasedmatches$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
-    get(params: Params$Resource$Turnbasedmatches$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
-    get(params: Params$Resource$Turnbasedmatches$Get,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+    get(
+      params?: Params$Resource$Turnbasedmatches$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
+    get(
+      params: Params$Resource$Turnbasedmatches$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
+    get(
+      params: Params$Resource$Turnbasedmatches$Get,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
-    get(paramsOrCallback?: Params$Resource$Turnbasedmatches$Get|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Get
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7062,16 +7402,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7079,7 +7422,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.join
@@ -7095,25 +7437,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     join(
-        params?: Params$Resource$Turnbasedmatches$Join,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
+      params?: Params$Resource$Turnbasedmatches$Join,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
     join(
-        params: Params$Resource$Turnbasedmatches$Join,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Join,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     join(
-        params: Params$Resource$Turnbasedmatches$Join,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Join,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     join(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
     join(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Join|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Join;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Join
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7130,16 +7477,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/join')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/join'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7147,7 +7496,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.leave
@@ -7164,25 +7512,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leave(
-        params?: Params$Resource$Turnbasedmatches$Leave,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
+      params?: Params$Resource$Turnbasedmatches$Leave,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
     leave(
-        params: Params$Resource$Turnbasedmatches$Leave,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Leave,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     leave(
-        params: Params$Resource$Turnbasedmatches$Leave,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Leave,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     leave(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
     leave(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Leave|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Leave;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Leave
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7199,16 +7552,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/leave')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/leave'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7216,7 +7571,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.leaveTurn
@@ -7235,25 +7589,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leaveTurn(
-        params?: Params$Resource$Turnbasedmatches$Leaveturn,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
+      params?: Params$Resource$Turnbasedmatches$Leaveturn,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
     leaveTurn(
-        params: Params$Resource$Turnbasedmatches$Leaveturn,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Leaveturn,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     leaveTurn(
-        params: Params$Resource$Turnbasedmatches$Leaveturn,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Leaveturn,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     leaveTurn(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
     leaveTurn(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Leaveturn|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Turnbasedmatches$Leaveturn;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Leaveturn
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Leaveturn;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7270,16 +7629,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/leaveTurn')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/leaveTurn'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId', 'matchVersion'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7287,7 +7648,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.list
@@ -7306,25 +7666,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Turnbasedmatches$List,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatchList>;
+      params?: Params$Resource$Turnbasedmatches$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatchList>;
     list(
-        params: Params$Resource$Turnbasedmatches$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchList>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatchList>): void;
+      params: Params$Resource$Turnbasedmatches$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatchList>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatchList>
+    ): void;
     list(
-        params: Params$Resource$Turnbasedmatches$List,
-        callback: BodyResponseCallback<Schema$TurnBasedMatchList>): void;
+      params: Params$Resource$Turnbasedmatches$List,
+      callback: BodyResponseCallback<Schema$TurnBasedMatchList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TurnBasedMatchList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$List|
-        BodyResponseCallback<Schema$TurnBasedMatchList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatchList>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatchList>):
-        void|GaxiosPromise<Schema$TurnBasedMatchList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$List;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$List
+        | BodyResponseCallback<Schema$TurnBasedMatchList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchList>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatchList>
+    ): void | GaxiosPromise<Schema$TurnBasedMatchList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7341,16 +7706,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/turnbasedmatches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchList>(parameters, callback);
@@ -7358,7 +7726,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatchList>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.rematch
@@ -7378,26 +7745,32 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     rematch(
-        params?: Params$Resource$Turnbasedmatches$Rematch,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatchRematch>;
+      params?: Params$Resource$Turnbasedmatches$Rematch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatchRematch>;
     rematch(
-        params: Params$Resource$Turnbasedmatches$Rematch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatchRematch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>): void;
+      params: Params$Resource$Turnbasedmatches$Rematch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>
+    ): void;
     rematch(
-        params: Params$Resource$Turnbasedmatches$Rematch,
-        callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>): void;
+      params: Params$Resource$Turnbasedmatches$Rematch,
+      callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>
+    ): void;
     rematch(callback: BodyResponseCallback<Schema$TurnBasedMatchRematch>): void;
     rematch(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Rematch|
-        BodyResponseCallback<Schema$TurnBasedMatchRematch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatchRematch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatchRematch>):
-        void|GaxiosPromise<Schema$TurnBasedMatchRematch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Rematch;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Rematch
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatchRematch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatchRematch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Rematch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7414,16 +7787,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/rematch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/rematch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchRematch>(parameters, callback);
@@ -7431,7 +7806,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatchRematch>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.sync
@@ -7453,25 +7827,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     sync(
-        params?: Params$Resource$Turnbasedmatches$Sync,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatchSync>;
+      params?: Params$Resource$Turnbasedmatches$Sync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatchSync>;
     sync(
-        params: Params$Resource$Turnbasedmatches$Sync,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchSync>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatchSync>): void;
+      params: Params$Resource$Turnbasedmatches$Sync,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatchSync>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatchSync>
+    ): void;
     sync(
-        params: Params$Resource$Turnbasedmatches$Sync,
-        callback: BodyResponseCallback<Schema$TurnBasedMatchSync>): void;
+      params: Params$Resource$Turnbasedmatches$Sync,
+      callback: BodyResponseCallback<Schema$TurnBasedMatchSync>
+    ): void;
     sync(callback: BodyResponseCallback<Schema$TurnBasedMatchSync>): void;
     sync(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Sync|
-        BodyResponseCallback<Schema$TurnBasedMatchSync>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatchSync>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatchSync>):
-        void|GaxiosPromise<Schema$TurnBasedMatchSync> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Sync;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Sync
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatchSync>
+    ): void | GaxiosPromise<Schema$TurnBasedMatchSync> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7488,16 +7867,19 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/sync')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/games/v1/turnbasedmatches/sync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchSync>(parameters, callback);
@@ -7505,7 +7887,6 @@ export namespace games_v1 {
         return createAPIRequest<Schema$TurnBasedMatchSync>(parameters);
       }
     }
-
 
     /**
      * games.turnBasedMatches.takeTurn
@@ -7522,25 +7903,30 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     takeTurn(
-        params?: Params$Resource$Turnbasedmatches$Taketurn,
-        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
+      params?: Params$Resource$Turnbasedmatches$Taketurn,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TurnBasedMatch>;
     takeTurn(
-        params: Params$Resource$Turnbasedmatches$Taketurn,
-        options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Taketurn,
+      options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     takeTurn(
-        params: Params$Resource$Turnbasedmatches$Taketurn,
-        callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
+      params: Params$Resource$Turnbasedmatches$Taketurn,
+      callback: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void;
     takeTurn(callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
     takeTurn(
-        paramsOrCallback?: Params$Resource$Turnbasedmatches$Taketurn|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TurnBasedMatch>,
-        callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|GaxiosPromise<Schema$TurnBasedMatch> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Taketurn;
+      paramsOrCallback?:
+        | Params$Resource$Turnbasedmatches$Taketurn
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>,
+      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Turnbasedmatches$Taketurn;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7557,16 +7943,18 @@ export namespace games_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/games/v1/turnbasedmatches/{matchId}/turn')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/games/v1/turnbasedmatches/{matchId}/turn'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7576,24 +7964,24 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Turnbasedmatches$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the match.
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Create extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -7605,12 +7993,12 @@ export namespace games_v1 {
      */
     requestBody?: Schema$TurnBasedMatchCreateRequest;
   }
-  export interface Params$Resource$Turnbasedmatches$Decline extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Decline
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -7621,24 +8009,24 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Dismiss extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Dismiss
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the match.
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Finish extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Finish
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -7654,12 +8042,12 @@ export namespace games_v1 {
      */
     requestBody?: Schema$TurnBasedMatchResults;
   }
-  export interface Params$Resource$Turnbasedmatches$Get extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Get match data along with metadata.
@@ -7674,12 +8062,12 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Join extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Join
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -7690,12 +8078,12 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Leave extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Leave
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -7706,12 +8094,12 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Leaveturn extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Leaveturn
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -7733,12 +8121,12 @@ export namespace games_v1 {
      */
     pendingParticipantId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$List extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * True if match data should be returned in the response. Note that not all
@@ -7769,12 +8157,12 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Rematch extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Rematch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.
@@ -7791,12 +8179,12 @@ export namespace games_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Sync extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Sync
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * True if match data should be returned in the response. Note that not all
@@ -7827,12 +8215,12 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Taketurn extends
-      StandardParameters {
+  export interface Params$Resource$Turnbasedmatches$Taketurn
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The preferred language to use for strings returned by this method.

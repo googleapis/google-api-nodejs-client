@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -92,8 +104,9 @@ export namespace dns_v1 {
 
       this.changes = new Resource$Changes(this.context);
       this.dnsKeys = new Resource$Dnskeys(this.context);
-      this.managedZoneOperations =
-          new Resource$Managedzoneoperations(this.context);
+      this.managedZoneOperations = new Resource$Managedzoneoperations(
+        this.context
+      );
       this.managedZones = new Resource$Managedzones(this.context);
       this.projects = new Resource$Projects(this.context);
       this.resourceRecordSets = new Resource$Resourcerecordsets(this.context);
@@ -339,7 +352,7 @@ export namespace dns_v1 {
     /**
      * User labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * User assigned name for this resource. Must be unique within the project.
      * The name must be 1-63 characters long, must begin with a letter, end with
@@ -677,13 +690,11 @@ export namespace dns_v1 {
     operationId?: string;
   }
 
-
   export class Resource$Changes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dns.changes.create
@@ -761,22 +772,27 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Changes$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Change>;
     create(
-        params: Params$Resource$Changes$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback: BodyResponseCallback<Schema$Change>): void;
+      params?: Params$Resource$Changes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Change>;
     create(
-        params: Params$Resource$Changes$Create,
-        callback: BodyResponseCallback<Schema$Change>): void;
+      params: Params$Resource$Changes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Change>,
+      callback: BodyResponseCallback<Schema$Change>
+    ): void;
+    create(
+      params: Params$Resource$Changes$Create,
+      callback: BodyResponseCallback<Schema$Change>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Change>): void;
     create(
-        paramsOrCallback?: Params$Resource$Changes$Create|
-        BodyResponseCallback<Schema$Change>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback?: BodyResponseCallback<Schema$Change>):
-        void|GaxiosPromise<Schema$Change> {
+      paramsOrCallback?:
+        | Params$Resource$Changes$Create
+        | BodyResponseCallback<Schema$Change>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Change>,
+      callback?: BodyResponseCallback<Schema$Change>
+    ): void | GaxiosPromise<Schema$Change> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -794,18 +810,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/changes')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/changes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -813,7 +830,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$Change>(parameters);
       }
     }
-
 
     /**
      * dns.changes.get
@@ -891,19 +907,27 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Changes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Change>;
-    get(params: Params$Resource$Changes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback: BodyResponseCallback<Schema$Change>): void;
-    get(params: Params$Resource$Changes$Get,
-        callback: BodyResponseCallback<Schema$Change>): void;
+    get(
+      params?: Params$Resource$Changes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Change>;
+    get(
+      params: Params$Resource$Changes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Change>,
+      callback: BodyResponseCallback<Schema$Change>
+    ): void;
+    get(
+      params: Params$Resource$Changes$Get,
+      callback: BodyResponseCallback<Schema$Change>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Change>): void;
-    get(paramsOrCallback?: Params$Resource$Changes$Get|
-        BodyResponseCallback<Schema$Change>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback?: BodyResponseCallback<Schema$Change>):
-        void|GaxiosPromise<Schema$Change> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Changes$Get
+        | BodyResponseCallback<Schema$Change>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Change>,
+      callback?: BodyResponseCallback<Schema$Change>
+    ): void | GaxiosPromise<Schema$Change> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -921,18 +945,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/changes/{changeId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/changes/{changeId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone', 'changeId'],
         pathParams: ['changeId', 'managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -940,7 +965,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$Change>(parameters);
       }
     }
-
 
     /**
      * dns.changes.list
@@ -1029,23 +1053,29 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Changes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChangesListResponse>;
     list(
-        params: Params$Resource$Changes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ChangesListResponse>,
-        callback: BodyResponseCallback<Schema$ChangesListResponse>): void;
+      params?: Params$Resource$Changes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChangesListResponse>;
     list(
-        params: Params$Resource$Changes$List,
-        callback: BodyResponseCallback<Schema$ChangesListResponse>): void;
+      params: Params$Resource$Changes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ChangesListResponse>,
+      callback: BodyResponseCallback<Schema$ChangesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Changes$List,
+      callback: BodyResponseCallback<Schema$ChangesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ChangesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Changes$List|
-        BodyResponseCallback<Schema$ChangesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChangesListResponse>,
-        callback?: BodyResponseCallback<Schema$ChangesListResponse>):
-        void|GaxiosPromise<Schema$ChangesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Changes$List
+        | BodyResponseCallback<Schema$ChangesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChangesListResponse>,
+      callback?: BodyResponseCallback<Schema$ChangesListResponse>
+    ): void | GaxiosPromise<Schema$ChangesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1063,18 +1093,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/changes')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/changes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChangesListResponse>(parameters, callback);
@@ -1088,7 +1119,7 @@ export namespace dns_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -1115,7 +1146,7 @@ export namespace dns_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The identifier of the requested change, from a previous
@@ -1142,7 +1173,7 @@ export namespace dns_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the managed zone addressed by this request. Can be the managed
@@ -1173,13 +1204,11 @@ export namespace dns_v1 {
     sortOrder?: string;
   }
 
-
   export class Resource$Dnskeys {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dns.dnsKeys.get
@@ -1197,19 +1226,27 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Dnskeys$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DnsKey>;
-    get(params: Params$Resource$Dnskeys$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
-        callback: BodyResponseCallback<Schema$DnsKey>): void;
-    get(params: Params$Resource$Dnskeys$Get,
-        callback: BodyResponseCallback<Schema$DnsKey>): void;
+    get(
+      params?: Params$Resource$Dnskeys$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DnsKey>;
+    get(
+      params: Params$Resource$Dnskeys$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DnsKey>,
+      callback: BodyResponseCallback<Schema$DnsKey>
+    ): void;
+    get(
+      params: Params$Resource$Dnskeys$Get,
+      callback: BodyResponseCallback<Schema$DnsKey>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DnsKey>): void;
-    get(paramsOrCallback?: Params$Resource$Dnskeys$Get|
-        BodyResponseCallback<Schema$DnsKey>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
-        callback?: BodyResponseCallback<Schema$DnsKey>):
-        void|GaxiosPromise<Schema$DnsKey> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Dnskeys$Get
+        | BodyResponseCallback<Schema$DnsKey>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$DnsKey>,
+      callback?: BodyResponseCallback<Schema$DnsKey>
+    ): void | GaxiosPromise<Schema$DnsKey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1227,18 +1264,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone', 'dnsKeyId'],
         pathParams: ['dnsKeyId', 'managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DnsKey>(parameters, callback);
@@ -1246,7 +1284,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$DnsKey>(parameters);
       }
     }
-
 
     /**
      * dns.dnsKeys.list
@@ -1264,23 +1301,29 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Dnskeys$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DnsKeysListResponse>;
     list(
-        params: Params$Resource$Dnskeys$List,
-        options: MethodOptions|BodyResponseCallback<Schema$DnsKeysListResponse>,
-        callback: BodyResponseCallback<Schema$DnsKeysListResponse>): void;
+      params?: Params$Resource$Dnskeys$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DnsKeysListResponse>;
     list(
-        params: Params$Resource$Dnskeys$List,
-        callback: BodyResponseCallback<Schema$DnsKeysListResponse>): void;
+      params: Params$Resource$Dnskeys$List,
+      options: MethodOptions | BodyResponseCallback<Schema$DnsKeysListResponse>,
+      callback: BodyResponseCallback<Schema$DnsKeysListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Dnskeys$List,
+      callback: BodyResponseCallback<Schema$DnsKeysListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DnsKeysListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Dnskeys$List|
-        BodyResponseCallback<Schema$DnsKeysListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DnsKeysListResponse>,
-        callback?: BodyResponseCallback<Schema$DnsKeysListResponse>):
-        void|GaxiosPromise<Schema$DnsKeysListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Dnskeys$List
+        | BodyResponseCallback<Schema$DnsKeysListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DnsKeysListResponse>,
+      callback?: BodyResponseCallback<Schema$DnsKeysListResponse>
+    ): void | GaxiosPromise<Schema$DnsKeysListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1298,18 +1341,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/dnsKeys')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/dnsKeys'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DnsKeysListResponse>(parameters, callback);
@@ -1323,7 +1367,7 @@ export namespace dns_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -1355,7 +1399,7 @@ export namespace dns_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An optional comma-separated list of digest types to compute and display
@@ -1384,13 +1428,11 @@ export namespace dns_v1 {
     project?: string;
   }
 
-
   export class Resource$Managedzoneoperations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dns.managedZoneOperations.get
@@ -1407,22 +1449,31 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Managedzoneoperations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Managedzoneoperations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Managedzoneoperations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Managedzoneoperations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Managedzoneoperations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Managedzoneoperations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Managedzoneoperations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Managedzoneoperations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Managedzoneoperations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedzoneoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1439,18 +1490,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/operations/{operation}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/operations/{operation}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone', 'operation'],
         pathParams: ['managedZone', 'operation', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1458,7 +1510,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dns.managedZoneOperations.list
@@ -1477,34 +1528,34 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Managedzoneoperations$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ManagedZoneOperationsListResponse>;
+      params?: Params$Resource$Managedzoneoperations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedZoneOperationsListResponse>;
     list(
-        params: Params$Resource$Managedzoneoperations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
-        void;
+      params: Params$Resource$Managedzoneoperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
+      callback: BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Managedzoneoperations$List,
-        callback:
-            BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
-        void;
+      params: Params$Resource$Managedzoneoperations$List,
+      callback: BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Managedzoneoperations$List|
-        BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
-        void|GaxiosPromise<Schema$ManagedZoneOperationsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedzoneoperations$List;
+      callback: BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Managedzoneoperations$List
+        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
+      callback?: BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
+    ): void | GaxiosPromise<Schema$ManagedZoneOperationsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedzoneoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1521,35 +1572,39 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/operations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/operations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Managedzoneoperations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Managedzoneoperations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -1570,12 +1625,12 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzoneoperations$List extends
-      StandardParameters {
+  export interface Params$Resource$Managedzoneoperations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the managed zone addressed by this request.
@@ -1601,13 +1656,11 @@ export namespace dns_v1 {
     sortBy?: string;
   }
 
-
   export class Resource$Managedzones {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dns.managedZones.create
@@ -1681,25 +1734,30 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Managedzones$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedZone>;
+      params?: Params$Resource$Managedzones$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedZone>;
     create(
-        params: Params$Resource$Managedzones$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
-        callback: BodyResponseCallback<Schema$ManagedZone>): void;
+      params: Params$Resource$Managedzones$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedZone>,
+      callback: BodyResponseCallback<Schema$ManagedZone>
+    ): void;
     create(
-        params: Params$Resource$Managedzones$Create,
-        callback: BodyResponseCallback<Schema$ManagedZone>): void;
+      params: Params$Resource$Managedzones$Create,
+      callback: BodyResponseCallback<Schema$ManagedZone>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ManagedZone>): void;
     create(
-        paramsOrCallback?: Params$Resource$Managedzones$Create|
-        BodyResponseCallback<Schema$ManagedZone>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedZone>,
-        callback?: BodyResponseCallback<Schema$ManagedZone>):
-        void|GaxiosPromise<Schema$ManagedZone> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Managedzones$Create;
+      paramsOrCallback?:
+        | Params$Resource$Managedzones$Create
+        | BodyResponseCallback<Schema$ManagedZone>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedZone>,
+      callback?: BodyResponseCallback<Schema$ManagedZone>
+    ): void | GaxiosPromise<Schema$ManagedZone> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedzones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1716,16 +1774,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dns/v1/projects/{project}/managedZones')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/dns/v1/projects/{project}/managedZones').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(parameters, callback);
@@ -1733,7 +1794,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$ManagedZone>(parameters);
       }
     }
-
 
     /**
      * dns.managedZones.delete
@@ -1804,23 +1864,28 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Managedzones$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Managedzones$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Managedzones$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Managedzones$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Managedzones$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Managedzones$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Managedzones$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Managedzones$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Managedzones$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedzones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1837,17 +1902,18 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dns/v1/projects/{project}/managedZones/{managedZone}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1855,7 +1921,6 @@ export namespace dns_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dns.managedZones.get
@@ -1928,20 +1993,29 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Managedzones$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedZone>;
-    get(params: Params$Resource$Managedzones$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
-        callback: BodyResponseCallback<Schema$ManagedZone>): void;
-    get(params: Params$Resource$Managedzones$Get,
-        callback: BodyResponseCallback<Schema$ManagedZone>): void;
+    get(
+      params?: Params$Resource$Managedzones$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedZone>;
+    get(
+      params: Params$Resource$Managedzones$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedZone>,
+      callback: BodyResponseCallback<Schema$ManagedZone>
+    ): void;
+    get(
+      params: Params$Resource$Managedzones$Get,
+      callback: BodyResponseCallback<Schema$ManagedZone>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ManagedZone>): void;
-    get(paramsOrCallback?: Params$Resource$Managedzones$Get|
-        BodyResponseCallback<Schema$ManagedZone>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedZone>,
-        callback?: BodyResponseCallback<Schema$ManagedZone>):
-        void|GaxiosPromise<Schema$ManagedZone> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Managedzones$Get
+        | BodyResponseCallback<Schema$ManagedZone>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedZone>,
+      callback?: BodyResponseCallback<Schema$ManagedZone>
+    ): void | GaxiosPromise<Schema$ManagedZone> {
       let params = (paramsOrCallback || {}) as Params$Resource$Managedzones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1959,17 +2033,18 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dns/v1/projects/{project}/managedZones/{managedZone}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(parameters, callback);
@@ -1977,7 +2052,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$ManagedZone>(parameters);
       }
     }
-
 
     /**
      * dns.managedZones.list
@@ -2061,26 +2135,33 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Managedzones$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ManagedZonesListResponse>;
     list(
-        params: Params$Resource$Managedzones$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedZonesListResponse>,
-        callback: BodyResponseCallback<Schema$ManagedZonesListResponse>): void;
+      params?: Params$Resource$Managedzones$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedZonesListResponse>;
     list(
-        params: Params$Resource$Managedzones$List,
-        callback: BodyResponseCallback<Schema$ManagedZonesListResponse>): void;
+      params: Params$Resource$Managedzones$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedZonesListResponse>,
+      callback: BodyResponseCallback<Schema$ManagedZonesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Managedzones$List,
+      callback: BodyResponseCallback<Schema$ManagedZonesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ManagedZonesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Managedzones$List|
-        BodyResponseCallback<Schema$ManagedZonesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedZonesListResponse>,
-        callback?: BodyResponseCallback<Schema$ManagedZonesListResponse>):
-        void|GaxiosPromise<Schema$ManagedZonesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Managedzones$List;
+      paramsOrCallback?:
+        | Params$Resource$Managedzones$List
+        | BodyResponseCallback<Schema$ManagedZonesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedZonesListResponse>,
+      callback?: BodyResponseCallback<Schema$ManagedZonesListResponse>
+    ): void | GaxiosPromise<Schema$ManagedZonesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedzones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2097,16 +2178,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dns/v1/projects/{project}/managedZones')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/dns/v1/projects/{project}/managedZones').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZonesListResponse>(parameters, callback);
@@ -2114,7 +2198,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$ManagedZonesListResponse>(parameters);
       }
     }
-
 
     /**
      * dns.managedZones.patch
@@ -2131,25 +2214,31 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Managedzones$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Managedzones$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Managedzones$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Managedzones$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Managedzones$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Managedzones$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Managedzones$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Managedzones$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Managedzones$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedzones$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2166,17 +2255,18 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dns/v1/projects/{project}/managedZones/{managedZone}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2184,7 +2274,6 @@ export namespace dns_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * dns.managedZones.update
@@ -2202,25 +2291,30 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Managedzones$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Managedzones$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Managedzones$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Managedzones$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Managedzones$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Managedzones$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Managedzones$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Managedzones$Update;
+      paramsOrCallback?:
+        | Params$Resource$Managedzones$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedzones$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2237,17 +2331,18 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dns/v1/projects/{project}/managedZones/{managedZone}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dns/v1/projects/{project}/managedZones/{managedZone}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2257,12 +2352,12 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Managedzones$Create extends
-      StandardParameters {
+  export interface Params$Resource$Managedzones$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -2280,12 +2375,12 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Managedzones$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -2307,7 +2402,7 @@ export namespace dns_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -2325,12 +2420,12 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$List extends
-      StandardParameters {
+  export interface Params$Resource$Managedzones$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restricts the list to return only zones with this domain name.
@@ -2351,12 +2446,12 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Managedzones$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -2379,12 +2474,12 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Update extends
-      StandardParameters {
+  export interface Params$Resource$Managedzones$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -2407,14 +2502,12 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-
 
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dns.projects.get
@@ -2482,19 +2575,27 @@ export namespace dns_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Project>;
-    get(params: Params$Resource$Projects$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
-    get(params: Params$Resource$Projects$Get,
-        callback: BodyResponseCallback<Schema$Project>): void;
+    get(
+      params?: Params$Resource$Projects$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Get,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Project>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Get|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Get
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2512,16 +2613,19 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dns/v1/projects/{project}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/dns/v1/projects/{project}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -2535,7 +2639,7 @@ export namespace dns_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For mutating operation requests only. An optional identifier specified by
@@ -2549,13 +2653,11 @@ export namespace dns_v1 {
     project?: string;
   }
 
-
   export class Resource$Resourcerecordsets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dns.resourceRecordSets.list
@@ -2646,30 +2748,34 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Resourcerecordsets$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ResourceRecordSetsListResponse>;
+      params?: Params$Resource$Resourcerecordsets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResourceRecordSetsListResponse>;
     list(
-        params: Params$Resource$Resourcerecordsets$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
-        callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
-        void;
+      params: Params$Resource$Resourcerecordsets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
+      callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Resourcerecordsets$List,
-        callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
-        void;
+      params: Params$Resource$Resourcerecordsets$List,
+      callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Resourcerecordsets$List|
-        BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
-        callback?: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
-        void|GaxiosPromise<Schema$ResourceRecordSetsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Resourcerecordsets$List;
+      callback: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Resourcerecordsets$List
+        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
+      callback?: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
+    ): void | GaxiosPromise<Schema$ResourceRecordSetsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Resourcerecordsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2686,35 +2792,39 @@ export namespace dns_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dns/v1/projects/{project}/managedZones/{managedZone}/rrsets')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dns/v1/projects/{project}/managedZones/{managedZone}/rrsets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResourceRecordSetsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ResourceRecordSetsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Resourcerecordsets$List extends
-      StandardParameters {
+  export interface Params$Resource$Resourcerecordsets$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the managed zone addressed by this request. Can be the managed

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -790,8 +802,7 @@ export namespace vision_v1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p1beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p1beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -804,8 +815,7 @@ export namespace vision_v1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p1beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p1beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -813,13 +823,11 @@ export namespace vision_v1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p1beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p1beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p1beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -1400,8 +1408,7 @@ export namespace vision_v1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -1572,13 +1579,11 @@ export namespace vision_v1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p1beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -1607,25 +1612,21 @@ export namespace vision_v1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -1685,8 +1686,7 @@ export namespace vision_v1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -1696,8 +1696,7 @@ export namespace vision_v1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -1782,8 +1781,7 @@ export namespace vision_v1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p2beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p2beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -1796,8 +1794,7 @@ export namespace vision_v1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p2beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p2beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -1805,13 +1802,11 @@ export namespace vision_v1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p2beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p2beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p2beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -2392,8 +2387,7 @@ export namespace vision_v1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -2564,13 +2558,11 @@ export namespace vision_v1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -2599,25 +2591,21 @@ export namespace vision_v1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -2677,8 +2665,7 @@ export namespace vision_v1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -2688,8 +2675,7 @@ export namespace vision_v1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -2774,8 +2760,7 @@ export namespace vision_v1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p3beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p3beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -2788,8 +2773,7 @@ export namespace vision_v1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p3beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p3beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -2797,13 +2781,11 @@ export namespace vision_v1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p3beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p3beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p3beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -3422,8 +3404,7 @@ export namespace vision_v1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -3620,13 +3601,11 @@ export namespace vision_v1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p3beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -3655,25 +3634,21 @@ export namespace vision_v1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -3733,8 +3708,7 @@ export namespace vision_v1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -3744,8 +3718,7 @@ export namespace vision_v1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -3834,8 +3807,7 @@ export namespace vision_v1 {
     /**
      * If present, image properties were extracted successfully.
      */
-    imagePropertiesAnnotation?:
-        Schema$GoogleCloudVisionV1p4beta1ImageProperties;
+    imagePropertiesAnnotation?: Schema$GoogleCloudVisionV1p4beta1ImageProperties;
     /**
      * If present, label detection has completed successfully.
      */
@@ -3848,8 +3820,7 @@ export namespace vision_v1 {
      * If present, localized object detection has completed successfully. This
      * will be sorted descending by confidence score.
      */
-    localizedObjectAnnotations?:
-        Schema$GoogleCloudVisionV1p4beta1LocalizedObjectAnnotation[];
+    localizedObjectAnnotations?: Schema$GoogleCloudVisionV1p4beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -3857,13 +3828,11 @@ export namespace vision_v1 {
     /**
      * If present, product search has completed successfully.
      */
-    productSearchResults?:
-        Schema$GoogleCloudVisionV1p4beta1ProductSearchResults;
+    productSearchResults?: Schema$GoogleCloudVisionV1p4beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
-    safeSearchAnnotation?:
-        Schema$GoogleCloudVisionV1p4beta1SafeSearchAnnotation;
+    safeSearchAnnotation?: Schema$GoogleCloudVisionV1p4beta1SafeSearchAnnotation;
     /**
      * If present, text (OCR) detection has completed successfully.
      */
@@ -4509,8 +4478,7 @@ export namespace vision_v1 {
      * contains the matching products specific to that region. There may be
      * duplicate product matches in the union of all the per-product results.
      */
-    productGroupedResults?:
-        Schema$GoogleCloudVisionV1p4beta1ProductSearchResultsGroupedResult[];
+    productGroupedResults?: Schema$GoogleCloudVisionV1p4beta1ProductSearchResultsGroupedResult[];
     /**
      * List of results, one for each product match.
      */
@@ -4707,13 +4675,11 @@ export namespace vision_v1 {
     /**
      * Detected start or end of a text segment.
      */
-    detectedBreak?:
-        Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedBreak;
+    detectedBreak?: Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedBreak;
     /**
      * A list of detected languages together with confidence.
      */
-    detectedLanguages?:
-        Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedLanguage[];
+    detectedLanguages?: Schema$GoogleCloudVisionV1p4beta1TextAnnotationDetectedLanguage[];
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates
@@ -4742,25 +4708,21 @@ export namespace vision_v1 {
      * Fully matching images from the Internet. Can include resized copies of
      * the query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * Web pages containing the matching images from the Internet.
      */
-    pagesWithMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebPage[];
+    pagesWithMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebPage[];
     /**
      * Partial matching images from the Internet. Those images are similar
      * enough to share some key-point features. For example an original image
      * will likely have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * The visually similar image results.
      */
-    visuallySimilarImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    visuallySimilarImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * Deduced entities from similar images on the Internet.
      */
@@ -4820,8 +4782,7 @@ export namespace vision_v1 {
      * Fully matching images on the page. Can include resized copies of the
      * query image.
      */
-    fullMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    fullMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * Title for the web page, may contain HTML markups.
      */
@@ -4831,8 +4792,7 @@ export namespace vision_v1 {
      * share some key-point features. For example an original image will likely
      * have partial matching for its crops.
      */
-    partialMatchingImages?:
-        Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
+    partialMatchingImages?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebImage[];
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
@@ -5281,7 +5241,7 @@ export namespace vision_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -5297,7 +5257,7 @@ export namespace vision_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -5682,7 +5642,7 @@ export namespace vision_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -5910,13 +5870,11 @@ export namespace vision_v1 {
     symbols?: Schema$Symbol[];
   }
 
-
   export class Resource$Files {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.files.asyncBatchAnnotate
@@ -5936,25 +5894,30 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     asyncBatchAnnotate(
-        params?: Params$Resource$Files$Asyncbatchannotate,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Files$Asyncbatchannotate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     asyncBatchAnnotate(
-        params: Params$Resource$Files$Asyncbatchannotate,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Files$Asyncbatchannotate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     asyncBatchAnnotate(
-        params: Params$Resource$Files$Asyncbatchannotate,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Files$Asyncbatchannotate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     asyncBatchAnnotate(callback: BodyResponseCallback<Schema$Operation>): void;
     asyncBatchAnnotate(
-        paramsOrCallback?: Params$Resource$Files$Asyncbatchannotate|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
+      paramsOrCallback?:
+        | Params$Resource$Files$Asyncbatchannotate
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5971,16 +5934,19 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/files:asyncBatchAnnotate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/files:asyncBatchAnnotate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5990,13 +5956,12 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Files$Asyncbatchannotate extends
-      StandardParameters {
+  export interface Params$Resource$Files$Asyncbatchannotate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -6004,13 +5969,11 @@ export namespace vision_v1 {
     requestBody?: Schema$AsyncBatchAnnotateFilesRequest;
   }
 
-
   export class Resource$Images {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.images.annotate
@@ -6078,28 +6041,33 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotate(params?: Params$Resource$Images$Annotate, options?: MethodOptions):
-        GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
     annotate(
-        params: Params$Resource$Images$Annotate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
-        callback: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>):
-        void;
+      params?: Params$Resource$Images$Annotate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
     annotate(
-        params: Params$Resource$Images$Annotate,
-        callback: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>):
-        void;
-    annotate(callback:
-                 BodyResponseCallback<Schema$BatchAnnotateImagesResponse>):
-        void;
+      params: Params$Resource$Images$Annotate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
+      callback: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+    ): void;
     annotate(
-        paramsOrCallback?: Params$Resource$Images$Annotate|
-        BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
-        callback?: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>):
-        void|GaxiosPromise<Schema$BatchAnnotateImagesResponse> {
+      params: Params$Resource$Images$Annotate,
+      callback: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+    ): void;
+    annotate(
+      callback: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+    ): void;
+    annotate(
+      paramsOrCallback?:
+        | Params$Resource$Images$Annotate
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>
+    ): void | GaxiosPromise<Schema$BatchAnnotateImagesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6117,20 +6085,25 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/images:annotate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/images:annotate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchAnnotateImagesResponse>(parameters);
       }
@@ -6141,15 +6114,13 @@ export namespace vision_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$BatchAnnotateImagesRequest;
   }
-
 
   export class Resource$Locations {
     context: APIRequestContext;
@@ -6160,13 +6131,11 @@ export namespace vision_v1 {
     }
   }
 
-
   export class Resource$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.locations.operations.get
@@ -6182,22 +6151,31 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Locations$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Locations$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Locations$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Locations$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Locations$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6214,15 +6192,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6232,12 +6211,12 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Locations$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -6245,14 +6224,11 @@ export namespace vision_v1 {
     name?: string;
   }
 
-
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.operations.cancel
@@ -6275,24 +6251,29 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6309,16 +6290,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6326,7 +6307,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vision.operations.delete
@@ -6343,24 +6323,29 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6377,15 +6362,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6393,7 +6379,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vision.operations.get
@@ -6409,20 +6394,29 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6440,15 +6434,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6456,7 +6451,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * vision.operations.list
@@ -6481,24 +6475,31 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6516,15 +6517,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -6534,12 +6536,12 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
@@ -6551,12 +6553,12 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
@@ -6567,7 +6569,7 @@ export namespace vision_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -6578,7 +6580,7 @@ export namespace vision_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -6598,7 +6600,6 @@ export namespace vision_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -6610,7 +6611,6 @@ export namespace vision_v1 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     operations: Resource$Projects$Locations$Operations;
@@ -6618,21 +6618,21 @@ export namespace vision_v1 {
     productSets: Resource$Projects$Locations$Productsets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations =
-          new Resource$Projects$Locations$Operations(this.context);
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
       this.products = new Resource$Projects$Locations$Products(this.context);
-      this.productSets =
-          new Resource$Projects$Locations$Productsets(this.context);
+      this.productSets = new Resource$Projects$Locations$Productsets(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.projects.locations.operations.get
@@ -6648,22 +6648,31 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Locations$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Locations$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6680,15 +6689,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6698,12 +6708,12 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -6711,17 +6721,15 @@ export namespace vision_v1 {
     name?: string;
   }
 
-
   export class Resource$Projects$Locations$Products {
     context: APIRequestContext;
     referenceImages: Resource$Projects$Locations$Products$Referenceimages;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.referenceImages =
-          new Resource$Projects$Locations$Products$Referenceimages(
-              this.context);
+      this.referenceImages = new Resource$Projects$Locations$Products$Referenceimages(
+        this.context
+      );
     }
-
 
     /**
      * vision.projects.locations.products.create
@@ -6742,24 +6750,28 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Products$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Product>;
+      params?: Params$Resource$Projects$Locations$Products$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
     create(
-        params: Params$Resource$Projects$Locations$Products$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
+      params: Params$Resource$Projects$Locations$Products$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Products$Create,
-        callback: BodyResponseCallback<Schema$Product>): void;
+      params: Params$Resource$Projects$Locations$Products$Create,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Product>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Products$Create|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Create
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6776,16 +6788,19 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6793,7 +6808,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Product>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.products.delete
@@ -6811,24 +6825,28 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Products$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Products$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Products$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Products$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Products$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Products$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Products$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6845,15 +6863,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6861,7 +6880,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.products.get
@@ -6876,21 +6894,29 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Products$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Product>;
-    get(params: Params$Resource$Projects$Locations$Products$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
-    get(params: Params$Resource$Projects$Locations$Products$Get,
-        callback: BodyResponseCallback<Schema$Product>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Products$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Projects$Locations$Products$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Products$Get,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Product>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Products$Get|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Get
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6907,15 +6933,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6923,7 +6950,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Product>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.products.list
@@ -6941,26 +6967,32 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Products$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListProductsResponse>;
+      params?: Params$Resource$Projects$Locations$Products$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProductsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Products$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+      params: Params$Resource$Projects$Locations$Products$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Products$List,
-        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+      params: Params$Resource$Projects$Locations$Products$List,
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Products$List|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        callback?: BodyResponseCallback<Schema$ListProductsResponse>):
-        void|GaxiosPromise<Schema$ListProductsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$List
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void | GaxiosPromise<Schema$ListProductsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6977,16 +7009,19 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -6994,7 +7029,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.products.patch
@@ -7019,24 +7053,28 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Products$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Product>;
+      params?: Params$Resource$Projects$Locations$Products$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
     patch(
-        params: Params$Resource$Projects$Locations$Products$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
+      params: Params$Resource$Projects$Locations$Products$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Products$Patch,
-        callback: BodyResponseCallback<Schema$Product>): void;
+      params: Params$Resource$Projects$Locations$Products$Patch,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Product>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Products$Patch|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Patch
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7053,15 +7091,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -7071,12 +7110,12 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Products$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which the Product should be created.  Format is
@@ -7096,12 +7135,12 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$Product;
   }
-  export interface Params$Resource$Projects$Locations$Products$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of product to delete.  Format is:
@@ -7109,12 +7148,12 @@ export namespace vision_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the Product to get.  Format is:
@@ -7122,12 +7161,12 @@ export namespace vision_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of items to return. Default 10, maximum 100.
@@ -7143,12 +7182,12 @@ export namespace vision_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Products$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Products$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the product.  Format is:
@@ -7174,7 +7213,6 @@ export namespace vision_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.projects.locations.products.referenceImages.create
@@ -7203,35 +7241,35 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ReferenceImage>;
+      params?: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReferenceImage>;
     create(
-        params:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ReferenceImage>,
-        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ReferenceImage>,
+      callback: BodyResponseCallback<Schema$ReferenceImage>
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Create,
-        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+      callback: BodyResponseCallback<Schema$ReferenceImage>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ReferenceImage>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Create|
-        BodyResponseCallback<Schema$ReferenceImage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReferenceImage>,
-        callback?: BodyResponseCallback<Schema$ReferenceImage>):
-        void|GaxiosPromise<Schema$ReferenceImage> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Referenceimages$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Referenceimages$Create
+        | BodyResponseCallback<Schema$ReferenceImage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReferenceImage>,
+      callback?: BodyResponseCallback<Schema$ReferenceImage>
+    ): void | GaxiosPromise<Schema$ReferenceImage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Products$Referenceimages$Create;
+        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$Create;
         options = {};
       }
 
@@ -7243,16 +7281,19 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/referenceImages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/referenceImages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(parameters, callback);
@@ -7260,7 +7301,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$ReferenceImage>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.products.referenceImages.delete
@@ -7279,34 +7319,33 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Referenceimages$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
+        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
         options = {};
       }
 
@@ -7318,15 +7357,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7334,7 +7374,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.products.referenceImages.get
@@ -7349,30 +7388,36 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ReferenceImage>;
-    get(params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ReferenceImage>,
-        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
-    get(params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
-        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReferenceImage>;
+    get(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReferenceImage>,
+      callback: BodyResponseCallback<Schema$ReferenceImage>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+      callback: BodyResponseCallback<Schema$ReferenceImage>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ReferenceImage>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$Get|
-        BodyResponseCallback<Schema$ReferenceImage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReferenceImage>,
-        callback?: BodyResponseCallback<Schema$ReferenceImage>):
-        void|GaxiosPromise<Schema$ReferenceImage> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Referenceimages$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Referenceimages$Get
+        | BodyResponseCallback<Schema$ReferenceImage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReferenceImage>,
+      callback?: BodyResponseCallback<Schema$ReferenceImage>
+    ): void | GaxiosPromise<Schema$ReferenceImage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Referenceimages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Products$Referenceimages$Get;
+        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$Get;
         options = {};
       }
 
@@ -7384,15 +7429,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(parameters, callback);
@@ -7400,7 +7446,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$ReferenceImage>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.products.referenceImages.list
@@ -7419,40 +7464,39 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListReferenceImagesResponse>;
+      params?: Params$Resource$Projects$Locations$Products$Referenceimages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReferenceImagesResponse>;
     list(
-        params:
-            Params$Resource$Projects$Locations$Products$Referenceimages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListReferenceImagesResponse>,
-        callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReferenceImagesResponse>,
+      callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Locations$Products$Referenceimages$List,
-        callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
+      callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Products$Referenceimages$List|
-        BodyResponseCallback<Schema$ListReferenceImagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReferenceImagesResponse>,
-        callback?: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
-        void|GaxiosPromise<Schema$ListReferenceImagesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Products$Referenceimages$List;
+      callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Referenceimages$List
+        | BodyResponseCallback<Schema$ListReferenceImagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReferenceImagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReferenceImagesResponse>
+    ): void | GaxiosPromise<Schema$ListReferenceImagesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Referenceimages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Products$Referenceimages$List;
+        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$List;
         options = {};
       }
 
@@ -7464,20 +7508,25 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/referenceImages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/referenceImages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReferenceImagesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListReferenceImagesResponse>(parameters);
       }
@@ -7485,11 +7534,11 @@ export namespace vision_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the product in which to create the reference image.
@@ -7510,11 +7559,11 @@ export namespace vision_v1 {
     requestBody?: Schema$ReferenceImage;
   }
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the reference image to delete.  Format is:
@@ -7523,11 +7572,11 @@ export namespace vision_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the ReferenceImage to get.  Format is:
@@ -7536,11 +7585,11 @@ export namespace vision_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Referenceimages$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of items to return. Default 10, maximum 100.
@@ -7559,17 +7608,15 @@ export namespace vision_v1 {
     parent?: string;
   }
 
-
-
   export class Resource$Projects$Locations$Productsets {
     context: APIRequestContext;
     products: Resource$Projects$Locations$Productsets$Products;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.products =
-          new Resource$Projects$Locations$Productsets$Products(this.context);
+      this.products = new Resource$Projects$Locations$Productsets$Products(
+        this.context
+      );
     }
-
 
     /**
      * vision.projects.locations.productSets.addProduct
@@ -7588,31 +7635,33 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     addProduct(
-        params?: Params$Resource$Projects$Locations$Productsets$Addproduct,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Productsets$Addproduct,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     addProduct(
-        params: Params$Resource$Projects$Locations$Productsets$Addproduct,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Addproduct,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     addProduct(
-        params: Params$Resource$Projects$Locations$Productsets$Addproduct,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Addproduct,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     addProduct(callback: BodyResponseCallback<Schema$Empty>): void;
     addProduct(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Productsets$Addproduct|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$Addproduct;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Addproduct
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Addproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Productsets$Addproduct;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Addproduct;
         options = {};
       }
 
@@ -7624,16 +7673,19 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:addProduct')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:addProduct').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7641,7 +7693,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.productSets.create
@@ -7660,26 +7711,30 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Productsets$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
+      params?: Params$Resource$Projects$Locations$Productsets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductSet>;
     create(
-        params: Params$Resource$Projects$Locations$Productsets$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Productsets$Create,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Create,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ProductSet>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Productsets$Create|
-        BodyResponseCallback<Schema$ProductSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductSet>,
-        callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|GaxiosPromise<Schema$ProductSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Create
+        | BodyResponseCallback<Schema$ProductSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductSet>,
+      callback?: BodyResponseCallback<Schema$ProductSet>
+    ): void | GaxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7696,16 +7751,19 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/productSets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/productSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -7713,7 +7771,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$ProductSet>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.productSets.delete
@@ -7730,25 +7787,28 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Productsets$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Productsets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Productsets$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Productsets$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Productsets$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7765,15 +7825,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7781,7 +7842,6 @@ export namespace vision_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.productSets.get
@@ -7796,22 +7856,31 @@ export namespace vision_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Productsets$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
-    get(params: Params$Resource$Projects$Locations$Productsets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
-    get(params: Params$Resource$Projects$Locations$Productsets$Get,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Productsets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductSet>;
+    get(
+      params: Params$Resource$Projects$Locations$Productsets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Productsets$Get,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ProductSet>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Get|
-        BodyResponseCallback<Schema$ProductSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductSet>,
-        callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|GaxiosPromise<Schema$ProductSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Get
+        | BodyResponseCallback<Schema$ProductSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductSet>,
+      callback?: BodyResponseCallback<Schema$ProductSet>
+    ): void | GaxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7828,15 +7897,16 @@ export namespace vision_v1 {
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -7845,84 +7915,129 @@ export namespace vision_v1 {
       }
     }
 
+    /**
+     * vision.projects.locations.productSets.import
+     * @desc Asynchronous API that imports a list of reference images to specified
+     * product sets based on a list of image information.  The
+     * google.longrunning.Operation API can be used to keep track of the progress
+     * and results of the request. `Operation.metadata` contains
+     * `BatchOperationMetadata`. (progress) `Operation.response` contains
+     * `ImportProductSetsResponse`. (results)  The input source of this method is a
+     * csv file on Google Cloud Storage. For the format of the csv file please see
+     * ImportProductSetsGcsSource.csv_file_uri.
+     * @alias vision.projects.locations.productSets.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {().ImportProductSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Projects$Locations$Productsets$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Productsets$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Productsets$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Import
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
 
-/**
- * vision.projects.locations.productSets.import
- * @desc Asynchronous API that imports a list of reference images to specified
- * product sets based on a list of image information.  The
- * google.longrunning.Operation API can be used to keep track of the progress
- * and results of the request. `Operation.metadata` contains
- * `BatchOperationMetadata`. (progress) `Operation.response` contains
- * `ImportProductSetsResponse`. (results)  The input source of this method is a
- * csv file on Google Cloud Storage. For the format of the csv file please see
- * ImportProductSetsGcsSource.csv_file_uri.
- * @alias vision.projects.locations.productSets.import
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.parent The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
- * @param {().ImportProductSetsRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-import(params?: Params$Resource$Projects$Locations$Productsets$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-import(params: Params$Resource$Projects$Locations$Productsets$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
-import(params: Params$Resource$Projects$Locations$Productsets$Import, callback: BodyResponseCallback<Schema$Operation>): void;
-import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Productsets$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Import;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                                                                if(typeof paramsOrCallback === 'function') {
-    callback = paramsOrCallback;
-    params = {} as Params$Resource$Projects$Locations$Productsets$Import;
-    options = {};
-                                                                                                                                                                                                                                                                                                }
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                                                                if(typeof optionsOrCallback === 'function') {
-    callback = optionsOrCallback;
-    options = {};
-                                                                                                                                                                                                                                                                                                }
-
-                                                                                                                                                                                                                                                                                                const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.context}; if(callback) {
-    createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                                                } else {
-    return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                                                }}
-
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/productSets:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
 
     /**
- * vision.projects.locations.productSets.list
- * @desc Lists ProductSets in an unspecified order.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100, or less   than 1.
- * @alias vision.projects.locations.productSets.list
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
- * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
- * @param {string} params.parent The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-    list(params?: Params$Resource$Projects$Locations$Productsets$List, options?: MethodOptions): GaxiosPromise<Schema$ListProductSetsResponse>;
+     * vision.projects.locations.productSets.list
+     * @desc Lists ProductSets in an unspecified order.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100, or less   than 1.
+     * @alias vision.projects.locations.productSets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
+     * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
+     * @param {string} params.parent The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
     list(
-        params: Params$Resource$Projects$Locations$Productsets$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProductSetsResponse>,
-        callback: BodyResponseCallback<Schema$ListProductSetsResponse>): void;
+      params?: Params$Resource$Projects$Locations$Productsets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProductSetsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Productsets$List,
-        callback: BodyResponseCallback<Schema$ListProductSetsResponse>): void;
+      params: Params$Resource$Projects$Locations$Productsets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductSetsResponse>,
+      callback: BodyResponseCallback<Schema$ListProductSetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Productsets$List,
+      callback: BodyResponseCallback<Schema$ListProductSetsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListProductSetsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$List|
-        BodyResponseCallback<Schema$ListProductSetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProductSetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListProductSetsResponse>):
-        void|GaxiosPromise<Schema$ListProductSetsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$List
+        | BodyResponseCallback<Schema$ListProductSetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductSetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProductSetsResponse>
+    ): void | GaxiosPromise<Schema$ListProductSetsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7939,16 +8054,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/productSets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/productSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProductSetsResponse>(parameters, callback);
@@ -7956,7 +8074,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         return createAPIRequest<Schema$ListProductSetsResponse>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.productSets.patch
@@ -7977,25 +8094,30 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Productsets$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
+      params?: Params$Resource$Projects$Locations$Productsets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductSet>;
     patch(
-        params: Params$Resource$Projects$Locations$Productsets$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Productsets$Patch,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Patch,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ProductSet>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Patch|
-        BodyResponseCallback<Schema$ProductSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductSet>,
-        callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|GaxiosPromise<Schema$ProductSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Patch
+        | BodyResponseCallback<Schema$ProductSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductSet>,
+      callback?: BodyResponseCallback<Schema$ProductSet>
+    ): void | GaxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8012,15 +8134,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -8028,7 +8151,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         return createAPIRequest<Schema$ProductSet>(parameters);
       }
     }
-
 
     /**
      * vision.projects.locations.productSets.removeProduct
@@ -8045,31 +8167,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      * @return {object} Request object
      */
     removeProduct(
-        params?: Params$Resource$Projects$Locations$Productsets$Removeproduct,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     removeProduct(
-        params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     removeProduct(
-        params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     removeProduct(callback: BodyResponseCallback<Schema$Empty>): void;
     removeProduct(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Productsets$Removeproduct|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$Removeproduct;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Removeproduct
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Removeproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Productsets$Removeproduct;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Removeproduct;
         options = {};
       }
 
@@ -8081,16 +8205,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:removeProduct')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:removeProduct').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -8101,11 +8228,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
   }
 
   export interface Params$Resource$Projects$Locations$Productsets$Addproduct
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name for the ProductSet to modify.  Format is:
@@ -8118,12 +8245,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     requestBody?: Schema$AddProductToProductSetRequest;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which the ProductSet should be created.  Format is
@@ -8143,12 +8270,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     requestBody?: Schema$ProductSet;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the ProductSet to delete.  Format is:
@@ -8156,12 +8283,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the ProductSet to get.  Format is:
@@ -8169,12 +8296,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Import extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Import
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which the ProductSets should be imported.  Format is
@@ -8187,12 +8314,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     requestBody?: Schema$ImportProductSetsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of items to return. Default 10, maximum 100.
@@ -8208,12 +8335,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Productsets$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Productsets$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the ProductSet.  Format is:
@@ -8234,11 +8361,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
     requestBody?: Schema$ProductSet;
   }
   export interface Params$Resource$Projects$Locations$Productsets$Removeproduct
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name for the ProductSet to modify.  Format is:
@@ -8258,7 +8385,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
       this.context = context;
     }
 
-
     /**
      * vision.projects.locations.productSets.products.list
      * @desc Lists the Products in a ProductSet, in an unspecified order. If the
@@ -8277,41 +8403,39 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Productsets$Products$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListProductsInProductSetResponse>;
+      params?: Params$Resource$Projects$Locations$Productsets$Products$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProductsInProductSetResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Productsets$Products$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
-        callback:
-            BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Productsets$Products$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
+      callback: BodyResponseCallback<Schema$ListProductsInProductSetResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Productsets$Products$List,
-        callback:
-            BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Productsets$Products$List,
+      callback: BodyResponseCallback<Schema$ListProductsInProductSetResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Productsets$Products$List|
-        BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
-        void|GaxiosPromise<Schema$ListProductsInProductSetResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Productsets$Products$List;
+      callback: BodyResponseCallback<Schema$ListProductsInProductSetResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Productsets$Products$List
+        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
+      callback?: BodyResponseCallback<Schema$ListProductsInProductSetResponse>
+    ): void | GaxiosPromise<Schema$ListProductsInProductSetResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Productsets$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Productsets$Products$List;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Products$List;
         options = {};
       }
 
@@ -8323,33 +8447,39 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsInProductSetResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListProductsInProductSetResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Locations$Productsets$Products$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ProductSet resource for which to retrieve Products.  Format is:
@@ -8366,14 +8496,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
     pageToken?: string;
   }
 
-
-
   export class Resource$Projects$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vision.projects.operations.get
@@ -8389,22 +8516,31 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8421,15 +8557,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
       const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -8439,12 +8576,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.

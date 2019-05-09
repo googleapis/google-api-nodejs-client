@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -159,7 +171,7 @@ export namespace cloudidentity_v1beta1 {
      * namespace, set label key to &#39;labels/system/groups/external&#39; and
      * label value as empty.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of
      * the Group in the format: `groups/{group_id}`, where group_id is the
@@ -271,7 +283,7 @@ export namespace cloudidentity_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -287,7 +299,7 @@ export namespace cloudidentity_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   export interface Schema$SearchGroupsResponse {
     /**
@@ -345,7 +357,7 @@ export namespace cloudidentity_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -354,7 +366,6 @@ export namespace cloudidentity_v1beta1 {
     message?: string;
   }
 
-
   export class Resource$Groups {
     context: APIRequestContext;
     memberships: Resource$Groups$Memberships;
@@ -362,7 +373,6 @@ export namespace cloudidentity_v1beta1 {
       this.context = context;
       this.memberships = new Resource$Groups$Memberships(this.context);
     }
-
 
     /**
      * cloudidentity.groups.create
@@ -376,23 +386,29 @@ export namespace cloudidentity_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Groups$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Groups$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Groups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Groups$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Groups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Groups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Groups$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -408,18 +424,19 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -427,7 +444,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.delete
@@ -441,23 +457,29 @@ export namespace cloudidentity_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Groups$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Groups$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Groups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Groups$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Groups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Groups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Groups$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -473,18 +495,19 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -492,7 +515,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.get
@@ -506,19 +528,27 @@ export namespace cloudidentity_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Groups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Group>;
-    get(params: Params$Resource$Groups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
-    get(params: Params$Resource$Groups$Get,
-        callback: BodyResponseCallback<Schema$Group>): void;
+    get(
+      params?: Params$Resource$Groups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
+    get(
+      params: Params$Resource$Groups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
+    get(
+      params: Params$Resource$Groups$Get,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Group>): void;
-    get(paramsOrCallback?: Params$Resource$Groups$Get|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Get
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -534,18 +564,19 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -553,7 +584,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$Group>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.lookup
@@ -570,25 +600,33 @@ export namespace cloudidentity_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lookup(params?: Params$Resource$Groups$Lookup, options?: MethodOptions):
-        GaxiosPromise<Schema$LookupGroupNameResponse>;
     lookup(
-        params: Params$Resource$Groups$Lookup,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LookupGroupNameResponse>,
-        callback: BodyResponseCallback<Schema$LookupGroupNameResponse>): void;
+      params?: Params$Resource$Groups$Lookup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LookupGroupNameResponse>;
     lookup(
-        params: Params$Resource$Groups$Lookup,
-        callback: BodyResponseCallback<Schema$LookupGroupNameResponse>): void;
-    lookup(callback: BodyResponseCallback<Schema$LookupGroupNameResponse>):
-        void;
+      params: Params$Resource$Groups$Lookup,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
+      callback: BodyResponseCallback<Schema$LookupGroupNameResponse>
+    ): void;
     lookup(
-        paramsOrCallback?: Params$Resource$Groups$Lookup|
-        BodyResponseCallback<Schema$LookupGroupNameResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LookupGroupNameResponse>,
-        callback?: BodyResponseCallback<Schema$LookupGroupNameResponse>):
-        void|GaxiosPromise<Schema$LookupGroupNameResponse> {
+      params: Params$Resource$Groups$Lookup,
+      callback: BodyResponseCallback<Schema$LookupGroupNameResponse>
+    ): void;
+    lookup(
+      callback: BodyResponseCallback<Schema$LookupGroupNameResponse>
+    ): void;
+    lookup(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Lookup
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
+      callback?: BodyResponseCallback<Schema$LookupGroupNameResponse>
+    ): void | GaxiosPromise<Schema$LookupGroupNameResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -604,19 +642,22 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/groups:lookup')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/groups:lookup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LookupGroupNameResponse>(parameters, callback);
@@ -624,7 +665,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$LookupGroupNameResponse>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.patch
@@ -640,23 +680,29 @@ export namespace cloudidentity_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Groups$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Groups$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Groups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Groups$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Groups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Groups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Groups$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -672,18 +718,19 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -691,7 +738,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.search
@@ -708,24 +754,31 @@ export namespace cloudidentity_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Groups$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchGroupsResponse>;
     search(
-        params: Params$Resource$Groups$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchGroupsResponse>,
-        callback: BodyResponseCallback<Schema$SearchGroupsResponse>): void;
+      params?: Params$Resource$Groups$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchGroupsResponse>;
     search(
-        params: Params$Resource$Groups$Search,
-        callback: BodyResponseCallback<Schema$SearchGroupsResponse>): void;
+      params: Params$Resource$Groups$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchGroupsResponse>,
+      callback: BodyResponseCallback<Schema$SearchGroupsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Groups$Search,
+      callback: BodyResponseCallback<Schema$SearchGroupsResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$SearchGroupsResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Groups$Search|
-        BodyResponseCallback<Schema$SearchGroupsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchGroupsResponse>):
-        void|GaxiosPromise<Schema$SearchGroupsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Search
+        | BodyResponseCallback<Schema$SearchGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchGroupsResponse>
+    ): void | GaxiosPromise<Schema$SearchGroupsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -741,19 +794,22 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/groups:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/groups:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchGroupsResponse>(parameters, callback);
@@ -767,8 +823,7 @@ export namespace cloudidentity_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -779,7 +834,7 @@ export namespace cloudidentity_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of
@@ -792,7 +847,7 @@ export namespace cloudidentity_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of
@@ -805,7 +860,7 @@ export namespace cloudidentity_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of the entity within the given namespace. The id must be unique
@@ -825,7 +880,7 @@ export namespace cloudidentity_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of
@@ -848,7 +903,7 @@ export namespace cloudidentity_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The default page size is 200 (max 1000) for the BASIC view, and 50 (max
@@ -881,7 +936,6 @@ export namespace cloudidentity_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * cloudidentity.groups.memberships.create
      * @desc Creates a Membership.
@@ -896,25 +950,30 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Groups$Memberships$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Groups$Memberships$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Groups$Memberships$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Groups$Memberships$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Groups$Memberships$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Groups$Memberships$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Groups$Memberships$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Create;
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -929,19 +988,22 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/memberships')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/memberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -949,7 +1011,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.memberships.delete
@@ -964,25 +1025,30 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Groups$Memberships$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Groups$Memberships$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Groups$Memberships$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Groups$Memberships$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Groups$Memberships$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Groups$Memberships$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Groups$Memberships$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -997,18 +1063,19 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1016,7 +1083,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.memberships.get
@@ -1030,22 +1096,31 @@ export namespace cloudidentity_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Groups$Memberships$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Membership>;
-    get(params: Params$Resource$Groups$Memberships$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Membership>,
-        callback: BodyResponseCallback<Schema$Membership>): void;
-    get(params: Params$Resource$Groups$Memberships$Get,
-        callback: BodyResponseCallback<Schema$Membership>): void;
+    get(
+      params?: Params$Resource$Groups$Memberships$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Membership>;
+    get(
+      params: Params$Resource$Groups$Memberships$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Membership>,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    get(
+      params: Params$Resource$Groups$Memberships$Get,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Membership>): void;
-    get(paramsOrCallback?: Params$Resource$Groups$Memberships$Get|
-        BodyResponseCallback<Schema$Membership>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Membership>,
-        callback?: BodyResponseCallback<Schema$Membership>):
-        void|GaxiosPromise<Schema$Membership> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Get
+        | BodyResponseCallback<Schema$Membership>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Membership>,
+      callback?: BodyResponseCallback<Schema$Membership>
+    ): void | GaxiosPromise<Schema$Membership> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1060,18 +1135,19 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Membership>(parameters, callback);
@@ -1079,7 +1155,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$Membership>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.memberships.list
@@ -1097,26 +1172,32 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Groups$Memberships$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListMembershipsResponse>;
+      params?: Params$Resource$Groups$Memberships$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMembershipsResponse>;
     list(
-        params: Params$Resource$Groups$Memberships$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListMembershipsResponse>,
-        callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
+      params: Params$Resource$Groups$Memberships$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void;
     list(
-        params: Params$Resource$Groups$Memberships$List,
-        callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
+      params: Params$Resource$Groups$Memberships$List,
+      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Groups$Memberships$List|
-        BodyResponseCallback<Schema$ListMembershipsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMembershipsResponse>,
-        callback?: BodyResponseCallback<Schema$ListMembershipsResponse>):
-        void|GaxiosPromise<Schema$ListMembershipsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$List;
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$List
+        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+      callback?: BodyResponseCallback<Schema$ListMembershipsResponse>
+    ): void | GaxiosPromise<Schema$ListMembershipsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1131,19 +1212,22 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/memberships')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/memberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
@@ -1151,7 +1235,6 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudidentity.groups.memberships.lookup
@@ -1170,30 +1253,34 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     lookup(
-        params?: Params$Resource$Groups$Memberships$Lookup,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LookupMembershipNameResponse>;
+      params?: Params$Resource$Groups$Memberships$Lookup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LookupMembershipNameResponse>;
     lookup(
-        params: Params$Resource$Groups$Memberships$Lookup,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LookupMembershipNameResponse>,
-        callback: BodyResponseCallback<Schema$LookupMembershipNameResponse>):
-        void;
+      params: Params$Resource$Groups$Memberships$Lookup,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>,
+      callback: BodyResponseCallback<Schema$LookupMembershipNameResponse>
+    ): void;
     lookup(
-        params: Params$Resource$Groups$Memberships$Lookup,
-        callback: BodyResponseCallback<Schema$LookupMembershipNameResponse>):
-        void;
-    lookup(callback: BodyResponseCallback<Schema$LookupMembershipNameResponse>):
-        void;
+      params: Params$Resource$Groups$Memberships$Lookup,
+      callback: BodyResponseCallback<Schema$LookupMembershipNameResponse>
+    ): void;
     lookup(
-        paramsOrCallback?: Params$Resource$Groups$Memberships$Lookup|
-        BodyResponseCallback<Schema$LookupMembershipNameResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LookupMembershipNameResponse>,
-        callback?: BodyResponseCallback<Schema$LookupMembershipNameResponse>):
-        void|GaxiosPromise<Schema$LookupMembershipNameResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Lookup;
+      callback: BodyResponseCallback<Schema$LookupMembershipNameResponse>
+    ): void;
+    lookup(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Lookup
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>,
+      callback?: BodyResponseCallback<Schema$LookupMembershipNameResponse>
+    ): void | GaxiosPromise<Schema$LookupMembershipNameResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1208,36 +1295,42 @@ export namespace cloudidentity_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudidentity.googleapis.com/';
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/memberships:lookup')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/memberships:lookup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LookupMembershipNameResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LookupMembershipNameResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Groups$Memberships$Create extends
-      StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of
@@ -1251,12 +1344,12 @@ export namespace cloudidentity_v1beta1 {
      */
     requestBody?: Schema$Membership;
   }
-  export interface Params$Resource$Groups$Memberships$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of
@@ -1267,12 +1360,12 @@ export namespace cloudidentity_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Get extends
-      StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of
@@ -1283,12 +1376,12 @@ export namespace cloudidentity_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Groups$Memberships$List extends
-      StandardParameters {
+  export interface Params$Resource$Groups$Memberships$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The default page size is 200 (max 1000) for the BASIC view, and 50 (max
@@ -1311,12 +1404,12 @@ export namespace cloudidentity_v1beta1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Lookup extends
-      StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Lookup
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of the entity within the given namespace. The id must be unique

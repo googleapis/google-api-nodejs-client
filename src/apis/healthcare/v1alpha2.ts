@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -156,7 +168,7 @@ export namespace healthcare_v1alpha2 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
      * with a given store.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. Resource name of the Annotation store, of the form
      * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
@@ -447,7 +459,7 @@ export namespace healthcare_v1alpha2 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
      * with a given store.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. Resource name of the DICOM store, of the form
      * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
@@ -494,8 +506,7 @@ export namespace healthcare_v1alpha2 {
      * the current project is supported  The BigQuery location requires two IAM
      * roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
-    bigqueryDestination?:
-        Schema$GoogleCloudHealthcareV1alpha2DicomBigQueryDestination;
+    bigqueryDestination?: Schema$GoogleCloudHealthcareV1alpha2DicomBigQueryDestination;
     /**
      * The Cloud Storage output destination.  The Cloud Storage location
      * requires the `roles/storage.objectAdmin` Cloud IAM role.
@@ -511,8 +522,7 @@ export namespace healthcare_v1alpha2 {
      * roles: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.  The
      * output will be one BigQuery table per resource type.
      */
-    bigqueryDestination?:
-        Schema$GoogleCloudHealthcareV1alpha2FhirBigQueryDestination;
+    bigqueryDestination?: Schema$GoogleCloudHealthcareV1alpha2FhirBigQueryDestination;
     /**
      * The Cloud Storage output destination.  The Cloud Storage location
      * requires the `roles/storage.objectAdmin` Cloud IAM role.  The exported
@@ -618,7 +628,7 @@ export namespace healthcare_v1alpha2 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
      * with a given store.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. Resource name of the FHIR store, of the form
      * `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
@@ -871,7 +881,7 @@ export namespace healthcare_v1alpha2 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
      * with a given store.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. Resource name of the HL7v2 store, of the form
      * `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
@@ -923,7 +933,7 @@ export namespace healthcare_v1alpha2 {
      * Application specific response metadata. Must be set in the first response
      * for streaming APIs.
      */
-    extensions?: Array<{[key: string]: any;}>;
+    extensions?: Array<{[key: string]: any}>;
   }
   /**
    * Image annotation.
@@ -982,8 +992,7 @@ export namespace healthcare_v1alpha2 {
      * Note that writing a file to the same destination multiple times will
      * result in the previous version of the file being overwritten.
      */
-    gcsErrorDestination?:
-        Schema$GoogleCloudHealthcareV1alpha2FhirRestGcsErrorDestination;
+    gcsErrorDestination?: Schema$GoogleCloudHealthcareV1alpha2FhirRestGcsErrorDestination;
     /**
      * Cloud Storage source data location and import configuration.  The Cloud
      * Storage location requires the `roles/storage.objectViewer` Cloud IAM
@@ -1193,7 +1202,7 @@ export namespace healthcare_v1alpha2 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -1202,7 +1211,7 @@ export namespace healthcare_v1alpha2 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -1233,7 +1242,7 @@ export namespace healthcare_v1alpha2 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63}  No more than 64 labels can be associated
      * with a given store.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The message type and trigger event for this message. MSH-9.
      */
@@ -1303,7 +1312,7 @@ export namespace healthcare_v1alpha2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1319,7 +1328,7 @@ export namespace healthcare_v1alpha2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * OperationMetadata provides information about the operation execution.
@@ -1499,7 +1508,7 @@ export namespace healthcare_v1alpha2 {
      * the value &quot;bar&quot;. - (1[2].1, &quot;baz&quot;): Component 1 of
      * Instance 2 of Field 1, which is repeated, has the value &quot;baz&quot;.
      */
-    fields?: {[key: string]: string;};
+    fields?: {[key: string]: string};
     /**
      * A string that indicates the type of segment, e.g., EVN, PID.
      */
@@ -1520,7 +1529,7 @@ export namespace healthcare_v1alpha2 {
      * sensitive text findings. For example, Appointment.Narrative text1 --&gt;
      * {findings_1, findings_2, findings_3}
      */
-    details?: {[key: string]: Schema$Detail;};
+    details?: {[key: string]: Schema$Detail};
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1586,7 +1595,7 @@ export namespace healthcare_v1alpha2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1654,7 +1663,6 @@ export namespace healthcare_v1alpha2 {
     y?: number;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -1664,7 +1672,6 @@ export namespace healthcare_v1alpha2 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     datasets: Resource$Projects$Locations$Datasets;
@@ -1672,7 +1679,6 @@ export namespace healthcare_v1alpha2 {
       this.context = context;
       this.datasets = new Resource$Projects$Locations$Datasets(this.context);
     }
-
 
     /**
      * healthcare.projects.locations.get
@@ -1686,21 +1692,29 @@ export namespace healthcare_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Location>;
-    get(params: Params$Resource$Projects$Locations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback: BodyResponseCallback<Schema$Location>): void;
-    get(params: Params$Resource$Projects$Locations$Get,
-        callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
-        BodyResponseCallback<Schema$Location>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>):
-        void|GaxiosPromise<Schema$Location> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1717,16 +1731,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1734,7 +1748,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Location>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.list
@@ -1752,26 +1765,32 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1788,16 +1807,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1807,24 +1829,24 @@ export namespace healthcare_v1alpha2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -1853,19 +1875,22 @@ export namespace healthcare_v1alpha2 {
     operations: Resource$Projects$Locations$Datasets$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.annotationStores =
-          new Resource$Projects$Locations$Datasets$Annotationstores(
-              this.context);
-      this.dicomStores =
-          new Resource$Projects$Locations$Datasets$Dicomstores(this.context);
-      this.fhirStores =
-          new Resource$Projects$Locations$Datasets$Fhirstores(this.context);
-      this.hl7V2Stores =
-          new Resource$Projects$Locations$Datasets$Hl7v2stores(this.context);
-      this.operations =
-          new Resource$Projects$Locations$Datasets$Operations(this.context);
+      this.annotationStores = new Resource$Projects$Locations$Datasets$Annotationstores(
+        this.context
+      );
+      this.dicomStores = new Resource$Projects$Locations$Datasets$Dicomstores(
+        this.context
+      );
+      this.fhirStores = new Resource$Projects$Locations$Datasets$Fhirstores(
+        this.context
+      );
+      this.hl7V2Stores = new Resource$Projects$Locations$Datasets$Hl7v2stores(
+        this.context
+      );
+      this.operations = new Resource$Projects$Locations$Datasets$Operations(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.create
@@ -1885,25 +1910,30 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Datasets$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Datasets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1920,16 +1950,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/datasets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/datasets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1937,7 +1970,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.deidentify
@@ -1956,26 +1988,30 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     deidentify(
-        params?: Params$Resource$Projects$Locations$Datasets$Deidentify,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Datasets$Deidentify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     deidentify(
-        params: Params$Resource$Projects$Locations$Datasets$Deidentify,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Deidentify,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deidentify(
-        params: Params$Resource$Projects$Locations$Datasets$Deidentify,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Deidentify,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     deidentify(callback: BodyResponseCallback<Schema$Operation>): void;
     deidentify(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Deidentify|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Deidentify;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Deidentify
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Deidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1992,16 +2028,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+sourceDataset}:deidentify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+sourceDataset}:deidentify').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['sourceDataset'],
         pathParams: ['sourceDataset'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2009,7 +2048,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.delete
@@ -2026,24 +2064,28 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Datasets$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2060,16 +2102,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2077,7 +2119,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.get
@@ -2091,21 +2132,29 @@ export namespace healthcare_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Datasets$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
-    get(params: Params$Resource$Projects$Locations$Datasets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(params: Params$Resource$Projects$Locations$Datasets$Get,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Get,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Get|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Get
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2122,16 +2171,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2139,7 +2188,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.getIamPolicy
@@ -2155,25 +2203,28 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2190,16 +2241,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2207,7 +2261,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.list
@@ -2224,26 +2277,32 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Datasets$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDatasetsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDatasetsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Datasets$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDatasetsResponse>,
-        callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatasetsResponse>,
+      callback: BodyResponseCallback<Schema$ListDatasetsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Datasets$List,
-        callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$List,
+      callback: BodyResponseCallback<Schema$ListDatasetsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$List|
-        BodyResponseCallback<Schema$ListDatasetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDatasetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDatasetsResponse>):
-        void|GaxiosPromise<Schema$ListDatasetsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$List
+        | BodyResponseCallback<Schema$ListDatasetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatasetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDatasetsResponse>
+    ): void | GaxiosPromise<Schema$ListDatasetsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2260,16 +2319,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/datasets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/datasets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDatasetsResponse>(parameters, callback);
@@ -2277,7 +2339,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$ListDatasetsResponse>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.patch
@@ -2294,24 +2355,28 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Datasets$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
+      params?: Params$Resource$Projects$Locations$Datasets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Patch,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Patch,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Dataset>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Patch|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Patch
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2328,16 +2393,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2345,7 +2410,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.setIamPolicy
@@ -2362,25 +2426,28 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2397,16 +2464,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2414,7 +2484,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.testIamPermissions
@@ -2434,38 +2503,39 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Testiampermissions;
         options = {};
       }
 
@@ -2477,32 +2547,37 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasets$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the dataset that is being created. The string must match the
@@ -2521,11 +2596,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Deidentify
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Source dataset resource name. (e.g.,
@@ -2538,12 +2613,12 @@ export namespace healthcare_v1alpha2 {
      */
     requestBody?: Schema$DeidentifyDatasetRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the dataset to delete (e.g.,
@@ -2551,12 +2626,12 @@ export namespace healthcare_v1alpha2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the dataset to read (e.g.,
@@ -2565,11 +2640,11 @@ export namespace healthcare_v1alpha2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -2577,12 +2652,12 @@ export namespace healthcare_v1alpha2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of items to return. Capped to 100 if not specified.
@@ -2599,12 +2674,12 @@ export namespace healthcare_v1alpha2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasets$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Resource name of the dataset, of the form
@@ -2624,11 +2699,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -2642,11 +2717,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -2662,15 +2737,13 @@ export namespace healthcare_v1alpha2 {
 
   export class Resource$Projects$Locations$Datasets$Annotationstores {
     context: APIRequestContext;
-    annotations:
-        Resource$Projects$Locations$Datasets$Annotationstores$Annotations;
+    annotations: Resource$Projects$Locations$Datasets$Annotationstores$Annotations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.annotations =
-          new Resource$Projects$Locations$Datasets$Annotationstores$Annotations(
-              this.context);
+      this.annotations = new Resource$Projects$Locations$Datasets$Annotationstores$Annotations(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.create
@@ -2687,35 +2760,35 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AnnotationStore>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotationStore>;
     create(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$AnnotationStore>,
-        callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AnnotationStore>,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
-        callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Create,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AnnotationStore>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Create|
-        BodyResponseCallback<Schema$AnnotationStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnnotationStore>,
-        callback?: BodyResponseCallback<Schema$AnnotationStore>):
-        void|GaxiosPromise<Schema$AnnotationStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Create
+        | BodyResponseCallback<Schema$AnnotationStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnnotationStore>,
+      callback?: BodyResponseCallback<Schema$AnnotationStore>
+    ): void | GaxiosPromise<Schema$AnnotationStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Create;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Create;
         options = {};
       }
 
@@ -2727,16 +2800,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/annotationStores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/annotationStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(parameters, callback);
@@ -2744,7 +2820,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$AnnotationStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.delete
@@ -2760,34 +2835,33 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete;
         options = {};
       }
 
@@ -2799,16 +2873,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2816,7 +2890,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.get
@@ -2831,32 +2904,36 @@ export namespace healthcare_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AnnotationStore>;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AnnotationStore>,
-        callback: BodyResponseCallback<Schema$AnnotationStore>): void;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
-        callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotationStore>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AnnotationStore>,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Get,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AnnotationStore>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Get|
-        BodyResponseCallback<Schema$AnnotationStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnnotationStore>,
-        callback?: BodyResponseCallback<Schema$AnnotationStore>):
-        void|GaxiosPromise<Schema$AnnotationStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Get
+        | BodyResponseCallback<Schema$AnnotationStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnnotationStore>,
+      callback?: BodyResponseCallback<Schema$AnnotationStore>
+    ): void | GaxiosPromise<Schema$AnnotationStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Get;
         options = {};
       }
 
@@ -2868,16 +2945,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(parameters, callback);
@@ -2885,7 +2962,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$AnnotationStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.getIamPolicy
@@ -2906,34 +2982,33 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy;
         options = {};
       }
 
@@ -2945,16 +3020,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2962,7 +3040,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.list
@@ -2981,40 +3058,39 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAnnotationStoresResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAnnotationStoresResponse>;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAnnotationStoresResponse>,
-        callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationStoresResponse>,
+      callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
-        callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$List,
+      callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$List|
-        BodyResponseCallback<Schema$ListAnnotationStoresResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAnnotationStoresResponse>,
-        callback?: BodyResponseCallback<Schema$ListAnnotationStoresResponse>):
-        void|GaxiosPromise<Schema$ListAnnotationStoresResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$List;
+      callback: BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$List
+        | BodyResponseCallback<Schema$ListAnnotationStoresResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationStoresResponse>,
+      callback?: BodyResponseCallback<Schema$ListAnnotationStoresResponse>
+    ): void | GaxiosPromise<Schema$ListAnnotationStoresResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$List;
         options = {};
       }
 
@@ -3026,26 +3102,31 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/annotationStores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/annotationStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnotationStoresResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAnnotationStoresResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.patch
@@ -3062,35 +3143,35 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     patch(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$AnnotationStore>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotationStore>;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$AnnotationStore>,
-        callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AnnotationStore>,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
-        callback: BodyResponseCallback<Schema$AnnotationStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch,
+      callback: BodyResponseCallback<Schema$AnnotationStore>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AnnotationStore>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch|
-        BodyResponseCallback<Schema$AnnotationStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnnotationStore>,
-        callback?: BodyResponseCallback<Schema$AnnotationStore>):
-        void|GaxiosPromise<Schema$AnnotationStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch
+        | BodyResponseCallback<Schema$AnnotationStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnnotationStore>,
+      callback?: BodyResponseCallback<Schema$AnnotationStore>
+    ): void | GaxiosPromise<Schema$AnnotationStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch;
         options = {};
       }
 
@@ -3102,16 +3183,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(parameters, callback);
@@ -3119,7 +3200,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$AnnotationStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.setIamPolicy
@@ -3138,34 +3218,33 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy;
         options = {};
       }
 
@@ -3177,16 +3256,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3194,7 +3276,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.testIamPermissions
@@ -3214,41 +3295,39 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions;
         options = {};
       }
 
@@ -3260,20 +3339,25 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
@@ -3281,11 +3365,11 @@ export namespace healthcare_v1alpha2 {
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the Annotation store that is being created. The string must
@@ -3303,11 +3387,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$AnnotationStore;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Annotation store to delete.
@@ -3315,11 +3399,11 @@ export namespace healthcare_v1alpha2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Annotation store to get.
@@ -3327,11 +3411,11 @@ export namespace healthcare_v1alpha2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -3345,11 +3429,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restricts stores returned to those matching a filter. Syntax:
@@ -3373,11 +3457,11 @@ export namespace healthcare_v1alpha2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Resource name of the Annotation store, of the form
@@ -3397,11 +3481,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$AnnotationStore;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -3415,11 +3499,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -3433,13 +3517,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-  export class
-      Resource$Projects$Locations$Datasets$Annotationstores$Annotations {
+  export class Resource$Projects$Locations$Datasets$Annotationstores$Annotations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.annotations.create
@@ -3458,35 +3540,35 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
     create(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Annotation>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create|
-        BodyResponseCallback<Schema$Annotation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>):
-        void|GaxiosPromise<Schema$Annotation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create
+        | BodyResponseCallback<Schema$Annotation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>
+    ): void | GaxiosPromise<Schema$Annotation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create;
         options = {};
       }
 
@@ -3498,16 +3580,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/annotations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/annotations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3515,7 +3600,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Annotation>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.annotations.delete
@@ -3531,34 +3615,33 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete;
         options = {};
       }
 
@@ -3570,16 +3653,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3587,7 +3670,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.annotations.get
@@ -3602,32 +3684,36 @@ export namespace healthcare_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Annotation>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get|
-        BodyResponseCallback<Schema$Annotation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>):
-        void|GaxiosPromise<Schema$Annotation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get
+        | BodyResponseCallback<Schema$Annotation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>
+    ): void | GaxiosPromise<Schema$Annotation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get;
         options = {};
       }
 
@@ -3639,16 +3725,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3656,7 +3742,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Annotation>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.annotations.list
@@ -3676,36 +3761,37 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListAnnotationsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAnnotationsResponse>;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAnnotationsResponse>,
-        callback: BodyResponseCallback<Schema$ListAnnotationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationsResponse>,
+      callback: BodyResponseCallback<Schema$ListAnnotationsResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
-        callback: BodyResponseCallback<Schema$ListAnnotationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List,
+      callback: BodyResponseCallback<Schema$ListAnnotationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAnnotationsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List|
-        BodyResponseCallback<Schema$ListAnnotationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAnnotationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAnnotationsResponse>):
-        void|GaxiosPromise<Schema$ListAnnotationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List
+        | BodyResponseCallback<Schema$ListAnnotationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAnnotationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAnnotationsResponse>
+    ): void | GaxiosPromise<Schema$ListAnnotationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List;
         options = {};
       }
 
@@ -3717,16 +3803,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/annotations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/annotations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnotationsResponse>(parameters, callback);
@@ -3734,7 +3823,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$ListAnnotationsResponse>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.annotationStores.annotations.patch
@@ -3752,35 +3840,35 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     patch(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
+      params?: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Annotation>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch|
-        BodyResponseCallback<Schema$Annotation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>):
-        void|GaxiosPromise<Schema$Annotation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch
+        | BodyResponseCallback<Schema$Annotation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>
+    ): void | GaxiosPromise<Schema$Annotation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch;
         options = {};
       }
 
@@ -3792,16 +3880,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3812,11 +3900,11 @@ export namespace healthcare_v1alpha2 {
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the Annotation store this annotation belongs to. For example,
@@ -3830,11 +3918,11 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$Annotation;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Annotation to delete.
@@ -3842,11 +3930,11 @@ export namespace healthcare_v1alpha2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Annotation to retrieve.
@@ -3854,11 +3942,11 @@ export namespace healthcare_v1alpha2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restricts Annotations returned to those matching a filter. Syntax:
@@ -3882,11 +3970,11 @@ export namespace healthcare_v1alpha2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Annotations$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Resource name of the Annotation, of the form
@@ -3906,18 +3994,15 @@ export namespace healthcare_v1alpha2 {
     requestBody?: Schema$Annotation;
   }
 
-
-
   export class Resource$Projects$Locations$Datasets$Dicomstores {
     context: APIRequestContext;
     dicomWeb: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.dicomWeb =
-          new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb(
-              this.context);
+      this.dicomWeb = new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.create
@@ -3934,32 +4019,35 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$DicomStore>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DicomStore>;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$DicomStore>,
-        callback: BodyResponseCallback<Schema$DicomStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DicomStore>,
+      callback: BodyResponseCallback<Schema$DicomStore>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
-        callback: BodyResponseCallback<Schema$DicomStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Create,
+      callback: BodyResponseCallback<Schema$DicomStore>
+    ): void;
     create(callback: BodyResponseCallback<Schema$DicomStore>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Create|
-        BodyResponseCallback<Schema$DicomStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DicomStore>,
-        callback?: BodyResponseCallback<Schema$DicomStore>):
-        void|GaxiosPromise<Schema$DicomStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Create
+        | BodyResponseCallback<Schema$DicomStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DicomStore>,
+      callback?: BodyResponseCallback<Schema$DicomStore>
+    ): void | GaxiosPromise<Schema$DicomStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Create;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Create;
         options = {};
       }
 
@@ -3971,16 +4059,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomStores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/dicomStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DicomStore>(parameters, callback);
@@ -3988,7 +4079,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$DicomStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.delete
@@ -4004,31 +4094,33 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete;
         options = {};
       }
 
@@ -4040,16 +4132,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4057,7 +4149,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.export
@@ -4074,32 +4165,35 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     export(
-        params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     export(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     export(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     export(callback: BodyResponseCallback<Schema$Operation>): void;
     export(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Export|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Export;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Export
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Export;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Export;
         options = {};
       }
 
@@ -4111,16 +4205,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}:export')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4128,7 +4225,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.get
@@ -4142,29 +4238,36 @@ export namespace healthcare_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DicomStore>;
-    get(params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DicomStore>,
-        callback: BodyResponseCallback<Schema$DicomStore>): void;
-    get(params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
-        callback: BodyResponseCallback<Schema$DicomStore>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DicomStore>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DicomStore>,
+      callback: BodyResponseCallback<Schema$DicomStore>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Get,
+      callback: BodyResponseCallback<Schema$DicomStore>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DicomStore>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Get|
-        BodyResponseCallback<Schema$DicomStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DicomStore>,
-        callback?: BodyResponseCallback<Schema$DicomStore>):
-        void|GaxiosPromise<Schema$DicomStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Get
+        | BodyResponseCallback<Schema$DicomStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DicomStore>,
+      callback?: BodyResponseCallback<Schema$DicomStore>
+    ): void | GaxiosPromise<Schema$DicomStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Get;
         options = {};
       }
 
@@ -4176,16 +4279,16 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DicomStore>(parameters, callback);
@@ -4193,7 +4296,6 @@ export namespace healthcare_v1alpha2 {
         return createAPIRequest<Schema$DicomStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.getIamPolicy
@@ -4209,34 +4311,33 @@ export namespace healthcare_v1alpha2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy;
         options = {};
       }
 
@@ -4248,16 +4349,19 @@ export namespace healthcare_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4266,89 +4370,53 @@ export namespace healthcare_v1alpha2 {
       }
     }
 
-
-/**
- * healthcare.projects.locations.datasets.dicomStores.import
- * @desc Imports data into the DICOM store by copying it from the specified
- * source. For errors, the Operation will be populated with error details (in
- * the form of ImportDicomDataErrorDetails in error.details), which will hold
- * finer-grained error information. The metadata field type is
- * OperationMetadata.
- * @alias healthcare.projects.locations.datasets.dicomStores.import
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.name The name of the DICOM store resource into which the data is imported (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
- * @param {().ImportDicomDataRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-import(params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-import(params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
-import(params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import, callback: BodyResponseCallback<Schema$Operation>): void;
-import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Import; let options = (optionsOrCallback || {}) as MethodOptions;
-
-                                                                                                                                                                                                                                                                                                         if(typeof paramsOrCallback === 'function') {
-    callback = paramsOrCallback;
-    params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Import;
-    options = {};
-                                                                                                                                                                                                                                                                                                         }
-
-                                                                                                                                                                                                                                                                                                         if(typeof optionsOrCallback === 'function') {
-    callback = optionsOrCallback;
-    options = {};
-                                                                                                                                                                                                                                                                                                         }
-
-                                                                                                                                                                                                                                                                                                         const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1alpha2/{+name}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['name'], pathParams: ['name'], context: this.context}; if(callback) {
-    createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                                                         } else {
-    return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                                                         }}
-
-
     /**
- * healthcare.projects.locations.datasets.dicomStores.list
- * @desc Lists the DICOM stores in the given dataset.
- * @alias healthcare.projects.locations.datasets.dicomStores.list
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string=} params.filter Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
- * @param {integer=} params.pageSize Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
- * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
- * @param {string} params.parent Name of the dataset.
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-    list(params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$List, options?: MethodOptions): GaxiosPromise<Schema$ListDicomStoresResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDicomStoresResponse>,
-        callback: BodyResponseCallback<Schema$ListDicomStoresResponse>): void;
-    list(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
-        callback: BodyResponseCallback<Schema$ListDicomStoresResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListDicomStoresResponse>): void;
-    list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$List|
-        BodyResponseCallback<Schema$ListDicomStoresResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDicomStoresResponse>,
-        callback?: BodyResponseCallback<Schema$ListDicomStoresResponse>):
-        void|GaxiosPromise<Schema$ListDicomStoresResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$List;
+     * healthcare.projects.locations.datasets.dicomStores.import
+     * @desc Imports data into the DICOM store by copying it from the specified
+     * source. For errors, the Operation will be populated with error details (in
+     * the form of ImportDicomDataErrorDetails in error.details), which will hold
+     * finer-grained error information. The metadata field type is
+     * OperationMetadata.
+     * @alias healthcare.projects.locations.datasets.dicomStores.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the DICOM store resource into which the data is imported (e.g., `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`).
+     * @param {().ImportDicomDataRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Import
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Import;
         options = {};
       }
 
@@ -4360,16 +4428,98 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomStores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.dicomStores.list
+     * @desc Lists the DICOM stores in the given dataset.
+     * @alias healthcare.projects.locations.datasets.dicomStores.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     * @param {integer=} params.pageSize Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
+     * @param {string} params.parent Name of the dataset.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDicomStoresResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDicomStoresResponse>,
+      callback: BodyResponseCallback<Schema$ListDicomStoresResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$List,
+      callback: BodyResponseCallback<Schema$ListDicomStoresResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDicomStoresResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$List
+        | BodyResponseCallback<Schema$ListDicomStoresResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDicomStoresResponse>,
+      callback?: BodyResponseCallback<Schema$ListDicomStoresResponse>
+    ): void | GaxiosPromise<Schema$ListDicomStoresResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/dicomStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDicomStoresResponse>(parameters, callback);
@@ -4377,7 +4527,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$ListDicomStoresResponse>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.patch
@@ -4394,32 +4543,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$DicomStore>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DicomStore>;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$DicomStore>,
-        callback: BodyResponseCallback<Schema$DicomStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$DicomStore>,
+      callback: BodyResponseCallback<Schema$DicomStore>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
-        callback: BodyResponseCallback<Schema$DicomStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch,
+      callback: BodyResponseCallback<Schema$DicomStore>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$DicomStore>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch|
-        BodyResponseCallback<Schema$DicomStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DicomStore>,
-        callback?: BodyResponseCallback<Schema$DicomStore>):
-        void|GaxiosPromise<Schema$DicomStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch
+        | BodyResponseCallback<Schema$DicomStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DicomStore>,
+      callback?: BodyResponseCallback<Schema$DicomStore>
+    ): void | GaxiosPromise<Schema$DicomStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch;
         options = {};
       }
 
@@ -4431,16 +4583,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DicomStore>(parameters, callback);
@@ -4448,7 +4600,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$DicomStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.setIamPolicy
@@ -4465,34 +4616,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy;
         options = {};
       }
 
@@ -4504,16 +4654,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4521,7 +4674,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.testIamPermissions
@@ -4542,41 +4694,39 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions;
         options = {};
       }
 
@@ -4588,20 +4738,25 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
@@ -4609,11 +4764,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the DICOM store that is being created. Any string value up to
@@ -4631,11 +4786,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     requestBody?: Schema$DicomStore;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the DICOM store to delete.
@@ -4643,11 +4798,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Export
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DICOM store resource name from which the data should be exported
@@ -4662,11 +4817,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     requestBody?: Schema$ExportDicomDataRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the DICOM store to get.
@@ -4674,11 +4829,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -4687,11 +4842,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Import
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the DICOM store resource into which the data is imported
@@ -4706,11 +4861,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     requestBody?: Schema$ImportDicomDataRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restricts stores returned to those matching a filter. Syntax:
@@ -4734,11 +4889,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Resource name of the DICOM store, of the form
@@ -4758,11 +4913,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     requestBody?: Schema$DicomStore;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -4776,11 +4931,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -4799,11 +4954,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     studies: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.studies =
-          new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies(
-              this.context);
+      this.studies = new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForInstances
@@ -4821,34 +4975,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     searchForInstances(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     searchForInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForInstances(callback: BodyResponseCallback<Schema$HttpBody>): void;
     searchForInstances(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances;
         options = {};
       }
 
@@ -4860,16 +5013,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -4877,7 +5032,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForSeries
@@ -4895,34 +5049,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     searchForSeries(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     searchForSeries(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForSeries(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForSeries(callback: BodyResponseCallback<Schema$HttpBody>): void;
     searchForSeries(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries;
         options = {};
       }
 
@@ -4934,16 +5087,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -4951,7 +5106,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.searchForStudies
@@ -4969,34 +5123,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     searchForStudies(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     searchForStudies(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForStudies(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForStudies(callback: BodyResponseCallback<Schema$HttpBody>): void;
     searchForStudies(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies;
         options = {};
       }
 
@@ -5008,16 +5161,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5025,7 +5180,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.storeInstances
@@ -5045,34 +5199,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     storeInstances(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     storeInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     storeInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     storeInstances(callback: BodyResponseCallback<Schema$HttpBody>): void;
     storeInstances(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances;
         options = {};
       }
 
@@ -5084,16 +5237,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5104,11 +5259,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforinstances
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5122,11 +5277,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforseries
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5140,11 +5295,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Searchforstudies
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5158,11 +5313,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Storeinstances
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5181,18 +5336,15 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     requestBody?: Schema$HttpBody;
   }
 
-  export class
-      Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies {
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies {
     context: APIRequestContext;
-    series:
-        Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series;
+    series: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.series =
-          new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series(
-              this.context);
+      this.series = new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.delete
@@ -5211,34 +5363,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete;
         options = {};
       }
 
@@ -5250,16 +5401,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5267,7 +5420,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.metadata
@@ -5286,34 +5438,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     metadata(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     metadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     metadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     metadata(callback: BodyResponseCallback<Schema$HttpBody>): void;
     metadata(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata;
         options = {};
       }
 
@@ -5325,16 +5476,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5342,7 +5495,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.retrieveStudy
@@ -5360,34 +5512,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     retrieveStudy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     retrieveStudy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveStudy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveStudy(callback: BodyResponseCallback<Schema$HttpBody>): void;
     retrieveStudy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy;
         options = {};
       }
 
@@ -5399,16 +5550,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5416,7 +5569,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.searchForInstances
@@ -5434,34 +5586,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     searchForInstances(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     searchForInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForInstances(callback: BodyResponseCallback<Schema$HttpBody>): void;
     searchForInstances(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances;
         options = {};
       }
 
@@ -5473,16 +5624,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5490,7 +5643,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.searchForSeries
@@ -5508,34 +5660,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     searchForSeries(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     searchForSeries(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForSeries(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForSeries(callback: BodyResponseCallback<Schema$HttpBody>): void;
     searchForSeries(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries;
         options = {};
       }
 
@@ -5547,16 +5698,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5564,7 +5717,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.storeInstances
@@ -5584,34 +5736,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     storeInstances(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     storeInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     storeInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     storeInstances(callback: BodyResponseCallback<Schema$HttpBody>): void;
     storeInstances(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances;
         options = {};
       }
 
@@ -5623,16 +5774,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5643,11 +5796,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5661,11 +5814,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Metadata
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5679,11 +5832,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Retrievestudy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5697,11 +5850,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforinstances
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5715,11 +5868,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Searchforseries
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5733,11 +5886,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Storeinstances
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -5756,18 +5909,15 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     requestBody?: Schema$HttpBody;
   }
 
-  export class
-      Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series {
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series {
     context: APIRequestContext;
-    instances:
-        Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances;
+    instances: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.instances =
-          new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances(
-              this.context);
+      this.instances = new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.delete
@@ -5786,34 +5936,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete;
         options = {};
       }
 
@@ -5825,16 +5974,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5842,7 +5993,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.metadata
@@ -5861,34 +6011,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     metadata(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     metadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     metadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     metadata(callback: BodyResponseCallback<Schema$HttpBody>): void;
     metadata(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata;
         options = {};
       }
 
@@ -5900,16 +6049,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5917,7 +6068,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.retrieveSeries
@@ -5936,34 +6086,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     retrieveSeries(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     retrieveSeries(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveSeries(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveSeries(callback: BodyResponseCallback<Schema$HttpBody>): void;
     retrieveSeries(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries;
         options = {};
       }
 
@@ -5975,16 +6124,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5992,7 +6143,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.searchForInstances
@@ -6010,34 +6160,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     searchForInstances(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     searchForInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForInstances(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchForInstances(callback: BodyResponseCallback<Schema$HttpBody>): void;
     searchForInstances(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances;
         options = {};
       }
 
@@ -6049,16 +6198,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6069,11 +6220,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6087,11 +6238,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Metadata
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6106,11 +6257,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Retrieveseries
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6124,11 +6275,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Searchforinstances
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6142,18 +6293,15 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
 
-  export class
-      Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances {
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances {
     context: APIRequestContext;
-    frames:
-        Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames;
+    frames: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.frames =
-          new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames(
-              this.context);
+      this.frames = new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.delete
@@ -6172,34 +6320,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete;
         options = {};
       }
 
@@ -6211,16 +6358,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6228,7 +6377,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.metadata
@@ -6248,34 +6396,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     metadata(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     metadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     metadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     metadata(callback: BodyResponseCallback<Schema$HttpBody>): void;
     metadata(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata;
         options = {};
       }
 
@@ -6287,16 +6434,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6304,7 +6453,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.rendered
@@ -6324,34 +6472,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     rendered(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     rendered(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     rendered(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     rendered(callback: BodyResponseCallback<Schema$HttpBody>): void;
     rendered(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered;
         options = {};
       }
 
@@ -6363,16 +6510,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6380,7 +6529,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.retrieveInstance
@@ -6399,34 +6547,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     retrieveInstance(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     retrieveInstance(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveInstance(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveInstance(callback: BodyResponseCallback<Schema$HttpBody>): void;
     retrieveInstance(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance;
         options = {};
       }
 
@@ -6438,16 +6585,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6458,11 +6607,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6477,11 +6626,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Metadata
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6496,11 +6645,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Rendered
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6515,11 +6664,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Retrieveinstance
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6534,13 +6683,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
 
-  export class
-      Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames {
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.frames.rendered
@@ -6560,34 +6707,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     rendered(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     rendered(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     rendered(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     rendered(callback: BodyResponseCallback<Schema$HttpBody>): void;
     rendered(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered;
         options = {};
       }
 
@@ -6599,16 +6745,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6616,7 +6764,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.frames.retrieveFrames
@@ -6635,34 +6782,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     retrieveFrames(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     retrieveFrames(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveFrames(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     retrieveFrames(callback: BodyResponseCallback<Schema$HttpBody>): void;
     retrieveFrames(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes;
         options = {};
       }
 
@@ -6674,16 +6820,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/dicomWeb/{+dicomWebPath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6694,11 +6842,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Rendered
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6713,11 +6861,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Frames$Retrieveframes
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The path of the DICOMweb request, as specified in the STOW-RS, WADO-RS,
@@ -6732,22 +6880,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     parent?: string;
   }
 
-
-
   export class Resource$Projects$Locations$Datasets$Fhirstores {
     context: APIRequestContext;
     fhir: Resource$Projects$Locations$Datasets$Fhirstores$Fhir;
-    securityLabels:
-        Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels;
+    securityLabels: Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.fhir = new Resource$Projects$Locations$Datasets$Fhirstores$Fhir(
-          this.context);
-      this.securityLabels =
-          new Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels(
-              this.context);
+        this.context
+      );
+      this.securityLabels = new Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.create
@@ -6764,32 +6909,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$FhirStore>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FhirStore>;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$FhirStore>,
-        callback: BodyResponseCallback<Schema$FhirStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$FhirStore>,
+      callback: BodyResponseCallback<Schema$FhirStore>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
-        callback: BodyResponseCallback<Schema$FhirStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Create,
+      callback: BodyResponseCallback<Schema$FhirStore>
+    ): void;
     create(callback: BodyResponseCallback<Schema$FhirStore>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Create|
-        BodyResponseCallback<Schema$FhirStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FhirStore>,
-        callback?: BodyResponseCallback<Schema$FhirStore>):
-        void|GaxiosPromise<Schema$FhirStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Create
+        | BodyResponseCallback<Schema$FhirStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FhirStore>,
+      callback?: BodyResponseCallback<Schema$FhirStore>
+    ): void | GaxiosPromise<Schema$FhirStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Create;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Create;
         options = {};
       }
 
@@ -6801,16 +6949,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhirStores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhirStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FhirStore>(parameters, callback);
@@ -6818,7 +6969,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$FhirStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.delete
@@ -6834,31 +6984,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete;
         options = {};
       }
 
@@ -6870,16 +7022,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6887,7 +7039,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.executeBundle
@@ -6903,34 +7054,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     executeBundle(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     executeBundle(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     executeBundle(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     executeBundle(callback: BodyResponseCallback<Schema$HttpBody>): void;
     executeBundle(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle;
         options = {};
       }
 
@@ -6942,16 +7092,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhir')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhir').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6959,7 +7112,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.export
@@ -6980,32 +7132,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     export(
-        params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     export(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     export(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     export(callback: BodyResponseCallback<Schema$Operation>): void;
     export(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Export|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Export;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Export
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Export;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Export;
         options = {};
       }
 
@@ -7017,16 +7172,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}:export')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7034,7 +7192,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.get
@@ -7048,29 +7205,36 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$FhirStore>;
-    get(params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$FhirStore>,
-        callback: BodyResponseCallback<Schema$FhirStore>): void;
-    get(params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
-        callback: BodyResponseCallback<Schema$FhirStore>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FhirStore>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$FhirStore>,
+      callback: BodyResponseCallback<Schema$FhirStore>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Get,
+      callback: BodyResponseCallback<Schema$FhirStore>
+    ): void;
     get(callback: BodyResponseCallback<Schema$FhirStore>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Get|
-        BodyResponseCallback<Schema$FhirStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FhirStore>,
-        callback?: BodyResponseCallback<Schema$FhirStore>):
-        void|GaxiosPromise<Schema$FhirStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Get
+        | BodyResponseCallback<Schema$FhirStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FhirStore>,
+      callback?: BodyResponseCallback<Schema$FhirStore>
+    ): void | GaxiosPromise<Schema$FhirStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Get;
         options = {};
       }
 
@@ -7082,16 +7246,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FhirStore>(parameters, callback);
@@ -7099,7 +7263,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$FhirStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.getIamPolicy
@@ -7119,34 +7282,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy;
         options = {};
       }
 
@@ -7158,16 +7320,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7175,7 +7340,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.getMetadata
@@ -7191,34 +7355,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
      * @return {object} Request object
      */
     getMetadata(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     getMetadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     getMetadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     getMetadata(callback: BodyResponseCallback<Schema$HttpBody>): void;
     getMetadata(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata;
         options = {};
       }
 
@@ -7230,16 +7393,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}/metadata')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}/metadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -7248,100 +7414,64 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
       }
     }
 
-
-/**
- * healthcare.projects.locations.datasets.fhirStores.import
- * @desc Import resources to the FHIR store by loading data from the specified
- * sources. Each resource must have a client-supplied ID, which is retained by
- * the server.  The import operation is idempotent. Upon retry, the most recent
- * data (matching the client-supplied ID) is overwritten, without creating a new
- * resource version. If partial failures occur during the import, successful
- * changes are not rolled back.  If history imports are enabled
- * (enable_history_import is set in the FHIR store's configuration), you can
- * import historical versions of a resource by supplying a bundle of type
- * `history`. The historical versions in the bundle must have `lastUpdated`
- * timestamps. If a current or historical version with the supplied resource ID
- * already exists, the bundle is rejected.  This method returns an Operation
- * that can be used to track the status of the import by calling GetOperation.
- * Immediate fatal errors appear in the error field. Otherwise, when the
- * operation finishes, a detailed response of type ImportResourcesResponse is
- * returned in the response field. The metadata field type for this operation is
- * OperationMetadata.
- * @alias healthcare.projects.locations.datasets.fhirStores.import
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.name The name of the FHIR store to import FHIR resources to. The name should be in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
- * @param {().ImportResourcesRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-import(params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-import(params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
-import(params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import, callback: BodyResponseCallback<Schema$Operation>): void;
-import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Import; let options = (optionsOrCallback || {}) as MethodOptions;
-
-                                                                                                                                                                                                                                                                                                        if(typeof paramsOrCallback === 'function') {
-    callback = paramsOrCallback;
-    params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Import;
-    options = {};
-                                                                                                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                                                                                                        if(typeof optionsOrCallback === 'function') {
-    callback = optionsOrCallback;
-    options = {};
-                                                                                                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1alpha2/{+name}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['name'], pathParams: ['name'], context: this.context}; if(callback) {
-    createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                                                        } else {
-    return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                                                        }}
-
-
     /**
- * healthcare.projects.locations.datasets.fhirStores.list
- * @desc Lists the FHIR stores in the given dataset.
- * @alias healthcare.projects.locations.datasets.fhirStores.list
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string=} params.filter Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
- * @param {integer=} params.pageSize Limit on the number of FHIR stores to return in a single response.  If zero the default page size of 100 is used.
- * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
- * @param {string} params.parent Name of the dataset.
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-    list(params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$List, options?: MethodOptions): GaxiosPromise<Schema$ListFhirStoresResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListFhirStoresResponse>,
-        callback: BodyResponseCallback<Schema$ListFhirStoresResponse>): void;
-    list(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
-        callback: BodyResponseCallback<Schema$ListFhirStoresResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListFhirStoresResponse>): void;
-    list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$List|
-        BodyResponseCallback<Schema$ListFhirStoresResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFhirStoresResponse>,
-        callback?: BodyResponseCallback<Schema$ListFhirStoresResponse>):
-        void|GaxiosPromise<Schema$ListFhirStoresResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$List;
+     * healthcare.projects.locations.datasets.fhirStores.import
+     * @desc Import resources to the FHIR store by loading data from the specified
+     * sources. Each resource must have a client-supplied ID, which is retained by
+     * the server.  The import operation is idempotent. Upon retry, the most recent
+     * data (matching the client-supplied ID) is overwritten, without creating a new
+     * resource version. If partial failures occur during the import, successful
+     * changes are not rolled back.  If history imports are enabled
+     * (enable_history_import is set in the FHIR store's configuration), you can
+     * import historical versions of a resource by supplying a bundle of type
+     * `history`. The historical versions in the bundle must have `lastUpdated`
+     * timestamps. If a current or historical version with the supplied resource ID
+     * already exists, the bundle is rejected.  This method returns an Operation
+     * that can be used to track the status of the import by calling GetOperation.
+     * Immediate fatal errors appear in the error field. Otherwise, when the
+     * operation finishes, a detailed response of type ImportResourcesResponse is
+     * returned in the response field. The metadata field type for this operation is
+     * OperationMetadata.
+     * @alias healthcare.projects.locations.datasets.fhirStores.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the FHIR store to import FHIR resources to. The name should be in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+     * @param {().ImportResourcesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Import
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Import;
         options = {};
       }
 
@@ -7353,16 +7483,98 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhirStores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.list
+     * @desc Lists the FHIR stores in the given dataset.
+     * @alias healthcare.projects.locations.datasets.fhirStores.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     * @param {integer=} params.pageSize Limit on the number of FHIR stores to return in a single response.  If zero the default page size of 100 is used.
+     * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
+     * @param {string} params.parent Name of the dataset.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFhirStoresResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFhirStoresResponse>,
+      callback: BodyResponseCallback<Schema$ListFhirStoresResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$List,
+      callback: BodyResponseCallback<Schema$ListFhirStoresResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFhirStoresResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$List
+        | BodyResponseCallback<Schema$ListFhirStoresResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFhirStoresResponse>,
+      callback?: BodyResponseCallback<Schema$ListFhirStoresResponse>
+    ): void | GaxiosPromise<Schema$ListFhirStoresResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhirStores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFhirStoresResponse>(parameters, callback);
@@ -7370,7 +7582,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$ListFhirStoresResponse>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.patch
@@ -7387,32 +7598,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$FhirStore>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FhirStore>;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$FhirStore>,
-        callback: BodyResponseCallback<Schema$FhirStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$FhirStore>,
+      callback: BodyResponseCallback<Schema$FhirStore>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
-        callback: BodyResponseCallback<Schema$FhirStore>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch,
+      callback: BodyResponseCallback<Schema$FhirStore>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$FhirStore>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch|
-        BodyResponseCallback<Schema$FhirStore>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FhirStore>,
-        callback?: BodyResponseCallback<Schema$FhirStore>):
-        void|GaxiosPromise<Schema$FhirStore> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch
+        | BodyResponseCallback<Schema$FhirStore>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FhirStore>,
+      callback?: BodyResponseCallback<Schema$FhirStore>
+    ): void | GaxiosPromise<Schema$FhirStore> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch;
         options = {};
       }
 
@@ -7424,16 +7638,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FhirStore>(parameters, callback);
@@ -7441,7 +7655,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$FhirStore>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.setIamPolicy
@@ -7461,34 +7674,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy;
         options = {};
       }
 
@@ -7500,16 +7712,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7517,7 +7732,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.testIamPermissions
@@ -7537,41 +7751,39 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions;
         options = {};
       }
 
@@ -7583,20 +7795,25 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
@@ -7604,11 +7821,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the FHIR store that is being created. The string must match the
@@ -7626,11 +7843,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$FhirStore;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the FHIR store to delete.
@@ -7638,11 +7855,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Executebundle
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the FHIR store in which this bundle will be executed.
@@ -7655,11 +7872,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$HttpBody;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Export
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the FHIR store to export resource from. The name should be in
@@ -7674,11 +7891,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$ExportResourcesRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the FHIR store to get.
@@ -7686,11 +7903,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -7699,11 +7916,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Getmetadata
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the FHIR store to retrieve the capabilities for.
@@ -7711,11 +7928,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Import
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the FHIR store to import FHIR resources to. The name should
@@ -7730,11 +7947,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$ImportResourcesRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restricts stores returned to those matching a filter. Syntax:
@@ -7758,11 +7975,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Resource name of the FHIR store, of the form
@@ -7782,11 +7999,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$FhirStore;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -7800,11 +8017,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -7824,14 +8041,13 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     _history: Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.Patient =
-          new Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient(
-              this.context);
-      this._history =
-          new Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history(
-              this.context);
+      this.Patient = new Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient(
+        this.context
+      );
+      this._history = new Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalDeleteResource
@@ -7853,35 +8069,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     conditionalDeleteResource(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     conditionalDeleteResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     conditionalDeleteResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    conditionalDeleteResource(callback: BodyResponseCallback<Schema$Empty>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     conditionalDeleteResource(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource;
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    conditionalDeleteResource(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource;
         options = {};
       }
 
@@ -7893,16 +8109,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7910,7 +8129,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalPatchResource
@@ -7929,35 +8147,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     conditionalPatchResource(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     conditionalPatchResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     conditionalPatchResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
-    conditionalPatchResource(callback: BodyResponseCallback<Schema$HttpBody>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     conditionalPatchResource(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource;
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    conditionalPatchResource(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource;
         options = {};
       }
 
@@ -7969,16 +8187,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -7986,7 +8207,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.conditionalUpdateResource
@@ -8005,35 +8225,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     conditionalUpdateResource(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     conditionalUpdateResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     conditionalUpdateResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
-    conditionalUpdateResource(callback: BodyResponseCallback<Schema$HttpBody>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     conditionalUpdateResource(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource;
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    conditionalUpdateResource(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource;
         options = {};
       }
 
@@ -8045,16 +8265,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8062,7 +8285,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.createResource
@@ -8080,34 +8302,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     createResource(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     createResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     createResource(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     createResource(callback: BodyResponseCallback<Schema$HttpBody>): void;
     createResource(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource;
         options = {};
       }
 
@@ -8119,16 +8340,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+type}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8136,7 +8360,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.delete
@@ -8155,34 +8378,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$HttpBody>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete;
         options = {};
       }
 
@@ -8194,16 +8416,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8211,7 +8433,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.delete$purge
@@ -8229,34 +8450,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     delete$purge(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete$purge(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete$purge(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete$purge(callback: BodyResponseCallback<Schema$Empty>): void;
     delete$purge(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge;
         options = {};
       }
 
@@ -8268,16 +8488,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}/$purge')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}/$purge').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -8285,7 +8508,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.get
@@ -8299,29 +8521,34 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
-    get(params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get(params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     get(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get;
         options = {};
       }
 
@@ -8333,16 +8560,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8350,7 +8577,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.getMetadata
@@ -8366,34 +8592,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     getMetadata(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     getMetadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     getMetadata(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     getMetadata(callback: BodyResponseCallback<Schema$HttpBody>): void;
     getMetadata(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata;
         options = {};
       }
 
@@ -8405,16 +8630,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}/fhir/metadata')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}/fhir/metadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8422,7 +8650,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.patch
@@ -8438,34 +8665,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     patch(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$HttpBody>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch;
         options = {};
       }
 
@@ -8477,16 +8703,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8494,7 +8720,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.searchResources
@@ -8518,34 +8743,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     searchResources(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     searchResources(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchResources(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     searchResources(callback: BodyResponseCallback<Schema$HttpBody>): void;
     searchResources(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources;
         options = {};
       }
 
@@ -8557,16 +8781,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+resourceType}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhir/{+resourceType}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'resourceType'],
         pathParams: ['parent', 'resourceType'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8574,7 +8801,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.update
@@ -8592,34 +8818,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     update(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     update(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     update(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     update(callback: BodyResponseCallback<Schema$HttpBody>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update;
         options = {};
       }
 
@@ -8631,16 +8856,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8648,7 +8873,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir._search
@@ -8671,34 +8895,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     _search(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     _search(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     _search(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     _search(callback: BodyResponseCallback<Schema$HttpBody>): void;
     _search(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search;
         options = {};
       }
 
@@ -8710,16 +8933,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/fhir/_search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/fhir/_search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -8730,11 +8956,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldeleteresource
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the FHIR store this resource belongs to.
@@ -8746,11 +8972,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     type?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalpatchresource
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the FHIR store this resource belongs to.
@@ -8767,11 +8993,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$HttpBody;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionalupdateresource
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the FHIR store this resource belongs to.
@@ -8788,11 +9014,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$HttpBody;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Createresource
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the FHIR store this resource belongs to.
@@ -8809,11 +9035,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$HttpBody;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to delete.
@@ -8821,11 +9047,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete$purge
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to purge.
@@ -8833,11 +9059,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to retrieve.
@@ -8845,11 +9071,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Getmetadata
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the FHIR store to retrieve the capabilities for.
@@ -8857,11 +9083,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to update.
@@ -8874,11 +9100,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$HttpBody;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchresources
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the FHIR store to retrieve resources from.
@@ -8890,11 +9116,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     resourceType?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to update.
@@ -8907,11 +9133,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$HttpBody;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_search
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the FHIR store to retrieve resources from.
@@ -8930,7 +9156,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       this.context = context;
     }
 
-
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.Patient.get$everything
      * @desc Gets all the resources in the patient compartment.
@@ -8947,34 +9172,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     get$everything(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     get$everything(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     get$everything(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     get$everything(callback: BodyResponseCallback<Schema$HttpBody>): void;
     get$everything(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything;
         options = {};
       }
 
@@ -8986,16 +9210,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}/$everything')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}/$everything').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -9006,11 +9233,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patient$Get$everything
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The response includes records prior to the end date. If no end date is
@@ -9028,13 +9255,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     start?: string;
   }
 
-
   export class Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir._history.get
@@ -9050,31 +9275,34 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     get(callback: BodyResponseCallback<Schema$HttpBody>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get;
         options = {};
       }
 
@@ -9086,16 +9314,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -9103,7 +9331,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir._history.list
@@ -9124,34 +9351,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
-        options?: MethodOptions): GaxiosPromise<Schema$HttpBody>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
-        options: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
-        callback: BodyResponseCallback<Schema$HttpBody>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
     list(callback: BodyResponseCallback<Schema$HttpBody>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List|
-        BodyResponseCallback<Schema$HttpBody>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HttpBody>,
-        callback?: BodyResponseCallback<Schema$HttpBody>):
-        void|GaxiosPromise<Schema$HttpBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List;
         options = {};
       }
 
@@ -9163,16 +9389,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}/_history')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}/_history').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -9183,11 +9412,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource version to retrieve.
@@ -9195,11 +9424,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$_history$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Only include resource versions that were current at some point during the
@@ -9236,14 +9465,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     since?: string;
   }
 
-
-
   export class Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.securityLabels.getIamPolicy
@@ -9264,34 +9490,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy;
         options = {};
       }
 
@@ -9303,16 +9528,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -9320,7 +9548,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.securityLabels.setIamPolicy
@@ -9341,34 +9568,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy;
         options = {};
       }
 
@@ -9380,16 +9606,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -9400,11 +9629,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -9413,11 +9642,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -9431,18 +9660,15 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$SetIamPolicyRequest;
   }
 
-
-
   export class Resource$Projects$Locations$Datasets$Hl7v2stores {
     context: APIRequestContext;
     messages: Resource$Projects$Locations$Datasets$Hl7v2stores$Messages;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.messages =
-          new Resource$Projects$Locations$Datasets$Hl7v2stores$Messages(
-              this.context);
+      this.messages = new Resource$Projects$Locations$Datasets$Hl7v2stores$Messages(
+        this.context
+      );
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.create
@@ -9459,32 +9685,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Hl7V2Store>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Hl7V2Store>;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Hl7V2Store>,
-        callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Hl7V2Store>,
+      callback: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
-        callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create,
+      callback: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create|
-        BodyResponseCallback<Schema$Hl7V2Store>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Hl7V2Store>,
-        callback?: BodyResponseCallback<Schema$Hl7V2Store>):
-        void|GaxiosPromise<Schema$Hl7V2Store> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create
+        | BodyResponseCallback<Schema$Hl7V2Store>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Hl7V2Store>,
+      callback?: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void | GaxiosPromise<Schema$Hl7V2Store> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create;
         options = {};
       }
 
@@ -9496,16 +9725,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/hl7V2Stores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/hl7V2Stores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(parameters, callback);
@@ -9513,7 +9745,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Hl7V2Store>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.delete
@@ -9529,31 +9760,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete;
         options = {};
       }
 
@@ -9565,16 +9798,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -9582,7 +9815,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.get
@@ -9596,29 +9828,36 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Hl7V2Store>;
-    get(params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Hl7V2Store>,
-        callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
-    get(params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
-        callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Hl7V2Store>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Hl7V2Store>,
+      callback: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get,
+      callback: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get|
-        BodyResponseCallback<Schema$Hl7V2Store>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Hl7V2Store>,
-        callback?: BodyResponseCallback<Schema$Hl7V2Store>):
-        void|GaxiosPromise<Schema$Hl7V2Store> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get
+        | BodyResponseCallback<Schema$Hl7V2Store>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Hl7V2Store>,
+      callback?: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void | GaxiosPromise<Schema$Hl7V2Store> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get;
         options = {};
       }
 
@@ -9630,16 +9869,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(parameters, callback);
@@ -9647,7 +9886,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Hl7V2Store>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy
@@ -9663,34 +9901,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy;
         options = {};
       }
 
@@ -9702,16 +9939,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -9719,7 +9959,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.list
@@ -9737,33 +9976,37 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListHl7V2StoresResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListHl7V2StoresResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListHl7V2StoresResponse>,
-        callback: BodyResponseCallback<Schema$ListHl7V2StoresResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHl7V2StoresResponse>,
+      callback: BodyResponseCallback<Schema$ListHl7V2StoresResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
-        callback: BodyResponseCallback<Schema$ListHl7V2StoresResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List,
+      callback: BodyResponseCallback<Schema$ListHl7V2StoresResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListHl7V2StoresResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List|
-        BodyResponseCallback<Schema$ListHl7V2StoresResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListHl7V2StoresResponse>,
-        callback?: BodyResponseCallback<Schema$ListHl7V2StoresResponse>):
-        void|GaxiosPromise<Schema$ListHl7V2StoresResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List
+        | BodyResponseCallback<Schema$ListHl7V2StoresResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHl7V2StoresResponse>,
+      callback?: BodyResponseCallback<Schema$ListHl7V2StoresResponse>
+    ): void | GaxiosPromise<Schema$ListHl7V2StoresResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List;
         options = {};
       }
 
@@ -9775,16 +10018,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/hl7V2Stores')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/hl7V2Stores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListHl7V2StoresResponse>(parameters, callback);
@@ -9792,7 +10038,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$ListHl7V2StoresResponse>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.patch
@@ -9809,32 +10054,35 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Hl7V2Store>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Hl7V2Store>;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Hl7V2Store>,
-        callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Hl7V2Store>,
+      callback: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
-        callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch,
+      callback: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Hl7V2Store>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch|
-        BodyResponseCallback<Schema$Hl7V2Store>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Hl7V2Store>,
-        callback?: BodyResponseCallback<Schema$Hl7V2Store>):
-        void|GaxiosPromise<Schema$Hl7V2Store> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch
+        | BodyResponseCallback<Schema$Hl7V2Store>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Hl7V2Store>,
+      callback?: BodyResponseCallback<Schema$Hl7V2Store>
+    ): void | GaxiosPromise<Schema$Hl7V2Store> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch;
         options = {};
       }
 
@@ -9846,16 +10094,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(parameters, callback);
@@ -9863,7 +10111,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Hl7V2Store>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy
@@ -9880,34 +10127,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy;
         options = {};
       }
 
@@ -9919,16 +10165,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -9936,7 +10185,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions
@@ -9957,41 +10205,39 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions;
         options = {};
       }
 
@@ -10003,20 +10249,25 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
@@ -10024,11 +10275,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the HL7v2 store that is being created. The string must match
@@ -10046,11 +10297,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$Hl7V2Store;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the HL7v2 store to delete.
@@ -10058,11 +10309,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the HL7v2 store to get.
@@ -10070,11 +10321,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -10083,11 +10334,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restricts stores returned to those matching a filter. Syntax:
@@ -10111,11 +10362,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Resource name of the HL7v2 store, of the form
@@ -10135,11 +10386,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$Hl7V2Store;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -10153,11 +10404,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -10176,7 +10427,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.create
@@ -10197,34 +10447,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     create(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Message>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create;
         options = {};
       }
 
@@ -10236,16 +10485,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -10253,7 +10505,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.delete
@@ -10268,34 +10519,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete;
         options = {};
       }
 
@@ -10307,16 +10557,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -10324,7 +10574,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.get
@@ -10339,31 +10588,34 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
-    get(params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
-        callback: BodyResponseCallback<Schema$Message>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Message>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get;
         options = {};
       }
 
@@ -10375,16 +10627,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -10392,7 +10644,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest
@@ -10412,36 +10663,37 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     ingest(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
-        options?: MethodOptions): GaxiosPromise<Schema$IngestMessageResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IngestMessageResponse>;
     ingest(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$IngestMessageResponse>,
-        callback: BodyResponseCallback<Schema$IngestMessageResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IngestMessageResponse>,
+      callback: BodyResponseCallback<Schema$IngestMessageResponse>
+    ): void;
     ingest(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
-        callback: BodyResponseCallback<Schema$IngestMessageResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest,
+      callback: BodyResponseCallback<Schema$IngestMessageResponse>
+    ): void;
     ingest(callback: BodyResponseCallback<Schema$IngestMessageResponse>): void;
     ingest(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest|
-        BodyResponseCallback<Schema$IngestMessageResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$IngestMessageResponse>,
-        callback?: BodyResponseCallback<Schema$IngestMessageResponse>):
-        void|GaxiosPromise<Schema$IngestMessageResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest
+        | BodyResponseCallback<Schema$IngestMessageResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IngestMessageResponse>,
+      callback?: BodyResponseCallback<Schema$IngestMessageResponse>
+    ): void | GaxiosPromise<Schema$IngestMessageResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest;
         options = {};
       }
 
@@ -10453,16 +10705,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/messages:ingest')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/messages:ingest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$IngestMessageResponse>(parameters, callback);
@@ -10470,7 +10725,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$IngestMessageResponse>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.list
@@ -10490,36 +10744,37 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListMessagesResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMessagesResponse>;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListMessagesResponse>,
-        callback: BodyResponseCallback<Schema$ListMessagesResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMessagesResponse>,
+      callback: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
-        callback: BodyResponseCallback<Schema$ListMessagesResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List,
+      callback: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListMessagesResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List|
-        BodyResponseCallback<Schema$ListMessagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$ListMessagesResponse>):
-        void|GaxiosPromise<Schema$ListMessagesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List
+        | BodyResponseCallback<Schema$ListMessagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void | GaxiosPromise<Schema$ListMessagesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List;
         options = {};
       }
 
@@ -10531,16 +10786,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+parent}/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+parent}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMessagesResponse>(parameters, callback);
@@ -10548,7 +10806,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$ListMessagesResponse>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.hl7V2Stores.messages.patch
@@ -10565,34 +10822,33 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     patch(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     patch(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Message>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch;
         options = {};
       }
 
@@ -10604,16 +10860,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -10624,11 +10880,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the dataset this message belongs to.
@@ -10641,11 +10897,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$CreateMessageRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the HL7v2 message to delete.
@@ -10653,11 +10909,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the HL7v2 message to retrieve.
@@ -10670,11 +10926,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the HL7v2 store this message belongs to.
@@ -10687,11 +10943,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$IngestMessageRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restricts messages returned to those matching a filter. Syntax:
@@ -10750,11 +11006,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the Message, of the form
@@ -10778,14 +11034,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     requestBody?: Schema$Message;
   }
 
-
-
   export class Resource$Projects$Locations$Datasets$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * healthcare.projects.locations.datasets.operations.get
@@ -10801,29 +11054,36 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Datasets$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasets$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Operations$Get;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Operations$Get;
         options = {};
       }
 
@@ -10835,16 +11095,16 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -10852,7 +11112,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * healthcare.projects.locations.datasets.operations.list
@@ -10878,33 +11137,37 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Datasets$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasets$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Datasets$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Datasets$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasets$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Operations$List;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Operations$List;
         options = {};
       }
 
@@ -10916,16 +11179,19 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
       const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}/operations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -10936,11 +11202,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Operations$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -10948,11 +11214,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Operations$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1595,7 +1607,6 @@ export namespace tagmanager_v2 {
     whitelistedTypeId?: string[];
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     containers: Resource$Accounts$Containers;
@@ -1603,10 +1614,10 @@ export namespace tagmanager_v2 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.containers = new Resource$Accounts$Containers(this.context);
-      this.user_permissions =
-          new Resource$Accounts$User_permissions(this.context);
+      this.user_permissions = new Resource$Accounts$User_permissions(
+        this.context
+      );
     }
-
 
     /**
      * tagmanager.accounts.get
@@ -1620,19 +1631,27 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Account>;
-    get(params: Params$Resource$Accounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
-    get(params: Params$Resource$Accounts$Get,
-        callback: BodyResponseCallback<Schema$Account>): void;
+    get(
+      params?: Params$Resource$Accounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Get,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Account>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Get|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Get
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1650,16 +1669,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1667,7 +1689,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.list
@@ -1681,24 +1702,31 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListAccountsResponse>;
     list(
-        params: Params$Resource$Accounts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAccountsResponse>,
-        callback: BodyResponseCallback<Schema$ListAccountsResponse>): void;
+      params?: Params$Resource$Accounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccountsResponse>;
     list(
-        params: Params$Resource$Accounts$List,
-        callback: BodyResponseCallback<Schema$ListAccountsResponse>): void;
+      params: Params$Resource$Accounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccountsResponse>,
+      callback: BodyResponseCallback<Schema$ListAccountsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$List,
+      callback: BodyResponseCallback<Schema$ListAccountsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAccountsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$List|
-        BodyResponseCallback<Schema$ListAccountsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAccountsResponse>):
-        void|GaxiosPromise<Schema$ListAccountsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$List
+        | BodyResponseCallback<Schema$ListAccountsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAccountsResponse>
+    ): void | GaxiosPromise<Schema$ListAccountsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1716,16 +1744,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/accounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAccountsResponse>(parameters, callback);
@@ -1733,7 +1764,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListAccountsResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.update
@@ -1749,22 +1779,27 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    update(
+      params: Params$Resource$Accounts$Update,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Account>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Update|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Update
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1782,16 +1817,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1805,7 +1843,7 @@ export namespace tagmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Accounts's API relative path. Example: accounts/{account_id}
@@ -1816,7 +1854,7 @@ export namespace tagmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -1827,7 +1865,7 @@ export namespace tagmanager_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the account
@@ -1853,15 +1891,17 @@ export namespace tagmanager_v2 {
     workspaces: Resource$Accounts$Containers$Workspaces;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.environments =
-          new Resource$Accounts$Containers$Environments(this.context);
+      this.environments = new Resource$Accounts$Containers$Environments(
+        this.context
+      );
       this.versions = new Resource$Accounts$Containers$Versions(this.context);
-      this.version_headers =
-          new Resource$Accounts$Containers$Version_headers(this.context);
-      this.workspaces =
-          new Resource$Accounts$Containers$Workspaces(this.context);
+      this.version_headers = new Resource$Accounts$Containers$Version_headers(
+        this.context
+      );
+      this.workspaces = new Resource$Accounts$Containers$Workspaces(
+        this.context
+      );
     }
-
 
     /**
      * tagmanager.accounts.containers.create
@@ -1877,25 +1917,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Containers$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Container>;
+      params?: Params$Resource$Accounts$Containers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Container>;
     create(
-        params: Params$Resource$Accounts$Containers$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Container>,
-        callback: BodyResponseCallback<Schema$Container>): void;
+      params: Params$Resource$Accounts$Containers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Container>,
+      callback: BodyResponseCallback<Schema$Container>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Create,
-        callback: BodyResponseCallback<Schema$Container>): void;
+      params: Params$Resource$Accounts$Containers$Create,
+      callback: BodyResponseCallback<Schema$Container>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Container>): void;
     create(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Create|
-        BodyResponseCallback<Schema$Container>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Container>,
-        callback?: BodyResponseCallback<Schema$Container>):
-        void|GaxiosPromise<Schema$Container> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Create
+        | BodyResponseCallback<Schema$Container>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>
+    ): void | GaxiosPromise<Schema$Container> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1912,16 +1957,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/containers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/containers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1929,7 +1977,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Container>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.delete
@@ -1944,23 +1991,28 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1977,16 +2029,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1994,7 +2049,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.get
@@ -2008,22 +2062,31 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Container>;
-    get(params: Params$Resource$Accounts$Containers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Container>,
-        callback: BodyResponseCallback<Schema$Container>): void;
-    get(params: Params$Resource$Accounts$Containers$Get,
-        callback: BodyResponseCallback<Schema$Container>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Container>;
+    get(
+      params: Params$Resource$Accounts$Containers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Container>,
+      callback: BodyResponseCallback<Schema$Container>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Get,
+      callback: BodyResponseCallback<Schema$Container>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Container>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Get|
-        BodyResponseCallback<Schema$Container>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Container>,
-        callback?: BodyResponseCallback<Schema$Container>):
-        void|GaxiosPromise<Schema$Container> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Containers$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Get
+        | BodyResponseCallback<Schema$Container>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>
+    ): void | GaxiosPromise<Schema$Container> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2040,16 +2103,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -2057,7 +2123,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Container>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.list
@@ -2073,26 +2138,32 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListContainersResponse>;
+      params?: Params$Resource$Accounts$Containers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListContainersResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListContainersResponse>,
-        callback: BodyResponseCallback<Schema$ListContainersResponse>): void;
+      params: Params$Resource$Accounts$Containers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContainersResponse>,
+      callback: BodyResponseCallback<Schema$ListContainersResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$List,
-        callback: BodyResponseCallback<Schema$ListContainersResponse>): void;
+      params: Params$Resource$Accounts$Containers$List,
+      callback: BodyResponseCallback<Schema$ListContainersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListContainersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$List|
-        BodyResponseCallback<Schema$ListContainersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListContainersResponse>,
-        callback?: BodyResponseCallback<Schema$ListContainersResponse>):
-        void|GaxiosPromise<Schema$ListContainersResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Containers$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$List
+        | BodyResponseCallback<Schema$ListContainersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContainersResponse>,
+      callback?: BodyResponseCallback<Schema$ListContainersResponse>
+    ): void | GaxiosPromise<Schema$ListContainersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2109,16 +2180,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/containers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/containers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListContainersResponse>(parameters, callback);
@@ -2126,7 +2200,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListContainersResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.update
@@ -2143,25 +2216,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Container>;
+      params?: Params$Resource$Accounts$Containers$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Container>;
     update(
-        params: Params$Resource$Accounts$Containers$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Container>,
-        callback: BodyResponseCallback<Schema$Container>): void;
+      params: Params$Resource$Accounts$Containers$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Container>,
+      callback: BodyResponseCallback<Schema$Container>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Update,
-        callback: BodyResponseCallback<Schema$Container>): void;
+      params: Params$Resource$Accounts$Containers$Update,
+      callback: BodyResponseCallback<Schema$Container>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Container>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Update|
-        BodyResponseCallback<Schema$Container>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Container>,
-        callback?: BodyResponseCallback<Schema$Container>):
-        void|GaxiosPromise<Schema$Container> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Update
+        | BodyResponseCallback<Schema$Container>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>
+    ): void | GaxiosPromise<Schema$Container> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2178,16 +2256,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -2197,12 +2278,12 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Create extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Account's API relative path. Example: accounts/{account_id}.
@@ -2214,12 +2295,12 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Container;
   }
-  export interface Params$Resource$Accounts$Containers$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Container's API relative path. Example:
@@ -2227,12 +2308,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Container's API relative path. Example:
@@ -2240,12 +2321,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -2256,12 +2337,12 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -2286,7 +2367,6 @@ export namespace tagmanager_v2 {
       this.context = context;
     }
 
-
     /**
      * tagmanager.accounts.containers.environments.create
      * @desc Creates a GTM Environment.
@@ -2301,26 +2381,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Containers$Environments$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
+      params?: Params$Resource$Accounts$Containers$Environments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Environment>;
     create(
-        params: Params$Resource$Accounts$Containers$Environments$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Environments$Create,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Create,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Environment>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Environments$Create|
-        BodyResponseCallback<Schema$Environment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>):
-        void|GaxiosPromise<Schema$Environment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Environments$Create
+        | BodyResponseCallback<Schema$Environment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>
+    ): void | GaxiosPromise<Schema$Environment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2337,16 +2421,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/environments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/environments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2354,7 +2441,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Environment>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.environments.delete
@@ -2369,24 +2455,28 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Environments$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Environments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Environments$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Environments$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Environments$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Environments$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2403,16 +2493,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2420,7 +2513,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.environments.get
@@ -2434,22 +2526,31 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Environments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
-    get(params: Params$Resource$Accounts$Containers$Environments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback: BodyResponseCallback<Schema$Environment>): void;
-    get(params: Params$Resource$Accounts$Containers$Environments$Get,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Environments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Accounts$Containers$Environments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Environments$Get,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Environment>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Environments$Get|
-        BodyResponseCallback<Schema$Environment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>):
-        void|GaxiosPromise<Schema$Environment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Environments$Get
+        | BodyResponseCallback<Schema$Environment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>
+    ): void | GaxiosPromise<Schema$Environment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2466,16 +2567,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2483,7 +2587,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Environment>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.environments.list
@@ -2499,28 +2602,32 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Environments$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListEnvironmentsResponse>;
+      params?: Params$Resource$Accounts$Containers$Environments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Environments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-        callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+      params: Params$Resource$Accounts$Containers$Environments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Environments$List,
-        callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+      params: Params$Resource$Accounts$Containers$Environments$List,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Environments$List|
-        BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>):
-        void|GaxiosPromise<Schema$ListEnvironmentsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Environments$List
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void | GaxiosPromise<Schema$ListEnvironmentsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2537,16 +2644,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/environments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/environments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
@@ -2554,7 +2664,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.environments.reauthorize
@@ -2570,32 +2679,35 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     reauthorize(
-        params?: Params$Resource$Accounts$Containers$Environments$Reauthorize,
-        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
+      params?: Params$Resource$Accounts$Containers$Environments$Reauthorize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Environment>;
     reauthorize(
-        params: Params$Resource$Accounts$Containers$Environments$Reauthorize,
-        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Reauthorize,
+      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     reauthorize(
-        params: Params$Resource$Accounts$Containers$Environments$Reauthorize,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Reauthorize,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     reauthorize(callback: BodyResponseCallback<Schema$Environment>): void;
     reauthorize(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Environments$Reauthorize|
-        BodyResponseCallback<Schema$Environment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>):
-        void|GaxiosPromise<Schema$Environment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$Reauthorize;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Environments$Reauthorize
+        | BodyResponseCallback<Schema$Environment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>
+    ): void | GaxiosPromise<Schema$Environment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Environments$Reauthorize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Environments$Reauthorize;
+        params = {} as Params$Resource$Accounts$Containers$Environments$Reauthorize;
         options = {};
       }
 
@@ -2607,16 +2719,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:reauthorize')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:reauthorize').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2624,7 +2739,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Environment>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.environments.update
@@ -2641,26 +2755,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Environments$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
+      params?: Params$Resource$Accounts$Containers$Environments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Environment>;
     update(
-        params: Params$Resource$Accounts$Containers$Environments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Environments$Update,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+      params: Params$Resource$Accounts$Containers$Environments$Update,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Environment>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Environments$Update|
-        BodyResponseCallback<Schema$Environment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>):
-        void|GaxiosPromise<Schema$Environment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Environments$Update
+        | BodyResponseCallback<Schema$Environment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>
+    ): void | GaxiosPromise<Schema$Environment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2677,16 +2795,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2697,11 +2818,11 @@ export namespace tagmanager_v2 {
   }
 
   export interface Params$Resource$Accounts$Containers$Environments$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Container's API relative path. Example:
@@ -2715,11 +2836,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Environment's API relative path. Example:
@@ -2727,12 +2848,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Environment's API relative path. Example:
@@ -2740,12 +2861,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Environments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -2758,11 +2879,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Reauthorize
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Environment's API relative path. Example:
@@ -2776,11 +2897,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -2799,13 +2920,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Environment;
   }
 
-
   export class Resource$Accounts$Containers$Versions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.containers.versions.delete
@@ -2820,23 +2939,28 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Versions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Versions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Versions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Versions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Versions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2853,16 +2977,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2870,7 +2997,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.versions.get
@@ -2885,22 +3011,31 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Versions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
-    get(params: Params$Resource$Accounts$Containers$Versions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
-    get(params: Params$Resource$Accounts$Containers$Versions$Get,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContainerVersion>;
+    get(
+      params: Params$Resource$Accounts$Containers$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Versions$Get,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Get|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|GaxiosPromise<Schema$ContainerVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Versions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Versions$Get
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>
+    ): void | GaxiosPromise<Schema$ContainerVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2917,16 +3052,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -2934,7 +3072,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.versions.live
@@ -2949,25 +3086,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     live(
-        params?: Params$Resource$Accounts$Containers$Versions$Live,
-        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
+      params?: Params$Resource$Accounts$Containers$Versions$Live,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContainerVersion>;
     live(
-        params: Params$Resource$Accounts$Containers$Versions$Live,
-        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Live,
+      options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     live(
-        params: Params$Resource$Accounts$Containers$Versions$Live,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Live,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     live(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
     live(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Live|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|GaxiosPromise<Schema$ContainerVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Versions$Live;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Versions$Live
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>
+    ): void | GaxiosPromise<Schema$ContainerVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Versions$Live;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2984,16 +3126,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/versions:live')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/versions:live').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3001,7 +3146,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.versions.publish
@@ -3017,32 +3161,34 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     publish(
-        params?: Params$Resource$Accounts$Containers$Versions$Publish,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$PublishContainerVersionResponse>;
+      params?: Params$Resource$Accounts$Containers$Versions$Publish,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PublishContainerVersionResponse>;
     publish(
-        params: Params$Resource$Accounts$Containers$Versions$Publish,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PublishContainerVersionResponse>,
-        callback: BodyResponseCallback<Schema$PublishContainerVersionResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Versions$Publish,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+      callback: BodyResponseCallback<Schema$PublishContainerVersionResponse>
+    ): void;
     publish(
-        params: Params$Resource$Accounts$Containers$Versions$Publish,
-        callback: BodyResponseCallback<Schema$PublishContainerVersionResponse>):
-        void;
-    publish(callback:
-                BodyResponseCallback<Schema$PublishContainerVersionResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Versions$Publish,
+      callback: BodyResponseCallback<Schema$PublishContainerVersionResponse>
+    ): void;
     publish(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Publish|
-        BodyResponseCallback<Schema$PublishContainerVersionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PublishContainerVersionResponse>,
-        callback?:
-            BodyResponseCallback<Schema$PublishContainerVersionResponse>):
-        void|GaxiosPromise<Schema$PublishContainerVersionResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Versions$Publish;
+      callback: BodyResponseCallback<Schema$PublishContainerVersionResponse>
+    ): void;
+    publish(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Versions$Publish
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+      callback?: BodyResponseCallback<Schema$PublishContainerVersionResponse>
+    ): void | GaxiosPromise<Schema$PublishContainerVersionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Versions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3059,26 +3205,31 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:publish')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:publish').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PublishContainerVersionResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PublishContainerVersionResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.versions.set_latest
@@ -3094,26 +3245,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     set_latest(
-        params?: Params$Resource$Accounts$Containers$Versions$Set_latest,
-        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
+      params?: Params$Resource$Accounts$Containers$Versions$Set_latest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContainerVersion>;
     set_latest(
-        params: Params$Resource$Accounts$Containers$Versions$Set_latest,
-        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Set_latest,
+      options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     set_latest(
-        params: Params$Resource$Accounts$Containers$Versions$Set_latest,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Set_latest,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     set_latest(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
     set_latest(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Versions$Set_latest|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|GaxiosPromise<Schema$ContainerVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Versions$Set_latest;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Versions$Set_latest
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>
+    ): void | GaxiosPromise<Schema$ContainerVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Versions$Set_latest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3130,16 +3285,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:set_latest')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:set_latest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3147,7 +3305,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.versions.undelete
@@ -3162,26 +3319,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Accounts$Containers$Versions$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
+      params?: Params$Resource$Accounts$Containers$Versions$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContainerVersion>;
     undelete(
-        params: Params$Resource$Accounts$Containers$Versions$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     undelete(
-        params: Params$Resource$Accounts$Containers$Versions$Undelete,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Undelete,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
     undelete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Versions$Undelete|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|GaxiosPromise<Schema$ContainerVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Versions$Undelete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Versions$Undelete
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>
+    ): void | GaxiosPromise<Schema$ContainerVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Versions$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3198,16 +3359,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3215,7 +3379,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.versions.update
@@ -3232,25 +3395,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Versions$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
+      params?: Params$Resource$Accounts$Containers$Versions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContainerVersion>;
     update(
-        params: Params$Resource$Accounts$Containers$Versions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Versions$Update,
-        callback: BodyResponseCallback<Schema$ContainerVersion>): void;
+      params: Params$Resource$Accounts$Containers$Versions$Update,
+      callback: BodyResponseCallback<Schema$ContainerVersion>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ContainerVersion>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Update|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContainerVersion>,
-        callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|GaxiosPromise<Schema$ContainerVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Versions$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Versions$Update
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>
+    ): void | GaxiosPromise<Schema$ContainerVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Versions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3267,16 +3435,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3286,12 +3457,12 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Versions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM ContainerVersion's API relative path. Example:
@@ -3299,12 +3470,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The GTM ContainerVersion ID. Specify published to retrieve the currently
@@ -3317,12 +3488,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Live extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Live
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Container's API relative path. Example:
@@ -3330,12 +3501,12 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Publish extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Publish
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -3349,11 +3520,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Set_latest
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM ContainerVersion's API relative path. Example:
@@ -3361,12 +3532,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Undelete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Undelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM ContainerVersion's API relative path. Example:
@@ -3374,12 +3545,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Versions$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -3398,13 +3569,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$ContainerVersion;
   }
 
-
   export class Resource$Accounts$Containers$Version_headers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.containers.version_headers.latest
@@ -3419,33 +3588,37 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     latest(
-        params?: Params$Resource$Accounts$Containers$Version_headers$Latest,
-        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersionHeader>;
+      params?: Params$Resource$Accounts$Containers$Version_headers$Latest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContainerVersionHeader>;
     latest(
-        params: Params$Resource$Accounts$Containers$Version_headers$Latest,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ContainerVersionHeader>,
-        callback: BodyResponseCallback<Schema$ContainerVersionHeader>): void;
+      params: Params$Resource$Accounts$Containers$Version_headers$Latest,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContainerVersionHeader>,
+      callback: BodyResponseCallback<Schema$ContainerVersionHeader>
+    ): void;
     latest(
-        params: Params$Resource$Accounts$Containers$Version_headers$Latest,
-        callback: BodyResponseCallback<Schema$ContainerVersionHeader>): void;
+      params: Params$Resource$Accounts$Containers$Version_headers$Latest,
+      callback: BodyResponseCallback<Schema$ContainerVersionHeader>
+    ): void;
     latest(callback: BodyResponseCallback<Schema$ContainerVersionHeader>): void;
     latest(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Version_headers$Latest|
-        BodyResponseCallback<Schema$ContainerVersionHeader>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContainerVersionHeader>,
-        callback?: BodyResponseCallback<Schema$ContainerVersionHeader>):
-        void|GaxiosPromise<Schema$ContainerVersionHeader> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Version_headers$Latest;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Version_headers$Latest
+        | BodyResponseCallback<Schema$ContainerVersionHeader>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContainerVersionHeader>,
+      callback?: BodyResponseCallback<Schema$ContainerVersionHeader>
+    ): void | GaxiosPromise<Schema$ContainerVersionHeader> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Version_headers$Latest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Version_headers$Latest;
+        params = {} as Params$Resource$Accounts$Containers$Version_headers$Latest;
         options = {};
       }
 
@@ -3457,16 +3630,18 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/version_headers:latest')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+parent}/version_headers:latest'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersionHeader>(parameters, callback);
@@ -3474,7 +3649,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ContainerVersionHeader>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.version_headers.list
@@ -3491,31 +3665,34 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Version_headers$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListContainerVersionsResponse>;
+      params?: Params$Resource$Accounts$Containers$Version_headers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListContainerVersionsResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Version_headers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListContainerVersionsResponse>,
-        callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Version_headers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Version_headers$List,
-        callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Version_headers$List,
+      callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Version_headers$List|
-        BodyResponseCallback<Schema$ListContainerVersionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListContainerVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
-        void|GaxiosPromise<Schema$ListContainerVersionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Version_headers$List;
+      callback: BodyResponseCallback<Schema$ListContainerVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Version_headers$List
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>
+    ): void | GaxiosPromise<Schema$ListContainerVersionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Version_headers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3532,33 +3709,39 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/version_headers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/version_headers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListContainerVersionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListContainerVersionsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Accounts$Containers$Version_headers$Latest
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Container's API relative path. Example:
@@ -3567,11 +3750,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Version_headers$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Also retrieve deleted (archived) versions when true.
@@ -3588,11 +3771,9 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
 
-
   export class Resource$Accounts$Containers$Workspaces {
     context: APIRequestContext;
-    built_in_variables:
-        Resource$Accounts$Containers$Workspaces$Built_in_variables;
+    built_in_variables: Resource$Accounts$Containers$Workspaces$Built_in_variables;
     folders: Resource$Accounts$Containers$Workspaces$Folders;
     tags: Resource$Accounts$Containers$Workspaces$Tags;
     triggers: Resource$Accounts$Containers$Workspaces$Triggers;
@@ -3600,21 +3781,25 @@ export namespace tagmanager_v2 {
     zones: Resource$Accounts$Containers$Workspaces$Zones;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.built_in_variables =
-          new Resource$Accounts$Containers$Workspaces$Built_in_variables(
-              this.context);
-      this.folders =
-          new Resource$Accounts$Containers$Workspaces$Folders(this.context);
-      this.tags =
-          new Resource$Accounts$Containers$Workspaces$Tags(this.context);
-      this.triggers =
-          new Resource$Accounts$Containers$Workspaces$Triggers(this.context);
-      this.variables =
-          new Resource$Accounts$Containers$Workspaces$Variables(this.context);
-      this.zones =
-          new Resource$Accounts$Containers$Workspaces$Zones(this.context);
+      this.built_in_variables = new Resource$Accounts$Containers$Workspaces$Built_in_variables(
+        this.context
+      );
+      this.folders = new Resource$Accounts$Containers$Workspaces$Folders(
+        this.context
+      );
+      this.tags = new Resource$Accounts$Containers$Workspaces$Tags(
+        this.context
+      );
+      this.triggers = new Resource$Accounts$Containers$Workspaces$Triggers(
+        this.context
+      );
+      this.variables = new Resource$Accounts$Containers$Workspaces$Variables(
+        this.context
+      );
+      this.zones = new Resource$Accounts$Containers$Workspaces$Zones(
+        this.context
+      );
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.create
@@ -3630,26 +3815,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Workspace>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Workspace>;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Workspace>,
-        callback: BodyResponseCallback<Schema$Workspace>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Workspace>,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Create,
-        callback: BodyResponseCallback<Schema$Workspace>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Create,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Workspace>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Create|
-        BodyResponseCallback<Schema$Workspace>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Workspace>,
-        callback?: BodyResponseCallback<Schema$Workspace>):
-        void|GaxiosPromise<Schema$Workspace> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Create
+        | BodyResponseCallback<Schema$Workspace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Workspace>,
+      callback?: BodyResponseCallback<Schema$Workspace>
+    ): void | GaxiosPromise<Schema$Workspace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3666,16 +3855,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/workspaces')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/workspaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Workspace>(parameters, callback);
@@ -3683,7 +3875,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Workspace>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.create_version
@@ -3701,38 +3892,39 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create_version(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Create_version,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CreateContainerVersionResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Create_version,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateContainerVersionResponse>;
     create_version(
-        params: Params$Resource$Accounts$Containers$Workspaces$Create_version,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreateContainerVersionResponse>,
-        callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Create_version,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+      callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>
+    ): void;
     create_version(
-        params: Params$Resource$Accounts$Containers$Workspaces$Create_version,
-        callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Create_version,
+      callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>
+    ): void;
     create_version(
-        callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$CreateContainerVersionResponse>
+    ): void;
     create_version(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Create_version|
-        BodyResponseCallback<Schema$CreateContainerVersionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreateContainerVersionResponse>,
-        callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
-        void|GaxiosPromise<Schema$CreateContainerVersionResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Create_version;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Create_version
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+      callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>
+    ): void | GaxiosPromise<Schema$CreateContainerVersionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Create_version;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Create_version;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Create_version;
         options = {};
       }
 
@@ -3744,26 +3936,31 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:create_version')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:create_version').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreateContainerVersionResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreateContainerVersionResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.delete
@@ -3778,24 +3975,28 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3812,16 +4013,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3829,7 +4033,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.get
@@ -3843,22 +4046,31 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Workspaces$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Workspace>;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Workspace>,
-        callback: BodyResponseCallback<Schema$Workspace>): void;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Get,
-        callback: BodyResponseCallback<Schema$Workspace>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Workspace>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Workspace>,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Get,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Workspace>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Containers$Workspaces$Get|
-        BodyResponseCallback<Schema$Workspace>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Workspace>,
-        callback?: BodyResponseCallback<Schema$Workspace>):
-        void|GaxiosPromise<Schema$Workspace> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Get
+        | BodyResponseCallback<Schema$Workspace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Workspace>,
+      callback?: BodyResponseCallback<Schema$Workspace>
+    ): void | GaxiosPromise<Schema$Workspace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3875,16 +4087,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Workspace>(parameters, callback);
@@ -3892,7 +4107,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Workspace>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.getStatus
@@ -3907,32 +4121,34 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     getStatus(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetWorkspaceStatusResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetWorkspaceStatusResponse>;
     getStatus(
-        params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
-        callback: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
+      callback: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
+    ): void;
     getStatus(
-        params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
-        callback: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>):
-        void;
-    getStatus(callback:
-                  BodyResponseCallback<Schema$GetWorkspaceStatusResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
+      callback: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
+    ): void;
     getStatus(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Getstatus|
-        BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
-        callback?: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>):
-        void|GaxiosPromise<Schema$GetWorkspaceStatusResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Getstatus;
+      callback: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
+    ): void;
+    getStatus(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Getstatus
+        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
+      callback?: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
+    ): void | GaxiosPromise<Schema$GetWorkspaceStatusResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Getstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3949,25 +4165,29 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}/status')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}/status').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetWorkspaceStatusResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetWorkspaceStatusResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.list
@@ -3983,26 +4203,32 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Workspaces$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListWorkspacesResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkspacesResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListWorkspacesResponse>,
-        callback: BodyResponseCallback<Schema$ListWorkspacesResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkspacesResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$List,
-        callback: BodyResponseCallback<Schema$ListWorkspacesResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$List,
+      callback: BodyResponseCallback<Schema$ListWorkspacesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListWorkspacesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Workspaces$List|
-        BodyResponseCallback<Schema$ListWorkspacesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListWorkspacesResponse>,
-        callback?: BodyResponseCallback<Schema$ListWorkspacesResponse>):
-        void|GaxiosPromise<Schema$ListWorkspacesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$List
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+      callback?: BodyResponseCallback<Schema$ListWorkspacesResponse>
+    ): void | GaxiosPromise<Schema$ListWorkspacesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4019,16 +4245,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/workspaces')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/workspaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkspacesResponse>(parameters, callback);
@@ -4036,7 +4265,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListWorkspacesResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.quick_preview
@@ -4052,34 +4280,39 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     quick_preview(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
-        options?: MethodOptions): GaxiosPromise<Schema$QuickPreviewResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QuickPreviewResponse>;
     quick_preview(
-        params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$QuickPreviewResponse>,
-        callback: BodyResponseCallback<Schema$QuickPreviewResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QuickPreviewResponse>,
+      callback: BodyResponseCallback<Schema$QuickPreviewResponse>
+    ): void;
     quick_preview(
-        params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
-        callback: BodyResponseCallback<Schema$QuickPreviewResponse>): void;
-    quick_preview(callback: BodyResponseCallback<Schema$QuickPreviewResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
+      callback: BodyResponseCallback<Schema$QuickPreviewResponse>
+    ): void;
     quick_preview(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Quick_preview|
-        BodyResponseCallback<Schema$QuickPreviewResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QuickPreviewResponse>,
-        callback?: BodyResponseCallback<Schema$QuickPreviewResponse>):
-        void|GaxiosPromise<Schema$QuickPreviewResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Quick_preview;
+      callback: BodyResponseCallback<Schema$QuickPreviewResponse>
+    ): void;
+    quick_preview(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Quick_preview
+        | BodyResponseCallback<Schema$QuickPreviewResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QuickPreviewResponse>,
+      callback?: BodyResponseCallback<Schema$QuickPreviewResponse>
+    ): void | GaxiosPromise<Schema$QuickPreviewResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Quick_preview;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Quick_preview;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Quick_preview;
         options = {};
       }
 
@@ -4091,16 +4324,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:quick_preview')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:quick_preview').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QuickPreviewResponse>(parameters, callback);
@@ -4108,7 +4344,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$QuickPreviewResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.resolve_conflict
@@ -4126,31 +4361,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     resolve_conflict(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     resolve_conflict(
-        params: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     resolve_conflict(
-        params: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict,
+      callback: BodyResponseCallback<void>
+    ): void;
     resolve_conflict(callback: BodyResponseCallback<void>): void;
     resolve_conflict(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict;
         options = {};
       }
 
@@ -4162,16 +4399,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:resolve_conflict')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:resolve_conflict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4179,7 +4419,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.sync
@@ -4196,26 +4435,32 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     sync(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Sync,
-        options?: MethodOptions): GaxiosPromise<Schema$SyncWorkspaceResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Sync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SyncWorkspaceResponse>;
     sync(
-        params: Params$Resource$Accounts$Containers$Workspaces$Sync,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SyncWorkspaceResponse>,
-        callback: BodyResponseCallback<Schema$SyncWorkspaceResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Sync,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SyncWorkspaceResponse>,
+      callback: BodyResponseCallback<Schema$SyncWorkspaceResponse>
+    ): void;
     sync(
-        params: Params$Resource$Accounts$Containers$Workspaces$Sync,
-        callback: BodyResponseCallback<Schema$SyncWorkspaceResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Sync,
+      callback: BodyResponseCallback<Schema$SyncWorkspaceResponse>
+    ): void;
     sync(callback: BodyResponseCallback<Schema$SyncWorkspaceResponse>): void;
     sync(
-        paramsOrCallback?: Params$Resource$Accounts$Containers$Workspaces$Sync|
-        BodyResponseCallback<Schema$SyncWorkspaceResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SyncWorkspaceResponse>,
-        callback?: BodyResponseCallback<Schema$SyncWorkspaceResponse>):
-        void|GaxiosPromise<Schema$SyncWorkspaceResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Sync;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Sync
+        | BodyResponseCallback<Schema$SyncWorkspaceResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SyncWorkspaceResponse>,
+      callback?: BodyResponseCallback<Schema$SyncWorkspaceResponse>
+    ): void | GaxiosPromise<Schema$SyncWorkspaceResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4232,16 +4477,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:sync')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:sync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SyncWorkspaceResponse>(parameters, callback);
@@ -4249,7 +4497,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$SyncWorkspaceResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.update
@@ -4266,26 +4513,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Workspace>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Workspace>;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Workspace>,
-        callback: BodyResponseCallback<Schema$Workspace>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Workspace>,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Update,
-        callback: BodyResponseCallback<Schema$Workspace>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Update,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Workspace>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Update|
-        BodyResponseCallback<Schema$Workspace>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Workspace>,
-        callback?: BodyResponseCallback<Schema$Workspace>):
-        void|GaxiosPromise<Schema$Workspace> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Update
+        | BodyResponseCallback<Schema$Workspace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Workspace>,
+      callback?: BodyResponseCallback<Schema$Workspace>
+    ): void | GaxiosPromise<Schema$Workspace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4302,16 +4553,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Workspace>(parameters, callback);
@@ -4321,12 +4575,12 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Create extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM parent Container's API relative path. Example:
@@ -4340,11 +4594,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Workspace;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Create_version
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -4357,12 +4611,12 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$CreateContainerVersionRequestVersionOptions;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -4370,12 +4624,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -4384,11 +4638,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -4396,12 +4650,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -4414,11 +4668,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -4427,11 +4681,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -4449,12 +4703,12 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Entity;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Sync extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Sync
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -4462,12 +4716,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -4492,7 +4746,6 @@ export namespace tagmanager_v2 {
       this.context = context;
     }
 
-
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.create
      * @desc Creates one or more GTM Built-In Variables.
@@ -4508,41 +4761,39 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CreateBuiltInVariableResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateBuiltInVariableResponse>;
     create(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
-        callback: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
+      callback: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
+    ): void;
     create(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
-        callback: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>):
-        void;
-    create(callback:
-               BodyResponseCallback<Schema$CreateBuiltInVariableResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create,
+      callback: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
+    ): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create|
-        BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
-        callback?: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>):
-        void|GaxiosPromise<Schema$CreateBuiltInVariableResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create;
+      callback: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
+        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateBuiltInVariableResponse>,
+      callback?: BodyResponseCallback<Schema$CreateBuiltInVariableResponse>
+    ): void | GaxiosPromise<Schema$CreateBuiltInVariableResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create;
         options = {};
       }
 
@@ -4554,26 +4805,30 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/built_in_variables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+parent}/built_in_variables'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreateBuiltInVariableResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreateBuiltInVariableResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.delete
@@ -4590,33 +4845,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete;
         options = {};
       }
 
@@ -4628,16 +4883,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4645,7 +4903,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.list
@@ -4661,44 +4918,41 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListEnabledBuiltInVariablesResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEnabledBuiltInVariablesResponse>;
     list(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
-        callback:
-            BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
+      callback: BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
-        callback:
-            BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List,
+      callback: BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List|
-        BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>):
-        void|GaxiosPromise<Schema$ListEnabledBuiltInVariablesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List;
+      callback: BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
+        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnabledBuiltInVariablesResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ListEnabledBuiltInVariablesResponse
+      >
+    ): void | GaxiosPromise<Schema$ListEnabledBuiltInVariablesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List;
         options = {};
       }
 
@@ -4710,26 +4964,30 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/built_in_variables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+parent}/built_in_variables'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListEnabledBuiltInVariablesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListEnabledBuiltInVariablesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.built_in_variables.revert
@@ -4746,41 +5004,39 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RevertBuiltInVariableResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertBuiltInVariableResponse>;
     revert(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
-        callback: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
+      callback: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
+    ): void;
     revert(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
-        callback: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>):
-        void;
-    revert(callback:
-               BodyResponseCallback<Schema$RevertBuiltInVariableResponse>):
-        void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert,
+      callback: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
+    ): void;
     revert(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert|
-        BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
-        callback?: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>):
-        void|GaxiosPromise<Schema$RevertBuiltInVariableResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert;
+      callback: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
+    ): void;
+    revert(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
+        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertBuiltInVariableResponse>,
+      callback?: BodyResponseCallback<Schema$RevertBuiltInVariableResponse>
+    ): void | GaxiosPromise<Schema$RevertBuiltInVariableResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert;
         options = {};
       }
 
@@ -4792,34 +5048,38 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/tagmanager/v2/{+path}/built_in_variables:revert')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+path}/built_in_variables:revert'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevertBuiltInVariableResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$RevertBuiltInVariableResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -4832,11 +5092,11 @@ export namespace tagmanager_v2 {
     type?: string[];
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM BuiltInVariable's API relative path. Example:
@@ -4849,11 +5109,11 @@ export namespace tagmanager_v2 {
     type?: string[];
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -4866,11 +5126,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM BuiltInVariable's API relative path. Example:
@@ -4883,13 +5143,11 @@ export namespace tagmanager_v2 {
     type?: string;
   }
 
-
   export class Resource$Accounts$Containers$Workspaces$Folders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.create
@@ -4905,31 +5163,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Create,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Folder>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Create|
-        BodyResponseCallback<Schema$Folder>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>):
-        void|GaxiosPromise<Schema$Folder> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$Create
+        | BodyResponseCallback<Schema$Folder>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>
+    ): void | GaxiosPromise<Schema$Folder> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Create;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Create;
         options = {};
       }
 
@@ -4941,16 +5201,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/folders')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/folders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -4958,7 +5221,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Folder>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.delete
@@ -4973,30 +5235,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Delete;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Delete;
         options = {};
       }
 
@@ -5008,16 +5273,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5025,7 +5293,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.entities
@@ -5041,33 +5308,35 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     entities(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
-        options?: MethodOptions): GaxiosPromise<Schema$FolderEntities>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FolderEntities>;
     entities(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
-        options: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
-        callback: BodyResponseCallback<Schema$FolderEntities>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
+      options: MethodOptions | BodyResponseCallback<Schema$FolderEntities>,
+      callback: BodyResponseCallback<Schema$FolderEntities>
+    ): void;
     entities(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
-        callback: BodyResponseCallback<Schema$FolderEntities>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Entities,
+      callback: BodyResponseCallback<Schema$FolderEntities>
+    ): void;
     entities(callback: BodyResponseCallback<Schema$FolderEntities>): void;
     entities(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Entities|
-        BodyResponseCallback<Schema$FolderEntities>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FolderEntities>,
-        callback?: BodyResponseCallback<Schema$FolderEntities>):
-        void|GaxiosPromise<Schema$FolderEntities> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$Entities;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$Entities
+        | BodyResponseCallback<Schema$FolderEntities>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FolderEntities>,
+      callback?: BodyResponseCallback<Schema$FolderEntities>
+    ): void | GaxiosPromise<Schema$FolderEntities> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Entities;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Entities;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Entities;
         options = {};
       }
 
@@ -5079,16 +5348,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:entities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:entities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FolderEntities>(parameters, callback);
@@ -5096,7 +5368,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$FolderEntities>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.get
@@ -5110,28 +5381,34 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback: BodyResponseCallback<Schema$Folder>): void;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Get,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Folder>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Get|
-        BodyResponseCallback<Schema$Folder>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>):
-        void|GaxiosPromise<Schema$Folder> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$Get
+        | BodyResponseCallback<Schema$Folder>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>
+    ): void | GaxiosPromise<Schema$Folder> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Get;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Get;
         options = {};
       }
 
@@ -5143,16 +5420,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -5160,7 +5440,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Folder>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.list
@@ -5176,32 +5455,35 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListFoldersResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFoldersResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
-        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListFoldersResponse>,
+      callback: BodyResponseCallback<Schema$ListFoldersResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
-        callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$List,
+      callback: BodyResponseCallback<Schema$ListFoldersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListFoldersResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$List|
-        BodyResponseCallback<Schema$ListFoldersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFoldersResponse>,
-        callback?: BodyResponseCallback<Schema$ListFoldersResponse>):
-        void|GaxiosPromise<Schema$ListFoldersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$List
+        | BodyResponseCallback<Schema$ListFoldersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFoldersResponse>,
+      callback?: BodyResponseCallback<Schema$ListFoldersResponse>
+    ): void | GaxiosPromise<Schema$ListFoldersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$List;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$List;
         options = {};
       }
 
@@ -5213,16 +5495,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/folders')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/folders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -5230,7 +5515,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListFoldersResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder
@@ -5250,33 +5534,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     move_entities_to_folder(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     move_entities_to_folder(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     move_entities_to_folder(
-        params:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder,
+      callback: BodyResponseCallback<void>
+    ): void;
     move_entities_to_folder(callback: BodyResponseCallback<void>): void;
     move_entities_to_folder(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder;
         options = {};
       }
 
@@ -5288,16 +5572,18 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:move_entities_to_folder')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+path}:move_entities_to_folder'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5305,7 +5591,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.revert
@@ -5321,33 +5606,37 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
-        options?: MethodOptions): GaxiosPromise<Schema$RevertFolderResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertFolderResponse>;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RevertFolderResponse>,
-        callback: BodyResponseCallback<Schema$RevertFolderResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertFolderResponse>,
+      callback: BodyResponseCallback<Schema$RevertFolderResponse>
+    ): void;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
-        callback: BodyResponseCallback<Schema$RevertFolderResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
+      callback: BodyResponseCallback<Schema$RevertFolderResponse>
+    ): void;
     revert(callback: BodyResponseCallback<Schema$RevertFolderResponse>): void;
     revert(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Revert|
-        BodyResponseCallback<Schema$RevertFolderResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevertFolderResponse>,
-        callback?: BodyResponseCallback<Schema$RevertFolderResponse>):
-        void|GaxiosPromise<Schema$RevertFolderResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$Revert;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$Revert
+        | BodyResponseCallback<Schema$RevertFolderResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertFolderResponse>,
+      callback?: BodyResponseCallback<Schema$RevertFolderResponse>
+    ): void | GaxiosPromise<Schema$RevertFolderResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Revert;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Revert;
         options = {};
       }
 
@@ -5359,16 +5648,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:revert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevertFolderResponse>(parameters, callback);
@@ -5376,7 +5668,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$RevertFolderResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.folders.update
@@ -5393,31 +5684,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Folder>;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
-        callback: BodyResponseCallback<Schema$Folder>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Folders$Update,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Folder>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Update|
-        BodyResponseCallback<Schema$Folder>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
-        callback?: BodyResponseCallback<Schema$Folder>):
-        void|GaxiosPromise<Schema$Folder> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Folders$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Folders$Update
+        | BodyResponseCallback<Schema$Folder>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>
+    ): void | GaxiosPromise<Schema$Folder> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Folders$Update;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Update;
         options = {};
       }
 
@@ -5429,16 +5722,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -5449,11 +5745,11 @@ export namespace tagmanager_v2 {
   }
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -5467,11 +5763,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Folder;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Folder's API relative path. Example:
@@ -5480,11 +5776,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -5497,11 +5793,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Folder's API relative path. Example:
@@ -5510,11 +5806,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -5527,11 +5823,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Folder's API relative path. Example:
@@ -5557,11 +5853,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Folder;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the tag in
@@ -5575,11 +5871,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the folder
@@ -5598,13 +5894,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Folder;
   }
 
-
   export class Resource$Accounts$Containers$Workspaces$Tags {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.tags.create
@@ -5620,31 +5914,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Tag>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Tag>;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback: BodyResponseCallback<Schema$Tag>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Tag>,
+      callback: BodyResponseCallback<Schema$Tag>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
-        callback: BodyResponseCallback<Schema$Tag>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Create,
+      callback: BodyResponseCallback<Schema$Tag>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Tag>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Create|
-        BodyResponseCallback<Schema$Tag>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback?: BodyResponseCallback<Schema$Tag>):
-        void|GaxiosPromise<Schema$Tag> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Tags$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Tags$Create
+        | BodyResponseCallback<Schema$Tag>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>
+    ): void | GaxiosPromise<Schema$Tag> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Create;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Create;
         options = {};
       }
 
@@ -5656,16 +5952,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/tags')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/tags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -5673,7 +5972,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Tag>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.tags.delete
@@ -5688,30 +5986,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Tags$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Delete;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Delete;
         options = {};
       }
 
@@ -5723,16 +6024,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5740,7 +6044,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.tags.get
@@ -5754,22 +6057,29 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Tag>;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback: BodyResponseCallback<Schema$Tag>): void;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
-        callback: BodyResponseCallback<Schema$Tag>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Tag>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Tag>,
+      callback: BodyResponseCallback<Schema$Tag>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Get,
+      callback: BodyResponseCallback<Schema$Tag>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Tag>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Get|
-        BodyResponseCallback<Schema$Tag>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback?: BodyResponseCallback<Schema$Tag>):
-        void|GaxiosPromise<Schema$Tag> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Tags$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Tags$Get
+        | BodyResponseCallback<Schema$Tag>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>
+    ): void | GaxiosPromise<Schema$Tag> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5786,16 +6096,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -5803,7 +6116,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Tag>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.tags.list
@@ -5819,26 +6131,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTagsResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTagsResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
-        callback: BodyResponseCallback<Schema$ListTagsResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListTagsResponse>,
+      callback: BodyResponseCallback<Schema$ListTagsResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
-        callback: BodyResponseCallback<Schema$ListTagsResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$List,
+      callback: BodyResponseCallback<Schema$ListTagsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTagsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Tags$List|
-        BodyResponseCallback<Schema$ListTagsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTagsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTagsResponse>):
-        void|GaxiosPromise<Schema$ListTagsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Tags$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Tags$List
+        | BodyResponseCallback<Schema$ListTagsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTagsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTagsResponse>
+    ): void | GaxiosPromise<Schema$ListTagsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5855,16 +6171,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/tags')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/tags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTagsResponse>(parameters, callback);
@@ -5872,7 +6191,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListTagsResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.tags.revert
@@ -5888,32 +6206,35 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
-        options?: MethodOptions): GaxiosPromise<Schema$RevertTagResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertTagResponse>;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
-        options: MethodOptions|BodyResponseCallback<Schema$RevertTagResponse>,
-        callback: BodyResponseCallback<Schema$RevertTagResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
+      options: MethodOptions | BodyResponseCallback<Schema$RevertTagResponse>,
+      callback: BodyResponseCallback<Schema$RevertTagResponse>
+    ): void;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
-        callback: BodyResponseCallback<Schema$RevertTagResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Revert,
+      callback: BodyResponseCallback<Schema$RevertTagResponse>
+    ): void;
     revert(callback: BodyResponseCallback<Schema$RevertTagResponse>): void;
     revert(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Revert|
-        BodyResponseCallback<Schema$RevertTagResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevertTagResponse>,
-        callback?: BodyResponseCallback<Schema$RevertTagResponse>):
-        void|GaxiosPromise<Schema$RevertTagResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Tags$Revert;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Tags$Revert
+        | BodyResponseCallback<Schema$RevertTagResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertTagResponse>,
+      callback?: BodyResponseCallback<Schema$RevertTagResponse>
+    ): void | GaxiosPromise<Schema$RevertTagResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Revert;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Revert;
         options = {};
       }
 
@@ -5925,16 +6246,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:revert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevertTagResponse>(parameters, callback);
@@ -5942,7 +6266,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$RevertTagResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.tags.update
@@ -5959,31 +6282,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Tag>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Tag>;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback: BodyResponseCallback<Schema$Tag>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Tag>,
+      callback: BodyResponseCallback<Schema$Tag>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
-        callback: BodyResponseCallback<Schema$Tag>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Tags$Update,
+      callback: BodyResponseCallback<Schema$Tag>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Tag>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Update|
-        BodyResponseCallback<Schema$Tag>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
-        callback?: BodyResponseCallback<Schema$Tag>):
-        void|GaxiosPromise<Schema$Tag> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Tags$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Tags$Update
+        | BodyResponseCallback<Schema$Tag>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>
+    ): void | GaxiosPromise<Schema$Tag> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Tags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Tags$Update;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Update;
         options = {};
       }
 
@@ -5995,16 +6320,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -6015,11 +6343,11 @@ export namespace tagmanager_v2 {
   }
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -6033,11 +6361,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Tag;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Tag's API relative path. Example:
@@ -6046,11 +6374,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Tag's API relative path. Example:
@@ -6059,11 +6387,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -6076,11 +6404,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of thetag in
@@ -6094,11 +6422,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the tag in
@@ -6117,13 +6445,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Tag;
   }
 
-
   export class Resource$Accounts$Containers$Workspaces$Triggers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.triggers.create
@@ -6139,31 +6465,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Trigger>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Trigger>;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback: BodyResponseCallback<Schema$Trigger>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
+      callback: BodyResponseCallback<Schema$Trigger>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
-        callback: BodyResponseCallback<Schema$Trigger>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Create,
+      callback: BodyResponseCallback<Schema$Trigger>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Trigger>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Create|
-        BodyResponseCallback<Schema$Trigger>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback?: BodyResponseCallback<Schema$Trigger>):
-        void|GaxiosPromise<Schema$Trigger> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Triggers$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
+        | BodyResponseCallback<Schema$Trigger>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>
+    ): void | GaxiosPromise<Schema$Trigger> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Create;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Create;
         options = {};
       }
 
@@ -6175,16 +6503,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/triggers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/triggers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -6192,7 +6523,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.triggers.delete
@@ -6207,30 +6537,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete;
         options = {};
       }
 
@@ -6242,16 +6575,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6259,7 +6595,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.triggers.get
@@ -6273,28 +6608,34 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Trigger>;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback: BodyResponseCallback<Schema$Trigger>): void;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
-        callback: BodyResponseCallback<Schema$Trigger>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Trigger>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
+      callback: BodyResponseCallback<Schema$Trigger>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Get,
+      callback: BodyResponseCallback<Schema$Trigger>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Trigger>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Get|
-        BodyResponseCallback<Schema$Trigger>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback?: BodyResponseCallback<Schema$Trigger>):
-        void|GaxiosPromise<Schema$Trigger> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Triggers$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
+        | BodyResponseCallback<Schema$Trigger>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>
+    ): void | GaxiosPromise<Schema$Trigger> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Get;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Get;
         options = {};
       }
 
@@ -6306,16 +6647,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -6323,7 +6667,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.triggers.list
@@ -6339,33 +6682,37 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTriggersResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTriggersResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTriggersResponse>,
-        callback: BodyResponseCallback<Schema$ListTriggersResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTriggersResponse>,
+      callback: BodyResponseCallback<Schema$ListTriggersResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
-        callback: BodyResponseCallback<Schema$ListTriggersResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
+      callback: BodyResponseCallback<Schema$ListTriggersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTriggersResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$List|
-        BodyResponseCallback<Schema$ListTriggersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTriggersResponse>,
-        callback?: BodyResponseCallback<Schema$ListTriggersResponse>):
-        void|GaxiosPromise<Schema$ListTriggersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Triggers$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Triggers$List
+        | BodyResponseCallback<Schema$ListTriggersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTriggersResponse>,
+      callback?: BodyResponseCallback<Schema$ListTriggersResponse>
+    ): void | GaxiosPromise<Schema$ListTriggersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$List;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$List;
         options = {};
       }
 
@@ -6377,16 +6724,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/triggers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/triggers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(parameters, callback);
@@ -6394,7 +6744,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.triggers.revert
@@ -6410,33 +6759,37 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
-        options?: MethodOptions): GaxiosPromise<Schema$RevertTriggerResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertTriggerResponse>;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RevertTriggerResponse>,
-        callback: BodyResponseCallback<Schema$RevertTriggerResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertTriggerResponse>,
+      callback: BodyResponseCallback<Schema$RevertTriggerResponse>
+    ): void;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
-        callback: BodyResponseCallback<Schema$RevertTriggerResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
+      callback: BodyResponseCallback<Schema$RevertTriggerResponse>
+    ): void;
     revert(callback: BodyResponseCallback<Schema$RevertTriggerResponse>): void;
     revert(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert|
-        BodyResponseCallback<Schema$RevertTriggerResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevertTriggerResponse>,
-        callback?: BodyResponseCallback<Schema$RevertTriggerResponse>):
-        void|GaxiosPromise<Schema$RevertTriggerResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert
+        | BodyResponseCallback<Schema$RevertTriggerResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertTriggerResponse>,
+      callback?: BodyResponseCallback<Schema$RevertTriggerResponse>
+    ): void | GaxiosPromise<Schema$RevertTriggerResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert;
         options = {};
       }
 
@@ -6448,16 +6801,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:revert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevertTriggerResponse>(parameters, callback);
@@ -6465,7 +6821,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$RevertTriggerResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.triggers.update
@@ -6482,31 +6837,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Trigger>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Trigger>;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback: BodyResponseCallback<Schema$Trigger>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
+      callback: BodyResponseCallback<Schema$Trigger>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
-        callback: BodyResponseCallback<Schema$Trigger>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Update,
+      callback: BodyResponseCallback<Schema$Trigger>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Trigger>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Update|
-        BodyResponseCallback<Schema$Trigger>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-        callback?: BodyResponseCallback<Schema$Trigger>):
-        void|GaxiosPromise<Schema$Trigger> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Triggers$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Triggers$Update
+        | BodyResponseCallback<Schema$Trigger>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>
+    ): void | GaxiosPromise<Schema$Trigger> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Triggers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Triggers$Update;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Update;
         options = {};
       }
 
@@ -6518,16 +6875,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -6538,11 +6898,11 @@ export namespace tagmanager_v2 {
   }
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspaces's API relative path. Example:
@@ -6556,11 +6916,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Trigger;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Trigger's API relative path. Example:
@@ -6569,11 +6929,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Trigger's API relative path. Example:
@@ -6582,11 +6942,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -6599,11 +6959,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the trigger
@@ -6617,11 +6977,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the trigger
@@ -6640,13 +7000,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Trigger;
   }
 
-
   export class Resource$Accounts$Containers$Workspaces$Variables {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.variables.create
@@ -6662,32 +7020,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Variable>;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback: BodyResponseCallback<Schema$Variable>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Variable>,
+      callback: BodyResponseCallback<Schema$Variable>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
-        callback: BodyResponseCallback<Schema$Variable>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Create,
+      callback: BodyResponseCallback<Schema$Variable>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Variable>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Create|
-        BodyResponseCallback<Schema$Variable>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>):
-        void|GaxiosPromise<Schema$Variable> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Variables$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Variables$Create
+        | BodyResponseCallback<Schema$Variable>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>
+    ): void | GaxiosPromise<Schema$Variable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Create;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Create;
         options = {};
       }
 
@@ -6699,16 +7058,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/variables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/variables').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -6716,7 +7078,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Variable>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.variables.delete
@@ -6731,31 +7092,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Variables$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Delete;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Delete;
         options = {};
       }
 
@@ -6767,16 +7130,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6784,7 +7150,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.variables.get
@@ -6798,28 +7163,34 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback: BodyResponseCallback<Schema$Variable>): void;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
-        callback: BodyResponseCallback<Schema$Variable>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Variable>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Variable>,
+      callback: BodyResponseCallback<Schema$Variable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Get,
+      callback: BodyResponseCallback<Schema$Variable>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Variable>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Get|
-        BodyResponseCallback<Schema$Variable>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>):
-        void|GaxiosPromise<Schema$Variable> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Variables$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Variables$Get
+        | BodyResponseCallback<Schema$Variable>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>
+    ): void | GaxiosPromise<Schema$Variable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Get;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Get;
         options = {};
       }
 
@@ -6831,16 +7202,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -6848,7 +7222,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Variable>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.variables.list
@@ -6864,33 +7237,37 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListVariablesResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListVariablesResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListVariablesResponse>,
-        callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVariablesResponse>,
+      callback: BodyResponseCallback<Schema$ListVariablesResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
-        callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
+      callback: BodyResponseCallback<Schema$ListVariablesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$List|
-        BodyResponseCallback<Schema$ListVariablesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListVariablesResponse>,
-        callback?: BodyResponseCallback<Schema$ListVariablesResponse>):
-        void|GaxiosPromise<Schema$ListVariablesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Variables$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Variables$List
+        | BodyResponseCallback<Schema$ListVariablesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVariablesResponse>,
+      callback?: BodyResponseCallback<Schema$ListVariablesResponse>
+    ): void | GaxiosPromise<Schema$ListVariablesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Variables$List;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$List;
         options = {};
       }
 
@@ -6902,16 +7279,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/variables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/variables').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
@@ -6919,7 +7299,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListVariablesResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.variables.revert
@@ -6935,34 +7314,37 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
-        options?: MethodOptions): GaxiosPromise<Schema$RevertVariableResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertVariableResponse>;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RevertVariableResponse>,
-        callback: BodyResponseCallback<Schema$RevertVariableResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertVariableResponse>,
+      callback: BodyResponseCallback<Schema$RevertVariableResponse>
+    ): void;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
-        callback: BodyResponseCallback<Schema$RevertVariableResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
+      callback: BodyResponseCallback<Schema$RevertVariableResponse>
+    ): void;
     revert(callback: BodyResponseCallback<Schema$RevertVariableResponse>): void;
     revert(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Revert|
-        BodyResponseCallback<Schema$RevertVariableResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevertVariableResponse>,
-        callback?: BodyResponseCallback<Schema$RevertVariableResponse>):
-        void|GaxiosPromise<Schema$RevertVariableResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Variables$Revert;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Variables$Revert
+        | BodyResponseCallback<Schema$RevertVariableResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertVariableResponse>,
+      callback?: BodyResponseCallback<Schema$RevertVariableResponse>
+    ): void | GaxiosPromise<Schema$RevertVariableResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Revert;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Revert;
         options = {};
       }
 
@@ -6974,16 +7356,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:revert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevertVariableResponse>(parameters, callback);
@@ -6991,7 +7376,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$RevertVariableResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.variables.update
@@ -7008,32 +7392,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Variable>;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback: BodyResponseCallback<Schema$Variable>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Variable>,
+      callback: BodyResponseCallback<Schema$Variable>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
-        callback: BodyResponseCallback<Schema$Variable>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Variables$Update,
+      callback: BodyResponseCallback<Schema$Variable>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Variable>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Update|
-        BodyResponseCallback<Schema$Variable>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>):
-        void|GaxiosPromise<Schema$Variable> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Variables$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Variables$Update
+        | BodyResponseCallback<Schema$Variable>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>
+    ): void | GaxiosPromise<Schema$Variable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Variables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Variables$Update;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Update;
         options = {};
       }
 
@@ -7045,16 +7430,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -7065,11 +7453,11 @@ export namespace tagmanager_v2 {
   }
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -7083,11 +7471,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Variable;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Variable's API relative path. Example:
@@ -7096,11 +7484,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Variable's API relative path. Example:
@@ -7109,11 +7497,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -7126,11 +7514,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -7144,11 +7532,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the
@@ -7167,13 +7555,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Variable;
   }
 
-
   export class Resource$Accounts$Containers$Workspaces$Zones {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.zones.create
@@ -7189,31 +7575,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Zone>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Zone>;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Zone>,
-        callback: BodyResponseCallback<Schema$Zone>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Zone>,
+      callback: BodyResponseCallback<Schema$Zone>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
-        callback: BodyResponseCallback<Schema$Zone>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+      callback: BodyResponseCallback<Schema$Zone>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Zone>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Create|
-        BodyResponseCallback<Schema$Zone>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Zone>,
-        callback?: BodyResponseCallback<Schema$Zone>):
-        void|GaxiosPromise<Schema$Zone> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Zones$Create
+        | BodyResponseCallback<Schema$Zone>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Zone>,
+      callback?: BodyResponseCallback<Schema$Zone>
+    ): void | GaxiosPromise<Schema$Zone> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
         options = {};
       }
 
@@ -7225,16 +7613,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/zones')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/zones').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -7242,7 +7633,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Zone>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.zones.delete
@@ -7257,30 +7647,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
         options = {};
       }
 
@@ -7292,16 +7685,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7309,7 +7705,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.zones.get
@@ -7323,22 +7718,29 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Zone>;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Zone>,
-        callback: BodyResponseCallback<Schema$Zone>): void;
-    get(params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
-        callback: BodyResponseCallback<Schema$Zone>): void;
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Zone>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Zone>,
+      callback: BodyResponseCallback<Schema$Zone>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+      callback: BodyResponseCallback<Schema$Zone>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Zone>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Get|
-        BodyResponseCallback<Schema$Zone>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Zone>,
-        callback?: BodyResponseCallback<Schema$Zone>):
-        void|GaxiosPromise<Schema$Zone> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Zones$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Zones$Get
+        | BodyResponseCallback<Schema$Zone>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Zone>,
+      callback?: BodyResponseCallback<Schema$Zone>
+    ): void | GaxiosPromise<Schema$Zone> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7355,16 +7757,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -7372,7 +7777,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Zone>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.zones.list
@@ -7388,32 +7792,35 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListZonesResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListZonesResponse>;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListZonesResponse>,
-        callback: BodyResponseCallback<Schema$ListZonesResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListZonesResponse>,
+      callback: BodyResponseCallback<Schema$ListZonesResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
-        callback: BodyResponseCallback<Schema$ListZonesResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+      callback: BodyResponseCallback<Schema$ListZonesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListZonesResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Zones$List|
-        BodyResponseCallback<Schema$ListZonesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListZonesResponse>,
-        callback?: BodyResponseCallback<Schema$ListZonesResponse>):
-        void|GaxiosPromise<Schema$ListZonesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Zones$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Zones$List
+        | BodyResponseCallback<Schema$ListZonesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListZonesResponse>,
+      callback?: BodyResponseCallback<Schema$ListZonesResponse>
+    ): void | GaxiosPromise<Schema$ListZonesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Zones$List;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$List;
         options = {};
       }
 
@@ -7425,16 +7832,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/zones')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/zones').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListZonesResponse>(parameters, callback);
@@ -7442,7 +7852,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$ListZonesResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.zones.revert
@@ -7458,32 +7867,35 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     revert(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
-        options?: MethodOptions): GaxiosPromise<Schema$RevertZoneResponse>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertZoneResponse>;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
-        options: MethodOptions|BodyResponseCallback<Schema$RevertZoneResponse>,
-        callback: BodyResponseCallback<Schema$RevertZoneResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+      options: MethodOptions | BodyResponseCallback<Schema$RevertZoneResponse>,
+      callback: BodyResponseCallback<Schema$RevertZoneResponse>
+    ): void;
     revert(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
-        callback: BodyResponseCallback<Schema$RevertZoneResponse>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+      callback: BodyResponseCallback<Schema$RevertZoneResponse>
+    ): void;
     revert(callback: BodyResponseCallback<Schema$RevertZoneResponse>): void;
     revert(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Revert|
-        BodyResponseCallback<Schema$RevertZoneResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevertZoneResponse>,
-        callback?: BodyResponseCallback<Schema$RevertZoneResponse>):
-        void|GaxiosPromise<Schema$RevertZoneResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Zones$Revert
+        | BodyResponseCallback<Schema$RevertZoneResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertZoneResponse>,
+      callback?: BodyResponseCallback<Schema$RevertZoneResponse>
+    ): void | GaxiosPromise<Schema$RevertZoneResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
         options = {};
       }
 
@@ -7495,16 +7907,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}:revert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevertZoneResponse>(parameters, callback);
@@ -7512,7 +7927,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$RevertZoneResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.containers.workspaces.zones.update
@@ -7529,31 +7943,33 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Zone>;
+      params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Zone>;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Zone>,
-        callback: BodyResponseCallback<Schema$Zone>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Zone>,
+      callback: BodyResponseCallback<Schema$Zone>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
-        callback: BodyResponseCallback<Schema$Zone>): void;
+      params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+      callback: BodyResponseCallback<Schema$Zone>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Zone>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Update|
-        BodyResponseCallback<Schema$Zone>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Zone>,
-        callback?: BodyResponseCallback<Schema$Zone>):
-        void|GaxiosPromise<Schema$Zone> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Zones$Update
+        | BodyResponseCallback<Schema$Zone>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Zone>,
+      callback?: BodyResponseCallback<Schema$Zone>
+    ): void | GaxiosPromise<Schema$Zone> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
         options = {};
       }
 
@@ -7565,16 +7981,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -7585,11 +8004,11 @@ export namespace tagmanager_v2 {
   }
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Workspace's API relative path. Example:
@@ -7603,11 +8022,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Zone;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Zone's API relative path. Example:
@@ -7616,11 +8035,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Zone's API relative path. Example:
@@ -7629,11 +8048,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -7646,11 +8065,11 @@ export namespace tagmanager_v2 {
     parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Revert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the zone in
@@ -7664,11 +8083,11 @@ export namespace tagmanager_v2 {
     path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When provided, this fingerprint must match the fingerprint of the zone in
@@ -7687,14 +8106,11 @@ export namespace tagmanager_v2 {
     requestBody?: Schema$Zone;
   }
 
-
-
   export class Resource$Accounts$User_permissions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tagmanager.accounts.user_permissions.create
@@ -7710,25 +8126,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$User_permissions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$UserPermission>;
+      params?: Params$Resource$Accounts$User_permissions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserPermission>;
     create(
-        params: Params$Resource$Accounts$User_permissions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$UserPermission>,
-        callback: BodyResponseCallback<Schema$UserPermission>): void;
+      params: Params$Resource$Accounts$User_permissions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$UserPermission>,
+      callback: BodyResponseCallback<Schema$UserPermission>
+    ): void;
     create(
-        params: Params$Resource$Accounts$User_permissions$Create,
-        callback: BodyResponseCallback<Schema$UserPermission>): void;
+      params: Params$Resource$Accounts$User_permissions$Create,
+      callback: BodyResponseCallback<Schema$UserPermission>
+    ): void;
     create(callback: BodyResponseCallback<Schema$UserPermission>): void;
     create(
-        paramsOrCallback?: Params$Resource$Accounts$User_permissions$Create|
-        BodyResponseCallback<Schema$UserPermission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserPermission>,
-        callback?: BodyResponseCallback<Schema$UserPermission>):
-        void|GaxiosPromise<Schema$UserPermission> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$User_permissions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$User_permissions$Create
+        | BodyResponseCallback<Schema$UserPermission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserPermission>,
+      callback?: BodyResponseCallback<Schema$UserPermission>
+    ): void | GaxiosPromise<Schema$UserPermission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$User_permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7745,16 +8166,18 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/user_permissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+parent}/user_permissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserPermission>(parameters, callback);
@@ -7762,7 +8185,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$UserPermission>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.user_permissions.delete
@@ -7778,23 +8200,28 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$User_permissions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Accounts$User_permissions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Accounts$User_permissions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$User_permissions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$User_permissions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Accounts$User_permissions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accounts$User_permissions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$User_permissions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$User_permissions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$User_permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7811,16 +8238,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7828,7 +8258,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.user_permissions.get
@@ -7842,22 +8271,31 @@ export namespace tagmanager_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$User_permissions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UserPermission>;
-    get(params: Params$Resource$Accounts$User_permissions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UserPermission>,
-        callback: BodyResponseCallback<Schema$UserPermission>): void;
-    get(params: Params$Resource$Accounts$User_permissions$Get,
-        callback: BodyResponseCallback<Schema$UserPermission>): void;
+    get(
+      params?: Params$Resource$Accounts$User_permissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserPermission>;
+    get(
+      params: Params$Resource$Accounts$User_permissions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserPermission>,
+      callback: BodyResponseCallback<Schema$UserPermission>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$User_permissions$Get,
+      callback: BodyResponseCallback<Schema$UserPermission>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UserPermission>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$User_permissions$Get|
-        BodyResponseCallback<Schema$UserPermission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserPermission>,
-        callback?: BodyResponseCallback<Schema$UserPermission>):
-        void|GaxiosPromise<Schema$UserPermission> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$User_permissions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$User_permissions$Get
+        | BodyResponseCallback<Schema$UserPermission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserPermission>,
+      callback?: BodyResponseCallback<Schema$UserPermission>
+    ): void | GaxiosPromise<Schema$UserPermission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$User_permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7874,16 +8312,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserPermission>(parameters, callback);
@@ -7891,7 +8332,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$UserPermission>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.user_permissions.list
@@ -7908,30 +8348,34 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$User_permissions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListUserPermissionsResponse>;
+      params?: Params$Resource$Accounts$User_permissions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserPermissionsResponse>;
     list(
-        params: Params$Resource$Accounts$User_permissions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListUserPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$ListUserPermissionsResponse>):
-        void;
+      params: Params$Resource$Accounts$User_permissions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserPermissionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$User_permissions$List,
-        callback: BodyResponseCallback<Schema$ListUserPermissionsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListUserPermissionsResponse>):
-        void;
+      params: Params$Resource$Accounts$User_permissions$List,
+      callback: BodyResponseCallback<Schema$ListUserPermissionsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$User_permissions$List|
-        BodyResponseCallback<Schema$ListUserPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListUserPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListUserPermissionsResponse>):
-        void|GaxiosPromise<Schema$ListUserPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$User_permissions$List;
+      callback: BodyResponseCallback<Schema$ListUserPermissionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$User_permissions$List
+        | BodyResponseCallback<Schema$ListUserPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUserPermissionsResponse>
+    ): void | GaxiosPromise<Schema$ListUserPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$User_permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7948,25 +8392,28 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/user_permissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/tagmanager/v2/{+parent}/user_permissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListUserPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListUserPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * tagmanager.accounts.user_permissions.update
@@ -7982,25 +8429,30 @@ export namespace tagmanager_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$User_permissions$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$UserPermission>;
+      params?: Params$Resource$Accounts$User_permissions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserPermission>;
     update(
-        params: Params$Resource$Accounts$User_permissions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$UserPermission>,
-        callback: BodyResponseCallback<Schema$UserPermission>): void;
+      params: Params$Resource$Accounts$User_permissions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$UserPermission>,
+      callback: BodyResponseCallback<Schema$UserPermission>
+    ): void;
     update(
-        params: Params$Resource$Accounts$User_permissions$Update,
-        callback: BodyResponseCallback<Schema$UserPermission>): void;
+      params: Params$Resource$Accounts$User_permissions$Update,
+      callback: BodyResponseCallback<Schema$UserPermission>
+    ): void;
     update(callback: BodyResponseCallback<Schema$UserPermission>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$User_permissions$Update|
-        BodyResponseCallback<Schema$UserPermission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserPermission>,
-        callback?: BodyResponseCallback<Schema$UserPermission>):
-        void|GaxiosPromise<Schema$UserPermission> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$User_permissions$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$User_permissions$Update
+        | BodyResponseCallback<Schema$UserPermission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserPermission>,
+      callback?: BodyResponseCallback<Schema$UserPermission>
+    ): void | GaxiosPromise<Schema$UserPermission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$User_permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8017,16 +8469,19 @@ export namespace tagmanager_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserPermission>(parameters, callback);
@@ -8036,12 +8491,12 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$User_permissions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM Account's API relative path. Example: accounts/{account_id}
@@ -8053,12 +8508,12 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$UserPermission;
   }
-  export interface Params$Resource$Accounts$User_permissions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM UserPermission's API relative path. Example:
@@ -8066,12 +8521,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM UserPermission's API relative path. Example:
@@ -8079,12 +8534,12 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Continuation token for fetching the next page of results.
@@ -8095,12 +8550,12 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$User_permissions$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * GTM UserPermission's API relative path. Example:

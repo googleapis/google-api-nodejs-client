@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -426,13 +438,11 @@ export namespace surveys_v2 {
     previousPageToken?: string;
   }
 
-
   export class Resource$Results {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * surveys.results.get
@@ -449,20 +459,29 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Results$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SurveyResults>;
-    get(params: Params$Resource$Results$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
-        callback: BodyResponseCallback<Schema$SurveyResults>): void;
-    get(params: Params$Resource$Results$Get,
-        callback: BodyResponseCallback<Schema$SurveyResults>): void;
+    get(
+      params?: Params$Resource$Results$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SurveyResults>;
+    get(
+      params: Params$Resource$Results$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SurveyResults>,
+      callback: BodyResponseCallback<Schema$SurveyResults>
+    ): void;
+    get(
+      params: Params$Resource$Results$Get,
+      callback: BodyResponseCallback<Schema$SurveyResults>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SurveyResults>): void;
-    get(paramsOrCallback?: Params$Resource$Results$Get|
-        BodyResponseCallback<Schema$SurveyResults>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SurveyResults>,
-        callback?: BodyResponseCallback<Schema$SurveyResults>):
-        void|GaxiosPromise<Schema$SurveyResults> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Results$Get
+        | BodyResponseCallback<Schema$SurveyResults>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SurveyResults>,
+      callback?: BodyResponseCallback<Schema$SurveyResults>
+    ): void | GaxiosPromise<Schema$SurveyResults> {
       let params = (paramsOrCallback || {}) as Params$Resource$Results$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -480,16 +499,18 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}/results')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/surveys/v2/surveys/{surveyUrlId}/results'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SurveyResults>(parameters, callback);
@@ -503,7 +524,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * External URL ID for the survey.
@@ -516,13 +537,11 @@ export namespace surveys_v2 {
     requestBody?: Schema$ResultsGetRequest;
   }
 
-
   export class Resource$Surveys {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * surveys.surveys.delete
@@ -536,24 +555,31 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Surveys$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$SurveysDeleteResponse>;
     delete(
-        params: Params$Resource$Surveys$Delete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SurveysDeleteResponse>,
-        callback: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
+      params?: Params$Resource$Surveys$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SurveysDeleteResponse>;
     delete(
-        params: Params$Resource$Surveys$Delete,
-        callback: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
+      params: Params$Resource$Surveys$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SurveysDeleteResponse>,
+      callback: BodyResponseCallback<Schema$SurveysDeleteResponse>
+    ): void;
+    delete(
+      params: Params$Resource$Surveys$Delete,
+      callback: BodyResponseCallback<Schema$SurveysDeleteResponse>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Surveys$Delete|
-        BodyResponseCallback<Schema$SurveysDeleteResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SurveysDeleteResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>):
-        void|GaxiosPromise<Schema$SurveysDeleteResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Surveys$Delete
+        | BodyResponseCallback<Schema$SurveysDeleteResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SurveysDeleteResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>
+    ): void | GaxiosPromise<Schema$SurveysDeleteResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -571,16 +597,19 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SurveysDeleteResponse>(parameters, callback);
@@ -588,7 +617,6 @@ export namespace surveys_v2 {
         return createAPIRequest<Schema$SurveysDeleteResponse>(parameters);
       }
     }
-
 
     /**
      * surveys.surveys.get
@@ -602,19 +630,27 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Surveys$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Survey>;
-    get(params: Params$Resource$Surveys$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback: BodyResponseCallback<Schema$Survey>): void;
-    get(params: Params$Resource$Surveys$Get,
-        callback: BodyResponseCallback<Schema$Survey>): void;
+    get(
+      params?: Params$Resource$Surveys$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Survey>;
+    get(
+      params: Params$Resource$Surveys$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Survey>,
+      callback: BodyResponseCallback<Schema$Survey>
+    ): void;
+    get(
+      params: Params$Resource$Surveys$Get,
+      callback: BodyResponseCallback<Schema$Survey>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Survey>): void;
-    get(paramsOrCallback?: Params$Resource$Surveys$Get|
-        BodyResponseCallback<Schema$Survey>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback?: BodyResponseCallback<Schema$Survey>):
-        void|GaxiosPromise<Schema$Survey> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Surveys$Get
+        | BodyResponseCallback<Schema$Survey>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>
+    ): void | GaxiosPromise<Schema$Survey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -632,16 +668,19 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -649,7 +688,6 @@ export namespace surveys_v2 {
         return createAPIRequest<Schema$Survey>(parameters);
       }
     }
-
 
     /**
      * surveys.surveys.insert
@@ -663,22 +701,27 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Surveys$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Survey>;
     insert(
-        params: Params$Resource$Surveys$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback: BodyResponseCallback<Schema$Survey>): void;
+      params?: Params$Resource$Surveys$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Survey>;
     insert(
-        params: Params$Resource$Surveys$Insert,
-        callback: BodyResponseCallback<Schema$Survey>): void;
+      params: Params$Resource$Surveys$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Survey>,
+      callback: BodyResponseCallback<Schema$Survey>
+    ): void;
+    insert(
+      params: Params$Resource$Surveys$Insert,
+      callback: BodyResponseCallback<Schema$Survey>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Survey>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Surveys$Insert|
-        BodyResponseCallback<Schema$Survey>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback?: BodyResponseCallback<Schema$Survey>):
-        void|GaxiosPromise<Schema$Survey> {
+      paramsOrCallback?:
+        | Params$Resource$Surveys$Insert
+        | BodyResponseCallback<Schema$Survey>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>
+    ): void | GaxiosPromise<Schema$Survey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -696,16 +739,19 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/surveys/v2/surveys').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -713,7 +759,6 @@ export namespace surveys_v2 {
         return createAPIRequest<Schema$Survey>(parameters);
       }
     }
-
 
     /**
      * surveys.surveys.list
@@ -729,23 +774,29 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Surveys$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SurveysListResponse>;
     list(
-        params: Params$Resource$Surveys$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SurveysListResponse>,
-        callback: BodyResponseCallback<Schema$SurveysListResponse>): void;
+      params?: Params$Resource$Surveys$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SurveysListResponse>;
     list(
-        params: Params$Resource$Surveys$List,
-        callback: BodyResponseCallback<Schema$SurveysListResponse>): void;
+      params: Params$Resource$Surveys$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SurveysListResponse>,
+      callback: BodyResponseCallback<Schema$SurveysListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Surveys$List,
+      callback: BodyResponseCallback<Schema$SurveysListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SurveysListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Surveys$List|
-        BodyResponseCallback<Schema$SurveysListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SurveysListResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysListResponse>):
-        void|GaxiosPromise<Schema$SurveysListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Surveys$List
+        | BodyResponseCallback<Schema$SurveysListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SurveysListResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysListResponse>
+    ): void | GaxiosPromise<Schema$SurveysListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -763,16 +814,19 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/surveys/v2/surveys').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SurveysListResponse>(parameters, callback);
@@ -780,7 +834,6 @@ export namespace surveys_v2 {
         return createAPIRequest<Schema$SurveysListResponse>(parameters);
       }
     }
-
 
     /**
      * surveys.surveys.start
@@ -795,24 +848,31 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start(params?: Params$Resource$Surveys$Start, options?: MethodOptions):
-        GaxiosPromise<Schema$SurveysStartResponse>;
     start(
-        params: Params$Resource$Surveys$Start,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SurveysStartResponse>,
-        callback: BodyResponseCallback<Schema$SurveysStartResponse>): void;
+      params?: Params$Resource$Surveys$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SurveysStartResponse>;
     start(
-        params: Params$Resource$Surveys$Start,
-        callback: BodyResponseCallback<Schema$SurveysStartResponse>): void;
+      params: Params$Resource$Surveys$Start,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SurveysStartResponse>,
+      callback: BodyResponseCallback<Schema$SurveysStartResponse>
+    ): void;
+    start(
+      params: Params$Resource$Surveys$Start,
+      callback: BodyResponseCallback<Schema$SurveysStartResponse>
+    ): void;
     start(callback: BodyResponseCallback<Schema$SurveysStartResponse>): void;
     start(
-        paramsOrCallback?: Params$Resource$Surveys$Start|
-        BodyResponseCallback<Schema$SurveysStartResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SurveysStartResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysStartResponse>):
-        void|GaxiosPromise<Schema$SurveysStartResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Surveys$Start
+        | BodyResponseCallback<Schema$SurveysStartResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SurveysStartResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysStartResponse>
+    ): void | GaxiosPromise<Schema$SurveysStartResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -830,16 +890,19 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys/{resourceId}/start')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{resourceId}/start').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStartResponse>(parameters, callback);
@@ -847,7 +910,6 @@ export namespace surveys_v2 {
         return createAPIRequest<Schema$SurveysStartResponse>(parameters);
       }
     }
-
 
     /**
      * surveys.surveys.stop
@@ -861,23 +923,29 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Surveys$Stop, options?: MethodOptions):
-        GaxiosPromise<Schema$SurveysStopResponse>;
     stop(
-        params: Params$Resource$Surveys$Stop,
-        options: MethodOptions|BodyResponseCallback<Schema$SurveysStopResponse>,
-        callback: BodyResponseCallback<Schema$SurveysStopResponse>): void;
+      params?: Params$Resource$Surveys$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SurveysStopResponse>;
     stop(
-        params: Params$Resource$Surveys$Stop,
-        callback: BodyResponseCallback<Schema$SurveysStopResponse>): void;
+      params: Params$Resource$Surveys$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$SurveysStopResponse>,
+      callback: BodyResponseCallback<Schema$SurveysStopResponse>
+    ): void;
+    stop(
+      params: Params$Resource$Surveys$Stop,
+      callback: BodyResponseCallback<Schema$SurveysStopResponse>
+    ): void;
     stop(callback: BodyResponseCallback<Schema$SurveysStopResponse>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Surveys$Stop|
-        BodyResponseCallback<Schema$SurveysStopResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SurveysStopResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysStopResponse>):
-        void|GaxiosPromise<Schema$SurveysStopResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Surveys$Stop
+        | BodyResponseCallback<Schema$SurveysStopResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SurveysStopResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysStopResponse>
+    ): void | GaxiosPromise<Schema$SurveysStopResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -895,16 +963,19 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys/{resourceId}/stop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{resourceId}/stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStopResponse>(parameters, callback);
@@ -912,7 +983,6 @@ export namespace surveys_v2 {
         return createAPIRequest<Schema$SurveysStopResponse>(parameters);
       }
     }
-
 
     /**
      * surveys.surveys.update
@@ -928,22 +998,27 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Surveys$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Survey>;
     update(
-        params: Params$Resource$Surveys$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback: BodyResponseCallback<Schema$Survey>): void;
+      params?: Params$Resource$Surveys$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Survey>;
     update(
-        params: Params$Resource$Surveys$Update,
-        callback: BodyResponseCallback<Schema$Survey>): void;
+      params: Params$Resource$Surveys$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Survey>,
+      callback: BodyResponseCallback<Schema$Survey>
+    ): void;
+    update(
+      params: Params$Resource$Surveys$Update,
+      callback: BodyResponseCallback<Schema$Survey>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Survey>): void;
     update(
-        paramsOrCallback?: Params$Resource$Surveys$Update|
-        BodyResponseCallback<Schema$Survey>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback?: BodyResponseCallback<Schema$Survey>):
-        void|GaxiosPromise<Schema$Survey> {
+      paramsOrCallback?:
+        | Params$Resource$Surveys$Update
+        | BodyResponseCallback<Schema$Survey>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>
+    ): void | GaxiosPromise<Schema$Survey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -961,16 +1036,19 @@ export namespace surveys_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -984,7 +1062,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * External URL ID for the survey.
@@ -995,7 +1073,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * External URL ID for the survey.
@@ -1006,8 +1084,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1018,7 +1095,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      *
@@ -1037,7 +1114,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      *
@@ -1053,7 +1130,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      *
@@ -1064,7 +1141,7 @@ export namespace surveys_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * External URL ID for the survey.

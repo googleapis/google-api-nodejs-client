@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -378,7 +390,7 @@ export namespace bigquerydatatransfer_v1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -387,7 +399,7 @@ export namespace bigquerydatatransfer_v1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -513,7 +525,7 @@ export namespace bigquerydatatransfer_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -596,7 +608,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Data transfer specific parameters.
      */
-    params?: {[key: string]: any;};
+    params?: {[key: string]: any};
     /**
      * Data transfer schedule. If the data source does not support a custom
      * schedule, this should be empty. If it is empty, the default value for the
@@ -672,7 +684,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. Data transfer specific parameters.
      */
-    params?: {[key: string]: any;};
+    params?: {[key: string]: any};
     /**
      * For batch transfer runs, specifies the date and time that data should be
      * ingested.
@@ -709,7 +721,6 @@ export namespace bigquerydatatransfer_v1 {
     userId?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     dataSources: Resource$Projects$Datasources;
@@ -719,18 +730,17 @@ export namespace bigquerydatatransfer_v1 {
       this.context = context;
       this.dataSources = new Resource$Projects$Datasources(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
-      this.transferConfigs =
-          new Resource$Projects$Transferconfigs(this.context);
+      this.transferConfigs = new Resource$Projects$Transferconfigs(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Datasources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigquerydatatransfer.projects.dataSources.checkValidCreds
@@ -750,27 +760,34 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     checkValidCreds(
-        params?: Params$Resource$Projects$Datasources$Checkvalidcreds,
-        options?: MethodOptions): GaxiosPromise<Schema$CheckValidCredsResponse>;
+      params?: Params$Resource$Projects$Datasources$Checkvalidcreds,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckValidCredsResponse>;
     checkValidCreds(
-        params: Params$Resource$Projects$Datasources$Checkvalidcreds,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CheckValidCredsResponse>,
-        callback: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+      params: Params$Resource$Projects$Datasources$Checkvalidcreds,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void;
     checkValidCreds(
-        params: Params$Resource$Projects$Datasources$Checkvalidcreds,
-        callback: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+      params: Params$Resource$Projects$Datasources$Checkvalidcreds,
+      callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void;
     checkValidCreds(
-        callback: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+      callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void;
     checkValidCreds(
-        paramsOrCallback?: Params$Resource$Projects$Datasources$Checkvalidcreds|
-        BodyResponseCallback<Schema$CheckValidCredsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CheckValidCredsResponse>,
-        callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>):
-        void|GaxiosPromise<Schema$CheckValidCredsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Datasources$Checkvalidcreds;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Datasources$Checkvalidcreds
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void | GaxiosPromise<Schema$CheckValidCredsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Datasources$Checkvalidcreds;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -785,19 +802,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:checkValidCreds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:checkValidCreds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
@@ -805,7 +825,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.dataSources.get
@@ -820,22 +839,31 @@ export namespace bigquerydatatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Datasources$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
-    get(params: Params$Resource$Projects$Datasources$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(params: Params$Resource$Projects$Datasources$Get,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+    get(
+      params?: Params$Resource$Projects$Datasources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Projects$Datasources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Datasources$Get,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Datasources$Get|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Datasources$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Datasources$Get
+        | BodyResponseCallback<Schema$DataSource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>
+    ): void | GaxiosPromise<Schema$DataSource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -850,18 +878,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -869,7 +898,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.dataSources.list
@@ -887,26 +915,32 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Datasources$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDataSourcesResponse>;
+      params?: Params$Resource$Projects$Datasources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDataSourcesResponse>;
     list(
-        params: Params$Resource$Projects$Datasources$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+      params: Params$Resource$Projects$Datasources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Datasources$List,
-        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+      params: Params$Resource$Projects$Datasources$List,
+      callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Datasources$List|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
-        void|GaxiosPromise<Schema$ListDataSourcesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Datasources$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Datasources$List
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void | GaxiosPromise<Schema$ListDataSourcesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -921,19 +955,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/dataSources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/dataSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -943,12 +980,12 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasources$Checkvalidcreds extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Datasources$Checkvalidcreds
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The data source in the form:
@@ -961,12 +998,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$CheckValidCredsRequest;
   }
-  export interface Params$Resource$Projects$Datasources$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Datasources$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -974,12 +1011,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasources$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Datasources$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Page size. The default page size is the maximum value of 1000 results.
@@ -999,19 +1036,19 @@ export namespace bigquerydatatransfer_v1 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     dataSources: Resource$Projects$Locations$Datasources;
     transferConfigs: Resource$Projects$Locations$Transferconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.dataSources =
-          new Resource$Projects$Locations$Datasources(this.context);
-      this.transferConfigs =
-          new Resource$Projects$Locations$Transferconfigs(this.context);
+      this.dataSources = new Resource$Projects$Locations$Datasources(
+        this.context
+      );
+      this.transferConfigs = new Resource$Projects$Locations$Transferconfigs(
+        this.context
+      );
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.get
@@ -1025,21 +1062,29 @@ export namespace bigquerydatatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Location>;
-    get(params: Params$Resource$Projects$Locations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback: BodyResponseCallback<Schema$Location>): void;
-    get(params: Params$Resource$Projects$Locations$Get,
-        callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
-        BodyResponseCallback<Schema$Location>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>):
-        void|GaxiosPromise<Schema$Location> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1054,18 +1099,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1073,7 +1119,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$Location>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.list
@@ -1091,26 +1136,32 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1125,19 +1176,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1147,24 +1201,24 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -1190,7 +1244,6 @@ export namespace bigquerydatatransfer_v1 {
       this.context = context;
     }
 
-
     /**
      * bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
      * @desc Returns true if valid credentials exist for the given data source
@@ -1210,34 +1263,39 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     checkValidCreds(
-        params?: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
-        options?: MethodOptions): GaxiosPromise<Schema$CheckValidCredsResponse>;
+      params?: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckValidCredsResponse>;
     checkValidCreds(
-        params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CheckValidCredsResponse>,
-        callback: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void;
     checkValidCreds(
-        params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
-        callback: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
+      callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void;
     checkValidCreds(
-        callback: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+      callback: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void;
     checkValidCreds(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasources$Checkvalidcreds|
-        BodyResponseCallback<Schema$CheckValidCredsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CheckValidCredsResponse>,
-        callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>):
-        void|GaxiosPromise<Schema$CheckValidCredsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>
+    ): void | GaxiosPromise<Schema$CheckValidCredsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
+        params = {} as Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
         options = {};
       }
 
@@ -1247,19 +1305,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:checkValidCreds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:checkValidCreds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
@@ -1267,7 +1328,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.dataSources.get
@@ -1282,22 +1342,31 @@ export namespace bigquerydatatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Datasources$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
-    get(params: Params$Resource$Projects$Locations$Datasources$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(params: Params$Resource$Projects$Locations$Datasources$Get,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasources$Get,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Datasources$Get|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasources$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasources$Get
+        | BodyResponseCallback<Schema$DataSource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>
+    ): void | GaxiosPromise<Schema$DataSource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1312,18 +1381,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1331,7 +1401,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.dataSources.list
@@ -1349,26 +1418,32 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Datasources$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDataSourcesResponse>;
+      params?: Params$Resource$Projects$Locations$Datasources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDataSourcesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Datasources$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Datasources$List,
-        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+      params: Params$Resource$Projects$Locations$Datasources$List,
+      callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Datasources$List|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
-        void|GaxiosPromise<Schema$ListDataSourcesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasources$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasources$List
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void | GaxiosPromise<Schema$ListDataSourcesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1383,19 +1458,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/dataSources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/dataSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -1406,11 +1484,11 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The data source in the form:
@@ -1423,12 +1501,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$CheckValidCredsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasources$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasources$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -1436,12 +1514,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasources$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Datasources$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Page size. The default page size is the maximum value of 1000 results.
@@ -1461,16 +1539,15 @@ export namespace bigquerydatatransfer_v1 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Locations$Transferconfigs {
     context: APIRequestContext;
     runs: Resource$Projects$Locations$Transferconfigs$Runs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.runs =
-          new Resource$Projects$Locations$Transferconfigs$Runs(this.context);
+      this.runs = new Resource$Projects$Locations$Transferconfigs$Runs(
+        this.context
+      );
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.create
@@ -1488,32 +1565,35 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Transferconfigs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferConfig>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferConfig>;
     create(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Create,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Create,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     create(callback: BodyResponseCallback<Schema$TransferConfig>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Create|
-        BodyResponseCallback<Schema$TransferConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferConfig>,
-        callback?: BodyResponseCallback<Schema$TransferConfig>):
-        void|GaxiosPromise<Schema$TransferConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Create
+        | BodyResponseCallback<Schema$TransferConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>
+    ): void | GaxiosPromise<Schema$TransferConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Create;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Create;
         options = {};
       }
 
@@ -1523,19 +1603,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/transferConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/transferConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -1543,7 +1626,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.delete
@@ -1559,31 +1641,33 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Transferconfigs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Delete;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Delete;
         options = {};
       }
 
@@ -1593,18 +1677,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1612,7 +1697,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.get
@@ -1626,23 +1710,31 @@ export namespace bigquerydatatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Transferconfigs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferConfig>;
-    get(params: Params$Resource$Projects$Locations$Transferconfigs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
-    get(params: Params$Resource$Projects$Locations$Transferconfigs$Get,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Get,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TransferConfig>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Get|
-        BodyResponseCallback<Schema$TransferConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferConfig>,
-        callback?: BodyResponseCallback<Schema$TransferConfig>):
-        void|GaxiosPromise<Schema$TransferConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Get
+        | BodyResponseCallback<Schema$TransferConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>
+    ): void | GaxiosPromise<Schema$TransferConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1657,18 +1749,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -1676,7 +1769,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.list
@@ -1694,31 +1786,34 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Transferconfigs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTransferConfigsResponse>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransferConfigsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Transferconfigs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-        callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Transferconfigs$List,
-        callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$List,
+      callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$List|
-        BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void|GaxiosPromise<Schema$ListTransferConfigsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$List;
+      callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$List
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListTransferConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1733,28 +1828,32 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/transferConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/transferConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.patch
@@ -1774,26 +1873,30 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Transferconfigs$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferConfig>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferConfig>;
     patch(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$TransferConfig>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Patch|
-        BodyResponseCallback<Schema$TransferConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferConfig>,
-        callback?: BodyResponseCallback<Schema$TransferConfig>):
-        void|GaxiosPromise<Schema$TransferConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Patch
+        | BodyResponseCallback<Schema$TransferConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>
+    ): void | GaxiosPromise<Schema$TransferConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1808,18 +1911,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -1827,7 +1931,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
@@ -1847,39 +1950,39 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     scheduleRuns(
-        params?:
-            Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
     scheduleRuns(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-        callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void;
     scheduleRuns(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
-        callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void;
-    scheduleRuns(callback:
-                     BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
+      callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void;
     scheduleRuns(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns|
-        BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-        callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void|GaxiosPromise<Schema$ScheduleTransferRunsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
+      callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void;
+    scheduleRuns(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void | GaxiosPromise<Schema$ScheduleTransferRunsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
         options = {};
       }
 
@@ -1889,29 +1992,34 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:scheduleRuns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:scheduleRuns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
@@ -1931,42 +2039,39 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     startManualRuns(
-        params?:
-            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StartManualTransferRunsResponse>;
     startManualRuns(
-        params:
-            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+      callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void;
     startManualRuns(
-        params:
-            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
-        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+      callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void;
     startManualRuns(
-        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void;
     startManualRuns(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns|
-        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void|GaxiosPromise<Schema$StartManualTransferRunsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void | GaxiosPromise<Schema$StartManualTransferRunsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
         options = {};
       }
 
@@ -1976,36 +2081,42 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:startManualRuns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:startManualRuns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Locations$Transferconfigs$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional OAuth2 authorization code to use with this transfer
@@ -2048,11 +2159,11 @@ export namespace bigquerydatatransfer_v1 {
     requestBody?: Schema$TransferConfig;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -2061,11 +2172,11 @@ export namespace bigquerydatatransfer_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -2074,11 +2185,11 @@ export namespace bigquerydatatransfer_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When specified, only configurations of requested data sources are
@@ -2103,11 +2214,11 @@ export namespace bigquerydatatransfer_v1 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional OAuth2 authorization code to use with this transfer
@@ -2156,11 +2267,11 @@ export namespace bigquerydatatransfer_v1 {
     requestBody?: Schema$TransferConfig;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Transfer configuration name in the form:
@@ -2174,11 +2285,11 @@ export namespace bigquerydatatransfer_v1 {
     requestBody?: Schema$ScheduleTransferRunsRequest;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Transfer configuration name in the form:
@@ -2197,11 +2308,10 @@ export namespace bigquerydatatransfer_v1 {
     transferLogs: Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.transferLogs =
-          new Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs(
-              this.context);
+      this.transferLogs = new Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs(
+        this.context
+      );
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
@@ -2217,31 +2327,33 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
         options = {};
       }
 
@@ -2251,18 +2363,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2270,7 +2383,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.get
@@ -2284,29 +2396,36 @@ export namespace bigquerydatatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferRun>;
-    get(params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
-        callback: BodyResponseCallback<Schema$TransferRun>): void;
-    get(params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
-        callback: BodyResponseCallback<Schema$TransferRun>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferRun>;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferRun>,
+      callback: BodyResponseCallback<Schema$TransferRun>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
+      callback: BodyResponseCallback<Schema$TransferRun>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TransferRun>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Get|
-        BodyResponseCallback<Schema$TransferRun>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferRun>,
-        callback?: BodyResponseCallback<Schema$TransferRun>):
-        void|GaxiosPromise<Schema$TransferRun> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
+        | BodyResponseCallback<Schema$TransferRun>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferRun>,
+      callback?: BodyResponseCallback<Schema$TransferRun>
+    ): void | GaxiosPromise<Schema$TransferRun> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
         options = {};
       }
 
@@ -2316,18 +2435,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferRun>(parameters, callback);
@@ -2335,7 +2455,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferRun>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.list
@@ -2354,34 +2473,37 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTransferRunsResponse>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransferRunsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferRunsResponse>,
-        callback: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferRunsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
-        callback: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
+      callback: BodyResponseCallback<Schema$ListTransferRunsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$List|
-        BodyResponseCallback<Schema$ListTransferRunsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferRunsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>):
-        void|GaxiosPromise<Schema$ListTransferRunsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Runs$List
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>
+    ): void | GaxiosPromise<Schema$ListTransferRunsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
         options = {};
       }
 
@@ -2391,19 +2513,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/runs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
@@ -2414,11 +2536,11 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -2427,11 +2549,11 @@ export namespace bigquerydatatransfer_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -2440,11 +2562,11 @@ export namespace bigquerydatatransfer_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Page size. The default page size is the maximum value of 1000 results.
@@ -2479,7 +2601,6 @@ export namespace bigquerydatatransfer_v1 {
       this.context = context;
     }
 
-
     /**
      * bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
      * @desc Returns user facing log messages for the data transfer run.
@@ -2497,37 +2618,37 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTransferLogsResponse>;
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransferLogsResponse>;
     list(
-        params:
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferLogsResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
-        callback: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
+      params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
+      callback: BodyResponseCallback<Schema$ListTransferLogsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List|
-        BodyResponseCallback<Schema$ListTransferLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>):
-        void|GaxiosPromise<Schema$ListTransferLogsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>
+    ): void | GaxiosPromise<Schema$ListTransferLogsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
+        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
         options = {};
       }
 
@@ -2537,19 +2658,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/transferLogs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/transferLogs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);
@@ -2560,11 +2684,11 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR
@@ -2589,8 +2713,6 @@ export namespace bigquerydatatransfer_v1 {
     parent?: string;
   }
 
-
-
   export class Resource$Projects$Transferconfigs {
     context: APIRequestContext;
     runs: Resource$Projects$Transferconfigs$Runs;
@@ -2598,7 +2720,6 @@ export namespace bigquerydatatransfer_v1 {
       this.context = context;
       this.runs = new Resource$Projects$Transferconfigs$Runs(this.context);
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.create
@@ -2616,25 +2737,30 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Transferconfigs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferConfig>;
+      params?: Params$Resource$Projects$Transferconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferConfig>;
     create(
-        params: Params$Resource$Projects$Transferconfigs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Transferconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     create(
-        params: Params$Resource$Projects$Transferconfigs$Create,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Transferconfigs$Create,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     create(callback: BodyResponseCallback<Schema$TransferConfig>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Transferconfigs$Create|
-        BodyResponseCallback<Schema$TransferConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferConfig>,
-        callback?: BodyResponseCallback<Schema$TransferConfig>):
-        void|GaxiosPromise<Schema$TransferConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Create
+        | BodyResponseCallback<Schema$TransferConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>
+    ): void | GaxiosPromise<Schema$TransferConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2649,19 +2775,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/transferConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/transferConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -2669,7 +2798,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.delete
@@ -2685,24 +2813,28 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Transferconfigs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Transferconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Transferconfigs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Transferconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Transferconfigs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Transferconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Transferconfigs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2717,18 +2849,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2736,7 +2869,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.get
@@ -2750,22 +2882,31 @@ export namespace bigquerydatatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Transferconfigs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferConfig>;
-    get(params: Params$Resource$Projects$Transferconfigs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
-    get(params: Params$Resource$Projects$Transferconfigs$Get,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+    get(
+      params?: Params$Resource$Projects$Transferconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferConfig>;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Get,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TransferConfig>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Transferconfigs$Get|
-        BodyResponseCallback<Schema$TransferConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferConfig>,
-        callback?: BodyResponseCallback<Schema$TransferConfig>):
-        void|GaxiosPromise<Schema$TransferConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Get
+        | BodyResponseCallback<Schema$TransferConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>
+    ): void | GaxiosPromise<Schema$TransferConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2780,18 +2921,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -2799,7 +2941,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.list
@@ -2817,30 +2958,34 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Transferconfigs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTransferConfigsResponse>;
+      params?: Params$Resource$Projects$Transferconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransferConfigsResponse>;
     list(
-        params: Params$Resource$Projects$Transferconfigs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-        callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Transferconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Transferconfigs$List,
-        callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Transferconfigs$List,
+      callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Transferconfigs$List|
-        BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
-        void|GaxiosPromise<Schema$ListTransferConfigsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$List;
+      callback: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$List
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListTransferConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2855,28 +3000,32 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/transferConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/transferConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.patch
@@ -2896,25 +3045,30 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Transferconfigs$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferConfig>;
+      params?: Params$Resource$Projects$Transferconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferConfig>;
     patch(
-        params: Params$Resource$Projects$Transferconfigs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Transferconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferConfig>,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Transferconfigs$Patch,
-        callback: BodyResponseCallback<Schema$TransferConfig>): void;
+      params: Params$Resource$Projects$Transferconfigs$Patch,
+      callback: BodyResponseCallback<Schema$TransferConfig>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$TransferConfig>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Transferconfigs$Patch|
-        BodyResponseCallback<Schema$TransferConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferConfig>,
-        callback?: BodyResponseCallback<Schema$TransferConfig>):
-        void|GaxiosPromise<Schema$TransferConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Patch
+        | BodyResponseCallback<Schema$TransferConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>
+    ): void | GaxiosPromise<Schema$TransferConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2929,18 +3083,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -2948,7 +3103,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferConfig>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.scheduleRuns
@@ -2967,32 +3121,34 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     scheduleRuns(
-        params?: Params$Resource$Projects$Transferconfigs$Scheduleruns,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
+      params?: Params$Resource$Projects$Transferconfigs$Scheduleruns,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScheduleTransferRunsResponse>;
     scheduleRuns(
-        params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-        callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void;
     scheduleRuns(
-        params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
-        callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void;
-    scheduleRuns(callback:
-                     BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
+      callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void;
     scheduleRuns(
-        paramsOrCallback?:
-            Params$Resource$Projects$Transferconfigs$Scheduleruns|
-        BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-        callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
-        void|GaxiosPromise<Schema$ScheduleTransferRunsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Scheduleruns;
+      callback: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void;
+    scheduleRuns(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Scheduleruns
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>
+    ): void | GaxiosPromise<Schema$ScheduleTransferRunsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Scheduleruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3007,29 +3163,34 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:scheduleRuns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:scheduleRuns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.startManualRuns
@@ -3048,33 +3209,34 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     startManualRuns(
-        params?: Params$Resource$Projects$Transferconfigs$Startmanualruns,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+      params?: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StartManualTransferRunsResponse>;
     startManualRuns(
-        params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+      callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void;
     startManualRuns(
-        params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
-        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void;
+      params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+      callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void;
     startManualRuns(
-        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void;
     startManualRuns(
-        paramsOrCallback?:
-            Params$Resource$Projects$Transferconfigs$Startmanualruns|
-        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
-        void|GaxiosPromise<Schema$StartManualTransferRunsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Startmanualruns;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Startmanualruns
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$StartManualTransferRunsResponse>
+    ): void | GaxiosPromise<Schema$StartManualTransferRunsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Startmanualruns;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3089,36 +3251,42 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:startManualRuns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:startManualRuns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional OAuth2 authorization code to use with this transfer
@@ -3160,12 +3328,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -3173,12 +3341,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -3186,12 +3354,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When specified, only configurations of requested data sources are
@@ -3215,12 +3383,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional OAuth2 authorization code to use with this transfer
@@ -3268,12 +3436,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Scheduleruns extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Scheduleruns
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Transfer configuration name in the form:
@@ -3287,11 +3455,11 @@ export namespace bigquerydatatransfer_v1 {
     requestBody?: Schema$ScheduleTransferRunsRequest;
   }
   export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Transfer configuration name in the form:
@@ -3310,10 +3478,10 @@ export namespace bigquerydatatransfer_v1 {
     transferLogs: Resource$Projects$Transferconfigs$Runs$Transferlogs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.transferLogs =
-          new Resource$Projects$Transferconfigs$Runs$Transferlogs(this.context);
+      this.transferLogs = new Resource$Projects$Transferconfigs$Runs$Transferlogs(
+        this.context
+      );
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.delete
@@ -3328,24 +3496,28 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Transferconfigs$Runs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Transferconfigs$Runs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Transferconfigs$Runs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Runs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Runs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Runs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3360,18 +3532,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3379,7 +3552,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.get
@@ -3393,22 +3565,31 @@ export namespace bigquerydatatransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Transferconfigs$Runs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferRun>;
-    get(params: Params$Resource$Projects$Transferconfigs$Runs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
-        callback: BodyResponseCallback<Schema$TransferRun>): void;
-    get(params: Params$Resource$Projects$Transferconfigs$Runs$Get,
-        callback: BodyResponseCallback<Schema$TransferRun>): void;
+    get(
+      params?: Params$Resource$Projects$Transferconfigs$Runs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferRun>;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferRun>,
+      callback: BodyResponseCallback<Schema$TransferRun>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Runs$Get,
+      callback: BodyResponseCallback<Schema$TransferRun>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TransferRun>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Transferconfigs$Runs$Get|
-        BodyResponseCallback<Schema$TransferRun>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferRun>,
-        callback?: BodyResponseCallback<Schema$TransferRun>):
-        void|GaxiosPromise<Schema$TransferRun> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Runs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Runs$Get
+        | BodyResponseCallback<Schema$TransferRun>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferRun>,
+      callback?: BodyResponseCallback<Schema$TransferRun>
+    ): void | GaxiosPromise<Schema$TransferRun> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Runs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3423,18 +3604,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferRun>(parameters, callback);
@@ -3442,7 +3624,6 @@ export namespace bigquerydatatransfer_v1 {
         return createAPIRequest<Schema$TransferRun>(parameters);
       }
     }
-
 
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.list
@@ -3461,27 +3642,32 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Transferconfigs$Runs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTransferRunsResponse>;
+      params?: Params$Resource$Projects$Transferconfigs$Runs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransferRunsResponse>;
     list(
-        params: Params$Resource$Projects$Transferconfigs$Runs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferRunsResponse>,
-        callback: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
+      params: Params$Resource$Projects$Transferconfigs$Runs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferRunsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Transferconfigs$Runs$List,
-        callback: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
+      params: Params$Resource$Projects$Transferconfigs$Runs$List,
+      callback: BodyResponseCallback<Schema$ListTransferRunsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Transferconfigs$Runs$List|
-        BodyResponseCallback<Schema$ListTransferRunsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferRunsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>):
-        void|GaxiosPromise<Schema$ListTransferRunsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Runs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Runs$List
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>
+    ): void | GaxiosPromise<Schema$ListTransferRunsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Runs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3496,19 +3682,19 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/runs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
@@ -3518,12 +3704,12 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -3531,12 +3717,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The field will contain name of the resource requested, for example:
@@ -3544,12 +3730,12 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Runs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Page size. The default page size is the maximum value of 1000 results.
@@ -3584,7 +3770,6 @@ export namespace bigquerydatatransfer_v1 {
       this.context = context;
     }
 
-
     /**
      * bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
      * @desc Returns user facing log messages for the data transfer run.
@@ -3602,35 +3787,37 @@ export namespace bigquerydatatransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTransferLogsResponse>;
+      params?: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransferLogsResponse>;
     list(
-        params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
+      params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferLogsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
-        callback: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
+      params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
+      callback: BodyResponseCallback<Schema$ListTransferLogsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List|
-        BodyResponseCallback<Schema$ListTransferLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>):
-        void|GaxiosPromise<Schema$ListTransferLogsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>
+    ): void | GaxiosPromise<Schema$ListTransferLogsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
+        params = {} as Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
         options = {};
       }
 
@@ -3640,19 +3827,22 @@ export namespace bigquerydatatransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/transferLogs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/transferLogs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);
@@ -3663,11 +3853,11 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export interface Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR

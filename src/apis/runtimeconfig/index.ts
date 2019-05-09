@@ -18,22 +18,30 @@ import {runtimeconfig_v1} from './v1';
 import {runtimeconfig_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1': runtimeconfig_v1.Runtimeconfig,
-  'v1beta1': runtimeconfig_v1beta1.Runtimeconfig,
+  v1: runtimeconfig_v1.Runtimeconfig,
+  v1beta1: runtimeconfig_v1beta1.Runtimeconfig,
 };
 
 export function runtimeconfig(version: 'v1'): runtimeconfig_v1.Runtimeconfig;
-export function runtimeconfig(options: runtimeconfig_v1.Options):
-    runtimeconfig_v1.Runtimeconfig;
-export function runtimeconfig(version: 'v1beta1'):
-    runtimeconfig_v1beta1.Runtimeconfig;
-export function runtimeconfig(options: runtimeconfig_v1beta1.Options):
-    runtimeconfig_v1beta1.Runtimeconfig;
+export function runtimeconfig(
+  options: runtimeconfig_v1.Options
+): runtimeconfig_v1.Runtimeconfig;
+export function runtimeconfig(
+  version: 'v1beta1'
+): runtimeconfig_v1beta1.Runtimeconfig;
+export function runtimeconfig(
+  options: runtimeconfig_v1beta1.Options
+): runtimeconfig_v1beta1.Runtimeconfig;
 export function runtimeconfig<
-    T = runtimeconfig_v1.Runtimeconfig | runtimeconfig_v1beta1.Runtimeconfig>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|
-    runtimeconfig_v1.Options|'v1beta1'|runtimeconfig_v1beta1.Options) {
+  T = runtimeconfig_v1.Runtimeconfig | runtimeconfig_v1beta1.Runtimeconfig
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | runtimeconfig_v1.Options
+    | 'v1beta1'
+    | runtimeconfig_v1beta1.Options
+) {
   return getAPI<T>('runtimeconfig', versionOrOptions, VERSIONS, this);
 }
 

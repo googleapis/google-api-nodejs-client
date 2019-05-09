@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -187,7 +199,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      * required: - name - description - signup_url additionalProperties: false
      * ```
      */
-    displayMetadata?: {[key: string]: any;};
+    displayMetadata?: {[key: string]: any};
     /**
      * Output only. The icon URI of the product.
      */
@@ -255,7 +267,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      * provisioned. See google.cloud.privatecatalogproducer.v1beta.Version.asset
      * for details.
      */
-    asset?: {[key: string]: any;};
+    asset?: {[key: string]: any};
     /**
      * Output only. The time when the version was created.
      */
@@ -277,7 +289,6 @@ export namespace cloudprivatecatalog_v1beta1 {
     updateTime?: string;
   }
 
-
   export class Resource$Folders {
     context: APIRequestContext;
     catalogs: Resource$Folders$Catalogs;
@@ -291,13 +302,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     }
   }
 
-
   export class Resource$Folders$Catalogs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.folders.catalogs.search
@@ -316,37 +325,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Folders$Catalogs$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>;
+      params?: Params$Resource$Folders$Catalogs$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+    >;
     search(
-        params: Params$Resource$Folders$Catalogs$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
+      params: Params$Resource$Folders$Catalogs$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Folders$Catalogs$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
+      params: Params$Resource$Folders$Catalogs$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Folders$Catalogs$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Catalogs$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Catalogs$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Catalogs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -361,38 +385,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/catalogs:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/catalogs:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Folders$Catalogs$Search extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Catalogs$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -417,13 +444,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
   export class Resource$Folders$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.folders.products.search
@@ -442,37 +467,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Folders$Products$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>;
+      params?: Params$Resource$Folders$Products$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+    >;
     search(
-        params: Params$Resource$Folders$Products$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
+      params: Params$Resource$Folders$Products$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Folders$Products$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
+      params: Params$Resource$Folders$Products$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Folders$Products$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Products$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Products$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Products$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -487,38 +527,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/products:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/products:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Folders$Products$Search extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Products$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -544,13 +587,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
   export class Resource$Folders$Versions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.folders.versions.search
@@ -569,37 +610,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Folders$Versions$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>;
+      params?: Params$Resource$Folders$Versions$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+    >;
     search(
-        params: Params$Resource$Folders$Versions$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
+      params: Params$Resource$Folders$Versions$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Folders$Versions$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
+      params: Params$Resource$Folders$Versions$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Folders$Versions$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Versions$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Versions$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Versions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -614,38 +670,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/versions:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/versions:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Folders$Versions$Search extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Versions$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -672,8 +731,6 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
-
   export class Resource$Organizations {
     context: APIRequestContext;
     catalogs: Resource$Organizations$Catalogs;
@@ -687,13 +744,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     }
   }
 
-
   export class Resource$Organizations$Catalogs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.organizations.catalogs.search
@@ -712,37 +767,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Organizations$Catalogs$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>;
+      params?: Params$Resource$Organizations$Catalogs$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+    >;
     search(
-        params: Params$Resource$Organizations$Catalogs$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
+      params: Params$Resource$Organizations$Catalogs$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Organizations$Catalogs$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
+      params: Params$Resource$Organizations$Catalogs$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Organizations$Catalogs$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Catalogs$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Catalogs$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Catalogs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -757,38 +827,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/catalogs:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/catalogs:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Catalogs$Search extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Catalogs$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -813,13 +886,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
   export class Resource$Organizations$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.organizations.products.search
@@ -838,37 +909,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Organizations$Products$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>;
+      params?: Params$Resource$Organizations$Products$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+    >;
     search(
-        params: Params$Resource$Organizations$Products$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
+      params: Params$Resource$Organizations$Products$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Organizations$Products$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
+      params: Params$Resource$Organizations$Products$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Organizations$Products$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Products$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Products$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Products$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -883,38 +969,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/products:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/products:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Products$Search extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Products$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -940,13 +1029,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
   export class Resource$Organizations$Versions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.organizations.versions.search
@@ -965,37 +1052,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Organizations$Versions$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>;
+      params?: Params$Resource$Organizations$Versions$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+    >;
     search(
-        params: Params$Resource$Organizations$Versions$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Versions$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Organizations$Versions$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Versions$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Organizations$Versions$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Versions$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Versions$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Versions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1010,38 +1112,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/versions:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/versions:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Versions$Search extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Versions$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -1068,8 +1173,6 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
-
   export class Resource$Projects {
     context: APIRequestContext;
     catalogs: Resource$Projects$Catalogs;
@@ -1083,13 +1186,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     }
   }
 
-
   export class Resource$Projects$Catalogs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.projects.catalogs.search
@@ -1108,37 +1209,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Projects$Catalogs$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>;
+      params?: Params$Resource$Projects$Catalogs$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+    >;
     search(
-        params: Params$Resource$Projects$Catalogs$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
+      params: Params$Resource$Projects$Catalogs$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Projects$Catalogs$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void;
+      params: Params$Resource$Projects$Catalogs$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Projects$Catalogs$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Catalogs$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Catalogs$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Catalogs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1153,38 +1269,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/catalogs:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/catalogs:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchCatalogsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Catalogs$Search extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Catalogs$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -1209,13 +1328,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
   export class Resource$Projects$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.projects.products.search
@@ -1234,37 +1351,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Projects$Products$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>;
+      params?: Params$Resource$Projects$Products$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+    >;
     search(
-        params: Params$Resource$Projects$Products$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
+      params: Params$Resource$Projects$Products$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Projects$Products$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void;
+      params: Params$Resource$Projects$Products$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Projects$Products$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Products$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Products$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Products$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1279,38 +1411,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/products:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/products:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Products$Search extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Products$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.
@@ -1336,13 +1471,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     resource?: string;
   }
 
-
   export class Resource$Projects$Versions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprivatecatalog.projects.versions.search
@@ -1361,37 +1494,52 @@ export namespace cloudprivatecatalog_v1beta1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Projects$Versions$Search,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>;
+      params?: Params$Resource$Projects$Versions$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+    >;
     search(
-        params: Params$Resource$Projects$Versions$Search,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
+      params: Params$Resource$Projects$Versions$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
     search(
-        params: Params$Resource$Projects$Versions$Search,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
-    search(callback: BodyResponseCallback<
-           Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void;
+      params: Params$Resource$Projects$Versions$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Projects$Versions$Search|
-        BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Versions$Search;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Versions$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Versions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1406,38 +1554,41 @@ export namespace cloudprivatecatalog_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
+        options.rootUrl || 'https://cloudprivatecatalog.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}/versions:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}/versions:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse>(
-            parameters);
+          Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Versions$Search extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Versions$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of entries that are requested.

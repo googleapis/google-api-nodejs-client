@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {cloudiot_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': cloudiot_v1.Cloudiot,
+  v1: cloudiot_v1.Cloudiot,
 };
 
 export function cloudiot(version: 'v1'): cloudiot_v1.Cloudiot;
 export function cloudiot(options: cloudiot_v1.Options): cloudiot_v1.Cloudiot;
 export function cloudiot<T = cloudiot_v1.Cloudiot>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|cloudiot_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | cloudiot_v1.Options
+) {
   return getAPI<T>('cloudiot', versionOrOptions, VERSIONS, this);
 }
 

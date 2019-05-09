@@ -19,26 +19,38 @@ import {appengine_v1alpha} from './v1alpha';
 import {appengine_v1beta} from './v1beta';
 
 export const VERSIONS = {
-  'v1': appengine_v1.Appengine,
-  'v1alpha': appengine_v1alpha.Appengine,
-  'v1beta': appengine_v1beta.Appengine,
+  v1: appengine_v1.Appengine,
+  v1alpha: appengine_v1alpha.Appengine,
+  v1beta: appengine_v1beta.Appengine,
 };
 
 export function appengine(version: 'v1'): appengine_v1.Appengine;
-export function appengine(options: appengine_v1.Options):
-    appengine_v1.Appengine;
+export function appengine(
+  options: appengine_v1.Options
+): appengine_v1.Appengine;
 export function appengine(version: 'v1alpha'): appengine_v1alpha.Appengine;
-export function appengine(options: appengine_v1alpha.Options):
-    appengine_v1alpha.Appengine;
+export function appengine(
+  options: appengine_v1alpha.Options
+): appengine_v1alpha.Appengine;
 export function appengine(version: 'v1beta'): appengine_v1beta.Appengine;
-export function appengine(options: appengine_v1beta.Options):
-    appengine_v1beta.Appengine;
+export function appengine(
+  options: appengine_v1beta.Options
+): appengine_v1beta.Appengine;
 export function appengine<
-    T = appengine_v1.Appengine | appengine_v1alpha.Appengine |
-        appengine_v1beta.Appengine>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|appengine_v1.Options|'v1alpha'|
-    appengine_v1alpha.Options|'v1beta'|appengine_v1beta.Options) {
+  T =
+    | appengine_v1.Appengine
+    | appengine_v1alpha.Appengine
+    | appengine_v1beta.Appengine
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | appengine_v1.Options
+    | 'v1alpha'
+    | appengine_v1alpha.Options
+    | 'v1beta'
+    | appengine_v1beta.Options
+) {
   return getAPI<T>('appengine', versionOrOptions, VERSIONS, this);
 }
 

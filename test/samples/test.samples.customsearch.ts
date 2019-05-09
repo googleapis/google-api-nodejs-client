@@ -19,7 +19,7 @@ nock.disableNetConnect();
 
 // tslint:disable: no-any
 const samples: any = {
-  list: require('../../../samples/customsearch/customsearch')
+  list: require('../../../samples/customsearch/customsearch'),
 };
 
 describe('customsearch samples', () => {
@@ -28,8 +28,9 @@ describe('customsearch samples', () => {
   });
 
   it('should search', async () => {
-    const scope =
-        nock(Utils.baseUrl).get(`/customsearch/v1?cx=cx&q=q`).reply(200, {});
+    const scope = nock(Utils.baseUrl)
+      .get(`/customsearch/v1?cx=cx&q=q`)
+      .reply(200, {});
     const options = {cx: 'cx', q: 'q', auth: 'key'};
     const data = await samples.list.runSample(options);
     assert(data);

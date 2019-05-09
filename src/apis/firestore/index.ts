@@ -19,26 +19,38 @@ import {firestore_v1beta1} from './v1beta1';
 import {firestore_v1beta2} from './v1beta2';
 
 export const VERSIONS = {
-  'v1': firestore_v1.Firestore,
-  'v1beta1': firestore_v1beta1.Firestore,
-  'v1beta2': firestore_v1beta2.Firestore,
+  v1: firestore_v1.Firestore,
+  v1beta1: firestore_v1beta1.Firestore,
+  v1beta2: firestore_v1beta2.Firestore,
 };
 
 export function firestore(version: 'v1'): firestore_v1.Firestore;
-export function firestore(options: firestore_v1.Options):
-    firestore_v1.Firestore;
+export function firestore(
+  options: firestore_v1.Options
+): firestore_v1.Firestore;
 export function firestore(version: 'v1beta1'): firestore_v1beta1.Firestore;
-export function firestore(options: firestore_v1beta1.Options):
-    firestore_v1beta1.Firestore;
+export function firestore(
+  options: firestore_v1beta1.Options
+): firestore_v1beta1.Firestore;
 export function firestore(version: 'v1beta2'): firestore_v1beta2.Firestore;
-export function firestore(options: firestore_v1beta2.Options):
-    firestore_v1beta2.Firestore;
+export function firestore(
+  options: firestore_v1beta2.Options
+): firestore_v1beta2.Firestore;
 export function firestore<
-    T = firestore_v1.Firestore | firestore_v1beta1.Firestore |
-        firestore_v1beta2.Firestore>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|firestore_v1.Options|'v1beta1'|
-    firestore_v1beta1.Options|'v1beta2'|firestore_v1beta2.Options) {
+  T =
+    | firestore_v1.Firestore
+    | firestore_v1beta1.Firestore
+    | firestore_v1beta2.Firestore
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | firestore_v1.Options
+    | 'v1beta1'
+    | firestore_v1beta1.Options
+    | 'v1beta2'
+    | firestore_v1beta2.Options
+) {
   return getAPI<T>('firestore', versionOrOptions, VERSIONS, this);
 }
 

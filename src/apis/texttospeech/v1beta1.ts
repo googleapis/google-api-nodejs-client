@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -274,13 +286,11 @@ export namespace texttospeech_v1beta1 {
     ssmlGender?: string;
   }
 
-
   export class Resource$Text {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * texttospeech.text.synthesize
@@ -296,25 +306,32 @@ export namespace texttospeech_v1beta1 {
      * @return {object} Request object
      */
     synthesize(
-        params?: Params$Resource$Text$Synthesize, options?: MethodOptions):
-        GaxiosPromise<Schema$SynthesizeSpeechResponse>;
+      params?: Params$Resource$Text$Synthesize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SynthesizeSpeechResponse>;
     synthesize(
-        params: Params$Resource$Text$Synthesize,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
-        callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>): void;
+      params: Params$Resource$Text$Synthesize,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
+      callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+    ): void;
     synthesize(
-        params: Params$Resource$Text$Synthesize,
-        callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>): void;
-    synthesize(callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>):
-        void;
+      params: Params$Resource$Text$Synthesize,
+      callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+    ): void;
     synthesize(
-        paramsOrCallback?: Params$Resource$Text$Synthesize|
-        BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
-        callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>):
-        void|GaxiosPromise<Schema$SynthesizeSpeechResponse> {
+      callback: BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+    ): void;
+    synthesize(
+      paramsOrCallback?:
+        | Params$Resource$Text$Synthesize
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
+      callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+    ): void | GaxiosPromise<Schema$SynthesizeSpeechResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Text$Synthesize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -332,16 +349,19 @@ export namespace texttospeech_v1beta1 {
       const rootUrl = options.rootUrl || 'https://texttospeech.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/text:synthesize')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/text:synthesize').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters, callback);
@@ -355,8 +375,7 @@ export namespace texttospeech_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -364,13 +383,11 @@ export namespace texttospeech_v1beta1 {
     requestBody?: Schema$SynthesizeSpeechRequest;
   }
 
-
   export class Resource$Voices {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * texttospeech.voices.list
@@ -384,23 +401,29 @@ export namespace texttospeech_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Voices$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListVoicesResponse>;
     list(
-        params: Params$Resource$Voices$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
-        callback: BodyResponseCallback<Schema$ListVoicesResponse>): void;
+      params?: Params$Resource$Voices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListVoicesResponse>;
     list(
-        params: Params$Resource$Voices$List,
-        callback: BodyResponseCallback<Schema$ListVoicesResponse>): void;
+      params: Params$Resource$Voices$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListVoicesResponse>,
+      callback: BodyResponseCallback<Schema$ListVoicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Voices$List,
+      callback: BodyResponseCallback<Schema$ListVoicesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListVoicesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Voices$List|
-        BodyResponseCallback<Schema$ListVoicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListVoicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListVoicesResponse>):
-        void|GaxiosPromise<Schema$ListVoicesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Voices$List
+        | BodyResponseCallback<Schema$ListVoicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVoicesResponse>,
+      callback?: BodyResponseCallback<Schema$ListVoicesResponse>
+    ): void | GaxiosPromise<Schema$ListVoicesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Voices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -418,15 +441,16 @@ export namespace texttospeech_v1beta1 {
       const rootUrl = options.rootUrl || 'https://texttospeech.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/voices').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/voices').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListVoicesResponse>(parameters, callback);
@@ -440,7 +464,7 @@ export namespace texttospeech_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional (but recommended)

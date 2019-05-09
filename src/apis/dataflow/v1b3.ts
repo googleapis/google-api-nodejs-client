@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -557,7 +569,7 @@ export namespace dataflow_v1b3 {
     /**
      * The runtime parameters to pass to the job.
      */
-    parameters?: {[key: string]: string;};
+    parameters?: {[key: string]: string};
   }
   /**
    * Identifies the location of a custom souce.
@@ -782,14 +794,14 @@ export namespace dataflow_v1b3 {
     /**
      * Experimental settings.
      */
-    internalExperiments?: {[key: string]: any;};
+    internalExperiments?: {[key: string]: any};
     /**
      * The Cloud Dataflow SDK pipeline options specified by the user. These
      * options are passed through the service and are used to recreate the SDK
      * pipeline options on the worker in a language agnostic and platform
      * independent way.
      */
-    sdkPipelineOptions?: {[key: string]: any;};
+    sdkPipelineOptions?: {[key: string]: any};
     /**
      * Identity to run virtual machines as. Defaults to the default account.
      */
@@ -814,12 +826,12 @@ export namespace dataflow_v1b3 {
     /**
      * A description of the process that generated the request.
      */
-    userAgent?: {[key: string]: any;};
+    userAgent?: {[key: string]: any};
     /**
      * A structure describing which components and their versions of the service
      * are required in order to run the job.
      */
-    version?: {[key: string]: any;};
+    version?: {[key: string]: any};
     /**
      * The worker pools. At least one &quot;harness&quot; worker pool must be
      * specified in order for the job to have workers.
@@ -1021,7 +1033,7 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use to encode data being written via this output.
      */
-    codec?: {[key: string]: any;};
+    codec?: {[key: string]: any};
     /**
      * The user-provided name of this output.
      */
@@ -1147,7 +1159,7 @@ export namespace dataflow_v1b3 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
      * constrained to be &lt;= 128 bytes in size.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -1230,7 +1242,7 @@ export namespace dataflow_v1b3 {
      * The map of transform name prefixes of the job to be replaced to the
      * corresponding name prefixes of the new job.
      */
-    transformNameMapping?: {[key: string]: string;};
+    transformNameMapping?: {[key: string]: string};
     /**
      * The type of Cloud Dataflow job.
      */
@@ -1244,7 +1256,7 @@ export namespace dataflow_v1b3 {
     /**
      * A mapping from each stage to the information about that stage.
      */
-    stages?: {[key: string]: Schema$JobExecutionStageInfo;};
+    stages?: {[key: string]: Schema$JobExecutionStageInfo};
   }
   /**
    * Contains information about how a particular google.dataflow.v1beta3.Step
@@ -1398,7 +1410,7 @@ export namespace dataflow_v1b3 {
     /**
      * The runtime parameters to pass to the job.
      */
-    parameters?: {[key: string]: string;};
+    parameters?: {[key: string]: string};
   }
   /**
    * Response to the request to launch a template.
@@ -1431,7 +1443,7 @@ export namespace dataflow_v1b3 {
     /**
      * Untranslated bag-of-bytes WorkRequest from UnifiedWorker.
      */
-    unifiedWorkerRequest?: {[key: string]: any;};
+    unifiedWorkerRequest?: {[key: string]: any};
     /**
      * Worker capabilities. WorkItems might be limited to workers with specific
      * capabilities.
@@ -1454,7 +1466,7 @@ export namespace dataflow_v1b3 {
     /**
      * Untranslated bag-of-bytes WorkResponse for UnifiedWorker.
      */
-    unifiedWorkerResponse?: {[key: string]: any;};
+    unifiedWorkerResponse?: {[key: string]: any};
     /**
      * A list of the leased WorkItems.
      */
@@ -1550,7 +1562,7 @@ export namespace dataflow_v1b3 {
      * PCollections in the SDK will have context[&#39;pcollection&#39;] =
      * &lt;pcollection-name&gt;.
      */
-    context?: {[key: string]: string;};
+    context?: {[key: string]: string};
     /**
      * Worker-defined metric name.
      */
@@ -1792,7 +1804,7 @@ export namespace dataflow_v1b3 {
     /**
      * The user function to invoke.
      */
-    userFn?: {[key: string]: any;};
+    userFn?: {[key: string]: any};
   }
   /**
    * An instruction that does a partial group-by-key. One input and one output.
@@ -1805,7 +1817,7 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use for interpreting an element in the input PTable.
      */
-    inputElementCodec?: {[key: string]: any;};
+    inputElementCodec?: {[key: string]: any};
     /**
      * If this instruction includes a combining function this is the name of the
      * intermediate store between the GBK and the CombineValues.
@@ -1823,7 +1835,7 @@ export namespace dataflow_v1b3 {
     /**
      * The value combining function to invoke.
      */
-    valueCombiningFn?: {[key: string]: any;};
+    valueCombiningFn?: {[key: string]: any};
   }
   /**
    * A descriptive representation of submitted pipeline as well as the executed
@@ -1974,7 +1986,7 @@ export namespace dataflow_v1b3 {
     /**
      * Untranslated bag-of-bytes WorkProgressUpdateRequest from UnifiedWorker.
      */
-    unifiedWorkerRequest?: {[key: string]: any;};
+    unifiedWorkerRequest?: {[key: string]: any};
     /**
      * The ID of the worker reporting the WorkItem status.  If this does not
      * match the ID of the worker which the Dataflow service believes currently
@@ -1996,7 +2008,7 @@ export namespace dataflow_v1b3 {
     /**
      * Untranslated bag-of-bytes WorkProgressUpdateResponse for UnifiedWorker.
      */
-    unifiedWorkerResponse?: {[key: string]: any;};
+    unifiedWorkerResponse?: {[key: string]: any};
     /**
      * A set of messages indicating the service-side state for each WorkItem
      * whose status was reported, in the same order as the WorkItemStatus
@@ -2031,7 +2043,7 @@ export namespace dataflow_v1b3 {
     /**
      * Additional user labels attached to the job.
      */
-    additionalUserLabels?: {[key: string]: string;};
+    additionalUserLabels?: {[key: string]: string};
     /**
      * Whether to bypass the safety checks for the job&#39;s temporary
      * directory. Use with caution.
@@ -2173,7 +2185,7 @@ export namespace dataflow_v1b3 {
     /**
      * The user function to invoke.
      */
-    userFn?: {[key: string]: any;};
+    userFn?: {[key: string]: any};
   }
   /**
    * Information about an output of a SeqMapTask.
@@ -2208,7 +2220,7 @@ export namespace dataflow_v1b3 {
     /**
      * How to interpret the source element(s) as a side input value.
      */
-    kind?: {[key: string]: any;};
+    kind?: {[key: string]: any};
     /**
      * The source(s) to read element(s) from to get the value of this side
      * input. If more than one source, then the elements are taken from the
@@ -2229,11 +2241,11 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use to encode data written to the sink.
      */
-    codec?: {[key: string]: any;};
+    codec?: {[key: string]: any};
     /**
      * The sink to write to, plus its parameters.
      */
-    spec?: {[key: string]: any;};
+    spec?: {[key: string]: any};
   }
   /**
    * Represents a snapshot of a job.
@@ -2286,11 +2298,11 @@ export namespace dataflow_v1b3 {
      * order: base_specs (later items win), spec (overrides anything in
      * base_specs).
      */
-    baseSpecs?: Array<{[key: string]: any;}>;
+    baseSpecs?: Array<{[key: string]: any}>;
     /**
      * The codec to use to decode data read from the source.
      */
-    codec?: {[key: string]: any;};
+    codec?: {[key: string]: any};
     /**
      * Setting this value to true hints to the framework that the source
      * doesn&#39;t need splitting, and using SourceSplitRequest on it would
@@ -2317,7 +2329,7 @@ export namespace dataflow_v1b3 {
     /**
      * The source to read from, plus its parameters.
      */
-    spec?: {[key: string]: any;};
+    spec?: {[key: string]: any};
   }
   /**
    * DEPRECATED in favor of DynamicSourceSplit.
@@ -2613,7 +2625,7 @@ export namespace dataflow_v1b3 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2650,7 +2662,7 @@ export namespace dataflow_v1b3 {
      * has its own required set of properties. Must be provided on Create.  Only
      * retrieved with JOB_VIEW_ALL.
      */
-    properties?: {[key: string]: any;};
+    properties?: {[key: string]: any};
   }
   /**
    * Streaming appliance snapshot configuration.
@@ -2689,7 +2701,7 @@ export namespace dataflow_v1b3 {
      * Map from user name of stateful transforms in this stage to their state
      * family.
      */
-    transformUserNameToStateFamily?: {[key: string]: string;};
+    transformUserNameToStateFamily?: {[key: string]: string};
   }
   /**
    * Describes full or partial data disk assignment information of the
@@ -2738,7 +2750,7 @@ export namespace dataflow_v1b3 {
     /**
      * Map from user step names to state families.
      */
-    userStepToStateFamilyNameMap?: {[key: string]: string;};
+    userStepToStateFamilyNameMap?: {[key: string]: string};
     /**
      * If present, the worker must use this endpoint to communicate with
      * Windmill Service dispatchers, otherwise the worker must continue to use
@@ -2991,7 +3003,7 @@ export namespace dataflow_v1b3 {
     /**
      * Maps user stage names to stable computation names.
      */
-    userStageToComputationNameMap?: {[key: string]: string;};
+    userStageToComputationNameMap?: {[key: string]: string};
   }
   /**
    * Description of the type, names/ids, and input/outputs for a transform.
@@ -3034,7 +3046,7 @@ export namespace dataflow_v1b3 {
      * This field is used by the worker to send the status of the indvidual
      * containers running on each worker.
      */
-    pods?: Array<{[key: string]: any;}>;
+    pods?: Array<{[key: string]: any}>;
     /**
      * The interval at which the worker is sending health reports. The default
      * value of 0 should be interpreted as the field is not being explicitly set
@@ -3083,7 +3095,7 @@ export namespace dataflow_v1b3 {
      * Other stats that can accompany an event. E.g. {
      * &quot;downloaded_bytes&quot; : &quot;123456&quot; }
      */
-    metadata?: {[key: string]: string;};
+    metadata?: {[key: string]: string};
   }
   /**
    * WorkerMessage provides information to the backend about a worker.
@@ -3099,7 +3111,7 @@ export namespace dataflow_v1b3 {
      * of development other strings can be used as tags. LABEL_UNSPECIFIED
      * should not be used here.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The timestamp of the worker_message.
      */
@@ -3159,7 +3171,7 @@ export namespace dataflow_v1b3 {
      * other worker identifiers should almost always be passed  as labels since
      * they will be included on most messages.
      */
-    parameters?: {[key: string]: any;};
+    parameters?: {[key: string]: any};
   }
   /**
    * A worker_message response allows the server to pass information to the
@@ -3232,7 +3244,7 @@ export namespace dataflow_v1b3 {
     /**
      * Metadata to set on the Google Compute Engine VMs.
      */
-    metadata?: {[key: string]: string;};
+    metadata?: {[key: string]: string};
     /**
      * Network to which VMs will be assigned.  If empty or unspecified, the
      * service will use the network &quot;default&quot;.
@@ -3263,7 +3275,7 @@ export namespace dataflow_v1b3 {
     /**
      * Extra arguments for this worker pool.
      */
-    poolArgs?: {[key: string]: any;};
+    poolArgs?: {[key: string]: any};
     /**
      * Subnetwork to which VMs will be assigned, if desired.  Expected to be of
      * the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
@@ -3433,7 +3445,7 @@ export namespace dataflow_v1b3 {
      * Other data returned by the service, specific to the particular worker
      * harness.
      */
-    harnessData?: {[key: string]: any;};
+    harnessData?: {[key: string]: any};
     /**
      * Time at which the current lease will expire.
      */
@@ -3581,7 +3593,6 @@ export namespace dataflow_v1b3 {
     sink?: Schema$Sink;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     jobs: Resource$Projects$Jobs;
@@ -3593,7 +3604,6 @@ export namespace dataflow_v1b3 {
       this.locations = new Resource$Projects$Locations(this.context);
       this.templates = new Resource$Projects$Templates(this.context);
     }
-
 
     /**
      * dataflow.projects.workerMessages
@@ -3609,31 +3619,34 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     workerMessages(
-        params?: Params$Resource$Projects$Workermessages,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SendWorkerMessagesResponse>;
+      params?: Params$Resource$Projects$Workermessages,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendWorkerMessagesResponse>;
     workerMessages(
-        params: Params$Resource$Projects$Workermessages,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void;
+      params: Params$Resource$Projects$Workermessages,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void;
     workerMessages(
-        params: Params$Resource$Projects$Workermessages,
-        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void;
-    workerMessages(callback:
-                       BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void;
+      params: Params$Resource$Projects$Workermessages,
+      callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void;
     workerMessages(
-        paramsOrCallback?: Params$Resource$Projects$Workermessages|
-        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void|GaxiosPromise<Schema$SendWorkerMessagesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Workermessages;
+      callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void;
+    workerMessages(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Workermessages
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void | GaxiosPromise<Schema$SendWorkerMessagesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Workermessages;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3650,32 +3663,36 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/WorkerMessages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/WorkerMessages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Workermessages extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Workermessages
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project to send the WorkerMessages to.
@@ -3700,7 +3717,6 @@ export namespace dataflow_v1b3 {
       this.workItems = new Resource$Projects$Jobs$Workitems(this.context);
     }
 
-
     /**
      * dataflow.projects.jobs.aggregated
      * @desc List the jobs of a project across all regions.
@@ -3719,25 +3735,30 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     aggregated(
-        params?: Params$Resource$Projects$Jobs$Aggregated,
-        options?: MethodOptions): GaxiosPromise<Schema$ListJobsResponse>;
+      params?: Params$Resource$Projects$Jobs$Aggregated,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
     aggregated(
-        params: Params$Resource$Projects$Jobs$Aggregated,
-        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Jobs$Aggregated,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     aggregated(
-        params: Params$Resource$Projects$Jobs$Aggregated,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Jobs$Aggregated,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     aggregated(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     aggregated(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Aggregated|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|GaxiosPromise<Schema$ListJobsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Aggregated;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Aggregated
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Aggregated;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3754,16 +3775,18 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/jobs:aggregated')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/jobs:aggregated'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3771,7 +3794,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.create
@@ -3794,24 +3816,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Jobs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Jobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Projects$Jobs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Jobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(
-        params: Params$Resource$Projects$Jobs$Create,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Jobs$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Create|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Create
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3828,16 +3854,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3845,7 +3874,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.get
@@ -3867,21 +3895,29 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Jobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    get(params: Params$Resource$Projects$Jobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    get(params: Params$Resource$Projects$Jobs$Get,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      params?: Params$Resource$Projects$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Projects$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Job>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Jobs$Get|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Get
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3898,16 +3934,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3915,7 +3954,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.getMetrics
@@ -3938,25 +3976,30 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     getMetrics(
-        params?: Params$Resource$Projects$Jobs$Getmetrics,
-        options?: MethodOptions): GaxiosPromise<Schema$JobMetrics>;
+      params?: Params$Resource$Projects$Jobs$Getmetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$JobMetrics>;
     getMetrics(
-        params: Params$Resource$Projects$Jobs$Getmetrics,
-        options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
-        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+      params: Params$Resource$Projects$Jobs$Getmetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$JobMetrics>,
+      callback: BodyResponseCallback<Schema$JobMetrics>
+    ): void;
     getMetrics(
-        params: Params$Resource$Projects$Jobs$Getmetrics,
-        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+      params: Params$Resource$Projects$Jobs$Getmetrics,
+      callback: BodyResponseCallback<Schema$JobMetrics>
+    ): void;
     getMetrics(callback: BodyResponseCallback<Schema$JobMetrics>): void;
     getMetrics(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Getmetrics|
-        BodyResponseCallback<Schema$JobMetrics>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$JobMetrics>,
-        callback?: BodyResponseCallback<Schema$JobMetrics>):
-        void|GaxiosPromise<Schema$JobMetrics> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Getmetrics;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Getmetrics
+        | BodyResponseCallback<Schema$JobMetrics>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$JobMetrics>,
+      callback?: BodyResponseCallback<Schema$JobMetrics>
+    ): void | GaxiosPromise<Schema$JobMetrics> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3973,16 +4016,18 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/metrics')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/metrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(parameters, callback);
@@ -3990,7 +4035,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$JobMetrics>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.list
@@ -4015,25 +4059,31 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$Jobs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Projects$Jobs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params?: Params$Resource$Projects$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Projects$Jobs$List,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$List|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|GaxiosPromise<Schema$ListJobsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$List
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4050,16 +4100,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -4067,7 +4120,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.snapshot
@@ -4084,24 +4136,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     snapshot(
-        params?: Params$Resource$Projects$Jobs$Snapshot,
-        options?: MethodOptions): GaxiosPromise<Schema$Snapshot>;
+      params?: Params$Resource$Projects$Jobs$Snapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
     snapshot(
-        params: Params$Resource$Projects$Jobs$Snapshot,
-        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback: BodyResponseCallback<Schema$Snapshot>): void;
+      params: Params$Resource$Projects$Jobs$Snapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
     snapshot(
-        params: Params$Resource$Projects$Jobs$Snapshot,
-        callback: BodyResponseCallback<Schema$Snapshot>): void;
+      params: Params$Resource$Projects$Jobs$Snapshot,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
     snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
     snapshot(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Snapshot|
-        BodyResponseCallback<Schema$Snapshot>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback?: BodyResponseCallback<Schema$Snapshot>):
-        void|GaxiosPromise<Schema$Snapshot> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Snapshot;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Snapshot
+        | BodyResponseCallback<Schema$Snapshot>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback?: BodyResponseCallback<Schema$Snapshot>
+    ): void | GaxiosPromise<Schema$Snapshot> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Snapshot;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4118,17 +4174,18 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -4136,7 +4193,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Snapshot>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.update
@@ -4159,24 +4215,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Jobs$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Jobs$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     update(
-        params: Params$Resource$Projects$Jobs$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Jobs$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     update(
-        params: Params$Resource$Projects$Jobs$Update,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Jobs$Update,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Job>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Update|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Update
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4193,16 +4253,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4212,12 +4275,12 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Aggregated extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Aggregated
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The kind of filter to use.
@@ -4250,12 +4313,12 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The [regional endpoint]
@@ -4281,12 +4344,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Jobs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job ID.
@@ -4307,12 +4370,12 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Getmetrics extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Getmetrics
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job to get messages for.
@@ -4334,12 +4397,12 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The kind of filter to use.
@@ -4372,12 +4435,12 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Snapshot extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Snapshot
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job to be snapshotted.
@@ -4393,12 +4456,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$SnapshotJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job ID.
@@ -4427,7 +4490,6 @@ export namespace dataflow_v1b3 {
       this.context = context;
     }
 
-
     /**
      * dataflow.projects.jobs.debug.getConfig
      * @desc Get encoded debug configuration for component. Not cacheable.
@@ -4443,27 +4505,34 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     getConfig(
-        params?: Params$Resource$Projects$Jobs$Debug$Getconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$GetDebugConfigResponse>;
+      params?: Params$Resource$Projects$Jobs$Debug$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetDebugConfigResponse>;
     getConfig(
-        params: Params$Resource$Projects$Jobs$Debug$Getconfig,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+      params: Params$Resource$Projects$Jobs$Debug$Getconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void;
     getConfig(
-        params: Params$Resource$Projects$Jobs$Debug$Getconfig,
-        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
-    getConfig(callback: BodyResponseCallback<Schema$GetDebugConfigResponse>):
-        void;
+      params: Params$Resource$Projects$Jobs$Debug$Getconfig,
+      callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void;
     getConfig(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Debug$Getconfig|
-        BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>):
-        void|GaxiosPromise<Schema$GetDebugConfigResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Jobs$Debug$Getconfig;
+      callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Debug$Getconfig
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void | GaxiosPromise<Schema$GetDebugConfigResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Debug$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4480,17 +4549,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
@@ -4498,7 +4569,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.debug.sendCapture
@@ -4515,28 +4585,34 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     sendCapture(
-        params?: Params$Resource$Projects$Jobs$Debug$Sendcapture,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SendDebugCaptureResponse>;
+      params?: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendDebugCaptureResponse>;
     sendCapture(
-        params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+      params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void;
     sendCapture(
-        params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
-        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+      params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+      callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void;
     sendCapture(
-        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+      callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void;
     sendCapture(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Debug$Sendcapture|
-        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>):
-        void|GaxiosPromise<Schema$SendDebugCaptureResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Jobs$Debug$Sendcapture;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Debug$Sendcapture
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void | GaxiosPromise<Schema$SendDebugCaptureResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Debug$Sendcapture;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4553,17 +4629,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
@@ -4573,12 +4651,12 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Debug$Getconfig extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Debug$Getconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job id.
@@ -4594,12 +4672,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$GetDebugConfigRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Debug$Sendcapture extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Debug$Sendcapture
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job id.
@@ -4616,13 +4694,11 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$SendDebugCaptureRequest;
   }
 
-
   export class Resource$Projects$Jobs$Messages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataflow.projects.jobs.messages.list
@@ -4649,26 +4725,32 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Jobs$Messages$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListJobMessagesResponse>;
+      params?: Params$Resource$Projects$Jobs$Messages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobMessagesResponse>;
     list(
-        params: Params$Resource$Projects$Jobs$Messages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+      params: Params$Resource$Projects$Jobs$Messages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Jobs$Messages$List,
-        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+      params: Params$Resource$Projects$Jobs$Messages$List,
+      callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Messages$List|
-        BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>):
-        void|GaxiosPromise<Schema$ListJobMessagesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Jobs$Messages$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Messages$List
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>
+    ): void | GaxiosPromise<Schema$ListJobMessagesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4685,17 +4767,18 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/messages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/messages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
@@ -4705,12 +4788,12 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Messages$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Messages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Return only messages with timestamps < end_time. The default is now (i.e.
@@ -4753,13 +4836,11 @@ export namespace dataflow_v1b3 {
     startTime?: string;
   }
 
-
   export class Resource$Projects$Jobs$Workitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataflow.projects.jobs.workItems.lease
@@ -4776,26 +4857,32 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     lease(
-        params?: Params$Resource$Projects$Jobs$Workitems$Lease,
-        options?: MethodOptions): GaxiosPromise<Schema$LeaseWorkItemResponse>;
+      params?: Params$Resource$Projects$Jobs$Workitems$Lease,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LeaseWorkItemResponse>;
     lease(
-        params: Params$Resource$Projects$Jobs$Workitems$Lease,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+      params: Params$Resource$Projects$Jobs$Workitems$Lease,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
+    ): void;
     lease(
-        params: Params$Resource$Projects$Jobs$Workitems$Lease,
-        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+      params: Params$Resource$Projects$Jobs$Workitems$Lease,
+      callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
+    ): void;
     lease(callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
     lease(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Workitems$Lease|
-        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>):
-        void|GaxiosPromise<Schema$LeaseWorkItemResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Jobs$Workitems$Lease;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Workitems$Lease
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>
+    ): void | GaxiosPromise<Schema$LeaseWorkItemResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Workitems$Lease;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4812,17 +4899,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
@@ -4830,7 +4919,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.jobs.workItems.reportStatus
@@ -4847,31 +4935,34 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     reportStatus(
-        params?: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ReportWorkItemStatusResponse>;
+      params?: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReportWorkItemStatusResponse>;
     reportStatus(
-        params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void;
+      params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void;
     reportStatus(
-        params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
-        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void;
-    reportStatus(callback:
-                     BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void;
+      params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+      callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void;
     reportStatus(
-        paramsOrCallback?: Params$Resource$Projects$Jobs$Workitems$Reportstatus|
-        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void|GaxiosPromise<Schema$ReportWorkItemStatusResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Jobs$Workitems$Reportstatus;
+      callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void;
+    reportStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Jobs$Workitems$Reportstatus
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void | GaxiosPromise<Schema$ReportWorkItemStatusResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Jobs$Workitems$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4888,35 +4979,39 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Workitems$Lease extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Workitems$Lease
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the workflow job this worker belongs to.
@@ -4932,12 +5027,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$LeaseWorkItemRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job which the WorkItem is part of.
@@ -4954,8 +5049,6 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$ReportWorkItemStatusRequest;
   }
 
-
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     jobs: Resource$Projects$Locations$Jobs;
@@ -4965,7 +5058,6 @@ export namespace dataflow_v1b3 {
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
       this.templates = new Resource$Projects$Locations$Templates(this.context);
     }
-
 
     /**
      * dataflow.projects.locations.workerMessages
@@ -4982,31 +5074,34 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     workerMessages(
-        params?: Params$Resource$Projects$Locations$Workermessages,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SendWorkerMessagesResponse>;
+      params?: Params$Resource$Projects$Locations$Workermessages,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendWorkerMessagesResponse>;
     workerMessages(
-        params: Params$Resource$Projects$Locations$Workermessages,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Workermessages,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void;
     workerMessages(
-        params: Params$Resource$Projects$Locations$Workermessages,
-        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void;
-    workerMessages(callback:
-                       BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Workermessages,
+      callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void;
     workerMessages(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Workermessages|
-        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
-        void|GaxiosPromise<Schema$SendWorkerMessagesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Workermessages;
+      callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void;
+    workerMessages(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workermessages
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
+    ): void | GaxiosPromise<Schema$SendWorkerMessagesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workermessages;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5023,34 +5118,37 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workermessages extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workermessages
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The [regional endpoint]
@@ -5077,12 +5175,13 @@ export namespace dataflow_v1b3 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.debug = new Resource$Projects$Locations$Jobs$Debug(this.context);
-      this.messages =
-          new Resource$Projects$Locations$Jobs$Messages(this.context);
-      this.workItems =
-          new Resource$Projects$Locations$Jobs$Workitems(this.context);
+      this.messages = new Resource$Projects$Locations$Jobs$Messages(
+        this.context
+      );
+      this.workItems = new Resource$Projects$Locations$Jobs$Workitems(
+        this.context
+      );
     }
-
 
     /**
      * dataflow.projects.locations.jobs.create
@@ -5105,24 +5204,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Jobs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Locations$Jobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Projects$Locations$Jobs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Jobs$Create,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Create|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Create
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5139,17 +5242,18 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1b3/projects/{projectId}/locations/{location}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5157,7 +5261,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.jobs.get
@@ -5179,21 +5282,29 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Jobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    get(params: Params$Resource$Projects$Locations$Jobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    get(params: Params$Resource$Projects$Locations$Jobs$Get,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Job>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Get|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Get
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5210,18 +5321,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5229,7 +5341,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.jobs.getMetrics
@@ -5252,25 +5363,30 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     getMetrics(
-        params?: Params$Resource$Projects$Locations$Jobs$Getmetrics,
-        options?: MethodOptions): GaxiosPromise<Schema$JobMetrics>;
+      params?: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$JobMetrics>;
     getMetrics(
-        params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
-        options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
-        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$JobMetrics>,
+      callback: BodyResponseCallback<Schema$JobMetrics>
+    ): void;
     getMetrics(
-        params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
-        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+      callback: BodyResponseCallback<Schema$JobMetrics>
+    ): void;
     getMetrics(callback: BodyResponseCallback<Schema$JobMetrics>): void;
     getMetrics(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Getmetrics|
-        BodyResponseCallback<Schema$JobMetrics>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$JobMetrics>,
-        callback?: BodyResponseCallback<Schema$JobMetrics>):
-        void|GaxiosPromise<Schema$JobMetrics> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Getmetrics;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Getmetrics
+        | BodyResponseCallback<Schema$JobMetrics>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$JobMetrics>,
+      callback?: BodyResponseCallback<Schema$JobMetrics>
+    ): void | GaxiosPromise<Schema$JobMetrics> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5287,18 +5403,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(parameters, callback);
@@ -5306,7 +5423,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$JobMetrics>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.jobs.list
@@ -5332,25 +5448,30 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Jobs$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListJobsResponse>;
+      params?: Params$Resource$Projects$Locations$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Jobs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Jobs$List,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$List|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|GaxiosPromise<Schema$ListJobsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$List
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5367,17 +5488,18 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1b3/projects/{projectId}/locations/{location}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/locations/{location}/jobs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -5385,7 +5507,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.jobs.snapshot
@@ -5403,24 +5524,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     snapshot(
-        params?: Params$Resource$Projects$Locations$Jobs$Snapshot,
-        options?: MethodOptions): GaxiosPromise<Schema$Snapshot>;
+      params?: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
     snapshot(
-        params: Params$Resource$Projects$Locations$Jobs$Snapshot,
-        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback: BodyResponseCallback<Schema$Snapshot>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
     snapshot(
-        params: Params$Resource$Projects$Locations$Jobs$Snapshot,
-        callback: BodyResponseCallback<Schema$Snapshot>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
     snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
     snapshot(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Snapshot|
-        BodyResponseCallback<Schema$Snapshot>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
-        callback?: BodyResponseCallback<Schema$Snapshot>):
-        void|GaxiosPromise<Schema$Snapshot> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Snapshot;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Snapshot
+        | BodyResponseCallback<Schema$Snapshot>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback?: BodyResponseCallback<Schema$Snapshot>
+    ): void | GaxiosPromise<Schema$Snapshot> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Snapshot;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5437,18 +5562,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -5456,7 +5582,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Snapshot>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.jobs.update
@@ -5479,24 +5604,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Locations$Jobs$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Locations$Jobs$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     update(
-        params: Params$Resource$Projects$Locations$Jobs$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     update(
-        params: Params$Resource$Projects$Locations$Jobs$Update,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Update,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Job>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Update|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Update
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5513,18 +5642,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5534,12 +5664,12 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The [regional endpoint]
@@ -5565,12 +5695,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job ID.
@@ -5591,12 +5721,12 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Getmetrics extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Getmetrics
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job to get messages for.
@@ -5618,12 +5748,12 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The kind of filter to use.
@@ -5656,12 +5786,12 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Snapshot extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Snapshot
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job to be snapshotted.
@@ -5681,12 +5811,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$SnapshotJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job ID.
@@ -5715,7 +5845,6 @@ export namespace dataflow_v1b3 {
       this.context = context;
     }
 
-
     /**
      * dataflow.projects.locations.jobs.debug.getConfig
      * @desc Get encoded debug configuration for component. Not cacheable.
@@ -5732,28 +5861,34 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     getConfig(
-        params?: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$GetDebugConfigResponse>;
+      params?: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetDebugConfigResponse>;
     getConfig(
-        params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void;
     getConfig(
-        params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
-        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
-    getConfig(callback: BodyResponseCallback<Schema$GetDebugConfigResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+      callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void;
     getConfig(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Jobs$Debug$Getconfig|
-        BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>):
-        void|GaxiosPromise<Schema$GetDebugConfigResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Debug$Getconfig;
+      callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Debug$Getconfig
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>
+    ): void | GaxiosPromise<Schema$GetDebugConfigResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Debug$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5770,18 +5905,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
@@ -5789,7 +5925,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.jobs.debug.sendCapture
@@ -5807,35 +5942,39 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     sendCapture(
-        params?: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SendDebugCaptureResponse>;
+      params?: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendDebugCaptureResponse>;
     sendCapture(
-        params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void;
     sendCapture(
-        params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
-        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+      callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void;
     sendCapture(
-        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+      callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void;
     sendCapture(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture|
-        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>):
-        void|GaxiosPromise<Schema$SendDebugCaptureResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>
+    ): void | GaxiosPromise<Schema$SendDebugCaptureResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
         options = {};
       }
 
@@ -5847,18 +5986,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
@@ -5869,11 +6009,11 @@ export namespace dataflow_v1b3 {
   }
 
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job id.
@@ -5896,11 +6036,11 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$GetDebugConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job id.
@@ -5923,13 +6063,11 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$SendDebugCaptureRequest;
   }
 
-
   export class Resource$Projects$Locations$Jobs$Messages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataflow.projects.locations.jobs.messages.list
@@ -5956,27 +6094,32 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Jobs$Messages$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListJobMessagesResponse>;
+      params?: Params$Resource$Projects$Locations$Jobs$Messages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobMessagesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Jobs$Messages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Messages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Jobs$Messages$List,
-        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Messages$List,
+      callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Jobs$Messages$List|
-        BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>):
-        void|GaxiosPromise<Schema$ListJobMessagesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Messages$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Messages$List
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>
+    ): void | GaxiosPromise<Schema$ListJobMessagesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5993,18 +6136,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
@@ -6014,12 +6158,12 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Messages$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Messages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Return only messages with timestamps < end_time. The default is now (i.e.
@@ -6062,13 +6206,11 @@ export namespace dataflow_v1b3 {
     startTime?: string;
   }
 
-
   export class Resource$Projects$Locations$Jobs$Workitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataflow.projects.locations.jobs.workItems.lease
@@ -6086,27 +6228,32 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     lease(
-        params?: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
-        options?: MethodOptions): GaxiosPromise<Schema$LeaseWorkItemResponse>;
+      params?: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LeaseWorkItemResponse>;
     lease(
-        params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
+    ): void;
     lease(
-        params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
-        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+      callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
+    ): void;
     lease(callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
     lease(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Jobs$Workitems$Lease|
-        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>):
-        void|GaxiosPromise<Schema$LeaseWorkItemResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Workitems$Lease;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Workitems$Lease
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>
+    ): void | GaxiosPromise<Schema$LeaseWorkItemResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Workitems$Lease;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6123,18 +6270,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
@@ -6142,7 +6290,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.jobs.workItems.reportStatus
@@ -6160,38 +6307,39 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     reportStatus(
-        params?: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ReportWorkItemStatusResponse>;
+      params?: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReportWorkItemStatusResponse>;
     reportStatus(
-        params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void;
     reportStatus(
-        params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
-        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void;
-    reportStatus(callback:
-                     BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+      callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void;
     reportStatus(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus|
-        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
-        void|GaxiosPromise<Schema$ReportWorkItemStatusResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
+      callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void;
+    reportStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>
+    ): void | GaxiosPromise<Schema$ReportWorkItemStatusResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
         options = {};
       }
 
@@ -6203,35 +6351,39 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ReportWorkItemStatusResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the workflow job this worker belongs to.
@@ -6254,11 +6406,11 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$LeaseWorkItemRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job which the WorkItem is part of.
@@ -6281,14 +6433,11 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$ReportWorkItemStatusRequest;
   }
 
-
-
   export class Resource$Projects$Locations$Templates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataflow.projects.locations.templates.create
@@ -6305,24 +6454,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Templates$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Locations$Templates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Projects$Locations$Templates$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Templates$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Templates$Create,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Templates$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Templates$Create|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Templates$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Templates$Create
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Templates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6339,17 +6492,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1b3/projects/{projectId}/locations/{location}/templates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/templates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -6357,7 +6512,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.templates.get
@@ -6374,22 +6528,31 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Templates$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GetTemplateResponse>;
-    get(params: Params$Resource$Projects$Locations$Templates$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
-        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
-    get(params: Params$Resource$Projects$Locations$Templates$Get,
-        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Templates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetTemplateResponse>;
+    get(
+      params: Params$Resource$Projects$Locations$Templates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback: BodyResponseCallback<Schema$GetTemplateResponse>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Templates$Get,
+      callback: BodyResponseCallback<Schema$GetTemplateResponse>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Templates$Get|
-        BodyResponseCallback<Schema$GetTemplateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$GetTemplateResponse>):
-        void|GaxiosPromise<Schema$GetTemplateResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Templates$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Templates$Get
+        | BodyResponseCallback<Schema$GetTemplateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$GetTemplateResponse>
+    ): void | GaxiosPromise<Schema$GetTemplateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Templates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6406,18 +6569,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/templates:get')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/templates:get'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
@@ -6425,7 +6589,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.locations.templates.launch
@@ -6446,26 +6609,32 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     launch(
-        params?: Params$Resource$Projects$Locations$Templates$Launch,
-        options?: MethodOptions): GaxiosPromise<Schema$LaunchTemplateResponse>;
+      params?: Params$Resource$Projects$Locations$Templates$Launch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LaunchTemplateResponse>;
     launch(
-        params: Params$Resource$Projects$Locations$Templates$Launch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+      params: Params$Resource$Projects$Locations$Templates$Launch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
+    ): void;
     launch(
-        params: Params$Resource$Projects$Locations$Templates$Launch,
-        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+      params: Params$Resource$Projects$Locations$Templates$Launch,
+      callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
+    ): void;
     launch(callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
     launch(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Templates$Launch|
-        BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>):
-        void|GaxiosPromise<Schema$LaunchTemplateResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Templates$Launch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Templates$Launch
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>
+    ): void | GaxiosPromise<Schema$LaunchTemplateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Templates$Launch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6482,18 +6651,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1b3/projects/{projectId}/locations/{location}/templates:launch')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/templates:launch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
@@ -6503,12 +6673,12 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Templates$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Templates$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The [regional endpoint]
@@ -6526,12 +6696,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$CreateJobFromTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Templates$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Templates$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. A Cloud Storage path to the template from which to create the
@@ -6553,12 +6723,12 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Templates$Launch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Templates$Launch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Path to dynamic template spec file on GCS. The file must be a Json
@@ -6597,14 +6767,11 @@ export namespace dataflow_v1b3 {
     requestBody?: Schema$LaunchTemplateParameters;
   }
 
-
-
   export class Resource$Projects$Templates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dataflow.projects.templates.create
@@ -6620,24 +6787,28 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Templates$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Templates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Projects$Templates$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Templates$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(
-        params: Params$Resource$Projects$Templates$Create,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Templates$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Templates$Create|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Templates$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Templates$Create
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Templates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6654,16 +6825,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/templates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -6671,7 +6845,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.templates.get
@@ -6688,22 +6861,31 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Templates$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GetTemplateResponse>;
-    get(params: Params$Resource$Projects$Templates$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
-        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
-    get(params: Params$Resource$Projects$Templates$Get,
-        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(
+      params?: Params$Resource$Projects$Templates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetTemplateResponse>;
+    get(
+      params: Params$Resource$Projects$Templates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback: BodyResponseCallback<Schema$GetTemplateResponse>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Templates$Get,
+      callback: BodyResponseCallback<Schema$GetTemplateResponse>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Templates$Get|
-        BodyResponseCallback<Schema$GetTemplateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$GetTemplateResponse>):
-        void|GaxiosPromise<Schema$GetTemplateResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Templates$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Templates$Get
+        | BodyResponseCallback<Schema$GetTemplateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$GetTemplateResponse>
+    ): void | GaxiosPromise<Schema$GetTemplateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Templates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6720,16 +6902,19 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/templates:get')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates:get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
@@ -6737,7 +6922,6 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$GetTemplateResponse>(parameters);
       }
     }
-
 
     /**
      * dataflow.projects.templates.launch
@@ -6758,26 +6942,32 @@ export namespace dataflow_v1b3 {
      * @return {object} Request object
      */
     launch(
-        params?: Params$Resource$Projects$Templates$Launch,
-        options?: MethodOptions): GaxiosPromise<Schema$LaunchTemplateResponse>;
+      params?: Params$Resource$Projects$Templates$Launch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LaunchTemplateResponse>;
     launch(
-        params: Params$Resource$Projects$Templates$Launch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+      params: Params$Resource$Projects$Templates$Launch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
+    ): void;
     launch(
-        params: Params$Resource$Projects$Templates$Launch,
-        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+      params: Params$Resource$Projects$Templates$Launch,
+      callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
+    ): void;
     launch(callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
     launch(
-        paramsOrCallback?: Params$Resource$Projects$Templates$Launch|
-        BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>):
-        void|GaxiosPromise<Schema$LaunchTemplateResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Templates$Launch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Templates$Launch
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>
+    ): void | GaxiosPromise<Schema$LaunchTemplateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Templates$Launch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6794,16 +6984,18 @@ export namespace dataflow_v1b3 {
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1b3/projects/{projectId}/templates:launch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1b3/projects/{projectId}/templates:launch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
@@ -6813,12 +7005,12 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Templates$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Templates$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
@@ -6830,12 +7022,12 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$CreateJobFromTemplateRequest;
   }
-  export interface Params$Resource$Projects$Templates$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Templates$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. A Cloud Storage path to the template from which to create the
@@ -6857,12 +7049,12 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Templates$Launch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Templates$Launch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Path to dynamic template spec file on GCS. The file must be a Json

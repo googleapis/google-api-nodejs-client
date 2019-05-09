@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -427,7 +439,7 @@ export namespace androidpublisher_v3 {
     /**
      * List of localized title and description data.
      */
-    listings?: {[key: string]: Schema$InAppProductListing;};
+    listings?: {[key: string]: Schema$InAppProductListing};
     /**
      * The package name of the parent app.
      */
@@ -436,7 +448,7 @@ export namespace androidpublisher_v3 {
      * Prices per buyer region. None of these prices should be zero. In-app
      * products can never be free.
      */
-    prices?: {[key: string]: Schema$Price;};
+    prices?: {[key: string]: Schema$Price};
     /**
      * Purchase type enum value. Unmodifiable after creation.
      */
@@ -1017,7 +1029,6 @@ export namespace androidpublisher_v3 {
     voidedPurchases?: Schema$VoidedPurchase[];
   }
 
-
   export class Resource$Edits {
     context: APIRequestContext;
     apks: Resource$Edits$Apks;
@@ -1033,8 +1044,9 @@ export namespace androidpublisher_v3 {
       this.context = context;
       this.apks = new Resource$Edits$Apks(this.context);
       this.bundles = new Resource$Edits$Bundles(this.context);
-      this.deobfuscationfiles =
-          new Resource$Edits$Deobfuscationfiles(this.context);
+      this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles(
+        this.context
+      );
       this.details = new Resource$Edits$Details(this.context);
       this.expansionfiles = new Resource$Edits$Expansionfiles(this.context);
       this.images = new Resource$Edits$Images(this.context);
@@ -1042,7 +1054,6 @@ export namespace androidpublisher_v3 {
       this.testers = new Resource$Edits$Testers(this.context);
       this.tracks = new Resource$Edits$Tracks(this.context);
     }
-
 
     /**
      * androidpublisher.edits.commit
@@ -1057,22 +1068,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit(params?: Params$Resource$Edits$Commit, options?: MethodOptions):
-        GaxiosPromise<Schema$AppEdit>;
     commit(
-        params: Params$Resource$Edits$Commit,
-        options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
+      params?: Params$Resource$Edits$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppEdit>;
     commit(
-        params: Params$Resource$Edits$Commit,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
+      params: Params$Resource$Edits$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
+    commit(
+      params: Params$Resource$Edits$Commit,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
     commit(callback: BodyResponseCallback<Schema$AppEdit>): void;
     commit(
-        paramsOrCallback?: Params$Resource$Edits$Commit|
-        BodyResponseCallback<Schema$AppEdit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|GaxiosPromise<Schema$AppEdit> {
+      paramsOrCallback?:
+        | Params$Resource$Edits$Commit
+        | BodyResponseCallback<Schema$AppEdit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>
+    ): void | GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1090,18 +1106,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}:commit')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}:commit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1109,7 +1126,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$AppEdit>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.delete
@@ -1126,21 +1142,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Edits$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Edits$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Edits$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Edits$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Edits$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Edits$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Edits$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Edits$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1158,18 +1180,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1177,7 +1200,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.get
@@ -1194,19 +1216,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Edits$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AppEdit>;
-    get(params: Params$Resource$Edits$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
-    get(params: Params$Resource$Edits$Get,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
+    get(
+      params?: Params$Resource$Edits$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppEdit>;
+    get(
+      params: Params$Resource$Edits$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Get,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AppEdit>): void;
-    get(paramsOrCallback?: Params$Resource$Edits$Get|
-        BodyResponseCallback<Schema$AppEdit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|GaxiosPromise<Schema$AppEdit> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Get
+        | BodyResponseCallback<Schema$AppEdit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>
+    ): void | GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1224,18 +1254,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1243,7 +1274,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$AppEdit>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.insert
@@ -1259,22 +1289,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Edits$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$AppEdit>;
     insert(
-        params: Params$Resource$Edits$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
+      params?: Params$Resource$Edits$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppEdit>;
     insert(
-        params: Params$Resource$Edits$Insert,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
+      params: Params$Resource$Edits$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
+    insert(
+      params: Params$Resource$Edits$Insert,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$AppEdit>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Edits$Insert|
-        BodyResponseCallback<Schema$AppEdit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|GaxiosPromise<Schema$AppEdit> {
+      paramsOrCallback?:
+        | Params$Resource$Edits$Insert
+        | BodyResponseCallback<Schema$AppEdit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>
+    ): void | GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1292,17 +1327,18 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidpublisher/v3/applications/{packageName}/edits')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidpublisher/v3/applications/{packageName}/edits'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1310,7 +1346,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$AppEdit>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.validate
@@ -1326,22 +1361,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    validate(params?: Params$Resource$Edits$Validate, options?: MethodOptions):
-        GaxiosPromise<Schema$AppEdit>;
     validate(
-        params: Params$Resource$Edits$Validate,
-        options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
+      params?: Params$Resource$Edits$Validate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppEdit>;
     validate(
-        params: Params$Resource$Edits$Validate,
-        callback: BodyResponseCallback<Schema$AppEdit>): void;
+      params: Params$Resource$Edits$Validate,
+      options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
+    validate(
+      params: Params$Resource$Edits$Validate,
+      callback: BodyResponseCallback<Schema$AppEdit>
+    ): void;
     validate(callback: BodyResponseCallback<Schema$AppEdit>): void;
     validate(
-        paramsOrCallback?: Params$Resource$Edits$Validate|
-        BodyResponseCallback<Schema$AppEdit>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-        callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|GaxiosPromise<Schema$AppEdit> {
+      paramsOrCallback?:
+        | Params$Resource$Edits$Validate
+        | BodyResponseCallback<Schema$AppEdit>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>
+    ): void | GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1359,18 +1399,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}:validate')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}:validate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1384,7 +1425,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1400,7 +1441,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1416,7 +1457,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1432,7 +1473,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for the Android app that is being updated; for example,
@@ -1449,7 +1490,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1467,7 +1508,6 @@ export namespace androidpublisher_v3 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.apks.addexternallyhosted
@@ -1487,32 +1527,34 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     addexternallyhosted(
-        params?: Params$Resource$Edits$Apks$Addexternallyhosted,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ApksAddExternallyHostedResponse>;
+      params?: Params$Resource$Edits$Apks$Addexternallyhosted,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApksAddExternallyHostedResponse>;
     addexternallyhosted(
-        params: Params$Resource$Edits$Apks$Addexternallyhosted,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
-        callback: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>):
-        void;
+      params: Params$Resource$Edits$Apks$Addexternallyhosted,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
+      callback: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
+    ): void;
     addexternallyhosted(
-        params: Params$Resource$Edits$Apks$Addexternallyhosted,
-        callback: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>):
-        void;
+      params: Params$Resource$Edits$Apks$Addexternallyhosted,
+      callback: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
+    ): void;
     addexternallyhosted(
-        callback: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
+    ): void;
     addexternallyhosted(
-        paramsOrCallback?: Params$Resource$Edits$Apks$Addexternallyhosted|
-        BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>):
-        void|GaxiosPromise<Schema$ApksAddExternallyHostedResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Edits$Apks$Addexternallyhosted;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Apks$Addexternallyhosted
+        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
+      callback?: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
+    ): void | GaxiosPromise<Schema$ApksAddExternallyHostedResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Apks$Addexternallyhosted;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1529,28 +1571,31 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/externallyHosted')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/externallyHosted'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * androidpublisher.edits.apks.list
@@ -1564,23 +1609,29 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Edits$Apks$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ApksListResponse>;
     list(
-        params: Params$Resource$Edits$Apks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ApksListResponse>,
-        callback: BodyResponseCallback<Schema$ApksListResponse>): void;
+      params?: Params$Resource$Edits$Apks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ApksListResponse>;
     list(
-        params: Params$Resource$Edits$Apks$List,
-        callback: BodyResponseCallback<Schema$ApksListResponse>): void;
+      params: Params$Resource$Edits$Apks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ApksListResponse>,
+      callback: BodyResponseCallback<Schema$ApksListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Edits$Apks$List,
+      callback: BodyResponseCallback<Schema$ApksListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ApksListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Edits$Apks$List|
-        BodyResponseCallback<Schema$ApksListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ApksListResponse>,
-        callback?: BodyResponseCallback<Schema$ApksListResponse>):
-        void|GaxiosPromise<Schema$ApksListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Edits$Apks$List
+        | BodyResponseCallback<Schema$ApksListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApksListResponse>,
+      callback?: BodyResponseCallback<Schema$ApksListResponse>
+    ): void | GaxiosPromise<Schema$ApksListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Apks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1598,18 +1649,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ApksListResponse>(parameters, callback);
@@ -1617,7 +1669,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ApksListResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.apks.upload
@@ -1634,24 +1685,29 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    upload(params?: Params$Resource$Edits$Apks$Upload, options?: MethodOptions):
-        GaxiosPromise<Schema$Apk>;
     upload(
-        params: Params$Resource$Edits$Apks$Upload,
-        options: MethodOptions|BodyResponseCallback<Schema$Apk>,
-        callback: BodyResponseCallback<Schema$Apk>): void;
+      params?: Params$Resource$Edits$Apks$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Apk>;
     upload(
-        params: Params$Resource$Edits$Apks$Upload,
-        callback: BodyResponseCallback<Schema$Apk>): void;
+      params: Params$Resource$Edits$Apks$Upload,
+      options: MethodOptions | BodyResponseCallback<Schema$Apk>,
+      callback: BodyResponseCallback<Schema$Apk>
+    ): void;
+    upload(
+      params: Params$Resource$Edits$Apks$Upload,
+      callback: BodyResponseCallback<Schema$Apk>
+    ): void;
     upload(callback: BodyResponseCallback<Schema$Apk>): void;
     upload(
-        paramsOrCallback?: Params$Resource$Edits$Apks$Upload|
-        BodyResponseCallback<Schema$Apk>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Apk>,
-        callback?: BodyResponseCallback<Schema$Apk>):
-        void|GaxiosPromise<Schema$Apk> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Apks$Upload;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Apks$Upload
+        | BodyResponseCallback<Schema$Apk>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Apk>,
+      callback?: BodyResponseCallback<Schema$Apk>
+    ): void | GaxiosPromise<Schema$Apk> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Apks$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1668,22 +1724,23 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks')
-                .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Apk>(parameters, callback);
@@ -1693,12 +1750,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Apks$Addexternallyhosted extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Apks$Addexternallyhosted
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1719,7 +1776,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1731,12 +1788,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apks$Upload extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Apks$Upload
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1747,7 +1804,6 @@ export namespace androidpublisher_v3 {
      * "com.spiffygame".
      */
     packageName?: string;
-
 
     /**
      * Media metadata
@@ -1765,13 +1821,11 @@ export namespace androidpublisher_v3 {
     };
   }
 
-
   export class Resource$Edits$Bundles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.bundles.list
@@ -1785,25 +1839,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Edits$Bundles$List, options?: MethodOptions):
-        GaxiosPromise<Schema$BundlesListResponse>;
     list(
-        params: Params$Resource$Edits$Bundles$List,
-        options: MethodOptions|BodyResponseCallback<Schema$BundlesListResponse>,
-        callback: BodyResponseCallback<Schema$BundlesListResponse>): void;
+      params?: Params$Resource$Edits$Bundles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BundlesListResponse>;
     list(
-        params: Params$Resource$Edits$Bundles$List,
-        callback: BodyResponseCallback<Schema$BundlesListResponse>): void;
+      params: Params$Resource$Edits$Bundles$List,
+      options: MethodOptions | BodyResponseCallback<Schema$BundlesListResponse>,
+      callback: BodyResponseCallback<Schema$BundlesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Edits$Bundles$List,
+      callback: BodyResponseCallback<Schema$BundlesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$BundlesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Edits$Bundles$List|
-        BodyResponseCallback<Schema$BundlesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BundlesListResponse>,
-        callback?: BodyResponseCallback<Schema$BundlesListResponse>):
-        void|GaxiosPromise<Schema$BundlesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Bundles$List;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Bundles$List
+        | BodyResponseCallback<Schema$BundlesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BundlesListResponse>,
+      callback?: BodyResponseCallback<Schema$BundlesListResponse>
+    ): void | GaxiosPromise<Schema$BundlesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Bundles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1820,18 +1880,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BundlesListResponse>(parameters, callback);
@@ -1839,7 +1900,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$BundlesListResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.bundles.upload
@@ -1864,24 +1924,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
-        params?: Params$Resource$Edits$Bundles$Upload,
-        options?: MethodOptions): GaxiosPromise<Schema$Bundle>;
+      params?: Params$Resource$Edits$Bundles$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bundle>;
     upload(
-        params: Params$Resource$Edits$Bundles$Upload,
-        options: MethodOptions|BodyResponseCallback<Schema$Bundle>,
-        callback: BodyResponseCallback<Schema$Bundle>): void;
+      params: Params$Resource$Edits$Bundles$Upload,
+      options: MethodOptions | BodyResponseCallback<Schema$Bundle>,
+      callback: BodyResponseCallback<Schema$Bundle>
+    ): void;
     upload(
-        params: Params$Resource$Edits$Bundles$Upload,
-        callback: BodyResponseCallback<Schema$Bundle>): void;
+      params: Params$Resource$Edits$Bundles$Upload,
+      callback: BodyResponseCallback<Schema$Bundle>
+    ): void;
     upload(callback: BodyResponseCallback<Schema$Bundle>): void;
     upload(
-        paramsOrCallback?: Params$Resource$Edits$Bundles$Upload|
-        BodyResponseCallback<Schema$Bundle>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bundle>,
-        callback?: BodyResponseCallback<Schema$Bundle>):
-        void|GaxiosPromise<Schema$Bundle> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Bundles$Upload;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Bundles$Upload
+        | BodyResponseCallback<Schema$Bundle>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Bundle>,
+      callback?: BodyResponseCallback<Schema$Bundle>
+    ): void | GaxiosPromise<Schema$Bundle> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Bundles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1898,22 +1962,23 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles')
-                .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/bundles'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bundle>(parameters, callback);
@@ -1923,12 +1988,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Bundles$List extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Bundles$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -1940,12 +2005,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Bundles$Upload extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Bundles$Upload
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Must be set to true if the bundle installation may trigger a warning on
@@ -1963,7 +2028,6 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
 
-
     /**
      * Media metadata
      */
@@ -1980,13 +2044,11 @@ export namespace androidpublisher_v3 {
     };
   }
 
-
   export class Resource$Edits$Deobfuscationfiles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.deobfuscationfiles.upload
@@ -2008,34 +2070,34 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
-        params?: Params$Resource$Edits$Deobfuscationfiles$Upload,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DeobfuscationFilesUploadResponse>;
+      params?: Params$Resource$Edits$Deobfuscationfiles$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeobfuscationFilesUploadResponse>;
     upload(
-        params: Params$Resource$Edits$Deobfuscationfiles$Upload,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
-        callback:
-            BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>):
-        void;
+      params: Params$Resource$Edits$Deobfuscationfiles$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
+      callback: BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
+    ): void;
     upload(
-        params: Params$Resource$Edits$Deobfuscationfiles$Upload,
-        callback:
-            BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>):
-        void;
-    upload(callback:
-               BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>):
-        void;
+      params: Params$Resource$Edits$Deobfuscationfiles$Upload,
+      callback: BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
+    ): void;
     upload(
-        paramsOrCallback?: Params$Resource$Edits$Deobfuscationfiles$Upload|
-        BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
-        callback?:
-            BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>):
-        void|GaxiosPromise<Schema$DeobfuscationFilesUploadResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Edits$Deobfuscationfiles$Upload;
+      callback: BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Deobfuscationfiles$Upload
+        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
+    ): void | GaxiosPromise<Schema$DeobfuscationFilesUploadResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Deobfuscationfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2052,43 +2114,53 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
-                .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [
-          'packageName', 'editId', 'apkVersionCode', 'deobfuscationFileType'
+          'packageName',
+          'editId',
+          'apkVersionCode',
+          'deobfuscationFileType',
         ],
         pathParams: [
-          'apkVersionCode', 'deobfuscationFileType', 'editId', 'packageName'
+          'apkVersionCode',
+          'deobfuscationFileType',
+          'editId',
+          'packageName',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Edits$Deobfuscationfiles$Upload extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Deobfuscationfiles$Upload
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The version code of the APK whose deobfuscation file is being uploaded.
@@ -2108,7 +2180,6 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
 
-
     /**
      * Media metadata
      */
@@ -2125,13 +2196,11 @@ export namespace androidpublisher_v3 {
     };
   }
 
-
   export class Resource$Edits$Details {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.details.get
@@ -2147,22 +2216,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Edits$Details$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AppDetails>;
-    get(params: Params$Resource$Edits$Details$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
-        callback: BodyResponseCallback<Schema$AppDetails>): void;
-    get(params: Params$Resource$Edits$Details$Get,
-        callback: BodyResponseCallback<Schema$AppDetails>): void;
+    get(
+      params?: Params$Resource$Edits$Details$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppDetails>;
+    get(
+      params: Params$Resource$Edits$Details$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AppDetails>,
+      callback: BodyResponseCallback<Schema$AppDetails>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Details$Get,
+      callback: BodyResponseCallback<Schema$AppDetails>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AppDetails>): void;
-    get(paramsOrCallback?: Params$Resource$Edits$Details$Get|
-        BodyResponseCallback<Schema$AppDetails>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AppDetails>,
-        callback?: BodyResponseCallback<Schema$AppDetails>):
-        void|GaxiosPromise<Schema$AppDetails> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Details$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Details$Get
+        | BodyResponseCallback<Schema$AppDetails>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>
+    ): void | GaxiosPromise<Schema$AppDetails> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Details$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2179,18 +2257,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2198,7 +2277,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$AppDetails>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.details.patch
@@ -2216,25 +2294,30 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Edits$Details$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$AppDetails>;
+      params?: Params$Resource$Edits$Details$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppDetails>;
     patch(
-        params: Params$Resource$Edits$Details$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
-        callback: BodyResponseCallback<Schema$AppDetails>): void;
+      params: Params$Resource$Edits$Details$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AppDetails>,
+      callback: BodyResponseCallback<Schema$AppDetails>
+    ): void;
     patch(
-        params: Params$Resource$Edits$Details$Patch,
-        callback: BodyResponseCallback<Schema$AppDetails>): void;
+      params: Params$Resource$Edits$Details$Patch,
+      callback: BodyResponseCallback<Schema$AppDetails>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AppDetails>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Edits$Details$Patch|
-        BodyResponseCallback<Schema$AppDetails>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AppDetails>,
-        callback?: BodyResponseCallback<Schema$AppDetails>):
-        void|GaxiosPromise<Schema$AppDetails> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Details$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Details$Patch
+        | BodyResponseCallback<Schema$AppDetails>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>
+    ): void | GaxiosPromise<Schema$AppDetails> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Details$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2251,18 +2334,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2270,7 +2354,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$AppDetails>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.details.update
@@ -2287,25 +2370,30 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Edits$Details$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$AppDetails>;
+      params?: Params$Resource$Edits$Details$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppDetails>;
     update(
-        params: Params$Resource$Edits$Details$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
-        callback: BodyResponseCallback<Schema$AppDetails>): void;
+      params: Params$Resource$Edits$Details$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AppDetails>,
+      callback: BodyResponseCallback<Schema$AppDetails>
+    ): void;
     update(
-        params: Params$Resource$Edits$Details$Update,
-        callback: BodyResponseCallback<Schema$AppDetails>): void;
+      params: Params$Resource$Edits$Details$Update,
+      callback: BodyResponseCallback<Schema$AppDetails>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AppDetails>): void;
     update(
-        paramsOrCallback?: Params$Resource$Edits$Details$Update|
-        BodyResponseCallback<Schema$AppDetails>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AppDetails>,
-        callback?: BodyResponseCallback<Schema$AppDetails>):
-        void|GaxiosPromise<Schema$AppDetails> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Details$Update;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Details$Update
+        | BodyResponseCallback<Schema$AppDetails>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>
+    ): void | GaxiosPromise<Schema$AppDetails> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Details$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2322,18 +2410,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/details'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2343,12 +2432,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Details$Get extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Details$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -2360,34 +2449,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Details$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Details$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
-     */
-    editId?: string;
-    /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
-     */
-    packageName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AppDetails;
-  }
-  export interface Params$Resource$Edits$Details$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -2404,14 +2471,34 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$AppDetails;
   }
+  export interface Params$Resource$Edits$Details$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AppDetails;
+  }
 
   export class Resource$Edits$Expansionfiles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.expansionfiles.get
@@ -2428,22 +2515,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Edits$Expansionfiles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ExpansionFile>;
-    get(params: Params$Resource$Edits$Expansionfiles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
-        callback: BodyResponseCallback<Schema$ExpansionFile>): void;
-    get(params: Params$Resource$Edits$Expansionfiles$Get,
-        callback: BodyResponseCallback<Schema$ExpansionFile>): void;
+    get(
+      params?: Params$Resource$Edits$Expansionfiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExpansionFile>;
+    get(
+      params: Params$Resource$Edits$Expansionfiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ExpansionFile>,
+      callback: BodyResponseCallback<Schema$ExpansionFile>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Expansionfiles$Get,
+      callback: BodyResponseCallback<Schema$ExpansionFile>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ExpansionFile>): void;
-    get(paramsOrCallback?: Params$Resource$Edits$Expansionfiles$Get|
-        BodyResponseCallback<Schema$ExpansionFile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ExpansionFile>,
-        callback?: BodyResponseCallback<Schema$ExpansionFile>):
-        void|GaxiosPromise<Schema$ExpansionFile> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Expansionfiles$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Expansionfiles$Get
+        | BodyResponseCallback<Schema$ExpansionFile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>
+    ): void | GaxiosPromise<Schema$ExpansionFile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Expansionfiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2460,20 +2556,29 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-        pathParams:
-            ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.context
+        requiredParams: [
+          'packageName',
+          'editId',
+          'apkVersionCode',
+          'expansionFileType',
+        ],
+        pathParams: [
+          'apkVersionCode',
+          'editId',
+          'expansionFileType',
+          'packageName',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -2481,7 +2586,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.expansionfiles.patch
@@ -2502,25 +2606,30 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Edits$Expansionfiles$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ExpansionFile>;
+      params?: Params$Resource$Edits$Expansionfiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExpansionFile>;
     patch(
-        params: Params$Resource$Edits$Expansionfiles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
-        callback: BodyResponseCallback<Schema$ExpansionFile>): void;
+      params: Params$Resource$Edits$Expansionfiles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ExpansionFile>,
+      callback: BodyResponseCallback<Schema$ExpansionFile>
+    ): void;
     patch(
-        params: Params$Resource$Edits$Expansionfiles$Patch,
-        callback: BodyResponseCallback<Schema$ExpansionFile>): void;
+      params: Params$Resource$Edits$Expansionfiles$Patch,
+      callback: BodyResponseCallback<Schema$ExpansionFile>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ExpansionFile>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Edits$Expansionfiles$Patch|
-        BodyResponseCallback<Schema$ExpansionFile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ExpansionFile>,
-        callback?: BodyResponseCallback<Schema$ExpansionFile>):
-        void|GaxiosPromise<Schema$ExpansionFile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Edits$Expansionfiles$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Expansionfiles$Patch
+        | BodyResponseCallback<Schema$ExpansionFile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>
+    ): void | GaxiosPromise<Schema$ExpansionFile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Expansionfiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2537,20 +2646,29 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-        pathParams:
-            ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.context
+        requiredParams: [
+          'packageName',
+          'editId',
+          'apkVersionCode',
+          'expansionFileType',
+        ],
+        pathParams: [
+          'apkVersionCode',
+          'editId',
+          'expansionFileType',
+          'packageName',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -2558,7 +2676,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.expansionfiles.update
@@ -2578,25 +2695,30 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Edits$Expansionfiles$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ExpansionFile>;
+      params?: Params$Resource$Edits$Expansionfiles$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExpansionFile>;
     update(
-        params: Params$Resource$Edits$Expansionfiles$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
-        callback: BodyResponseCallback<Schema$ExpansionFile>): void;
+      params: Params$Resource$Edits$Expansionfiles$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ExpansionFile>,
+      callback: BodyResponseCallback<Schema$ExpansionFile>
+    ): void;
     update(
-        params: Params$Resource$Edits$Expansionfiles$Update,
-        callback: BodyResponseCallback<Schema$ExpansionFile>): void;
+      params: Params$Resource$Edits$Expansionfiles$Update,
+      callback: BodyResponseCallback<Schema$ExpansionFile>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ExpansionFile>): void;
     update(
-        paramsOrCallback?: Params$Resource$Edits$Expansionfiles$Update|
-        BodyResponseCallback<Schema$ExpansionFile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ExpansionFile>,
-        callback?: BodyResponseCallback<Schema$ExpansionFile>):
-        void|GaxiosPromise<Schema$ExpansionFile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Edits$Expansionfiles$Update;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Expansionfiles$Update
+        | BodyResponseCallback<Schema$ExpansionFile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>
+    ): void | GaxiosPromise<Schema$ExpansionFile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Expansionfiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2613,20 +2735,29 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-        pathParams:
-            ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.context
+        requiredParams: [
+          'packageName',
+          'editId',
+          'apkVersionCode',
+          'expansionFileType',
+        ],
+        pathParams: [
+          'apkVersionCode',
+          'editId',
+          'expansionFileType',
+          'packageName',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -2634,7 +2765,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.expansionfiles.upload
@@ -2655,30 +2785,34 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
-        params?: Params$Resource$Edits$Expansionfiles$Upload,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ExpansionFilesUploadResponse>;
+      params?: Params$Resource$Edits$Expansionfiles$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExpansionFilesUploadResponse>;
     upload(
-        params: Params$Resource$Edits$Expansionfiles$Upload,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
-        callback: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>):
-        void;
+      params: Params$Resource$Edits$Expansionfiles$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
+      callback: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
+    ): void;
     upload(
-        params: Params$Resource$Edits$Expansionfiles$Upload,
-        callback: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>):
-        void;
-    upload(callback: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>):
-        void;
+      params: Params$Resource$Edits$Expansionfiles$Upload,
+      callback: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
+    ): void;
     upload(
-        paramsOrCallback?: Params$Resource$Edits$Expansionfiles$Upload|
-        BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
-        callback?: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>):
-        void|GaxiosPromise<Schema$ExpansionFilesUploadResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Edits$Expansionfiles$Upload;
+      callback: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Expansionfiles$Upload
+        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
+    ): void | GaxiosPromise<Schema$ExpansionFilesUploadResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Expansionfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2695,41 +2829,53 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                .replace(/([^:]\/)\/+/g, '$1'),
-        requiredParams:
-            ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-        pathParams:
-            ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.context
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: [
+          'packageName',
+          'editId',
+          'apkVersionCode',
+          'expansionFileType',
+        ],
+        pathParams: [
+          'apkVersionCode',
+          'editId',
+          'expansionFileType',
+          'packageName',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFilesUploadResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ExpansionFilesUploadResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Edits$Expansionfiles$Get extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The version code of the APK whose Expansion File configuration is being
@@ -2750,12 +2896,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The version code of the APK whose Expansion File configuration is being
@@ -2781,12 +2927,12 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ExpansionFile;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Update extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The version code of the APK whose Expansion File configuration is being
@@ -2812,12 +2958,12 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ExpansionFile;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Upload extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Upload
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The version code of the APK whose Expansion File configuration is being
@@ -2837,7 +2983,6 @@ export namespace androidpublisher_v3 {
      * "com.spiffygame".
      */
     packageName?: string;
-
 
     /**
      * Media metadata
@@ -2855,13 +3000,11 @@ export namespace androidpublisher_v3 {
     };
   }
 
-
   export class Resource$Edits$Images {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.images.delete
@@ -2880,23 +3023,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Edits$Images$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Edits$Images$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Edits$Images$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Edits$Images$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Edits$Images$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Edits$Images$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Edits$Images$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Images$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Images$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Images$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2913,20 +3061,31 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['packageName', 'editId', 'language', 'imageType', 'imageId'],
-        pathParams:
-            ['editId', 'imageId', 'imageType', 'language', 'packageName'],
-        context: this.context
+        requiredParams: [
+          'packageName',
+          'editId',
+          'language',
+          'imageType',
+          'imageId',
+        ],
+        pathParams: [
+          'editId',
+          'imageId',
+          'imageType',
+          'language',
+          'packageName',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2934,7 +3093,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.images.deleteall
@@ -2952,27 +3110,34 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     deleteall(
-        params?: Params$Resource$Edits$Images$Deleteall,
-        options?: MethodOptions): GaxiosPromise<Schema$ImagesDeleteAllResponse>;
+      params?: Params$Resource$Edits$Images$Deleteall,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImagesDeleteAllResponse>;
     deleteall(
-        params: Params$Resource$Edits$Images$Deleteall,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
-        callback: BodyResponseCallback<Schema$ImagesDeleteAllResponse>): void;
+      params: Params$Resource$Edits$Images$Deleteall,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
+      callback: BodyResponseCallback<Schema$ImagesDeleteAllResponse>
+    ): void;
     deleteall(
-        params: Params$Resource$Edits$Images$Deleteall,
-        callback: BodyResponseCallback<Schema$ImagesDeleteAllResponse>): void;
-    deleteall(callback: BodyResponseCallback<Schema$ImagesDeleteAllResponse>):
-        void;
+      params: Params$Resource$Edits$Images$Deleteall,
+      callback: BodyResponseCallback<Schema$ImagesDeleteAllResponse>
+    ): void;
     deleteall(
-        paramsOrCallback?: Params$Resource$Edits$Images$Deleteall|
-        BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
-        callback?: BodyResponseCallback<Schema$ImagesDeleteAllResponse>):
-        void|GaxiosPromise<Schema$ImagesDeleteAllResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Images$Deleteall;
+      callback: BodyResponseCallback<Schema$ImagesDeleteAllResponse>
+    ): void;
+    deleteall(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Images$Deleteall
+        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesDeleteAllResponse>
+    ): void | GaxiosPromise<Schema$ImagesDeleteAllResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Images$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2989,18 +3154,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters, callback);
@@ -3008,7 +3174,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.images.list
@@ -3025,25 +3190,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Edits$Images$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ImagesListResponse>;
     list(
-        params: Params$Resource$Edits$Images$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ImagesListResponse>,
-        callback: BodyResponseCallback<Schema$ImagesListResponse>): void;
+      params?: Params$Resource$Edits$Images$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImagesListResponse>;
     list(
-        params: Params$Resource$Edits$Images$List,
-        callback: BodyResponseCallback<Schema$ImagesListResponse>): void;
+      params: Params$Resource$Edits$Images$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ImagesListResponse>,
+      callback: BodyResponseCallback<Schema$ImagesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Edits$Images$List,
+      callback: BodyResponseCallback<Schema$ImagesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ImagesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Edits$Images$List|
-        BodyResponseCallback<Schema$ImagesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ImagesListResponse>,
-        callback?: BodyResponseCallback<Schema$ImagesListResponse>):
-        void|GaxiosPromise<Schema$ImagesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Images$List;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Images$List
+        | BodyResponseCallback<Schema$ImagesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImagesListResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesListResponse>
+    ): void | GaxiosPromise<Schema$ImagesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Images$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3060,18 +3231,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ImagesListResponse>(parameters, callback);
@@ -3079,7 +3251,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ImagesListResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.images.upload
@@ -3101,26 +3272,32 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
-        params?: Params$Resource$Edits$Images$Upload,
-        options?: MethodOptions): GaxiosPromise<Schema$ImagesUploadResponse>;
+      params?: Params$Resource$Edits$Images$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImagesUploadResponse>;
     upload(
-        params: Params$Resource$Edits$Images$Upload,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ImagesUploadResponse>,
-        callback: BodyResponseCallback<Schema$ImagesUploadResponse>): void;
+      params: Params$Resource$Edits$Images$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImagesUploadResponse>,
+      callback: BodyResponseCallback<Schema$ImagesUploadResponse>
+    ): void;
     upload(
-        params: Params$Resource$Edits$Images$Upload,
-        callback: BodyResponseCallback<Schema$ImagesUploadResponse>): void;
+      params: Params$Resource$Edits$Images$Upload,
+      callback: BodyResponseCallback<Schema$ImagesUploadResponse>
+    ): void;
     upload(callback: BodyResponseCallback<Schema$ImagesUploadResponse>): void;
     upload(
-        paramsOrCallback?: Params$Resource$Edits$Images$Upload|
-        BodyResponseCallback<Schema$ImagesUploadResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ImagesUploadResponse>,
-        callback?: BodyResponseCallback<Schema$ImagesUploadResponse>):
-        void|GaxiosPromise<Schema$ImagesUploadResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Images$Upload;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Images$Upload
+        | BodyResponseCallback<Schema$ImagesUploadResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImagesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesUploadResponse>
+    ): void | GaxiosPromise<Schema$ImagesUploadResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Images$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3137,22 +3314,23 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl +
+          '/upload/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ImagesUploadResponse>(parameters, callback);
@@ -3162,12 +3340,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Images$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Images$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3194,12 +3372,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Deleteall extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Images$Deleteall
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3221,12 +3399,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$List extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Images$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3248,12 +3426,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Upload extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Images$Upload
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3274,7 +3452,6 @@ export namespace androidpublisher_v3 {
      * "com.spiffygame".
      */
     packageName?: string;
-
 
     /**
      * Media metadata
@@ -3292,13 +3469,11 @@ export namespace androidpublisher_v3 {
     };
   }
 
-
   export class Resource$Edits$Listings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.listings.delete
@@ -3315,23 +3490,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Edits$Listings$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Edits$Listings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Edits$Listings$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Edits$Listings$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Edits$Listings$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Edits$Listings$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Edits$Listings$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Listings$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Listings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3348,18 +3528,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3367,7 +3548,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.listings.deleteall
@@ -3383,23 +3563,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     deleteall(
-        params?: Params$Resource$Edits$Listings$Deleteall,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Edits$Listings$Deleteall,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     deleteall(
-        params: Params$Resource$Edits$Listings$Deleteall,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Edits$Listings$Deleteall,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     deleteall(
-        params: Params$Resource$Edits$Listings$Deleteall,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Edits$Listings$Deleteall,
+      callback: BodyResponseCallback<void>
+    ): void;
     deleteall(callback: BodyResponseCallback<void>): void;
     deleteall(
-        paramsOrCallback?: Params$Resource$Edits$Listings$Deleteall|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Deleteall;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Listings$Deleteall
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Listings$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3416,18 +3601,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3435,7 +3621,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.listings.get
@@ -3451,21 +3636,29 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Edits$Listings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Listing>;
-    get(params: Params$Resource$Edits$Listings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Listing>,
-        callback: BodyResponseCallback<Schema$Listing>): void;
-    get(params: Params$Resource$Edits$Listings$Get,
-        callback: BodyResponseCallback<Schema$Listing>): void;
+    get(
+      params?: Params$Resource$Edits$Listings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Listing>;
+    get(
+      params: Params$Resource$Edits$Listings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Listing>,
+      callback: BodyResponseCallback<Schema$Listing>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Listings$Get,
+      callback: BodyResponseCallback<Schema$Listing>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Listing>): void;
-    get(paramsOrCallback?: Params$Resource$Edits$Listings$Get|
-        BodyResponseCallback<Schema$Listing>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Listing>,
-        callback?: BodyResponseCallback<Schema$Listing>):
-        void|GaxiosPromise<Schema$Listing> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Listings$Get
+        | BodyResponseCallback<Schema$Listing>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>
+    ): void | GaxiosPromise<Schema$Listing> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Listings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3482,18 +3675,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -3501,7 +3695,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$Listing>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.listings.list
@@ -3516,26 +3709,33 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Edits$Listings$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListingsListResponse>;
     list(
-        params: Params$Resource$Edits$Listings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListingsListResponse>,
-        callback: BodyResponseCallback<Schema$ListingsListResponse>): void;
+      params?: Params$Resource$Edits$Listings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListingsListResponse>;
     list(
-        params: Params$Resource$Edits$Listings$List,
-        callback: BodyResponseCallback<Schema$ListingsListResponse>): void;
+      params: Params$Resource$Edits$Listings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListingsListResponse>,
+      callback: BodyResponseCallback<Schema$ListingsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Edits$Listings$List,
+      callback: BodyResponseCallback<Schema$ListingsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListingsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Edits$Listings$List|
-        BodyResponseCallback<Schema$ListingsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListingsListResponse>,
-        callback?: BodyResponseCallback<Schema$ListingsListResponse>):
-        void|GaxiosPromise<Schema$ListingsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Listings$List;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Listings$List
+        | BodyResponseCallback<Schema$ListingsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListingsListResponse>,
+      callback?: BodyResponseCallback<Schema$ListingsListResponse>
+    ): void | GaxiosPromise<Schema$ListingsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Listings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3552,18 +3752,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListingsListResponse>(parameters, callback);
@@ -3571,7 +3772,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ListingsListResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.listings.patch
@@ -3590,24 +3790,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Edits$Listings$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Listing>;
+      params?: Params$Resource$Edits$Listings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Listing>;
     patch(
-        params: Params$Resource$Edits$Listings$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Listing>,
-        callback: BodyResponseCallback<Schema$Listing>): void;
+      params: Params$Resource$Edits$Listings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Listing>,
+      callback: BodyResponseCallback<Schema$Listing>
+    ): void;
     patch(
-        params: Params$Resource$Edits$Listings$Patch,
-        callback: BodyResponseCallback<Schema$Listing>): void;
+      params: Params$Resource$Edits$Listings$Patch,
+      callback: BodyResponseCallback<Schema$Listing>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Listing>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Edits$Listings$Patch|
-        BodyResponseCallback<Schema$Listing>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Listing>,
-        callback?: BodyResponseCallback<Schema$Listing>):
-        void|GaxiosPromise<Schema$Listing> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Listings$Patch
+        | BodyResponseCallback<Schema$Listing>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>
+    ): void | GaxiosPromise<Schema$Listing> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Listings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3624,18 +3828,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -3643,7 +3848,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$Listing>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.listings.update
@@ -3661,24 +3865,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Edits$Listings$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Listing>;
+      params?: Params$Resource$Edits$Listings$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Listing>;
     update(
-        params: Params$Resource$Edits$Listings$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Listing>,
-        callback: BodyResponseCallback<Schema$Listing>): void;
+      params: Params$Resource$Edits$Listings$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Listing>,
+      callback: BodyResponseCallback<Schema$Listing>
+    ): void;
     update(
-        params: Params$Resource$Edits$Listings$Update,
-        callback: BodyResponseCallback<Schema$Listing>): void;
+      params: Params$Resource$Edits$Listings$Update,
+      callback: BodyResponseCallback<Schema$Listing>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Listing>): void;
     update(
-        paramsOrCallback?: Params$Resource$Edits$Listings$Update|
-        BodyResponseCallback<Schema$Listing>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Listing>,
-        callback?: BodyResponseCallback<Schema$Listing>):
-        void|GaxiosPromise<Schema$Listing> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Update;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Listings$Update
+        | BodyResponseCallback<Schema$Listing>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>
+    ): void | GaxiosPromise<Schema$Listing> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Listings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3695,18 +3903,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/listings/{language}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -3716,12 +3925,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Listings$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Listings$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3738,12 +3947,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Deleteall extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Listings$Deleteall
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3755,51 +3964,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Get extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Listings$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
-     */
-    editId?: string;
-    /**
-     * The language code (a BCP-47 language tag) of the localized listing to
-     * read or modify. For example, to select Austrian German, pass "de-AT".
-     */
-    language?: string;
-    /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
-     */
-    packageName?: string;
-  }
-  export interface Params$Resource$Edits$Listings$List extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
-     */
-    editId?: string;
-    /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
-     */
-    packageName?: string;
-  }
-  export interface Params$Resource$Edits$Listings$Patch extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3815,18 +3985,30 @@ export namespace androidpublisher_v3 {
      * "com.spiffygame".
      */
     packageName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Listing;
   }
-  export interface Params$Resource$Edits$Listings$Update extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Listings$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+  }
+  export interface Params$Resource$Edits$Listings$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -3848,14 +4030,39 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Listing;
   }
+  export interface Params$Resource$Edits$Listings$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     * The language code (a BCP-47 language tag) of the localized listing to
+     * read or modify. For example, to select Austrian German, pass "de-AT".
+     */
+    language?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Listing;
+  }
 
   export class Resource$Edits$Testers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.testers.get
@@ -3870,21 +4077,29 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Edits$Testers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Testers>;
-    get(params: Params$Resource$Edits$Testers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Testers>,
-        callback: BodyResponseCallback<Schema$Testers>): void;
-    get(params: Params$Resource$Edits$Testers$Get,
-        callback: BodyResponseCallback<Schema$Testers>): void;
+    get(
+      params?: Params$Resource$Edits$Testers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Testers>;
+    get(
+      params: Params$Resource$Edits$Testers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Testers>,
+      callback: BodyResponseCallback<Schema$Testers>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Testers$Get,
+      callback: BodyResponseCallback<Schema$Testers>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Testers>): void;
-    get(paramsOrCallback?: Params$Resource$Edits$Testers$Get|
-        BodyResponseCallback<Schema$Testers>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Testers>,
-        callback?: BodyResponseCallback<Schema$Testers>):
-        void|GaxiosPromise<Schema$Testers> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Testers$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Testers$Get
+        | BodyResponseCallback<Schema$Testers>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>
+    ): void | GaxiosPromise<Schema$Testers> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Testers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3901,18 +4116,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -3920,7 +4136,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$Testers>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.testers.patch
@@ -3937,24 +4152,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Edits$Testers$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Testers>;
+      params?: Params$Resource$Edits$Testers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Testers>;
     patch(
-        params: Params$Resource$Edits$Testers$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Testers>,
-        callback: BodyResponseCallback<Schema$Testers>): void;
+      params: Params$Resource$Edits$Testers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Testers>,
+      callback: BodyResponseCallback<Schema$Testers>
+    ): void;
     patch(
-        params: Params$Resource$Edits$Testers$Patch,
-        callback: BodyResponseCallback<Schema$Testers>): void;
+      params: Params$Resource$Edits$Testers$Patch,
+      callback: BodyResponseCallback<Schema$Testers>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Testers>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Edits$Testers$Patch|
-        BodyResponseCallback<Schema$Testers>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Testers>,
-        callback?: BodyResponseCallback<Schema$Testers>):
-        void|GaxiosPromise<Schema$Testers> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Testers$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Testers$Patch
+        | BodyResponseCallback<Schema$Testers>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>
+    ): void | GaxiosPromise<Schema$Testers> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Testers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3971,18 +4190,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -3990,7 +4210,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$Testers>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.testers.update
@@ -4007,24 +4226,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Edits$Testers$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Testers>;
+      params?: Params$Resource$Edits$Testers$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Testers>;
     update(
-        params: Params$Resource$Edits$Testers$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Testers>,
-        callback: BodyResponseCallback<Schema$Testers>): void;
+      params: Params$Resource$Edits$Testers$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Testers>,
+      callback: BodyResponseCallback<Schema$Testers>
+    ): void;
     update(
-        params: Params$Resource$Edits$Testers$Update,
-        callback: BodyResponseCallback<Schema$Testers>): void;
+      params: Params$Resource$Edits$Testers$Update,
+      callback: BodyResponseCallback<Schema$Testers>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Testers>): void;
     update(
-        paramsOrCallback?: Params$Resource$Edits$Testers$Update|
-        BodyResponseCallback<Schema$Testers>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Testers>,
-        callback?: BodyResponseCallback<Schema$Testers>):
-        void|GaxiosPromise<Schema$Testers> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Testers$Update;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Testers$Update
+        | BodyResponseCallback<Schema$Testers>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>
+    ): void | GaxiosPromise<Schema$Testers> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Testers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4041,18 +4264,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -4062,12 +4286,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Testers$Get extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Testers$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -4083,38 +4307,12 @@ export namespace androidpublisher_v3 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Testers$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Testers$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
-     */
-    editId?: string;
-    /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
-     */
-    packageName?: string;
-    /**
-     * The track to read or modify.
-     */
-    track?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Testers;
-  }
-  export interface Params$Resource$Edits$Testers$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -4135,14 +4333,38 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Testers;
   }
+  export interface Params$Resource$Edits$Testers$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+    /**
+     * The track to read or modify.
+     */
+    track?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Testers;
+  }
 
   export class Resource$Edits$Tracks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.edits.tracks.get
@@ -4159,19 +4381,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Edits$Tracks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Track>;
-    get(params: Params$Resource$Edits$Tracks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Track>,
-        callback: BodyResponseCallback<Schema$Track>): void;
-    get(params: Params$Resource$Edits$Tracks$Get,
-        callback: BodyResponseCallback<Schema$Track>): void;
+    get(
+      params?: Params$Resource$Edits$Tracks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Track>;
+    get(
+      params: Params$Resource$Edits$Tracks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Track>,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Tracks$Get,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Track>): void;
-    get(paramsOrCallback?: Params$Resource$Edits$Tracks$Get|
-        BodyResponseCallback<Schema$Track>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Track>,
-        callback?: BodyResponseCallback<Schema$Track>):
-        void|GaxiosPromise<Schema$Track> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Tracks$Get
+        | BodyResponseCallback<Schema$Track>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>
+    ): void | GaxiosPromise<Schema$Track> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4189,18 +4419,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -4208,7 +4439,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$Track>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.tracks.list
@@ -4223,25 +4453,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Edits$Tracks$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TracksListResponse>;
     list(
-        params: Params$Resource$Edits$Tracks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TracksListResponse>,
-        callback: BodyResponseCallback<Schema$TracksListResponse>): void;
+      params?: Params$Resource$Edits$Tracks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TracksListResponse>;
     list(
-        params: Params$Resource$Edits$Tracks$List,
-        callback: BodyResponseCallback<Schema$TracksListResponse>): void;
+      params: Params$Resource$Edits$Tracks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TracksListResponse>,
+      callback: BodyResponseCallback<Schema$TracksListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Edits$Tracks$List,
+      callback: BodyResponseCallback<Schema$TracksListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TracksListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Edits$Tracks$List|
-        BodyResponseCallback<Schema$TracksListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TracksListResponse>,
-        callback?: BodyResponseCallback<Schema$TracksListResponse>):
-        void|GaxiosPromise<Schema$TracksListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$List;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Tracks$List
+        | BodyResponseCallback<Schema$TracksListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TracksListResponse>,
+      callback?: BodyResponseCallback<Schema$TracksListResponse>
+    ): void | GaxiosPromise<Schema$TracksListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Tracks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4258,18 +4494,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TracksListResponse>(parameters, callback);
@@ -4277,7 +4514,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$TracksListResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.tracks.patch
@@ -4295,24 +4531,29 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Edits$Tracks$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Track>;
     patch(
-        params: Params$Resource$Edits$Tracks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Track>,
-        callback: BodyResponseCallback<Schema$Track>): void;
+      params?: Params$Resource$Edits$Tracks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Track>;
     patch(
-        params: Params$Resource$Edits$Tracks$Patch,
-        callback: BodyResponseCallback<Schema$Track>): void;
+      params: Params$Resource$Edits$Tracks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Track>,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
+    patch(
+      params: Params$Resource$Edits$Tracks$Patch,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Track>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Edits$Tracks$Patch|
-        BodyResponseCallback<Schema$Track>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Track>,
-        callback?: BodyResponseCallback<Schema$Track>):
-        void|GaxiosPromise<Schema$Track> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Tracks$Patch
+        | BodyResponseCallback<Schema$Track>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>
+    ): void | GaxiosPromise<Schema$Track> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Tracks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4329,18 +4570,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -4348,7 +4590,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$Track>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.edits.tracks.update
@@ -4366,24 +4607,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Edits$Tracks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Track>;
+      params?: Params$Resource$Edits$Tracks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Track>;
     update(
-        params: Params$Resource$Edits$Tracks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Track>,
-        callback: BodyResponseCallback<Schema$Track>): void;
+      params: Params$Resource$Edits$Tracks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Track>,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
     update(
-        params: Params$Resource$Edits$Tracks$Update,
-        callback: BodyResponseCallback<Schema$Track>): void;
+      params: Params$Resource$Edits$Tracks$Update,
+      callback: BodyResponseCallback<Schema$Track>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Track>): void;
     update(
-        paramsOrCallback?: Params$Resource$Edits$Tracks$Update|
-        BodyResponseCallback<Schema$Track>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Track>,
-        callback?: BodyResponseCallback<Schema$Track>):
-        void|GaxiosPromise<Schema$Track> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Edits$Tracks$Update
+        | BodyResponseCallback<Schema$Track>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>
+    ): void | GaxiosPromise<Schema$Track> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Tracks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4400,18 +4645,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/tracks/{track}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -4425,7 +4671,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -4441,12 +4687,12 @@ export namespace androidpublisher_v3 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Tracks$List extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Tracks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -4458,38 +4704,12 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Tracks$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Edits$Tracks$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Unique identifier for this edit.
-     */
-    editId?: string;
-    /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
-     */
-    packageName?: string;
-    /**
-     * The track to read or modify.
-     */
-    track?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Track;
-  }
-  export interface Params$Resource$Edits$Tracks$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for this edit.
@@ -4510,15 +4730,38 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Track;
   }
+  export interface Params$Resource$Edits$Tracks$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+    /**
+     * The track to read or modify.
+     */
+    track?: string;
 
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Track;
+  }
 
   export class Resource$Inappproducts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.inappproducts.delete
@@ -4534,23 +4777,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Inappproducts$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Inappproducts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Inappproducts$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Inappproducts$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Inappproducts$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Inappproducts$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Inappproducts$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inappproducts$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4567,18 +4815,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4586,7 +4835,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.inappproducts.get
@@ -4601,22 +4849,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Inappproducts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
-    get(params: Params$Resource$Inappproducts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
-    get(params: Params$Resource$Inappproducts$Get,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
+    get(
+      params?: Params$Resource$Inappproducts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InAppProduct>;
+    get(
+      params: Params$Resource$Inappproducts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
+    get(
+      params: Params$Resource$Inappproducts$Get,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
     get(callback: BodyResponseCallback<Schema$InAppProduct>): void;
-    get(paramsOrCallback?: Params$Resource$Inappproducts$Get|
-        BodyResponseCallback<Schema$InAppProduct>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InAppProduct>,
-        callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|GaxiosPromise<Schema$InAppProduct> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inappproducts$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Get
+        | BodyResponseCallback<Schema$InAppProduct>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>
+    ): void | GaxiosPromise<Schema$InAppProduct> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4633,18 +4890,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -4652,7 +4910,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$InAppProduct>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.inappproducts.insert
@@ -4669,25 +4926,30 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Inappproducts$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
+      params?: Params$Resource$Inappproducts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InAppProduct>;
     insert(
-        params: Params$Resource$Inappproducts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
+      params: Params$Resource$Inappproducts$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
     insert(
-        params: Params$Resource$Inappproducts$Insert,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
+      params: Params$Resource$Inappproducts$Insert,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$InAppProduct>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Inappproducts$Insert|
-        BodyResponseCallback<Schema$InAppProduct>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InAppProduct>,
-        callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|GaxiosPromise<Schema$InAppProduct> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inappproducts$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Insert
+        | BodyResponseCallback<Schema$InAppProduct>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>
+    ): void | GaxiosPromise<Schema$InAppProduct> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4704,18 +4966,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/inappproducts')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -4723,7 +4986,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$InAppProduct>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.inappproducts.list
@@ -4741,27 +5003,35 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Inappproducts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$InappproductsListResponse>;
     list(
-        params: Params$Resource$Inappproducts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$InappproductsListResponse>,
-        callback: BodyResponseCallback<Schema$InappproductsListResponse>): void;
+      params?: Params$Resource$Inappproducts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InappproductsListResponse>;
     list(
-        params: Params$Resource$Inappproducts$List,
-        callback: BodyResponseCallback<Schema$InappproductsListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$InappproductsListResponse>):
-        void;
+      params: Params$Resource$Inappproducts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InappproductsListResponse>,
+      callback: BodyResponseCallback<Schema$InappproductsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Inappproducts$List|
-        BodyResponseCallback<Schema$InappproductsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InappproductsListResponse>,
-        callback?: BodyResponseCallback<Schema$InappproductsListResponse>):
-        void|GaxiosPromise<Schema$InappproductsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inappproducts$List;
+      params: Params$Resource$Inappproducts$List,
+      callback: BodyResponseCallback<Schema$InappproductsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$InappproductsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$List
+        | BodyResponseCallback<Schema$InappproductsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InappproductsListResponse>,
+      callback?: BodyResponseCallback<Schema$InappproductsListResponse>
+    ): void | GaxiosPromise<Schema$InappproductsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4778,27 +5048,29 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/inappproducts')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InappproductsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$InappproductsListResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.inappproducts.patch
@@ -4817,25 +5089,30 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Inappproducts$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
+      params?: Params$Resource$Inappproducts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InAppProduct>;
     patch(
-        params: Params$Resource$Inappproducts$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
+      params: Params$Resource$Inappproducts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
     patch(
-        params: Params$Resource$Inappproducts$Patch,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
+      params: Params$Resource$Inappproducts$Patch,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$InAppProduct>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Inappproducts$Patch|
-        BodyResponseCallback<Schema$InAppProduct>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InAppProduct>,
-        callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|GaxiosPromise<Schema$InAppProduct> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inappproducts$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Patch
+        | BodyResponseCallback<Schema$InAppProduct>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>
+    ): void | GaxiosPromise<Schema$InAppProduct> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4852,18 +5129,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -4871,7 +5149,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$InAppProduct>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.inappproducts.update
@@ -4889,25 +5166,30 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Inappproducts$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
+      params?: Params$Resource$Inappproducts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InAppProduct>;
     update(
-        params: Params$Resource$Inappproducts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
+      params: Params$Resource$Inappproducts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
     update(
-        params: Params$Resource$Inappproducts$Update,
-        callback: BodyResponseCallback<Schema$InAppProduct>): void;
+      params: Params$Resource$Inappproducts$Update,
+      callback: BodyResponseCallback<Schema$InAppProduct>
+    ): void;
     update(callback: BodyResponseCallback<Schema$InAppProduct>): void;
     update(
-        paramsOrCallback?: Params$Resource$Inappproducts$Update|
-        BodyResponseCallback<Schema$InAppProduct>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InAppProduct>,
-        callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|GaxiosPromise<Schema$InAppProduct> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inappproducts$Update;
+      paramsOrCallback?:
+        | Params$Resource$Inappproducts$Update
+        | BodyResponseCallback<Schema$InAppProduct>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>
+    ): void | GaxiosPromise<Schema$InAppProduct> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inappproducts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4924,18 +5206,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/inappproducts/{sku}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -4945,12 +5228,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Inappproducts$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Inappproducts$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for the Android app with the in-app product; for
@@ -4962,12 +5245,12 @@ export namespace androidpublisher_v3 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Get extends
-      StandardParameters {
+  export interface Params$Resource$Inappproducts$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      *
@@ -4978,12 +5261,12 @@ export namespace androidpublisher_v3 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Inappproducts$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If true the prices for all regions targeted by the parent app that don't
@@ -5001,12 +5284,12 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$List extends
-      StandardParameters {
+  export interface Params$Resource$Inappproducts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      *
@@ -5026,12 +5309,12 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Inappproducts$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Inappproducts$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If true the prices for all regions targeted by the parent app that don't
@@ -5054,12 +5337,12 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$Update extends
-      StandardParameters {
+  export interface Params$Resource$Inappproducts$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If true the prices for all regions targeted by the parent app that don't
@@ -5082,14 +5365,12 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$InAppProduct;
   }
-
 
   export class Resource$Orders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.orders.refund
@@ -5105,21 +5386,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    refund(params?: Params$Resource$Orders$Refund, options?: MethodOptions):
-        GaxiosPromise<void>;
     refund(
-        params: Params$Resource$Orders$Refund,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Orders$Refund,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     refund(
-        params: Params$Resource$Orders$Refund,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Orders$Refund,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    refund(
+      params: Params$Resource$Orders$Refund,
+      callback: BodyResponseCallback<void>
+    ): void;
     refund(callback: BodyResponseCallback<void>): void;
     refund(
-        paramsOrCallback?: Params$Resource$Orders$Refund|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Orders$Refund
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5137,18 +5424,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/orders/{orderId}:refund')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/orders/{orderId}:refund'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'orderId'],
         pathParams: ['orderId', 'packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5162,7 +5450,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The order ID provided to the user when the subscription or in-app order
@@ -5183,7 +5471,6 @@ export namespace androidpublisher_v3 {
     revoke?: boolean;
   }
 
-
   export class Resource$Purchases {
     context: APIRequestContext;
     products: Resource$Purchases$Products;
@@ -5193,18 +5480,17 @@ export namespace androidpublisher_v3 {
       this.context = context;
       this.products = new Resource$Purchases$Products(this.context);
       this.subscriptions = new Resource$Purchases$Subscriptions(this.context);
-      this.voidedpurchases =
-          new Resource$Purchases$Voidedpurchases(this.context);
+      this.voidedpurchases = new Resource$Purchases$Voidedpurchases(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Purchases$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.purchases.products.get
@@ -5220,22 +5506,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Purchases$Products$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductPurchase>;
-    get(params: Params$Resource$Purchases$Products$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductPurchase>,
-        callback: BodyResponseCallback<Schema$ProductPurchase>): void;
-    get(params: Params$Resource$Purchases$Products$Get,
-        callback: BodyResponseCallback<Schema$ProductPurchase>): void;
+    get(
+      params?: Params$Resource$Purchases$Products$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductPurchase>;
+    get(
+      params: Params$Resource$Purchases$Products$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductPurchase>,
+      callback: BodyResponseCallback<Schema$ProductPurchase>
+    ): void;
+    get(
+      params: Params$Resource$Purchases$Products$Get,
+      callback: BodyResponseCallback<Schema$ProductPurchase>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ProductPurchase>): void;
-    get(paramsOrCallback?: Params$Resource$Purchases$Products$Get|
-        BodyResponseCallback<Schema$ProductPurchase>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductPurchase>,
-        callback?: BodyResponseCallback<Schema$ProductPurchase>):
-        void|GaxiosPromise<Schema$ProductPurchase> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Purchases$Products$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Products$Get
+        | BodyResponseCallback<Schema$ProductPurchase>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductPurchase>,
+      callback?: BodyResponseCallback<Schema$ProductPurchase>
+    ): void | GaxiosPromise<Schema$ProductPurchase> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5252,18 +5547,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'productId', 'token'],
         pathParams: ['packageName', 'productId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductPurchase>(parameters, callback);
@@ -5273,12 +5569,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Purchases$Products$Get extends
-      StandardParameters {
+  export interface Params$Resource$Purchases$Products$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application the inapp product was sold in (for
@@ -5296,13 +5592,11 @@ export namespace androidpublisher_v3 {
     token?: string;
   }
 
-
   export class Resource$Purchases$Subscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.purchases.subscriptions.cancel
@@ -5320,23 +5614,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Purchases$Subscriptions$Cancel,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Purchases$Subscriptions$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     cancel(
-        params: Params$Resource$Purchases$Subscriptions$Cancel,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Purchases$Subscriptions$Cancel,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     cancel(
-        params: Params$Resource$Purchases$Subscriptions$Cancel,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Purchases$Subscriptions$Cancel,
+      callback: BodyResponseCallback<void>
+    ): void;
     cancel(callback: BodyResponseCallback<void>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Cancel|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Purchases$Subscriptions$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptions$Cancel
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5353,18 +5652,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5372,7 +5672,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.purchases.subscriptions.defer
@@ -5391,34 +5690,34 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     defer(
-        params?: Params$Resource$Purchases$Subscriptions$Defer,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse>;
+      params?: Params$Resource$Purchases$Subscriptions$Defer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse>;
     defer(
-        params: Params$Resource$Purchases$Subscriptions$Defer,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
-        callback:
-            BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>):
-        void;
+      params: Params$Resource$Purchases$Subscriptions$Defer,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
+    ): void;
     defer(
-        params: Params$Resource$Purchases$Subscriptions$Defer,
-        callback:
-            BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>):
-        void;
-    defer(callback:
-              BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>):
-        void;
+      params: Params$Resource$Purchases$Subscriptions$Defer,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
+    ): void;
     defer(
-        paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Defer|
-        BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
-        callback?:
-            BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>):
-        void|GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Purchases$Subscriptions$Defer;
+      callback: BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
+    ): void;
+    defer(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptions$Defer
+        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
+    ): void | GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptions$Defer;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5435,28 +5734,31 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * androidpublisher.purchases.subscriptions.get
@@ -5473,23 +5775,33 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Purchases$Subscriptions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SubscriptionPurchase>;
-    get(params: Params$Resource$Purchases$Subscriptions$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionPurchase>,
-        callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-    get(params: Params$Resource$Purchases$Subscriptions$Get,
-        callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
+    get(
+      params?: Params$Resource$Purchases$Subscriptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionPurchase>;
+    get(
+      params: Params$Resource$Purchases$Subscriptions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
+    ): void;
+    get(
+      params: Params$Resource$Purchases$Subscriptions$Get,
+      callback: BodyResponseCallback<Schema$SubscriptionPurchase>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-    get(paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Get|
-        BodyResponseCallback<Schema$SubscriptionPurchase>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionPurchase>,
-        callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
-        void|GaxiosPromise<Schema$SubscriptionPurchase> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Purchases$Subscriptions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptions$Get
+        | BodyResponseCallback<Schema$SubscriptionPurchase>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>
+    ): void | GaxiosPromise<Schema$SubscriptionPurchase> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5506,18 +5818,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
@@ -5525,7 +5838,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.purchases.subscriptions.refund
@@ -5543,23 +5855,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     refund(
-        params?: Params$Resource$Purchases$Subscriptions$Refund,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Purchases$Subscriptions$Refund,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     refund(
-        params: Params$Resource$Purchases$Subscriptions$Refund,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Purchases$Subscriptions$Refund,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     refund(
-        params: Params$Resource$Purchases$Subscriptions$Refund,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Purchases$Subscriptions$Refund,
+      callback: BodyResponseCallback<void>
+    ): void;
     refund(callback: BodyResponseCallback<void>): void;
     refund(
-        paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Refund|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Purchases$Subscriptions$Refund;
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptions$Refund
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptions$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5576,18 +5893,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5595,7 +5913,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.purchases.subscriptions.revoke
@@ -5614,23 +5931,28 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     revoke(
-        params?: Params$Resource$Purchases$Subscriptions$Revoke,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Purchases$Subscriptions$Revoke,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     revoke(
-        params: Params$Resource$Purchases$Subscriptions$Revoke,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Purchases$Subscriptions$Revoke,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     revoke(
-        params: Params$Resource$Purchases$Subscriptions$Revoke,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Purchases$Subscriptions$Revoke,
+      callback: BodyResponseCallback<void>
+    ): void;
     revoke(callback: BodyResponseCallback<void>): void;
     revoke(
-        paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Revoke|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Purchases$Subscriptions$Revoke;
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptions$Revoke
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptions$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5647,18 +5969,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5668,12 +5991,12 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Purchases$Subscriptions$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application for which this subscription was
@@ -5690,12 +6013,12 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Defer extends
-      StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Defer
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application for which this subscription was
@@ -5717,12 +6040,12 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$SubscriptionPurchasesDeferRequest;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application for which this subscription was
@@ -5739,12 +6062,12 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Refund extends
-      StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Refund
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application for which this subscription was
@@ -5761,12 +6084,12 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Revoke extends
-      StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Revoke
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The package name of the application for which this subscription was
@@ -5783,14 +6106,12 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-
 
   export class Resource$Purchases$Voidedpurchases {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.purchases.voidedpurchases.list
@@ -5810,30 +6131,34 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Purchases$Voidedpurchases$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$VoidedPurchasesListResponse>;
+      params?: Params$Resource$Purchases$Voidedpurchases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VoidedPurchasesListResponse>;
     list(
-        params: Params$Resource$Purchases$Voidedpurchases$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
-        callback: BodyResponseCallback<Schema$VoidedPurchasesListResponse>):
-        void;
+      params: Params$Resource$Purchases$Voidedpurchases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
+      callback: BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Purchases$Voidedpurchases$List,
-        callback: BodyResponseCallback<Schema$VoidedPurchasesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$VoidedPurchasesListResponse>):
-        void;
+      params: Params$Resource$Purchases$Voidedpurchases$List,
+      callback: BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Purchases$Voidedpurchases$List|
-        BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
-        callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>):
-        void|GaxiosPromise<Schema$VoidedPurchasesListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Purchases$Voidedpurchases$List;
+      callback: BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Voidedpurchases$List
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
+      callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+    ): void | GaxiosPromise<Schema$VoidedPurchasesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Voidedpurchases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5850,34 +6175,37 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/purchases/voidedpurchases')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/voidedpurchases'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VoidedPurchasesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$VoidedPurchasesListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Purchases$Voidedpurchases$List extends
-      StandardParameters {
+  export interface Params$Resource$Purchases$Voidedpurchases$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The time, in milliseconds since the Epoch, of the newest voided in-app
@@ -5916,14 +6244,11 @@ export namespace androidpublisher_v3 {
     token?: string;
   }
 
-
-
   export class Resource$Reviews {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidpublisher.reviews.get
@@ -5939,19 +6264,27 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Reviews$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Review>;
-    get(params: Params$Resource$Reviews$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Review>,
-        callback: BodyResponseCallback<Schema$Review>): void;
-    get(params: Params$Resource$Reviews$Get,
-        callback: BodyResponseCallback<Schema$Review>): void;
+    get(
+      params?: Params$Resource$Reviews$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Review>;
+    get(
+      params: Params$Resource$Reviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Review>,
+      callback: BodyResponseCallback<Schema$Review>
+    ): void;
+    get(
+      params: Params$Resource$Reviews$Get,
+      callback: BodyResponseCallback<Schema$Review>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Review>): void;
-    get(paramsOrCallback?: Params$Resource$Reviews$Get|
-        BodyResponseCallback<Schema$Review>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Review>,
-        callback?: BodyResponseCallback<Schema$Review>):
-        void|GaxiosPromise<Schema$Review> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reviews$Get
+        | BodyResponseCallback<Schema$Review>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Review>,
+      callback?: BodyResponseCallback<Schema$Review>
+    ): void | GaxiosPromise<Schema$Review> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5969,18 +6302,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Review>(parameters, callback);
@@ -5988,7 +6322,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$Review>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.reviews.list
@@ -6007,23 +6340,29 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Reviews$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ReviewsListResponse>;
     list(
-        params: Params$Resource$Reviews$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ReviewsListResponse>,
-        callback: BodyResponseCallback<Schema$ReviewsListResponse>): void;
+      params?: Params$Resource$Reviews$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReviewsListResponse>;
     list(
-        params: Params$Resource$Reviews$List,
-        callback: BodyResponseCallback<Schema$ReviewsListResponse>): void;
+      params: Params$Resource$Reviews$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ReviewsListResponse>,
+      callback: BodyResponseCallback<Schema$ReviewsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Reviews$List,
+      callback: BodyResponseCallback<Schema$ReviewsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ReviewsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Reviews$List|
-        BodyResponseCallback<Schema$ReviewsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReviewsListResponse>,
-        callback?: BodyResponseCallback<Schema$ReviewsListResponse>):
-        void|GaxiosPromise<Schema$ReviewsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Reviews$List
+        | BodyResponseCallback<Schema$ReviewsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReviewsListResponse>,
+      callback?: BodyResponseCallback<Schema$ReviewsListResponse>
+    ): void | GaxiosPromise<Schema$ReviewsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6041,17 +6380,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidpublisher/v3/applications/{packageName}/reviews')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/reviews'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReviewsListResponse>(parameters, callback);
@@ -6059,7 +6400,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$ReviewsListResponse>(parameters);
       }
     }
-
 
     /**
      * androidpublisher.reviews.reply
@@ -6075,24 +6415,31 @@ export namespace androidpublisher_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reply(params?: Params$Resource$Reviews$Reply, options?: MethodOptions):
-        GaxiosPromise<Schema$ReviewsReplyResponse>;
     reply(
-        params: Params$Resource$Reviews$Reply,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ReviewsReplyResponse>,
-        callback: BodyResponseCallback<Schema$ReviewsReplyResponse>): void;
+      params?: Params$Resource$Reviews$Reply,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReviewsReplyResponse>;
     reply(
-        params: Params$Resource$Reviews$Reply,
-        callback: BodyResponseCallback<Schema$ReviewsReplyResponse>): void;
+      params: Params$Resource$Reviews$Reply,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReviewsReplyResponse>,
+      callback: BodyResponseCallback<Schema$ReviewsReplyResponse>
+    ): void;
+    reply(
+      params: Params$Resource$Reviews$Reply,
+      callback: BodyResponseCallback<Schema$ReviewsReplyResponse>
+    ): void;
     reply(callback: BodyResponseCallback<Schema$ReviewsReplyResponse>): void;
     reply(
-        paramsOrCallback?: Params$Resource$Reviews$Reply|
-        BodyResponseCallback<Schema$ReviewsReplyResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReviewsReplyResponse>,
-        callback?: BodyResponseCallback<Schema$ReviewsReplyResponse>):
-        void|GaxiosPromise<Schema$ReviewsReplyResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Reviews$Reply
+        | BodyResponseCallback<Schema$ReviewsReplyResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReviewsReplyResponse>,
+      callback?: BodyResponseCallback<Schema$ReviewsReplyResponse>
+    ): void | GaxiosPromise<Schema$ReviewsReplyResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Reply;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6110,18 +6457,19 @@ export namespace androidpublisher_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}:reply')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/reviews/{reviewId}:reply'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReviewsReplyResponse>(parameters, callback);
@@ -6135,7 +6483,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for the Android app for which we want reviews; for
@@ -6155,7 +6503,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      *
@@ -6183,7 +6531,7 @@ export namespace androidpublisher_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Unique identifier for the Android app for which we want reviews; for

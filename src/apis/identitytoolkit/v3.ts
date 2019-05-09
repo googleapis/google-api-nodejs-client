@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -304,7 +316,7 @@ export namespace identitytoolkit_v3 {
      * customized by clients: client_id, response_type, scope, redirect_uri,
      * state, oauth_token.
      */
-    customParameter?: {[key: string]: string;};
+    customParameter?: {[key: string]: string};
     /**
      * The hosted domain to restrict sign-in to accounts at that domain for
      * Google Apps hosted accounts.
@@ -1233,7 +1245,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The error encountered while processing the account info.
      */
-    error?: Array<{index?: number; message?: string;}>;
+    error?: Array<{index?: number; message?: string}>;
     /**
      * The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
      */
@@ -1588,13 +1600,11 @@ export namespace identitytoolkit_v3 {
     registered?: boolean;
   }
 
-
   export class Resource$Relyingparty {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * identitytoolkit.relyingparty.createAuthUri
@@ -1609,27 +1619,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     createAuthUri(
-        params?: Params$Resource$Relyingparty$Createauthuri,
-        options?: MethodOptions): GaxiosPromise<Schema$CreateAuthUriResponse>;
+      params?: Params$Resource$Relyingparty$Createauthuri,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateAuthUriResponse>;
     createAuthUri(
-        params: Params$Resource$Relyingparty$Createauthuri,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreateAuthUriResponse>,
-        callback: BodyResponseCallback<Schema$CreateAuthUriResponse>): void;
+      params: Params$Resource$Relyingparty$Createauthuri,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateAuthUriResponse>,
+      callback: BodyResponseCallback<Schema$CreateAuthUriResponse>
+    ): void;
     createAuthUri(
-        params: Params$Resource$Relyingparty$Createauthuri,
-        callback: BodyResponseCallback<Schema$CreateAuthUriResponse>): void;
-    createAuthUri(callback: BodyResponseCallback<Schema$CreateAuthUriResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Createauthuri,
+      callback: BodyResponseCallback<Schema$CreateAuthUriResponse>
+    ): void;
     createAuthUri(
-        paramsOrCallback?: Params$Resource$Relyingparty$Createauthuri|
-        BodyResponseCallback<Schema$CreateAuthUriResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreateAuthUriResponse>,
-        callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>):
-        void|GaxiosPromise<Schema$CreateAuthUriResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Createauthuri;
+      callback: BodyResponseCallback<Schema$CreateAuthUriResponse>
+    ): void;
+    createAuthUri(
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Createauthuri
+        | BodyResponseCallback<Schema$CreateAuthUriResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateAuthUriResponse>,
+      callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>
+    ): void | GaxiosPromise<Schema$CreateAuthUriResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Createauthuri;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1646,16 +1663,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/createAuthUri'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreateAuthUriResponse>(parameters, callback);
@@ -1663,7 +1682,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$CreateAuthUriResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.deleteAccount
@@ -1678,27 +1696,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     deleteAccount(
-        params?: Params$Resource$Relyingparty$Deleteaccount,
-        options?: MethodOptions): GaxiosPromise<Schema$DeleteAccountResponse>;
+      params?: Params$Resource$Relyingparty$Deleteaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteAccountResponse>;
     deleteAccount(
-        params: Params$Resource$Relyingparty$Deleteaccount,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DeleteAccountResponse>,
-        callback: BodyResponseCallback<Schema$DeleteAccountResponse>): void;
+      params: Params$Resource$Relyingparty$Deleteaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteAccountResponse>,
+      callback: BodyResponseCallback<Schema$DeleteAccountResponse>
+    ): void;
     deleteAccount(
-        params: Params$Resource$Relyingparty$Deleteaccount,
-        callback: BodyResponseCallback<Schema$DeleteAccountResponse>): void;
-    deleteAccount(callback: BodyResponseCallback<Schema$DeleteAccountResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Deleteaccount,
+      callback: BodyResponseCallback<Schema$DeleteAccountResponse>
+    ): void;
     deleteAccount(
-        paramsOrCallback?: Params$Resource$Relyingparty$Deleteaccount|
-        BodyResponseCallback<Schema$DeleteAccountResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeleteAccountResponse>,
-        callback?: BodyResponseCallback<Schema$DeleteAccountResponse>):
-        void|GaxiosPromise<Schema$DeleteAccountResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Deleteaccount;
+      callback: BodyResponseCallback<Schema$DeleteAccountResponse>
+    ): void;
+    deleteAccount(
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Deleteaccount
+        | BodyResponseCallback<Schema$DeleteAccountResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteAccountResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteAccountResponse>
+    ): void | GaxiosPromise<Schema$DeleteAccountResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Deleteaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1715,16 +1740,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/deleteAccount'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeleteAccountResponse>(parameters, callback);
@@ -1732,7 +1759,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$DeleteAccountResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.downloadAccount
@@ -1747,27 +1773,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     downloadAccount(
-        params?: Params$Resource$Relyingparty$Downloadaccount,
-        options?: MethodOptions): GaxiosPromise<Schema$DownloadAccountResponse>;
+      params?: Params$Resource$Relyingparty$Downloadaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadAccountResponse>;
     downloadAccount(
-        params: Params$Resource$Relyingparty$Downloadaccount,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DownloadAccountResponse>,
-        callback: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
+      params: Params$Resource$Relyingparty$Downloadaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadAccountResponse>,
+      callback: BodyResponseCallback<Schema$DownloadAccountResponse>
+    ): void;
     downloadAccount(
-        params: Params$Resource$Relyingparty$Downloadaccount,
-        callback: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
+      params: Params$Resource$Relyingparty$Downloadaccount,
+      callback: BodyResponseCallback<Schema$DownloadAccountResponse>
+    ): void;
     downloadAccount(
-        callback: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
+      callback: BodyResponseCallback<Schema$DownloadAccountResponse>
+    ): void;
     downloadAccount(
-        paramsOrCallback?: Params$Resource$Relyingparty$Downloadaccount|
-        BodyResponseCallback<Schema$DownloadAccountResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DownloadAccountResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadAccountResponse>):
-        void|GaxiosPromise<Schema$DownloadAccountResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Downloadaccount;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Downloadaccount
+        | BodyResponseCallback<Schema$DownloadAccountResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadAccountResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadAccountResponse>
+    ): void | GaxiosPromise<Schema$DownloadAccountResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Downloadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1784,17 +1817,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/downloadAccount'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DownloadAccountResponse>(parameters, callback);
@@ -1802,7 +1836,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$DownloadAccountResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.emailLinkSignin
@@ -1817,27 +1850,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     emailLinkSignin(
-        params?: Params$Resource$Relyingparty$Emaillinksignin,
-        options?: MethodOptions): GaxiosPromise<Schema$EmailLinkSigninResponse>;
+      params?: Params$Resource$Relyingparty$Emaillinksignin,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EmailLinkSigninResponse>;
     emailLinkSignin(
-        params: Params$Resource$Relyingparty$Emaillinksignin,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$EmailLinkSigninResponse>,
-        callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
+      params: Params$Resource$Relyingparty$Emaillinksignin,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+      callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>
+    ): void;
     emailLinkSignin(
-        params: Params$Resource$Relyingparty$Emaillinksignin,
-        callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
+      params: Params$Resource$Relyingparty$Emaillinksignin,
+      callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>
+    ): void;
     emailLinkSignin(
-        callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
+      callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>
+    ): void;
     emailLinkSignin(
-        paramsOrCallback?: Params$Resource$Relyingparty$Emaillinksignin|
-        BodyResponseCallback<Schema$EmailLinkSigninResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EmailLinkSigninResponse>,
-        callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>):
-        void|GaxiosPromise<Schema$EmailLinkSigninResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Emaillinksignin;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Emaillinksignin
+        | BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+      callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>
+    ): void | GaxiosPromise<Schema$EmailLinkSigninResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Emaillinksignin;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1854,17 +1894,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/emailLinkSignin'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EmailLinkSigninResponse>(parameters, callback);
@@ -1872,7 +1913,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$EmailLinkSigninResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.getAccountInfo
@@ -1887,27 +1927,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getAccountInfo(
-        params?: Params$Resource$Relyingparty$Getaccountinfo,
-        options?: MethodOptions): GaxiosPromise<Schema$GetAccountInfoResponse>;
+      params?: Params$Resource$Relyingparty$Getaccountinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetAccountInfoResponse>;
     getAccountInfo(
-        params: Params$Resource$Relyingparty$Getaccountinfo,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetAccountInfoResponse>,
-        callback: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
+      params: Params$Resource$Relyingparty$Getaccountinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetAccountInfoResponse>,
+      callback: BodyResponseCallback<Schema$GetAccountInfoResponse>
+    ): void;
     getAccountInfo(
-        params: Params$Resource$Relyingparty$Getaccountinfo,
-        callback: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
+      params: Params$Resource$Relyingparty$Getaccountinfo,
+      callback: BodyResponseCallback<Schema$GetAccountInfoResponse>
+    ): void;
     getAccountInfo(
-        callback: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
+      callback: BodyResponseCallback<Schema$GetAccountInfoResponse>
+    ): void;
     getAccountInfo(
-        paramsOrCallback?: Params$Resource$Relyingparty$Getaccountinfo|
-        BodyResponseCallback<Schema$GetAccountInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetAccountInfoResponse>,
-        callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>):
-        void|GaxiosPromise<Schema$GetAccountInfoResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Getaccountinfo;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Getaccountinfo
+        | BodyResponseCallback<Schema$GetAccountInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetAccountInfoResponse>,
+      callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>
+    ): void | GaxiosPromise<Schema$GetAccountInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Getaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1924,16 +1971,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/getAccountInfo'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetAccountInfoResponse>(parameters, callback);
@@ -1941,7 +1990,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$GetAccountInfoResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.getOobConfirmationCode
@@ -1956,31 +2004,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getOobConfirmationCode(
-        params?: Params$Resource$Relyingparty$Getoobconfirmationcode,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetOobConfirmationCodeResponse>;
+      params?: Params$Resource$Relyingparty$Getoobconfirmationcode,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetOobConfirmationCodeResponse>;
     getOobConfirmationCode(
-        params: Params$Resource$Relyingparty$Getoobconfirmationcode,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
-        callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Getoobconfirmationcode,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
+      callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
+    ): void;
     getOobConfirmationCode(
-        params: Params$Resource$Relyingparty$Getoobconfirmationcode,
-        callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Getoobconfirmationcode,
+      callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
+    ): void;
     getOobConfirmationCode(
-        callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
+    ): void;
     getOobConfirmationCode(
-        paramsOrCallback?: Params$Resource$Relyingparty$Getoobconfirmationcode|
-        BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
-        callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
-        void|GaxiosPromise<Schema$GetOobConfirmationCodeResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Getoobconfirmationcode;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Getoobconfirmationcode
+        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
+      callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>
+    ): void | GaxiosPromise<Schema$GetOobConfirmationCodeResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Getoobconfirmationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1997,27 +2048,31 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/identitytoolkit/v3/relyingparty/getOobConfirmationCode')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/identitytoolkit/v3/relyingparty/getOobConfirmationCode'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.getProjectConfig
@@ -2033,35 +2088,52 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getProjectConfig(
-        params?: Params$Resource$Relyingparty$Getprojectconfig,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
+      params?: Params$Resource$Relyingparty$Getprojectconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+    >;
     getProjectConfig(
-        params: Params$Resource$Relyingparty$Getprojectconfig,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
+      params: Params$Resource$Relyingparty$Getprojectconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+      >
+    ): void;
     getProjectConfig(
-        params: Params$Resource$Relyingparty$Getprojectconfig,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
+      params: Params$Resource$Relyingparty$Getprojectconfig,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+      >
+    ): void;
     getProjectConfig(
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+      >
+    ): void;
     getProjectConfig(
-        paramsOrCallback?: Params$Resource$Relyingparty$Getprojectconfig|
-        BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
-        callback?: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>):
-        void|GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Getprojectconfig;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Getprojectconfig
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Getprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2078,29 +2150,29 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/identitytoolkit/v3/relyingparty/getProjectConfig')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/getProjectConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>(
-            parameters, callback);
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>(
-            parameters);
+          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
+        >(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.getPublicKeys
@@ -2114,33 +2186,50 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getPublicKeys(
-        params?: Params$Resource$Relyingparty$Getpublickeys,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
+      params?: Params$Resource$Relyingparty$Getpublickeys,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
     getPublicKeys(
-        params: Params$Resource$Relyingparty$Getpublickeys,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void;
+      params: Params$Resource$Relyingparty$Getpublickeys,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+      >
+    ): void;
     getPublicKeys(
-        params: Params$Resource$Relyingparty$Getpublickeys,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void;
-    getPublicKeys(callback: BodyResponseCallback<
-                  Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Getpublickeys,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+      >
+    ): void;
     getPublicKeys(
-        paramsOrCallback?: Params$Resource$Relyingparty$Getpublickeys|
-        BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
-        callback?: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void|
-        GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Getpublickeys;
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+      >
+    ): void;
+    getPublicKeys(
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Getpublickeys
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Getpublickeys;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2157,28 +2246,29 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/publicKeys'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>(
-            parameters, callback);
+          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>(
-            parameters);
+          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
+        >(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.getRecaptchaParam
@@ -2192,28 +2282,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     getRecaptchaParam(
-        params?: Params$Resource$Relyingparty$Getrecaptchaparam,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetRecaptchaParamResponse>;
+      params?: Params$Resource$Relyingparty$Getrecaptchaparam,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetRecaptchaParamResponse>;
     getRecaptchaParam(
-        params: Params$Resource$Relyingparty$Getrecaptchaparam,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
-        callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
+      params: Params$Resource$Relyingparty$Getrecaptchaparam,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+      callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>
+    ): void;
     getRecaptchaParam(
-        params: Params$Resource$Relyingparty$Getrecaptchaparam,
-        callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
+      params: Params$Resource$Relyingparty$Getrecaptchaparam,
+      callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>
+    ): void;
     getRecaptchaParam(
-        callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
+      callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>
+    ): void;
     getRecaptchaParam(
-        paramsOrCallback?: Params$Resource$Relyingparty$Getrecaptchaparam|
-        BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
-        callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>):
-        void|GaxiosPromise<Schema$GetRecaptchaParamResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Getrecaptchaparam;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Getrecaptchaparam
+        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+      callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>
+    ): void | GaxiosPromise<Schema$GetRecaptchaParamResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Getrecaptchaparam;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2230,26 +2326,28 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/identitytoolkit/v3/relyingparty/getRecaptchaParam')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/getRecaptchaParam'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetRecaptchaParamResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetRecaptchaParamResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.resetPassword
@@ -2264,27 +2362,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     resetPassword(
-        params?: Params$Resource$Relyingparty$Resetpassword,
-        options?: MethodOptions): GaxiosPromise<Schema$ResetPasswordResponse>;
+      params?: Params$Resource$Relyingparty$Resetpassword,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResetPasswordResponse>;
     resetPassword(
-        params: Params$Resource$Relyingparty$Resetpassword,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResetPasswordResponse>,
-        callback: BodyResponseCallback<Schema$ResetPasswordResponse>): void;
+      params: Params$Resource$Relyingparty$Resetpassword,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResetPasswordResponse>,
+      callback: BodyResponseCallback<Schema$ResetPasswordResponse>
+    ): void;
     resetPassword(
-        params: Params$Resource$Relyingparty$Resetpassword,
-        callback: BodyResponseCallback<Schema$ResetPasswordResponse>): void;
-    resetPassword(callback: BodyResponseCallback<Schema$ResetPasswordResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Resetpassword,
+      callback: BodyResponseCallback<Schema$ResetPasswordResponse>
+    ): void;
     resetPassword(
-        paramsOrCallback?: Params$Resource$Relyingparty$Resetpassword|
-        BodyResponseCallback<Schema$ResetPasswordResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResetPasswordResponse>,
-        callback?: BodyResponseCallback<Schema$ResetPasswordResponse>):
-        void|GaxiosPromise<Schema$ResetPasswordResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Resetpassword;
+      callback: BodyResponseCallback<Schema$ResetPasswordResponse>
+    ): void;
+    resetPassword(
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Resetpassword
+        | BodyResponseCallback<Schema$ResetPasswordResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResetPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$ResetPasswordResponse>
+    ): void | GaxiosPromise<Schema$ResetPasswordResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Resetpassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2301,16 +2406,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/resetPassword'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResetPasswordResponse>(parameters, callback);
@@ -2318,7 +2425,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$ResetPasswordResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.sendVerificationCode
@@ -2333,38 +2439,52 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     sendVerificationCode(
-        params?: Params$Resource$Relyingparty$Sendverificationcode,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
+      params?: Params$Resource$Relyingparty$Sendverificationcode,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+    >;
     sendVerificationCode(
-        params: Params$Resource$Relyingparty$Sendverificationcode,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Sendverificationcode,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+      >
+    ): void;
     sendVerificationCode(
-        params: Params$Resource$Relyingparty$Sendverificationcode,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Sendverificationcode,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+      >
+    ): void;
     sendVerificationCode(
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
-        void;
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+      >
+    ): void;
     sendVerificationCode(
-        paramsOrCallback?: Params$Resource$Relyingparty$Sendverificationcode|
-        BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
-        callback?: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
-        void|GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Sendverificationcode;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Sendverificationcode
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Sendverificationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2381,29 +2501,29 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/identitytoolkit/v3/relyingparty/sendVerificationCode')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/sendVerificationCode'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>(
-            parameters, callback);
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>(
-            parameters);
+          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
+        >(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.setAccountInfo
@@ -2418,27 +2538,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     setAccountInfo(
-        params?: Params$Resource$Relyingparty$Setaccountinfo,
-        options?: MethodOptions): GaxiosPromise<Schema$SetAccountInfoResponse>;
+      params?: Params$Resource$Relyingparty$Setaccountinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SetAccountInfoResponse>;
     setAccountInfo(
-        params: Params$Resource$Relyingparty$Setaccountinfo,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SetAccountInfoResponse>,
-        callback: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
+      params: Params$Resource$Relyingparty$Setaccountinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetAccountInfoResponse>,
+      callback: BodyResponseCallback<Schema$SetAccountInfoResponse>
+    ): void;
     setAccountInfo(
-        params: Params$Resource$Relyingparty$Setaccountinfo,
-        callback: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
+      params: Params$Resource$Relyingparty$Setaccountinfo,
+      callback: BodyResponseCallback<Schema$SetAccountInfoResponse>
+    ): void;
     setAccountInfo(
-        callback: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
+      callback: BodyResponseCallback<Schema$SetAccountInfoResponse>
+    ): void;
     setAccountInfo(
-        paramsOrCallback?: Params$Resource$Relyingparty$Setaccountinfo|
-        BodyResponseCallback<Schema$SetAccountInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SetAccountInfoResponse>,
-        callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>):
-        void|GaxiosPromise<Schema$SetAccountInfoResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Setaccountinfo;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Setaccountinfo
+        | BodyResponseCallback<Schema$SetAccountInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetAccountInfoResponse>,
+      callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>
+    ): void | GaxiosPromise<Schema$SetAccountInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Setaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2455,16 +2582,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/setAccountInfo'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SetAccountInfoResponse>(parameters, callback);
@@ -2472,7 +2601,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$SetAccountInfoResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.setProjectConfig
@@ -2487,35 +2615,52 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     setProjectConfig(
-        params?: Params$Resource$Relyingparty$Setprojectconfig,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
+      params?: Params$Resource$Relyingparty$Setprojectconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+    >;
     setProjectConfig(
-        params: Params$Resource$Relyingparty$Setprojectconfig,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
+      params: Params$Resource$Relyingparty$Setprojectconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+      >
+    ): void;
     setProjectConfig(
-        params: Params$Resource$Relyingparty$Setprojectconfig,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
+      params: Params$Resource$Relyingparty$Setprojectconfig,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+      >
+    ): void;
     setProjectConfig(
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+      >
+    ): void;
     setProjectConfig(
-        paramsOrCallback?: Params$Resource$Relyingparty$Setprojectconfig|
-        BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
-        callback?: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>):
-        void|GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Setprojectconfig;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Setprojectconfig
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Setprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2532,29 +2677,29 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/identitytoolkit/v3/relyingparty/setProjectConfig')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/setProjectConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>(
-            parameters, callback);
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>(
-            parameters);
+          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
+        >(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.signOutUser
@@ -2569,32 +2714,50 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     signOutUser(
-        params?: Params$Resource$Relyingparty$Signoutuser,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
+      params?: Params$Resource$Relyingparty$Signoutuser,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
     signOutUser(
-        params: Params$Resource$Relyingparty$Signoutuser,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
+      params: Params$Resource$Relyingparty$Signoutuser,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+      >
+    ): void;
     signOutUser(
-        params: Params$Resource$Relyingparty$Signoutuser,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
-    signOutUser(callback: BodyResponseCallback<
-                Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
+      params: Params$Resource$Relyingparty$Signoutuser,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+      >
+    ): void;
     signOutUser(
-        paramsOrCallback?: Params$Resource$Relyingparty$Signoutuser|
-        BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
-        callback?: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void|
-        GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Relyingparty$Signoutuser;
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+      >
+    ): void;
+    signOutUser(
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Signoutuser
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Signoutuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2611,26 +2774,30 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/signOutUser'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(parameters);
+          Schema$IdentitytoolkitRelyingpartySignOutUserResponse
+        >(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.signupNewUser
@@ -2645,27 +2812,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     signupNewUser(
-        params?: Params$Resource$Relyingparty$Signupnewuser,
-        options?: MethodOptions): GaxiosPromise<Schema$SignupNewUserResponse>;
+      params?: Params$Resource$Relyingparty$Signupnewuser,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SignupNewUserResponse>;
     signupNewUser(
-        params: Params$Resource$Relyingparty$Signupnewuser,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SignupNewUserResponse>,
-        callback: BodyResponseCallback<Schema$SignupNewUserResponse>): void;
+      params: Params$Resource$Relyingparty$Signupnewuser,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignupNewUserResponse>,
+      callback: BodyResponseCallback<Schema$SignupNewUserResponse>
+    ): void;
     signupNewUser(
-        params: Params$Resource$Relyingparty$Signupnewuser,
-        callback: BodyResponseCallback<Schema$SignupNewUserResponse>): void;
-    signupNewUser(callback: BodyResponseCallback<Schema$SignupNewUserResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Signupnewuser,
+      callback: BodyResponseCallback<Schema$SignupNewUserResponse>
+    ): void;
     signupNewUser(
-        paramsOrCallback?: Params$Resource$Relyingparty$Signupnewuser|
-        BodyResponseCallback<Schema$SignupNewUserResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SignupNewUserResponse>,
-        callback?: BodyResponseCallback<Schema$SignupNewUserResponse>):
-        void|GaxiosPromise<Schema$SignupNewUserResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Signupnewuser;
+      callback: BodyResponseCallback<Schema$SignupNewUserResponse>
+    ): void;
+    signupNewUser(
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Signupnewuser
+        | BodyResponseCallback<Schema$SignupNewUserResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignupNewUserResponse>,
+      callback?: BodyResponseCallback<Schema$SignupNewUserResponse>
+    ): void | GaxiosPromise<Schema$SignupNewUserResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Signupnewuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2682,16 +2856,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/signupNewUser'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SignupNewUserResponse>(parameters, callback);
@@ -2699,7 +2875,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$SignupNewUserResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.uploadAccount
@@ -2714,27 +2889,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     uploadAccount(
-        params?: Params$Resource$Relyingparty$Uploadaccount,
-        options?: MethodOptions): GaxiosPromise<Schema$UploadAccountResponse>;
+      params?: Params$Resource$Relyingparty$Uploadaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadAccountResponse>;
     uploadAccount(
-        params: Params$Resource$Relyingparty$Uploadaccount,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UploadAccountResponse>,
-        callback: BodyResponseCallback<Schema$UploadAccountResponse>): void;
+      params: Params$Resource$Relyingparty$Uploadaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadAccountResponse>,
+      callback: BodyResponseCallback<Schema$UploadAccountResponse>
+    ): void;
     uploadAccount(
-        params: Params$Resource$Relyingparty$Uploadaccount,
-        callback: BodyResponseCallback<Schema$UploadAccountResponse>): void;
-    uploadAccount(callback: BodyResponseCallback<Schema$UploadAccountResponse>):
-        void;
+      params: Params$Resource$Relyingparty$Uploadaccount,
+      callback: BodyResponseCallback<Schema$UploadAccountResponse>
+    ): void;
     uploadAccount(
-        paramsOrCallback?: Params$Resource$Relyingparty$Uploadaccount|
-        BodyResponseCallback<Schema$UploadAccountResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UploadAccountResponse>,
-        callback?: BodyResponseCallback<Schema$UploadAccountResponse>):
-        void|GaxiosPromise<Schema$UploadAccountResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Uploadaccount;
+      callback: BodyResponseCallback<Schema$UploadAccountResponse>
+    ): void;
+    uploadAccount(
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Uploadaccount
+        | BodyResponseCallback<Schema$UploadAccountResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadAccountResponse>,
+      callback?: BodyResponseCallback<Schema$UploadAccountResponse>
+    ): void | GaxiosPromise<Schema$UploadAccountResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Uploadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2751,16 +2933,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/uploadAccount'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UploadAccountResponse>(parameters, callback);
@@ -2768,7 +2952,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$UploadAccountResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.verifyAssertion
@@ -2783,27 +2966,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     verifyAssertion(
-        params?: Params$Resource$Relyingparty$Verifyassertion,
-        options?: MethodOptions): GaxiosPromise<Schema$VerifyAssertionResponse>;
+      params?: Params$Resource$Relyingparty$Verifyassertion,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VerifyAssertionResponse>;
     verifyAssertion(
-        params: Params$Resource$Relyingparty$Verifyassertion,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VerifyAssertionResponse>,
-        callback: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
+      params: Params$Resource$Relyingparty$Verifyassertion,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyAssertionResponse>,
+      callback: BodyResponseCallback<Schema$VerifyAssertionResponse>
+    ): void;
     verifyAssertion(
-        params: Params$Resource$Relyingparty$Verifyassertion,
-        callback: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
+      params: Params$Resource$Relyingparty$Verifyassertion,
+      callback: BodyResponseCallback<Schema$VerifyAssertionResponse>
+    ): void;
     verifyAssertion(
-        callback: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
+      callback: BodyResponseCallback<Schema$VerifyAssertionResponse>
+    ): void;
     verifyAssertion(
-        paramsOrCallback?: Params$Resource$Relyingparty$Verifyassertion|
-        BodyResponseCallback<Schema$VerifyAssertionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VerifyAssertionResponse>,
-        callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>):
-        void|GaxiosPromise<Schema$VerifyAssertionResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Verifyassertion;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Verifyassertion
+        | BodyResponseCallback<Schema$VerifyAssertionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyAssertionResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>
+    ): void | GaxiosPromise<Schema$VerifyAssertionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Verifyassertion;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2820,17 +3010,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/verifyAssertion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VerifyAssertionResponse>(parameters, callback);
@@ -2838,7 +3029,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$VerifyAssertionResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.verifyCustomToken
@@ -2853,28 +3043,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     verifyCustomToken(
-        params?: Params$Resource$Relyingparty$Verifycustomtoken,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$VerifyCustomTokenResponse>;
+      params?: Params$Resource$Relyingparty$Verifycustomtoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VerifyCustomTokenResponse>;
     verifyCustomToken(
-        params: Params$Resource$Relyingparty$Verifycustomtoken,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
-        callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
+      params: Params$Resource$Relyingparty$Verifycustomtoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+      callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>
+    ): void;
     verifyCustomToken(
-        params: Params$Resource$Relyingparty$Verifycustomtoken,
-        callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
+      params: Params$Resource$Relyingparty$Verifycustomtoken,
+      callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>
+    ): void;
     verifyCustomToken(
-        callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
+      callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>
+    ): void;
     verifyCustomToken(
-        paramsOrCallback?: Params$Resource$Relyingparty$Verifycustomtoken|
-        BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
-        callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>):
-        void|GaxiosPromise<Schema$VerifyCustomTokenResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Verifycustomtoken;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Verifycustomtoken
+        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>
+    ): void | GaxiosPromise<Schema$VerifyCustomTokenResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Verifycustomtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2891,26 +3087,28 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/identitytoolkit/v3/relyingparty/verifyCustomToken')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/verifyCustomToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VerifyCustomTokenResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$VerifyCustomTokenResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.verifyPassword
@@ -2925,27 +3123,34 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     verifyPassword(
-        params?: Params$Resource$Relyingparty$Verifypassword,
-        options?: MethodOptions): GaxiosPromise<Schema$VerifyPasswordResponse>;
+      params?: Params$Resource$Relyingparty$Verifypassword,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VerifyPasswordResponse>;
     verifyPassword(
-        params: Params$Resource$Relyingparty$Verifypassword,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VerifyPasswordResponse>,
-        callback: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
+      params: Params$Resource$Relyingparty$Verifypassword,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyPasswordResponse>,
+      callback: BodyResponseCallback<Schema$VerifyPasswordResponse>
+    ): void;
     verifyPassword(
-        params: Params$Resource$Relyingparty$Verifypassword,
-        callback: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
+      params: Params$Resource$Relyingparty$Verifypassword,
+      callback: BodyResponseCallback<Schema$VerifyPasswordResponse>
+    ): void;
     verifyPassword(
-        callback: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
+      callback: BodyResponseCallback<Schema$VerifyPasswordResponse>
+    ): void;
     verifyPassword(
-        paramsOrCallback?: Params$Resource$Relyingparty$Verifypassword|
-        BodyResponseCallback<Schema$VerifyPasswordResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VerifyPasswordResponse>,
-        callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>):
-        void|GaxiosPromise<Schema$VerifyPasswordResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Verifypassword;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Verifypassword
+        | BodyResponseCallback<Schema$VerifyPasswordResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyPasswordResponse>,
+      callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>
+    ): void | GaxiosPromise<Schema$VerifyPasswordResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Verifypassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2962,16 +3167,18 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/verifyPassword'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VerifyPasswordResponse>(parameters, callback);
@@ -2979,7 +3186,6 @@ export namespace identitytoolkit_v3 {
         return createAPIRequest<Schema$VerifyPasswordResponse>(parameters);
       }
     }
-
 
     /**
      * identitytoolkit.relyingparty.verifyPhoneNumber
@@ -2995,35 +3201,52 @@ export namespace identitytoolkit_v3 {
      * @return {object} Request object
      */
     verifyPhoneNumber(
-        params?: Params$Resource$Relyingparty$Verifyphonenumber,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
+      params?: Params$Resource$Relyingparty$Verifyphonenumber,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+    >;
     verifyPhoneNumber(
-        params: Params$Resource$Relyingparty$Verifyphonenumber,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
+      params: Params$Resource$Relyingparty$Verifyphonenumber,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+      >
+    ): void;
     verifyPhoneNumber(
-        params: Params$Resource$Relyingparty$Verifyphonenumber,
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
+      params: Params$Resource$Relyingparty$Verifyphonenumber,
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+      >
+    ): void;
     verifyPhoneNumber(
-        callback: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+      >
+    ): void;
     verifyPhoneNumber(
-        paramsOrCallback?: Params$Resource$Relyingparty$Verifyphonenumber|
-        BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
-        callback?: BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>):
-        void|GaxiosPromise<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Relyingparty$Verifyphonenumber;
+      paramsOrCallback?:
+        | Params$Resource$Relyingparty$Verifyphonenumber
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Relyingparty$Verifyphonenumber;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3040,114 +3263,109 @@ export namespace identitytoolkit_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/identitytoolkit/v3/relyingparty/verifyPhoneNumber')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/identitytoolkit/v3/relyingparty/verifyPhoneNumber'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>(
-            parameters, callback);
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>(
-            parameters);
+          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Relyingparty$Createauthuri extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Createauthuri
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest;
   }
-  export interface Params$Resource$Relyingparty$Deleteaccount extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Deleteaccount
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDeleteAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Downloadaccount extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Downloadaccount
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Emaillinksignin extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Emaillinksignin
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyEmailLinkSigninRequest;
   }
-  export interface Params$Resource$Relyingparty$Getaccountinfo extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Getaccountinfo
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Getoobconfirmationcode extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Getoobconfirmationcode
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Relyingparty;
   }
-  export interface Params$Resource$Relyingparty$Getprojectconfig extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Getprojectconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Delegated GCP project number of the request.
@@ -3158,157 +3376,146 @@ export namespace identitytoolkit_v3 {
      */
     projectNumber?: string;
   }
-  export interface Params$Resource$Relyingparty$Getpublickeys extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Getpublickeys
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Relyingparty$Getrecaptchaparam extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Getrecaptchaparam
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Relyingparty$Resetpassword extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Resetpassword
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyResetPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Sendverificationcode extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Sendverificationcode
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySendVerificationCodeRequest;
   }
-  export interface Params$Resource$Relyingparty$Setaccountinfo extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Setaccountinfo
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Setprojectconfig extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Setprojectconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetProjectConfigRequest;
   }
-  export interface Params$Resource$Relyingparty$Signoutuser extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Signoutuser
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignOutUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Signupnewuser extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Signupnewuser
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignupNewUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Uploadaccount extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Uploadaccount
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyUploadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyassertion extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifyassertion
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifycustomtoken extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifycustomtoken
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyCustomTokenRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifypassword extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifypassword
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyphonenumber extends
-      StandardParameters {
+  export interface Params$Resource$Relyingparty$Verifyphonenumber
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

@@ -347,7 +347,7 @@ export class GeneratedAPIs {
   analytics = analytics.analytics;
   analyticsreporting = analyticsreporting.analyticsreporting;
   androiddeviceprovisioning =
-      androiddeviceprovisioning.androiddeviceprovisioning;
+    androiddeviceprovisioning.androiddeviceprovisioning;
   androidenterprise = androidenterprise.androidenterprise;
   androidmanagement = androidmanagement.androidmanagement;
   androidpublisher = androidpublisher.androidpublisher;
@@ -375,7 +375,7 @@ export class GeneratedAPIs {
   cloudkms = cloudkms.cloudkms;
   cloudprivatecatalog = cloudprivatecatalog.cloudprivatecatalog;
   cloudprivatecatalogproducer =
-      cloudprivatecatalogproducer.cloudprivatecatalogproducer;
+    cloudprivatecatalogproducer.cloudprivatecatalogproducer;
   cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
   cloudscheduler = cloudscheduler.cloudscheduler;
@@ -458,7 +458,7 @@ export class GeneratedAPIs {
   securitycenter = securitycenter.securitycenter;
   servicebroker = servicebroker.servicebroker;
   serviceconsumermanagement =
-      serviceconsumermanagement.serviceconsumermanagement;
+    serviceconsumermanagement.serviceconsumermanagement;
   servicecontrol = servicecontrol.servicecontrol;
   servicemanagement = servicemanagement.servicemanagement;
   servicenetworking = servicenetworking.servicenetworking;

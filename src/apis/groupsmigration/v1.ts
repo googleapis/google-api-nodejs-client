@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -103,13 +115,11 @@ export namespace groupsmigration_v1 {
     responseCode?: string;
   }
 
-
   export class Resource$Archive {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * groupsmigration.archive.insert
@@ -126,22 +136,27 @@ export namespace groupsmigration_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Archive$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Groups>;
     insert(
-        params: Params$Resource$Archive$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params?: Params$Resource$Archive$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Groups>;
     insert(
-        params: Params$Resource$Archive$Insert,
-        callback: BodyResponseCallback<Schema$Groups>): void;
+      params: Params$Resource$Archive$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
+    insert(
+      params: Params$Resource$Archive$Insert,
+      callback: BodyResponseCallback<Schema$Groups>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Groups>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Archive$Insert|
-        BodyResponseCallback<Schema$Groups>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>):
-        void|GaxiosPromise<Schema$Groups> {
+      paramsOrCallback?:
+        | Params$Resource$Archive$Insert
+        | BodyResponseCallback<Schema$Groups>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>
+    ): void | GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Archive$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -159,18 +174,22 @@ export namespace groupsmigration_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/groups/v1/groups/{groupId}/archive')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupId}/archive').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/groups/v1/groups/{groupId}/archive')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/groups/v1/groups/{groupId}/archive'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -184,13 +203,12 @@ export namespace groupsmigration_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The group ID
      */
     groupId?: string;
-
 
     /**
      * Media metadata

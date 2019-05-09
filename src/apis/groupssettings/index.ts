@@ -17,15 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {groupssettings_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': groupssettings_v1.Groupssettings,
+  v1: groupssettings_v1.Groupssettings,
 };
 
 export function groupssettings(version: 'v1'): groupssettings_v1.Groupssettings;
-export function groupssettings(options: groupssettings_v1.Options):
-    groupssettings_v1.Groupssettings;
+export function groupssettings(
+  options: groupssettings_v1.Options
+): groupssettings_v1.Groupssettings;
 export function groupssettings<T = groupssettings_v1.Groupssettings>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|groupssettings_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | groupssettings_v1.Options
+) {
   return getAPI<T>('groupssettings', versionOrOptions, VERSIONS, this);
 }
 

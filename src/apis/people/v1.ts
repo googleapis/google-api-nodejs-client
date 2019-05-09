@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1280,7 +1292,7 @@ export namespace people_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1354,7 +1366,6 @@ export namespace people_v1 {
     value?: string;
   }
 
-
   export class Resource$Contactgroups {
     context: APIRequestContext;
     members: Resource$Contactgroups$Members;
@@ -1362,7 +1373,6 @@ export namespace people_v1 {
       this.context = context;
       this.members = new Resource$Contactgroups$Members(this.context);
     }
-
 
     /**
      * people.contactGroups.batchGet
@@ -1379,31 +1389,34 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     batchGet(
-        params?: Params$Resource$Contactgroups$Batchget,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchGetContactGroupsResponse>;
+      params?: Params$Resource$Contactgroups$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetContactGroupsResponse>;
     batchGet(
-        params: Params$Resource$Contactgroups$Batchget,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-        callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void;
     batchGet(
-        params: Params$Resource$Contactgroups$Batchget,
-        callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void;
-    batchGet(callback:
-                 BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void;
     batchGet(
-        paramsOrCallback?: Params$Resource$Contactgroups$Batchget|
-        BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void|GaxiosPromise<Schema$BatchGetContactGroupsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Batchget;
+      callback: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Batchget
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+    ): void | GaxiosPromise<Schema$BatchGetContactGroupsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1420,26 +1433,31 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/contactGroups:batchGet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/contactGroups:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetContactGroupsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchGetContactGroupsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * people.contactGroups.create
@@ -1454,25 +1472,30 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Contactgroups$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
+      params?: Params$Resource$Contactgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContactGroup>;
     create(
-        params: Params$Resource$Contactgroups$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     create(
-        params: Params$Resource$Contactgroups$Create,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Create,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ContactGroup>): void;
     create(
-        paramsOrCallback?: Params$Resource$Contactgroups$Create|
-        BodyResponseCallback<Schema$ContactGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|GaxiosPromise<Schema$ContactGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Create;
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Create
+        | BodyResponseCallback<Schema$ContactGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>
+    ): void | GaxiosPromise<Schema$ContactGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1489,16 +1512,16 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1506,7 +1529,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$ContactGroup>(parameters);
       }
     }
-
 
     /**
      * people.contactGroups.delete
@@ -1523,24 +1545,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Contactgroups$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Contactgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Contactgroups$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Contactgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Contactgroups$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Contactgroups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Contactgroups$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1557,16 +1583,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1574,7 +1603,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * people.contactGroups.get
@@ -1590,22 +1618,31 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Contactgroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
-    get(params: Params$Resource$Contactgroups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
-    get(params: Params$Resource$Contactgroups$Get,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+    get(
+      params?: Params$Resource$Contactgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContactGroup>;
+    get(
+      params: Params$Resource$Contactgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
+    get(
+      params: Params$Resource$Contactgroups$Get,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ContactGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Contactgroups$Get|
-        BodyResponseCallback<Schema$ContactGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|GaxiosPromise<Schema$ContactGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Get
+        | BodyResponseCallback<Schema$ContactGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>
+    ): void | GaxiosPromise<Schema$ContactGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1622,16 +1659,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1639,7 +1679,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$ContactGroup>(parameters);
       }
     }
-
 
     /**
      * people.contactGroups.list
@@ -1656,27 +1695,35 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Contactgroups$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListContactGroupsResponse>;
     list(
-        params: Params$Resource$Contactgroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListContactGroupsResponse>,
-        callback: BodyResponseCallback<Schema$ListContactGroupsResponse>): void;
+      params?: Params$Resource$Contactgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListContactGroupsResponse>;
     list(
-        params: Params$Resource$Contactgroups$List,
-        callback: BodyResponseCallback<Schema$ListContactGroupsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListContactGroupsResponse>):
-        void;
+      params: Params$Resource$Contactgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Contactgroups$List|
-        BodyResponseCallback<Schema$ListContactGroupsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListContactGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>):
-        void|GaxiosPromise<Schema$ListContactGroupsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$List;
+      params: Params$Resource$Contactgroups$List,
+      callback: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$List
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>
+    ): void | GaxiosPromise<Schema$ListContactGroupsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1693,25 +1740,26 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListContactGroupsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListContactGroupsResponse>(parameters);
       }
     }
-
 
     /**
      * people.contactGroups.update
@@ -1728,25 +1776,30 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Contactgroups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
+      params?: Params$Resource$Contactgroups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContactGroup>;
     update(
-        params: Params$Resource$Contactgroups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     update(
-        params: Params$Resource$Contactgroups$Update,
-        callback: BodyResponseCallback<Schema$ContactGroup>): void;
+      params: Params$Resource$Contactgroups$Update,
+      callback: BodyResponseCallback<Schema$ContactGroup>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ContactGroup>): void;
     update(
-        paramsOrCallback?: Params$Resource$Contactgroups$Update|
-        BodyResponseCallback<Schema$ContactGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContactGroup>,
-        callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|GaxiosPromise<Schema$ContactGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contactgroups$Update;
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Update
+        | BodyResponseCallback<Schema$ContactGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>
+    ): void | GaxiosPromise<Schema$ContactGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1763,16 +1816,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1782,12 +1838,12 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$Contactgroups$Batchget extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Batchget
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the maximum number of members to return for each group.
@@ -1798,25 +1854,24 @@ export namespace people_v1 {
      */
     resourceNames?: string[];
   }
-  export interface Params$Resource$Contactgroups$Create extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$CreateContactGroupRequest;
   }
-  export interface Params$Resource$Contactgroups$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Set to true to also delete the contacts in the specified group.
@@ -1827,12 +1882,12 @@ export namespace people_v1 {
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Contactgroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the maximum number of members to return.
@@ -1843,12 +1898,12 @@ export namespace people_v1 {
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Contactgroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of resources to return.
@@ -1866,12 +1921,12 @@ export namespace people_v1 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Contactgroups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name for the contact group, assigned by the server. An ASCII
@@ -1891,7 +1946,6 @@ export namespace people_v1 {
       this.context = context;
     }
 
-
     /**
      * people.contactGroups.members.modify
      * @desc Modify the members of a contact group owned by the authenticated
@@ -1909,34 +1963,34 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     modify(
-        params?: Params$Resource$Contactgroups$Members$Modify,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ModifyContactGroupMembersResponse>;
+      params?: Params$Resource$Contactgroups$Members$Modify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModifyContactGroupMembersResponse>;
     modify(
-        params: Params$Resource$Contactgroups$Members$Modify,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-        callback:
-            BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Members$Modify,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      callback: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void;
     modify(
-        params: Params$Resource$Contactgroups$Members$Modify,
-        callback:
-            BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void;
-    modify(callback:
-               BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void;
+      params: Params$Resource$Contactgroups$Members$Modify,
+      callback: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void;
     modify(
-        paramsOrCallback?: Params$Resource$Contactgroups$Members$Modify|
-        BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void|GaxiosPromise<Schema$ModifyContactGroupMembersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Contactgroups$Members$Modify;
+      callback: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void;
+    modify(
+      paramsOrCallback?:
+        | Params$Resource$Contactgroups$Members$Modify
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      callback?: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+    ): void | GaxiosPromise<Schema$ModifyContactGroupMembersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contactgroups$Members$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1953,33 +2007,39 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}/members:modify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}/members:modify').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Contactgroups$Members$Modify extends
-      StandardParameters {
+  export interface Params$Resource$Contactgroups$Members$Modify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the contact group to modify.
@@ -1992,8 +2052,6 @@ export namespace people_v1 {
     requestBody?: Schema$ModifyContactGroupMembersRequest;
   }
 
-
-
   export class Resource$People {
     context: APIRequestContext;
     connections: Resource$People$Connections;
@@ -2001,7 +2059,6 @@ export namespace people_v1 {
       this.context = context;
       this.connections = new Resource$People$Connections(this.context);
     }
-
 
     /**
      * people.people.createContact
@@ -2018,24 +2075,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     createContact(
-        params?: Params$Resource$People$Createcontact,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
+      params?: Params$Resource$People$Createcontact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
     createContact(
-        params: Params$Resource$People$Createcontact,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Createcontact,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     createContact(
-        params: Params$Resource$People$Createcontact,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Createcontact,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     createContact(callback: BodyResponseCallback<Schema$Person>): void;
     createContact(
-        paramsOrCallback?: Params$Resource$People$Createcontact|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Createcontact;
+      paramsOrCallback?:
+        | Params$Resource$People$Createcontact
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Createcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2052,16 +2113,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/people:createContact')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/people:createContact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2069,7 +2133,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$Person>(parameters);
       }
     }
-
 
     /**
      * people.people.deleteContact
@@ -2084,24 +2147,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     deleteContact(
-        params?: Params$Resource$People$Deletecontact,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$People$Deletecontact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     deleteContact(
-        params: Params$Resource$People$Deletecontact,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$People$Deletecontact,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deleteContact(
-        params: Params$Resource$People$Deletecontact,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$People$Deletecontact,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deleteContact(callback: BodyResponseCallback<Schema$Empty>): void;
     deleteContact(
-        paramsOrCallback?: Params$Resource$People$Deletecontact|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Deletecontact;
+      paramsOrCallback?:
+        | Params$Resource$People$Deletecontact
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Deletecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2118,16 +2185,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}:deleteContact')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}:deleteContact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2135,7 +2205,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * people.people.get
@@ -2153,19 +2222,27 @@ export namespace people_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$People$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
-    get(params: Params$Resource$People$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
-    get(params: Params$Resource$People$Get,
-        callback: BodyResponseCallback<Schema$Person>): void;
+    get(
+      params?: Params$Resource$People$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
+    get(
+      params: Params$Resource$People$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
+    get(
+      params: Params$Resource$People$Get,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Person>): void;
-    get(paramsOrCallback?: Params$Resource$People$Get|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$People$Get
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2183,16 +2260,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2200,7 +2280,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$Person>(parameters);
       }
     }
-
 
     /**
      * people.people.getBatchGet
@@ -2220,25 +2299,30 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     getBatchGet(
-        params?: Params$Resource$People$Getbatchget,
-        options?: MethodOptions): GaxiosPromise<Schema$GetPeopleResponse>;
+      params?: Params$Resource$People$Getbatchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetPeopleResponse>;
     getBatchGet(
-        params: Params$Resource$People$Getbatchget,
-        options: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
-        callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+      params: Params$Resource$People$Getbatchget,
+      options: MethodOptions | BodyResponseCallback<Schema$GetPeopleResponse>,
+      callback: BodyResponseCallback<Schema$GetPeopleResponse>
+    ): void;
     getBatchGet(
-        params: Params$Resource$People$Getbatchget,
-        callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+      params: Params$Resource$People$Getbatchget,
+      callback: BodyResponseCallback<Schema$GetPeopleResponse>
+    ): void;
     getBatchGet(callback: BodyResponseCallback<Schema$GetPeopleResponse>): void;
     getBatchGet(
-        paramsOrCallback?: Params$Resource$People$Getbatchget|
-        BodyResponseCallback<Schema$GetPeopleResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetPeopleResponse>,
-        callback?: BodyResponseCallback<Schema$GetPeopleResponse>):
-        void|GaxiosPromise<Schema$GetPeopleResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Getbatchget;
+      paramsOrCallback?:
+        | Params$Resource$People$Getbatchget
+        | BodyResponseCallback<Schema$GetPeopleResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetPeopleResponse>,
+      callback?: BodyResponseCallback<Schema$GetPeopleResponse>
+    ): void | GaxiosPromise<Schema$GetPeopleResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Getbatchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2255,16 +2339,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/people:batchGet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/people:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetPeopleResponse>(parameters, callback);
@@ -2272,7 +2359,6 @@ export namespace people_v1 {
         return createAPIRequest<Schema$GetPeopleResponse>(parameters);
       }
     }
-
 
     /**
      * people.people.updateContact
@@ -2297,24 +2383,28 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     updateContact(
-        params?: Params$Resource$People$Updatecontact,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
+      params?: Params$Resource$People$Updatecontact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
     updateContact(
-        params: Params$Resource$People$Updatecontact,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Updatecontact,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     updateContact(
-        params: Params$Resource$People$Updatecontact,
-        callback: BodyResponseCallback<Schema$Person>): void;
+      params: Params$Resource$People$Updatecontact,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     updateContact(callback: BodyResponseCallback<Schema$Person>): void;
     updateContact(
-        paramsOrCallback?: Params$Resource$People$Updatecontact|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Updatecontact;
+      paramsOrCallback?:
+        | Params$Resource$People$Updatecontact
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Updatecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2331,16 +2421,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}:updateContact')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}:updateContact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2350,12 +2443,12 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$People$Createcontact extends
-      StandardParameters {
+  export interface Params$Resource$People$Createcontact
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the owning person resource.
@@ -2367,12 +2460,12 @@ export namespace people_v1 {
      */
     requestBody?: Schema$Person;
   }
-  export interface Params$Resource$People$Deletecontact extends
-      StandardParameters {
+  export interface Params$Resource$People$Deletecontact
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the contact to delete.
@@ -2383,7 +2476,7 @@ export namespace people_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * **Required.** A field mask to restrict which fields on the person are
@@ -2412,12 +2505,12 @@ export namespace people_v1 {
      */
     resourceName?: string;
   }
-  export interface Params$Resource$People$Getbatchget extends
-      StandardParameters {
+  export interface Params$Resource$People$Getbatchget
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * **Required.** A field mask to restrict which fields on each person are
@@ -2447,12 +2540,12 @@ export namespace people_v1 {
      */
     resourceNames?: string[];
   }
-  export interface Params$Resource$People$Updatecontact extends
-      StandardParameters {
+  export interface Params$Resource$People$Updatecontact
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name for the person, assigned by the server. An ASCII string
@@ -2483,7 +2576,6 @@ export namespace people_v1 {
       this.context = context;
     }
 
-
     /**
      * people.people.connections.list
      * @desc Provides a list of the authenticated user's contacts merged with
@@ -2506,26 +2598,32 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$People$Connections$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListConnectionsResponse>;
+      params?: Params$Resource$People$Connections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConnectionsResponse>;
     list(
-        params: Params$Resource$People$Connections$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+      params: Params$Resource$People$Connections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void;
     list(
-        params: Params$Resource$People$Connections$List,
-        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+      params: Params$Resource$People$Connections$List,
+      callback: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$People$Connections$List|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
-        void|GaxiosPromise<Schema$ListConnectionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Connections$List;
+      paramsOrCallback?:
+        | Params$Resource$People$Connections$List
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void | GaxiosPromise<Schema$ListConnectionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2542,16 +2640,19 @@ export namespace people_v1 {
       const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resourceName}/connections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resourceName}/connections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
@@ -2561,12 +2662,12 @@ export namespace people_v1 {
     }
   }
 
-  export interface Params$Resource$People$Connections$List extends
-      StandardParameters {
+  export interface Params$Resource$People$Connections$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The number of connections to include in the response. Valid values are

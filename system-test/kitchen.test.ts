@@ -27,26 +27,29 @@ const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
 const pkg = require('../../package.json');
 
-const spawnp = (command: string, args: string[], options: cp.SpawnOptions = {}):
-    Promise<void> => {
-      return new Promise((resolve, reject) => {
-        cp.spawn(
-              command, args,
-              Object.assign(options, {stdio: 'inherit', shell: true}))
-            .on('close',
-                (code, signal) => {
-                  if (code === 0) {
-                    resolve();
-                  } else {
-                    reject(
-                        new Error(`Spawn failed with an exit code of ${code}`));
-                  }
-                })
-            .on('error', err => {
-              reject(err);
-            });
+const spawnp = (
+  command: string,
+  args: string[],
+  options: cp.SpawnOptions = {}
+): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    cp.spawn(
+      command,
+      args,
+      Object.assign(options, {stdio: 'inherit', shell: true})
+    )
+      .on('close', (code, signal) => {
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(new Error(`Spawn failed with an exit code of ${code}`));
+        }
+      })
+      .on('error', err => {
+        reject(err);
       });
-    };
+  });
+};
 
 /**
  * Create a staging directory with temp fixtures used

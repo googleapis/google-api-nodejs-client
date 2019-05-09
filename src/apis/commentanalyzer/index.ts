@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {commentanalyzer_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
-  'v1alpha1': commentanalyzer_v1alpha1.Commentanalyzer,
+  v1alpha1: commentanalyzer_v1alpha1.Commentanalyzer,
 };
 
-export function commentanalyzer(version: 'v1alpha1'):
-    commentanalyzer_v1alpha1.Commentanalyzer;
-export function commentanalyzer(options: commentanalyzer_v1alpha1.Options):
-    commentanalyzer_v1alpha1.Commentanalyzer;
+export function commentanalyzer(
+  version: 'v1alpha1'
+): commentanalyzer_v1alpha1.Commentanalyzer;
+export function commentanalyzer(
+  options: commentanalyzer_v1alpha1.Options
+): commentanalyzer_v1alpha1.Commentanalyzer;
 export function commentanalyzer<T = commentanalyzer_v1alpha1.Commentanalyzer>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1alpha1'|commentanalyzer_v1alpha1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1alpha1' | commentanalyzer_v1alpha1.Options
+) {
   return getAPI<T>('commentanalyzer', versionOrOptions, VERSIONS, this);
 }
 

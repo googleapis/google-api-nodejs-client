@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -271,7 +283,7 @@ export namespace cloudbuild_v1 {
     /**
      * Substitutions data for `Build` resource.
      */
-    substitutions?: {[key: string]: string;};
+    substitutions?: {[key: string]: string};
     /**
      * Tags for annotation of a `Build`. These are not docker tags.
      */
@@ -288,7 +300,7 @@ export namespace cloudbuild_v1 {
      * all specified images. * FETCHSOURCE: time to fetch source.  If the build
      * does not specify source or images, these keys will not be included.
      */
-    timing?: {[key: string]: Schema$TimeSpan;};
+    timing?: {[key: string]: Schema$TimeSpan};
   }
   /**
    * Metadata for build operations.
@@ -527,7 +539,7 @@ export namespace cloudbuild_v1 {
     /**
      * Substitutions data for Build resource.
      */
-    substitutions?: {[key: string]: string;};
+    substitutions?: {[key: string]: string};
     /**
      * Template describing the types of source changes to trigger a build.
      * Branch and tag names in trigger templates are interpreted as regular
@@ -689,7 +701,7 @@ export namespace cloudbuild_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -705,7 +717,7 @@ export namespace cloudbuild_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * PullRequestFilter contains filter properties for matching GitHub Pull
@@ -829,7 +841,7 @@ export namespace cloudbuild_v1 {
      * in size. There can be at most 100 secret values across all of a
      * build&#39;s secrets.
      */
-    secretEnv?: {[key: string]: string;};
+    secretEnv?: {[key: string]: string};
   }
   /**
    * Location of the source in a supported storage service.
@@ -859,7 +871,7 @@ export namespace cloudbuild_v1 {
      * the build source came in a single package such as a gzipped tarfile
      * (`.tar.gz`), the `FileHash` will be for the single path to that file.
      */
-    fileHashes?: {[key: string]: Schema$FileHashes;};
+    fileHashes?: {[key: string]: Schema$FileHashes};
     /**
      * A copy of the build&#39;s `source.repo_source`, if exists, with any
      * revisions resolved.
@@ -916,7 +928,7 @@ export namespace cloudbuild_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -976,13 +988,11 @@ export namespace cloudbuild_v1 {
     path?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudbuild.operations.cancel
@@ -1005,24 +1015,29 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1039,16 +1054,16 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1056,7 +1071,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.operations.get
@@ -1072,20 +1086,29 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1103,15 +1126,16 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1119,7 +1143,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.operations.list
@@ -1144,24 +1167,31 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1179,15 +1209,16 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1197,12 +1228,12 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
@@ -1218,7 +1249,7 @@ export namespace cloudbuild_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -1229,7 +1260,7 @@ export namespace cloudbuild_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -1249,7 +1280,6 @@ export namespace cloudbuild_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     builds: Resource$Projects$Builds;
@@ -1261,13 +1291,11 @@ export namespace cloudbuild_v1 {
     }
   }
 
-
   export class Resource$Projects$Builds {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudbuild.projects.builds.cancel
@@ -1284,24 +1312,28 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Projects$Builds$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Build>;
+      params?: Params$Resource$Projects$Builds$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Build>;
     cancel(
-        params: Params$Resource$Projects$Builds$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Build>,
-        callback: BodyResponseCallback<Schema$Build>): void;
+      params: Params$Resource$Projects$Builds$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Build>,
+      callback: BodyResponseCallback<Schema$Build>
+    ): void;
     cancel(
-        params: Params$Resource$Projects$Builds$Cancel,
-        callback: BodyResponseCallback<Schema$Build>): void;
+      params: Params$Resource$Projects$Builds$Cancel,
+      callback: BodyResponseCallback<Schema$Build>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Build>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Projects$Builds$Cancel|
-        BodyResponseCallback<Schema$Build>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Build>,
-        callback?: BodyResponseCallback<Schema$Build>):
-        void|GaxiosPromise<Schema$Build> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Builds$Cancel
+        | BodyResponseCallback<Schema$Build>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Build>,
+      callback?: BodyResponseCallback<Schema$Build>
+    ): void | GaxiosPromise<Schema$Build> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Builds$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1318,16 +1350,18 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/builds/{id}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/builds/{id}:cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Build>(parameters, callback);
@@ -1335,7 +1369,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$Build>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.builds.create
@@ -1354,25 +1387,30 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Builds$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Builds$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Builds$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Builds$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Builds$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Builds$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Builds$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Builds$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Builds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1389,16 +1427,19 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/builds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1406,7 +1447,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.builds.get
@@ -1423,21 +1463,29 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Builds$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Build>;
-    get(params: Params$Resource$Projects$Builds$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Build>,
-        callback: BodyResponseCallback<Schema$Build>): void;
-    get(params: Params$Resource$Projects$Builds$Get,
-        callback: BodyResponseCallback<Schema$Build>): void;
+    get(
+      params?: Params$Resource$Projects$Builds$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Build>;
+    get(
+      params: Params$Resource$Projects$Builds$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Build>,
+      callback: BodyResponseCallback<Schema$Build>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Builds$Get,
+      callback: BodyResponseCallback<Schema$Build>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Build>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Builds$Get|
-        BodyResponseCallback<Schema$Build>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Build>,
-        callback?: BodyResponseCallback<Schema$Build>):
-        void|GaxiosPromise<Schema$Build> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Builds$Get
+        | BodyResponseCallback<Schema$Build>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Build>,
+      callback?: BodyResponseCallback<Schema$Build>
+    ): void | GaxiosPromise<Schema$Build> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Builds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1454,16 +1502,19 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/builds/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Build>(parameters, callback);
@@ -1471,7 +1522,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$Build>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.builds.list
@@ -1491,25 +1541,30 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Builds$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListBuildsResponse>;
+      params?: Params$Resource$Projects$Builds$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBuildsResponse>;
     list(
-        params: Params$Resource$Projects$Builds$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListBuildsResponse>,
-        callback: BodyResponseCallback<Schema$ListBuildsResponse>): void;
+      params: Params$Resource$Projects$Builds$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBuildsResponse>,
+      callback: BodyResponseCallback<Schema$ListBuildsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Builds$List,
-        callback: BodyResponseCallback<Schema$ListBuildsResponse>): void;
+      params: Params$Resource$Projects$Builds$List,
+      callback: BodyResponseCallback<Schema$ListBuildsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListBuildsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Builds$List|
-        BodyResponseCallback<Schema$ListBuildsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListBuildsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBuildsResponse>):
-        void|GaxiosPromise<Schema$ListBuildsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Builds$List
+        | BodyResponseCallback<Schema$ListBuildsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBuildsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBuildsResponse>
+    ): void | GaxiosPromise<Schema$ListBuildsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Builds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1526,16 +1581,19 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/builds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/builds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListBuildsResponse>(parameters, callback);
@@ -1543,7 +1601,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$ListBuildsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.builds.retry
@@ -1576,25 +1633,30 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     retry(
-        params?: Params$Resource$Projects$Builds$Retry,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Builds$Retry,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     retry(
-        params: Params$Resource$Projects$Builds$Retry,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Builds$Retry,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     retry(
-        params: Params$Resource$Projects$Builds$Retry,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Builds$Retry,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     retry(callback: BodyResponseCallback<Schema$Operation>): void;
     retry(
-        paramsOrCallback?: Params$Resource$Projects$Builds$Retry|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Builds$Retry;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Builds$Retry
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Builds$Retry;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1611,16 +1673,18 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/builds/{id}:retry')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/builds/{id}:retry'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1630,12 +1694,12 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Builds$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Builds$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the build.
@@ -1651,12 +1715,12 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$CancelBuildRequest;
   }
-  export interface Params$Resource$Projects$Builds$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Builds$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the project.
@@ -1668,12 +1732,12 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$Build;
   }
-  export interface Params$Resource$Projects$Builds$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Builds$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the build.
@@ -1684,12 +1748,12 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Builds$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Builds$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The raw filter text to constrain the results.
@@ -1708,12 +1772,12 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Builds$Retry extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Builds$Retry
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Build ID of the original build.
@@ -1730,13 +1794,11 @@ export namespace cloudbuild_v1 {
     requestBody?: Schema$RetryBuildRequest;
   }
 
-
   export class Resource$Projects$Triggers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudbuild.projects.triggers.create
@@ -1752,25 +1814,30 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Triggers$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$BuildTrigger>;
+      params?: Params$Resource$Projects$Triggers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildTrigger>;
     create(
-        params: Params$Resource$Projects$Triggers$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+      params: Params$Resource$Projects$Triggers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$BuildTrigger>,
+      callback: BodyResponseCallback<Schema$BuildTrigger>
+    ): void;
     create(
-        params: Params$Resource$Projects$Triggers$Create,
-        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+      params: Params$Resource$Projects$Triggers$Create,
+      callback: BodyResponseCallback<Schema$BuildTrigger>
+    ): void;
     create(callback: BodyResponseCallback<Schema$BuildTrigger>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Triggers$Create|
-        BodyResponseCallback<Schema$BuildTrigger>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BuildTrigger>,
-        callback?: BodyResponseCallback<Schema$BuildTrigger>):
-        void|GaxiosPromise<Schema$BuildTrigger> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Triggers$Create
+        | BodyResponseCallback<Schema$BuildTrigger>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>
+    ): void | GaxiosPromise<Schema$BuildTrigger> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1787,16 +1854,19 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/triggers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -1804,7 +1874,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.triggers.delete
@@ -1821,24 +1890,28 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Triggers$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Triggers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Triggers$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Triggers$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Triggers$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Triggers$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Triggers$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Triggers$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1855,16 +1928,18 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1872,7 +1947,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.triggers.get
@@ -1888,22 +1962,31 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Triggers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$BuildTrigger>;
-    get(params: Params$Resource$Projects$Triggers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
-    get(params: Params$Resource$Projects$Triggers$Get,
-        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+    get(
+      params?: Params$Resource$Projects$Triggers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildTrigger>;
+    get(
+      params: Params$Resource$Projects$Triggers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BuildTrigger>,
+      callback: BodyResponseCallback<Schema$BuildTrigger>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Triggers$Get,
+      callback: BodyResponseCallback<Schema$BuildTrigger>
+    ): void;
     get(callback: BodyResponseCallback<Schema$BuildTrigger>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Triggers$Get|
-        BodyResponseCallback<Schema$BuildTrigger>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BuildTrigger>,
-        callback?: BodyResponseCallback<Schema$BuildTrigger>):
-        void|GaxiosPromise<Schema$BuildTrigger> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Triggers$Get
+        | BodyResponseCallback<Schema$BuildTrigger>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>
+    ): void | GaxiosPromise<Schema$BuildTrigger> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1920,16 +2003,18 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -1937,7 +2022,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.triggers.list
@@ -1954,28 +2038,34 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Triggers$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListBuildTriggersResponse>;
+      params?: Params$Resource$Projects$Triggers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBuildTriggersResponse>;
     list(
-        params: Params$Resource$Projects$Triggers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListBuildTriggersResponse>,
-        callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>): void;
+      params: Params$Resource$Projects$Triggers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+      callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Triggers$List,
-        callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>):
-        void;
+      params: Params$Resource$Projects$Triggers$List,
+      callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Triggers$List|
-        BodyResponseCallback<Schema$ListBuildTriggersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListBuildTriggersResponse>,
-        callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>):
-        void|GaxiosPromise<Schema$ListBuildTriggersResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$List;
+      callback: BodyResponseCallback<Schema$ListBuildTriggersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Triggers$List
+        | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBuildTriggersResponse>,
+      callback?: BodyResponseCallback<Schema$ListBuildTriggersResponse>
+    ): void | GaxiosPromise<Schema$ListBuildTriggersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1992,25 +2082,29 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/triggers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/triggers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListBuildTriggersResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListBuildTriggersResponse>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.triggers.patch
@@ -2028,25 +2122,30 @@ export namespace cloudbuild_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Triggers$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$BuildTrigger>;
+      params?: Params$Resource$Projects$Triggers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildTrigger>;
     patch(
-        params: Params$Resource$Projects$Triggers$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$BuildTrigger>,
-        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+      params: Params$Resource$Projects$Triggers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$BuildTrigger>,
+      callback: BodyResponseCallback<Schema$BuildTrigger>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Triggers$Patch,
-        callback: BodyResponseCallback<Schema$BuildTrigger>): void;
+      params: Params$Resource$Projects$Triggers$Patch,
+      callback: BodyResponseCallback<Schema$BuildTrigger>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$BuildTrigger>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Triggers$Patch|
-        BodyResponseCallback<Schema$BuildTrigger>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BuildTrigger>,
-        callback?: BodyResponseCallback<Schema$BuildTrigger>):
-        void|GaxiosPromise<Schema$BuildTrigger> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Triggers$Patch
+        | BodyResponseCallback<Schema$BuildTrigger>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuildTrigger>,
+      callback?: BodyResponseCallback<Schema$BuildTrigger>
+    ): void | GaxiosPromise<Schema$BuildTrigger> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Triggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2063,16 +2162,18 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -2080,7 +2181,6 @@ export namespace cloudbuild_v1 {
         return createAPIRequest<Schema$BuildTrigger>(parameters);
       }
     }
-
 
     /**
      * cloudbuild.projects.triggers.run
@@ -2096,22 +2196,31 @@ export namespace cloudbuild_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: Params$Resource$Projects$Triggers$Run,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    run(params: Params$Resource$Projects$Triggers$Run,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    run(params: Params$Resource$Projects$Triggers$Run,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      params?: Params$Resource$Projects$Triggers$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Projects$Triggers$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Triggers$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     run(callback: BodyResponseCallback<Schema$Operation>): void;
-    run(paramsOrCallback?: Params$Resource$Projects$Triggers$Run|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Triggers$Run;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Triggers$Run
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Triggers$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2128,17 +2237,18 @@ export namespace cloudbuild_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/projects/{projectId}/triggers/{triggerId}:run')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/triggers/{triggerId}:run'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2148,12 +2258,12 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Triggers$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the project for which to configure automatic builds.
@@ -2165,12 +2275,12 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Triggers$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the project that owns the trigger.
@@ -2181,12 +2291,12 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the project that owns the trigger.
@@ -2197,12 +2307,12 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Triggers$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Number of results to return in the list.
@@ -2217,12 +2327,12 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the project that owns the trigger.
@@ -2238,12 +2348,12 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Triggers$Run extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Triggers$Run
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the project.

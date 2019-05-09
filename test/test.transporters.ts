@@ -18,25 +18,33 @@ import {GoogleApis} from '../src';
 import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
-  nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
-  const res = await drive.comments.insert(
-      {fileId: 'a', headers: {'If-None-Match': '12345'}});
+  nock(Utils.baseUrl)
+    .post('/drive/v2/files/a/comments')
+    .reply(200);
+  const res = await drive.comments.insert({
+    fileId: 'a',
+    headers: {'If-None-Match': '12345'},
+  });
   assert.strictEqual(res.config.headers['If-None-Match'], '12345');
 }
 
 async function testContentType(drive: APIEndpoint) {
-  nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
-  const res =
-      await drive.comments.insert({fileId: 'a', resource: {content: 'hello '}});
+  nock(Utils.baseUrl)
+    .post('/drive/v2/files/a/comments')
+    .reply(200);
+  const res = await drive.comments.insert({
+    fileId: 'a',
+    resource: {content: 'hello '},
+  });
   assert(res.config.headers['Content-Type'].indexOf('application/json') === 0);
 }
 
 async function testGzip(drive: APIEndpoint) {
   nock(Utils.baseUrl)
-      .get(
-          '/drive/v2/files', undefined,
-          {reqheaders: {'Accept-Encoding': 'gzip'}})
-      .reply(200, {});
+    .get('/drive/v2/files', undefined, {
+      reqheaders: {'Accept-Encoding': 'gzip'},
+    })
+    .reply(200, {});
   const res = await drive.files.list();
   assert.deepStrictEqual(res.data, {});
   // note: axios strips the `content-encoding` header from the response,
@@ -44,7 +52,9 @@ async function testGzip(drive: APIEndpoint) {
 }
 
 async function testBody(drive: APIEndpoint) {
-  const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
+  const scope = nock(Utils.baseUrl)
+    .get('/drive/v2/files')
+    .reply(200);
   const res = await drive.files.list();
   scope.done();
   assert.strictEqual(res.config.headers['content-type'], undefined);
@@ -52,7 +62,9 @@ async function testBody(drive: APIEndpoint) {
 }
 
 async function testBodyDelete(drive: APIEndpoint) {
-  const scope = nock(Utils.baseUrl).delete('/drive/v2/files/test').reply(200);
+  const scope = nock(Utils.baseUrl)
+    .delete('/drive/v2/files/test')
+    .reply(200);
   const res = await drive.files.delete({fileId: 'test'});
   scope.done();
   assert.strictEqual(res.config.headers['content-type'], undefined);
@@ -78,16 +90,20 @@ function testNotObjectError(oauth2: APIEndpoint, cb: (err?: Error) => void) {
 }
 
 function testBackendError(
-    urlshortener: APIEndpoint, cb: (err?: Error) => void) {
+  urlshortener: APIEndpoint,
+  cb: (err?: Error) => void
+) {
   const obj = {longUrl: 'http://google.com/'};
   urlshortener.url.insert(
-      {resource: obj}, (err: NodeJS.ErrnoException, result: {}) => {
-        assert(err instanceof Error);
-        assert.strictEqual(Number(err.code), 500);
-        assert.strictEqual(err.message, 'There was an error!');
-        assert.strictEqual(result, undefined);
-        cb();
-      });
+    {resource: obj},
+    (err: NodeJS.ErrnoException, result: {}) => {
+      assert(err instanceof Error);
+      assert.strictEqual(Number(err.code), 500);
+      assert.strictEqual(err.message, 'There was an error!');
+      assert.strictEqual(result, undefined);
+      cb();
+    }
+  );
 }
 
 describe('Transporters', () => {
@@ -104,7 +120,7 @@ describe('Transporters', () => {
     [remoteDrive, remoteOauth2, remoteUrlshortener] = await Promise.all([
       Utils.loadApi(google, 'drive', 'v2'),
       Utils.loadApi(google, 'oauth2', 'v2'),
-      Utils.loadApi(google, 'urlshortener', 'v1')
+      Utils.loadApi(google, 'urlshortener', 'v1'),
     ]);
     nock.disableNetConnect();
   });
@@ -143,48 +159,46 @@ describe('Transporters', () => {
     await testBodyDelete(remoteDrive);
   });
 
-  it('should return errors within response body as instances of Error',
-     (done) => {
-       const scope = nock(Utils.baseUrl)
-                         .get('/drive/v2/files?q=hello')
-                         .times(2)
-                         // Simulate an error returned via response body from
-                         // Google's API endpoint
-                         .reply(400, {error: {code: 400, message: 'Error!'}});
-
-       testResponseError(localDrive, () => {
-         testResponseError(remoteDrive, () => {
-           scope.done();
-           done();
-         });
-       });
-     });
-
-  it('should return error message correctly when error is not an object',
-     (done) => {
-       const scope = nock(Utils.baseUrl)
-                         .post('/oauth2/v2/tokeninfo?access_token=hello')
-                         .times(2)
-                         // Simulate an error returned via response body from
-                         // Google's tokeninfo endpoint
-                         .reply(400, {
-                           error: 'invalid_grant',
-                           error_description: 'Code was already redeemed.'
-                         });
-
-       testNotObjectError(localOauth2, () => {
-         testNotObjectError(remoteOauth2, () => {
-           scope.done();
-           done();
-         });
-       });
-     });
-
-  it('should return 5xx responses as errors', (done) => {
+  it('should return errors within response body as instances of Error', done => {
     const scope = nock(Utils.baseUrl)
-                      .post('/urlshortener/v1/url')
-                      .times(2)
-                      .reply(500, 'There was an error!');
+      .get('/drive/v2/files?q=hello')
+      .times(2)
+      // Simulate an error returned via response body from
+      // Google's API endpoint
+      .reply(400, {error: {code: 400, message: 'Error!'}});
+
+    testResponseError(localDrive, () => {
+      testResponseError(remoteDrive, () => {
+        scope.done();
+        done();
+      });
+    });
+  });
+
+  it('should return error message correctly when error is not an object', done => {
+    const scope = nock(Utils.baseUrl)
+      .post('/oauth2/v2/tokeninfo?access_token=hello')
+      .times(2)
+      // Simulate an error returned via response body from
+      // Google's tokeninfo endpoint
+      .reply(400, {
+        error: 'invalid_grant',
+        error_description: 'Code was already redeemed.',
+      });
+
+    testNotObjectError(localOauth2, () => {
+      testNotObjectError(remoteOauth2, () => {
+        scope.done();
+        done();
+      });
+    });
+  });
+
+  it('should return 5xx responses as errors', done => {
+    const scope = nock(Utils.baseUrl)
+      .post('/urlshortener/v1/url')
+      .times(2)
+      .reply(500, 'There was an error!');
 
     testBackendError(localUrlshortener, () => {
       testBackendError(remoteUrlshortener, () => {
@@ -195,16 +209,20 @@ describe('Transporters', () => {
   });
 
   it('should return 304 responses as success', async () => {
-    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(304);
+    const scope = nock(Utils.baseUrl)
+      .get('/drive/v2/files')
+      .reply(304);
     const res = await localDrive.files.list();
     assert.strictEqual(res.status, 304);
   });
 
-  it('should handle 5xx responses that include errors', (done) => {
-    const scope =
-        nock(Utils.baseUrl).post('/urlshortener/v1/url').times(2).reply(500, {
-          error: {message: 'There was an error!'}
-        });
+  it('should handle 5xx responses that include errors', done => {
+    const scope = nock(Utils.baseUrl)
+      .post('/urlshortener/v1/url')
+      .times(2)
+      .reply(500, {
+        error: {message: 'There was an error!'},
+      });
 
     testBackendError(localUrlshortener, () => {
       testBackendError(remoteUrlshortener, () => {
@@ -214,19 +232,23 @@ describe('Transporters', () => {
     });
   });
 
-  it('should handle a Backend Error', (done) => {
-    const scope =
-        nock(Utils.baseUrl).post('/urlshortener/v1/url').times(2).reply(500, {
-          error: {
-            errors: [{
+  it('should handle a Backend Error', done => {
+    const scope = nock(Utils.baseUrl)
+      .post('/urlshortener/v1/url')
+      .times(2)
+      .reply(500, {
+        error: {
+          errors: [
+            {
               domain: 'global',
               reason: 'backendError',
-              message: 'There was an error!'
-            }],
-            code: 500,
-            message: 'There was an error!'
-          }
-        });
+              message: 'There was an error!',
+            },
+          ],
+          code: 500,
+          message: 'There was an error!',
+        },
+      });
 
     testBackendError(localUrlshortener, () => {
       testBackendError(remoteUrlshortener, () => {

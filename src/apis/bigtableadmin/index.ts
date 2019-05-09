@@ -18,21 +18,28 @@ import {bigtableadmin_v1} from './v1';
 import {bigtableadmin_v2} from './v2';
 
 export const VERSIONS = {
-  'v1': bigtableadmin_v1.Bigtableadmin,
-  'v2': bigtableadmin_v2.Bigtableadmin,
+  v1: bigtableadmin_v1.Bigtableadmin,
+  v2: bigtableadmin_v2.Bigtableadmin,
 };
 
 export function bigtableadmin(version: 'v1'): bigtableadmin_v1.Bigtableadmin;
-export function bigtableadmin(options: bigtableadmin_v1.Options):
-    bigtableadmin_v1.Bigtableadmin;
+export function bigtableadmin(
+  options: bigtableadmin_v1.Options
+): bigtableadmin_v1.Bigtableadmin;
 export function bigtableadmin(version: 'v2'): bigtableadmin_v2.Bigtableadmin;
-export function bigtableadmin(options: bigtableadmin_v2.Options):
-    bigtableadmin_v2.Bigtableadmin;
+export function bigtableadmin(
+  options: bigtableadmin_v2.Options
+): bigtableadmin_v2.Bigtableadmin;
 export function bigtableadmin<
-    T = bigtableadmin_v1.Bigtableadmin | bigtableadmin_v2.Bigtableadmin>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|bigtableadmin_v1.Options|'v2'|
-    bigtableadmin_v2.Options) {
+  T = bigtableadmin_v1.Bigtableadmin | bigtableadmin_v2.Bigtableadmin
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | bigtableadmin_v1.Options
+    | 'v2'
+    | bigtableadmin_v2.Options
+) {
   return getAPI<T>('bigtableadmin', versionOrOptions, VERSIONS, this);
 }
 

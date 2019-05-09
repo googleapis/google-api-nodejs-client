@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {alertcenter_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1beta1': alertcenter_v1beta1.Alertcenter,
+  v1beta1: alertcenter_v1beta1.Alertcenter,
 };
 
-export function alertcenter(version: 'v1beta1'):
-    alertcenter_v1beta1.Alertcenter;
-export function alertcenter(options: alertcenter_v1beta1.Options):
-    alertcenter_v1beta1.Alertcenter;
+export function alertcenter(
+  version: 'v1beta1'
+): alertcenter_v1beta1.Alertcenter;
+export function alertcenter(
+  options: alertcenter_v1beta1.Options
+): alertcenter_v1beta1.Alertcenter;
 export function alertcenter<T = alertcenter_v1beta1.Alertcenter>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|alertcenter_v1beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta1' | alertcenter_v1beta1.Options
+) {
   return getAPI<T>('alertcenter', versionOrOptions, VERSIONS, this);
 }
 

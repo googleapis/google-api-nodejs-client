@@ -23,7 +23,9 @@ export const VERSIONS = {
 export function adsense(version: 'v1.4'): adsense_v1_4.Adsense;
 export function adsense(options: adsense_v1_4.Options): adsense_v1_4.Adsense;
 export function adsense<T = adsense_v1_4.Adsense>(
-    this: GoogleConfigurable, versionOrOptions: 'v1.4'|adsense_v1_4.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1.4' | adsense_v1_4.Options
+) {
   return getAPI<T>('adsense', versionOrOptions, VERSIONS, this);
 }
 

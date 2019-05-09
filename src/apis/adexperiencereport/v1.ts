@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -169,13 +181,11 @@ export namespace adexperiencereport_v1 {
     violatingSites?: Schema$SiteSummaryResponse[];
   }
 
-
   export class Resource$Sites {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexperiencereport.sites.get
@@ -189,20 +199,29 @@ export namespace adexperiencereport_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sites$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SiteSummaryResponse>;
-    get(params: Params$Resource$Sites$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
-        callback: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
-    get(params: Params$Resource$Sites$Get,
-        callback: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
+    get(
+      params?: Params$Resource$Sites$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteSummaryResponse>;
+    get(
+      params: Params$Resource$Sites$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SiteSummaryResponse>,
+      callback: BodyResponseCallback<Schema$SiteSummaryResponse>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Get,
+      callback: BodyResponseCallback<Schema$SiteSummaryResponse>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
-    get(paramsOrCallback?: Params$Resource$Sites$Get|
-        BodyResponseCallback<Schema$SiteSummaryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteSummaryResponse>,
-        callback?: BodyResponseCallback<Schema$SiteSummaryResponse>):
-        void|GaxiosPromise<Schema$SiteSummaryResponse> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Get
+        | BodyResponseCallback<Schema$SiteSummaryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteSummaryResponse>,
+      callback?: BodyResponseCallback<Schema$SiteSummaryResponse>
+    ): void | GaxiosPromise<Schema$SiteSummaryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -218,18 +237,19 @@ export namespace adexperiencereport_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://adexperiencereport.googleapis.com/';
+        options.rootUrl || 'https://adexperiencereport.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback);
@@ -243,7 +263,7 @@ export namespace adexperiencereport_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The required site name. It should be the site property whose ad
@@ -258,13 +278,11 @@ export namespace adexperiencereport_v1 {
     name?: string;
   }
 
-
   export class Resource$Violatingsites {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexperiencereport.violatingSites.list
@@ -278,26 +296,33 @@ export namespace adexperiencereport_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Violatingsites$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ViolatingSitesResponse>;
     list(
-        params: Params$Resource$Violatingsites$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ViolatingSitesResponse>,
-        callback: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
+      params?: Params$Resource$Violatingsites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ViolatingSitesResponse>;
     list(
-        params: Params$Resource$Violatingsites$List,
-        callback: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
+      params: Params$Resource$Violatingsites$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
+      callback: BodyResponseCallback<Schema$ViolatingSitesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Violatingsites$List,
+      callback: BodyResponseCallback<Schema$ViolatingSitesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Violatingsites$List|
-        BodyResponseCallback<Schema$ViolatingSitesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ViolatingSitesResponse>,
-        callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>):
-        void|GaxiosPromise<Schema$ViolatingSitesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Violatingsites$List;
+      paramsOrCallback?:
+        | Params$Resource$Violatingsites$List
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
+      callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>
+    ): void | GaxiosPromise<Schema$ViolatingSitesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Violatingsites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -312,19 +337,19 @@ export namespace adexperiencereport_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://adexperiencereport.googleapis.com/';
+        options.rootUrl || 'https://adexperiencereport.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/violatingSites')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/violatingSites').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback);
@@ -334,11 +359,11 @@ export namespace adexperiencereport_v1 {
     }
   }
 
-  export interface Params$Resource$Violatingsites$List extends
-      StandardParameters {
+  export interface Params$Resource$Violatingsites$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 }

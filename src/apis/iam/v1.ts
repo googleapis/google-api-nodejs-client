@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -360,7 +372,7 @@ export namespace iam_v1 {
      * field is non-operational and it will not be used during the lint
      * operation.
      */
-    context?: {[key: string]: any;};
+    context?: {[key: string]: any};
     /**
      * The full resource name of the policy this lint request is about.  The
      * name follows the Google Cloud Platform (GCP) resource format. For
@@ -930,13 +942,11 @@ export namespace iam_v1 {
     restoredAccount?: Schema$ServiceAccount;
   }
 
-
   export class Resource$Iampolicies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * iam.iamPolicies.lintPolicy
@@ -967,25 +977,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     lintPolicy(
-        params?: Params$Resource$Iampolicies$Lintpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$LintPolicyResponse>;
+      params?: Params$Resource$Iampolicies$Lintpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LintPolicyResponse>;
     lintPolicy(
-        params: Params$Resource$Iampolicies$Lintpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$LintPolicyResponse>,
-        callback: BodyResponseCallback<Schema$LintPolicyResponse>): void;
+      params: Params$Resource$Iampolicies$Lintpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$LintPolicyResponse>,
+      callback: BodyResponseCallback<Schema$LintPolicyResponse>
+    ): void;
     lintPolicy(
-        params: Params$Resource$Iampolicies$Lintpolicy,
-        callback: BodyResponseCallback<Schema$LintPolicyResponse>): void;
+      params: Params$Resource$Iampolicies$Lintpolicy,
+      callback: BodyResponseCallback<Schema$LintPolicyResponse>
+    ): void;
     lintPolicy(callback: BodyResponseCallback<Schema$LintPolicyResponse>): void;
     lintPolicy(
-        paramsOrCallback?: Params$Resource$Iampolicies$Lintpolicy|
-        BodyResponseCallback<Schema$LintPolicyResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LintPolicyResponse>,
-        callback?: BodyResponseCallback<Schema$LintPolicyResponse>):
-        void|GaxiosPromise<Schema$LintPolicyResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Iampolicies$Lintpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Iampolicies$Lintpolicy
+        | BodyResponseCallback<Schema$LintPolicyResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LintPolicyResponse>,
+      callback?: BodyResponseCallback<Schema$LintPolicyResponse>
+    ): void | GaxiosPromise<Schema$LintPolicyResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Iampolicies$Lintpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1002,16 +1017,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/iamPolicies:lintPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/iamPolicies:lintPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LintPolicyResponse>(parameters, callback);
@@ -1019,7 +1037,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$LintPolicyResponse>(parameters);
       }
     }
-
 
     /**
      * iam.iamPolicies.queryAuditableServices
@@ -1035,31 +1052,34 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     queryAuditableServices(
-        params?: Params$Resource$Iampolicies$Queryauditableservices,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$QueryAuditableServicesResponse>;
+      params?: Params$Resource$Iampolicies$Queryauditableservices,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryAuditableServicesResponse>;
     queryAuditableServices(
-        params: Params$Resource$Iampolicies$Queryauditableservices,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
-        callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
-        void;
+      params: Params$Resource$Iampolicies$Queryauditableservices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
+      callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>
+    ): void;
     queryAuditableServices(
-        params: Params$Resource$Iampolicies$Queryauditableservices,
-        callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
-        void;
+      params: Params$Resource$Iampolicies$Queryauditableservices,
+      callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>
+    ): void;
     queryAuditableServices(
-        callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$QueryAuditableServicesResponse>
+    ): void;
     queryAuditableServices(
-        paramsOrCallback?: Params$Resource$Iampolicies$Queryauditableservices|
-        BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
-        callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
-        void|GaxiosPromise<Schema$QueryAuditableServicesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Iampolicies$Queryauditableservices;
+      paramsOrCallback?:
+        | Params$Resource$Iampolicies$Queryauditableservices
+        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
+      callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>
+    ): void | GaxiosPromise<Schema$QueryAuditableServicesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Iampolicies$Queryauditableservices;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1076,54 +1096,57 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/iamPolicies:queryAuditableServices')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/iamPolicies:queryAuditableServices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QueryAuditableServicesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$QueryAuditableServicesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Iampolicies$Lintpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Iampolicies$Lintpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$LintPolicyRequest;
   }
-  export interface Params$Resource$Iampolicies$Queryauditableservices extends
-      StandardParameters {
+  export interface Params$Resource$Iampolicies$Queryauditableservices
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$QueryAuditableServicesRequest;
   }
-
 
   export class Resource$Organizations {
     context: APIRequestContext;
@@ -1134,13 +1157,11 @@ export namespace iam_v1 {
     }
   }
 
-
   export class Resource$Organizations$Roles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * iam.organizations.roles.create
@@ -1156,24 +1177,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Organizations$Roles$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Organizations$Roles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     create(
-        params: Params$Resource$Organizations$Roles$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     create(
-        params: Params$Resource$Organizations$Roles$Create,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Create,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Role>): void;
     create(
-        paramsOrCallback?: Params$Resource$Organizations$Roles$Create|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Roles$Create;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Roles$Create
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1190,16 +1215,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/roles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/roles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1207,7 +1235,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.organizations.roles.delete
@@ -1228,24 +1255,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Organizations$Roles$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Organizations$Roles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     delete(
-        params: Params$Resource$Organizations$Roles$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     delete(
-        params: Params$Resource$Organizations$Roles$Delete,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Delete,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Role>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Organizations$Roles$Delete|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Roles$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Roles$Delete
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1262,15 +1293,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1278,7 +1310,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.organizations.roles.get
@@ -1292,21 +1323,29 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Roles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
-    get(params: Params$Resource$Organizations$Roles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
-    get(params: Params$Resource$Organizations$Roles$Get,
-        callback: BodyResponseCallback<Schema$Role>): void;
+    get(
+      params?: Params$Resource$Organizations$Roles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
+    get(
+      params: Params$Resource$Organizations$Roles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Roles$Get,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Role>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Roles$Get|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Roles$Get
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1323,15 +1362,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1339,7 +1379,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.organizations.roles.list
@@ -1358,25 +1397,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Roles$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListRolesResponse>;
+      params?: Params$Resource$Organizations$Roles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRolesResponse>;
     list(
-        params: Params$Resource$Organizations$Roles$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+      params: Params$Resource$Organizations$Roles$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRolesResponse>,
+      callback: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Roles$List,
-        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+      params: Params$Resource$Organizations$Roles$List,
+      callback: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Roles$List|
-        BodyResponseCallback<Schema$ListRolesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRolesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRolesResponse>):
-        void|GaxiosPromise<Schema$ListRolesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Roles$List
+        | BodyResponseCallback<Schema$ListRolesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void | GaxiosPromise<Schema$ListRolesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1393,16 +1437,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/roles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/roles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -1410,7 +1457,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
       }
     }
-
 
     /**
      * iam.organizations.roles.patch
@@ -1427,24 +1473,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Organizations$Roles$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Organizations$Roles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     patch(
-        params: Params$Resource$Organizations$Roles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     patch(
-        params: Params$Resource$Organizations$Roles$Patch,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Patch,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Role>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Organizations$Roles$Patch|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Roles$Patch
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1461,15 +1511,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1477,7 +1528,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.organizations.roles.undelete
@@ -1493,24 +1543,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Organizations$Roles$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Organizations$Roles$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     undelete(
-        params: Params$Resource$Organizations$Roles$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     undelete(
-        params: Params$Resource$Organizations$Roles$Undelete,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Organizations$Roles$Undelete,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Role>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Organizations$Roles$Undelete|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Roles$Undelete;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Roles$Undelete
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1527,16 +1581,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1546,12 +1603,12 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Roles$Create extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the parent resource in one of the following formats:
@@ -1564,12 +1621,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Organizations$Roles$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Used to perform a consistent read-modify-write.
@@ -1582,12 +1639,12 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the role in one of the following formats:
@@ -1596,12 +1653,12 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Roles$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional limit on the number of roles to include in the response.
@@ -1629,12 +1686,12 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the role in one of the following formats:
@@ -1652,12 +1709,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Organizations$Roles$Undelete extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Roles$Undelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the role in one of the following formats:
@@ -1672,14 +1729,11 @@ export namespace iam_v1 {
     requestBody?: Schema$UndeleteRoleRequest;
   }
 
-
-
   export class Resource$Permissions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * iam.permissions.queryTestablePermissions
@@ -1695,35 +1749,34 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     queryTestablePermissions(
-        params?: Params$Resource$Permissions$Querytestablepermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$QueryTestablePermissionsResponse>;
+      params?: Params$Resource$Permissions$Querytestablepermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryTestablePermissionsResponse>;
     queryTestablePermissions(
-        params: Params$Resource$Permissions$Querytestablepermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
-        callback:
-            BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
-        void;
+      params: Params$Resource$Permissions$Querytestablepermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
+      callback: BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
+    ): void;
     queryTestablePermissions(
-        params: Params$Resource$Permissions$Querytestablepermissions,
-        callback:
-            BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
-        void;
+      params: Params$Resource$Permissions$Querytestablepermissions,
+      callback: BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
+    ): void;
     queryTestablePermissions(
-        callback:
-            BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
+    ): void;
     queryTestablePermissions(
-        paramsOrCallback?: Params$Resource$Permissions$Querytestablepermissions|
-        BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
-        void|GaxiosPromise<Schema$QueryTestablePermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Permissions$Querytestablepermissions;
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Querytestablepermissions
+        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$QueryTestablePermissionsResponse>
+    ): void | GaxiosPromise<Schema$QueryTestablePermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Permissions$Querytestablepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1740,41 +1793,45 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/permissions:queryTestablePermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/permissions:queryTestablePermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QueryTestablePermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$QueryTestablePermissionsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Permissions$Querytestablepermissions extends
-      StandardParameters {
+  export interface Params$Resource$Permissions$Querytestablepermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$QueryTestablePermissionsRequest;
   }
-
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1783,18 +1840,17 @@ export namespace iam_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.roles = new Resource$Projects$Roles(this.context);
-      this.serviceAccounts =
-          new Resource$Projects$Serviceaccounts(this.context);
+      this.serviceAccounts = new Resource$Projects$Serviceaccounts(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Roles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * iam.projects.roles.create
@@ -1810,24 +1866,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Roles$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Projects$Roles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     create(
-        params: Params$Resource$Projects$Roles$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     create(
-        params: Params$Resource$Projects$Roles$Create,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Create,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Role>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Roles$Create|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Roles$Create
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1844,16 +1904,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/roles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/roles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1861,7 +1924,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.projects.roles.delete
@@ -1882,24 +1944,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Roles$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Projects$Roles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     delete(
-        params: Params$Resource$Projects$Roles$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Roles$Delete,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Delete,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Role>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Roles$Delete|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Roles$Delete
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1916,15 +1982,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1932,7 +1999,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.projects.roles.get
@@ -1946,21 +2012,29 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Roles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
-    get(params: Params$Resource$Projects$Roles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
-    get(params: Params$Resource$Projects$Roles$Get,
-        callback: BodyResponseCallback<Schema$Role>): void;
+    get(
+      params?: Params$Resource$Projects$Roles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
+    get(
+      params: Params$Resource$Projects$Roles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Roles$Get,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Role>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Roles$Get|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Roles$Get
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1977,15 +2051,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1993,7 +2068,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.projects.roles.list
@@ -2011,25 +2085,31 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$Roles$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListRolesResponse>;
     list(
-        params: Params$Resource$Projects$Roles$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+      params?: Params$Resource$Projects$Roles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRolesResponse>;
     list(
-        params: Params$Resource$Projects$Roles$List,
-        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+      params: Params$Resource$Projects$Roles$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRolesResponse>,
+      callback: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Roles$List,
+      callback: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Roles$List|
-        BodyResponseCallback<Schema$ListRolesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRolesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRolesResponse>):
-        void|GaxiosPromise<Schema$ListRolesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Roles$List
+        | BodyResponseCallback<Schema$ListRolesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void | GaxiosPromise<Schema$ListRolesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2046,16 +2126,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/roles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/roles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -2063,7 +2146,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
       }
     }
-
 
     /**
      * iam.projects.roles.patch
@@ -2080,24 +2162,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Roles$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Projects$Roles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     patch(
-        params: Params$Resource$Projects$Roles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Roles$Patch,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Patch,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Role>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Roles$Patch|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Roles$Patch
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2114,15 +2200,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -2130,7 +2217,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.projects.roles.undelete
@@ -2146,24 +2232,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Projects$Roles$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
+      params?: Params$Resource$Projects$Roles$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
     undelete(
-        params: Params$Resource$Projects$Roles$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     undelete(
-        params: Params$Resource$Projects$Roles$Undelete,
-        callback: BodyResponseCallback<Schema$Role>): void;
+      params: Params$Resource$Projects$Roles$Undelete,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Role>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Projects$Roles$Undelete|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Undelete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Roles$Undelete
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2180,16 +2270,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -2199,12 +2292,12 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Roles$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Roles$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the parent resource in one of the following formats:
@@ -2217,12 +2310,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Projects$Roles$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Roles$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Used to perform a consistent read-modify-write.
@@ -2235,12 +2328,12 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Roles$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the role in one of the following formats:
@@ -2249,12 +2342,12 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Roles$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional limit on the number of roles to include in the response.
@@ -2282,12 +2375,12 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Roles$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Roles$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the role in one of the following formats:
@@ -2305,12 +2398,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Projects$Roles$Undelete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Roles$Undelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the role in one of the following formats:
@@ -2325,7 +2418,6 @@ export namespace iam_v1 {
     requestBody?: Schema$UndeleteRoleRequest;
   }
 
-
   export class Resource$Projects$Serviceaccounts {
     context: APIRequestContext;
     keys: Resource$Projects$Serviceaccounts$Keys;
@@ -2333,7 +2425,6 @@ export namespace iam_v1 {
       this.context = context;
       this.keys = new Resource$Projects$Serviceaccounts$Keys(this.context);
     }
-
 
     /**
      * iam.projects.serviceAccounts.create
@@ -2349,25 +2440,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Serviceaccounts$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
+      params?: Params$Resource$Projects$Serviceaccounts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccount>;
     create(
-        params: Params$Resource$Projects$Serviceaccounts$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     create(
-        params: Params$Resource$Projects$Serviceaccounts$Create,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Create,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Create|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|GaxiosPromise<Schema$ServiceAccount> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Create
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>
+    ): void | GaxiosPromise<Schema$ServiceAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2384,16 +2480,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/serviceAccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/serviceAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2401,7 +2500,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.delete
@@ -2416,24 +2514,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Serviceaccounts$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Serviceaccounts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Serviceaccounts$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Serviceaccounts$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2450,15 +2552,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2466,7 +2569,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.disable
@@ -2482,24 +2584,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     disable(
-        params?: Params$Resource$Projects$Serviceaccounts$Disable,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Serviceaccounts$Disable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     disable(
-        params: Params$Resource$Projects$Serviceaccounts$Disable,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Disable,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     disable(
-        params: Params$Resource$Projects$Serviceaccounts$Disable,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Disable,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     disable(callback: BodyResponseCallback<Schema$Empty>): void;
     disable(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Disable|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Disable;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Disable
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2516,16 +2622,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:disable')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:disable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2533,7 +2642,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.enable
@@ -2549,24 +2657,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     enable(
-        params?: Params$Resource$Projects$Serviceaccounts$Enable,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Serviceaccounts$Enable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     enable(
-        params: Params$Resource$Projects$Serviceaccounts$Enable,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Enable,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     enable(
-        params: Params$Resource$Projects$Serviceaccounts$Enable,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Enable,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     enable(callback: BodyResponseCallback<Schema$Empty>): void;
     enable(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Enable|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Enable;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Enable
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2583,16 +2695,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:enable')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2600,7 +2712,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.get
@@ -2614,22 +2725,31 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Serviceaccounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
-    get(params: Params$Resource$Projects$Serviceaccounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
-    get(params: Params$Resource$Projects$Serviceaccounts$Get,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    get(
+      params?: Params$Resource$Projects$Serviceaccounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccount>;
+    get(
+      params: Params$Resource$Projects$Serviceaccounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Serviceaccounts$Get,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Get|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|GaxiosPromise<Schema$ServiceAccount> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Get
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>
+    ): void | GaxiosPromise<Schema$ServiceAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2646,15 +2766,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2662,7 +2783,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.getIamPolicy
@@ -2687,25 +2807,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Serviceaccounts$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2722,16 +2845,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2739,7 +2865,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.list
@@ -2756,30 +2881,34 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Serviceaccounts$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListServiceAccountsResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServiceAccountsResponse>;
     list(
-        params: Params$Resource$Projects$Serviceaccounts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceAccountsResponse>,
-        callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceAccountsResponse>,
+      callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Serviceaccounts$List,
-        callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$List,
+      callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$List|
-        BodyResponseCallback<Schema$ListServiceAccountsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
-        void|GaxiosPromise<Schema$ListServiceAccountsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$List;
+      callback: BodyResponseCallback<Schema$ListServiceAccountsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$List
+        | BodyResponseCallback<Schema$ListServiceAccountsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>
+    ): void | GaxiosPromise<Schema$ListServiceAccountsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2796,25 +2925,29 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/serviceAccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/serviceAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListServiceAccountsResponse>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.patch
@@ -2833,25 +2966,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Serviceaccounts$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
+      params?: Params$Resource$Projects$Serviceaccounts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccount>;
     patch(
-        params: Params$Resource$Projects$Serviceaccounts$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Serviceaccounts$Patch,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Patch,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Patch|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|GaxiosPromise<Schema$ServiceAccount> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Patch
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>
+    ): void | GaxiosPromise<Schema$ServiceAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2868,15 +3006,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2884,7 +3023,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.setIamPolicy
@@ -2911,25 +3049,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Serviceaccounts$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2946,16 +3087,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2963,7 +3107,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.signBlob
@@ -2983,25 +3126,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     signBlob(
-        params?: Params$Resource$Projects$Serviceaccounts$Signblob,
-        options?: MethodOptions): GaxiosPromise<Schema$SignBlobResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SignBlobResponse>;
     signBlob(
-        params: Params$Resource$Projects$Serviceaccounts$Signblob,
-        options: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
-        callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: MethodOptions | BodyResponseCallback<Schema$SignBlobResponse>,
+      callback: BodyResponseCallback<Schema$SignBlobResponse>
+    ): void;
     signBlob(
-        params: Params$Resource$Projects$Serviceaccounts$Signblob,
-        callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      callback: BodyResponseCallback<Schema$SignBlobResponse>
+    ): void;
     signBlob(callback: BodyResponseCallback<Schema$SignBlobResponse>): void;
     signBlob(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Signblob|
-        BodyResponseCallback<Schema$SignBlobResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SignBlobResponse>,
-        callback?: BodyResponseCallback<Schema$SignBlobResponse>):
-        void|GaxiosPromise<Schema$SignBlobResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Signblob;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Signblob
+        | BodyResponseCallback<Schema$SignBlobResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignBlobResponse>,
+      callback?: BodyResponseCallback<Schema$SignBlobResponse>
+    ): void | GaxiosPromise<Schema$SignBlobResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3018,16 +3166,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:signBlob')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:signBlob').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
@@ -3035,7 +3186,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$SignBlobResponse>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.signJwt
@@ -3058,25 +3208,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     signJwt(
-        params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        options?: MethodOptions): GaxiosPromise<Schema$SignJwtResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SignJwtResponse>;
     signJwt(
-        params: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        options: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
-        callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: MethodOptions | BodyResponseCallback<Schema$SignJwtResponse>,
+      callback: BodyResponseCallback<Schema$SignJwtResponse>
+    ): void;
     signJwt(
-        params: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      callback: BodyResponseCallback<Schema$SignJwtResponse>
+    ): void;
     signJwt(callback: BodyResponseCallback<Schema$SignJwtResponse>): void;
     signJwt(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Signjwt|
-        BodyResponseCallback<Schema$SignJwtResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SignJwtResponse>,
-        callback?: BodyResponseCallback<Schema$SignJwtResponse>):
-        void|GaxiosPromise<Schema$SignJwtResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Signjwt;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Signjwt
+        | BodyResponseCallback<Schema$SignJwtResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignJwtResponse>,
+      callback?: BodyResponseCallback<Schema$SignJwtResponse>
+    ): void | GaxiosPromise<Schema$SignJwtResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3093,16 +3248,19 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:signJwt')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:signJwt').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
@@ -3110,7 +3268,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$SignJwtResponse>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.testIamPermissions
@@ -3127,38 +3284,39 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Serviceaccounts$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Serviceaccounts$Testiampermissions;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Testiampermissions;
         options = {};
       }
 
@@ -3170,25 +3328,29 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.undelete
@@ -3205,31 +3367,34 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Projects$Serviceaccounts$Undelete,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UndeleteServiceAccountResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UndeleteServiceAccountResponse>;
     undelete(
-        params: Params$Resource$Projects$Serviceaccounts$Undelete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
-        callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Undelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+      callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
+    ): void;
     undelete(
-        params: Params$Resource$Projects$Serviceaccounts$Undelete,
-        callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
-        void;
-    undelete(callback:
-                 BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Undelete,
+      callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
+    ): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Undelete|
-        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
-        callback?: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
-        void|GaxiosPromise<Schema$UndeleteServiceAccountResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Undelete;
+      callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
+    ): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Undelete
+        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+      callback?: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>
+    ): void | GaxiosPromise<Schema$UndeleteServiceAccountResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3246,26 +3411,31 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UndeleteServiceAccountResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UndeleteServiceAccountResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.update
@@ -3284,25 +3454,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Serviceaccounts$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
+      params?: Params$Resource$Projects$Serviceaccounts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccount>;
     update(
-        params: Params$Resource$Projects$Serviceaccounts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     update(
-        params: Params$Resource$Projects$Serviceaccounts$Update,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Update,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Update|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|GaxiosPromise<Schema$ServiceAccount> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Update
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>
+    ): void | GaxiosPromise<Schema$ServiceAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3319,15 +3494,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -3337,12 +3513,12 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the project associated with the service
@@ -3355,12 +3531,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3371,12 +3547,12 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Disable extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Disable
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3392,12 +3568,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$DisableServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Enable extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Enable
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3411,12 +3587,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$EnableServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3427,12 +3603,12 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -3440,12 +3616,12 @@ export namespace iam_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the project associated with the service
@@ -3464,12 +3640,12 @@ export namespace iam_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3486,12 +3662,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$PatchServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -3504,12 +3680,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signblob extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signblob
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3525,12 +3701,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SignBlobRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signjwt extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Signjwt
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3547,11 +3723,11 @@ export namespace iam_v1 {
     requestBody?: Schema$SignJwtRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -3564,12 +3740,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Undelete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Undelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3583,12 +3759,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$UndeleteServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3612,7 +3788,6 @@ export namespace iam_v1 {
       this.context = context;
     }
 
-
     /**
      * iam.projects.serviceAccounts.keys.create
      * @desc Creates a ServiceAccountKey and returns it.
@@ -3627,25 +3802,30 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Serviceaccounts$Keys$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccountKey>;
+      params?: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccountKey>;
     create(
-        params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
     create(
-        params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
-        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$Create|
-        BodyResponseCallback<Schema$ServiceAccountKey>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
-        void|GaxiosPromise<Schema$ServiceAccountKey> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Keys$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Keys$Create
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void | GaxiosPromise<Schema$ServiceAccountKey> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3662,15 +3842,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/keys').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -3678,7 +3859,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.keys.delete
@@ -3693,24 +3873,28 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Keys$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Keys$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3727,15 +3911,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3743,7 +3928,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.keys.get
@@ -3758,22 +3942,31 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Serviceaccounts$Keys$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccountKey>;
-    get(params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
-    get(params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
-        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+    get(
+      params?: Params$Resource$Projects$Serviceaccounts$Keys$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccountKey>;
+    get(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$Get|
-        BodyResponseCallback<Schema$ServiceAccountKey>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
-        void|GaxiosPromise<Schema$ServiceAccountKey> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Keys$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Keys$Get
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void | GaxiosPromise<Schema$ServiceAccountKey> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3790,15 +3983,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -3806,7 +4000,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
       }
     }
-
 
     /**
      * iam.projects.serviceAccounts.keys.list
@@ -3822,30 +4015,34 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Serviceaccounts$Keys$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListServiceAccountKeysResponse>;
+      params?: Params$Resource$Projects$Serviceaccounts$Keys$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServiceAccountKeysResponse>;
     list(
-        params: Params$Resource$Projects$Serviceaccounts$Keys$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
-        callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Keys$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
+      callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Serviceaccounts$Keys$List,
-        callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
-        void;
+      params: Params$Resource$Projects$Serviceaccounts$Keys$List,
+      callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Keys$List|
-        BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
-        void|GaxiosPromise<Schema$ListServiceAccountKeysResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Serviceaccounts$Keys$List;
+      callback: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Keys$List
+        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>
+    ): void | GaxiosPromise<Schema$ListServiceAccountKeysResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3862,32 +4059,36 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/keys').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountKeysResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListServiceAccountKeysResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account in the following format:
@@ -3903,12 +4104,12 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountKeyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account key in the following format:
@@ -3919,12 +4120,12 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the service account key in the following format:
@@ -3940,12 +4141,12 @@ export namespace iam_v1 {
      */
     publicKeyType?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Filters the types of keys the user wants to include in the list response.
@@ -3963,14 +4164,11 @@ export namespace iam_v1 {
     name?: string;
   }
 
-
-
   export class Resource$Roles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * iam.roles.get
@@ -3984,19 +4182,27 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Roles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Role>;
-    get(params: Params$Resource$Roles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback: BodyResponseCallback<Schema$Role>): void;
-    get(params: Params$Resource$Roles$Get,
-        callback: BodyResponseCallback<Schema$Role>): void;
+    get(
+      params?: Params$Resource$Roles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Role>;
+    get(
+      params: Params$Resource$Roles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
+    get(
+      params: Params$Resource$Roles$Get,
+      callback: BodyResponseCallback<Schema$Role>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Role>): void;
-    get(paramsOrCallback?: Params$Resource$Roles$Get|
-        BodyResponseCallback<Schema$Role>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>):
-        void|GaxiosPromise<Schema$Role> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Roles$Get
+        | BodyResponseCallback<Schema$Role>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Role>,
+      callback?: BodyResponseCallback<Schema$Role>
+    ): void | GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4014,15 +4220,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -4030,7 +4237,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$Role>(parameters);
       }
     }
-
 
     /**
      * iam.roles.list
@@ -4048,23 +4254,29 @@ export namespace iam_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Roles$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListRolesResponse>;
     list(
-        params: Params$Resource$Roles$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
-        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+      params?: Params$Resource$Roles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRolesResponse>;
     list(
-        params: Params$Resource$Roles$List,
-        callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
+      params: Params$Resource$Roles$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRolesResponse>,
+      callback: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Roles$List,
+      callback: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRolesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Roles$List|
-        BodyResponseCallback<Schema$ListRolesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRolesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRolesResponse>):
-        void|GaxiosPromise<Schema$ListRolesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Roles$List
+        | BodyResponseCallback<Schema$ListRolesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRolesResponse>
+    ): void | GaxiosPromise<Schema$ListRolesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4082,15 +4294,16 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/roles').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/roles').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -4098,7 +4311,6 @@ export namespace iam_v1 {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
       }
     }
-
 
     /**
      * iam.roles.queryGrantableRoles
@@ -4115,31 +4327,34 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     queryGrantableRoles(
-        params?: Params$Resource$Roles$Querygrantableroles,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$QueryGrantableRolesResponse>;
+      params?: Params$Resource$Roles$Querygrantableroles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryGrantableRolesResponse>;
     queryGrantableRoles(
-        params: Params$Resource$Roles$Querygrantableroles,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
-        callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
-        void;
+      params: Params$Resource$Roles$Querygrantableroles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
+      callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>
+    ): void;
     queryGrantableRoles(
-        params: Params$Resource$Roles$Querygrantableroles,
-        callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
-        void;
+      params: Params$Resource$Roles$Querygrantableroles,
+      callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>
+    ): void;
     queryGrantableRoles(
-        callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$QueryGrantableRolesResponse>
+    ): void;
     queryGrantableRoles(
-        paramsOrCallback?: Params$Resource$Roles$Querygrantableroles|
-        BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
-        callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
-        void|GaxiosPromise<Schema$QueryGrantableRolesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Roles$Querygrantableroles;
+      paramsOrCallback?:
+        | Params$Resource$Roles$Querygrantableroles
+        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
+      callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>
+    ): void | GaxiosPromise<Schema$QueryGrantableRolesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Roles$Querygrantableroles;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4156,20 +4371,25 @@ export namespace iam_v1 {
       const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/roles:queryGrantableRoles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/roles:queryGrantableRoles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QueryGrantableRolesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$QueryGrantableRolesResponse>(parameters);
       }
@@ -4180,7 +4400,7 @@ export namespace iam_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the role in one of the following formats:
@@ -4193,7 +4413,7 @@ export namespace iam_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional limit on the number of roles to include in the response.
@@ -4221,13 +4441,12 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Roles$Querygrantableroles extends
-      StandardParameters {
+  export interface Params$Resource$Roles$Querygrantableroles
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

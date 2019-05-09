@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {licensing_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': licensing_v1.Licensing,
+  v1: licensing_v1.Licensing,
 };
 
 export function licensing(version: 'v1'): licensing_v1.Licensing;
-export function licensing(options: licensing_v1.Options):
-    licensing_v1.Licensing;
+export function licensing(
+  options: licensing_v1.Options
+): licensing_v1.Licensing;
 export function licensing<T = licensing_v1.Licensing>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|licensing_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | licensing_v1.Options
+) {
   return getAPI<T>('licensing', versionOrOptions, VERSIONS, this);
 }
 

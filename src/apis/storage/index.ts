@@ -19,24 +19,33 @@ import {storage_v1beta1} from './v1beta1';
 import {storage_v1beta2} from './v1beta2';
 
 export const VERSIONS = {
-  'v1': storage_v1.Storage,
-  'v1beta1': storage_v1beta1.Storage,
-  'v1beta2': storage_v1beta2.Storage,
+  v1: storage_v1.Storage,
+  v1beta1: storage_v1beta1.Storage,
+  v1beta2: storage_v1beta2.Storage,
 };
 
 export function storage(version: 'v1'): storage_v1.Storage;
 export function storage(options: storage_v1.Options): storage_v1.Storage;
 export function storage(version: 'v1beta1'): storage_v1beta1.Storage;
-export function storage(options: storage_v1beta1.Options):
-    storage_v1beta1.Storage;
+export function storage(
+  options: storage_v1beta1.Options
+): storage_v1beta1.Storage;
 export function storage(version: 'v1beta2'): storage_v1beta2.Storage;
-export function storage(options: storage_v1beta2.Options):
-    storage_v1beta2.Storage;
+export function storage(
+  options: storage_v1beta2.Options
+): storage_v1beta2.Storage;
 export function storage<
-    T = storage_v1.Storage | storage_v1beta1.Storage | storage_v1beta2.Storage>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|storage_v1.Options|'v1beta1'|
-    storage_v1beta1.Options|'v1beta2'|storage_v1beta2.Options) {
+  T = storage_v1.Storage | storage_v1beta1.Storage | storage_v1beta2.Storage
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | storage_v1.Options
+    | 'v1beta1'
+    | storage_v1beta1.Options
+    | 'v1beta2'
+    | storage_v1beta2.Options
+) {
   return getAPI<T>('storage', versionOrOptions, VERSIONS, this);
 }
 

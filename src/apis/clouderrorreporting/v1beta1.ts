@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -468,7 +480,6 @@ export namespace clouderrorreporting_v1beta1 {
     url?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     events: Resource$Projects$Events;
@@ -480,7 +491,6 @@ export namespace clouderrorreporting_v1beta1 {
       this.groups = new Resource$Projects$Groups(this.context);
       this.groupStats = new Resource$Projects$Groupstats(this.context);
     }
-
 
     /**
      * clouderrorreporting.projects.deleteEvents
@@ -495,27 +505,34 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     deleteEvents(
-        params?: Params$Resource$Projects$Deleteevents,
-        options?: MethodOptions): GaxiosPromise<Schema$DeleteEventsResponse>;
+      params?: Params$Resource$Projects$Deleteevents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeleteEventsResponse>;
     deleteEvents(
-        params: Params$Resource$Projects$Deleteevents,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DeleteEventsResponse>,
-        callback: BodyResponseCallback<Schema$DeleteEventsResponse>): void;
+      params: Params$Resource$Projects$Deleteevents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+      callback: BodyResponseCallback<Schema$DeleteEventsResponse>
+    ): void;
     deleteEvents(
-        params: Params$Resource$Projects$Deleteevents,
-        callback: BodyResponseCallback<Schema$DeleteEventsResponse>): void;
-    deleteEvents(callback: BodyResponseCallback<Schema$DeleteEventsResponse>):
-        void;
+      params: Params$Resource$Projects$Deleteevents,
+      callback: BodyResponseCallback<Schema$DeleteEventsResponse>
+    ): void;
     deleteEvents(
-        paramsOrCallback?: Params$Resource$Projects$Deleteevents|
-        BodyResponseCallback<Schema$DeleteEventsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeleteEventsResponse>,
-        callback?: BodyResponseCallback<Schema$DeleteEventsResponse>):
-        void|GaxiosPromise<Schema$DeleteEventsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Deleteevents;
+      callback: BodyResponseCallback<Schema$DeleteEventsResponse>
+    ): void;
+    deleteEvents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deleteevents
+        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteEventsResponse>
+    ): void | GaxiosPromise<Schema$DeleteEventsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deleteevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -530,19 +547,22 @@ export namespace clouderrorreporting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+projectName}/events')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback);
@@ -552,12 +572,12 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Deleteevents extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Deleteevents
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Required] The resource name of the Google Cloud Platform project.
@@ -573,7 +593,6 @@ export namespace clouderrorreporting_v1beta1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * clouderrorreporting.projects.events.list
@@ -595,25 +614,30 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Events$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListEventsResponse>;
+      params?: Params$Resource$Projects$Events$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEventsResponse>;
     list(
-        params: Params$Resource$Projects$Events$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
-        callback: BodyResponseCallback<Schema$ListEventsResponse>): void;
+      params: Params$Resource$Projects$Events$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListEventsResponse>,
+      callback: BodyResponseCallback<Schema$ListEventsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Events$List,
-        callback: BodyResponseCallback<Schema$ListEventsResponse>): void;
+      params: Params$Resource$Projects$Events$List,
+      callback: BodyResponseCallback<Schema$ListEventsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListEventsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Events$List|
-        BodyResponseCallback<Schema$ListEventsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListEventsResponse>,
-        callback?: BodyResponseCallback<Schema$ListEventsResponse>):
-        void|GaxiosPromise<Schema$ListEventsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Events$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Events$List
+        | BodyResponseCallback<Schema$ListEventsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEventsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEventsResponse>
+    ): void | GaxiosPromise<Schema$ListEventsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -628,19 +652,22 @@ export namespace clouderrorreporting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+projectName}/events')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+projectName}/events').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListEventsResponse>(parameters, callback);
@@ -648,7 +675,6 @@ export namespace clouderrorreporting_v1beta1 {
         return createAPIRequest<Schema$ListEventsResponse>(parameters);
       }
     }
-
 
     /**
      * clouderrorreporting.projects.events.report
@@ -669,28 +695,34 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     report(
-        params?: Params$Resource$Projects$Events$Report,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ReportErrorEventResponse>;
+      params?: Params$Resource$Projects$Events$Report,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReportErrorEventResponse>;
     report(
-        params: Params$Resource$Projects$Events$Report,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ReportErrorEventResponse>,
-        callback: BodyResponseCallback<Schema$ReportErrorEventResponse>): void;
+      params: Params$Resource$Projects$Events$Report,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
+      callback: BodyResponseCallback<Schema$ReportErrorEventResponse>
+    ): void;
     report(
-        params: Params$Resource$Projects$Events$Report,
-        callback: BodyResponseCallback<Schema$ReportErrorEventResponse>): void;
-    report(callback: BodyResponseCallback<Schema$ReportErrorEventResponse>):
-        void;
+      params: Params$Resource$Projects$Events$Report,
+      callback: BodyResponseCallback<Schema$ReportErrorEventResponse>
+    ): void;
     report(
-        paramsOrCallback?: Params$Resource$Projects$Events$Report|
-        BodyResponseCallback<Schema$ReportErrorEventResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReportErrorEventResponse>,
-        callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>):
-        void|GaxiosPromise<Schema$ReportErrorEventResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Events$Report;
+      callback: BodyResponseCallback<Schema$ReportErrorEventResponse>
+    ): void;
+    report(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Events$Report
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
+      callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>
+    ): void | GaxiosPromise<Schema$ReportErrorEventResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Events$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -705,19 +737,22 @@ export namespace clouderrorreporting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+projectName}/events:report')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+projectName}/events:report').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReportErrorEventResponse>(parameters, callback);
@@ -727,12 +762,12 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Events$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Events$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Required] The group for which events shall be returned.
@@ -773,12 +808,12 @@ export namespace clouderrorreporting_v1beta1 {
      */
     'timeRange.period'?: string;
   }
-  export interface Params$Resource$Projects$Events$Report extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Events$Report
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Required] The resource name of the Google Cloud Platform project.
@@ -794,13 +829,11 @@ export namespace clouderrorreporting_v1beta1 {
     requestBody?: Schema$ReportedErrorEvent;
   }
 
-
   export class Resource$Projects$Groups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * clouderrorreporting.projects.groups.get
@@ -814,22 +847,31 @@ export namespace clouderrorreporting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Groups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ErrorGroup>;
-    get(params: Params$Resource$Projects$Groups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
-        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
-    get(params: Params$Resource$Projects$Groups$Get,
-        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+    get(
+      params?: Params$Resource$Projects$Groups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ErrorGroup>;
+    get(
+      params: Params$Resource$Projects$Groups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Groups$Get,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ErrorGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Groups$Get|
-        BodyResponseCallback<Schema$ErrorGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ErrorGroup>,
-        callback?: BodyResponseCallback<Schema$ErrorGroup>):
-        void|GaxiosPromise<Schema$ErrorGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$Get
+        | BodyResponseCallback<Schema$ErrorGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>,
+      callback?: BodyResponseCallback<Schema$ErrorGroup>
+    ): void | GaxiosPromise<Schema$ErrorGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -844,19 +886,22 @@ export namespace clouderrorreporting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+groupName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+groupName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['groupName'],
         pathParams: ['groupName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -864,7 +909,6 @@ export namespace clouderrorreporting_v1beta1 {
         return createAPIRequest<Schema$ErrorGroup>(parameters);
       }
     }
-
 
     /**
      * clouderrorreporting.projects.groups.update
@@ -881,25 +925,30 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Groups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ErrorGroup>;
+      params?: Params$Resource$Projects$Groups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ErrorGroup>;
     update(
-        params: Params$Resource$Projects$Groups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
-        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+      params: Params$Resource$Projects$Groups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
     update(
-        params: Params$Resource$Projects$Groups$Update,
-        callback: BodyResponseCallback<Schema$ErrorGroup>): void;
+      params: Params$Resource$Projects$Groups$Update,
+      callback: BodyResponseCallback<Schema$ErrorGroup>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ErrorGroup>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Groups$Update|
-        BodyResponseCallback<Schema$ErrorGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ErrorGroup>,
-        callback?: BodyResponseCallback<Schema$ErrorGroup>):
-        void|GaxiosPromise<Schema$ErrorGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groups$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groups$Update
+        | BodyResponseCallback<Schema$ErrorGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>,
+      callback?: BodyResponseCallback<Schema$ErrorGroup>
+    ): void | GaxiosPromise<Schema$ErrorGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -914,18 +963,19 @@ export namespace clouderrorreporting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -935,12 +985,12 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Required] The group resource name. Written as
@@ -953,12 +1003,12 @@ export namespace clouderrorreporting_v1beta1 {
      */
     groupName?: string;
   }
-  export interface Params$Resource$Projects$Groups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The group resource name. Example:
@@ -972,13 +1022,11 @@ export namespace clouderrorreporting_v1beta1 {
     requestBody?: Schema$ErrorGroup;
   }
 
-
   export class Resource$Projects$Groupstats {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * clouderrorreporting.projects.groupStats.list
@@ -1004,26 +1052,32 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Groupstats$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListGroupStatsResponse>;
+      params?: Params$Resource$Projects$Groupstats$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupStatsResponse>;
     list(
-        params: Params$Resource$Projects$Groupstats$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupStatsResponse>,
-        callback: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
+      params: Params$Resource$Projects$Groupstats$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupStatsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Groupstats$List,
-        callback: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
+      params: Params$Resource$Projects$Groupstats$List,
+      callback: BodyResponseCallback<Schema$ListGroupStatsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Groupstats$List|
-        BodyResponseCallback<Schema$ListGroupStatsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupStatsResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>):
-        void|GaxiosPromise<Schema$ListGroupStatsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Groupstats$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Groupstats$List
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>
+    ): void | GaxiosPromise<Schema$ListGroupStatsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Groupstats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1038,19 +1092,22 @@ export namespace clouderrorreporting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+projectName}/groupStats')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+projectName}/groupStats').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback);
@@ -1060,12 +1117,12 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Groupstats$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Groupstats$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * [Optional] The alignment of the timed counts to be returned. Default is

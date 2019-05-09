@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1500,7 +1512,6 @@ export namespace toolresults_v1beta3 {
     testCase?: Schema$TestCaseReference;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     histories: Resource$Projects$Histories;
@@ -1508,7 +1519,6 @@ export namespace toolresults_v1beta3 {
       this.context = context;
       this.histories = new Resource$Projects$Histories(this.context);
     }
-
 
     /**
      * toolresults.projects.getSettings
@@ -1525,25 +1535,30 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     getSettings(
-        params?: Params$Resource$Projects$Getsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$ProjectSettings>;
+      params?: Params$Resource$Projects$Getsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectSettings>;
     getSettings(
-        params: Params$Resource$Projects$Getsettings,
-        options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
-        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+      params: Params$Resource$Projects$Getsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectSettings>,
+      callback: BodyResponseCallback<Schema$ProjectSettings>
+    ): void;
     getSettings(
-        params: Params$Resource$Projects$Getsettings,
-        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+      params: Params$Resource$Projects$Getsettings,
+      callback: BodyResponseCallback<Schema$ProjectSettings>
+    ): void;
     getSettings(callback: BodyResponseCallback<Schema$ProjectSettings>): void;
     getSettings(
-        paramsOrCallback?: Params$Resource$Projects$Getsettings|
-        BodyResponseCallback<Schema$ProjectSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectSettings>,
-        callback?: BodyResponseCallback<Schema$ProjectSettings>):
-        void|GaxiosPromise<Schema$ProjectSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getsettings;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getsettings
+        | BodyResponseCallback<Schema$ProjectSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectSettings>,
+      callback?: BodyResponseCallback<Schema$ProjectSettings>
+    ): void | GaxiosPromise<Schema$ProjectSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1560,17 +1575,18 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/toolresults/v1beta3/projects/{projectId}/settings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/toolresults/v1beta3/projects/{projectId}/settings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(parameters, callback);
@@ -1578,7 +1594,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$ProjectSettings>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.initializeSettings
@@ -1612,26 +1627,32 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     initializeSettings(
-        params?: Params$Resource$Projects$Initializesettings,
-        options?: MethodOptions): GaxiosPromise<Schema$ProjectSettings>;
+      params?: Params$Resource$Projects$Initializesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectSettings>;
     initializeSettings(
-        params: Params$Resource$Projects$Initializesettings,
-        options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
-        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
+      params: Params$Resource$Projects$Initializesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectSettings>,
+      callback: BodyResponseCallback<Schema$ProjectSettings>
+    ): void;
     initializeSettings(
-        params: Params$Resource$Projects$Initializesettings,
-        callback: BodyResponseCallback<Schema$ProjectSettings>): void;
-    initializeSettings(callback: BodyResponseCallback<Schema$ProjectSettings>):
-        void;
+      params: Params$Resource$Projects$Initializesettings,
+      callback: BodyResponseCallback<Schema$ProjectSettings>
+    ): void;
     initializeSettings(
-        paramsOrCallback?: Params$Resource$Projects$Initializesettings|
-        BodyResponseCallback<Schema$ProjectSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectSettings>,
-        callback?: BodyResponseCallback<Schema$ProjectSettings>):
-        void|GaxiosPromise<Schema$ProjectSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Initializesettings;
+      callback: BodyResponseCallback<Schema$ProjectSettings>
+    ): void;
+    initializeSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Initializesettings
+        | BodyResponseCallback<Schema$ProjectSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectSettings>,
+      callback?: BodyResponseCallback<Schema$ProjectSettings>
+    ): void | GaxiosPromise<Schema$ProjectSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Initializesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1648,18 +1669,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}:initializeSettings')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}:initializeSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(parameters, callback);
@@ -1669,24 +1691,24 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Getsettings extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Project id.  Required.
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Initializesettings extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Initializesettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Project id.  Required.
@@ -1699,10 +1721,10 @@ export namespace toolresults_v1beta3 {
     executions: Resource$Projects$Histories$Executions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.executions =
-          new Resource$Projects$Histories$Executions(this.context);
+      this.executions = new Resource$Projects$Histories$Executions(
+        this.context
+      );
     }
-
 
     /**
      * toolresults.projects.histories.create
@@ -1723,24 +1745,28 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Histories$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$History>;
+      params?: Params$Resource$Projects$Histories$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$History>;
     create(
-        params: Params$Resource$Projects$Histories$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$History>,
-        callback: BodyResponseCallback<Schema$History>): void;
+      params: Params$Resource$Projects$Histories$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$History>,
+      callback: BodyResponseCallback<Schema$History>
+    ): void;
     create(
-        params: Params$Resource$Projects$Histories$Create,
-        callback: BodyResponseCallback<Schema$History>): void;
+      params: Params$Resource$Projects$Histories$Create,
+      callback: BodyResponseCallback<Schema$History>
+    ): void;
     create(callback: BodyResponseCallback<Schema$History>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Histories$Create|
-        BodyResponseCallback<Schema$History>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$History>,
-        callback?: BodyResponseCallback<Schema$History>):
-        void|GaxiosPromise<Schema$History> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Histories$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Create
+        | BodyResponseCallback<Schema$History>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$History>,
+      callback?: BodyResponseCallback<Schema$History>
+    ): void | GaxiosPromise<Schema$History> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1757,17 +1783,18 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/toolresults/v1beta3/projects/{projectId}/histories')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$History>(parameters, callback);
@@ -1775,7 +1802,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$History>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.get
@@ -1793,21 +1819,29 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Histories$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$History>;
-    get(params: Params$Resource$Projects$Histories$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$History>,
-        callback: BodyResponseCallback<Schema$History>): void;
-    get(params: Params$Resource$Projects$Histories$Get,
-        callback: BodyResponseCallback<Schema$History>): void;
+    get(
+      params?: Params$Resource$Projects$Histories$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$History>;
+    get(
+      params: Params$Resource$Projects$Histories$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$History>,
+      callback: BodyResponseCallback<Schema$History>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Get,
+      callback: BodyResponseCallback<Schema$History>
+    ): void;
     get(callback: BodyResponseCallback<Schema$History>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Histories$Get|
-        BodyResponseCallback<Schema$History>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$History>,
-        callback?: BodyResponseCallback<Schema$History>):
-        void|GaxiosPromise<Schema$History> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Histories$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Get
+        | BodyResponseCallback<Schema$History>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$History>,
+      callback?: BodyResponseCallback<Schema$History>
+    ): void | GaxiosPromise<Schema$History> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1824,18 +1858,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$History>(parameters, callback);
@@ -1843,7 +1878,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$History>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.list
@@ -1866,26 +1900,32 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Histories$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListHistoriesResponse>;
+      params?: Params$Resource$Projects$Histories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListHistoriesResponse>;
     list(
-        params: Params$Resource$Projects$Histories$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListHistoriesResponse>,
-        callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
+      params: Params$Resource$Projects$Histories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHistoriesResponse>,
+      callback: BodyResponseCallback<Schema$ListHistoriesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Histories$List,
-        callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
+      params: Params$Resource$Projects$Histories$List,
+      callback: BodyResponseCallback<Schema$ListHistoriesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Histories$List|
-        BodyResponseCallback<Schema$ListHistoriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListHistoriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListHistoriesResponse>):
-        void|GaxiosPromise<Schema$ListHistoriesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Histories$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$List
+        | BodyResponseCallback<Schema$ListHistoriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHistoriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListHistoriesResponse>
+    ): void | GaxiosPromise<Schema$ListHistoriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1902,17 +1942,18 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/toolresults/v1beta3/projects/{projectId}/histories')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/toolresults/v1beta3/projects/{projectId}/histories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListHistoriesResponse>(parameters, callback);
@@ -1922,12 +1963,12 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Histories$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Project id.  Required.
@@ -1944,12 +1985,12 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$History;
   }
-  export interface Params$Resource$Projects$Histories$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Histories$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A History id.  Required.
@@ -1960,12 +2001,12 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Histories$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If set, only return histories with the given name.  Optional.
@@ -1993,12 +2034,13 @@ export namespace toolresults_v1beta3 {
     steps: Resource$Projects$Histories$Executions$Steps;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.clusters =
-          new Resource$Projects$Histories$Executions$Clusters(this.context);
-      this.steps =
-          new Resource$Projects$Histories$Executions$Steps(this.context);
+      this.clusters = new Resource$Projects$Histories$Executions$Clusters(
+        this.context
+      );
+      this.steps = new Resource$Projects$Histories$Executions$Steps(
+        this.context
+      );
     }
-
 
     /**
      * toolresults.projects.histories.executions.create
@@ -2020,25 +2062,30 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Histories$Executions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Execution>;
+      params?: Params$Resource$Projects$Histories$Executions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Execution>;
     create(
-        params: Params$Resource$Projects$Histories$Executions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Execution>,
-        callback: BodyResponseCallback<Schema$Execution>): void;
+      params: Params$Resource$Projects$Histories$Executions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
     create(
-        params: Params$Resource$Projects$Histories$Executions$Create,
-        callback: BodyResponseCallback<Schema$Execution>): void;
+      params: Params$Resource$Projects$Histories$Executions$Create,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Execution>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Histories$Executions$Create|
-        BodyResponseCallback<Schema$Execution>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Execution>,
-        callback?: BodyResponseCallback<Schema$Execution>):
-        void|GaxiosPromise<Schema$Execution> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Create
+        | BodyResponseCallback<Schema$Execution>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>
+    ): void | GaxiosPromise<Schema$Execution> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2055,18 +2102,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2074,7 +2122,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$Execution>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.get
@@ -2093,22 +2140,31 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Histories$Executions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Execution>;
-    get(params: Params$Resource$Projects$Histories$Executions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Execution>,
-        callback: BodyResponseCallback<Schema$Execution>): void;
-    get(params: Params$Resource$Projects$Histories$Executions$Get,
-        callback: BodyResponseCallback<Schema$Execution>): void;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Execution>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Get,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Execution>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Histories$Executions$Get|
-        BodyResponseCallback<Schema$Execution>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Execution>,
-        callback?: BodyResponseCallback<Schema$Execution>):
-        void|GaxiosPromise<Schema$Execution> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Get
+        | BodyResponseCallback<Schema$Execution>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>
+    ): void | GaxiosPromise<Schema$Execution> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2125,18 +2181,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2144,7 +2201,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$Execution>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.list
@@ -2167,26 +2223,32 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Histories$Executions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListExecutionsResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExecutionsResponse>;
     list(
-        params: Params$Resource$Projects$Histories$Executions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListExecutionsResponse>,
-        callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+      callback: BodyResponseCallback<Schema$ListExecutionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Histories$Executions$List,
-        callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$List,
+      callback: BodyResponseCallback<Schema$ListExecutionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Histories$Executions$List|
-        BodyResponseCallback<Schema$ListExecutionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListExecutionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExecutionsResponse>):
-        void|GaxiosPromise<Schema$ListExecutionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$List
+        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExecutionsResponse>
+    ): void | GaxiosPromise<Schema$ListExecutionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2203,18 +2265,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListExecutionsResponse>(parameters, callback);
@@ -2222,7 +2285,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$ListExecutionsResponse>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.patch
@@ -2246,25 +2308,30 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Histories$Executions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Execution>;
+      params?: Params$Resource$Projects$Histories$Executions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Execution>;
     patch(
-        params: Params$Resource$Projects$Histories$Executions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Execution>,
-        callback: BodyResponseCallback<Schema$Execution>): void;
+      params: Params$Resource$Projects$Histories$Executions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Execution>,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Histories$Executions$Patch,
-        callback: BodyResponseCallback<Schema$Execution>): void;
+      params: Params$Resource$Projects$Histories$Executions$Patch,
+      callback: BodyResponseCallback<Schema$Execution>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Execution>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Histories$Executions$Patch|
-        BodyResponseCallback<Schema$Execution>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Execution>,
-        callback?: BodyResponseCallback<Schema$Execution>):
-        void|GaxiosPromise<Schema$Execution> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Patch
+        | BodyResponseCallback<Schema$Execution>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>
+    ): void | GaxiosPromise<Schema$Execution> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2281,18 +2348,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2302,12 +2370,12 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A History id.  Required.
@@ -2328,12 +2396,12 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Execution;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An Execution id.  Required.
@@ -2348,12 +2416,12 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A History id.  Required.
@@ -2374,12 +2442,12 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.
@@ -2411,7 +2479,6 @@ export namespace toolresults_v1beta3 {
       this.context = context;
     }
 
-
     /**
      * toolresults.projects.histories.executions.clusters.get
      * @desc Retrieves a single screenshot cluster by its ID
@@ -2427,29 +2494,36 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Histories$Executions$Clusters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ScreenshotCluster>;
-    get(params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ScreenshotCluster>,
-        callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
-    get(params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
-        callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScreenshotCluster>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ScreenshotCluster>,
+      callback: BodyResponseCallback<Schema$ScreenshotCluster>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
+      callback: BodyResponseCallback<Schema$ScreenshotCluster>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ScreenshotCluster>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Clusters$Get|
-        BodyResponseCallback<Schema$ScreenshotCluster>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScreenshotCluster>,
-        callback?: BodyResponseCallback<Schema$ScreenshotCluster>):
-        void|GaxiosPromise<Schema$ScreenshotCluster> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Clusters$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Clusters$Get
+        | BodyResponseCallback<Schema$ScreenshotCluster>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScreenshotCluster>,
+      callback?: BodyResponseCallback<Schema$ScreenshotCluster>
+    ): void | GaxiosPromise<Schema$ScreenshotCluster> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Clusters$Get;
+        params = {} as Params$Resource$Projects$Histories$Executions$Clusters$Get;
         options = {};
       }
 
@@ -2461,18 +2535,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'clusterId'],
         pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScreenshotCluster>(parameters, callback);
@@ -2480,7 +2555,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$ScreenshotCluster>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.clusters.list
@@ -2503,37 +2577,39 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Histories$Executions$Clusters$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListScreenshotClustersResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListScreenshotClustersResponse>;
     list(
-        params: Params$Resource$Projects$Histories$Executions$Clusters$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
-        callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
+      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Histories$Executions$Clusters$List,
-        callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Clusters$List,
+      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Clusters$List|
-        BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
-        callback?: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
-        void|GaxiosPromise<Schema$ListScreenshotClustersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Clusters$List;
+      callback: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Clusters$List
+        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
+      callback?: BodyResponseCallback<Schema$ListScreenshotClustersResponse>
+    ): void | GaxiosPromise<Schema$ListScreenshotClustersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Clusters$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Clusters$List;
         options = {};
       }
 
@@ -2545,35 +2621,39 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListScreenshotClustersResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListScreenshotClustersResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Histories$Executions$Clusters$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Cluster id  Required.
@@ -2593,11 +2673,11 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Clusters$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An Execution id.  Required.
@@ -2613,31 +2693,27 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
 
-
   export class Resource$Projects$Histories$Executions$Steps {
     context: APIRequestContext;
-    perfMetricsSummary:
-        Resource$Projects$Histories$Executions$Steps$Perfmetricssummary;
-    perfSampleSeries:
-        Resource$Projects$Histories$Executions$Steps$Perfsampleseries;
+    perfMetricsSummary: Resource$Projects$Histories$Executions$Steps$Perfmetricssummary;
+    perfSampleSeries: Resource$Projects$Histories$Executions$Steps$Perfsampleseries;
     testCases: Resource$Projects$Histories$Executions$Steps$Testcases;
     thumbnails: Resource$Projects$Histories$Executions$Steps$Thumbnails;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.perfMetricsSummary =
-          new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
-              this.context);
-      this.perfSampleSeries =
-          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
-              this.context);
-      this.testCases =
-          new Resource$Projects$Histories$Executions$Steps$Testcases(
-              this.context);
-      this.thumbnails =
-          new Resource$Projects$Histories$Executions$Steps$Thumbnails(
-              this.context);
+      this.perfMetricsSummary = new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
+        this.context
+      );
+      this.perfSampleSeries = new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
+        this.context
+      );
+      this.testCases = new Resource$Projects$Histories$Executions$Steps$Testcases(
+        this.context
+      );
+      this.thumbnails = new Resource$Projects$Histories$Executions$Steps$Thumbnails(
+        this.context
+      );
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.create
@@ -2661,31 +2737,33 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Histories$Executions$Steps$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Step>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Step>;
     create(
-        params: Params$Resource$Projects$Histories$Executions$Steps$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback: BodyResponseCallback<Schema$Step>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
     create(
-        params: Params$Resource$Projects$Histories$Executions$Steps$Create,
-        callback: BodyResponseCallback<Schema$Step>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Create,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Step>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Create|
-        BodyResponseCallback<Schema$Step>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>):
-        void|GaxiosPromise<Schema$Step> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Create
+        | BodyResponseCallback<Schema$Step>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>
+    ): void | GaxiosPromise<Schema$Step> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Create;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Create;
         options = {};
       }
 
@@ -2697,18 +2775,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2716,7 +2795,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$Step>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.get
@@ -2736,22 +2814,29 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Histories$Executions$Steps$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Step>;
-    get(params: Params$Resource$Projects$Histories$Executions$Steps$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback: BodyResponseCallback<Schema$Step>): void;
-    get(params: Params$Resource$Projects$Histories$Executions$Steps$Get,
-        callback: BodyResponseCallback<Schema$Step>): void;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Step>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Get,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Step>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Get|
-        BodyResponseCallback<Schema$Step>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>):
-        void|GaxiosPromise<Schema$Step> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Get
+        | BodyResponseCallback<Schema$Step>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>
+    ): void | GaxiosPromise<Schema$Step> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2768,18 +2853,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2787,7 +2873,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$Step>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.getPerfMetricsSummary
@@ -2808,36 +2893,37 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     getPerfMetricsSummary(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
-        options?: MethodOptions): GaxiosPromise<Schema$PerfMetricsSummary>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerfMetricsSummary>;
     getPerfMetricsSummary(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
-        options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
-        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
+      options: MethodOptions | BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void;
     getPerfMetricsSummary(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
-        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
+      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void;
     getPerfMetricsSummary(
-        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void;
     getPerfMetricsSummary(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary|
-        BodyResponseCallback<Schema$PerfMetricsSummary>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PerfMetricsSummary>,
-        callback?: BodyResponseCallback<Schema$PerfMetricsSummary>):
-        void|GaxiosPromise<Schema$PerfMetricsSummary> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary
+        | BodyResponseCallback<Schema$PerfMetricsSummary>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback?: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void | GaxiosPromise<Schema$PerfMetricsSummary> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
         options = {};
       }
 
@@ -2849,18 +2935,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
@@ -2868,7 +2955,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$PerfMetricsSummary>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.list
@@ -2894,26 +2980,30 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Histories$Executions$Steps$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListStepsResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListStepsResponse>;
     list(
-        params: Params$Resource$Projects$Histories$Executions$Steps$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListStepsResponse>,
-        callback: BodyResponseCallback<Schema$ListStepsResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListStepsResponse>,
+      callback: BodyResponseCallback<Schema$ListStepsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Histories$Executions$Steps$List,
-        callback: BodyResponseCallback<Schema$ListStepsResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$List,
+      callback: BodyResponseCallback<Schema$ListStepsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListStepsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$List|
-        BodyResponseCallback<Schema$ListStepsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListStepsResponse>,
-        callback?: BodyResponseCallback<Schema$ListStepsResponse>):
-        void|GaxiosPromise<Schema$ListStepsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$List
+        | BodyResponseCallback<Schema$ListStepsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStepsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStepsResponse>
+    ): void | GaxiosPromise<Schema$ListStepsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2930,18 +3020,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListStepsResponse>(parameters, callback);
@@ -2949,7 +3040,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$ListStepsResponse>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.patch
@@ -2975,31 +3065,33 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Histories$Executions$Steps$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Step>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Step>;
     patch(
-        params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback: BodyResponseCallback<Schema$Step>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
-        callback: BodyResponseCallback<Schema$Step>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Step>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Patch|
-        BodyResponseCallback<Schema$Step>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>):
-        void|GaxiosPromise<Schema$Step> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Patch
+        | BodyResponseCallback<Schema$Step>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>
+    ): void | GaxiosPromise<Schema$Step> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Patch;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Patch;
         options = {};
       }
 
@@ -3011,18 +3103,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -3030,7 +3123,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$Step>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.publishXunitXmlFiles
@@ -3055,34 +3147,33 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     publishXunitXmlFiles(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
-        options?: MethodOptions): GaxiosPromise<Schema$Step>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Step>;
     publishXunitXmlFiles(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
-        options: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback: BodyResponseCallback<Schema$Step>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
+      options: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
     publishXunitXmlFiles(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
-        callback: BodyResponseCallback<Schema$Step>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
+      callback: BodyResponseCallback<Schema$Step>
+    ): void;
     publishXunitXmlFiles(callback: BodyResponseCallback<Schema$Step>): void;
     publishXunitXmlFiles(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles|
-        BodyResponseCallback<Schema$Step>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Step>,
-        callback?: BodyResponseCallback<Schema$Step>):
-        void|GaxiosPromise<Schema$Step> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
+        | BodyResponseCallback<Schema$Step>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>
+    ): void | GaxiosPromise<Schema$Step> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
         options = {};
       }
 
@@ -3094,18 +3185,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -3116,11 +3208,11 @@ export namespace toolresults_v1beta3 {
   }
 
   export interface Params$Resource$Projects$Histories$Executions$Steps$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Execution id.  Required.
@@ -3146,11 +3238,11 @@ export namespace toolresults_v1beta3 {
     requestBody?: Schema$Step;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Execution id.  Required.
@@ -3170,11 +3262,11 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A tool results execution ID.
@@ -3194,11 +3286,11 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Execution id.  Required.
@@ -3223,11 +3315,11 @@ export namespace toolresults_v1beta3 {
     projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Execution id.  Required.
@@ -3257,11 +3349,11 @@ export namespace toolresults_v1beta3 {
     requestBody?: Schema$Step;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Execution id.  Required.
@@ -3292,7 +3384,6 @@ export namespace toolresults_v1beta3 {
       this.context = context;
     }
 
-
     /**
      * toolresults.projects.histories.executions.steps.perfMetricsSummary.create
      * @desc Creates a PerfMetricsSummary resource. Returns the existing one if
@@ -3313,35 +3404,35 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$PerfMetricsSummary>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerfMetricsSummary>;
     create(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
-        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
-        callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
+      callback: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void;
     create(callback: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create|
-        BodyResponseCallback<Schema$PerfMetricsSummary>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PerfMetricsSummary>,
-        callback?: BodyResponseCallback<Schema$PerfMetricsSummary>):
-        void|GaxiosPromise<Schema$PerfMetricsSummary> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create
+        | BodyResponseCallback<Schema$PerfMetricsSummary>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback?: BodyResponseCallback<Schema$PerfMetricsSummary>
+    ): void | GaxiosPromise<Schema$PerfMetricsSummary> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
         options = {};
       }
 
@@ -3353,18 +3444,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
@@ -3375,11 +3467,11 @@ export namespace toolresults_v1beta3 {
   }
 
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A tool results execution ID.
@@ -3404,18 +3496,15 @@ export namespace toolresults_v1beta3 {
     requestBody?: Schema$PerfMetricsSummary;
   }
 
-
   export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
     context: APIRequestContext;
-    samples:
-        Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples;
+    samples: Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.samples =
-          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
-              this.context);
+      this.samples = new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
+        this.context
+      );
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.create
@@ -3437,35 +3526,35 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$PerfSampleSeries>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerfSampleSeries>;
     create(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
-        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
-        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
     create(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create|
-        BodyResponseCallback<Schema$PerfSampleSeries>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PerfSampleSeries>,
-        callback?: BodyResponseCallback<Schema$PerfSampleSeries>):
-        void|GaxiosPromise<Schema$PerfSampleSeries> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create
+        | BodyResponseCallback<Schema$PerfSampleSeries>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback?: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void | GaxiosPromise<Schema$PerfSampleSeries> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
         options = {};
       }
 
@@ -3477,18 +3566,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
@@ -3496,7 +3586,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$PerfSampleSeries>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.get
@@ -3516,32 +3605,36 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$PerfSampleSeries>;
-    get(params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
-        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
-    get(params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
-        callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerfSampleSeries>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
+      callback: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void;
     get(callback: BodyResponseCallback<Schema$PerfSampleSeries>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get|
-        BodyResponseCallback<Schema$PerfSampleSeries>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PerfSampleSeries>,
-        callback?: BodyResponseCallback<Schema$PerfSampleSeries>):
-        void|GaxiosPromise<Schema$PerfSampleSeries> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get
+        | BodyResponseCallback<Schema$PerfSampleSeries>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback?: BodyResponseCallback<Schema$PerfSampleSeries>
+    ): void | GaxiosPromise<Schema$PerfSampleSeries> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
         options = {};
       }
 
@@ -3553,22 +3646,31 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'
+          'projectId',
+          'historyId',
+          'executionId',
+          'stepId',
+          'sampleSeriesId',
         ],
         pathParams: [
-          'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
+          'executionId',
+          'historyId',
+          'projectId',
+          'sampleSeriesId',
+          'stepId',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
@@ -3576,7 +3678,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$PerfSampleSeries>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.list
@@ -3600,40 +3701,39 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListPerfSampleSeriesResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPerfSampleSeriesResponse>;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
-        callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
+      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
-        callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
+      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List|
-        BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
-        void|GaxiosPromise<Schema$ListPerfSampleSeriesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
+      callback: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List
+        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>
+    ): void | GaxiosPromise<Schema$ListPerfSampleSeriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
         options = {};
       }
 
@@ -3645,35 +3745,39 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A tool results execution ID.
@@ -3698,11 +3802,11 @@ export namespace toolresults_v1beta3 {
     requestBody?: Schema$PerfSampleSeries;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A tool results execution ID.
@@ -3726,11 +3830,11 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A tool results execution ID.
@@ -3755,13 +3859,11 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
 
-  export class
-      Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples {
+  export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
@@ -3789,41 +3891,39 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     batchCreate(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchCreatePerfSamplesResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchCreatePerfSamplesResponse>;
     batchCreate(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
-        callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    ): void;
     batchCreate(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
-        callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
+      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    ): void;
     batchCreate(
-        callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    ): void;
     batchCreate(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate|
-        BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
-        callback?: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
-        void|GaxiosPromise<Schema$BatchCreatePerfSamplesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate
+        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>
+    ): void | GaxiosPromise<Schema$BatchCreatePerfSamplesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
         options = {};
       }
 
@@ -3835,32 +3935,43 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'
+          'projectId',
+          'historyId',
+          'executionId',
+          'stepId',
+          'sampleSeriesId',
         ],
         pathParams: [
-          'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
+          'executionId',
+          'historyId',
+          'projectId',
+          'sampleSeriesId',
+          'stepId',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
@@ -3890,36 +4001,37 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListPerfSamplesResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPerfSamplesResponse>;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListPerfSamplesResponse>,
-        callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+      callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
-        callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
+      callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List|
-        BodyResponseCallback<Schema$ListPerfSamplesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListPerfSamplesResponse>,
-        callback?: BodyResponseCallback<Schema$ListPerfSamplesResponse>):
-        void|GaxiosPromise<Schema$ListPerfSamplesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List
+        | BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+      callback?: BodyResponseCallback<Schema$ListPerfSamplesResponse>
+    ): void | GaxiosPromise<Schema$ListPerfSamplesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
         options = {};
       }
 
@@ -3931,22 +4043,31 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'
+          'projectId',
+          'historyId',
+          'executionId',
+          'stepId',
+          'sampleSeriesId',
         ],
         pathParams: [
-          'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
+          'executionId',
+          'historyId',
+          'projectId',
+          'sampleSeriesId',
+          'stepId',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListPerfSamplesResponse>(parameters, callback);
@@ -3957,11 +4078,11 @@ export namespace toolresults_v1beta3 {
   }
 
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A tool results execution ID.
@@ -3990,11 +4111,11 @@ export namespace toolresults_v1beta3 {
     requestBody?: Schema$BatchCreatePerfSamplesRequest;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A tool results execution ID.
@@ -4027,14 +4148,11 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
 
-
-
   export class Resource$Projects$Histories$Executions$Steps$Testcases {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.testCases.get
@@ -4056,31 +4174,34 @@ export namespace toolresults_v1beta3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TestCase>;
-    get(params:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TestCase>,
-        callback: BodyResponseCallback<Schema$TestCase>): void;
-    get(params:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
-        callback: BodyResponseCallback<Schema$TestCase>): void;
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestCase>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TestCase>,
+      callback: BodyResponseCallback<Schema$TestCase>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
+      callback: BodyResponseCallback<Schema$TestCase>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TestCase>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get|
-        BodyResponseCallback<Schema$TestCase>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TestCase>,
-        callback?: BodyResponseCallback<Schema$TestCase>):
-        void|GaxiosPromise<Schema$TestCase> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get
+        | BodyResponseCallback<Schema$TestCase>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TestCase>,
+      callback?: BodyResponseCallback<Schema$TestCase>
+    ): void | GaxiosPromise<Schema$TestCase> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
         options = {};
       }
 
@@ -4092,20 +4213,31 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['projectId', 'historyId', 'executionId', 'stepId', 'testCaseId'],
-        pathParams:
-            ['executionId', 'historyId', 'projectId', 'stepId', 'testCaseId'],
-        context: this.context
+        requiredParams: [
+          'projectId',
+          'historyId',
+          'executionId',
+          'stepId',
+          'testCaseId',
+        ],
+        pathParams: [
+          'executionId',
+          'historyId',
+          'projectId',
+          'stepId',
+          'testCaseId',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestCase>(parameters, callback);
@@ -4113,7 +4245,6 @@ export namespace toolresults_v1beta3 {
         return createAPIRequest<Schema$TestCase>(parameters);
       }
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.testCases.list
@@ -4137,36 +4268,37 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTestCasesResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTestCasesResponse>;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTestCasesResponse>,
-        callback: BodyResponseCallback<Schema$ListTestCasesResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTestCasesResponse>,
+      callback: BodyResponseCallback<Schema$ListTestCasesResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
-        callback: BodyResponseCallback<Schema$ListTestCasesResponse>): void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
+      callback: BodyResponseCallback<Schema$ListTestCasesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTestCasesResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List|
-        BodyResponseCallback<Schema$ListTestCasesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTestCasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListTestCasesResponse>):
-        void|GaxiosPromise<Schema$ListTestCasesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Testcases$List
+        | BodyResponseCallback<Schema$ListTestCasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTestCasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListTestCasesResponse>
+    ): void | GaxiosPromise<Schema$ListTestCasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
         options = {};
       }
 
@@ -4178,18 +4310,19 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTestCasesResponse>(parameters, callback);
@@ -4200,11 +4333,11 @@ export namespace toolresults_v1beta3 {
   }
 
   export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Execution id  Required.
@@ -4228,11 +4361,11 @@ export namespace toolresults_v1beta3 {
     testCaseId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A Execution id  Required.
@@ -4262,13 +4395,11 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
 
-
   export class Resource$Projects$Histories$Executions$Steps$Thumbnails {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * toolresults.projects.histories.executions.steps.thumbnails.list
@@ -4292,40 +4423,39 @@ export namespace toolresults_v1beta3 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListStepThumbnailsResponse>;
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListStepThumbnailsResponse>;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
-        callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
+      callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
-        callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
-        void;
+      params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
+      callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List|
-        BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
-        callback?: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
-        void|GaxiosPromise<Schema$ListStepThumbnailsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
+      callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
+        | BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStepThumbnailsResponse>
+    ): void | GaxiosPromise<Schema$ListStepThumbnailsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
         options = {};
       }
 
@@ -4337,22 +4467,25 @@ export namespace toolresults_v1beta3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListStepThumbnailsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListStepThumbnailsResponse>(parameters);
       }
@@ -4360,11 +4493,11 @@ export namespace toolresults_v1beta3 {
   }
 
   export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An Execution id.  Required.

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -327,7 +339,7 @@ export namespace bigtableadmin_v2 {
      * how much of a table&#39;s data has been copied to the newly-created
      * cluster so far.
      */
-    tables?: {[key: string]: Schema$TableProgress;};
+    tables?: {[key: string]: Schema$TableProgress};
   }
   /**
    * Request message for BigtableInstanceAdmin.CreateCluster.
@@ -379,7 +391,7 @@ export namespace bigtableadmin_v2 {
      * marked `OutputOnly` must be left blank. Currently, at most two clusters
      * can be specified.
      */
-    clusters?: {[key: string]: Schema$Cluster;};
+    clusters?: {[key: string]: Schema$Cluster};
     /**
      * The instance to create. Fields marked `OutputOnly` must be left blank.
      */
@@ -542,7 +554,7 @@ export namespace bigtableadmin_v2 {
      * labels can be associated with a given resource. * Keys and values must
      * both be under 128 bytes.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * (`OutputOnly`) The unique name of the instance. Values are of the form
      * `projects/&lt;project&gt;/instances/a-z+[a-z0-9]`.
@@ -723,7 +735,7 @@ export namespace bigtableadmin_v2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -739,7 +751,7 @@ export namespace bigtableadmin_v2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Request message for BigtableInstanceAdmin.PartialUpdateInstance.
@@ -892,7 +904,7 @@ export namespace bigtableadmin_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -912,12 +924,12 @@ export namespace bigtableadmin_v2 {
      * entry for the cluster with UNKNOWN `replication_status`. Views:
      * `REPLICATION_VIEW`, `FULL`
      */
-    clusterStates?: {[key: string]: Schema$ClusterState;};
+    clusterStates?: {[key: string]: Schema$ClusterState};
     /**
      * (`CreationOnly`) The column families configured for this table, mapped by
      * column family ID. Views: `SCHEMA_VIEW`, `FULL`
      */
-    columnFamilies?: {[key: string]: Schema$ColumnFamily;};
+    columnFamilies?: {[key: string]: Schema$ColumnFamily};
     /**
      * (`CreationOnly`) The granularity (i.e. `MILLIS`) at which timestamps are
      * stored in this table. Timestamps not matching the granularity will be
@@ -1019,7 +1031,6 @@ export namespace bigtableadmin_v2 {
     requestTime?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     projects: Resource$Operations$Projects;
@@ -1027,7 +1038,6 @@ export namespace bigtableadmin_v2 {
       this.context = context;
       this.projects = new Resource$Operations$Projects(this.context);
     }
-
 
     /**
      * bigtableadmin.operations.cancel
@@ -1049,24 +1059,29 @@ export namespace bigtableadmin_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1081,19 +1096,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1101,7 +1116,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.operations.delete
@@ -1118,24 +1132,29 @@ export namespace bigtableadmin_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1150,18 +1169,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1169,7 +1189,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.operations.get
@@ -1185,20 +1204,29 @@ export namespace bigtableadmin_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1214,18 +1242,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1235,24 +1264,24 @@ export namespace bigtableadmin_v2 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
@@ -1263,7 +1292,7 @@ export namespace bigtableadmin_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -1276,18 +1305,17 @@ export namespace bigtableadmin_v2 {
     operations: Resource$Operations$Projects$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations =
-          new Resource$Operations$Projects$Operations(this.context);
+      this.operations = new Resource$Operations$Projects$Operations(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Operations$Projects$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigtableadmin.operations.projects.operations.list
@@ -1313,26 +1341,32 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Operations$Projects$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Operations$Projects$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$Projects$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$Projects$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Operations$Projects$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$Projects$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$Projects$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Operations$Projects$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Projects$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1347,19 +1381,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}/operations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1369,12 +1406,12 @@ export namespace bigtableadmin_v2 {
     }
   }
 
-  export interface Params$Resource$Operations$Projects$Operations$List extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Projects$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -1394,8 +1431,6 @@ export namespace bigtableadmin_v2 {
     pageToken?: string;
   }
 
-
-
   export class Resource$Projects {
     context: APIRequestContext;
     instances: Resource$Projects$Instances;
@@ -1405,7 +1440,6 @@ export namespace bigtableadmin_v2 {
     }
   }
 
-
   export class Resource$Projects$Instances {
     context: APIRequestContext;
     appProfiles: Resource$Projects$Instances$Appprofiles;
@@ -1413,12 +1447,12 @@ export namespace bigtableadmin_v2 {
     tables: Resource$Projects$Instances$Tables;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.appProfiles =
-          new Resource$Projects$Instances$Appprofiles(this.context);
+      this.appProfiles = new Resource$Projects$Instances$Appprofiles(
+        this.context
+      );
       this.clusters = new Resource$Projects$Instances$Clusters(this.context);
       this.tables = new Resource$Projects$Instances$Tables(this.context);
     }
-
 
     /**
      * bigtableadmin.projects.instances.create
@@ -1434,25 +1468,30 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Instances$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1467,19 +1506,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1487,7 +1529,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.delete
@@ -1502,24 +1543,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1534,18 +1579,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1553,7 +1599,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.get
@@ -1567,21 +1612,29 @@ export namespace bigtableadmin_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
-    get(params: Params$Resource$Projects$Instances$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback: BodyResponseCallback<Schema$Instance>): void;
-    get(params: Params$Resource$Projects$Instances$Get,
-        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Instance>;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Instance>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Get|
-        BodyResponseCallback<Schema$Instance>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback?: BodyResponseCallback<Schema$Instance>):
-        void|GaxiosPromise<Schema$Instance> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Get
+        | BodyResponseCallback<Schema$Instance>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>
+    ): void | GaxiosPromise<Schema$Instance> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1596,18 +1649,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -1615,7 +1669,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Instance>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.getIamPolicy
@@ -1632,24 +1685,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Instances$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1664,19 +1721,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1684,7 +1744,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.list
@@ -1700,26 +1759,32 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListInstancesResponse>;
+      params?: Params$Resource$Projects$Instances$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstancesResponse>;
     list(
-        params: Params$Resource$Projects$Instances$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+      params: Params$Resource$Projects$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$List,
-        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+      params: Params$Resource$Projects$Instances$List,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$List|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
-        void|GaxiosPromise<Schema$ListInstancesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$List
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void | GaxiosPromise<Schema$ListInstancesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1734,19 +1799,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -1754,7 +1822,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.partialUpdateInstance
@@ -1773,27 +1840,32 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     partialUpdateInstance(
-        params?: Params$Resource$Projects$Instances$Partialupdateinstance,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Partialupdateinstance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     partialUpdateInstance(
-        params: Params$Resource$Projects$Instances$Partialupdateinstance,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Partialupdateinstance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     partialUpdateInstance(
-        params: Params$Resource$Projects$Instances$Partialupdateinstance,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    partialUpdateInstance(callback: BodyResponseCallback<Schema$Operation>):
-        void;
+      params: Params$Resource$Projects$Instances$Partialupdateinstance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     partialUpdateInstance(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Partialupdateinstance|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Partialupdateinstance;
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    partialUpdateInstance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Partialupdateinstance
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Partialupdateinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1808,18 +1880,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1827,7 +1900,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.setIamPolicy
@@ -1844,24 +1916,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Instances$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1876,19 +1952,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1896,7 +1975,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.testIamPermissions
@@ -1913,32 +1991,34 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Instances$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Instances$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1953,28 +2033,32 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.update
@@ -1992,24 +2076,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Instances$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
+      params?: Params$Resource$Projects$Instances$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Instance>;
     update(
-        params: Params$Resource$Projects$Instances$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback: BodyResponseCallback<Schema$Instance>): void;
+      params: Params$Resource$Projects$Instances$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
     update(
-        params: Params$Resource$Projects$Instances$Update,
-        callback: BodyResponseCallback<Schema$Instance>): void;
+      params: Params$Resource$Projects$Instances$Update,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Instance>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Update|
-        BodyResponseCallback<Schema$Instance>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback?: BodyResponseCallback<Schema$Instance>):
-        void|GaxiosPromise<Schema$Instance> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Update
+        | BodyResponseCallback<Schema$Instance>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>
+    ): void | GaxiosPromise<Schema$Instance> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2024,18 +2112,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -2045,12 +2134,12 @@ export namespace bigtableadmin_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the project in which to create the new instance.
@@ -2063,12 +2152,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$CreateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the instance to be deleted. Values are of the form
@@ -2076,12 +2165,12 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the requested instance. Values are of the form
@@ -2089,12 +2178,12 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -2107,12 +2196,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * DEPRECATED: This field is unused and ignored.
@@ -2125,11 +2214,11 @@ export namespace bigtableadmin_v2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Partialupdateinstance
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * (`OutputOnly`) The unique name of the instance. Values are of the form
@@ -2147,12 +2236,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Instances$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -2165,12 +2254,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -2183,12 +2272,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Instances$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * (`OutputOnly`) The unique name of the instance. Values are of the form
@@ -2208,7 +2297,6 @@ export namespace bigtableadmin_v2 {
       this.context = context;
     }
 
-
     /**
      * bigtableadmin.projects.instances.appProfiles.create
      * @desc Creates an app profile within an instance.
@@ -2225,26 +2313,30 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Appprofiles$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AppProfile>;
+      params?: Params$Resource$Projects$Instances$Appprofiles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppProfile>;
     create(
-        params: Params$Resource$Projects$Instances$Appprofiles$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$AppProfile>,
-        callback: BodyResponseCallback<Schema$AppProfile>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AppProfile>,
+      callback: BodyResponseCallback<Schema$AppProfile>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Appprofiles$Create,
-        callback: BodyResponseCallback<Schema$AppProfile>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$Create,
+      callback: BodyResponseCallback<Schema$AppProfile>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AppProfile>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Appprofiles$Create|
-        BodyResponseCallback<Schema$AppProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AppProfile>,
-        callback?: BodyResponseCallback<Schema$AppProfile>):
-        void|GaxiosPromise<Schema$AppProfile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Appprofiles$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Appprofiles$Create
+        | BodyResponseCallback<Schema$AppProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AppProfile>,
+      callback?: BodyResponseCallback<Schema$AppProfile>
+    ): void | GaxiosPromise<Schema$AppProfile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Appprofiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2259,19 +2351,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/appProfiles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/appProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppProfile>(parameters, callback);
@@ -2279,7 +2374,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$AppProfile>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.appProfiles.delete
@@ -2295,25 +2389,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Appprofiles$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Appprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Appprofiles$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Appprofiles$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Appprofiles$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Appprofiles$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Appprofiles$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Appprofiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2328,18 +2425,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2347,7 +2445,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.appProfiles.get
@@ -2361,22 +2458,31 @@ export namespace bigtableadmin_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Appprofiles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AppProfile>;
-    get(params: Params$Resource$Projects$Instances$Appprofiles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AppProfile>,
-        callback: BodyResponseCallback<Schema$AppProfile>): void;
-    get(params: Params$Resource$Projects$Instances$Appprofiles$Get,
-        callback: BodyResponseCallback<Schema$AppProfile>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Appprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppProfile>;
+    get(
+      params: Params$Resource$Projects$Instances$Appprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AppProfile>,
+      callback: BodyResponseCallback<Schema$AppProfile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Appprofiles$Get,
+      callback: BodyResponseCallback<Schema$AppProfile>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AppProfile>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Appprofiles$Get|
-        BodyResponseCallback<Schema$AppProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AppProfile>,
-        callback?: BodyResponseCallback<Schema$AppProfile>):
-        void|GaxiosPromise<Schema$AppProfile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Appprofiles$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Appprofiles$Get
+        | BodyResponseCallback<Schema$AppProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AppProfile>,
+      callback?: BodyResponseCallback<Schema$AppProfile>
+    ): void | GaxiosPromise<Schema$AppProfile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Appprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2391,18 +2497,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppProfile>(parameters, callback);
@@ -2410,7 +2517,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$AppProfile>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.appProfiles.list
@@ -2427,26 +2533,32 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Appprofiles$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListAppProfilesResponse>;
+      params?: Params$Resource$Projects$Instances$Appprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAppProfilesResponse>;
     list(
-        params: Params$Resource$Projects$Instances$Appprofiles$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAppProfilesResponse>,
-        callback: BodyResponseCallback<Schema$ListAppProfilesResponse>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAppProfilesResponse>,
+      callback: BodyResponseCallback<Schema$ListAppProfilesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Appprofiles$List,
-        callback: BodyResponseCallback<Schema$ListAppProfilesResponse>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$List,
+      callback: BodyResponseCallback<Schema$ListAppProfilesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAppProfilesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Appprofiles$List|
-        BodyResponseCallback<Schema$ListAppProfilesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAppProfilesResponse>,
-        callback?: BodyResponseCallback<Schema$ListAppProfilesResponse>):
-        void|GaxiosPromise<Schema$ListAppProfilesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Appprofiles$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Appprofiles$List
+        | BodyResponseCallback<Schema$ListAppProfilesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAppProfilesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAppProfilesResponse>
+    ): void | GaxiosPromise<Schema$ListAppProfilesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Appprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2461,19 +2573,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/appProfiles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/appProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAppProfilesResponse>(parameters, callback);
@@ -2481,7 +2596,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$ListAppProfilesResponse>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.appProfiles.patch
@@ -2499,25 +2613,30 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Instances$Appprofiles$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Appprofiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Projects$Instances$Appprofiles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Instances$Appprofiles$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Appprofiles$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Appprofiles$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Appprofiles$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Appprofiles$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Appprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2532,18 +2651,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2553,12 +2673,12 @@ export namespace bigtableadmin_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Appprofiles$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Appprofiles$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID to be used when referring to the new app profile within its
@@ -2581,12 +2701,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$AppProfile;
   }
-  export interface Params$Resource$Projects$Instances$Appprofiles$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Appprofiles$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If true, ignore safety checks when deleting the app profile.
@@ -2598,12 +2718,12 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Appprofiles$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Appprofiles$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the requested app profile. Values are of the form
@@ -2611,12 +2731,12 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Appprofiles$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Appprofiles$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results per page. CURRENTLY UNIMPLEMENTED AND IGNORED.
@@ -2635,12 +2755,12 @@ export namespace bigtableadmin_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Appprofiles$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Appprofiles$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If true, ignore safety checks when updating the app profile.
@@ -2663,13 +2783,11 @@ export namespace bigtableadmin_v2 {
     requestBody?: Schema$AppProfile;
   }
 
-
   export class Resource$Projects$Instances$Clusters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigtableadmin.projects.instances.clusters.create
@@ -2686,25 +2804,30 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Clusters$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Clusters$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Instances$Clusters$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Clusters$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Clusters$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Clusters$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Clusters$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Clusters$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2719,19 +2842,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/clusters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/clusters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2739,7 +2865,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.clusters.delete
@@ -2754,24 +2879,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Clusters$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Clusters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Clusters$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Clusters$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Clusters$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Clusters$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Clusters$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Clusters$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2786,18 +2915,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2805,7 +2935,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.clusters.get
@@ -2819,21 +2948,29 @@ export namespace bigtableadmin_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Clusters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Cluster>;
-    get(params: Params$Resource$Projects$Instances$Clusters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
-        callback: BodyResponseCallback<Schema$Cluster>): void;
-    get(params: Params$Resource$Projects$Instances$Clusters$Get,
-        callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Clusters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Cluster>;
+    get(
+      params: Params$Resource$Projects$Instances$Clusters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Cluster>,
+      callback: BodyResponseCallback<Schema$Cluster>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Clusters$Get,
+      callback: BodyResponseCallback<Schema$Cluster>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Cluster>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Clusters$Get|
-        BodyResponseCallback<Schema$Cluster>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
-        callback?: BodyResponseCallback<Schema$Cluster>):
-        void|GaxiosPromise<Schema$Cluster> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Clusters$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Get
+        | BodyResponseCallback<Schema$Cluster>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Cluster>,
+      callback?: BodyResponseCallback<Schema$Cluster>
+    ): void | GaxiosPromise<Schema$Cluster> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2848,18 +2985,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -2867,7 +3005,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Cluster>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.clusters.list
@@ -2883,26 +3020,32 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Clusters$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListClustersResponse>;
+      params?: Params$Resource$Projects$Instances$Clusters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListClustersResponse>;
     list(
-        params: Params$Resource$Projects$Instances$Clusters$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListClustersResponse>,
-        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+      params: Params$Resource$Projects$Instances$Clusters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListClustersResponse>,
+      callback: BodyResponseCallback<Schema$ListClustersResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Clusters$List,
-        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+      params: Params$Resource$Projects$Instances$Clusters$List,
+      callback: BodyResponseCallback<Schema$ListClustersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Clusters$List|
-        BodyResponseCallback<Schema$ListClustersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListClustersResponse>,
-        callback?: BodyResponseCallback<Schema$ListClustersResponse>):
-        void|GaxiosPromise<Schema$ListClustersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Clusters$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$List
+        | BodyResponseCallback<Schema$ListClustersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListClustersResponse>,
+      callback?: BodyResponseCallback<Schema$ListClustersResponse>
+    ): void | GaxiosPromise<Schema$ListClustersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2917,19 +3060,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/clusters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/clusters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -2937,7 +3083,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$ListClustersResponse>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.clusters.update
@@ -2953,25 +3098,30 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Instances$Clusters$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Clusters$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Projects$Instances$Clusters$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Clusters$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Projects$Instances$Clusters$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Clusters$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Clusters$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Clusters$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2986,18 +3136,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3007,12 +3158,12 @@ export namespace bigtableadmin_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Clusters$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Clusters$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID to be used when referring to the new cluster within its instance,
@@ -3031,12 +3182,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Instances$Clusters$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Clusters$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the cluster to be deleted. Values are of the form
@@ -3044,12 +3195,12 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Clusters$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Clusters$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the requested cluster. Values are of the form
@@ -3057,12 +3208,12 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Clusters$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Clusters$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * DEPRECATED: This field is unused and ignored.
@@ -3077,12 +3228,12 @@ export namespace bigtableadmin_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Clusters$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Clusters$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * (`OutputOnly`) The unique name of the cluster. Values are of the form
@@ -3096,13 +3247,11 @@ export namespace bigtableadmin_v2 {
     requestBody?: Schema$Cluster;
   }
 
-
   export class Resource$Projects$Instances$Tables {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.checkConsistency
@@ -3120,35 +3269,39 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     checkConsistency(
-        params?: Params$Resource$Projects$Instances$Tables$Checkconsistency,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CheckConsistencyResponse>;
+      params?: Params$Resource$Projects$Instances$Tables$Checkconsistency,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckConsistencyResponse>;
     checkConsistency(
-        params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CheckConsistencyResponse>,
-        callback: BodyResponseCallback<Schema$CheckConsistencyResponse>): void;
+      params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckConsistencyResponse>,
+      callback: BodyResponseCallback<Schema$CheckConsistencyResponse>
+    ): void;
     checkConsistency(
-        params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
-        callback: BodyResponseCallback<Schema$CheckConsistencyResponse>): void;
+      params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
+      callback: BodyResponseCallback<Schema$CheckConsistencyResponse>
+    ): void;
     checkConsistency(
-        callback: BodyResponseCallback<Schema$CheckConsistencyResponse>): void;
+      callback: BodyResponseCallback<Schema$CheckConsistencyResponse>
+    ): void;
     checkConsistency(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Tables$Checkconsistency|
-        BodyResponseCallback<Schema$CheckConsistencyResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CheckConsistencyResponse>,
-        callback?: BodyResponseCallback<Schema$CheckConsistencyResponse>):
-        void|GaxiosPromise<Schema$CheckConsistencyResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Checkconsistency;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Checkconsistency
+        | BodyResponseCallback<Schema$CheckConsistencyResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckConsistencyResponse>,
+      callback?: BodyResponseCallback<Schema$CheckConsistencyResponse>
+    ): void | GaxiosPromise<Schema$CheckConsistencyResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Checkconsistency;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Tables$Checkconsistency;
+        params = {} as Params$Resource$Projects$Instances$Tables$Checkconsistency;
         options = {};
       }
 
@@ -3158,19 +3311,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:checkConsistency')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:checkConsistency').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CheckConsistencyResponse>(parameters, callback);
@@ -3178,7 +3334,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$CheckConsistencyResponse>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.create
@@ -3196,24 +3351,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Tables$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Table>;
+      params?: Params$Resource$Projects$Instances$Tables$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     create(
-        params: Params$Resource$Projects$Instances$Tables$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Projects$Instances$Tables$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Tables$Create,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Projects$Instances$Tables$Create,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Table>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Tables$Create|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Create
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3228,19 +3387,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/tables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/tables').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -3248,7 +3410,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.delete
@@ -3263,24 +3424,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Tables$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Tables$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Tables$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Tables$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Tables$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Tables$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Tables$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3295,18 +3460,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3314,7 +3480,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.dropRowRange
@@ -3332,25 +3497,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     dropRowRange(
-        params?: Params$Resource$Projects$Instances$Tables$Droprowrange,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Tables$Droprowrange,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     dropRowRange(
-        params: Params$Resource$Projects$Instances$Tables$Droprowrange,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Tables$Droprowrange,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     dropRowRange(
-        params: Params$Resource$Projects$Instances$Tables$Droprowrange,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Tables$Droprowrange,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     dropRowRange(callback: BodyResponseCallback<Schema$Empty>): void;
     dropRowRange(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Tables$Droprowrange|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Droprowrange;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Droprowrange
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Droprowrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3365,19 +3533,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:dropRowRange')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:dropRowRange').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3385,7 +3556,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.generateConsistencyToken
@@ -3404,45 +3574,39 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     generateConsistencyToken(
-        params?:
-            Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GenerateConsistencyTokenResponse>;
+      params?: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateConsistencyTokenResponse>;
     generateConsistencyToken(
-        params:
-            Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
-        callback:
-            BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
+    ): void;
     generateConsistencyToken(
-        params:
-            Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
-        callback:
-            BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
+      callback: BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
+    ): void;
     generateConsistencyToken(
-        callback:
-            BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
+    ): void;
     generateConsistencyToken(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Tables$Generateconsistencytoken|
-        BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
-        callback?:
-            BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>):
-        void|GaxiosPromise<Schema$GenerateConsistencyTokenResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Generateconsistencytoken
+        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
+      callback?: BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
+    ): void | GaxiosPromise<Schema$GenerateConsistencyTokenResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
+        params = {} as Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
         options = {};
       }
 
@@ -3452,29 +3616,34 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:generateConsistencyToken')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:generateConsistencyToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GenerateConsistencyTokenResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GenerateConsistencyTokenResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.get
@@ -3489,21 +3658,29 @@ export namespace bigtableadmin_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Tables$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Table>;
-    get(params: Params$Resource$Projects$Instances$Tables$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
-    get(params: Params$Resource$Projects$Instances$Tables$Get,
-        callback: BodyResponseCallback<Schema$Table>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Tables$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
+    get(
+      params: Params$Resource$Projects$Instances$Tables$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Tables$Get,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Table>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Tables$Get|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Get
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3518,18 +3695,19 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -3537,7 +3715,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.getIamPolicy
@@ -3554,25 +3731,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Instances$Tables$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Tables$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3587,19 +3767,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3607,7 +3790,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.list
@@ -3625,25 +3807,30 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Tables$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListTablesResponse>;
+      params?: Params$Resource$Projects$Instances$Tables$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTablesResponse>;
     list(
-        params: Params$Resource$Projects$Instances$Tables$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListTablesResponse>,
-        callback: BodyResponseCallback<Schema$ListTablesResponse>): void;
+      params: Params$Resource$Projects$Instances$Tables$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListTablesResponse>,
+      callback: BodyResponseCallback<Schema$ListTablesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Tables$List,
-        callback: BodyResponseCallback<Schema$ListTablesResponse>): void;
+      params: Params$Resource$Projects$Instances$Tables$List,
+      callback: BodyResponseCallback<Schema$ListTablesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTablesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Tables$List|
-        BodyResponseCallback<Schema$ListTablesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTablesResponse>,
-        callback?: BodyResponseCallback<Schema$ListTablesResponse>):
-        void|GaxiosPromise<Schema$ListTablesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$List
+        | BodyResponseCallback<Schema$ListTablesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTablesResponse>,
+      callback?: BodyResponseCallback<Schema$ListTablesResponse>
+    ): void | GaxiosPromise<Schema$ListTablesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3658,19 +3845,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/tables')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/tables').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTablesResponse>(parameters, callback);
@@ -3678,7 +3868,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$ListTablesResponse>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.modifyColumnFamilies
@@ -3697,31 +3886,33 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     modifyColumnFamilies(
-        params?: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
-        options?: MethodOptions): GaxiosPromise<Schema$Table>;
+      params?: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Table>;
     modifyColumnFamilies(
-        params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
-        options: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
+      options: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     modifyColumnFamilies(
-        params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
-        callback: BodyResponseCallback<Schema$Table>): void;
+      params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
+      callback: BodyResponseCallback<Schema$Table>
+    ): void;
     modifyColumnFamilies(callback: BodyResponseCallback<Schema$Table>): void;
     modifyColumnFamilies(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies|
-        BodyResponseCallback<Schema$Table>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
-        callback?: BodyResponseCallback<Schema$Table>):
-        void|GaxiosPromise<Schema$Table> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies
+        | BodyResponseCallback<Schema$Table>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>
+    ): void | GaxiosPromise<Schema$Table> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
+        params = {} as Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
         options = {};
       }
 
@@ -3731,19 +3922,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:modifyColumnFamilies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:modifyColumnFamilies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -3751,7 +3945,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.setIamPolicy
@@ -3768,25 +3961,28 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Instances$Tables$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Tables$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3801,19 +3997,22 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3821,7 +4020,6 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * bigtableadmin.projects.instances.tables.testIamPermissions
@@ -3838,38 +4036,39 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Instances$Tables$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Tables$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Tables$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Tables$Testiampermissions;
+        params = {} as Params$Resource$Projects$Instances$Tables$Testiampermissions;
         options = {};
       }
 
@@ -3879,23 +4078,28 @@ export namespace bigtableadmin_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
@@ -3903,11 +4107,11 @@ export namespace bigtableadmin_v2 {
   }
 
   export interface Params$Resource$Projects$Instances$Tables$Checkconsistency
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the Table for which to check replication consistency.
@@ -3921,12 +4125,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$CheckConsistencyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Tables$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Tables$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the instance in which to create the table. Values are
@@ -3939,12 +4143,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$CreateTableRequest;
   }
-  export interface Params$Resource$Projects$Instances$Tables$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Tables$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the table to be deleted. Values are of the form
@@ -3953,11 +4157,11 @@ export namespace bigtableadmin_v2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Tables$Droprowrange
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the table on which to drop a range of rows. Values are
@@ -3971,11 +4175,11 @@ export namespace bigtableadmin_v2 {
     requestBody?: Schema$DropRowRangeRequest;
   }
   export interface Params$Resource$Projects$Instances$Tables$Generateconsistencytoken
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the Table for which to create a consistency token.
@@ -3989,12 +4193,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$GenerateConsistencyTokenRequest;
   }
-  export interface Params$Resource$Projects$Instances$Tables$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Tables$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the requested table. Values are of the form
@@ -4008,11 +4212,11 @@ export namespace bigtableadmin_v2 {
     view?: string;
   }
   export interface Params$Resource$Projects$Instances$Tables$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -4025,12 +4229,12 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Tables$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Tables$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results per page.  A page_size of zero lets the server
@@ -4057,11 +4261,11 @@ export namespace bigtableadmin_v2 {
     view?: string;
   }
   export interface Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique name of the table whose families should be modified. Values
@@ -4075,11 +4279,11 @@ export namespace bigtableadmin_v2 {
     requestBody?: Schema$ModifyColumnFamiliesRequest;
   }
   export interface Params$Resource$Projects$Instances$Tables$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -4093,11 +4297,11 @@ export namespace bigtableadmin_v2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Instances$Tables$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.

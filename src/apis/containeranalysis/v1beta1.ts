@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -256,7 +268,7 @@ export namespace containeranalysis_v1beta1 {
     /**
      * The notes to create. Max allowed length is 1000.
      */
-    notes?: {[key: string]: Schema$Note;};
+    notes?: {[key: string]: Schema$Note};
   }
   /**
    * Response for creating notes in batch.
@@ -345,7 +357,7 @@ export namespace containeranalysis_v1beta1 {
      * Special options applied to this build. This is a catch-all field where
      * build providers can enter any desired additional details.
      */
-    buildOptions?: {[key: string]: string;};
+    buildOptions?: {[key: string]: string};
     /**
      * Output of the build.
      */
@@ -1538,7 +1550,7 @@ export namespace containeranalysis_v1beta1 {
      * such as a gzipped tarfile (.tar.gz), the FileHash will be for the single
      * path to that file.
      */
-    fileHashes?: {[key: string]: Schema$FileHashes;};
+    fileHashes?: {[key: string]: Schema$FileHashes};
   }
   /**
    * A SourceContext is a reference to a tree of files. A SourceContext together
@@ -1560,7 +1572,7 @@ export namespace containeranalysis_v1beta1 {
     /**
      * Labels with user defined metadata.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1607,7 +1619,7 @@ export namespace containeranalysis_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1740,7 +1752,6 @@ export namespace containeranalysis_v1beta1 {
     name?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     notes: Resource$Projects$Notes;
@@ -1754,7 +1765,6 @@ export namespace containeranalysis_v1beta1 {
     }
   }
 
-
   export class Resource$Projects$Notes {
     context: APIRequestContext;
     occurrences: Resource$Projects$Notes$Occurrences;
@@ -1762,7 +1772,6 @@ export namespace containeranalysis_v1beta1 {
       this.context = context;
       this.occurrences = new Resource$Projects$Notes$Occurrences(this.context);
     }
-
 
     /**
      * containeranalysis.projects.notes.batchCreate
@@ -1778,28 +1787,34 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     batchCreate(
-        params?: Params$Resource$Projects$Notes$Batchcreate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchCreateNotesResponse>;
+      params?: Params$Resource$Projects$Notes$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchCreateNotesResponse>;
     batchCreate(
-        params: Params$Resource$Projects$Notes$Batchcreate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchCreateNotesResponse>,
-        callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>): void;
+      params: Params$Resource$Projects$Notes$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>
+    ): void;
     batchCreate(
-        params: Params$Resource$Projects$Notes$Batchcreate,
-        callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>): void;
+      params: Params$Resource$Projects$Notes$Batchcreate,
+      callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>
+    ): void;
     batchCreate(
-        callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>): void;
+      callback: BodyResponseCallback<Schema$BatchCreateNotesResponse>
+    ): void;
     batchCreate(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Batchcreate|
-        BodyResponseCallback<Schema$BatchCreateNotesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchCreateNotesResponse>,
-        callback?: BodyResponseCallback<Schema$BatchCreateNotesResponse>):
-        void|GaxiosPromise<Schema$BatchCreateNotesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notes$Batchcreate;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Batchcreate
+        | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateNotesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreateNotesResponse>
+    ): void | GaxiosPromise<Schema$BatchCreateNotesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1814,19 +1829,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/notes:batchCreate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/notes:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreateNotesResponse>(parameters, callback);
@@ -1834,7 +1852,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$BatchCreateNotesResponse>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.create
@@ -1851,24 +1868,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Notes$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Note>;
+      params?: Params$Resource$Projects$Notes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Note>;
     create(
-        params: Params$Resource$Projects$Notes$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback: BodyResponseCallback<Schema$Note>): void;
+      params: Params$Resource$Projects$Notes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
     create(
-        params: Params$Resource$Projects$Notes$Create,
-        callback: BodyResponseCallback<Schema$Note>): void;
+      params: Params$Resource$Projects$Notes$Create,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Note>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Create|
-        BodyResponseCallback<Schema$Note>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback?: BodyResponseCallback<Schema$Note>):
-        void|GaxiosPromise<Schema$Note> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Create
+        | BodyResponseCallback<Schema$Note>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback?: BodyResponseCallback<Schema$Note>
+    ): void | GaxiosPromise<Schema$Note> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1883,19 +1904,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/notes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/notes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -1903,7 +1927,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Note>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.delete
@@ -1918,24 +1941,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Notes$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Notes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Notes$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Notes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Notes$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Notes$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1950,18 +1977,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1969,7 +1997,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.get
@@ -1983,21 +2010,29 @@ export namespace containeranalysis_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Notes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Note>;
-    get(params: Params$Resource$Projects$Notes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback: BodyResponseCallback<Schema$Note>): void;
-    get(params: Params$Resource$Projects$Notes$Get,
-        callback: BodyResponseCallback<Schema$Note>): void;
+    get(
+      params?: Params$Resource$Projects$Notes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Note>;
+    get(
+      params: Params$Resource$Projects$Notes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Notes$Get,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Note>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Notes$Get|
-        BodyResponseCallback<Schema$Note>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback?: BodyResponseCallback<Schema$Note>):
-        void|GaxiosPromise<Schema$Note> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Get
+        | BodyResponseCallback<Schema$Note>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback?: BodyResponseCallback<Schema$Note>
+    ): void | GaxiosPromise<Schema$Note> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2012,18 +2047,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -2031,7 +2067,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Note>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.getIamPolicy
@@ -2052,24 +2087,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Notes$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Notes$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Notes$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Notes$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Notes$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Notes$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notes$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2084,19 +2123,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2104,7 +2146,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.list
@@ -2121,25 +2162,31 @@ export namespace containeranalysis_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$Notes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListNotesResponse>;
     list(
-        params: Params$Resource$Projects$Notes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListNotesResponse>,
-        callback: BodyResponseCallback<Schema$ListNotesResponse>): void;
+      params?: Params$Resource$Projects$Notes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNotesResponse>;
     list(
-        params: Params$Resource$Projects$Notes$List,
-        callback: BodyResponseCallback<Schema$ListNotesResponse>): void;
+      params: Params$Resource$Projects$Notes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListNotesResponse>,
+      callback: BodyResponseCallback<Schema$ListNotesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Notes$List,
+      callback: BodyResponseCallback<Schema$ListNotesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListNotesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Notes$List|
-        BodyResponseCallback<Schema$ListNotesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListNotesResponse>,
-        callback?: BodyResponseCallback<Schema$ListNotesResponse>):
-        void|GaxiosPromise<Schema$ListNotesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Notes$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$List
+        | BodyResponseCallback<Schema$ListNotesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNotesResponse>,
+      callback?: BodyResponseCallback<Schema$ListNotesResponse>
+    ): void | GaxiosPromise<Schema$ListNotesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2154,19 +2201,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/notes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/notes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListNotesResponse>(parameters, callback);
@@ -2174,7 +2224,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$ListNotesResponse>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.patch
@@ -2191,24 +2240,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Notes$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Note>;
+      params?: Params$Resource$Projects$Notes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Note>;
     patch(
-        params: Params$Resource$Projects$Notes$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback: BodyResponseCallback<Schema$Note>): void;
+      params: Params$Resource$Projects$Notes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Notes$Patch,
-        callback: BodyResponseCallback<Schema$Note>): void;
+      params: Params$Resource$Projects$Notes$Patch,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Note>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Patch|
-        BodyResponseCallback<Schema$Note>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback?: BodyResponseCallback<Schema$Note>):
-        void|GaxiosPromise<Schema$Note> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Patch
+        | BodyResponseCallback<Schema$Note>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback?: BodyResponseCallback<Schema$Note>
+    ): void | GaxiosPromise<Schema$Note> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2223,18 +2276,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -2242,7 +2296,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Note>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.setIamPolicy
@@ -2263,24 +2316,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Notes$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Notes$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Notes$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Notes$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Notes$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Notes$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notes$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2295,19 +2352,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2315,7 +2375,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.notes.testIamPermissions
@@ -2335,31 +2394,34 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Notes$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Notes$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Notes$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Notes$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Notes$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Notes$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notes$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2374,35 +2436,40 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Notes$Batchcreate extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Batchcreate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the project in the form of `projects/[PROJECT_ID]`, under
@@ -2415,12 +2482,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$BatchCreateNotesRequest;
   }
-  export interface Params$Resource$Projects$Notes$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID to use for this note.
@@ -2437,12 +2504,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Notes$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the note in the form of
@@ -2450,12 +2517,12 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the note in the form of
@@ -2463,12 +2530,12 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notes$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -2481,12 +2548,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Notes$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter expression.
@@ -2507,12 +2574,12 @@ export namespace containeranalysis_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Notes$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the note in the form of
@@ -2529,12 +2596,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Notes$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -2547,12 +2614,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Notes$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -2572,7 +2639,6 @@ export namespace containeranalysis_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * containeranalysis.projects.notes.occurrences.list
      * @desc Lists occurrences referencing the specified note. Provider projects
@@ -2591,30 +2657,34 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Notes$Occurrences$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListNoteOccurrencesResponse>;
+      params?: Params$Resource$Projects$Notes$Occurrences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNoteOccurrencesResponse>;
     list(
-        params: Params$Resource$Projects$Notes$Occurrences$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
-        callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>):
-        void;
+      params: Params$Resource$Projects$Notes$Occurrences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
+      callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Notes$Occurrences$List,
-        callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>):
-        void;
+      params: Params$Resource$Projects$Notes$Occurrences$List,
+      callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Notes$Occurrences$List|
-        BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
-        callback?: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>):
-        void|GaxiosPromise<Schema$ListNoteOccurrencesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Notes$Occurrences$List;
+      callback: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notes$Occurrences$List
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
+      callback?: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>
+    ): void | GaxiosPromise<Schema$ListNoteOccurrencesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notes$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2629,35 +2699,40 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}/occurrences')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}/occurrences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListNoteOccurrencesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListNoteOccurrencesResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Notes$Occurrences$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Notes$Occurrences$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter expression.
@@ -2678,14 +2753,11 @@ export namespace containeranalysis_v1beta1 {
     pageToken?: string;
   }
 
-
-
   export class Resource$Projects$Occurrences {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * containeranalysis.projects.occurrences.batchCreate
@@ -2701,31 +2773,34 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     batchCreate(
-        params?: Params$Resource$Projects$Occurrences$Batchcreate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchCreateOccurrencesResponse>;
+      params?: Params$Resource$Projects$Occurrences$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchCreateOccurrencesResponse>;
     batchCreate(
-        params: Params$Resource$Projects$Occurrences$Batchcreate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
-        callback: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>):
-        void;
+      params: Params$Resource$Projects$Occurrences$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
+    ): void;
     batchCreate(
-        params: Params$Resource$Projects$Occurrences$Batchcreate,
-        callback: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>):
-        void;
+      params: Params$Resource$Projects$Occurrences$Batchcreate,
+      callback: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
+    ): void;
     batchCreate(
-        callback: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
+    ): void;
     batchCreate(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$Batchcreate|
-        BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
-        callback?: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>):
-        void|GaxiosPromise<Schema$BatchCreateOccurrencesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Batchcreate;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Batchcreate
+        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreateOccurrencesResponse>
+    ): void | GaxiosPromise<Schema$BatchCreateOccurrencesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2740,29 +2815,33 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/occurrences:batchCreate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/occurrences:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreateOccurrencesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchCreateOccurrencesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.create
@@ -2778,25 +2857,30 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Occurrences$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Occurrence>;
+      params?: Params$Resource$Projects$Occurrences$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Occurrence>;
     create(
-        params: Params$Resource$Projects$Occurrences$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Occurrence>,
-        callback: BodyResponseCallback<Schema$Occurrence>): void;
+      params: Params$Resource$Projects$Occurrences$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Occurrence>,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
     create(
-        params: Params$Resource$Projects$Occurrences$Create,
-        callback: BodyResponseCallback<Schema$Occurrence>): void;
+      params: Params$Resource$Projects$Occurrences$Create,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Occurrence>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$Create|
-        BodyResponseCallback<Schema$Occurrence>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Occurrence>,
-        callback?: BodyResponseCallback<Schema$Occurrence>):
-        void|GaxiosPromise<Schema$Occurrence> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Create
+        | BodyResponseCallback<Schema$Occurrence>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Occurrence>,
+      callback?: BodyResponseCallback<Schema$Occurrence>
+    ): void | GaxiosPromise<Schema$Occurrence> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2811,19 +2895,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/occurrences')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/occurrences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Occurrence>(parameters, callback);
@@ -2831,7 +2918,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Occurrence>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.delete
@@ -2848,24 +2934,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Occurrences$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Occurrences$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Occurrences$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Occurrences$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Occurrences$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Occurrences$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2880,18 +2970,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2899,7 +2990,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.get
@@ -2913,22 +3003,31 @@ export namespace containeranalysis_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Occurrences$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Occurrence>;
-    get(params: Params$Resource$Projects$Occurrences$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Occurrence>,
-        callback: BodyResponseCallback<Schema$Occurrence>): void;
-    get(params: Params$Resource$Projects$Occurrences$Get,
-        callback: BodyResponseCallback<Schema$Occurrence>): void;
+    get(
+      params?: Params$Resource$Projects$Occurrences$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Occurrence>;
+    get(
+      params: Params$Resource$Projects$Occurrences$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Occurrence>,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Occurrences$Get,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Occurrence>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Occurrences$Get|
-        BodyResponseCallback<Schema$Occurrence>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Occurrence>,
-        callback?: BodyResponseCallback<Schema$Occurrence>):
-        void|GaxiosPromise<Schema$Occurrence> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Occurrences$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Get
+        | BodyResponseCallback<Schema$Occurrence>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Occurrence>,
+      callback?: BodyResponseCallback<Schema$Occurrence>
+    ): void | GaxiosPromise<Schema$Occurrence> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2943,18 +3042,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Occurrence>(parameters, callback);
@@ -2962,7 +3062,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Occurrence>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.getIamPolicy
@@ -2983,24 +3082,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Occurrences$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Occurrences$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Occurrences$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Occurrences$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Occurrences$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Occurrences$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3015,19 +3118,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3035,7 +3141,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.getNotes
@@ -3052,24 +3157,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     getNotes(
-        params?: Params$Resource$Projects$Occurrences$Getnotes,
-        options?: MethodOptions): GaxiosPromise<Schema$Note>;
+      params?: Params$Resource$Projects$Occurrences$Getnotes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Note>;
     getNotes(
-        params: Params$Resource$Projects$Occurrences$Getnotes,
-        options: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback: BodyResponseCallback<Schema$Note>): void;
+      params: Params$Resource$Projects$Occurrences$Getnotes,
+      options: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
     getNotes(
-        params: Params$Resource$Projects$Occurrences$Getnotes,
-        callback: BodyResponseCallback<Schema$Note>): void;
+      params: Params$Resource$Projects$Occurrences$Getnotes,
+      callback: BodyResponseCallback<Schema$Note>
+    ): void;
     getNotes(callback: BodyResponseCallback<Schema$Note>): void;
     getNotes(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$Getnotes|
-        BodyResponseCallback<Schema$Note>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
-        callback?: BodyResponseCallback<Schema$Note>):
-        void|GaxiosPromise<Schema$Note> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Getnotes;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Getnotes
+        | BodyResponseCallback<Schema$Note>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Note>,
+      callback?: BodyResponseCallback<Schema$Note>
+    ): void | GaxiosPromise<Schema$Note> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Getnotes;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3084,19 +3193,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}/notes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}/notes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -3104,7 +3216,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Note>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.getVulnerabilitySummary
@@ -3120,39 +3231,39 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     getVulnerabilitySummary(
-        params?: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$VulnerabilityOccurrencesSummary>;
+      params?: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VulnerabilityOccurrencesSummary>;
     getVulnerabilitySummary(
-        params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
-        callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>):
-        void;
+      params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
+      callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+    ): void;
     getVulnerabilitySummary(
-        params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
-        callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>):
-        void;
+      params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
+      callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+    ): void;
     getVulnerabilitySummary(
-        callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>):
-        void;
+      callback: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+    ): void;
     getVulnerabilitySummary(
-        paramsOrCallback?:
-            Params$Resource$Projects$Occurrences$Getvulnerabilitysummary|
-        BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
-        callback?:
-            BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>):
-        void|GaxiosPromise<Schema$VulnerabilityOccurrencesSummary> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Getvulnerabilitysummary
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>,
+      callback?: BodyResponseCallback<Schema$VulnerabilityOccurrencesSummary>
+    ): void | GaxiosPromise<Schema$VulnerabilityOccurrencesSummary> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
+        params = {} as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
         options = {};
       }
 
@@ -3162,30 +3273,33 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta1/{+parent}/occurrences:vulnerabilitySummary')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/occurrences:vulnerabilitySummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VulnerabilityOccurrencesSummary>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$VulnerabilityOccurrencesSummary>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.list
@@ -3203,26 +3317,32 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Occurrences$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOccurrencesResponse>;
+      params?: Params$Resource$Projects$Occurrences$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOccurrencesResponse>;
     list(
-        params: Params$Resource$Projects$Occurrences$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOccurrencesResponse>,
-        callback: BodyResponseCallback<Schema$ListOccurrencesResponse>): void;
+      params: Params$Resource$Projects$Occurrences$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
+      callback: BodyResponseCallback<Schema$ListOccurrencesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Occurrences$List,
-        callback: BodyResponseCallback<Schema$ListOccurrencesResponse>): void;
+      params: Params$Resource$Projects$Occurrences$List,
+      callback: BodyResponseCallback<Schema$ListOccurrencesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOccurrencesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$List|
-        BodyResponseCallback<Schema$ListOccurrencesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOccurrencesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOccurrencesResponse>):
-        void|GaxiosPromise<Schema$ListOccurrencesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Occurrences$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$List
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOccurrencesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOccurrencesResponse>
+    ): void | GaxiosPromise<Schema$ListOccurrencesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3237,19 +3357,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/occurrences')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/occurrences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOccurrencesResponse>(parameters, callback);
@@ -3257,7 +3380,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$ListOccurrencesResponse>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.patch
@@ -3274,25 +3396,30 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Occurrences$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Occurrence>;
+      params?: Params$Resource$Projects$Occurrences$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Occurrence>;
     patch(
-        params: Params$Resource$Projects$Occurrences$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Occurrence>,
-        callback: BodyResponseCallback<Schema$Occurrence>): void;
+      params: Params$Resource$Projects$Occurrences$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Occurrence>,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Occurrences$Patch,
-        callback: BodyResponseCallback<Schema$Occurrence>): void;
+      params: Params$Resource$Projects$Occurrences$Patch,
+      callback: BodyResponseCallback<Schema$Occurrence>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Occurrence>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$Patch|
-        BodyResponseCallback<Schema$Occurrence>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Occurrence>,
-        callback?: BodyResponseCallback<Schema$Occurrence>):
-        void|GaxiosPromise<Schema$Occurrence> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Patch
+        | BodyResponseCallback<Schema$Occurrence>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Occurrence>,
+      callback?: BodyResponseCallback<Schema$Occurrence>
+    ): void | GaxiosPromise<Schema$Occurrence> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3307,18 +3434,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Occurrence>(parameters, callback);
@@ -3326,7 +3454,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Occurrence>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.setIamPolicy
@@ -3347,24 +3474,28 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Occurrences$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Occurrences$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Occurrences$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Occurrences$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Occurrences$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Occurrences$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Occurrences$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3379,19 +3510,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3399,7 +3533,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.occurrences.testIamPermissions
@@ -3419,32 +3552,34 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Occurrences$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Occurrences$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Occurrences$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Occurrences$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Occurrences$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Occurrences$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Occurrences$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Occurrences$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Occurrences$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Occurrences$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3459,35 +3594,40 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Occurrences$Batchcreate extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Batchcreate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the project in the form of `projects/[PROJECT_ID]`, under
@@ -3500,12 +3640,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$BatchCreateOccurrencesRequest;
   }
-  export interface Params$Resource$Projects$Occurrences$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the project in the form of `projects/[PROJECT_ID]`, under
@@ -3518,12 +3658,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Occurrences$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the occurrence in the form of
@@ -3531,12 +3671,12 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the occurrence in the form of
@@ -3544,12 +3684,12 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -3562,12 +3702,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Occurrences$Getnotes extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getnotes
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the occurrence in the form of
@@ -3576,11 +3716,11 @@ export namespace containeranalysis_v1beta1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Occurrences$Getvulnerabilitysummary
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter expression.
@@ -3592,12 +3732,12 @@ export namespace containeranalysis_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter expression.
@@ -3618,12 +3758,12 @@ export namespace containeranalysis_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the occurrence in the form of
@@ -3640,12 +3780,12 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Occurrences$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -3659,11 +3799,11 @@ export namespace containeranalysis_v1beta1 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Occurrences$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -3677,13 +3817,11 @@ export namespace containeranalysis_v1beta1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-
   export class Resource$Projects$Scanconfigs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * containeranalysis.projects.scanConfigs.get
@@ -3697,22 +3835,31 @@ export namespace containeranalysis_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Scanconfigs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
-    get(params: Params$Resource$Projects$Scanconfigs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
-    get(params: Params$Resource$Projects$Scanconfigs$Get,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+    get(
+      params?: Params$Resource$Projects$Scanconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanConfig>;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanConfig>,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Scanconfigs$Get,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ScanConfig>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Get|
-        BodyResponseCallback<Schema$ScanConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScanConfig>,
-        callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|GaxiosPromise<Schema$ScanConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Get
+        | BodyResponseCallback<Schema$ScanConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScanConfig>,
+      callback?: BodyResponseCallback<Schema$ScanConfig>
+    ): void | GaxiosPromise<Schema$ScanConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3727,18 +3874,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -3746,7 +3894,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$ScanConfig>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.scanConfigs.list
@@ -3764,26 +3911,32 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Scanconfigs$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListScanConfigsResponse>;
+      params?: Params$Resource$Projects$Scanconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListScanConfigsResponse>;
     list(
-        params: Params$Resource$Projects$Scanconfigs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListScanConfigsResponse>,
-        callback: BodyResponseCallback<Schema$ListScanConfigsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListScanConfigsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Scanconfigs$List,
-        callback: BodyResponseCallback<Schema$ListScanConfigsResponse>): void;
+      params: Params$Resource$Projects$Scanconfigs$List,
+      callback: BodyResponseCallback<Schema$ListScanConfigsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListScanConfigsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$List|
-        BodyResponseCallback<Schema$ListScanConfigsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListScanConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListScanConfigsResponse>):
-        void|GaxiosPromise<Schema$ListScanConfigsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$List
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScanConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListScanConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListScanConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3798,19 +3951,22 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/scanConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/scanConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(parameters, callback);
@@ -3818,7 +3974,6 @@ export namespace containeranalysis_v1beta1 {
         return createAPIRequest<Schema$ListScanConfigsResponse>(parameters);
       }
     }
-
 
     /**
      * containeranalysis.projects.scanConfigs.update
@@ -3834,25 +3989,30 @@ export namespace containeranalysis_v1beta1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Scanconfigs$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
+      params?: Params$Resource$Projects$Scanconfigs$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ScanConfig>;
     update(
-        params: Params$Resource$Projects$Scanconfigs$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+      params: Params$Resource$Projects$Scanconfigs$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ScanConfig>,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     update(
-        params: Params$Resource$Projects$Scanconfigs$Update,
-        callback: BodyResponseCallback<Schema$ScanConfig>): void;
+      params: Params$Resource$Projects$Scanconfigs$Update,
+      callback: BodyResponseCallback<Schema$ScanConfig>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ScanConfig>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Scanconfigs$Update|
-        BodyResponseCallback<Schema$ScanConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ScanConfig>,
-        callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|GaxiosPromise<Schema$ScanConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Scanconfigs$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Scanconfigs$Update
+        | BodyResponseCallback<Schema$ScanConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ScanConfig>,
+      callback?: BodyResponseCallback<Schema$ScanConfig>
+    ): void | GaxiosPromise<Schema$ScanConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Scanconfigs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3867,18 +4027,19 @@ export namespace containeranalysis_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://containeranalysis.googleapis.com/';
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -3888,12 +4049,12 @@ export namespace containeranalysis_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the scan configuration in the form of
@@ -3901,12 +4062,12 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter expression.
@@ -3926,12 +4087,12 @@ export namespace containeranalysis_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Scanconfigs$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the scan configuration in the form of

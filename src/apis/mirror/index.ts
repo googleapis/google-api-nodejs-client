@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {mirror_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': mirror_v1.Mirror,
+  v1: mirror_v1.Mirror,
 };
 
 export function mirror(version: 'v1'): mirror_v1.Mirror;
 export function mirror(options: mirror_v1.Options): mirror_v1.Mirror;
 export function mirror<T = mirror_v1.Mirror>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|mirror_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | mirror_v1.Options
+) {
   return getAPI<T>('mirror', versionOrOptions, VERSIONS, this);
 }
 
