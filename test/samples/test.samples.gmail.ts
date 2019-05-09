@@ -37,8 +37,9 @@ describe('gmail samples', () => {
   });
 
   it('should list emails', async () => {
-    const scope =
-        nock(Utils.baseUrl).get(`/gmail/v1/users/me/messages`).reply(200, {});
+    const scope = nock(Utils.baseUrl)
+      .get(`/gmail/v1/users/me/messages`)
+      .reply(200, {});
     const data = await samples.list.runSample();
     assert(data);
     scope.done();
@@ -48,18 +49,19 @@ describe('gmail samples', () => {
     const messageId = '12345';
     const labelId = 'abcde';
     const scope = nock(Utils.baseUrl)
-                      .post(`/gmail/v1/users/me/messages/${messageId}/modify`)
-                      .reply(200, {});
+      .post(`/gmail/v1/users/me/messages/${messageId}/modify`)
+      .reply(200, {});
     const data = await samples.labels.runSample('add', messageId, labelId);
     assert(data);
     scope.done();
   });
 
   it('should add a user watch', async () => {
-    const scope =
-        nock(Utils.baseUrl).post(`/gmail/v1/users/me/watch`).reply(200, {
-          data: true
-        });
+    const scope = nock(Utils.baseUrl)
+      .post(`/gmail/v1/users/me/watch`)
+      .reply(200, {
+        data: true,
+      });
     const data = await samples.watch.runSample();
     assert(data);
     scope.done();
@@ -67,8 +69,8 @@ describe('gmail samples', () => {
 
   it('should send an email', async () => {
     const scope = nock(Utils.baseUrl)
-                      .post('/gmail/v1/users/me/messages/send')
-                      .reply(200, {});
+      .post('/gmail/v1/users/me/messages/send')
+      .reply(200, {});
     const data = await samples.send.runSample();
     assert(data);
     scope.done();

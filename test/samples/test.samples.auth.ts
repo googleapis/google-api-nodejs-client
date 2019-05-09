@@ -23,7 +23,7 @@ const fsp = pify(fs);
 nock.disableNetConnect();
 
 const samples = {
-  jwt: require('../../../samples/jwt')
+  jwt: require('../../../samples/jwt'),
 };
 
 describe('Auth samples', () => {
@@ -33,12 +33,14 @@ describe('Auth samples', () => {
 
   it('should support JWT', async () => {
     const scope = nock(Utils.baseUrl)
-                      .get('/drive/v2/files')
-                      .reply(200, {})
-                      .post('/oauth2/v4/token')
-                      .reply(200, {access_token: 'not-a-token'});
-    const fakePath =
-        path.join(__dirname, '../../../test/fixtures/service.json');
+      .get('/drive/v2/files')
+      .reply(200, {})
+      .post('/oauth2/v4/token')
+      .reply(200, {access_token: 'not-a-token'});
+    const fakePath = path.join(
+      __dirname,
+      '../../../test/fixtures/service.json'
+    );
     const realPath = path.join(__dirname, '../../../samples/jwt.keys.json');
     const exists = fs.existsSync(realPath);
     if (!exists) {

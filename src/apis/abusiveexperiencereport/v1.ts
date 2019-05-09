@@ -206,13 +206,13 @@ export namespace abusiveexperiencereport_v1 {
         options: Object.assign(
             {
               url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
+              method: 'GET',
             },
             options),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback);
@@ -300,13 +300,13 @@ export namespace abusiveexperiencereport_v1 {
             {
               url: (rootUrl + '/v1/violatingSites')
                        .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
+              method: 'GET',
             },
             options),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback);

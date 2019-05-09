@@ -14,7 +14,15 @@
 import * as fs from 'fs';
 import {GaxiosOptions, Headers} from 'gaxios';
 import {DefaultTransporter} from 'google-auth-library';
-import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas} from 'googleapis-common';
+import {
+  FragmentResponse,
+  Schema,
+  SchemaItem,
+  SchemaMethod,
+  SchemaParameters,
+  SchemaResource,
+  Schemas,
+} from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
 import Q = require('p-queue');
@@ -26,7 +34,7 @@ const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
 
 const FRAGMENT_URL =
-    'https://storage.googleapis.com/apisnippets-staging/public/';
+  'https://storage.googleapis.com/apisnippets-staging/public/';
 
 const srcPath = path.join(__dirname, '../../../src');
 const TEMPLATES_DIR = path.join(srcPath, 'generator/templates');
@@ -44,12 +52,9 @@ function getObjectType(item: SchemaItem): string {
     return `{ [key: string]: ${valueType}; }`;
   } else if (item.properties) {
     const fields = item.properties;
-    const objectType =
-        Object.keys(fields)
-            .map(
-                field =>
-                    `${cleanPropertyName(field)}?: ${getType(fields[field])};`)
-            .join(' ');
+    const objectType = Object.keys(fields)
+      .map(field => `${cleanPropertyName(field)}?: ${getType(fields[field])};`)
+      .join(' ');
     return `{ ${objectType} }`;
   } else {
     return 'any';
@@ -74,13 +79,13 @@ function camelify(name: string) {
   if (name.includes('-')) {
     const parts = name.split('-').filter(x => !!x);
     name = parts
-               .map((part, i) => {
-                 if (i === 0) {
-                   return part;
-                 }
-                 return part.charAt(0).toUpperCase() + part.slice(1);
-               })
-               .join('');
+      .map((part, i) => {
+        if (i === 0) {
+          return part;
+        }
+        return part.charAt(0).toUpperCase() + part.slice(1);
+      })
+      .join('');
   }
   return name;
 }
@@ -165,7 +170,9 @@ export class Generator {
   constructor(options: GeneratorOptions = {}) {
     this.options = options;
     this.env = new nunjucks.Environment(
-        new nunjucks.FileSystemLoader(TEMPLATES_DIR), {trimBlocks: true});
+      new nunjucks.FileSystemLoader(TEMPLATES_DIR),
+      {trimBlocks: true}
+    );
     this.env.addFilter('buildurl', buildurl);
     this.env.addFilter('oneLine', this.oneLine);
     this.env.addFilter('getType', getType);
@@ -175,12 +182,14 @@ export class Generator {
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
     this.env.addFilter('hasResourceParam', this.hasResourceParam);
-    this.env.addFilter('cleanPaths', (str) => {
-      return str ? str.replace(/\/\*\//gi, '/x/')
-                       .replace(/\/\*`/gi, '/x')
-                       .replace(/\*\//gi, 'x/')
-                       .replace(/\\n/gi, 'x/') :
-                   '';
+    this.env.addFilter('cleanPaths', str => {
+      return str
+        ? str
+            .replace(/\/\*\//gi, '/x/')
+            .replace(/\/\*`/gi, '/x')
+            .replace(/\*\//gi, 'x/')
+            .replace(/\\n/gi, 'x/')
+        : '';
     });
   }
 
@@ -219,34 +228,42 @@ export class Generator {
    * Generate all APIs and write to files.
    */
   async generateAllAPIs(discoveryUrl: string) {
-    const headers: Headers =
-        this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
+    const headers: Headers = this.options.includePrivate
+      ? {}
+      : {'X-User-Ip': '0.0.0.0'};
     const res = await this.request<Schemas>({url: discoveryUrl, headers});
     const apis = res.data.items;
     const queue = new Q({concurrency: 10});
     console.log(`Generating ${apis.length} APIs...`);
-    queue.addAll(apis.map(api => {
-      return async () => {
-        this.log('Generating API for %s...', api.id);
-        this.logResult(
-            api.discoveryRestUrl, 'Attempting first generateAPI call...');
-        try {
-          const results = await this.generateAPI(api.discoveryRestUrl);
-          this.logResult(api.discoveryRestUrl, `GenerateAPI call success!`);
-        } catch (e) {
+    queue.addAll(
+      apis.map(api => {
+        return async () => {
+          this.log('Generating API for %s...', api.id);
           this.logResult(
+            api.discoveryRestUrl,
+            'Attempting first generateAPI call...'
+          );
+          try {
+            const results = await this.generateAPI(api.discoveryRestUrl);
+            this.logResult(api.discoveryRestUrl, `GenerateAPI call success!`);
+          } catch (e) {
+            this.logResult(
               api.discoveryRestUrl,
-              `GenerateAPI call failed with error: ${e}, moving on.`);
-          console.error(`Failed to generate API: ${api.id}`);
-          console.log(
-              api.id + '\n-----------\n' +
-              util.inspect(
-                  this.state.get(api.discoveryRestUrl),
-                  {maxArrayLength: null}) +
-              '\n');
-        }
-      };
-    }));
+              `GenerateAPI call failed with error: ${e}, moving on.`
+            );
+            console.error(`Failed to generate API: ${api.id}`);
+            console.log(
+              api.id +
+                '\n-----------\n' +
+                util.inspect(this.state.get(api.discoveryRestUrl), {
+                  maxArrayLength: null,
+                }) +
+                '\n'
+            );
+          }
+        };
+      })
+    );
     try {
       await queue.onIdle();
       await this.generateIndex(apis);
@@ -277,13 +294,17 @@ export class Generator {
           const desc = metadata.filter(x => x.name === file)[0].description;
           // generate the index.ts
           const apiIdxPath = path.join(apisPath, file, 'index.ts');
-          const result =
-              this.env.render('api-index.njk', {name: file, api: apis[file]});
+          const result = this.env.render('api-index.njk', {
+            name: file,
+            api: apis[file],
+          });
           await writeFile(apiIdxPath, result);
           // generate the package.json
           const pkgPath = path.join(apisPath, file, 'package.json');
-          const pkgResult =
-              this.env.render('package.json.njk', {name: file, desc});
+          const pkgResult = this.env.render('package.json.njk', {
+            name: file,
+            desc,
+          });
           await writeFile(pkgPath, pkgResult);
           // generate the README.md
           const rdPath = path.join(apisPath, file, 'README.md');
@@ -295,8 +316,9 @@ export class Generator {
           await writeFile(tsPath, tsResult);
           // generate the webpack.config.js
           const wpPath = path.join(apisPath, file, 'webpack.config.js');
-          const wpResult =
-              this.env.render('webpack.config.js.njk', {name: file});
+          const wpResult = this.env.render('webpack.config.js.njk', {
+            name: file,
+          });
           await writeFile(wpPath, wpResult);
         }
       }
@@ -314,8 +336,11 @@ export class Generator {
    * embedded links.
    */
   private getFragmentsForSchema(
-      apiDiscoveryUrl: string, schema: SchemaResource, apiPath: string,
-      tasks: Array<(() => Promise<void>)>) {
+    apiDiscoveryUrl: string,
+    schema: SchemaResource,
+    apiPath: string,
+    tasks: Array<() => Promise<void>>
+  ) {
     if (schema.methods) {
       for (const methodName in schema.methods) {
         if (schema.methods.hasOwnProperty(methodName)) {
@@ -325,11 +350,15 @@ export class Generator {
             this.logResult(apiDiscoveryUrl, `Making fragment request...`);
             this.logResult(apiDiscoveryUrl, methodSchema.sampleUrl);
             try {
-              const res = await this.request<FragmentResponse>(
-                  {url: methodSchema.sampleUrl});
+              const res = await this.request<FragmentResponse>({
+                url: methodSchema.sampleUrl,
+              });
               this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
-              if (res.data && res.data.codeFragment &&
-                  res.data.codeFragment['Node.js']) {
+              if (
+                res.data &&
+                res.data.codeFragment &&
+                res.data.codeFragment['Node.js']
+              ) {
                 let fragment = res.data.codeFragment['Node.js'].fragment;
                 fragment = fragment.replace(/\/\*/gi, '/<');
                 fragment = fragment.replace(/\*\//gi, '>/');
@@ -357,8 +386,11 @@ export class Generator {
       for (const resourceName in schema.resources) {
         if (schema.resources.hasOwnProperty(resourceName)) {
           this.getFragmentsForSchema(
-              apiDiscoveryUrl, schema.resources[resourceName],
-              apiPath + '.' + resourceName, tasks);
+            apiDiscoveryUrl,
+            schema.resources[resourceName],
+            apiPath + '.' + resourceName,
+            tasks
+          );
         }
       }
     }
@@ -372,8 +404,9 @@ export class Generator {
     const parts = url.parse(apiDiscoveryUrl);
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);
-      const file = await util.promisify(fs.readFile)(
-          apiDiscoveryUrl, {encoding: 'utf-8'});
+      const file = await util.promisify(fs.readFile)(apiDiscoveryUrl, {
+        encoding: 'utf-8',
+      });
       await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
       this.logResult(apiDiscoveryUrl, `Starting discovery doc request...`);
@@ -387,13 +420,19 @@ export class Generator {
     this.logResult(apiDiscoveryUrl, `Discovery doc request complete.`);
     const tasks = new Array<() => Promise<void>>();
     this.getFragmentsForSchema(
-        apiDiscoveryUrl, schema,
-        `${FRAGMENT_URL}${schema.name}/${schema.version}/0/${schema.name}`,
-        tasks);
+      apiDiscoveryUrl,
+      schema,
+      `${FRAGMENT_URL}${schema.name}/${schema.version}/0/${schema.name}`,
+      tasks
+    );
 
     // e.g. apis/drive/v2.js
-    const exportFilename =
-        path.join(srcPath, 'apis', schema.name, schema.version + '.ts');
+    const exportFilename = path.join(
+      srcPath,
+      'apis',
+      schema.name,
+      schema.version + '.ts'
+    );
     this.logResult(apiDiscoveryUrl, `Generating templates...`);
     this.logResult(apiDiscoveryUrl, `Step 1...`);
     await Promise.all(tasks.map(t => t()));

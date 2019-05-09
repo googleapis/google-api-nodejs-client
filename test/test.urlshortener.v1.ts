@@ -20,14 +20,18 @@ import {Utils} from './utils';
 async function testSingleRequest(urlshortener: urlshortener_v1.Urlshortener) {
   const requestBody = {longUrl: 'http://someurl...'};
   const reqPath = '/urlshortener/v1/url';
-  nock(Utils.baseUrl).post(reqPath, requestBody).reply(200);
+  nock(Utils.baseUrl)
+    .post(reqPath, requestBody)
+    .reply(200);
   const res = await urlshortener.url.insert({requestBody});
   assert.strictEqual(res.config.method!.toLowerCase(), 'post');
 }
 
 async function testParams(urlshortener: urlshortener_v1.Urlshortener) {
   const params = {shortUrl: 'a'};
-  nock(Utils.baseUrl).get('/urlshortener/v1/url?shortUrl=a').reply(200);
+  nock(Utils.baseUrl)
+    .get('/urlshortener/v1/url?shortUrl=a')
+    .reply(200);
   const res = await urlshortener.url.get(params);
   assert.strictEqual(Utils.getQs(res), 'shortUrl=a');
   assert.strictEqual(res.config.method!.toLowerCase(), 'get');
@@ -35,11 +39,13 @@ async function testParams(urlshortener: urlshortener_v1.Urlshortener) {
 
 async function testInsert(urlshortener: urlshortener_v1.Urlshortener) {
   const requestBody = {longUrl: 'http://google.com/'};
-  nock(Utils.baseUrl).post('/resource').reply(200);
+  nock(Utils.baseUrl)
+    .post('/resource')
+    .reply(200);
   const res = await urlshortener.url.insert({requestBody});
-  assert.notEqual(res.data, null);
-  assert.notEqual(res.data.kind, null);
-  assert.notEqual(res.data.id, null);
+  assert.notStrictEqual(res.data, null);
+  assert.notStrictEqual(res.data.kind, null);
+  assert.notStrictEqual(res.data.id, null);
   assert.strictEqual(res.data.longUrl, 'http://google.com/');
   return res;
 }
@@ -53,7 +59,10 @@ describe('Urlshortener', () => {
     const google = new GoogleApis();
     nock.enableNetConnect();
     remoteUrlshortener = await Utils.loadApi<urlshortener_v1.Urlshortener>(
-        google, 'urlshortener', 'v1');
+      google,
+      'urlshortener',
+      'v1'
+    );
     nock.disableNetConnect();
   });
 
@@ -76,12 +85,12 @@ describe('Urlshortener', () => {
 
   it('should return a single response object for single requests', async () => {
     nock(Utils.baseUrl, {allowUnmocked: true})
-        .post('/urlshortener/v1/url')
-        .times(2)
-        .replyWithFile(
-            200,
-            path.join(
-                __dirname, '../../test/fixtures/urlshort-insert-res.json'));
+      .post('/urlshortener/v1/url')
+      .times(2)
+      .replyWithFile(
+        200,
+        path.join(__dirname, '../../test/fixtures/urlshort-insert-res.json')
+      );
     await testInsert(localUrlshortener);
     await testInsert(remoteUrlshortener);
   });

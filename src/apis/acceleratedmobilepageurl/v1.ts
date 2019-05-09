@@ -236,13 +236,13 @@ export namespace acceleratedmobilepageurl_v1 {
             {
               url: (rootUrl + '/v1/ampUrls:batchGet')
                        .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
+              method: 'POST',
             },
             options),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
