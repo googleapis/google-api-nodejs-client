@@ -26,7 +26,7 @@ const keep = !!process.env.GANC_KEEP_TEMPDIRS;
 const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
 const pkg = require('../../package.json');
-const spawnOpts: cp.SpawnSyncOptions = { stdio: 'inherit', shell: true};
+const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
 
 /**
  * Create a staging directory with temp fixtures used to test on a fresh application.
@@ -38,7 +38,11 @@ describe('kitchen sink', async () => {
     const tarball = `${pkg.name}-${pkg.version}.tgz`;
     await (mvp as Function)(tarball, `${stagingPath}/googleapis.tgz`);
     await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
-    cp.spawnSync('npm', ['install'], Object.assign({cwd: `${stagingPath}/`}, spawnOpts));
+    cp.spawnSync(
+      'npm',
+      ['install'],
+      Object.assign({cwd: `${stagingPath}/`}, spawnOpts)
+    );
   }).timeout(80000);
 
   /**
