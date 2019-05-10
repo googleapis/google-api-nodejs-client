@@ -15,7 +15,6 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
-import * as pify from 'pify';
 import {URL} from 'url';
 
 import {drive_v2, gmail_v1, GoogleApis} from '../src';
@@ -114,7 +113,7 @@ describe('Media', () => {
       )
       .reply(200);
     const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
-    const fileSize = (await pify(fs.stat)(fileName)).size;
+    const fileSize = fs.statSync(fileName).size;
     const google = new GoogleApis();
     const youtube = google.youtube('v3');
     const progressEvents = new Array<number>();
