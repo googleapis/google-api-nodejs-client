@@ -15,10 +15,8 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
-import * as pify from 'pify';
 
 import {Utils} from './../utils';
-const fsp = pify(fs);
 
 nock.disableNetConnect();
 
@@ -44,7 +42,7 @@ describe('Auth samples', () => {
     const realPath = path.join(__dirname, '../../../samples/jwt.keys.json');
     const exists = fs.existsSync(realPath);
     if (!exists) {
-      await fsp.symlink(fakePath, realPath);
+      fs.symlinkSync(fakePath, realPath);
     }
     const data = await samples.jwt.runSample();
     assert(data);
