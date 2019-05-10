@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {poly_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': poly_v1.Poly,
+  v1: poly_v1.Poly,
 };
 
 export function poly(version: 'v1'): poly_v1.Poly;
 export function poly(options: poly_v1.Options): poly_v1.Poly;
 export function poly<T = poly_v1.Poly>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|poly_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | poly_v1.Options
+) {
   return getAPI<T>('poly', versionOrOptions, VERSIONS, this);
 }
 

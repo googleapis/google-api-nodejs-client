@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -616,13 +628,11 @@ export namespace safebrowsing_v4 {
     userId?: string;
   }
 
-
   export class Resource$Encodedfullhashes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * safebrowsing.encodedFullHashes.get
@@ -637,23 +647,33 @@ export namespace safebrowsing_v4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Encodedfullhashes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$FindFullHashesResponse>;
-    get(params: Params$Resource$Encodedfullhashes$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FindFullHashesResponse>,
-        callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
-    get(params: Params$Resource$Encodedfullhashes$Get,
-        callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
+    get(
+      params?: Params$Resource$Encodedfullhashes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FindFullHashesResponse>;
+    get(
+      params: Params$Resource$Encodedfullhashes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
+    ): void;
+    get(
+      params: Params$Resource$Encodedfullhashes$Get,
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
+    ): void;
     get(callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
-    get(paramsOrCallback?: Params$Resource$Encodedfullhashes$Get|
-        BodyResponseCallback<Schema$FindFullHashesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FindFullHashesResponse>,
-        callback?: BodyResponseCallback<Schema$FindFullHashesResponse>):
-        void|GaxiosPromise<Schema$FindFullHashesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Encodedfullhashes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Encodedfullhashes$Get
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>
+    ): void | GaxiosPromise<Schema$FindFullHashesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Encodedfullhashes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -670,16 +690,19 @@ export namespace safebrowsing_v4 {
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/encodedFullHashes/{encodedRequest}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['encodedRequest'],
         pathParams: ['encodedRequest'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
@@ -689,12 +712,12 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Encodedfullhashes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Encodedfullhashes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A client ID that (hopefully) uniquely identifies the client
@@ -711,13 +734,11 @@ export namespace safebrowsing_v4 {
     encodedRequest?: string;
   }
 
-
   export class Resource$Encodedupdates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * safebrowsing.encodedUpdates.get
@@ -732,26 +753,35 @@ export namespace safebrowsing_v4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Encodedupdates$Get, options?: MethodOptions):
-        GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
-    get(params: Params$Resource$Encodedupdates$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-        callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void;
-    get(params: Params$Resource$Encodedupdates$Get,
-        callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void;
-    get(callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void;
-    get(paramsOrCallback?: Params$Resource$Encodedupdates$Get|
-        BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-        callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void|GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Encodedupdates$Get;
+    get(
+      params?: Params$Resource$Encodedupdates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+    get(
+      params: Params$Resource$Encodedupdates$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void;
+    get(
+      params: Params$Resource$Encodedupdates$Get,
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Encodedupdates$Get
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void | GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Encodedupdates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -768,33 +798,39 @@ export namespace safebrowsing_v4 {
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/encodedUpdates/{encodedRequest}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['encodedRequest'],
         pathParams: ['encodedRequest'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Encodedupdates$Get extends
-      StandardParameters {
+  export interface Params$Resource$Encodedupdates$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A client ID that uniquely identifies the client implementation of the
@@ -811,13 +847,11 @@ export namespace safebrowsing_v4 {
     encodedRequest?: string;
   }
 
-
   export class Resource$Fullhashes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * safebrowsing.fullHashes.find
@@ -831,24 +865,31 @@ export namespace safebrowsing_v4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    find(params?: Params$Resource$Fullhashes$Find, options?: MethodOptions):
-        GaxiosPromise<Schema$FindFullHashesResponse>;
     find(
-        params: Params$Resource$Fullhashes$Find,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FindFullHashesResponse>,
-        callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
+      params?: Params$Resource$Fullhashes$Find,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FindFullHashesResponse>;
     find(
-        params: Params$Resource$Fullhashes$Find,
-        callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
+      params: Params$Resource$Fullhashes$Find,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
+    ): void;
+    find(
+      params: Params$Resource$Fullhashes$Find,
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
+    ): void;
     find(callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
     find(
-        paramsOrCallback?: Params$Resource$Fullhashes$Find|
-        BodyResponseCallback<Schema$FindFullHashesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FindFullHashesResponse>,
-        callback?: BodyResponseCallback<Schema$FindFullHashesResponse>):
-        void|GaxiosPromise<Schema$FindFullHashesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Fullhashes$Find
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>
+    ): void | GaxiosPromise<Schema$FindFullHashesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Fullhashes$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -866,16 +907,19 @@ export namespace safebrowsing_v4 {
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/fullHashes:find')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/fullHashes:find').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
@@ -889,8 +933,7 @@ export namespace safebrowsing_v4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -898,13 +941,11 @@ export namespace safebrowsing_v4 {
     requestBody?: Schema$FindFullHashesRequest;
   }
 
-
   export class Resource$Threathits {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * safebrowsing.threatHits.create
@@ -919,24 +960,29 @@ export namespace safebrowsing_v4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Threathits$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     create(
-        params: Params$Resource$Threathits$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Threathits$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     create(
-        params: Params$Resource$Threathits$Create,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Threathits$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    create(
+      params: Params$Resource$Threathits$Create,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Empty>): void;
     create(
-        paramsOrCallback?: Params$Resource$Threathits$Create|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Threathits$Create;
+      paramsOrCallback?:
+        | Params$Resource$Threathits$Create
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Threathits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -953,15 +999,16 @@ export namespace safebrowsing_v4 {
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/threatHits').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/threatHits').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -971,13 +1018,12 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Threathits$Create extends
-      StandardParameters {
+  export interface Params$Resource$Threathits$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -985,13 +1031,11 @@ export namespace safebrowsing_v4 {
     requestBody?: Schema$ThreatHit;
   }
 
-
   export class Resource$Threatlists {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * safebrowsing.threatLists.list
@@ -1004,24 +1048,31 @@ export namespace safebrowsing_v4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Threatlists$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListThreatListsResponse>;
     list(
-        params: Params$Resource$Threatlists$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListThreatListsResponse>,
-        callback: BodyResponseCallback<Schema$ListThreatListsResponse>): void;
+      params?: Params$Resource$Threatlists$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListThreatListsResponse>;
     list(
-        params: Params$Resource$Threatlists$List,
-        callback: BodyResponseCallback<Schema$ListThreatListsResponse>): void;
+      params: Params$Resource$Threatlists$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListThreatListsResponse>,
+      callback: BodyResponseCallback<Schema$ListThreatListsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Threatlists$List,
+      callback: BodyResponseCallback<Schema$ListThreatListsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListThreatListsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Threatlists$List|
-        BodyResponseCallback<Schema$ListThreatListsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListThreatListsResponse>,
-        callback?: BodyResponseCallback<Schema$ListThreatListsResponse>):
-        void|GaxiosPromise<Schema$ListThreatListsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Threatlists$List
+        | BodyResponseCallback<Schema$ListThreatListsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListThreatListsResponse>,
+      callback?: BodyResponseCallback<Schema$ListThreatListsResponse>
+    ): void | GaxiosPromise<Schema$ListThreatListsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Threatlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1039,15 +1090,16 @@ export namespace safebrowsing_v4 {
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/threatLists').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/threatLists').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListThreatListsResponse>(parameters, callback);
@@ -1061,16 +1113,14 @@ export namespace safebrowsing_v4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Threatlistupdates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * safebrowsing.threatListUpdates.fetch
@@ -1086,31 +1136,34 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     fetch(
-        params?: Params$Resource$Threatlistupdates$Fetch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+      params?: Params$Resource$Threatlistupdates$Fetch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
     fetch(
-        params: Params$Resource$Threatlistupdates$Fetch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-        callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void;
+      params: Params$Resource$Threatlistupdates$Fetch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void;
     fetch(
-        params: Params$Resource$Threatlistupdates$Fetch,
-        callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void;
-    fetch(callback:
-              BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void;
+      params: Params$Resource$Threatlistupdates$Fetch,
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void;
     fetch(
-        paramsOrCallback?: Params$Resource$Threatlistupdates$Fetch|
-        BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-        callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void|GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Threatlistupdates$Fetch;
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void;
+    fetch(
+      paramsOrCallback?:
+        | Params$Resource$Threatlistupdates$Fetch
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+    ): void | GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Threatlistupdates$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1127,34 +1180,39 @@ export namespace safebrowsing_v4 {
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/threatListUpdates:fetch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/threatListUpdates:fetch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Threatlistupdates$Fetch extends
-      StandardParameters {
+  export interface Params$Resource$Threatlistupdates$Fetch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1162,13 +1220,11 @@ export namespace safebrowsing_v4 {
     requestBody?: Schema$FetchThreatListUpdatesRequest;
   }
 
-
   export class Resource$Threatmatches {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * safebrowsing.threatMatches.find
@@ -1182,27 +1238,35 @@ export namespace safebrowsing_v4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    find(params?: Params$Resource$Threatmatches$Find, options?: MethodOptions):
-        GaxiosPromise<Schema$FindThreatMatchesResponse>;
     find(
-        params: Params$Resource$Threatmatches$Find,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FindThreatMatchesResponse>,
-        callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>): void;
+      params?: Params$Resource$Threatmatches$Find,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FindThreatMatchesResponse>;
     find(
-        params: Params$Resource$Threatmatches$Find,
-        callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>): void;
-    find(callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>):
-        void;
+      params: Params$Resource$Threatmatches$Find,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+      callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>
+    ): void;
     find(
-        paramsOrCallback?: Params$Resource$Threatmatches$Find|
-        BodyResponseCallback<Schema$FindThreatMatchesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FindThreatMatchesResponse>,
-        callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>):
-        void|GaxiosPromise<Schema$FindThreatMatchesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Threatmatches$Find;
+      params: Params$Resource$Threatmatches$Find,
+      callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>
+    ): void;
+    find(
+      callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>
+    ): void;
+    find(
+      paramsOrCallback?:
+        | Params$Resource$Threatmatches$Find
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+      callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>
+    ): void | GaxiosPromise<Schema$FindThreatMatchesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Threatmatches$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1219,33 +1283,37 @@ export namespace safebrowsing_v4 {
       const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/threatMatches:find')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/threatMatches:find').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FindThreatMatchesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$FindThreatMatchesResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Threatmatches$Find extends
-      StandardParameters {
+  export interface Params$Resource$Threatmatches$Find
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

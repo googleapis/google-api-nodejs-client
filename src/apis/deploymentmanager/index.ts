@@ -19,31 +19,44 @@ import {deploymentmanager_v2} from './v2';
 import {deploymentmanager_v2beta} from './v2beta';
 
 export const VERSIONS = {
-  'alpha': deploymentmanager_alpha.Deploymentmanager,
-  'v2': deploymentmanager_v2.Deploymentmanager,
-  'v2beta': deploymentmanager_v2beta.Deploymentmanager,
+  alpha: deploymentmanager_alpha.Deploymentmanager,
+  v2: deploymentmanager_v2.Deploymentmanager,
+  v2beta: deploymentmanager_v2beta.Deploymentmanager,
 };
 
-export function deploymentmanager(version: 'alpha'):
-    deploymentmanager_alpha.Deploymentmanager;
-export function deploymentmanager(options: deploymentmanager_alpha.Options):
-    deploymentmanager_alpha.Deploymentmanager;
-export function deploymentmanager(version: 'v2'):
-    deploymentmanager_v2.Deploymentmanager;
-export function deploymentmanager(options: deploymentmanager_v2.Options):
-    deploymentmanager_v2.Deploymentmanager;
-export function deploymentmanager(version: 'v2beta'):
-    deploymentmanager_v2beta.Deploymentmanager;
-export function deploymentmanager(options: deploymentmanager_v2beta.Options):
-    deploymentmanager_v2beta.Deploymentmanager;
+export function deploymentmanager(
+  version: 'alpha'
+): deploymentmanager_alpha.Deploymentmanager;
+export function deploymentmanager(
+  options: deploymentmanager_alpha.Options
+): deploymentmanager_alpha.Deploymentmanager;
+export function deploymentmanager(
+  version: 'v2'
+): deploymentmanager_v2.Deploymentmanager;
+export function deploymentmanager(
+  options: deploymentmanager_v2.Options
+): deploymentmanager_v2.Deploymentmanager;
+export function deploymentmanager(
+  version: 'v2beta'
+): deploymentmanager_v2beta.Deploymentmanager;
+export function deploymentmanager(
+  options: deploymentmanager_v2beta.Options
+): deploymentmanager_v2beta.Deploymentmanager;
 export function deploymentmanager<
-    T = deploymentmanager_alpha.Deploymentmanager |
-        deploymentmanager_v2.Deploymentmanager |
-        deploymentmanager_v2beta.Deploymentmanager>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'alpha'|
-    deploymentmanager_alpha.Options|'v2'|
-    deploymentmanager_v2.Options|'v2beta'|deploymentmanager_v2beta.Options) {
+  T =
+    | deploymentmanager_alpha.Deploymentmanager
+    | deploymentmanager_v2.Deploymentmanager
+    | deploymentmanager_v2beta.Deploymentmanager
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'alpha'
+    | deploymentmanager_alpha.Options
+    | 'v2'
+    | deploymentmanager_v2.Options
+    | 'v2beta'
+    | deploymentmanager_v2beta.Options
+) {
   return getAPI<T>('deploymentmanager', versionOrOptions, VERSIONS, this);
 }
 

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -105,11 +117,13 @@ export namespace testing_v1 {
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {_options: options || {}, google};
 
-      this.applicationDetailService =
-          new Resource$Applicationdetailservice(this.context);
+      this.applicationDetailService = new Resource$Applicationdetailservice(
+        this.context
+      );
       this.projects = new Resource$Projects(this.context);
-      this.testEnvironmentCatalog =
-          new Resource$Testenvironmentcatalog(this.context);
+      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog(
+        this.context
+      );
     }
   }
 
@@ -1394,13 +1408,11 @@ export namespace testing_v1 {
     version?: string;
   }
 
-
   export class Resource$Applicationdetailservice {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * testing.applicationDetailService.getApkDetails
@@ -1415,28 +1427,34 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     getApkDetails(
-        params?: Params$Resource$Applicationdetailservice$Getapkdetails,
-        options?: MethodOptions): GaxiosPromise<Schema$GetApkDetailsResponse>;
+      params?: Params$Resource$Applicationdetailservice$Getapkdetails,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetApkDetailsResponse>;
     getApkDetails(
-        params: Params$Resource$Applicationdetailservice$Getapkdetails,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetApkDetailsResponse>,
-        callback: BodyResponseCallback<Schema$GetApkDetailsResponse>): void;
+      params: Params$Resource$Applicationdetailservice$Getapkdetails,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetApkDetailsResponse>,
+      callback: BodyResponseCallback<Schema$GetApkDetailsResponse>
+    ): void;
     getApkDetails(
-        params: Params$Resource$Applicationdetailservice$Getapkdetails,
-        callback: BodyResponseCallback<Schema$GetApkDetailsResponse>): void;
-    getApkDetails(callback: BodyResponseCallback<Schema$GetApkDetailsResponse>):
-        void;
+      params: Params$Resource$Applicationdetailservice$Getapkdetails,
+      callback: BodyResponseCallback<Schema$GetApkDetailsResponse>
+    ): void;
     getApkDetails(
-        paramsOrCallback?:
-            Params$Resource$Applicationdetailservice$Getapkdetails|
-        BodyResponseCallback<Schema$GetApkDetailsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetApkDetailsResponse>,
-        callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>):
-        void|GaxiosPromise<Schema$GetApkDetailsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Applicationdetailservice$Getapkdetails;
+      callback: BodyResponseCallback<Schema$GetApkDetailsResponse>
+    ): void;
+    getApkDetails(
+      paramsOrCallback?:
+        | Params$Resource$Applicationdetailservice$Getapkdetails
+        | BodyResponseCallback<Schema$GetApkDetailsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetApkDetailsResponse>,
+      callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>
+    ): void | GaxiosPromise<Schema$GetApkDetailsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applicationdetailservice$Getapkdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1453,16 +1471,18 @@ export namespace testing_v1 {
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/applicationDetailService/getApkDetails')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/applicationDetailService/getApkDetails'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
@@ -1473,19 +1493,17 @@ export namespace testing_v1 {
   }
 
   export interface Params$Resource$Applicationdetailservice$Getapkdetails
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$FileReference;
   }
-
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1496,13 +1514,11 @@ export namespace testing_v1 {
     }
   }
 
-
   export class Resource$Projects$Testmatrices {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * testing.projects.testMatrices.cancel
@@ -1523,28 +1539,34 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Projects$Testmatrices$Cancel,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CancelTestMatrixResponse>;
+      params?: Params$Resource$Projects$Testmatrices$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CancelTestMatrixResponse>;
     cancel(
-        params: Params$Resource$Projects$Testmatrices$Cancel,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CancelTestMatrixResponse>,
-        callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>): void;
+      params: Params$Resource$Projects$Testmatrices$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+      callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>
+    ): void;
     cancel(
-        params: Params$Resource$Projects$Testmatrices$Cancel,
-        callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>): void;
-    cancel(callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>):
-        void;
+      params: Params$Resource$Projects$Testmatrices$Cancel,
+      callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>
+    ): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Projects$Testmatrices$Cancel|
-        BodyResponseCallback<Schema$CancelTestMatrixResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CancelTestMatrixResponse>,
-        callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>):
-        void|GaxiosPromise<Schema$CancelTestMatrixResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Testmatrices$Cancel;
+      callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>
+    ): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Testmatrices$Cancel
+        | BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+      callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>
+    ): void | GaxiosPromise<Schema$CancelTestMatrixResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Testmatrices$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1561,18 +1583,19 @@ export namespace testing_v1 {
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/projects/{projectId}/testMatrices/{testMatrixId}:cancel')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{projectId}/testMatrices/{testMatrixId}:cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
@@ -1580,7 +1603,6 @@ export namespace testing_v1 {
         return createAPIRequest<Schema$CancelTestMatrixResponse>(parameters);
       }
     }
-
 
     /**
      * testing.projects.testMatrices.create
@@ -1603,25 +1625,30 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Testmatrices$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$TestMatrix>;
+      params?: Params$Resource$Projects$Testmatrices$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestMatrix>;
     create(
-        params: Params$Resource$Projects$Testmatrices$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
-        callback: BodyResponseCallback<Schema$TestMatrix>): void;
+      params: Params$Resource$Projects$Testmatrices$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TestMatrix>,
+      callback: BodyResponseCallback<Schema$TestMatrix>
+    ): void;
     create(
-        params: Params$Resource$Projects$Testmatrices$Create,
-        callback: BodyResponseCallback<Schema$TestMatrix>): void;
+      params: Params$Resource$Projects$Testmatrices$Create,
+      callback: BodyResponseCallback<Schema$TestMatrix>
+    ): void;
     create(callback: BodyResponseCallback<Schema$TestMatrix>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Testmatrices$Create|
-        BodyResponseCallback<Schema$TestMatrix>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestMatrix>,
-        callback?: BodyResponseCallback<Schema$TestMatrix>):
-        void|GaxiosPromise<Schema$TestMatrix> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Testmatrices$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Testmatrices$Create
+        | BodyResponseCallback<Schema$TestMatrix>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestMatrix>,
+      callback?: BodyResponseCallback<Schema$TestMatrix>
+    ): void | GaxiosPromise<Schema$TestMatrix> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Testmatrices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1638,16 +1665,19 @@ export namespace testing_v1 {
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}/testMatrices')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}/testMatrices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1655,7 +1685,6 @@ export namespace testing_v1 {
         return createAPIRequest<Schema$TestMatrix>(parameters);
       }
     }
-
 
     /**
      * testing.projects.testMatrices.get
@@ -1673,22 +1702,31 @@ export namespace testing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Testmatrices$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TestMatrix>;
-    get(params: Params$Resource$Projects$Testmatrices$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
-        callback: BodyResponseCallback<Schema$TestMatrix>): void;
-    get(params: Params$Resource$Projects$Testmatrices$Get,
-        callback: BodyResponseCallback<Schema$TestMatrix>): void;
+    get(
+      params?: Params$Resource$Projects$Testmatrices$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestMatrix>;
+    get(
+      params: Params$Resource$Projects$Testmatrices$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TestMatrix>,
+      callback: BodyResponseCallback<Schema$TestMatrix>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Testmatrices$Get,
+      callback: BodyResponseCallback<Schema$TestMatrix>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TestMatrix>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Testmatrices$Get|
-        BodyResponseCallback<Schema$TestMatrix>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestMatrix>,
-        callback?: BodyResponseCallback<Schema$TestMatrix>):
-        void|GaxiosPromise<Schema$TestMatrix> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Testmatrices$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Testmatrices$Get
+        | BodyResponseCallback<Schema$TestMatrix>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestMatrix>,
+      callback?: BodyResponseCallback<Schema$TestMatrix>
+    ): void | GaxiosPromise<Schema$TestMatrix> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Testmatrices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1705,17 +1743,18 @@ export namespace testing_v1 {
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/projects/{projectId}/testMatrices/{testMatrixId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{projectId}/testMatrices/{testMatrixId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1725,12 +1764,12 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Testmatrices$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Testmatrices$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud project that owns the test.
@@ -1741,12 +1780,12 @@ export namespace testing_v1 {
      */
     testMatrixId?: string;
   }
-  export interface Params$Resource$Projects$Testmatrices$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Testmatrices$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The GCE project under which this job will run.
@@ -1764,12 +1803,12 @@ export namespace testing_v1 {
      */
     requestBody?: Schema$TestMatrix;
   }
-  export interface Params$Resource$Projects$Testmatrices$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Testmatrices$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud project that owns the test matrix.
@@ -1781,14 +1820,11 @@ export namespace testing_v1 {
     testMatrixId?: string;
   }
 
-
-
   export class Resource$Testenvironmentcatalog {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * testing.testEnvironmentCatalog.get
@@ -1806,23 +1842,33 @@ export namespace testing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Testenvironmentcatalog$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TestEnvironmentCatalog>;
-    get(params: Params$Resource$Testenvironmentcatalog$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestEnvironmentCatalog>,
-        callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
-    get(params: Params$Resource$Testenvironmentcatalog$Get,
-        callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
+    get(
+      params?: Params$Resource$Testenvironmentcatalog$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestEnvironmentCatalog>;
+    get(
+      params: Params$Resource$Testenvironmentcatalog$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+      callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>
+    ): void;
+    get(
+      params: Params$Resource$Testenvironmentcatalog$Get,
+      callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
-    get(paramsOrCallback?: Params$Resource$Testenvironmentcatalog$Get|
-        BodyResponseCallback<Schema$TestEnvironmentCatalog>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestEnvironmentCatalog>,
-        callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>):
-        void|GaxiosPromise<Schema$TestEnvironmentCatalog> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Testenvironmentcatalog$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Testenvironmentcatalog$Get
+        | BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+      callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>
+    ): void | GaxiosPromise<Schema$TestEnvironmentCatalog> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Testenvironmentcatalog$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1839,16 +1885,18 @@ export namespace testing_v1 {
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/testEnvironmentCatalog/{environmentType}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/testEnvironmentCatalog/{environmentType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['environmentType'],
         pathParams: ['environmentType'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);
@@ -1858,12 +1906,12 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Testenvironmentcatalog$Get extends
-      StandardParameters {
+  export interface Params$Resource$Testenvironmentcatalog$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The type of environment that should be listed.

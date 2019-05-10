@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {urlshortener_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': urlshortener_v1.Urlshortener,
+  v1: urlshortener_v1.Urlshortener,
 };
 
 export function urlshortener(version: 'v1'): urlshortener_v1.Urlshortener;
-export function urlshortener(options: urlshortener_v1.Options):
-    urlshortener_v1.Urlshortener;
+export function urlshortener(
+  options: urlshortener_v1.Options
+): urlshortener_v1.Urlshortener;
 export function urlshortener<T = urlshortener_v1.Urlshortener>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|urlshortener_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | urlshortener_v1.Options
+) {
   return getAPI<T>('urlshortener', versionOrOptions, VERSIONS, this);
 }
 

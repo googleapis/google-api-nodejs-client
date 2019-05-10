@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -318,7 +330,7 @@ export namespace language_v1beta1 {
      * Knowledge Graph MIDs are provided, if available. The associated keys are
      * &quot;wikipedia_url&quot; and &quot;mid&quot;, respectively.
      */
-    metadata?: {[key: string]: string;};
+    metadata?: {[key: string]: string};
     /**
      * The representative name for the entity.
      */
@@ -503,7 +515,7 @@ export namespace language_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -548,13 +560,11 @@ export namespace language_v1beta1 {
     text?: Schema$TextSpan;
   }
 
-
   export class Resource$Documents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * language.documents.analyzeEntities
@@ -571,27 +581,34 @@ export namespace language_v1beta1 {
      * @return {object} Request object
      */
     analyzeEntities(
-        params?: Params$Resource$Documents$Analyzeentities,
-        options?: MethodOptions): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
+      params?: Params$Resource$Documents$Analyzeentities,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
     analyzeEntities(
-        params: Params$Resource$Documents$Analyzeentities,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
-        callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
+      params: Params$Resource$Documents$Analyzeentities,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+    ): void;
     analyzeEntities(
-        params: Params$Resource$Documents$Analyzeentities,
-        callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
+      params: Params$Resource$Documents$Analyzeentities,
+      callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+    ): void;
     analyzeEntities(
-        callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
+      callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+    ): void;
     analyzeEntities(
-        paramsOrCallback?: Params$Resource$Documents$Analyzeentities|
-        BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
-        callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>):
-        void|GaxiosPromise<Schema$AnalyzeEntitiesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Documents$Analyzeentities;
+      paramsOrCallback?:
+        | Params$Resource$Documents$Analyzeentities
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+    ): void | GaxiosPromise<Schema$AnalyzeEntitiesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Analyzeentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -608,16 +625,19 @@ export namespace language_v1beta1 {
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/documents:analyzeEntities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/documents:analyzeEntities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters, callback);
@@ -625,7 +645,6 @@ export namespace language_v1beta1 {
         return createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters);
       }
     }
-
 
     /**
      * language.documents.analyzeSentiment
@@ -640,28 +659,34 @@ export namespace language_v1beta1 {
      * @return {object} Request object
      */
     analyzeSentiment(
-        params?: Params$Resource$Documents$Analyzesentiment,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AnalyzeSentimentResponse>;
+      params?: Params$Resource$Documents$Analyzesentiment,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeSentimentResponse>;
     analyzeSentiment(
-        params: Params$Resource$Documents$Analyzesentiment,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
-        callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
+      params: Params$Resource$Documents$Analyzesentiment,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+    ): void;
     analyzeSentiment(
-        params: Params$Resource$Documents$Analyzesentiment,
-        callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
+      params: Params$Resource$Documents$Analyzesentiment,
+      callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+    ): void;
     analyzeSentiment(
-        callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
+      callback: BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+    ): void;
     analyzeSentiment(
-        paramsOrCallback?: Params$Resource$Documents$Analyzesentiment|
-        BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
-        callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>):
-        void|GaxiosPromise<Schema$AnalyzeSentimentResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Documents$Analyzesentiment;
+      paramsOrCallback?:
+        | Params$Resource$Documents$Analyzesentiment
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+    ): void | GaxiosPromise<Schema$AnalyzeSentimentResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Analyzesentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -678,16 +703,19 @@ export namespace language_v1beta1 {
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/documents:analyzeSentiment')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/documents:analyzeSentiment').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters, callback);
@@ -695,7 +723,6 @@ export namespace language_v1beta1 {
         return createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters);
       }
     }
-
 
     /**
      * language.documents.analyzeSyntax
@@ -712,27 +739,34 @@ export namespace language_v1beta1 {
      * @return {object} Request object
      */
     analyzeSyntax(
-        params?: Params$Resource$Documents$Analyzesyntax,
-        options?: MethodOptions): GaxiosPromise<Schema$AnalyzeSyntaxResponse>;
+      params?: Params$Resource$Documents$Analyzesyntax,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeSyntaxResponse>;
     analyzeSyntax(
-        params: Params$Resource$Documents$Analyzesyntax,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
-        callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>): void;
+      params: Params$Resource$Documents$Analyzesyntax,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+    ): void;
     analyzeSyntax(
-        params: Params$Resource$Documents$Analyzesyntax,
-        callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>): void;
-    analyzeSyntax(callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>):
-        void;
+      params: Params$Resource$Documents$Analyzesyntax,
+      callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+    ): void;
     analyzeSyntax(
-        paramsOrCallback?: Params$Resource$Documents$Analyzesyntax|
-        BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
-        callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>):
-        void|GaxiosPromise<Schema$AnalyzeSyntaxResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Documents$Analyzesyntax;
+      callback: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+    ): void;
+    analyzeSyntax(
+      paramsOrCallback?:
+        | Params$Resource$Documents$Analyzesyntax
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+    ): void | GaxiosPromise<Schema$AnalyzeSyntaxResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Analyzesyntax;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -749,16 +783,19 @@ export namespace language_v1beta1 {
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/documents:analyzeSyntax')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/documents:analyzeSyntax').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters, callback);
@@ -766,7 +803,6 @@ export namespace language_v1beta1 {
         return createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters);
       }
     }
-
 
     /**
      * language.documents.annotateText
@@ -782,27 +818,34 @@ export namespace language_v1beta1 {
      * @return {object} Request object
      */
     annotateText(
-        params?: Params$Resource$Documents$Annotatetext,
-        options?: MethodOptions): GaxiosPromise<Schema$AnnotateTextResponse>;
+      params?: Params$Resource$Documents$Annotatetext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotateTextResponse>;
     annotateText(
-        params: Params$Resource$Documents$Annotatetext,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AnnotateTextResponse>,
-        callback: BodyResponseCallback<Schema$AnnotateTextResponse>): void;
+      params: Params$Resource$Documents$Annotatetext,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnnotateTextResponse>,
+      callback: BodyResponseCallback<Schema$AnnotateTextResponse>
+    ): void;
     annotateText(
-        params: Params$Resource$Documents$Annotatetext,
-        callback: BodyResponseCallback<Schema$AnnotateTextResponse>): void;
-    annotateText(callback: BodyResponseCallback<Schema$AnnotateTextResponse>):
-        void;
+      params: Params$Resource$Documents$Annotatetext,
+      callback: BodyResponseCallback<Schema$AnnotateTextResponse>
+    ): void;
     annotateText(
-        paramsOrCallback?: Params$Resource$Documents$Annotatetext|
-        BodyResponseCallback<Schema$AnnotateTextResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnnotateTextResponse>,
-        callback?: BodyResponseCallback<Schema$AnnotateTextResponse>):
-        void|GaxiosPromise<Schema$AnnotateTextResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Documents$Annotatetext;
+      callback: BodyResponseCallback<Schema$AnnotateTextResponse>
+    ): void;
+    annotateText(
+      paramsOrCallback?:
+        | Params$Resource$Documents$Annotatetext
+        | BodyResponseCallback<Schema$AnnotateTextResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnnotateTextResponse>,
+      callback?: BodyResponseCallback<Schema$AnnotateTextResponse>
+    ): void | GaxiosPromise<Schema$AnnotateTextResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Annotatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -819,16 +862,19 @@ export namespace language_v1beta1 {
       const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/documents:annotateText')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/documents:annotateText').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnnotateTextResponse>(parameters, callback);
@@ -838,52 +884,48 @@ export namespace language_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Documents$Analyzeentities extends
-      StandardParameters {
+  export interface Params$Resource$Documents$Analyzeentities
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeEntitiesRequest;
   }
-  export interface Params$Resource$Documents$Analyzesentiment extends
-      StandardParameters {
+  export interface Params$Resource$Documents$Analyzesentiment
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeSentimentRequest;
   }
-  export interface Params$Resource$Documents$Analyzesyntax extends
-      StandardParameters {
+  export interface Params$Resource$Documents$Analyzesyntax
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeSyntaxRequest;
   }
-  export interface Params$Resource$Documents$Annotatetext extends
-      StandardParameters {
+  export interface Params$Resource$Documents$Annotatetext
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

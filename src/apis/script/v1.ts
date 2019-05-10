@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -613,7 +625,7 @@ export namespace script_v1 {
      * If the script function returns successfully, this field contains an
      * ExecutionResponse object with the function&#39;s return value.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * The script project resource.
@@ -680,7 +692,7 @@ export namespace script_v1 {
      * An array that contains a single ExecutionError object that provides
      * information about the nature of the error.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which is in English. Any user-facing
      * error message is localized and sent in the details field, or localized by
@@ -723,13 +735,11 @@ export namespace script_v1 {
     versionNumber?: number;
   }
 
-
   export class Resource$Processes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * script.processes.list
@@ -754,25 +764,33 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Processes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListUserProcessesResponse>;
     list(
-        params: Params$Resource$Processes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListUserProcessesResponse>,
-        callback: BodyResponseCallback<Schema$ListUserProcessesResponse>): void;
+      params?: Params$Resource$Processes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserProcessesResponse>;
     list(
-        params: Params$Resource$Processes$List,
-        callback: BodyResponseCallback<Schema$ListUserProcessesResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListUserProcessesResponse>):
-        void;
+      params: Params$Resource$Processes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserProcessesResponse>,
+      callback: BodyResponseCallback<Schema$ListUserProcessesResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Processes$List|
-        BodyResponseCallback<Schema$ListUserProcessesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListUserProcessesResponse>,
-        callback?: BodyResponseCallback<Schema$ListUserProcessesResponse>):
-        void|GaxiosPromise<Schema$ListUserProcessesResponse> {
+      params: Params$Resource$Processes$List,
+      callback: BodyResponseCallback<Schema$ListUserProcessesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserProcessesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Processes$List
+        | BodyResponseCallback<Schema$ListUserProcessesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserProcessesResponse>,
+      callback?: BodyResponseCallback<Schema$ListUserProcessesResponse>
+    ): void | GaxiosPromise<Schema$ListUserProcessesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Processes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -790,24 +808,26 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/processes').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/processes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListUserProcessesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListUserProcessesResponse>(parameters);
       }
     }
-
 
     /**
      * script.processes.listScriptProcesses
@@ -832,31 +852,34 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     listScriptProcesses(
-        params?: Params$Resource$Processes$Listscriptprocesses,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListScriptProcessesResponse>;
+      params?: Params$Resource$Processes$Listscriptprocesses,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListScriptProcessesResponse>;
     listScriptProcesses(
-        params: Params$Resource$Processes$Listscriptprocesses,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListScriptProcessesResponse>,
-        callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
-        void;
+      params: Params$Resource$Processes$Listscriptprocesses,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScriptProcessesResponse>,
+      callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>
+    ): void;
     listScriptProcesses(
-        params: Params$Resource$Processes$Listscriptprocesses,
-        callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
-        void;
+      params: Params$Resource$Processes$Listscriptprocesses,
+      callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>
+    ): void;
     listScriptProcesses(
-        callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$ListScriptProcessesResponse>
+    ): void;
     listScriptProcesses(
-        paramsOrCallback?: Params$Resource$Processes$Listscriptprocesses|
-        BodyResponseCallback<Schema$ListScriptProcessesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListScriptProcessesResponse>,
-        callback?: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
-        void|GaxiosPromise<Schema$ListScriptProcessesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Processes$Listscriptprocesses;
+      paramsOrCallback?:
+        | Params$Resource$Processes$Listscriptprocesses
+        | BodyResponseCallback<Schema$ListScriptProcessesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListScriptProcessesResponse>,
+      callback?: BodyResponseCallback<Schema$ListScriptProcessesResponse>
+    ): void | GaxiosPromise<Schema$ListScriptProcessesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Processes$Listscriptprocesses;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -873,20 +896,25 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/processes:listScriptProcesses')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/processes:listScriptProcesses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListScriptProcessesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListScriptProcessesResponse>(parameters);
       }
@@ -897,7 +925,7 @@ export namespace script_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of returned processes per page of results. Defaults
@@ -955,12 +983,12 @@ export namespace script_v1 {
      */
     'userProcessFilter.userAccessLevels'?: string[];
   }
-  export interface Params$Resource$Processes$Listscriptprocesses extends
-      StandardParameters {
+  export interface Params$Resource$Processes$Listscriptprocesses
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of returned processes per page of results. Defaults
@@ -1013,7 +1041,6 @@ export namespace script_v1 {
     'scriptProcessFilter.userAccessLevels'?: string[];
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     deployments: Resource$Projects$Deployments;
@@ -1023,7 +1050,6 @@ export namespace script_v1 {
       this.deployments = new Resource$Projects$Deployments(this.context);
       this.versions = new Resource$Projects$Versions(this.context);
     }
-
 
     /**
      * script.projects.create
@@ -1038,22 +1064,27 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Projects$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Project>;
     create(
-        params: Params$Resource$Projects$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
+      params?: Params$Resource$Projects$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
     create(
-        params: Params$Resource$Projects$Create,
-        callback: BodyResponseCallback<Schema$Project>): void;
+      params: Params$Resource$Projects$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Create,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Project>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Create|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Create
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1071,15 +1102,16 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1087,7 +1119,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Project>(parameters);
       }
     }
-
 
     /**
      * script.projects.get
@@ -1101,19 +1132,27 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Project>;
-    get(params: Params$Resource$Projects$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
-    get(params: Params$Resource$Projects$Get,
-        callback: BodyResponseCallback<Schema$Project>): void;
+    get(
+      params?: Params$Resource$Projects$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Get,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Project>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Get|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Get
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1131,16 +1170,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1148,7 +1190,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Project>(parameters);
       }
     }
-
 
     /**
      * script.projects.getContent
@@ -1165,24 +1206,28 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     getContent(
-        params?: Params$Resource$Projects$Getcontent,
-        options?: MethodOptions): GaxiosPromise<Schema$Content>;
+      params?: Params$Resource$Projects$Getcontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Content>;
     getContent(
-        params: Params$Resource$Projects$Getcontent,
-        options: MethodOptions|BodyResponseCallback<Schema$Content>,
-        callback: BodyResponseCallback<Schema$Content>): void;
+      params: Params$Resource$Projects$Getcontent,
+      options: MethodOptions | BodyResponseCallback<Schema$Content>,
+      callback: BodyResponseCallback<Schema$Content>
+    ): void;
     getContent(
-        params: Params$Resource$Projects$Getcontent,
-        callback: BodyResponseCallback<Schema$Content>): void;
+      params: Params$Resource$Projects$Getcontent,
+      callback: BodyResponseCallback<Schema$Content>
+    ): void;
     getContent(callback: BodyResponseCallback<Schema$Content>): void;
     getContent(
-        paramsOrCallback?: Params$Resource$Projects$Getcontent|
-        BodyResponseCallback<Schema$Content>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Content>,
-        callback?: BodyResponseCallback<Schema$Content>):
-        void|GaxiosPromise<Schema$Content> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getcontent;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getcontent
+        | BodyResponseCallback<Schema$Content>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Content>,
+      callback?: BodyResponseCallback<Schema$Content>
+    ): void | GaxiosPromise<Schema$Content> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getcontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1199,16 +1244,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}/content')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}/content').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1216,7 +1264,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Content>(parameters);
       }
     }
-
 
     /**
      * script.projects.getMetrics
@@ -1234,24 +1281,28 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     getMetrics(
-        params?: Params$Resource$Projects$Getmetrics,
-        options?: MethodOptions): GaxiosPromise<Schema$Metrics>;
+      params?: Params$Resource$Projects$Getmetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Metrics>;
     getMetrics(
-        params: Params$Resource$Projects$Getmetrics,
-        options: MethodOptions|BodyResponseCallback<Schema$Metrics>,
-        callback: BodyResponseCallback<Schema$Metrics>): void;
+      params: Params$Resource$Projects$Getmetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$Metrics>,
+      callback: BodyResponseCallback<Schema$Metrics>
+    ): void;
     getMetrics(
-        params: Params$Resource$Projects$Getmetrics,
-        callback: BodyResponseCallback<Schema$Metrics>): void;
+      params: Params$Resource$Projects$Getmetrics,
+      callback: BodyResponseCallback<Schema$Metrics>
+    ): void;
     getMetrics(callback: BodyResponseCallback<Schema$Metrics>): void;
     getMetrics(
-        paramsOrCallback?: Params$Resource$Projects$Getmetrics|
-        BodyResponseCallback<Schema$Metrics>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Metrics>,
-        callback?: BodyResponseCallback<Schema$Metrics>):
-        void|GaxiosPromise<Schema$Metrics> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getmetrics;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getmetrics
+        | BodyResponseCallback<Schema$Metrics>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metrics>,
+      callback?: BodyResponseCallback<Schema$Metrics>
+    ): void | GaxiosPromise<Schema$Metrics> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1268,16 +1319,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}/metrics')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}/metrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Metrics>(parameters, callback);
@@ -1285,7 +1339,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Metrics>(parameters);
       }
     }
-
 
     /**
      * script.projects.updateContent
@@ -1305,24 +1358,28 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     updateContent(
-        params?: Params$Resource$Projects$Updatecontent,
-        options?: MethodOptions): GaxiosPromise<Schema$Content>;
+      params?: Params$Resource$Projects$Updatecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Content>;
     updateContent(
-        params: Params$Resource$Projects$Updatecontent,
-        options: MethodOptions|BodyResponseCallback<Schema$Content>,
-        callback: BodyResponseCallback<Schema$Content>): void;
+      params: Params$Resource$Projects$Updatecontent,
+      options: MethodOptions | BodyResponseCallback<Schema$Content>,
+      callback: BodyResponseCallback<Schema$Content>
+    ): void;
     updateContent(
-        params: Params$Resource$Projects$Updatecontent,
-        callback: BodyResponseCallback<Schema$Content>): void;
+      params: Params$Resource$Projects$Updatecontent,
+      callback: BodyResponseCallback<Schema$Content>
+    ): void;
     updateContent(callback: BodyResponseCallback<Schema$Content>): void;
     updateContent(
-        paramsOrCallback?: Params$Resource$Projects$Updatecontent|
-        BodyResponseCallback<Schema$Content>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Content>,
-        callback?: BodyResponseCallback<Schema$Content>):
-        void|GaxiosPromise<Schema$Content> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Updatecontent;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updatecontent
+        | BodyResponseCallback<Schema$Content>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Content>,
+      callback?: BodyResponseCallback<Schema$Content>
+    ): void | GaxiosPromise<Schema$Content> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updatecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1339,16 +1396,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}/content')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}/content').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1362,8 +1422,7 @@ export namespace script_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1374,19 +1433,19 @@ export namespace script_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The script project's Drive ID.
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Getcontent extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getcontent
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The script project's Drive ID.
@@ -1398,12 +1457,12 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Getmetrics extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getmetrics
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional field indicating a specific deployment to retrieve metrics from.
@@ -1418,12 +1477,12 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Updatecontent extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Updatecontent
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The script project's Drive ID.
@@ -1442,7 +1501,6 @@ export namespace script_v1 {
       this.context = context;
     }
 
-
     /**
      * script.projects.deployments.create
      * @desc Creates a deployment of an Apps Script project.
@@ -1457,25 +1515,30 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Deployments$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
+      params?: Params$Resource$Projects$Deployments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Deployment>;
     create(
-        params: Params$Resource$Projects$Deployments$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
+      params: Params$Resource$Projects$Deployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
     create(
-        params: Params$Resource$Projects$Deployments$Create,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
+      params: Params$Resource$Projects$Deployments$Create,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Deployment>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Deployments$Create|
-        BodyResponseCallback<Schema$Deployment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>):
-        void|GaxiosPromise<Schema$Deployment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Deployments$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deployments$Create
+        | BodyResponseCallback<Schema$Deployment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Deployment>,
+      callback?: BodyResponseCallback<Schema$Deployment>
+    ): void | GaxiosPromise<Schema$Deployment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1492,16 +1555,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}/deployments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1509,7 +1575,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Deployment>(parameters);
       }
     }
-
 
     /**
      * script.projects.deployments.delete
@@ -1525,24 +1590,28 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Deployments$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Deployments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Deployments$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Deployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Deployments$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Deployments$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Deployments$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Deployments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deployments$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1559,17 +1628,18 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/projects/{scriptId}/deployments/{deploymentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{scriptId}/deployments/{deploymentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1577,7 +1647,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * script.projects.deployments.get
@@ -1592,22 +1661,31 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Deployments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
-    get(params: Params$Resource$Projects$Deployments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
-    get(params: Params$Resource$Projects$Deployments$Get,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(
+      params?: Params$Resource$Projects$Deployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Deployment>;
+    get(
+      params: Params$Resource$Projects$Deployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Deployments$Get,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Deployment>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Deployments$Get|
-        BodyResponseCallback<Schema$Deployment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>):
-        void|GaxiosPromise<Schema$Deployment> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Deployments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deployments$Get
+        | BodyResponseCallback<Schema$Deployment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Deployment>,
+      callback?: BodyResponseCallback<Schema$Deployment>
+    ): void | GaxiosPromise<Schema$Deployment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1624,17 +1702,18 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/projects/{scriptId}/deployments/{deploymentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{scriptId}/deployments/{deploymentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1642,7 +1721,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Deployment>(parameters);
       }
     }
-
 
     /**
      * script.projects.deployments.list
@@ -1659,26 +1737,32 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Deployments$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDeploymentsResponse>;
+      params?: Params$Resource$Projects$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDeploymentsResponse>;
     list(
-        params: Params$Resource$Projects$Deployments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDeploymentsResponse>,
-        callback: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
+      params: Params$Resource$Projects$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$ListDeploymentsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Deployments$List,
-        callback: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
+      params: Params$Resource$Projects$Deployments$List,
+      callback: BodyResponseCallback<Schema$ListDeploymentsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Deployments$List|
-        BodyResponseCallback<Schema$ListDeploymentsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDeploymentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDeploymentsResponse>):
-        void|GaxiosPromise<Schema$ListDeploymentsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Deployments$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deployments$List
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDeploymentsResponse>
+    ): void | GaxiosPromise<Schema$ListDeploymentsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1695,16 +1779,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}/deployments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDeploymentsResponse>(parameters, callback);
@@ -1712,7 +1799,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$ListDeploymentsResponse>(parameters);
       }
     }
-
 
     /**
      * script.projects.deployments.update
@@ -1729,25 +1815,30 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Deployments$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
+      params?: Params$Resource$Projects$Deployments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Deployment>;
     update(
-        params: Params$Resource$Projects$Deployments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
+      params: Params$Resource$Projects$Deployments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
     update(
-        params: Params$Resource$Projects$Deployments$Update,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
+      params: Params$Resource$Projects$Deployments$Update,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Deployment>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Deployments$Update|
-        BodyResponseCallback<Schema$Deployment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>):
-        void|GaxiosPromise<Schema$Deployment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Deployments$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deployments$Update
+        | BodyResponseCallback<Schema$Deployment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Deployment>,
+      callback?: BodyResponseCallback<Schema$Deployment>
+    ): void | GaxiosPromise<Schema$Deployment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1764,17 +1855,18 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/projects/{scriptId}/deployments/{deploymentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{scriptId}/deployments/{deploymentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1784,12 +1876,12 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Deployments$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The script project's Drive ID.
@@ -1801,12 +1893,12 @@ export namespace script_v1 {
      */
     requestBody?: Schema$DeploymentConfig;
   }
-  export interface Params$Resource$Projects$Deployments$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The deployment ID to be undeployed.
@@ -1817,12 +1909,12 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The deployment ID.
@@ -1833,12 +1925,12 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Deployments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of deployments on each returned page. Defaults to 50.
@@ -1854,12 +1946,12 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Deployments$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The deployment ID for this deployment.
@@ -1876,13 +1968,11 @@ export namespace script_v1 {
     requestBody?: Schema$UpdateDeploymentRequest;
   }
 
-
   export class Resource$Projects$Versions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * script.projects.versions.create
@@ -1899,24 +1989,28 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Versions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Version>;
+      params?: Params$Resource$Projects$Versions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
     create(
-        params: Params$Resource$Projects$Versions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback: BodyResponseCallback<Schema$Version>): void;
+      params: Params$Resource$Projects$Versions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     create(
-        params: Params$Resource$Projects$Versions$Create,
-        callback: BodyResponseCallback<Schema$Version>): void;
+      params: Params$Resource$Projects$Versions$Create,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Version>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Versions$Create|
-        BodyResponseCallback<Schema$Version>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>):
-        void|GaxiosPromise<Schema$Version> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Versions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Versions$Create
+        | BodyResponseCallback<Schema$Version>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback?: BodyResponseCallback<Schema$Version>
+    ): void | GaxiosPromise<Schema$Version> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1933,16 +2027,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}/versions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1950,7 +2047,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Version>(parameters);
       }
     }
-
 
     /**
      * script.projects.versions.get
@@ -1965,21 +2061,29 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Versions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Version>;
-    get(params: Params$Resource$Projects$Versions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback: BodyResponseCallback<Schema$Version>): void;
-    get(params: Params$Resource$Projects$Versions$Get,
-        callback: BodyResponseCallback<Schema$Version>): void;
+    get(
+      params?: Params$Resource$Projects$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
+    get(
+      params: Params$Resource$Projects$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Versions$Get,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Version>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Versions$Get|
-        BodyResponseCallback<Schema$Version>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>):
-        void|GaxiosPromise<Schema$Version> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Versions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Versions$Get
+        | BodyResponseCallback<Schema$Version>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback?: BodyResponseCallback<Schema$Version>
+    ): void | GaxiosPromise<Schema$Version> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1996,17 +2100,18 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/projects/{scriptId}/versions/{versionNumber}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{scriptId}/versions/{versionNumber}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId', 'versionNumber'],
         pathParams: ['scriptId', 'versionNumber'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2014,7 +2119,6 @@ export namespace script_v1 {
         return createAPIRequest<Schema$Version>(parameters);
       }
     }
-
 
     /**
      * script.projects.versions.list
@@ -2031,26 +2135,32 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Versions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListVersionsResponse>;
+      params?: Params$Resource$Projects$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListVersionsResponse>;
     list(
-        params: Params$Resource$Projects$Versions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListVersionsResponse>,
-        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+      params: Params$Resource$Projects$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListVersionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Versions$List,
-        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+      params: Params$Resource$Projects$Versions$List,
+      callback: BodyResponseCallback<Schema$ListVersionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Versions$List|
-        BodyResponseCallback<Schema$ListVersionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListVersionsResponse>):
-        void|GaxiosPromise<Schema$ListVersionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Versions$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Versions$List
+        | BodyResponseCallback<Schema$ListVersionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListVersionsResponse>
+    ): void | GaxiosPromise<Schema$ListVersionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2067,16 +2177,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{scriptId}/versions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{scriptId}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
@@ -2086,12 +2199,12 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Versions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Versions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The script project's Drive ID.
@@ -2103,12 +2216,12 @@ export namespace script_v1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Projects$Versions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Versions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The script project's Drive ID.
@@ -2119,12 +2232,12 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Versions$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Versions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of versions on each returned page. Defaults to 50.
@@ -2141,14 +2254,11 @@ export namespace script_v1 {
     scriptId?: string;
   }
 
-
-
   export class Resource$Scripts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * script.scripts.run
@@ -2174,20 +2284,29 @@ export namespace script_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: Params$Resource$Scripts$Run,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    run(params: Params$Resource$Scripts$Run,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    run(params: Params$Resource$Scripts$Run,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      params?: Params$Resource$Scripts$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Scripts$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Scripts$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     run(callback: BodyResponseCallback<Schema$Operation>): void;
-    run(paramsOrCallback?: Params$Resource$Scripts$Run|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Scripts$Run
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scripts$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2205,16 +2324,19 @@ export namespace script_v1 {
       const rootUrl = options.rootUrl || 'https://script.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/scripts/{scriptId}:run')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/scripts/{scriptId}:run').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2228,7 +2350,7 @@ export namespace script_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The script ID of the script to be executed. To find the script ID, open

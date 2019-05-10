@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -138,7 +150,7 @@ export namespace cloudtrace_v2 {
      * &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;:
      * true
      */
-    attributeMap?: {[key: string]: Schema$AttributeValue;};
+    attributeMap?: {[key: string]: Schema$AttributeValue};
     /**
      * The number of attributes that were discarded. Attributes can be discarded
      * because their keys are too long or because there are too many attributes.
@@ -458,7 +470,7 @@ export namespace cloudtrace_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -524,7 +536,6 @@ export namespace cloudtrace_v2 {
     value?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     traces: Resource$Projects$Traces;
@@ -534,7 +545,6 @@ export namespace cloudtrace_v2 {
     }
   }
 
-
   export class Resource$Projects$Traces {
     context: APIRequestContext;
     spans: Resource$Projects$Traces$Spans;
@@ -542,7 +552,6 @@ export namespace cloudtrace_v2 {
       this.context = context;
       this.spans = new Resource$Projects$Traces$Spans(this.context);
     }
-
 
     /**
      * cloudtrace.projects.traces.batchWrite
@@ -559,24 +568,28 @@ export namespace cloudtrace_v2 {
      * @return {object} Request object
      */
     batchWrite(
-        params?: Params$Resource$Projects$Traces$Batchwrite,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Traces$Batchwrite,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     batchWrite(
-        params: Params$Resource$Projects$Traces$Batchwrite,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Traces$Batchwrite,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     batchWrite(
-        params: Params$Resource$Projects$Traces$Batchwrite,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Traces$Batchwrite,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     batchWrite(callback: BodyResponseCallback<Schema$Empty>): void;
     batchWrite(
-        paramsOrCallback?: Params$Resource$Projects$Traces$Batchwrite|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Traces$Batchwrite;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Traces$Batchwrite
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Traces$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -593,16 +606,19 @@ export namespace cloudtrace_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}/traces:batchWrite')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}/traces:batchWrite').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -612,12 +628,12 @@ export namespace cloudtrace_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Traces$Batchwrite extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Traces$Batchwrite
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the project where the spans belong. The format is
@@ -637,7 +653,6 @@ export namespace cloudtrace_v2 {
       this.context = context;
     }
 
-
     /**
      * cloudtrace.projects.traces.spans.createSpan
      * @desc Creates a new span.
@@ -652,24 +667,28 @@ export namespace cloudtrace_v2 {
      * @return {object} Request object
      */
     createSpan(
-        params?: Params$Resource$Projects$Traces$Spans$Createspan,
-        options?: MethodOptions): GaxiosPromise<Schema$Span>;
+      params?: Params$Resource$Projects$Traces$Spans$Createspan,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Span>;
     createSpan(
-        params: Params$Resource$Projects$Traces$Spans$Createspan,
-        options: MethodOptions|BodyResponseCallback<Schema$Span>,
-        callback: BodyResponseCallback<Schema$Span>): void;
+      params: Params$Resource$Projects$Traces$Spans$Createspan,
+      options: MethodOptions | BodyResponseCallback<Schema$Span>,
+      callback: BodyResponseCallback<Schema$Span>
+    ): void;
     createSpan(
-        params: Params$Resource$Projects$Traces$Spans$Createspan,
-        callback: BodyResponseCallback<Schema$Span>): void;
+      params: Params$Resource$Projects$Traces$Spans$Createspan,
+      callback: BodyResponseCallback<Schema$Span>
+    ): void;
     createSpan(callback: BodyResponseCallback<Schema$Span>): void;
     createSpan(
-        paramsOrCallback?: Params$Resource$Projects$Traces$Spans$Createspan|
-        BodyResponseCallback<Schema$Span>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Span>,
-        callback?: BodyResponseCallback<Schema$Span>):
-        void|GaxiosPromise<Schema$Span> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Traces$Spans$Createspan;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Traces$Spans$Createspan
+        | BodyResponseCallback<Schema$Span>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Span>,
+      callback?: BodyResponseCallback<Schema$Span>
+    ): void | GaxiosPromise<Schema$Span> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Traces$Spans$Createspan;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -686,15 +705,16 @@ export namespace cloudtrace_v2 {
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Span>(parameters, callback);
@@ -704,12 +724,12 @@ export namespace cloudtrace_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Traces$Spans$Createspan extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Traces$Spans$Createspan
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the span in the following format:

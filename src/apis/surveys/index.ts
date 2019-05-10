@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {surveys_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': surveys_v2.Surveys,
+  v2: surveys_v2.Surveys,
 };
 
 export function surveys(version: 'v2'): surveys_v2.Surveys;
 export function surveys(options: surveys_v2.Options): surveys_v2.Surveys;
 export function surveys<T = surveys_v2.Surveys>(
-    this: GoogleConfigurable, versionOrOptions: 'v2'|surveys_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | surveys_v2.Options
+) {
   return getAPI<T>('surveys', versionOrOptions, VERSIONS, this);
 }
 

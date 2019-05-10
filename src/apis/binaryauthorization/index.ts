@@ -17,18 +17,21 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {binaryauthorization_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1beta1': binaryauthorization_v1beta1.Binaryauthorization,
+  v1beta1: binaryauthorization_v1beta1.Binaryauthorization,
 };
 
-export function binaryauthorization(version: 'v1beta1'):
-    binaryauthorization_v1beta1.Binaryauthorization;
 export function binaryauthorization(
-    options: binaryauthorization_v1beta1.Options):
-    binaryauthorization_v1beta1.Binaryauthorization;
-export function
-binaryauthorization<T = binaryauthorization_v1beta1.Binaryauthorization>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|binaryauthorization_v1beta1.Options) {
+  version: 'v1beta1'
+): binaryauthorization_v1beta1.Binaryauthorization;
+export function binaryauthorization(
+  options: binaryauthorization_v1beta1.Options
+): binaryauthorization_v1beta1.Binaryauthorization;
+export function binaryauthorization<
+  T = binaryauthorization_v1beta1.Binaryauthorization
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta1' | binaryauthorization_v1beta1.Options
+) {
   return getAPI<T>('binaryauthorization', versionOrOptions, VERSIONS, this);
 }
 

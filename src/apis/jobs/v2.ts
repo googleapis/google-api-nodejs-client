@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -624,7 +636,7 @@ export namespace jobs_v2 {
      * Stores a map from the values of string custom field associated with `key`
      * to the number of jobs with that value in this histogram result.
      */
-    stringValueHistogramResult?: {[key: string]: number;};
+    stringValueHistogramResult?: {[key: string]: number};
   }
   /**
    * Resource that represents the custom data not captured by the standard
@@ -755,8 +767,7 @@ export namespace jobs_v2 {
     /**
      * Output only.  Annualized base compensation range.
      */
-    annualizedBaseCompensationRange?:
-        Schema$ExtendedCompensationInfoCompensationRange;
+    annualizedBaseCompensationRange?: Schema$ExtendedCompensationInfoCompensationRange;
     /**
      * Output only.  Indicates annualized base compensation range cannot be
      * derived, due to the job&#39;s base compensation entry cannot be
@@ -767,8 +778,7 @@ export namespace jobs_v2 {
     /**
      * Output only.  Annualized total compensation range.
      */
-    annualizedTotalCompensationRange?:
-        Schema$ExtendedCompensationInfoCompensationRange;
+    annualizedTotalCompensationRange?: Schema$ExtendedCompensationInfoCompensationRange;
     /**
      * Output only.  Indicates annualized total compensation range cannot be
      * derived, due to the job&#39;s all CompensationEntry cannot be annualized.
@@ -966,7 +976,7 @@ export namespace jobs_v2 {
      * companyName).  Values: the count of jobs that match the filter for this
      * search.
      */
-    values?: {[key: string]: number;};
+    values?: {[key: string]: number};
   }
   /**
    * Output only.  Histogram results that matches HistogramFacets specified in
@@ -1059,7 +1069,7 @@ export namespace jobs_v2 {
      * than 255 characters. For unfilterable `string_values`, the maximum total
      * size of `string_values` across all keys is 50KB.
      */
-    customAttributes?: {[key: string]: Schema$CustomAttribute;};
+    customAttributes?: {[key: string]: Schema$CustomAttribute};
     /**
      * Optional.  The department or functional area within the company with the
      * open position.  The maximum number of allowed characters is 255.
@@ -1177,7 +1187,7 @@ export namespace jobs_v2 {
      * between 1-20. If an invalid key is provided on job create or update, an
      * error is returned.
      */
-    filterableCustomFields?: {[key: string]: Schema$CustomField;};
+    filterableCustomFields?: {[key: string]: Schema$CustomField};
     /**
      * Optional.  A description of bonus, commission, and other compensation
      * incentives associated with the job not including salary or pay.  The
@@ -1297,7 +1307,7 @@ export namespace jobs_v2 {
      * them, nor can the client use them to list jobs.  The key of the map can
      * be any valid string.
      */
-    unindexedCustomFields?: {[key: string]: Schema$CustomField;};
+    unindexedCustomFields?: {[key: string]: Schema$CustomField};
     /**
      * Output only.  The timestamp when this job was last updated.
      */
@@ -1376,7 +1386,7 @@ export namespace jobs_v2 {
      * to the desired custom field map value. If an invalid key is provided or
      * specified together with custom_attribute_filter, an error is thrown.
      */
-    customFieldFilters?: {[key: string]: Schema$CustomFieldFilter;};
+    customFieldFilters?: {[key: string]: Schema$CustomFieldFilter};
     /**
      * Optional.  This flag controls the spell-check feature. If false, the
      * service attempts to correct a misspelled query, for example,
@@ -2207,7 +2217,6 @@ export namespace jobs_v2 {
     updateJobFields?: string;
   }
 
-
   export class Resource$Companies {
     context: APIRequestContext;
     jobs: Resource$Companies$Jobs;
@@ -2215,7 +2224,6 @@ export namespace jobs_v2 {
       this.context = context;
       this.jobs = new Resource$Companies$Jobs(this.context);
     }
-
 
     /**
      * jobs.companies.create
@@ -2229,22 +2237,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Companies$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Company>;
     create(
-        params: Params$Resource$Companies$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Company>,
-        callback: BodyResponseCallback<Schema$Company>): void;
+      params?: Params$Resource$Companies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Company>;
     create(
-        params: Params$Resource$Companies$Create,
-        callback: BodyResponseCallback<Schema$Company>): void;
+      params: Params$Resource$Companies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Company>,
+      callback: BodyResponseCallback<Schema$Company>
+    ): void;
+    create(
+      params: Params$Resource$Companies$Create,
+      callback: BodyResponseCallback<Schema$Company>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Company>): void;
     create(
-        paramsOrCallback?: Params$Resource$Companies$Create|
-        BodyResponseCallback<Schema$Company>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Company>,
-        callback?: BodyResponseCallback<Schema$Company>):
-        void|GaxiosPromise<Schema$Company> {
+      paramsOrCallback?:
+        | Params$Resource$Companies$Create
+        | BodyResponseCallback<Schema$Company>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Company>,
+      callback?: BodyResponseCallback<Schema$Company>
+    ): void | GaxiosPromise<Schema$Company> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2262,15 +2275,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/companies').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/companies').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2278,7 +2292,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Company>(parameters);
       }
     }
-
 
     /**
      * jobs.companies.delete
@@ -2292,22 +2305,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Companies$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Companies$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Companies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Companies$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Companies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Companies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Companies$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Companies$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2325,15 +2343,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2341,7 +2360,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * jobs.companies.get
@@ -2355,19 +2373,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Companies$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Company>;
-    get(params: Params$Resource$Companies$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Company>,
-        callback: BodyResponseCallback<Schema$Company>): void;
-    get(params: Params$Resource$Companies$Get,
-        callback: BodyResponseCallback<Schema$Company>): void;
+    get(
+      params?: Params$Resource$Companies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Company>;
+    get(
+      params: Params$Resource$Companies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Company>,
+      callback: BodyResponseCallback<Schema$Company>
+    ): void;
+    get(
+      params: Params$Resource$Companies$Get,
+      callback: BodyResponseCallback<Schema$Company>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Company>): void;
-    get(paramsOrCallback?: Params$Resource$Companies$Get|
-        BodyResponseCallback<Schema$Company>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Company>,
-        callback?: BodyResponseCallback<Schema$Company>):
-        void|GaxiosPromise<Schema$Company> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Companies$Get
+        | BodyResponseCallback<Schema$Company>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Company>,
+      callback?: BodyResponseCallback<Schema$Company>
+    ): void | GaxiosPromise<Schema$Company> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2385,15 +2411,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2401,7 +2428,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Company>(parameters);
       }
     }
-
 
     /**
      * jobs.companies.list
@@ -2418,24 +2444,31 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Companies$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListCompaniesResponse>;
     list(
-        params: Params$Resource$Companies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListCompaniesResponse>,
-        callback: BodyResponseCallback<Schema$ListCompaniesResponse>): void;
+      params?: Params$Resource$Companies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCompaniesResponse>;
     list(
-        params: Params$Resource$Companies$List,
-        callback: BodyResponseCallback<Schema$ListCompaniesResponse>): void;
+      params: Params$Resource$Companies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCompaniesResponse>,
+      callback: BodyResponseCallback<Schema$ListCompaniesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Companies$List,
+      callback: BodyResponseCallback<Schema$ListCompaniesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListCompaniesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Companies$List|
-        BodyResponseCallback<Schema$ListCompaniesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListCompaniesResponse>,
-        callback?: BodyResponseCallback<Schema$ListCompaniesResponse>):
-        void|GaxiosPromise<Schema$ListCompaniesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Companies$List
+        | BodyResponseCallback<Schema$ListCompaniesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCompaniesResponse>,
+      callback?: BodyResponseCallback<Schema$ListCompaniesResponse>
+    ): void | GaxiosPromise<Schema$ListCompaniesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2453,15 +2486,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/companies').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/companies').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListCompaniesResponse>(parameters, callback);
@@ -2469,7 +2503,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$ListCompaniesResponse>(parameters);
       }
     }
-
 
     /**
      * jobs.companies.patch
@@ -2487,22 +2520,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Companies$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Company>;
     patch(
-        params: Params$Resource$Companies$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Company>,
-        callback: BodyResponseCallback<Schema$Company>): void;
+      params?: Params$Resource$Companies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Company>;
     patch(
-        params: Params$Resource$Companies$Patch,
-        callback: BodyResponseCallback<Schema$Company>): void;
+      params: Params$Resource$Companies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Company>,
+      callback: BodyResponseCallback<Schema$Company>
+    ): void;
+    patch(
+      params: Params$Resource$Companies$Patch,
+      callback: BodyResponseCallback<Schema$Company>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Company>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Companies$Patch|
-        BodyResponseCallback<Schema$Company>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Company>,
-        callback?: BodyResponseCallback<Schema$Company>):
-        void|GaxiosPromise<Schema$Company> {
+      paramsOrCallback?:
+        | Params$Resource$Companies$Patch
+        | BodyResponseCallback<Schema$Company>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Company>,
+      callback?: BodyResponseCallback<Schema$Company>
+    ): void | GaxiosPromise<Schema$Company> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2520,15 +2558,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2542,8 +2581,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2554,7 +2592,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The resource name of the company to be deleted, such as,
@@ -2566,7 +2604,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  Resource name of the company to retrieve, such as
@@ -2578,7 +2616,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional.  Set to true if the companies request must have open jobs.
@@ -2600,7 +2638,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required during company update.  The resource name for a company. This is
@@ -2632,7 +2670,6 @@ export namespace jobs_v2 {
       this.context = context;
     }
 
-
     /**
      * jobs.companies.jobs.list
      * @desc Deprecated. Use ListJobs instead.  Lists all jobs associated with a
@@ -2651,26 +2688,33 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Companies$Jobs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListCompanyJobsResponse>;
     list(
-        params: Params$Resource$Companies$Jobs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListCompanyJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListCompanyJobsResponse>): void;
+      params?: Params$Resource$Companies$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCompanyJobsResponse>;
     list(
-        params: Params$Resource$Companies$Jobs$List,
-        callback: BodyResponseCallback<Schema$ListCompanyJobsResponse>): void;
+      params: Params$Resource$Companies$Jobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCompanyJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListCompanyJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Companies$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListCompanyJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListCompanyJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Companies$Jobs$List|
-        BodyResponseCallback<Schema$ListCompanyJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListCompanyJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListCompanyJobsResponse>):
-        void|GaxiosPromise<Schema$ListCompanyJobsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Companies$Jobs$List;
+      paramsOrCallback?:
+        | Params$Resource$Companies$Jobs$List
+        | BodyResponseCallback<Schema$ListCompanyJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCompanyJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCompanyJobsResponse>
+    ): void | GaxiosPromise<Schema$ListCompanyJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Companies$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2687,16 +2731,19 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+companyName}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+companyName}/jobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['companyName'],
         pathParams: ['companyName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListCompanyJobsResponse>(parameters, callback);
@@ -2706,12 +2753,12 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Jobs$List extends
-      StandardParameters {
+  export interface Params$Resource$Companies$Jobs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The resource name of the company that owns the jobs to be
@@ -2748,14 +2795,11 @@ export namespace jobs_v2 {
     pageToken?: string;
   }
 
-
-
   export class Resource$Jobs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * jobs.jobs.batchDelete
@@ -2770,22 +2814,26 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     batchDelete(
-        params?: Params$Resource$Jobs$Batchdelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Jobs$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     batchDelete(
-        params: Params$Resource$Jobs$Batchdelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Jobs$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     batchDelete(
-        params: Params$Resource$Jobs$Batchdelete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Jobs$Batchdelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     batchDelete(callback: BodyResponseCallback<Schema$Empty>): void;
     batchDelete(
-        paramsOrCallback?: Params$Resource$Jobs$Batchdelete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Batchdelete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2803,16 +2851,19 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/jobs:batchDelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/jobs:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2820,7 +2871,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.create
@@ -2835,22 +2885,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Jobs$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Jobs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params?: Params$Resource$Jobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Jobs$Create,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Jobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    create(
+      params: Params$Resource$Jobs$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        paramsOrCallback?: Params$Resource$Jobs$Create|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Create
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2868,15 +2923,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -2884,7 +2940,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.delete
@@ -2900,22 +2955,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Jobs$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Jobs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Jobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Jobs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Jobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Jobs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Jobs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2933,15 +2993,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2949,7 +3010,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.deleteByFilter
@@ -2967,24 +3027,28 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     deleteByFilter(
-        params?: Params$Resource$Jobs$Deletebyfilter,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Jobs$Deletebyfilter,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     deleteByFilter(
-        params: Params$Resource$Jobs$Deletebyfilter,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Jobs$Deletebyfilter,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deleteByFilter(
-        params: Params$Resource$Jobs$Deletebyfilter,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Jobs$Deletebyfilter,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     deleteByFilter(callback: BodyResponseCallback<Schema$Empty>): void;
     deleteByFilter(
-        paramsOrCallback?: Params$Resource$Jobs$Deletebyfilter|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Jobs$Deletebyfilter;
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Deletebyfilter
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Jobs$Deletebyfilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3001,16 +3065,19 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/jobs:deleteByFilter')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/jobs:deleteByFilter').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3018,7 +3085,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.get
@@ -3033,19 +3099,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Jobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    get(params: Params$Resource$Jobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    get(params: Params$Resource$Jobs$Get,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      params?: Params$Resource$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Job>): void;
-    get(paramsOrCallback?: Params$Resource$Jobs$Get|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Get
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3063,15 +3137,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3079,7 +3154,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.histogram
@@ -3100,25 +3174,33 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    histogram(params?: Params$Resource$Jobs$Histogram, options?: MethodOptions):
-        GaxiosPromise<Schema$GetHistogramResponse>;
     histogram(
-        params: Params$Resource$Jobs$Histogram,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetHistogramResponse>,
-        callback: BodyResponseCallback<Schema$GetHistogramResponse>): void;
+      params?: Params$Resource$Jobs$Histogram,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetHistogramResponse>;
     histogram(
-        params: Params$Resource$Jobs$Histogram,
-        callback: BodyResponseCallback<Schema$GetHistogramResponse>): void;
-    histogram(callback: BodyResponseCallback<Schema$GetHistogramResponse>):
-        void;
+      params: Params$Resource$Jobs$Histogram,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetHistogramResponse>,
+      callback: BodyResponseCallback<Schema$GetHistogramResponse>
+    ): void;
     histogram(
-        paramsOrCallback?: Params$Resource$Jobs$Histogram|
-        BodyResponseCallback<Schema$GetHistogramResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetHistogramResponse>,
-        callback?: BodyResponseCallback<Schema$GetHistogramResponse>):
-        void|GaxiosPromise<Schema$GetHistogramResponse> {
+      params: Params$Resource$Jobs$Histogram,
+      callback: BodyResponseCallback<Schema$GetHistogramResponse>
+    ): void;
+    histogram(
+      callback: BodyResponseCallback<Schema$GetHistogramResponse>
+    ): void;
+    histogram(
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Histogram
+        | BodyResponseCallback<Schema$GetHistogramResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetHistogramResponse>,
+      callback?: BodyResponseCallback<Schema$GetHistogramResponse>
+    ): void | GaxiosPromise<Schema$GetHistogramResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Histogram;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3136,16 +3218,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/jobs:histogram')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/jobs:histogram').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetHistogramResponse>(parameters, callback);
@@ -3153,7 +3235,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$GetHistogramResponse>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.list
@@ -3170,23 +3251,29 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Jobs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params?: Params$Resource$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Jobs$List,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Jobs$List|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|GaxiosPromise<Schema$ListJobsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$List
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3204,15 +3291,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3220,7 +3308,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.patch
@@ -3236,22 +3323,27 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Jobs$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Job>;
     patch(
-        params: Params$Resource$Jobs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params?: Params$Resource$Jobs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     patch(
-        params: Params$Resource$Jobs$Patch,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Jobs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    patch(
+      params: Params$Resource$Jobs$Patch,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Job>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Jobs$Patch|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Patch
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3269,15 +3361,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3285,7 +3378,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.search
@@ -3301,23 +3393,29 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Jobs$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchJobsResponse>;
     search(
-        params: Params$Resource$Jobs$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchJobsResponse>,
-        callback: BodyResponseCallback<Schema$SearchJobsResponse>): void;
+      params?: Params$Resource$Jobs$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchJobsResponse>;
     search(
-        params: Params$Resource$Jobs$Search,
-        callback: BodyResponseCallback<Schema$SearchJobsResponse>): void;
+      params: Params$Resource$Jobs$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchJobsResponse>,
+      callback: BodyResponseCallback<Schema$SearchJobsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Jobs$Search,
+      callback: BodyResponseCallback<Schema$SearchJobsResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$SearchJobsResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Jobs$Search|
-        BodyResponseCallback<Schema$SearchJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchJobsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchJobsResponse>):
-        void|GaxiosPromise<Schema$SearchJobsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Search
+        | BodyResponseCallback<Schema$SearchJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchJobsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchJobsResponse>
+    ): void | GaxiosPromise<Schema$SearchJobsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3335,15 +3433,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/jobs:search').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/jobs:search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3351,7 +3450,6 @@ export namespace jobs_v2 {
         return createAPIRequest<Schema$SearchJobsResponse>(parameters);
       }
     }
-
 
     /**
      * jobs.jobs.searchForAlert
@@ -3372,26 +3470,32 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     searchForAlert(
-        params?: Params$Resource$Jobs$Searchforalert,
-        options?: MethodOptions): GaxiosPromise<Schema$SearchJobsResponse>;
+      params?: Params$Resource$Jobs$Searchforalert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchJobsResponse>;
     searchForAlert(
-        params: Params$Resource$Jobs$Searchforalert,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchJobsResponse>,
-        callback: BodyResponseCallback<Schema$SearchJobsResponse>): void;
+      params: Params$Resource$Jobs$Searchforalert,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchJobsResponse>,
+      callback: BodyResponseCallback<Schema$SearchJobsResponse>
+    ): void;
     searchForAlert(
-        params: Params$Resource$Jobs$Searchforalert,
-        callback: BodyResponseCallback<Schema$SearchJobsResponse>): void;
-    searchForAlert(callback: BodyResponseCallback<Schema$SearchJobsResponse>):
-        void;
+      params: Params$Resource$Jobs$Searchforalert,
+      callback: BodyResponseCallback<Schema$SearchJobsResponse>
+    ): void;
     searchForAlert(
-        paramsOrCallback?: Params$Resource$Jobs$Searchforalert|
-        BodyResponseCallback<Schema$SearchJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchJobsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchJobsResponse>):
-        void|GaxiosPromise<Schema$SearchJobsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Jobs$Searchforalert;
+      callback: BodyResponseCallback<Schema$SearchJobsResponse>
+    ): void;
+    searchForAlert(
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Searchforalert
+        | BodyResponseCallback<Schema$SearchJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchJobsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchJobsResponse>
+    ): void | GaxiosPromise<Schema$SearchJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Jobs$Searchforalert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3408,16 +3512,19 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/jobs:searchForAlert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/jobs:searchForAlert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3431,8 +3538,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3443,8 +3549,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3455,7 +3560,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Deprecated. This field is not working anymore.  Optional.  If set to
@@ -3470,13 +3575,12 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Jobs$Deletebyfilter extends
-      StandardParameters {
+  export interface Params$Resource$Jobs$Deletebyfilter
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3487,7 +3591,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The resource name of the job to retrieve, such as
@@ -3499,8 +3603,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3511,7 +3614,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The filter string specifies the jobs to be enumerated.
@@ -3543,7 +3646,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required during job update.  Resource name assigned to a job by the API,
@@ -3561,35 +3664,31 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchJobsRequest;
   }
-  export interface Params$Resource$Jobs$Searchforalert extends
-      StandardParameters {
+  export interface Params$Resource$Jobs$Searchforalert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchJobsRequest;
   }
-
 
   export class Resource$V2 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * jobs.complete
@@ -3609,25 +3708,33 @@ export namespace jobs_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    complete(params?: Params$Resource$V2$Complete, options?: MethodOptions):
-        GaxiosPromise<Schema$CompleteQueryResponse>;
     complete(
-        params: Params$Resource$V2$Complete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CompleteQueryResponse>,
-        callback: BodyResponseCallback<Schema$CompleteQueryResponse>): void;
+      params?: Params$Resource$V2$Complete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CompleteQueryResponse>;
     complete(
-        params: Params$Resource$V2$Complete,
-        callback: BodyResponseCallback<Schema$CompleteQueryResponse>): void;
-    complete(callback: BodyResponseCallback<Schema$CompleteQueryResponse>):
-        void;
+      params: Params$Resource$V2$Complete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompleteQueryResponse>,
+      callback: BodyResponseCallback<Schema$CompleteQueryResponse>
+    ): void;
     complete(
-        paramsOrCallback?: Params$Resource$V2$Complete|
-        BodyResponseCallback<Schema$CompleteQueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CompleteQueryResponse>,
-        callback?: BodyResponseCallback<Schema$CompleteQueryResponse>):
-        void|GaxiosPromise<Schema$CompleteQueryResponse> {
+      params: Params$Resource$V2$Complete,
+      callback: BodyResponseCallback<Schema$CompleteQueryResponse>
+    ): void;
+    complete(
+      callback: BodyResponseCallback<Schema$CompleteQueryResponse>
+    ): void;
+    complete(
+      paramsOrCallback?:
+        | Params$Resource$V2$Complete
+        | BodyResponseCallback<Schema$CompleteQueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompleteQueryResponse>,
+      callback?: BodyResponseCallback<Schema$CompleteQueryResponse>
+    ): void | GaxiosPromise<Schema$CompleteQueryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$V2$Complete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3645,15 +3752,16 @@ export namespace jobs_v2 {
       const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2:complete').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2:complete').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CompleteQueryResponse>(parameters, callback);
@@ -3667,7 +3775,7 @@ export namespace jobs_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional.  If provided, restricts completion to the specified company.

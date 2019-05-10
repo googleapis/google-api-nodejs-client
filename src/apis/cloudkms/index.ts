@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {cloudkms_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': cloudkms_v1.Cloudkms,
+  v1: cloudkms_v1.Cloudkms,
 };
 
 export function cloudkms(version: 'v1'): cloudkms_v1.Cloudkms;
 export function cloudkms(options: cloudkms_v1.Options): cloudkms_v1.Cloudkms;
 export function cloudkms<T = cloudkms_v1.Cloudkms>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|cloudkms_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | cloudkms_v1.Options
+) {
   return getAPI<T>('cloudkms', versionOrOptions, VERSIONS, this);
 }
 

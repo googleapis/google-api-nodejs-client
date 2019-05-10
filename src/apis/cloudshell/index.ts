@@ -18,21 +18,28 @@ import {cloudshell_v1} from './v1';
 import {cloudshell_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
-  'v1': cloudshell_v1.Cloudshell,
-  'v1alpha1': cloudshell_v1alpha1.Cloudshell,
+  v1: cloudshell_v1.Cloudshell,
+  v1alpha1: cloudshell_v1alpha1.Cloudshell,
 };
 
 export function cloudshell(version: 'v1'): cloudshell_v1.Cloudshell;
-export function cloudshell(options: cloudshell_v1.Options):
-    cloudshell_v1.Cloudshell;
+export function cloudshell(
+  options: cloudshell_v1.Options
+): cloudshell_v1.Cloudshell;
 export function cloudshell(version: 'v1alpha1'): cloudshell_v1alpha1.Cloudshell;
-export function cloudshell(options: cloudshell_v1alpha1.Options):
-    cloudshell_v1alpha1.Cloudshell;
-export function
-cloudshell<T = cloudshell_v1.Cloudshell | cloudshell_v1alpha1.Cloudshell>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|cloudshell_v1.Options|'v1alpha1'|
-    cloudshell_v1alpha1.Options) {
+export function cloudshell(
+  options: cloudshell_v1alpha1.Options
+): cloudshell_v1alpha1.Cloudshell;
+export function cloudshell<
+  T = cloudshell_v1.Cloudshell | cloudshell_v1alpha1.Cloudshell
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | cloudshell_v1.Options
+    | 'v1alpha1'
+    | cloudshell_v1alpha1.Options
+) {
   return getAPI<T>('cloudshell', versionOrOptions, VERSIONS, this);
 }
 

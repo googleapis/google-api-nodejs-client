@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -133,8 +145,9 @@ export namespace youtube_v3 {
       this.subscriptions = new Resource$Subscriptions(this.context);
       this.superChatEvents = new Resource$Superchatevents(this.context);
       this.thumbnails = new Resource$Thumbnails(this.context);
-      this.videoAbuseReportReasons =
-          new Resource$Videoabusereportreasons(this.context);
+      this.videoAbuseReportReasons = new Resource$Videoabusereportreasons(
+        this.context
+      );
       this.videoCategories = new Resource$Videocategories(this.context);
       this.videos = new Resource$Videos(this.context);
       this.watermarks = new Resource$Watermarks(this.context);
@@ -722,7 +735,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: {[key: string]: Schema$ChannelLocalization;};
+    localizations?: {[key: string]: Schema$ChannelLocalization};
     /**
      * The snippet object contains basic details about the channel, such as its
      * title, description, and thumbnail images.
@@ -949,7 +962,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: {[key: string]: Schema$ChannelSectionLocalization;};
+    localizations?: {[key: string]: Schema$ChannelSectionLocalization};
     /**
      * The snippet object contains basic details about the channel section, such
      * as its type, style and title.
@@ -3139,7 +3152,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: {[key: string]: Schema$PlaylistLocalization;};
+    localizations?: {[key: string]: Schema$PlaylistLocalization};
     /**
      * The player object contains information that you would use to play the
      * playlist in an embedded player.
@@ -4098,7 +4111,7 @@ export namespace youtube_v3 {
     /**
      * List with all localizations.
      */
-    localizations?: {[key: string]: Schema$VideoLocalization;};
+    localizations?: {[key: string]: Schema$VideoLocalization};
     /**
      * The monetizationDetails object encapsulates information about the
      * monetization status of the video.
@@ -5031,13 +5044,11 @@ export namespace youtube_v3 {
     textColor?: string;
   }
 
-
   export class Resource$Activities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.activities.insert
@@ -5058,24 +5069,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Activities$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Activity>;
     insert(
-        params: Params$Resource$Activities$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback: BodyResponseCallback<Schema$Activity>): void;
+      params?: Params$Resource$Activities$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Activity>;
     insert(
-        params: Params$Resource$Activities$Insert,
-        callback: BodyResponseCallback<Schema$Activity>): void;
+      params: Params$Resource$Activities$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
+    insert(
+      params: Params$Resource$Activities$Insert,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Activity>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Activities$Insert|
-        BodyResponseCallback<Schema$Activity>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback?: BodyResponseCallback<Schema$Activity>):
-        void|GaxiosPromise<Schema$Activity> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Activities$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Activities$Insert
+        | BodyResponseCallback<Schema$Activity>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback?: BodyResponseCallback<Schema$Activity>
+    ): void | GaxiosPromise<Schema$Activity> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Activities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5092,16 +5108,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/activities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/activities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -5109,7 +5128,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Activity>(parameters);
       }
     }
-
 
     /**
      * youtube.activities.list
@@ -5135,24 +5153,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ActivityListResponse>;
     list(
-        params: Params$Resource$Activities$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ActivityListResponse>,
-        callback: BodyResponseCallback<Schema$ActivityListResponse>): void;
+      params?: Params$Resource$Activities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ActivityListResponse>;
     list(
-        params: Params$Resource$Activities$List,
-        callback: BodyResponseCallback<Schema$ActivityListResponse>): void;
+      params: Params$Resource$Activities$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityListResponse>,
+      callback: BodyResponseCallback<Schema$ActivityListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Activities$List,
+      callback: BodyResponseCallback<Schema$ActivityListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ActivityListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Activities$List|
-        BodyResponseCallback<Schema$ActivityListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ActivityListResponse>,
-        callback?: BodyResponseCallback<Schema$ActivityListResponse>):
-        void|GaxiosPromise<Schema$ActivityListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Activities$List
+        | BodyResponseCallback<Schema$ActivityListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityListResponse>,
+      callback?: BodyResponseCallback<Schema$ActivityListResponse>
+    ): void | GaxiosPromise<Schema$ActivityListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5170,16 +5195,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/activities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/activities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ActivityListResponse>(parameters, callback);
@@ -5189,12 +5217,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Activities$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Activities$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter serves two purposes in this operation. It identifies
@@ -5212,7 +5240,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channelId parameter specifies a unique YouTube channel ID. The API
@@ -5277,13 +5305,11 @@ export namespace youtube_v3 {
     regionCode?: string;
   }
 
-
   export class Resource$Captions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.captions.delete
@@ -5299,21 +5325,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Captions$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Captions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Captions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Captions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Captions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Captions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Captions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5331,16 +5363,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5348,7 +5383,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.captions.download
@@ -5370,23 +5404,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     download(
-        params?: Params$Resource$Captions$Download,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Captions$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     download(
-        params: Params$Resource$Captions$Download,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Captions$Download,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     download(
-        params: Params$Resource$Captions$Download,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Captions$Download,
+      callback: BodyResponseCallback<void>
+    ): void;
     download(callback: BodyResponseCallback<void>): void;
     download(
-        paramsOrCallback?: Params$Resource$Captions$Download|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Captions$Download;
+      paramsOrCallback?:
+        | Params$Resource$Captions$Download
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Captions$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5403,16 +5442,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5420,7 +5462,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.captions.insert
@@ -5441,22 +5482,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Captions$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Caption>;
     insert(
-        params: Params$Resource$Captions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params?: Params$Resource$Captions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Caption>;
     insert(
-        params: Params$Resource$Captions$Insert,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params: Params$Resource$Captions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
+    insert(
+      params: Params$Resource$Captions$Insert,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Caption>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Captions$Insert|
-        BodyResponseCallback<Schema$Caption>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback?: BodyResponseCallback<Schema$Caption>):
-        void|GaxiosPromise<Schema$Caption> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$Insert
+        | BodyResponseCallback<Schema$Caption>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>
+    ): void | GaxiosPromise<Schema$Caption> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5474,18 +5520,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/captions').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5493,7 +5544,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Caption>(parameters);
       }
     }
-
 
     /**
      * youtube.captions.list
@@ -5514,23 +5564,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Captions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CaptionListResponse>;
     list(
-        params: Params$Resource$Captions$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CaptionListResponse>,
-        callback: BodyResponseCallback<Schema$CaptionListResponse>): void;
+      params?: Params$Resource$Captions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CaptionListResponse>;
     list(
-        params: Params$Resource$Captions$List,
-        callback: BodyResponseCallback<Schema$CaptionListResponse>): void;
+      params: Params$Resource$Captions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CaptionListResponse>,
+      callback: BodyResponseCallback<Schema$CaptionListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Captions$List,
+      callback: BodyResponseCallback<Schema$CaptionListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CaptionListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Captions$List|
-        BodyResponseCallback<Schema$CaptionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CaptionListResponse>,
-        callback?: BodyResponseCallback<Schema$CaptionListResponse>):
-        void|GaxiosPromise<Schema$CaptionListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$List
+        | BodyResponseCallback<Schema$CaptionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CaptionListResponse>,
+      callback?: BodyResponseCallback<Schema$CaptionListResponse>
+    ): void | GaxiosPromise<Schema$CaptionListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5548,16 +5604,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part', 'videoId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CaptionListResponse>(parameters, callback);
@@ -5565,7 +5624,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$CaptionListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.captions.update
@@ -5588,22 +5646,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Captions$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Caption>;
     update(
-        params: Params$Resource$Captions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params?: Params$Resource$Captions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Caption>;
     update(
-        params: Params$Resource$Captions$Update,
-        callback: BodyResponseCallback<Schema$Caption>): void;
+      params: Params$Resource$Captions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
+    update(
+      params: Params$Resource$Captions$Update,
+      callback: BodyResponseCallback<Schema$Caption>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Caption>): void;
     update(
-        paramsOrCallback?: Params$Resource$Captions$Update|
-        BodyResponseCallback<Schema$Caption>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Caption>,
-        callback?: BodyResponseCallback<Schema$Caption>):
-        void|GaxiosPromise<Schema$Caption> {
+      paramsOrCallback?:
+        | Params$Resource$Captions$Update
+        | BodyResponseCallback<Schema$Caption>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>
+    ): void | GaxiosPromise<Schema$Caption> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5621,18 +5684,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/captions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/captions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/captions').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5646,7 +5714,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter identifies the caption track that is being deleted. The
@@ -5673,12 +5741,12 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Captions$Download extends
-      StandardParameters {
+  export interface Params$Resource$Captions$Download
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter identifies the caption track that is being retrieved.
@@ -5723,7 +5791,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the Google+ Page for the channel that the request is be on behalf
@@ -5783,7 +5851,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies a comma-separated list of IDs that identify
@@ -5824,7 +5892,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the Google+ Page for the channel that the request is be on behalf
@@ -5882,13 +5950,11 @@ export namespace youtube_v3 {
     };
   }
 
-
   export class Resource$Channelbanners {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.channelBanners.insert
@@ -5916,26 +5982,32 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Channelbanners$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ChannelBannerResource>;
+      params?: Params$Resource$Channelbanners$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelBannerResource>;
     insert(
-        params: Params$Resource$Channelbanners$Insert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ChannelBannerResource>,
-        callback: BodyResponseCallback<Schema$ChannelBannerResource>): void;
+      params: Params$Resource$Channelbanners$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelBannerResource>,
+      callback: BodyResponseCallback<Schema$ChannelBannerResource>
+    ): void;
     insert(
-        params: Params$Resource$Channelbanners$Insert,
-        callback: BodyResponseCallback<Schema$ChannelBannerResource>): void;
+      params: Params$Resource$Channelbanners$Insert,
+      callback: BodyResponseCallback<Schema$ChannelBannerResource>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ChannelBannerResource>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Channelbanners$Insert|
-        BodyResponseCallback<Schema$ChannelBannerResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelBannerResource>,
-        callback?: BodyResponseCallback<Schema$ChannelBannerResource>):
-        void|GaxiosPromise<Schema$ChannelBannerResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelbanners$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Channelbanners$Insert
+        | BodyResponseCallback<Schema$ChannelBannerResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelBannerResource>,
+      callback?: BodyResponseCallback<Schema$ChannelBannerResource>
+    ): void | GaxiosPromise<Schema$ChannelBannerResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelbanners$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5952,18 +6024,22 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelBanners/insert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelBanners/insert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/channelBanners/insert')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/youtube/v3/channelBanners/insert'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelBannerResource>(parameters, callback);
@@ -5973,12 +6049,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelbanners$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Channelbanners$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channelId parameter identifies the YouTube channel to which the
@@ -6026,13 +6102,11 @@ export namespace youtube_v3 {
     };
   }
 
-
   export class Resource$Channels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.channels.list
@@ -6057,23 +6131,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Channels$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChannelListResponse>;
     list(
-        params: Params$Resource$Channels$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ChannelListResponse>,
-        callback: BodyResponseCallback<Schema$ChannelListResponse>): void;
+      params?: Params$Resource$Channels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelListResponse>;
     list(
-        params: Params$Resource$Channels$List,
-        callback: BodyResponseCallback<Schema$ChannelListResponse>): void;
+      params: Params$Resource$Channels$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ChannelListResponse>,
+      callback: BodyResponseCallback<Schema$ChannelListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Channels$List,
+      callback: BodyResponseCallback<Schema$ChannelListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ChannelListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Channels$List|
-        BodyResponseCallback<Schema$ChannelListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelListResponse>,
-        callback?: BodyResponseCallback<Schema$ChannelListResponse>):
-        void|GaxiosPromise<Schema$ChannelListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$List
+        | BodyResponseCallback<Schema$ChannelListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelListResponse>
+    ): void | GaxiosPromise<Schema$ChannelListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6091,16 +6171,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelListResponse>(parameters, callback);
@@ -6108,7 +6191,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$ChannelListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.channels.update
@@ -6126,22 +6208,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Channels$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     update(
-        params: Params$Resource$Channels$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Channels$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     update(
-        params: Params$Resource$Channels$Update,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Channels$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    update(
+      params: Params$Resource$Channels$Update,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Channel>): void;
     update(
-        paramsOrCallback?: Params$Resource$Channels$Update|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$Update
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6159,16 +6246,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -6182,7 +6272,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The categoryId parameter specifies a YouTube guide category, thereby
@@ -6263,7 +6353,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The onBehalfOfContentOwner parameter indicates that the authenticated
@@ -6294,13 +6384,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Channelsections {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.channelSections.delete
@@ -6316,23 +6404,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Channelsections$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Channelsections$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Channelsections$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channelsections$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Channelsections$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channelsections$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Channelsections$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6349,16 +6442,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6366,7 +6462,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.channelSections.insert
@@ -6384,25 +6479,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Channelsections$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ChannelSection>;
+      params?: Params$Resource$Channelsections$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelSection>;
     insert(
-        params: Params$Resource$Channelsections$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ChannelSection>,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     insert(
-        params: Params$Resource$Channelsections$Insert,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Insert,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ChannelSection>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Channelsections$Insert|
-        BodyResponseCallback<Schema$ChannelSection>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSection>,
-        callback?: BodyResponseCallback<Schema$ChannelSection>):
-        void|GaxiosPromise<Schema$ChannelSection> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$Insert
+        | BodyResponseCallback<Schema$ChannelSection>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>
+    ): void | GaxiosPromise<Schema$ChannelSection> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6419,16 +6519,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6436,7 +6539,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$ChannelSection>(parameters);
       }
     }
-
 
     /**
      * youtube.channelSections.list
@@ -6457,29 +6559,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Channelsections$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChannelSectionListResponse>;
+      params?: Params$Resource$Channelsections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelSectionListResponse>;
     list(
-        params: Params$Resource$Channelsections$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSectionListResponse>,
-        callback: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void;
+      params: Params$Resource$Channelsections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      callback: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void;
     list(
-        params: Params$Resource$Channelsections$List,
-        callback: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void;
+      params: Params$Resource$Channelsections$List,
+      callback: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Channelsections$List|
-        BodyResponseCallback<Schema$ChannelSectionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSectionListResponse>,
-        callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void|GaxiosPromise<Schema$ChannelSectionListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$List;
+      callback: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$List
+        | BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>
+    ): void | GaxiosPromise<Schema$ChannelSectionListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6496,25 +6603,29 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSectionListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ChannelSectionListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.channelSections.update
@@ -6531,25 +6642,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Channelsections$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ChannelSection>;
+      params?: Params$Resource$Channelsections$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChannelSection>;
     update(
-        params: Params$Resource$Channelsections$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ChannelSection>,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     update(
-        params: Params$Resource$Channelsections$Update,
-        callback: BodyResponseCallback<Schema$ChannelSection>): void;
+      params: Params$Resource$Channelsections$Update,
+      callback: BodyResponseCallback<Schema$ChannelSection>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ChannelSection>): void;
     update(
-        paramsOrCallback?: Params$Resource$Channelsections$Update|
-        BodyResponseCallback<Schema$ChannelSection>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChannelSection>,
-        callback?: BodyResponseCallback<Schema$ChannelSection>):
-        void|GaxiosPromise<Schema$ChannelSection> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Channelsections$Update;
+      paramsOrCallback?:
+        | Params$Resource$Channelsections$Update
+        | BodyResponseCallback<Schema$ChannelSection>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>
+    ): void | GaxiosPromise<Schema$ChannelSection> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Channelsections$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6566,16 +6682,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/channelSections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/channelSections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6585,12 +6704,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelsections$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube channelSection ID for the resource
@@ -6612,12 +6731,12 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Channelsections$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -6664,12 +6783,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$ChannelSection;
   }
-  export interface Params$Resource$Channelsections$List extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channelId parameter specifies a YouTube channel ID. The API will only
@@ -6724,12 +6843,12 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Channelsections$Update extends
-      StandardParameters {
+  export interface Params$Resource$Channelsections$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -6758,13 +6877,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$ChannelSection;
   }
 
-
   export class Resource$Comments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.comments.delete
@@ -6778,21 +6895,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Comments$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Comments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Comments$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Comments$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Comments$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6810,16 +6933,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6827,7 +6953,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.comments.insert
@@ -6843,22 +6968,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Comments$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
     insert(
-        params: Params$Resource$Comments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params?: Params$Resource$Comments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
     insert(
-        params: Params$Resource$Comments$Insert,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params: Params$Resource$Comments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    insert(
+      params: Params$Resource$Comments$Insert,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Comment>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Comments$Insert|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Insert
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6876,16 +7006,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -6893,7 +7026,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Comment>(parameters);
       }
     }
-
 
     /**
      * youtube.comments.list
@@ -6912,23 +7044,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentListResponse>;
     list(
-        params: Params$Resource$Comments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentListResponse>,
-        callback: BodyResponseCallback<Schema$CommentListResponse>): void;
+      params?: Params$Resource$Comments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentListResponse>;
     list(
-        params: Params$Resource$Comments$List,
-        callback: BodyResponseCallback<Schema$CommentListResponse>): void;
+      params: Params$Resource$Comments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentListResponse>,
+      callback: BodyResponseCallback<Schema$CommentListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Comments$List,
+      callback: BodyResponseCallback<Schema$CommentListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CommentListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Comments$List|
-        BodyResponseCallback<Schema$CommentListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentListResponse>,
-        callback?: BodyResponseCallback<Schema$CommentListResponse>):
-        void|GaxiosPromise<Schema$CommentListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$List
+        | BodyResponseCallback<Schema$CommentListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentListResponse>
+    ): void | GaxiosPromise<Schema$CommentListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6946,16 +7084,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentListResponse>(parameters, callback);
@@ -6963,7 +7104,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$CommentListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.comments.markAsSpam
@@ -6979,23 +7119,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     markAsSpam(
-        params?: Params$Resource$Comments$Markasspam,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Comments$Markasspam,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     markAsSpam(
-        params: Params$Resource$Comments$Markasspam,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Markasspam,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     markAsSpam(
-        params: Params$Resource$Comments$Markasspam,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Markasspam,
+      callback: BodyResponseCallback<void>
+    ): void;
     markAsSpam(callback: BodyResponseCallback<void>): void;
     markAsSpam(
-        paramsOrCallback?: Params$Resource$Comments$Markasspam|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Comments$Markasspam;
+      paramsOrCallback?:
+        | Params$Resource$Comments$Markasspam
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Comments$Markasspam;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7012,16 +7157,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments/markAsSpam')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments/markAsSpam').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7029,7 +7177,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.comments.setModerationStatus
@@ -7048,23 +7195,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     setModerationStatus(
-        params?: Params$Resource$Comments$Setmoderationstatus,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Comments$Setmoderationstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     setModerationStatus(
-        params: Params$Resource$Comments$Setmoderationstatus,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Setmoderationstatus,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     setModerationStatus(
-        params: Params$Resource$Comments$Setmoderationstatus,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Setmoderationstatus,
+      callback: BodyResponseCallback<void>
+    ): void;
     setModerationStatus(callback: BodyResponseCallback<void>): void;
     setModerationStatus(
-        paramsOrCallback?: Params$Resource$Comments$Setmoderationstatus|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Comments$Setmoderationstatus;
+      paramsOrCallback?:
+        | Params$Resource$Comments$Setmoderationstatus
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Comments$Setmoderationstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7081,16 +7233,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments/setModerationStatus')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments/setModerationStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'moderationStatus'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7098,7 +7253,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.comments.update
@@ -7113,22 +7267,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Comments$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
     update(
-        params: Params$Resource$Comments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params?: Params$Resource$Comments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
     update(
-        params: Params$Resource$Comments$Update,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params: Params$Resource$Comments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    update(
+      params: Params$Resource$Comments$Update,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Comment>): void;
     update(
-        paramsOrCallback?: Params$Resource$Comments$Update|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Update
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7146,16 +7305,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -7169,7 +7331,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the comment ID for the resource that is being
@@ -7181,7 +7343,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter identifies the properties that the API response will
@@ -7199,7 +7361,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies a comma-separated list of comment IDs for the
@@ -7238,12 +7400,12 @@ export namespace youtube_v3 {
      */
     textFormat?: string;
   }
-  export interface Params$Resource$Comments$Markasspam extends
-      StandardParameters {
+  export interface Params$Resource$Comments$Markasspam
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies a comma-separated list of IDs of comments that
@@ -7251,12 +7413,12 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Comments$Setmoderationstatus extends
-      StandardParameters {
+  export interface Params$Resource$Comments$Setmoderationstatus
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The banAuthor parameter lets you indicate that you want to automatically
@@ -7279,7 +7441,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter identifies the properties that the API response will
@@ -7295,13 +7457,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$Comment;
   }
 
-
   export class Resource$Commentthreads {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.commentThreads.insert
@@ -7318,25 +7478,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Commentthreads$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CommentThread>;
+      params?: Params$Resource$Commentthreads$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentThread>;
     insert(
-        params: Params$Resource$Commentthreads$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentThread>,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     insert(
-        params: Params$Resource$Commentthreads$Insert,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Insert,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CommentThread>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Commentthreads$Insert|
-        BodyResponseCallback<Schema$CommentThread>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentThread>,
-        callback?: BodyResponseCallback<Schema$CommentThread>):
-        void|GaxiosPromise<Schema$CommentThread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Commentthreads$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Commentthreads$Insert
+        | BodyResponseCallback<Schema$CommentThread>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>
+    ): void | GaxiosPromise<Schema$CommentThread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Commentthreads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7353,16 +7518,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/commentThreads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7370,7 +7538,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$CommentThread>(parameters);
       }
     }
-
 
     /**
      * youtube.commentThreads.list
@@ -7395,27 +7562,35 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Commentthreads$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentThreadListResponse>;
     list(
-        params: Params$Resource$Commentthreads$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CommentThreadListResponse>,
-        callback: BodyResponseCallback<Schema$CommentThreadListResponse>): void;
+      params?: Params$Resource$Commentthreads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentThreadListResponse>;
     list(
-        params: Params$Resource$Commentthreads$List,
-        callback: BodyResponseCallback<Schema$CommentThreadListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$CommentThreadListResponse>):
-        void;
+      params: Params$Resource$Commentthreads$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThreadListResponse>,
+      callback: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Commentthreads$List|
-        BodyResponseCallback<Schema$CommentThreadListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentThreadListResponse>,
-        callback?: BodyResponseCallback<Schema$CommentThreadListResponse>):
-        void|GaxiosPromise<Schema$CommentThreadListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Commentthreads$List;
+      params: Params$Resource$Commentthreads$List,
+      callback: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Commentthreads$List
+        | BodyResponseCallback<Schema$CommentThreadListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThreadListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentThreadListResponse>
+    ): void | GaxiosPromise<Schema$CommentThreadListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Commentthreads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7432,25 +7607,29 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/commentThreads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentThreadListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CommentThreadListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.commentThreads.update
@@ -7466,25 +7645,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Commentthreads$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CommentThread>;
+      params?: Params$Resource$Commentthreads$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentThread>;
     update(
-        params: Params$Resource$Commentthreads$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentThread>,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     update(
-        params: Params$Resource$Commentthreads$Update,
-        callback: BodyResponseCallback<Schema$CommentThread>): void;
+      params: Params$Resource$Commentthreads$Update,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CommentThread>): void;
     update(
-        paramsOrCallback?: Params$Resource$Commentthreads$Update|
-        BodyResponseCallback<Schema$CommentThread>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentThread>,
-        callback?: BodyResponseCallback<Schema$CommentThread>):
-        void|GaxiosPromise<Schema$CommentThread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Commentthreads$Update;
+      paramsOrCallback?:
+        | Params$Resource$Commentthreads$Update
+        | BodyResponseCallback<Schema$CommentThread>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>
+    ): void | GaxiosPromise<Schema$CommentThread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Commentthreads$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7501,16 +7685,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/commentThreads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7520,12 +7707,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Commentthreads$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Commentthreads$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter identifies the properties that the API response will
@@ -7539,12 +7726,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$CommentThread;
   }
-  export interface Params$Resource$Commentthreads$List extends
-      StandardParameters {
+  export interface Params$Resource$Commentthreads$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The allThreadsRelatedToChannelId parameter instructs the API to return
@@ -7613,12 +7800,12 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Commentthreads$Update extends
-      StandardParameters {
+  export interface Params$Resource$Commentthreads$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter specifies a comma-separated list of commentThread
@@ -7634,13 +7821,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$CommentThread;
   }
 
-
   export class Resource$Guidecategories {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.guideCategories.list
@@ -7659,27 +7844,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Guidecategories$List, options?: MethodOptions):
-        GaxiosPromise<Schema$GuideCategoryListResponse>;
+      params?: Params$Resource$Guidecategories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GuideCategoryListResponse>;
     list(
-        params: Params$Resource$Guidecategories$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GuideCategoryListResponse>,
-        callback: BodyResponseCallback<Schema$GuideCategoryListResponse>): void;
+      params: Params$Resource$Guidecategories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      callback: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void;
     list(
-        params: Params$Resource$Guidecategories$List,
-        callback: BodyResponseCallback<Schema$GuideCategoryListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$GuideCategoryListResponse>):
-        void;
+      params: Params$Resource$Guidecategories$List,
+      callback: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Guidecategories$List|
-        BodyResponseCallback<Schema$GuideCategoryListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GuideCategoryListResponse>,
-        callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>):
-        void|GaxiosPromise<Schema$GuideCategoryListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Guidecategories$List;
+      callback: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Guidecategories$List
+        | BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>
+    ): void | GaxiosPromise<Schema$GuideCategoryListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Guidecategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7696,32 +7888,37 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/guideCategories')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/guideCategories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GuideCategoryListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GuideCategoryListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Guidecategories$List extends
-      StandardParameters {
+  export interface Params$Resource$Guidecategories$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hl parameter specifies the language that will be used for text values
@@ -7748,13 +7945,11 @@ export namespace youtube_v3 {
     regionCode?: string;
   }
 
-
   export class Resource$I18nlanguages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.i18nLanguages.list
@@ -7770,26 +7965,33 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$I18nlanguages$List, options?: MethodOptions):
-        GaxiosPromise<Schema$I18nLanguageListResponse>;
     list(
-        params: Params$Resource$I18nlanguages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$I18nLanguageListResponse>,
-        callback: BodyResponseCallback<Schema$I18nLanguageListResponse>): void;
+      params?: Params$Resource$I18nlanguages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$I18nLanguageListResponse>;
     list(
-        params: Params$Resource$I18nlanguages$List,
-        callback: BodyResponseCallback<Schema$I18nLanguageListResponse>): void;
+      params: Params$Resource$I18nlanguages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      callback: BodyResponseCallback<Schema$I18nLanguageListResponse>
+    ): void;
+    list(
+      params: Params$Resource$I18nlanguages$List,
+      callback: BodyResponseCallback<Schema$I18nLanguageListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$I18nLanguageListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$I18nlanguages$List|
-        BodyResponseCallback<Schema$I18nLanguageListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$I18nLanguageListResponse>,
-        callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>):
-        void|GaxiosPromise<Schema$I18nLanguageListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$I18nlanguages$List;
+      paramsOrCallback?:
+        | Params$Resource$I18nlanguages$List
+        | BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>
+    ): void | GaxiosPromise<Schema$I18nLanguageListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$I18nlanguages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7806,16 +8008,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/i18nLanguages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/i18nLanguages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$I18nLanguageListResponse>(parameters, callback);
@@ -7825,12 +8030,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$I18nlanguages$List extends
-      StandardParameters {
+  export interface Params$Resource$I18nlanguages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hl parameter specifies the language that should be used for text
@@ -7844,13 +8049,11 @@ export namespace youtube_v3 {
     part?: string;
   }
 
-
   export class Resource$I18nregions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.i18nRegions.list
@@ -7866,24 +8069,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$I18nregions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$I18nRegionListResponse>;
     list(
-        params: Params$Resource$I18nregions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$I18nRegionListResponse>,
-        callback: BodyResponseCallback<Schema$I18nRegionListResponse>): void;
+      params?: Params$Resource$I18nregions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$I18nRegionListResponse>;
     list(
-        params: Params$Resource$I18nregions$List,
-        callback: BodyResponseCallback<Schema$I18nRegionListResponse>): void;
+      params: Params$Resource$I18nregions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nRegionListResponse>,
+      callback: BodyResponseCallback<Schema$I18nRegionListResponse>
+    ): void;
+    list(
+      params: Params$Resource$I18nregions$List,
+      callback: BodyResponseCallback<Schema$I18nRegionListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$I18nRegionListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$I18nregions$List|
-        BodyResponseCallback<Schema$I18nRegionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$I18nRegionListResponse>,
-        callback?: BodyResponseCallback<Schema$I18nRegionListResponse>):
-        void|GaxiosPromise<Schema$I18nRegionListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$I18nregions$List
+        | BodyResponseCallback<Schema$I18nRegionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$I18nRegionListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nRegionListResponse>
+    ): void | GaxiosPromise<Schema$I18nRegionListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$I18nregions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7901,16 +8111,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/i18nRegions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/i18nRegions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$I18nRegionListResponse>(parameters, callback);
@@ -7924,7 +8137,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hl parameter specifies the language that should be used for text
@@ -7938,13 +8151,11 @@ export namespace youtube_v3 {
     part?: string;
   }
 
-
   export class Resource$Livebroadcasts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveBroadcasts.bind
@@ -7965,25 +8176,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    bind(params?: Params$Resource$Livebroadcasts$Bind, options?: MethodOptions):
-        GaxiosPromise<Schema$LiveBroadcast>;
     bind(
-        params: Params$Resource$Livebroadcasts$Bind,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params?: Params$Resource$Livebroadcasts$Bind,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     bind(
-        params: Params$Resource$Livebroadcasts$Bind,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Bind,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
+    bind(
+      params: Params$Resource$Livebroadcasts$Bind,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     bind(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     bind(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Bind|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Bind;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Bind
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Bind;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8000,16 +8217,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts/bind')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/bind').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8017,7 +8237,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveBroadcast>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.control
@@ -8039,25 +8258,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     control(
-        params?: Params$Resource$Livebroadcasts$Control,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Control,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     control(
-        params: Params$Resource$Livebroadcasts$Control,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Control,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     control(
-        params: Params$Resource$Livebroadcasts$Control,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Control,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     control(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     control(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Control|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Control;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Control
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Control;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8074,16 +8298,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts/control')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/control').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8091,7 +8318,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveBroadcast>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.delete
@@ -8108,23 +8334,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livebroadcasts$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livebroadcasts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livebroadcasts$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livebroadcasts$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livebroadcasts$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livebroadcasts$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8141,16 +8372,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8158,7 +8392,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.insert
@@ -8176,25 +8409,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livebroadcasts$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     insert(
-        params: Params$Resource$Livebroadcasts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     insert(
-        params: Params$Resource$Livebroadcasts$Insert,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Insert,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Insert|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Insert
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8211,16 +8449,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8228,7 +8469,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveBroadcast>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.list
@@ -8251,27 +8491,35 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Livebroadcasts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LiveBroadcastListResponse>;
     list(
-        params: Params$Resource$Livebroadcasts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcastListResponse>,
-        callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>): void;
+      params?: Params$Resource$Livebroadcasts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcastListResponse>;
     list(
-        params: Params$Resource$Livebroadcasts$List,
-        callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>):
-        void;
+      params: Params$Resource$Livebroadcasts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$List|
-        BodyResponseCallback<Schema$LiveBroadcastListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcastListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>):
-        void|GaxiosPromise<Schema$LiveBroadcastListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$List;
+      params: Params$Resource$Livebroadcasts$List,
+      callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$List
+        | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>
+    ): void | GaxiosPromise<Schema$LiveBroadcastListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8288,25 +8536,29 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcastListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiveBroadcastListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.transition
@@ -8330,25 +8582,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     transition(
-        params?: Params$Resource$Livebroadcasts$Transition,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Transition,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     transition(
-        params: Params$Resource$Livebroadcasts$Transition,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Transition,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     transition(
-        params: Params$Resource$Livebroadcasts$Transition,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Transition,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     transition(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     transition(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Transition|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Transition;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Transition
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Transition;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8365,16 +8622,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts/transition')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/transition').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['broadcastStatus', 'id', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8382,7 +8642,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveBroadcast>(parameters);
       }
     }
-
 
     /**
      * youtube.liveBroadcasts.update
@@ -8401,25 +8660,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Livebroadcasts$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
+      params?: Params$Resource$Livebroadcasts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveBroadcast>;
     update(
-        params: Params$Resource$Livebroadcasts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     update(
-        params: Params$Resource$Livebroadcasts$Update,
-        callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
+      params: Params$Resource$Livebroadcasts$Update,
+      callback: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LiveBroadcast>): void;
     update(
-        paramsOrCallback?: Params$Resource$Livebroadcasts$Update|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveBroadcast>,
-        callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|GaxiosPromise<Schema$LiveBroadcast> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Update;
+      paramsOrCallback?:
+        | Params$Resource$Livebroadcasts$Update
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>
+    ): void | GaxiosPromise<Schema$LiveBroadcast> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livebroadcasts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8436,16 +8700,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8455,12 +8722,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livebroadcasts$Bind extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Bind
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the unique ID of the broadcast that is being
@@ -8513,12 +8780,12 @@ export namespace youtube_v3 {
      */
     streamId?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Control extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Control
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The displaySlate parameter specifies whether the slate is being enabled
@@ -8589,12 +8856,12 @@ export namespace youtube_v3 {
      */
     walltime?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube live broadcast ID for the resource
@@ -8634,12 +8901,12 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -8687,12 +8954,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveBroadcast;
   }
-  export interface Params$Resource$Livebroadcasts$List extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The broadcastStatus parameter filters the API response to only include
@@ -8768,12 +9035,12 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Transition extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Transition
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The broadcastStatus parameter identifies the state to which the broadcast
@@ -8827,12 +9094,12 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Update extends
-      StandardParameters {
+  export interface Params$Resource$Livebroadcasts$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -8889,13 +9156,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$LiveBroadcast;
   }
 
-
   export class Resource$Livechatbans {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveChatBans.delete
@@ -8910,23 +9175,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livechatbans$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livechatbans$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livechatbans$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatbans$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livechatbans$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatbans$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livechatbans$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatbans$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livechatbans$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatbans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8943,16 +9213,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/bans')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/bans').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8960,7 +9233,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatBans.insert
@@ -8976,25 +9248,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livechatbans$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveChatBan>;
+      params?: Params$Resource$Livechatbans$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatBan>;
     insert(
-        params: Params$Resource$Livechatbans$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveChatBan>,
-        callback: BodyResponseCallback<Schema$LiveChatBan>): void;
+      params: Params$Resource$Livechatbans$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveChatBan>,
+      callback: BodyResponseCallback<Schema$LiveChatBan>
+    ): void;
     insert(
-        params: Params$Resource$Livechatbans$Insert,
-        callback: BodyResponseCallback<Schema$LiveChatBan>): void;
+      params: Params$Resource$Livechatbans$Insert,
+      callback: BodyResponseCallback<Schema$LiveChatBan>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveChatBan>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livechatbans$Insert|
-        BodyResponseCallback<Schema$LiveChatBan>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatBan>,
-        callback?: BodyResponseCallback<Schema$LiveChatBan>):
-        void|GaxiosPromise<Schema$LiveChatBan> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatbans$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livechatbans$Insert
+        | BodyResponseCallback<Schema$LiveChatBan>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatBan>,
+      callback?: BodyResponseCallback<Schema$LiveChatBan>
+    ): void | GaxiosPromise<Schema$LiveChatBan> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatbans$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9011,16 +9288,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/bans')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/bans').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatBan>(parameters, callback);
@@ -9030,12 +9310,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatbans$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livechatbans$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter identifies the chat ban to remove. The value uniquely
@@ -9043,12 +9323,12 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatbans$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livechatbans$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter serves two purposes in this operation. It identifies
@@ -9064,13 +9344,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$LiveChatBan;
   }
 
-
   export class Resource$Livechatmessages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveChatMessages.delete
@@ -9085,23 +9363,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livechatmessages$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livechatmessages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livechatmessages$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmessages$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livechatmessages$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmessages$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livechatmessages$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmessages$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmessages$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmessages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9118,16 +9401,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9135,7 +9421,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatMessages.insert
@@ -9151,25 +9436,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livechatmessages$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveChatMessage>;
+      params?: Params$Resource$Livechatmessages$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatMessage>;
     insert(
-        params: Params$Resource$Livechatmessages$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveChatMessage>,
-        callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
+      params: Params$Resource$Livechatmessages$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveChatMessage>,
+      callback: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void;
     insert(
-        params: Params$Resource$Livechatmessages$Insert,
-        callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
+      params: Params$Resource$Livechatmessages$Insert,
+      callback: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveChatMessage>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livechatmessages$Insert|
-        BodyResponseCallback<Schema$LiveChatMessage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatMessage>,
-        callback?: BodyResponseCallback<Schema$LiveChatMessage>):
-        void|GaxiosPromise<Schema$LiveChatMessage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmessages$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmessages$Insert
+        | BodyResponseCallback<Schema$LiveChatMessage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessage>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessage>
+    ): void | GaxiosPromise<Schema$LiveChatMessage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmessages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9186,16 +9476,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessage>(parameters, callback);
@@ -9203,7 +9496,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveChatMessage>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatMessages.list
@@ -9223,30 +9515,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Livechatmessages$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiveChatMessageListResponse>;
+      params?: Params$Resource$Livechatmessages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatMessageListResponse>;
     list(
-        params: Params$Resource$Livechatmessages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatMessageListResponse>,
-        callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void;
+      params: Params$Resource$Livechatmessages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
     list(
-        params: Params$Resource$Livechatmessages$List,
-        callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void;
+      params: Params$Resource$Livechatmessages$List,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Livechatmessages$List|
-        BodyResponseCallback<Schema$LiveChatMessageListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatMessageListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void|GaxiosPromise<Schema$LiveChatMessageListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmessages$List;
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Livechatmessages$List
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void | GaxiosPromise<Schema$LiveChatMessageListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmessages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9263,32 +9559,37 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessageListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiveChatMessageListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Livechatmessages$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmessages$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube chat message ID of the resource
@@ -9296,12 +9597,12 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmessages$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmessages$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter serves two purposes. It identifies the properties that
@@ -9315,12 +9616,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatMessage;
   }
-  export interface Params$Resource$Livechatmessages$List extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmessages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hl parameter instructs the API to retrieve localized resource
@@ -9361,13 +9662,11 @@ export namespace youtube_v3 {
     profileImageSize?: number;
   }
 
-
   export class Resource$Livechatmoderators {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveChatModerators.delete
@@ -9382,23 +9681,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livechatmoderators$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livechatmoderators$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livechatmoderators$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmoderators$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livechatmoderators$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livechatmoderators$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livechatmoderators$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmoderators$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmoderators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9415,16 +9719,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9432,7 +9739,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatModerators.insert
@@ -9448,25 +9754,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livechatmoderators$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveChatModerator>;
+      params?: Params$Resource$Livechatmoderators$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatModerator>;
     insert(
-        params: Params$Resource$Livechatmoderators$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveChatModerator>,
-        callback: BodyResponseCallback<Schema$LiveChatModerator>): void;
+      params: Params$Resource$Livechatmoderators$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveChatModerator>,
+      callback: BodyResponseCallback<Schema$LiveChatModerator>
+    ): void;
     insert(
-        params: Params$Resource$Livechatmoderators$Insert,
-        callback: BodyResponseCallback<Schema$LiveChatModerator>): void;
+      params: Params$Resource$Livechatmoderators$Insert,
+      callback: BodyResponseCallback<Schema$LiveChatModerator>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveChatModerator>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livechatmoderators$Insert|
-        BodyResponseCallback<Schema$LiveChatModerator>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatModerator>,
-        callback?: BodyResponseCallback<Schema$LiveChatModerator>):
-        void|GaxiosPromise<Schema$LiveChatModerator> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livechatmoderators$Insert
+        | BodyResponseCallback<Schema$LiveChatModerator>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatModerator>,
+      callback?: BodyResponseCallback<Schema$LiveChatModerator>
+    ): void | GaxiosPromise<Schema$LiveChatModerator> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmoderators$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9483,16 +9794,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModerator>(parameters, callback);
@@ -9500,7 +9814,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveChatModerator>(parameters);
       }
     }
-
 
     /**
      * youtube.liveChatModerators.list
@@ -9518,30 +9831,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Livechatmoderators$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$LiveChatModeratorListResponse>;
+      params?: Params$Resource$Livechatmoderators$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatModeratorListResponse>;
     list(
-        params: Params$Resource$Livechatmoderators$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
-        callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void;
+      params: Params$Resource$Livechatmoderators$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void;
     list(
-        params: Params$Resource$Livechatmoderators$List,
-        callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void;
+      params: Params$Resource$Livechatmoderators$List,
+      callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Livechatmoderators$List|
-        BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void|GaxiosPromise<Schema$LiveChatModeratorListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$List;
+      callback: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Livechatmoderators$List
+        | BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatModeratorListResponse>
+    ): void | GaxiosPromise<Schema$LiveChatModeratorListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livechatmoderators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9558,33 +9875,39 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModeratorListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$LiveChatModeratorListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Livechatmoderators$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmoderators$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter identifies the chat moderator to remove. The value
@@ -9592,12 +9915,12 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmoderators$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmoderators$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter serves two purposes in this operation. It identifies
@@ -9612,12 +9935,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatModerator;
   }
-  export interface Params$Resource$Livechatmoderators$List extends
-      StandardParameters {
+  export interface Params$Resource$Livechatmoderators$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The liveChatId parameter specifies the YouTube live chat for which the
@@ -9642,13 +9965,11 @@ export namespace youtube_v3 {
     part?: string;
   }
 
-
   export class Resource$Livestreams {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.liveStreams.delete
@@ -9665,23 +9986,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Livestreams$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Livestreams$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Livestreams$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livestreams$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Livestreams$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Livestreams$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Livestreams$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livestreams$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livestreams$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9698,16 +10024,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9715,7 +10044,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.liveStreams.insert
@@ -9734,25 +10062,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Livestreams$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveStream>;
+      params?: Params$Resource$Livestreams$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveStream>;
     insert(
-        params: Params$Resource$Livestreams$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveStream>,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     insert(
-        params: Params$Resource$Livestreams$Insert,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Insert,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LiveStream>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Livestreams$Insert|
-        BodyResponseCallback<Schema$LiveStream>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveStream>,
-        callback?: BodyResponseCallback<Schema$LiveStream>):
-        void|GaxiosPromise<Schema$LiveStream> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livestreams$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$Insert
+        | BodyResponseCallback<Schema$LiveStream>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>
+    ): void | GaxiosPromise<Schema$LiveStream> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livestreams$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9769,16 +10102,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -9786,7 +10122,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveStream>(parameters);
       }
     }
-
 
     /**
      * youtube.liveStreams.list
@@ -9807,24 +10142,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Livestreams$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LiveStreamListResponse>;
     list(
-        params: Params$Resource$Livestreams$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LiveStreamListResponse>,
-        callback: BodyResponseCallback<Schema$LiveStreamListResponse>): void;
+      params?: Params$Resource$Livestreams$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveStreamListResponse>;
     list(
-        params: Params$Resource$Livestreams$List,
-        callback: BodyResponseCallback<Schema$LiveStreamListResponse>): void;
+      params: Params$Resource$Livestreams$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStreamListResponse>,
+      callback: BodyResponseCallback<Schema$LiveStreamListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Livestreams$List,
+      callback: BodyResponseCallback<Schema$LiveStreamListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LiveStreamListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Livestreams$List|
-        BodyResponseCallback<Schema$LiveStreamListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveStreamListResponse>,
-        callback?: BodyResponseCallback<Schema$LiveStreamListResponse>):
-        void|GaxiosPromise<Schema$LiveStreamListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$List
+        | BodyResponseCallback<Schema$LiveStreamListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStreamListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveStreamListResponse>
+    ): void | GaxiosPromise<Schema$LiveStreamListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Livestreams$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9842,16 +10184,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveStreamListResponse>(parameters, callback);
@@ -9859,7 +10204,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$LiveStreamListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.liveStreams.update
@@ -9879,25 +10223,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Livestreams$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LiveStream>;
+      params?: Params$Resource$Livestreams$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveStream>;
     update(
-        params: Params$Resource$Livestreams$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LiveStream>,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     update(
-        params: Params$Resource$Livestreams$Update,
-        callback: BodyResponseCallback<Schema$LiveStream>): void;
+      params: Params$Resource$Livestreams$Update,
+      callback: BodyResponseCallback<Schema$LiveStream>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LiveStream>): void;
     update(
-        paramsOrCallback?: Params$Resource$Livestreams$Update|
-        BodyResponseCallback<Schema$LiveStream>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LiveStream>,
-        callback?: BodyResponseCallback<Schema$LiveStream>):
-        void|GaxiosPromise<Schema$LiveStream> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Livestreams$Update;
+      paramsOrCallback?:
+        | Params$Resource$Livestreams$Update
+        | BodyResponseCallback<Schema$LiveStream>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>
+    ): void | GaxiosPromise<Schema$LiveStream> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Livestreams$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9914,16 +10263,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/liveStreams')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -9933,12 +10285,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livestreams$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Livestreams$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube live stream ID for the resource
@@ -9978,12 +10330,12 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livestreams$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Livestreams$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -10034,7 +10386,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies a comma-separated list of YouTube stream IDs
@@ -10099,12 +10451,12 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livestreams$Update extends
-      StandardParameters {
+  export interface Params$Resource$Livestreams$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -10156,13 +10508,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$LiveStream;
   }
 
-
   export class Resource$Playlistitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.playlistItems.delete
@@ -10178,23 +10528,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Playlistitems$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Playlistitems$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Playlistitems$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Playlistitems$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Playlistitems$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Playlistitems$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Playlistitems$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10211,16 +10566,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10228,7 +10586,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.playlistItems.insert
@@ -10245,25 +10602,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Playlistitems$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$PlaylistItem>;
+      params?: Params$Resource$Playlistitems$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistItem>;
     insert(
-        params: Params$Resource$Playlistitems$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$PlaylistItem>,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     insert(
-        params: Params$Resource$Playlistitems$Insert,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Insert,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$PlaylistItem>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Playlistitems$Insert|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        callback?: BodyResponseCallback<Schema$PlaylistItem>):
-        void|GaxiosPromise<Schema$PlaylistItem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$Insert
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>
+    ): void | GaxiosPromise<Schema$PlaylistItem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10280,16 +10642,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10297,7 +10662,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$PlaylistItem>(parameters);
       }
     }
-
 
     /**
      * youtube.playlistItems.list
@@ -10319,26 +10683,33 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Playlistitems$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlaylistItemListResponse>;
     list(
-        params: Params$Resource$Playlistitems$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItemListResponse>,
-        callback: BodyResponseCallback<Schema$PlaylistItemListResponse>): void;
+      params?: Params$Resource$Playlistitems$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistItemListResponse>;
     list(
-        params: Params$Resource$Playlistitems$List,
-        callback: BodyResponseCallback<Schema$PlaylistItemListResponse>): void;
+      params: Params$Resource$Playlistitems$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      callback: BodyResponseCallback<Schema$PlaylistItemListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Playlistitems$List,
+      callback: BodyResponseCallback<Schema$PlaylistItemListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PlaylistItemListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Playlistitems$List|
-        BodyResponseCallback<Schema$PlaylistItemListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItemListResponse>,
-        callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>):
-        void|GaxiosPromise<Schema$PlaylistItemListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$List;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$List
+        | BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>
+    ): void | GaxiosPromise<Schema$PlaylistItemListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10355,16 +10726,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItemListResponse>(parameters, callback);
@@ -10372,7 +10746,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$PlaylistItemListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.playlistItems.update
@@ -10390,25 +10763,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Playlistitems$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$PlaylistItem>;
+      params?: Params$Resource$Playlistitems$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistItem>;
     update(
-        params: Params$Resource$Playlistitems$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$PlaylistItem>,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     update(
-        params: Params$Resource$Playlistitems$Update,
-        callback: BodyResponseCallback<Schema$PlaylistItem>): void;
+      params: Params$Resource$Playlistitems$Update,
+      callback: BodyResponseCallback<Schema$PlaylistItem>
+    ): void;
     update(callback: BodyResponseCallback<Schema$PlaylistItem>): void;
     update(
-        paramsOrCallback?: Params$Resource$Playlistitems$Update|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistItem>,
-        callback?: BodyResponseCallback<Schema$PlaylistItem>):
-        void|GaxiosPromise<Schema$PlaylistItem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Playlistitems$Update;
+      paramsOrCallback?:
+        | Params$Resource$Playlistitems$Update
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>
+    ): void | GaxiosPromise<Schema$PlaylistItem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Playlistitems$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10425,16 +10803,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlistItems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10444,12 +10825,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlistitems$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube playlist item ID for the playlist
@@ -10471,12 +10852,12 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlistitems$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -10503,12 +10884,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$PlaylistItem;
   }
-  export interface Params$Resource$Playlistitems$List extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies a comma-separated list of one or more unique
@@ -10563,12 +10944,12 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Playlistitems$Update extends
-      StandardParameters {
+  export interface Params$Resource$Playlistitems$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -10606,13 +10987,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$PlaylistItem;
   }
 
-
   export class Resource$Playlists {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.playlists.delete
@@ -10627,21 +11006,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Playlists$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Playlists$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Playlists$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Playlists$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Playlists$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Playlists$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Playlists$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10659,16 +11044,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10676,7 +11064,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.playlists.insert
@@ -10693,22 +11080,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Playlists$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Playlist>;
     insert(
-        params: Params$Resource$Playlists$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params?: Params$Resource$Playlists$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Playlist>;
     insert(
-        params: Params$Resource$Playlists$Insert,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params: Params$Resource$Playlists$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
+    insert(
+      params: Params$Resource$Playlists$Insert,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Playlist>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Playlists$Insert|
-        BodyResponseCallback<Schema$Playlist>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback?: BodyResponseCallback<Schema$Playlist>):
-        void|GaxiosPromise<Schema$Playlist> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$Insert
+        | BodyResponseCallback<Schema$Playlist>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>
+    ): void | GaxiosPromise<Schema$Playlist> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10726,16 +11118,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -10743,7 +11138,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Playlist>(parameters);
       }
     }
-
 
     /**
      * youtube.playlists.list
@@ -10768,24 +11162,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Playlists$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlaylistListResponse>;
     list(
-        params: Params$Resource$Playlists$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistListResponse>,
-        callback: BodyResponseCallback<Schema$PlaylistListResponse>): void;
+      params?: Params$Resource$Playlists$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlaylistListResponse>;
     list(
-        params: Params$Resource$Playlists$List,
-        callback: BodyResponseCallback<Schema$PlaylistListResponse>): void;
+      params: Params$Resource$Playlists$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistListResponse>,
+      callback: BodyResponseCallback<Schema$PlaylistListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Playlists$List,
+      callback: BodyResponseCallback<Schema$PlaylistListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PlaylistListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Playlists$List|
-        BodyResponseCallback<Schema$PlaylistListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlaylistListResponse>,
-        callback?: BodyResponseCallback<Schema$PlaylistListResponse>):
-        void|GaxiosPromise<Schema$PlaylistListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$List
+        | BodyResponseCallback<Schema$PlaylistListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlaylistListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistListResponse>
+    ): void | GaxiosPromise<Schema$PlaylistListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10803,16 +11204,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistListResponse>(parameters, callback);
@@ -10820,7 +11224,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$PlaylistListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.playlists.update
@@ -10837,22 +11240,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Playlists$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Playlist>;
     update(
-        params: Params$Resource$Playlists$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params?: Params$Resource$Playlists$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Playlist>;
     update(
-        params: Params$Resource$Playlists$Update,
-        callback: BodyResponseCallback<Schema$Playlist>): void;
+      params: Params$Resource$Playlists$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
+    update(
+      params: Params$Resource$Playlists$Update,
+      callback: BodyResponseCallback<Schema$Playlist>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Playlist>): void;
     update(
-        paramsOrCallback?: Params$Resource$Playlists$Update|
-        BodyResponseCallback<Schema$Playlist>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-        callback?: BodyResponseCallback<Schema$Playlist>):
-        void|GaxiosPromise<Schema$Playlist> {
+      paramsOrCallback?:
+        | Params$Resource$Playlists$Update
+        | BodyResponseCallback<Schema$Playlist>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>
+    ): void | GaxiosPromise<Schema$Playlist> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10870,16 +11278,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/playlists')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/playlists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -10893,7 +11304,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube playlist ID for the playlist that
@@ -10919,7 +11330,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -10969,7 +11380,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * This value indicates that the API should only return the specified
@@ -11050,7 +11461,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -11084,13 +11495,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$Playlist;
   }
 
-
   export class Resource$Search {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.search.list
@@ -11137,23 +11546,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Search$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchListResponse>;
     list(
-        params: Params$Resource$Search$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchListResponse>,
-        callback: BodyResponseCallback<Schema$SearchListResponse>): void;
+      params?: Params$Resource$Search$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchListResponse>;
     list(
-        params: Params$Resource$Search$List,
-        callback: BodyResponseCallback<Schema$SearchListResponse>): void;
+      params: Params$Resource$Search$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchListResponse>,
+      callback: BodyResponseCallback<Schema$SearchListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Search$List,
+      callback: BodyResponseCallback<Schema$SearchListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SearchListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Search$List|
-        BodyResponseCallback<Schema$SearchListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchListResponse>,
-        callback?: BodyResponseCallback<Schema$SearchListResponse>):
-        void|GaxiosPromise<Schema$SearchListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Search$List
+        | BodyResponseCallback<Schema$SearchListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchListResponse>,
+      callback?: BodyResponseCallback<Schema$SearchListResponse>
+    ): void | GaxiosPromise<Schema$SearchListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Search$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11171,16 +11586,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchListResponse>(parameters, callback);
@@ -11194,7 +11609,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channelId parameter indicates that the API response should only
@@ -11418,13 +11833,11 @@ export namespace youtube_v3 {
     videoType?: string;
   }
 
-
   export class Resource$Sponsors {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.sponsors.list
@@ -11441,23 +11854,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sponsors$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SponsorListResponse>;
     list(
-        params: Params$Resource$Sponsors$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SponsorListResponse>,
-        callback: BodyResponseCallback<Schema$SponsorListResponse>): void;
+      params?: Params$Resource$Sponsors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SponsorListResponse>;
     list(
-        params: Params$Resource$Sponsors$List,
-        callback: BodyResponseCallback<Schema$SponsorListResponse>): void;
+      params: Params$Resource$Sponsors$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SponsorListResponse>,
+      callback: BodyResponseCallback<Schema$SponsorListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sponsors$List,
+      callback: BodyResponseCallback<Schema$SponsorListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SponsorListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sponsors$List|
-        BodyResponseCallback<Schema$SponsorListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SponsorListResponse>,
-        callback?: BodyResponseCallback<Schema$SponsorListResponse>):
-        void|GaxiosPromise<Schema$SponsorListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sponsors$List
+        | BodyResponseCallback<Schema$SponsorListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SponsorListResponse>,
+      callback?: BodyResponseCallback<Schema$SponsorListResponse>
+    ): void | GaxiosPromise<Schema$SponsorListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sponsors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11475,16 +11894,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/sponsors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/sponsors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SponsorListResponse>(parameters, callback);
@@ -11498,7 +11920,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter parameter specifies which channel sponsors to return.
@@ -11522,13 +11944,11 @@ export namespace youtube_v3 {
     part?: string;
   }
 
-
   export class Resource$Subscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.subscriptions.delete
@@ -11543,23 +11963,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Subscriptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Subscriptions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11576,16 +12001,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11593,7 +12021,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.subscriptions.insert
@@ -11609,25 +12036,30 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Subscriptions$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Subscription>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Subscriptions$Insert|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Insert
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11644,16 +12076,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -11661,7 +12096,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * youtube.subscriptions.list
@@ -11686,26 +12120,33 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SubscriptionListResponse>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionListResponse>,
-        callback: BodyResponseCallback<Schema$SubscriptionListResponse>): void;
+      params?: Params$Resource$Subscriptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubscriptionListResponse>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        callback: BodyResponseCallback<Schema$SubscriptionListResponse>): void;
+      params: Params$Resource$Subscriptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionListResponse>,
+      callback: BodyResponseCallback<Schema$SubscriptionListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Subscriptions$List,
+      callback: BodyResponseCallback<Schema$SubscriptionListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SubscriptionListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Subscriptions$List|
-        BodyResponseCallback<Schema$SubscriptionListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SubscriptionListResponse>,
-        callback?: BodyResponseCallback<Schema$SubscriptionListResponse>):
-        void|GaxiosPromise<Schema$SubscriptionListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$List
+        | BodyResponseCallback<Schema$SubscriptionListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubscriptionListResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionListResponse>
+    ): void | GaxiosPromise<Schema$SubscriptionListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11722,16 +12163,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionListResponse>(parameters, callback);
@@ -11741,12 +12185,12 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube subscription ID for the resource
@@ -11755,12 +12199,12 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The part parameter serves two purposes in this operation. It identifies
@@ -11774,12 +12218,12 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channelId parameter specifies a YouTube channel ID. The API will only
@@ -11874,13 +12318,11 @@ export namespace youtube_v3 {
     part?: string;
   }
 
-
   export class Resource$Superchatevents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.superChatEvents.list
@@ -11898,29 +12340,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Superchatevents$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SuperChatEventListResponse>;
+      params?: Params$Resource$Superchatevents$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SuperChatEventListResponse>;
     list(
-        params: Params$Resource$Superchatevents$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SuperChatEventListResponse>,
-        callback: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void;
+      params: Params$Resource$Superchatevents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      callback: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void;
     list(
-        params: Params$Resource$Superchatevents$List,
-        callback: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void;
+      params: Params$Resource$Superchatevents$List,
+      callback: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Superchatevents$List|
-        BodyResponseCallback<Schema$SuperChatEventListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SuperChatEventListResponse>,
-        callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void|GaxiosPromise<Schema$SuperChatEventListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Superchatevents$List;
+      callback: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Superchatevents$List
+        | BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>
+    ): void | GaxiosPromise<Schema$SuperChatEventListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Superchatevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11937,32 +12384,37 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/superChatEvents')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/superChatEvents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SuperChatEventListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SuperChatEventListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Superchatevents$List extends
-      StandardParameters {
+  export interface Params$Resource$Superchatevents$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hl parameter instructs the API to retrieve localized resource
@@ -11993,13 +12445,11 @@ export namespace youtube_v3 {
     part?: string;
   }
 
-
   export class Resource$Thumbnails {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.thumbnails.set
@@ -12018,21 +12468,31 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set(params?: Params$Resource$Thumbnails$Set,
-        options?: MethodOptions): GaxiosPromise<Schema$ThumbnailSetResponse>;
-    set(params: Params$Resource$Thumbnails$Set,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ThumbnailSetResponse>,
-        callback: BodyResponseCallback<Schema$ThumbnailSetResponse>): void;
-    set(params: Params$Resource$Thumbnails$Set,
-        callback: BodyResponseCallback<Schema$ThumbnailSetResponse>): void;
+    set(
+      params?: Params$Resource$Thumbnails$Set,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThumbnailSetResponse>;
+    set(
+      params: Params$Resource$Thumbnails$Set,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      callback: BodyResponseCallback<Schema$ThumbnailSetResponse>
+    ): void;
+    set(
+      params: Params$Resource$Thumbnails$Set,
+      callback: BodyResponseCallback<Schema$ThumbnailSetResponse>
+    ): void;
     set(callback: BodyResponseCallback<Schema$ThumbnailSetResponse>): void;
-    set(paramsOrCallback?: Params$Resource$Thumbnails$Set|
-        BodyResponseCallback<Schema$ThumbnailSetResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ThumbnailSetResponse>,
-        callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>):
-        void|GaxiosPromise<Schema$ThumbnailSetResponse> {
+    set(
+      paramsOrCallback?:
+        | Params$Resource$Thumbnails$Set
+        | BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>
+    ): void | GaxiosPromise<Schema$ThumbnailSetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Thumbnails$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12050,18 +12510,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/thumbnails/set')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/thumbnails/set').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/thumbnails/set')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/thumbnails/set').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['videoId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ThumbnailSetResponse>(parameters, callback);
@@ -12075,7 +12540,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -12096,7 +12561,6 @@ export namespace youtube_v3 {
      */
     videoId?: string;
 
-
     /**
      * Media metadata
      */
@@ -12113,13 +12577,11 @@ export namespace youtube_v3 {
     };
   }
 
-
   export class Resource$Videoabusereportreasons {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.videoAbuseReportReasons.list
@@ -12136,34 +12598,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Videoabusereportreasons$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
+      params?: Params$Resource$Videoabusereportreasons$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
     list(
-        params: Params$Resource$Videoabusereportreasons$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
-        callback:
-            BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void;
+      params: Params$Resource$Videoabusereportreasons$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      callback: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void;
     list(
-        params: Params$Resource$Videoabusereportreasons$List,
-        callback:
-            BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void;
+      params: Params$Resource$Videoabusereportreasons$List,
+      callback: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Videoabusereportreasons$List|
-        BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void|GaxiosPromise<Schema$VideoAbuseReportReasonListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Videoabusereportreasons$List;
+      callback: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Videoabusereportreasons$List
+        | BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>
+    ): void | GaxiosPromise<Schema$VideoAbuseReportReasonListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videoabusereportreasons$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12180,33 +12642,39 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videoAbuseReportReasons')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videoAbuseReportReasons').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Videoabusereportreasons$List extends
-      StandardParameters {
+  export interface Params$Resource$Videoabusereportreasons$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hl parameter specifies the language that should be used for text
@@ -12220,13 +12688,11 @@ export namespace youtube_v3 {
     part?: string;
   }
 
-
   export class Resource$Videocategories {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.videoCategories.list
@@ -12245,27 +12711,34 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Videocategories$List, options?: MethodOptions):
-        GaxiosPromise<Schema$VideoCategoryListResponse>;
+      params?: Params$Resource$Videocategories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoCategoryListResponse>;
     list(
-        params: Params$Resource$Videocategories$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VideoCategoryListResponse>,
-        callback: BodyResponseCallback<Schema$VideoCategoryListResponse>): void;
+      params: Params$Resource$Videocategories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      callback: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void;
     list(
-        params: Params$Resource$Videocategories$List,
-        callback: BodyResponseCallback<Schema$VideoCategoryListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$VideoCategoryListResponse>):
-        void;
+      params: Params$Resource$Videocategories$List,
+      callback: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Videocategories$List|
-        BodyResponseCallback<Schema$VideoCategoryListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoCategoryListResponse>,
-        callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>):
-        void|GaxiosPromise<Schema$VideoCategoryListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Videocategories$List;
+      callback: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Videocategories$List
+        | BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>
+    ): void | GaxiosPromise<Schema$VideoCategoryListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videocategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12282,32 +12755,37 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videoCategories')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videoCategories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoCategoryListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$VideoCategoryListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Videocategories$List extends
-      StandardParameters {
+  export interface Params$Resource$Videocategories$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hl parameter specifies the language that should be used for text
@@ -12332,13 +12810,11 @@ export namespace youtube_v3 {
     regionCode?: string;
   }
 
-
   export class Resource$Videos {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.videos.delete
@@ -12353,21 +12829,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Videos$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Videos$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Videos$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Videos$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Videos$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Videos$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12385,16 +12867,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12402,7 +12884,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.getRating
@@ -12419,25 +12900,32 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     getRating(
-        params?: Params$Resource$Videos$Getrating,
-        options?: MethodOptions): GaxiosPromise<Schema$VideoGetRatingResponse>;
+      params?: Params$Resource$Videos$Getrating,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoGetRatingResponse>;
     getRating(
-        params: Params$Resource$Videos$Getrating,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VideoGetRatingResponse>,
-        callback: BodyResponseCallback<Schema$VideoGetRatingResponse>): void;
+      params: Params$Resource$Videos$Getrating,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void;
     getRating(
-        params: Params$Resource$Videos$Getrating,
-        callback: BodyResponseCallback<Schema$VideoGetRatingResponse>): void;
-    getRating(callback: BodyResponseCallback<Schema$VideoGetRatingResponse>):
-        void;
+      params: Params$Resource$Videos$Getrating,
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void;
     getRating(
-        paramsOrCallback?: Params$Resource$Videos$Getrating|
-        BodyResponseCallback<Schema$VideoGetRatingResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoGetRatingResponse>,
-        callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>):
-        void|GaxiosPromise<Schema$VideoGetRatingResponse> {
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void;
+    getRating(
+      paramsOrCallback?:
+        | Params$Resource$Videos$Getrating
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>
+    ): void | GaxiosPromise<Schema$VideoGetRatingResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Getrating;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12455,16 +12943,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos/getRating')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos/getRating').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoGetRatingResponse>(parameters, callback);
@@ -12472,7 +12963,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$VideoGetRatingResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.insert
@@ -12496,22 +12986,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Videos$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Video>;
     insert(
-        params: Params$Resource$Videos$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params?: Params$Resource$Videos$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Video>;
     insert(
-        params: Params$Resource$Videos$Insert,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params: Params$Resource$Videos$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
+    insert(
+      params: Params$Resource$Videos$Insert,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Video>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Videos$Insert|
-        BodyResponseCallback<Schema$Video>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback?: BodyResponseCallback<Schema$Video>):
-        void|GaxiosPromise<Schema$Video> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Insert
+        | BodyResponseCallback<Schema$Video>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>
+    ): void | GaxiosPromise<Schema$Video> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12529,18 +13024,20 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/videos')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/videos').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -12548,7 +13045,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$Video>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.list
@@ -12574,23 +13070,29 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Videos$List, options?: MethodOptions):
-        GaxiosPromise<Schema$VideoListResponse>;
     list(
-        params: Params$Resource$Videos$List,
-        options: MethodOptions|BodyResponseCallback<Schema$VideoListResponse>,
-        callback: BodyResponseCallback<Schema$VideoListResponse>): void;
+      params?: Params$Resource$Videos$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoListResponse>;
     list(
-        params: Params$Resource$Videos$List,
-        callback: BodyResponseCallback<Schema$VideoListResponse>): void;
+      params: Params$Resource$Videos$List,
+      options: MethodOptions | BodyResponseCallback<Schema$VideoListResponse>,
+      callback: BodyResponseCallback<Schema$VideoListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Videos$List,
+      callback: BodyResponseCallback<Schema$VideoListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$VideoListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Videos$List|
-        BodyResponseCallback<Schema$VideoListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoListResponse>,
-        callback?: BodyResponseCallback<Schema$VideoListResponse>):
-        void|GaxiosPromise<Schema$VideoListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$List
+        | BodyResponseCallback<Schema$VideoListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoListResponse>
+    ): void | GaxiosPromise<Schema$VideoListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12608,16 +13110,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoListResponse>(parameters, callback);
@@ -12625,7 +13127,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$VideoListResponse>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.rate
@@ -12641,21 +13142,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rate(params?: Params$Resource$Videos$Rate, options?: MethodOptions):
-        GaxiosPromise<void>;
     rate(
-        params: Params$Resource$Videos$Rate,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Videos$Rate,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     rate(
-        params: Params$Resource$Videos$Rate,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Rate,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    rate(
+      params: Params$Resource$Videos$Rate,
+      callback: BodyResponseCallback<void>
+    ): void;
     rate(callback: BodyResponseCallback<void>): void;
     rate(
-        paramsOrCallback?: Params$Resource$Videos$Rate|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Rate
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12673,16 +13180,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos/rate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos/rate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['id', 'rating'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12690,7 +13200,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.reportAbuse
@@ -12706,23 +13215,28 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     reportAbuse(
-        params?: Params$Resource$Videos$Reportabuse,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Videos$Reportabuse,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     reportAbuse(
-        params: Params$Resource$Videos$Reportabuse,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Reportabuse,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     reportAbuse(
-        params: Params$Resource$Videos$Reportabuse,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Videos$Reportabuse,
+      callback: BodyResponseCallback<void>
+    ): void;
     reportAbuse(callback: BodyResponseCallback<void>): void;
     reportAbuse(
-        paramsOrCallback?: Params$Resource$Videos$Reportabuse|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Videos$Reportabuse;
+      paramsOrCallback?:
+        | Params$Resource$Videos$Reportabuse
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videos$Reportabuse;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12739,16 +13253,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos/reportAbuse')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos/reportAbuse').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12756,7 +13273,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.videos.update
@@ -12772,22 +13288,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Videos$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Video>;
     update(
-        params: Params$Resource$Videos$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params?: Params$Resource$Videos$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Video>;
     update(
-        params: Params$Resource$Videos$Update,
-        callback: BodyResponseCallback<Schema$Video>): void;
+      params: Params$Resource$Videos$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
+    update(
+      params: Params$Resource$Videos$Update,
+      callback: BodyResponseCallback<Schema$Video>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Video>): void;
     update(
-        paramsOrCallback?: Params$Resource$Videos$Update|
-        BodyResponseCallback<Schema$Video>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Video>,
-        callback?: BodyResponseCallback<Schema$Video>):
-        void|GaxiosPromise<Schema$Video> {
+      paramsOrCallback?:
+        | Params$Resource$Videos$Update
+        | BodyResponseCallback<Schema$Video>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>
+    ): void | GaxiosPromise<Schema$Video> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12805,16 +13326,16 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/videos')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -12828,7 +13349,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube video ID for the resource that is
@@ -12854,7 +13375,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies a comma-separated list of the YouTube video
@@ -12880,7 +13401,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The autoLevels parameter indicates whether YouTube should automatically
@@ -12969,7 +13490,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The chart parameter identifies the chart that you want to retrieve.
@@ -13071,7 +13592,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id parameter specifies the YouTube video ID of the video that is
@@ -13083,12 +13604,12 @@ export namespace youtube_v3 {
      */
     rating?: string;
   }
-  export interface Params$Resource$Videos$Reportabuse extends
-      StandardParameters {
+  export interface Params$Resource$Videos$Reportabuse
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -13113,7 +13634,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Note: This parameter is intended exclusively for YouTube content
@@ -13155,13 +13676,11 @@ export namespace youtube_v3 {
     requestBody?: Schema$Video;
   }
 
-
   export class Resource$Watermarks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtube.watermarks.set
@@ -13180,18 +13699,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set(params?: Params$Resource$Watermarks$Set,
-        options?: MethodOptions): GaxiosPromise<void>;
-    set(params: Params$Resource$Watermarks$Set,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    set(params: Params$Resource$Watermarks$Set,
-        callback: BodyResponseCallback<void>): void;
+    set(
+      params?: Params$Resource$Watermarks$Set,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    set(
+      params: Params$Resource$Watermarks$Set,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    set(
+      params: Params$Resource$Watermarks$Set,
+      callback: BodyResponseCallback<void>
+    ): void;
     set(callback: BodyResponseCallback<void>): void;
-    set(paramsOrCallback?: Params$Resource$Watermarks$Set|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+    set(
+      paramsOrCallback?:
+        | Params$Resource$Watermarks$Set
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13209,18 +13737,23 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/watermarks/set')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/watermarks/set').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/youtube/v3/watermarks/set')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/youtube/v3/watermarks/set').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['channelId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13228,7 +13761,6 @@ export namespace youtube_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * youtube.watermarks.unset
@@ -13243,21 +13775,27 @@ export namespace youtube_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unset(params?: Params$Resource$Watermarks$Unset, options?: MethodOptions):
-        GaxiosPromise<void>;
     unset(
-        params: Params$Resource$Watermarks$Unset,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Watermarks$Unset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     unset(
-        params: Params$Resource$Watermarks$Unset,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Watermarks$Unset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    unset(
+      params: Params$Resource$Watermarks$Unset,
+      callback: BodyResponseCallback<void>
+    ): void;
     unset(callback: BodyResponseCallback<void>): void;
     unset(
-        paramsOrCallback?: Params$Resource$Watermarks$Unset|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Watermarks$Unset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Unset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13275,16 +13813,19 @@ export namespace youtube_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/watermarks/unset')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/youtube/v3/watermarks/unset').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['channelId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13298,7 +13839,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channelId parameter specifies the YouTube channel ID for which the
@@ -13343,7 +13884,7 @@ export namespace youtube_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The channelId parameter specifies the YouTube channel ID for which the

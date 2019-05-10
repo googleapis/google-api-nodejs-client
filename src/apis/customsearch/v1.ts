@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -91,15 +103,20 @@ export namespace customsearch_v1 {
 
   export interface Schema$Context {
     facets?: Array<
-        Array<{anchor?: string; label?: string; label_with_op?: string;}>>;
+      Array<{anchor?: string; label?: string; label_with_op?: string}>
+    >;
     title?: string;
   }
   export interface Schema$Promotion {
-    bodyLines?: Array<
-        {htmlTitle?: string; link?: string; title?: string; url?: string;}>;
+    bodyLines?: Array<{
+      htmlTitle?: string;
+      link?: string;
+      title?: string;
+      url?: string;
+    }>;
     displayLink?: string;
     htmlTitle?: string;
-    image?: {height?: number; source?: string; width?: number;};
+    image?: {height?: number; source?: string; width?: number};
     link?: string;
     title?: string;
   }
@@ -159,11 +176,14 @@ export namespace customsearch_v1 {
       width?: number;
     };
     kind?: string;
-    labels?:
-        Array<{displayName?: string; label_with_op?: string; name?: string;}>;
+    labels?: Array<{
+      displayName?: string;
+      label_with_op?: string;
+      name?: string;
+    }>;
     link?: string;
     mime?: string;
-    pagemap?: {[key: string]: Array<{[key: string]: any;}>;};
+    pagemap?: {[key: string]: Array<{[key: string]: any}>};
     snippet?: string;
     title?: string;
   }
@@ -172,17 +192,16 @@ export namespace customsearch_v1 {
     items?: Schema$Result[];
     kind?: string;
     promotions?: Schema$Promotion[];
-    queries?: {[key: string]: Schema$Query[];};
+    queries?: {[key: string]: Schema$Query[]};
     searchInformation?: {
       formattedSearchTime?: string;
       formattedTotalResults?: string;
       searchTime?: number;
       totalResults?: string;
     };
-    spelling?: {correctedQuery?: string; htmlCorrectedQuery?: string;};
-    url?: {template?: string; type?: string;};
+    spelling?: {correctedQuery?: string; htmlCorrectedQuery?: string};
+    url?: {template?: string; type?: string};
   }
-
 
   export class Resource$Cse {
     context: APIRequestContext;
@@ -191,7 +210,6 @@ export namespace customsearch_v1 {
       this.context = context;
       this.siterestrict = new Resource$Cse$Siterestrict(this.context);
     }
-
 
     /**
      * search.cse.list
@@ -236,22 +254,27 @@ export namespace customsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Cse$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Search>;
     list(
-        params: Params$Resource$Cse$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Search>,
-        callback: BodyResponseCallback<Schema$Search>): void;
+      params?: Params$Resource$Cse$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Search>;
     list(
-        params: Params$Resource$Cse$List,
-        callback: BodyResponseCallback<Schema$Search>): void;
+      params: Params$Resource$Cse$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Search>,
+      callback: BodyResponseCallback<Schema$Search>
+    ): void;
+    list(
+      params: Params$Resource$Cse$List,
+      callback: BodyResponseCallback<Schema$Search>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Search>): void;
     list(
-        paramsOrCallback?: Params$Resource$Cse$List|
-        BodyResponseCallback<Schema$Search>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Search>,
-        callback?: BodyResponseCallback<Schema$Search>):
-        void|GaxiosPromise<Schema$Search> {
+      paramsOrCallback?:
+        | Params$Resource$Cse$List
+        | BodyResponseCallback<Schema$Search>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Search>,
+      callback?: BodyResponseCallback<Schema$Search>
+    ): void | GaxiosPromise<Schema$Search> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cse$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -269,15 +292,16 @@ export namespace customsearch_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/customsearch/v1').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/customsearch/v1').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);
@@ -291,7 +315,7 @@ export namespace customsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Turns off the translation between zh-CN and zh-TW.
@@ -440,7 +464,6 @@ export namespace customsearch_v1 {
       this.context = context;
     }
 
-
     /**
      * search.cse.siterestrict.list
      * @desc Returns metadata about the search performed, metadata about the
@@ -486,24 +509,28 @@ export namespace customsearch_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Cse$Siterestrict$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Search>;
+      params?: Params$Resource$Cse$Siterestrict$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Search>;
     list(
-        params: Params$Resource$Cse$Siterestrict$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Search>,
-        callback: BodyResponseCallback<Schema$Search>): void;
+      params: Params$Resource$Cse$Siterestrict$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Search>,
+      callback: BodyResponseCallback<Schema$Search>
+    ): void;
     list(
-        params: Params$Resource$Cse$Siterestrict$List,
-        callback: BodyResponseCallback<Schema$Search>): void;
+      params: Params$Resource$Cse$Siterestrict$List,
+      callback: BodyResponseCallback<Schema$Search>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Search>): void;
     list(
-        paramsOrCallback?: Params$Resource$Cse$Siterestrict$List|
-        BodyResponseCallback<Schema$Search>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Search>,
-        callback?: BodyResponseCallback<Schema$Search>):
-        void|GaxiosPromise<Schema$Search> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Cse$Siterestrict$List;
+      paramsOrCallback?:
+        | Params$Resource$Cse$Siterestrict$List
+        | BodyResponseCallback<Schema$Search>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Search>,
+      callback?: BodyResponseCallback<Schema$Search>
+    ): void | GaxiosPromise<Schema$Search> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Cse$Siterestrict$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -520,16 +547,19 @@ export namespace customsearch_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/customsearch/v1/siterestrict')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/customsearch/v1/siterestrict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);
@@ -539,12 +569,12 @@ export namespace customsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Cse$Siterestrict$List extends
-      StandardParameters {
+  export interface Params$Resource$Cse$Siterestrict$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Turns off the translation between zh-CN and zh-TW.

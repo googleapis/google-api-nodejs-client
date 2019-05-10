@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -145,21 +157,25 @@ export namespace dfareporting_v3_2 {
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {_options: options || {}, google};
 
-      this.accountActiveAdSummaries =
-          new Resource$Accountactiveadsummaries(this.context);
-      this.accountPermissionGroups =
-          new Resource$Accountpermissiongroups(this.context);
+      this.accountActiveAdSummaries = new Resource$Accountactiveadsummaries(
+        this.context
+      );
+      this.accountPermissionGroups = new Resource$Accountpermissiongroups(
+        this.context
+      );
       this.accountPermissions = new Resource$Accountpermissions(this.context);
       this.accounts = new Resource$Accounts(this.context);
       this.accountUserProfiles = new Resource$Accountuserprofiles(this.context);
       this.ads = new Resource$Ads(this.context);
       this.advertiserGroups = new Resource$Advertisergroups(this.context);
-      this.advertiserLandingPages =
-          new Resource$Advertiserlandingpages(this.context);
+      this.advertiserLandingPages = new Resource$Advertiserlandingpages(
+        this.context
+      );
       this.advertisers = new Resource$Advertisers(this.context);
       this.browsers = new Resource$Browsers(this.context);
-      this.campaignCreativeAssociations =
-          new Resource$Campaigncreativeassociations(this.context);
+      this.campaignCreativeAssociations = new Resource$Campaigncreativeassociations(
+        this.context
+      );
       this.campaigns = new Resource$Campaigns(this.context);
       this.changeLogs = new Resource$Changelogs(this.context);
       this.cities = new Resource$Cities(this.context);
@@ -173,27 +189,33 @@ export namespace dfareporting_v3_2 {
       this.creativeGroups = new Resource$Creativegroups(this.context);
       this.creatives = new Resource$Creatives(this.context);
       this.dimensionValues = new Resource$Dimensionvalues(this.context);
-      this.directorySiteContacts =
-          new Resource$Directorysitecontacts(this.context);
+      this.directorySiteContacts = new Resource$Directorysitecontacts(
+        this.context
+      );
       this.directorySites = new Resource$Directorysites(this.context);
-      this.dynamicTargetingKeys =
-          new Resource$Dynamictargetingkeys(this.context);
+      this.dynamicTargetingKeys = new Resource$Dynamictargetingkeys(
+        this.context
+      );
       this.eventTags = new Resource$Eventtags(this.context);
       this.files = new Resource$Files(this.context);
-      this.floodlightActivities =
-          new Resource$Floodlightactivities(this.context);
-      this.floodlightActivityGroups =
-          new Resource$Floodlightactivitygroups(this.context);
-      this.floodlightConfigurations =
-          new Resource$Floodlightconfigurations(this.context);
+      this.floodlightActivities = new Resource$Floodlightactivities(
+        this.context
+      );
+      this.floodlightActivityGroups = new Resource$Floodlightactivitygroups(
+        this.context
+      );
+      this.floodlightConfigurations = new Resource$Floodlightconfigurations(
+        this.context
+      );
       this.inventoryItems = new Resource$Inventoryitems(this.context);
       this.languages = new Resource$Languages(this.context);
       this.metros = new Resource$Metros(this.context);
       this.mobileApps = new Resource$Mobileapps(this.context);
       this.mobileCarriers = new Resource$Mobilecarriers(this.context);
       this.operatingSystems = new Resource$Operatingsystems(this.context);
-      this.operatingSystemVersions =
-          new Resource$Operatingsystemversions(this.context);
+      this.operatingSystemVersions = new Resource$Operatingsystemversions(
+        this.context
+      );
       this.orderDocuments = new Resource$Orderdocuments(this.context);
       this.orders = new Resource$Orders(this.context);
       this.placementGroups = new Resource$Placementgroups(this.context);
@@ -204,18 +226,21 @@ export namespace dfareporting_v3_2 {
       this.projects = new Resource$Projects(this.context);
       this.regions = new Resource$Regions(this.context);
       this.remarketingLists = new Resource$Remarketinglists(this.context);
-      this.remarketingListShares =
-          new Resource$Remarketinglistshares(this.context);
+      this.remarketingListShares = new Resource$Remarketinglistshares(
+        this.context
+      );
       this.reports = new Resource$Reports(this.context);
       this.sites = new Resource$Sites(this.context);
       this.sizes = new Resource$Sizes(this.context);
       this.subaccounts = new Resource$Subaccounts(this.context);
-      this.targetableRemarketingLists =
-          new Resource$Targetableremarketinglists(this.context);
+      this.targetableRemarketingLists = new Resource$Targetableremarketinglists(
+        this.context
+      );
       this.targetingTemplates = new Resource$Targetingtemplates(this.context);
       this.userProfiles = new Resource$Userprofiles(this.context);
-      this.userRolePermissionGroups =
-          new Resource$Userrolepermissiongroups(this.context);
+      this.userRolePermissionGroups = new Resource$Userrolepermissiongroups(
+        this.context
+      );
       this.userRolePermissions = new Resource$Userrolepermissions(this.context);
       this.userRoles = new Resource$Userroles(this.context);
       this.videoFormats = new Resource$Videoformats(this.context);
@@ -675,8 +700,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Default click-through event tag properties for this ad.
      */
-    defaultClickThroughEventTagProperties?:
-        Schema$DefaultClickThroughEventTagProperties;
+    defaultClickThroughEventTagProperties?: Schema$DefaultClickThroughEventTagProperties;
     /**
      * Delivery schedule information for this ad. Applicable when type is
      * AD_SERVING_STANDARD_AD or AD_SERVING_TRACKING. This field along with
@@ -1169,8 +1193,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Additional creative optimization configurations for the campaign.
      */
-    additionalCreativeOptimizationConfigurations?:
-        Schema$CreativeOptimizationConfiguration[];
+    additionalCreativeOptimizationConfigurations?: Schema$CreativeOptimizationConfiguration[];
     /**
      * Advertiser group ID of the associated advertiser.
      */
@@ -1219,13 +1242,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Creative optimization configuration for the campaign.
      */
-    creativeOptimizationConfiguration?:
-        Schema$CreativeOptimizationConfiguration;
+    creativeOptimizationConfiguration?: Schema$CreativeOptimizationConfiguration;
     /**
      * Click-through event tag ID override properties for this campaign.
      */
-    defaultClickThroughEventTagProperties?:
-        Schema$DefaultClickThroughEventTagProperties;
+    defaultClickThroughEventTagProperties?: Schema$DefaultClickThroughEventTagProperties;
     /**
      * The default landing page ID for this campaign.
      */
@@ -1598,8 +1619,7 @@ export namespace dfareporting_v3_2 {
      * Contains items that are compatible to be selected for a report of type
      * &quot;CROSS_DIMENSION_REACH&quot;.
      */
-    crossDimensionReachReportCompatibleFields?:
-        Schema$CrossDimensionReachReportCompatibleFields;
+    crossDimensionReachReportCompatibleFields?: Schema$CrossDimensionReachReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type
      * &quot;FLOODLIGHT&quot;.
@@ -1613,8 +1633,7 @@ export namespace dfareporting_v3_2 {
      * Contains items that are compatible to be selected for a report of type
      * &quot;PATH_TO_CONVERSION&quot;.
      */
-    pathToConversionReportCompatibleFields?:
-        Schema$PathToConversionReportCompatibleFields;
+    pathToConversionReportCompatibleFields?: Schema$PathToConversionReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type
      * &quot;REACH&quot;.
@@ -3983,7 +4002,7 @@ export namespace dfareporting_v3_2 {
     /**
      * The URLs where the completed report file can be downloaded.
      */
-    urls?: {apiUrl?: string; browserUrl?: string;};
+    urls?: {apiUrl?: string; browserUrl?: string};
   }
   /**
    * Represents the list of File resources.
@@ -4436,8 +4455,7 @@ export namespace dfareporting_v3_2 {
     /**
      * List of user defined variables enabled for this configuration.
      */
-    userDefinedVariableConfigurations?:
-        Schema$UserDefinedVariableConfiguration[];
+    userDefinedVariableConfigurations?: Schema$UserDefinedVariableConfiguration[];
   }
   /**
    * Floodlight Configuration List Response
@@ -7744,13 +7762,11 @@ export namespace dfareporting_v3_2 {
     transcodeSettings?: Schema$TranscodeSetting;
   }
 
-
   export class Resource$Accountactiveadsummaries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.accountActiveAdSummaries.get
@@ -7765,23 +7781,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accountactiveadsummaries$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountActiveAdSummary>;
-    get(params: Params$Resource$Accountactiveadsummaries$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountActiveAdSummary>,
-        callback: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
-    get(params: Params$Resource$Accountactiveadsummaries$Get,
-        callback: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
+    get(
+      params?: Params$Resource$Accountactiveadsummaries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountActiveAdSummary>;
+    get(
+      params: Params$Resource$Accountactiveadsummaries$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountActiveAdSummary>,
+      callback: BodyResponseCallback<Schema$AccountActiveAdSummary>
+    ): void;
+    get(
+      params: Params$Resource$Accountactiveadsummaries$Get,
+      callback: BodyResponseCallback<Schema$AccountActiveAdSummary>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
-    get(paramsOrCallback?: Params$Resource$Accountactiveadsummaries$Get|
-        BodyResponseCallback<Schema$AccountActiveAdSummary>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountActiveAdSummary>,
-        callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>):
-        void|GaxiosPromise<Schema$AccountActiveAdSummary> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accountactiveadsummaries$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accountactiveadsummaries$Get
+        | BodyResponseCallback<Schema$AccountActiveAdSummary>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountActiveAdSummary>,
+      callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>
+    ): void | GaxiosPromise<Schema$AccountActiveAdSummary> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountactiveadsummaries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7798,18 +7824,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'summaryAccountId'],
         pathParams: ['profileId', 'summaryAccountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountActiveAdSummary>(parameters, callback);
@@ -7819,12 +7846,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Accountactiveadsummaries$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accountactiveadsummaries$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -7836,13 +7863,11 @@ export namespace dfareporting_v3_2 {
     summaryAccountId?: string;
   }
 
-
   export class Resource$Accountpermissiongroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.accountPermissionGroups.get
@@ -7857,23 +7882,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accountpermissiongroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountPermissionGroup>;
-    get(params: Params$Resource$Accountpermissiongroups$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountPermissionGroup>,
-        callback: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
-    get(params: Params$Resource$Accountpermissiongroups$Get,
-        callback: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
+    get(
+      params?: Params$Resource$Accountpermissiongroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountPermissionGroup>;
+    get(
+      params: Params$Resource$Accountpermissiongroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountPermissionGroup>,
+      callback: BodyResponseCallback<Schema$AccountPermissionGroup>
+    ): void;
+    get(
+      params: Params$Resource$Accountpermissiongroups$Get,
+      callback: BodyResponseCallback<Schema$AccountPermissionGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Accountpermissiongroups$Get|
-        BodyResponseCallback<Schema$AccountPermissionGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountPermissionGroup>,
-        callback?: BodyResponseCallback<Schema$AccountPermissionGroup>):
-        void|GaxiosPromise<Schema$AccountPermissionGroup> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accountpermissiongroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accountpermissiongroups$Get
+        | BodyResponseCallback<Schema$AccountPermissionGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountPermissionGroup>,
+      callback?: BodyResponseCallback<Schema$AccountPermissionGroup>
+    ): void | GaxiosPromise<Schema$AccountPermissionGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountpermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7890,18 +7925,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissionGroups/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissionGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroup>(parameters, callback);
@@ -7909,7 +7945,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AccountPermissionGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accountPermissionGroups.list
@@ -7924,34 +7959,36 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accountpermissiongroups$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AccountPermissionGroupsListResponse>;
+      params?: Params$Resource$Accountpermissiongroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountPermissionGroupsListResponse>;
     list(
-        params: Params$Resource$Accountpermissiongroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
-        void;
+      params: Params$Resource$Accountpermissiongroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
+      callback: BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Accountpermissiongroups$List,
-        callback:
-            BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
-        void;
+      params: Params$Resource$Accountpermissiongroups$List,
+      callback: BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Accountpermissiongroups$List|
-        BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
-        void|GaxiosPromise<Schema$AccountPermissionGroupsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accountpermissiongroups$List;
+      callback: BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accountpermissiongroups$List
+        | BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$AccountPermissionGroupsListResponse
+      >
+    ): void | GaxiosPromise<Schema$AccountPermissionGroupsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountpermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7968,35 +8005,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissionGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissionGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Accountpermissiongroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accountpermissiongroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account permission group ID.
@@ -8007,12 +8048,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountpermissiongroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Accountpermissiongroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -8020,13 +8061,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Accountpermissions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.accountPermissions.get
@@ -8041,22 +8080,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accountpermissions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountPermission>;
-    get(params: Params$Resource$Accountpermissions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
-        callback: BodyResponseCallback<Schema$AccountPermission>): void;
-    get(params: Params$Resource$Accountpermissions$Get,
-        callback: BodyResponseCallback<Schema$AccountPermission>): void;
+    get(
+      params?: Params$Resource$Accountpermissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountPermission>;
+    get(
+      params: Params$Resource$Accountpermissions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountPermission>,
+      callback: BodyResponseCallback<Schema$AccountPermission>
+    ): void;
+    get(
+      params: Params$Resource$Accountpermissions$Get,
+      callback: BodyResponseCallback<Schema$AccountPermission>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccountPermission>): void;
-    get(paramsOrCallback?: Params$Resource$Accountpermissions$Get|
-        BodyResponseCallback<Schema$AccountPermission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountPermission>,
-        callback?: BodyResponseCallback<Schema$AccountPermission>):
-        void|GaxiosPromise<Schema$AccountPermission> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accountpermissions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accountpermissions$Get
+        | BodyResponseCallback<Schema$AccountPermission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountPermission>,
+      callback?: BodyResponseCallback<Schema$AccountPermission>
+    ): void | GaxiosPromise<Schema$AccountPermission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountpermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8073,18 +8121,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissions/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissions/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermission>(parameters, callback);
@@ -8092,7 +8141,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AccountPermission>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accountPermissions.list
@@ -8107,30 +8155,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accountpermissions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AccountPermissionsListResponse>;
+      params?: Params$Resource$Accountpermissions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountPermissionsListResponse>;
     list(
-        params: Params$Resource$Accountpermissions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountPermissionsListResponse>,
-        callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
-        void;
+      params: Params$Resource$Accountpermissions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountPermissionsListResponse>,
+      callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Accountpermissions$List,
-        callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
-        void;
+      params: Params$Resource$Accountpermissions$List,
+      callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Accountpermissions$List|
-        BodyResponseCallback<Schema$AccountPermissionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountPermissionsListResponse>,
-        callback?: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
-        void|GaxiosPromise<Schema$AccountPermissionsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accountpermissions$List;
+      callback: BodyResponseCallback<Schema$AccountPermissionsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accountpermissions$List
+        | BodyResponseCallback<Schema$AccountPermissionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountPermissionsListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountPermissionsListResponse>
+    ): void | GaxiosPromise<Schema$AccountPermissionsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountpermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8147,35 +8199,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermissionsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccountPermissionsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Accountpermissions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accountpermissions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account permission ID.
@@ -8186,12 +8242,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountpermissions$List extends
-      StandardParameters {
+  export interface Params$Resource$Accountpermissions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -8199,13 +8255,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.accounts.get
@@ -8220,19 +8274,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Account>;
-    get(params: Params$Resource$Accounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
-    get(params: Params$Resource$Accounts$Get,
-        callback: BodyResponseCallback<Schema$Account>): void;
+    get(
+      params?: Params$Resource$Accounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Get,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Account>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Get|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Get
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8250,17 +8312,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/accounts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accounts/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -8268,7 +8332,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accounts.list
@@ -8290,24 +8353,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountsListResponse>;
     list(
-        params: Params$Resource$Accounts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountsListResponse>,
-        callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
+      params?: Params$Resource$Accounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsListResponse>;
     list(
-        params: Params$Resource$Accounts$List,
-        callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
+      params: Params$Resource$Accounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsListResponse>,
+      callback: BodyResponseCallback<Schema$AccountsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$List,
+      callback: BodyResponseCallback<Schema$AccountsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AccountsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$List|
-        BodyResponseCallback<Schema$AccountsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountsListResponse>,
-        callback?: BodyResponseCallback<Schema$AccountsListResponse>):
-        void|GaxiosPromise<Schema$AccountsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$List
+        | BodyResponseCallback<Schema$AccountsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsListResponse>
+    ): void | GaxiosPromise<Schema$AccountsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8325,17 +8395,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/accounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(parameters, callback);
@@ -8343,7 +8414,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AccountsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accounts.patch
@@ -8359,22 +8429,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Accounts$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     patch(
-        params: Params$Resource$Accounts$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     patch(
-        params: Params$Resource$Accounts$Patch,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Patch,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Account>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Accounts$Patch|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Patch
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8392,17 +8467,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/accounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -8410,7 +8486,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accounts.update
@@ -8425,22 +8500,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    update(
+      params: Params$Resource$Accounts$Update,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Account>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Update|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Update
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8458,17 +8538,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/accounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -8482,7 +8563,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID.
@@ -8497,7 +8578,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only active accounts. Don't set this field to select both active
@@ -8542,7 +8623,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID.
@@ -8562,7 +8643,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -8575,13 +8656,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Account;
   }
 
-
   export class Resource$Accountuserprofiles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.accountUserProfiles.get
@@ -8596,22 +8675,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accountuserprofiles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
-    get(params: Params$Resource$Accountuserprofiles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
-    get(params: Params$Resource$Accountuserprofiles$Get,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+    get(
+      params?: Params$Resource$Accountuserprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountUserProfile>;
+    get(
+      params: Params$Resource$Accountuserprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
+    get(
+      params: Params$Resource$Accountuserprofiles$Get,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
-    get(paramsOrCallback?: Params$Resource$Accountuserprofiles$Get|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|GaxiosPromise<Schema$AccountUserProfile> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accountuserprofiles$Get
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void | GaxiosPromise<Schema$AccountUserProfile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountuserprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8628,18 +8716,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -8647,7 +8736,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accountUserProfiles.insert
@@ -8663,25 +8751,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Accountuserprofiles$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
+      params?: Params$Resource$Accountuserprofiles$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountUserProfile>;
     insert(
-        params: Params$Resource$Accountuserprofiles$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+      params: Params$Resource$Accountuserprofiles$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
     insert(
-        params: Params$Resource$Accountuserprofiles$Insert,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+      params: Params$Resource$Accountuserprofiles$Insert,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Accountuserprofiles$Insert|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|GaxiosPromise<Schema$AccountUserProfile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accountuserprofiles$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Accountuserprofiles$Insert
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void | GaxiosPromise<Schema$AccountUserProfile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountuserprofiles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8698,18 +8791,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -8717,7 +8811,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accountUserProfiles.list
@@ -8742,32 +8835,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accountuserprofiles$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AccountUserProfilesListResponse>;
+      params?: Params$Resource$Accountuserprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountUserProfilesListResponse>;
     list(
-        params: Params$Resource$Accountuserprofiles$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
-        callback: BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
-        void;
+      params: Params$Resource$Accountuserprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
+      callback: BodyResponseCallback<Schema$AccountUserProfilesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Accountuserprofiles$List,
-        callback: BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
-        void;
+      params: Params$Resource$Accountuserprofiles$List,
+      callback: BodyResponseCallback<Schema$AccountUserProfilesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Accountuserprofiles$List|
-        BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
-        void|GaxiosPromise<Schema$AccountUserProfilesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$List;
+      callback: BodyResponseCallback<Schema$AccountUserProfilesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accountuserprofiles$List
+        | BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfilesListResponse>
+    ): void | GaxiosPromise<Schema$AccountUserProfilesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountuserprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8784,28 +8879,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfilesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AccountUserProfilesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.accountUserProfiles.patch
@@ -8823,25 +8921,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Accountuserprofiles$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
+      params?: Params$Resource$Accountuserprofiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountUserProfile>;
     patch(
-        params: Params$Resource$Accountuserprofiles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+      params: Params$Resource$Accountuserprofiles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
     patch(
-        params: Params$Resource$Accountuserprofiles$Patch,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+      params: Params$Resource$Accountuserprofiles$Patch,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Accountuserprofiles$Patch|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|GaxiosPromise<Schema$AccountUserProfile> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Accountuserprofiles$Patch
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void | GaxiosPromise<Schema$AccountUserProfile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountuserprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8858,18 +8961,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -8877,7 +8981,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
       }
     }
-
 
     /**
      * dfareporting.accountUserProfiles.update
@@ -8893,25 +8996,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accountuserprofiles$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
+      params?: Params$Resource$Accountuserprofiles$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountUserProfile>;
     update(
-        params: Params$Resource$Accountuserprofiles$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+      params: Params$Resource$Accountuserprofiles$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
     update(
-        params: Params$Resource$Accountuserprofiles$Update,
-        callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
+      params: Params$Resource$Accountuserprofiles$Update,
+      callback: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accountuserprofiles$Update|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountUserProfile>,
-        callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|GaxiosPromise<Schema$AccountUserProfile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accountuserprofiles$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accountuserprofiles$Update
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>
+    ): void | GaxiosPromise<Schema$AccountUserProfile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accountuserprofiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8928,18 +9036,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/accountUserProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -8949,12 +9058,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Accountuserprofiles$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID.
@@ -8965,12 +9074,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountuserprofiles$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -8982,12 +9091,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$AccountUserProfile;
   }
-  export interface Params$Resource$Accountuserprofiles$List extends
-      StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only active user profiles.
@@ -9036,12 +9145,12 @@ export namespace dfareporting_v3_2 {
      */
     userRoleId?: string;
   }
-  export interface Params$Resource$Accountuserprofiles$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID.
@@ -9057,12 +9166,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$AccountUserProfile;
   }
-  export interface Params$Resource$Accountuserprofiles$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -9075,13 +9184,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$AccountUserProfile;
   }
 
-
   export class Resource$Ads {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.ads.get
@@ -9096,19 +9203,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Ads$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Ad>;
-    get(params: Params$Resource$Ads$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback: BodyResponseCallback<Schema$Ad>): void;
-    get(params: Params$Resource$Ads$Get,
-        callback: BodyResponseCallback<Schema$Ad>): void;
+    get(
+      params?: Params$Resource$Ads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Ad>;
+    get(
+      params: Params$Resource$Ads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
+    get(
+      params: Params$Resource$Ads$Get,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Ad>): void;
-    get(paramsOrCallback?: Params$Resource$Ads$Get|
-        BodyResponseCallback<Schema$Ad>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>):
-        void|GaxiosPromise<Schema$Ad> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Ads$Get
+        | BodyResponseCallback<Schema$Ad>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>
+    ): void | GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9126,17 +9241,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/ads/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9144,7 +9260,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Ad>(parameters);
       }
     }
-
 
     /**
      * dfareporting.ads.insert
@@ -9159,22 +9274,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Ads$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Ad>;
     insert(
-        params: Params$Resource$Ads$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback: BodyResponseCallback<Schema$Ad>): void;
+      params?: Params$Resource$Ads$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Ad>;
     insert(
-        params: Params$Resource$Ads$Insert,
-        callback: BodyResponseCallback<Schema$Ad>): void;
+      params: Params$Resource$Ads$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
+    insert(
+      params: Params$Resource$Ads$Insert,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Ad>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Ads$Insert|
-        BodyResponseCallback<Schema$Ad>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>):
-        void|GaxiosPromise<Schema$Ad> {
+      paramsOrCallback?:
+        | Params$Resource$Ads$Insert
+        | BodyResponseCallback<Schema$Ad>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>
+    ): void | GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9192,16 +9312,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9209,7 +9331,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Ad>(parameters);
       }
     }
-
 
     /**
      * dfareporting.ads.list
@@ -9247,23 +9368,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Ads$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AdsListResponse>;
     list(
-        params: Params$Resource$Ads$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
-        callback: BodyResponseCallback<Schema$AdsListResponse>): void;
+      params?: Params$Resource$Ads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdsListResponse>;
     list(
-        params: Params$Resource$Ads$List,
-        callback: BodyResponseCallback<Schema$AdsListResponse>): void;
+      params: Params$Resource$Ads$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AdsListResponse>,
+      callback: BodyResponseCallback<Schema$AdsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Ads$List,
+      callback: BodyResponseCallback<Schema$AdsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AdsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Ads$List|
-        BodyResponseCallback<Schema$AdsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdsListResponse>,
-        callback?: BodyResponseCallback<Schema$AdsListResponse>):
-        void|GaxiosPromise<Schema$AdsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Ads$List
+        | BodyResponseCallback<Schema$AdsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdsListResponse>,
+      callback?: BodyResponseCallback<Schema$AdsListResponse>
+    ): void | GaxiosPromise<Schema$AdsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9281,16 +9408,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdsListResponse>(parameters, callback);
@@ -9298,7 +9427,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AdsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.ads.patch
@@ -9314,22 +9442,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Ads$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Ad>;
     patch(
-        params: Params$Resource$Ads$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback: BodyResponseCallback<Schema$Ad>): void;
+      params?: Params$Resource$Ads$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Ad>;
     patch(
-        params: Params$Resource$Ads$Patch,
-        callback: BodyResponseCallback<Schema$Ad>): void;
+      params: Params$Resource$Ads$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
+    patch(
+      params: Params$Resource$Ads$Patch,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Ad>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Ads$Patch|
-        BodyResponseCallback<Schema$Ad>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>):
-        void|GaxiosPromise<Schema$Ad> {
+      paramsOrCallback?:
+        | Params$Resource$Ads$Patch
+        | BodyResponseCallback<Schema$Ad>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>
+    ): void | GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9347,16 +9480,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9364,7 +9499,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Ad>(parameters);
       }
     }
-
 
     /**
      * dfareporting.ads.update
@@ -9379,22 +9513,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Ads$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Ad>;
     update(
-        params: Params$Resource$Ads$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback: BodyResponseCallback<Schema$Ad>): void;
+      params?: Params$Resource$Ads$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Ad>;
     update(
-        params: Params$Resource$Ads$Update,
-        callback: BodyResponseCallback<Schema$Ad>): void;
+      params: Params$Resource$Ads$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
+    update(
+      params: Params$Resource$Ads$Update,
+      callback: BodyResponseCallback<Schema$Ad>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Ad>): void;
     update(
-        paramsOrCallback?: Params$Resource$Ads$Update|
-        BodyResponseCallback<Schema$Ad>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
-        callback?: BodyResponseCallback<Schema$Ad>):
-        void|GaxiosPromise<Schema$Ad> {
+      paramsOrCallback?:
+        | Params$Resource$Ads$Update
+        | BodyResponseCallback<Schema$Ad>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>
+    ): void | GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9412,16 +9551,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/ads'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9435,7 +9576,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad ID.
@@ -9450,7 +9591,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -9466,7 +9607,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only active ads.
@@ -9582,7 +9723,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Ad ID.
@@ -9602,7 +9743,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -9615,13 +9756,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Ad;
   }
 
-
   export class Resource$Advertisergroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.advertiserGroups.delete
@@ -9637,23 +9776,28 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Advertisergroups$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Advertisergroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Advertisergroups$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Advertisergroups$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Advertisergroups$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Advertisergroups$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Advertisergroups$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Advertisergroups$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisergroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9670,18 +9814,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9689,7 +9834,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertiserGroups.get
@@ -9704,22 +9848,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Advertisergroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
-    get(params: Params$Resource$Advertisergroups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
-    get(params: Params$Resource$Advertisergroups$Get,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+    get(
+      params?: Params$Resource$Advertisergroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertiserGroup>;
+    get(
+      params: Params$Resource$Advertisergroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
+    get(
+      params: Params$Resource$Advertisergroups$Get,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Advertisergroups$Get|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|GaxiosPromise<Schema$AdvertiserGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisergroups$Get
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void | GaxiosPromise<Schema$AdvertiserGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisergroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9736,18 +9889,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -9755,7 +9909,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertiserGroups.insert
@@ -9771,25 +9924,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Advertisergroups$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
+      params?: Params$Resource$Advertisergroups$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertiserGroup>;
     insert(
-        params: Params$Resource$Advertisergroups$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+      params: Params$Resource$Advertisergroups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
     insert(
-        params: Params$Resource$Advertisergroups$Insert,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+      params: Params$Resource$Advertisergroups$Insert,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Advertisergroups$Insert|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|GaxiosPromise<Schema$AdvertiserGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Advertisergroups$Insert
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void | GaxiosPromise<Schema$AdvertiserGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisergroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9806,18 +9964,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -9825,7 +9984,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertiserGroups.list
@@ -9847,30 +10005,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Advertisergroups$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AdvertiserGroupsListResponse>;
+      params?: Params$Resource$Advertisergroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertiserGroupsListResponse>;
     list(
-        params: Params$Resource$Advertisergroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
-        callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
-        void;
+      params: Params$Resource$Advertisergroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
+      callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Advertisergroups$List,
-        callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
-        void;
+      params: Params$Resource$Advertisergroups$List,
+      callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Advertisergroups$List|
-        BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
-        void|GaxiosPromise<Schema$AdvertiserGroupsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$List;
+      callback: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisergroups$List
+        | BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>
+    ): void | GaxiosPromise<Schema$AdvertiserGroupsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisergroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9887,28 +10049,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroupsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AdvertiserGroupsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.advertiserGroups.patch
@@ -9926,25 +10091,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Advertisergroups$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
+      params?: Params$Resource$Advertisergroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertiserGroup>;
     patch(
-        params: Params$Resource$Advertisergroups$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+      params: Params$Resource$Advertisergroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
     patch(
-        params: Params$Resource$Advertisergroups$Patch,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+      params: Params$Resource$Advertisergroups$Patch,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Advertisergroups$Patch|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|GaxiosPromise<Schema$AdvertiserGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Advertisergroups$Patch
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void | GaxiosPromise<Schema$AdvertiserGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisergroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9961,18 +10131,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -9980,7 +10151,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertiserGroups.update
@@ -9996,25 +10166,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Advertisergroups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
+      params?: Params$Resource$Advertisergroups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertiserGroup>;
     update(
-        params: Params$Resource$Advertisergroups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+      params: Params$Resource$Advertisergroups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
     update(
-        params: Params$Resource$Advertisergroups$Update,
-        callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+      params: Params$Resource$Advertisergroups$Update,
+      callback: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void;
     update(callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
     update(
-        paramsOrCallback?: Params$Resource$Advertisergroups$Update|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserGroup>,
-        callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|GaxiosPromise<Schema$AdvertiserGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Update;
+      paramsOrCallback?:
+        | Params$Resource$Advertisergroups$Update
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>
+    ): void | GaxiosPromise<Schema$AdvertiserGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisergroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10031,18 +10206,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -10052,12 +10228,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Advertisergroups$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Advertisergroups$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Advertiser group ID.
@@ -10068,12 +10244,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisergroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Advertisergroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Advertiser group ID.
@@ -10084,12 +10260,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisergroups$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Advertisergroups$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -10101,12 +10277,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$AdvertiserGroup;
   }
-  export interface Params$Resource$Advertisergroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Advertisergroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only advertiser groups with these IDs.
@@ -10143,12 +10319,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Advertisergroups$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Advertisergroups$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Advertiser group ID.
@@ -10164,12 +10340,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$AdvertiserGroup;
   }
-  export interface Params$Resource$Advertisergroups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Advertisergroups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -10182,13 +10358,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$AdvertiserGroup;
   }
 
-
   export class Resource$Advertiserlandingpages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.advertiserLandingPages.get
@@ -10203,22 +10377,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Advertiserlandingpages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
-    get(params: Params$Resource$Advertiserlandingpages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
-    get(params: Params$Resource$Advertiserlandingpages$Get,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
+    get(
+      params?: Params$Resource$Advertiserlandingpages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LandingPage>;
+    get(
+      params: Params$Resource$Advertiserlandingpages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LandingPage>,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
+    get(
+      params: Params$Resource$Advertiserlandingpages$Get,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LandingPage>): void;
-    get(paramsOrCallback?: Params$Resource$Advertiserlandingpages$Get|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|GaxiosPromise<Schema$LandingPage> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Advertiserlandingpages$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertiserlandingpages$Get
+        | BodyResponseCallback<Schema$LandingPage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>
+    ): void | GaxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertiserlandingpages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10235,18 +10418,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10254,7 +10438,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$LandingPage>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertiserLandingPages.insert
@@ -10270,25 +10453,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Advertiserlandingpages$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
+      params?: Params$Resource$Advertiserlandingpages$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LandingPage>;
     insert(
-        params: Params$Resource$Advertiserlandingpages$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
+      params: Params$Resource$Advertiserlandingpages$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LandingPage>,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
     insert(
-        params: Params$Resource$Advertiserlandingpages$Insert,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
+      params: Params$Resource$Advertiserlandingpages$Insert,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LandingPage>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Advertiserlandingpages$Insert|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|GaxiosPromise<Schema$LandingPage> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Advertiserlandingpages$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Advertiserlandingpages$Insert
+        | BodyResponseCallback<Schema$LandingPage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>
+    ): void | GaxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertiserlandingpages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10305,18 +10493,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10324,7 +10513,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$LandingPage>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertiserLandingPages.list
@@ -10349,34 +10537,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Advertiserlandingpages$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AdvertiserLandingPagesListResponse>;
+      params?: Params$Resource$Advertiserlandingpages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertiserLandingPagesListResponse>;
     list(
-        params: Params$Resource$Advertiserlandingpages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
-        callback:
-            BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
-        void;
+      params: Params$Resource$Advertiserlandingpages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+      callback: BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Advertiserlandingpages$List,
-        callback:
-            BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
-        void;
+      params: Params$Resource$Advertiserlandingpages$List,
+      callback: BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Advertiserlandingpages$List|
-        BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
-        void|GaxiosPromise<Schema$AdvertiserLandingPagesListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Advertiserlandingpages$List;
+      callback: BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertiserlandingpages$List
+        | BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+      callback?: BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>
+    ): void | GaxiosPromise<Schema$AdvertiserLandingPagesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertiserlandingpages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10393,28 +10581,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.advertiserLandingPages.patch
@@ -10432,25 +10623,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Advertiserlandingpages$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
+      params?: Params$Resource$Advertiserlandingpages$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LandingPage>;
     patch(
-        params: Params$Resource$Advertiserlandingpages$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
+      params: Params$Resource$Advertiserlandingpages$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LandingPage>,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
     patch(
-        params: Params$Resource$Advertiserlandingpages$Patch,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
+      params: Params$Resource$Advertiserlandingpages$Patch,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LandingPage>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Advertiserlandingpages$Patch|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|GaxiosPromise<Schema$LandingPage> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Advertiserlandingpages$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Advertiserlandingpages$Patch
+        | BodyResponseCallback<Schema$LandingPage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>
+    ): void | GaxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertiserlandingpages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10467,18 +10663,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10486,7 +10683,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$LandingPage>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertiserLandingPages.update
@@ -10502,25 +10698,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Advertiserlandingpages$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
+      params?: Params$Resource$Advertiserlandingpages$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LandingPage>;
     update(
-        params: Params$Resource$Advertiserlandingpages$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
+      params: Params$Resource$Advertiserlandingpages$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LandingPage>,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
     update(
-        params: Params$Resource$Advertiserlandingpages$Update,
-        callback: BodyResponseCallback<Schema$LandingPage>): void;
+      params: Params$Resource$Advertiserlandingpages$Update,
+      callback: BodyResponseCallback<Schema$LandingPage>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LandingPage>): void;
     update(
-        paramsOrCallback?: Params$Resource$Advertiserlandingpages$Update|
-        BodyResponseCallback<Schema$LandingPage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LandingPage>,
-        callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|GaxiosPromise<Schema$LandingPage> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Advertiserlandingpages$Update;
+      paramsOrCallback?:
+        | Params$Resource$Advertiserlandingpages$Update
+        | BodyResponseCallback<Schema$LandingPage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>
+    ): void | GaxiosPromise<Schema$LandingPage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertiserlandingpages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10537,18 +10738,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertiserLandingPages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10558,12 +10760,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Advertiserlandingpages$Get extends
-      StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Landing page ID.
@@ -10574,12 +10776,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertiserlandingpages$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -10591,12 +10793,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$LandingPage;
   }
-  export interface Params$Resource$Advertiserlandingpages$List extends
-      StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only landing pages that belong to these advertisers.
@@ -10650,12 +10852,12 @@ export namespace dfareporting_v3_2 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Advertiserlandingpages$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Landing page ID.
@@ -10671,12 +10873,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$LandingPage;
   }
-  export interface Params$Resource$Advertiserlandingpages$Update extends
-      StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -10689,13 +10891,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$LandingPage;
   }
 
-
   export class Resource$Advertisers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.advertisers.get
@@ -10710,20 +10910,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Advertisers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Advertiser>;
-    get(params: Params$Resource$Advertisers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
-    get(params: Params$Resource$Advertisers$Get,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
+    get(
+      params?: Params$Resource$Advertisers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Advertiser>;
+    get(
+      params: Params$Resource$Advertisers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Advertiser>,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Get,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Advertiser>): void;
-    get(paramsOrCallback?: Params$Resource$Advertisers$Get|
-        BodyResponseCallback<Schema$Advertiser>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|GaxiosPromise<Schema$Advertiser> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Get
+        | BodyResponseCallback<Schema$Advertiser>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>
+    ): void | GaxiosPromise<Schema$Advertiser> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10741,18 +10950,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/advertisers/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertisers/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -10760,7 +10970,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Advertiser>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertisers.insert
@@ -10776,25 +10985,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Advertisers$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Advertiser>;
+      params?: Params$Resource$Advertisers$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Advertiser>;
     insert(
-        params: Params$Resource$Advertisers$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
+      params: Params$Resource$Advertisers$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Advertiser>,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
     insert(
-        params: Params$Resource$Advertisers$Insert,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
+      params: Params$Resource$Advertisers$Insert,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Advertiser>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Advertisers$Insert|
-        BodyResponseCallback<Schema$Advertiser>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|GaxiosPromise<Schema$Advertiser> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisers$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Insert
+        | BodyResponseCallback<Schema$Advertiser>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>
+    ): void | GaxiosPromise<Schema$Advertiser> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10811,17 +11025,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/advertisers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertisers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -10829,7 +11045,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Advertiser>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertisers.list
@@ -10856,24 +11071,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Advertisers$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AdvertisersListResponse>;
     list(
-        params: Params$Resource$Advertisers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AdvertisersListResponse>,
-        callback: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
+      params?: Params$Resource$Advertisers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvertisersListResponse>;
     list(
-        params: Params$Resource$Advertisers$List,
-        callback: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
+      params: Params$Resource$Advertisers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertisersListResponse>,
+      callback: BodyResponseCallback<Schema$AdvertisersListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$List,
+      callback: BodyResponseCallback<Schema$AdvertisersListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Advertisers$List|
-        BodyResponseCallback<Schema$AdvertisersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdvertisersListResponse>,
-        callback?: BodyResponseCallback<Schema$AdvertisersListResponse>):
-        void|GaxiosPromise<Schema$AdvertisersListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$List
+        | BodyResponseCallback<Schema$AdvertisersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvertisersListResponse>,
+      callback?: BodyResponseCallback<Schema$AdvertisersListResponse>
+    ): void | GaxiosPromise<Schema$AdvertisersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10891,17 +11113,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/advertisers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertisers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdvertisersListResponse>(parameters, callback);
@@ -10909,7 +11133,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$AdvertisersListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertisers.patch
@@ -10926,25 +11149,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Advertisers$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Advertiser>;
     patch(
-        params: Params$Resource$Advertisers$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
+      params?: Params$Resource$Advertisers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Advertiser>;
     patch(
-        params: Params$Resource$Advertisers$Patch,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
+      params: Params$Resource$Advertisers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Advertiser>,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Patch,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Advertiser>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Advertisers$Patch|
-        BodyResponseCallback<Schema$Advertiser>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|GaxiosPromise<Schema$Advertiser> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisers$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Patch
+        | BodyResponseCallback<Schema$Advertiser>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>
+    ): void | GaxiosPromise<Schema$Advertiser> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10961,17 +11190,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/advertisers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertisers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -10979,7 +11210,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Advertiser>(parameters);
       }
     }
-
 
     /**
      * dfareporting.advertisers.update
@@ -10995,25 +11225,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Advertisers$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Advertiser>;
+      params?: Params$Resource$Advertisers$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Advertiser>;
     update(
-        params: Params$Resource$Advertisers$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
+      params: Params$Resource$Advertisers$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Advertiser>,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
     update(
-        params: Params$Resource$Advertisers$Update,
-        callback: BodyResponseCallback<Schema$Advertiser>): void;
+      params: Params$Resource$Advertisers$Update,
+      callback: BodyResponseCallback<Schema$Advertiser>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Advertiser>): void;
     update(
-        paramsOrCallback?: Params$Resource$Advertisers$Update|
-        BodyResponseCallback<Schema$Advertiser>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Advertiser>,
-        callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|GaxiosPromise<Schema$Advertiser> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Advertisers$Update;
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Update
+        | BodyResponseCallback<Schema$Advertiser>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>
+    ): void | GaxiosPromise<Schema$Advertiser> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11030,17 +11265,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/advertisers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/advertisers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -11054,7 +11291,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Advertiser ID.
@@ -11065,12 +11302,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisers$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Advertisers$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -11086,7 +11323,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only advertisers with these advertiser group IDs.
@@ -11148,12 +11385,12 @@ export namespace dfareporting_v3_2 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Advertisers$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Advertisers$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Advertiser ID.
@@ -11169,12 +11406,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$Advertiser;
   }
-  export interface Params$Resource$Advertisers$Update extends
-      StandardParameters {
+  export interface Params$Resource$Advertisers$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -11187,13 +11424,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Advertiser;
   }
 
-
   export class Resource$Browsers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.browsers.list
@@ -11207,24 +11442,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Browsers$List, options?: MethodOptions):
-        GaxiosPromise<Schema$BrowsersListResponse>;
     list(
-        params: Params$Resource$Browsers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BrowsersListResponse>,
-        callback: BodyResponseCallback<Schema$BrowsersListResponse>): void;
+      params?: Params$Resource$Browsers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BrowsersListResponse>;
     list(
-        params: Params$Resource$Browsers$List,
-        callback: BodyResponseCallback<Schema$BrowsersListResponse>): void;
+      params: Params$Resource$Browsers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BrowsersListResponse>,
+      callback: BodyResponseCallback<Schema$BrowsersListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Browsers$List,
+      callback: BodyResponseCallback<Schema$BrowsersListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$BrowsersListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Browsers$List|
-        BodyResponseCallback<Schema$BrowsersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BrowsersListResponse>,
-        callback?: BodyResponseCallback<Schema$BrowsersListResponse>):
-        void|GaxiosPromise<Schema$BrowsersListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Browsers$List
+        | BodyResponseCallback<Schema$BrowsersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BrowsersListResponse>,
+      callback?: BodyResponseCallback<Schema$BrowsersListResponse>
+    ): void | GaxiosPromise<Schema$BrowsersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Browsers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11242,17 +11484,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/browsers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/browsers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BrowsersListResponse>(parameters, callback);
@@ -11266,7 +11509,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -11274,13 +11517,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Campaigncreativeassociations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.campaignCreativeAssociations.insert
@@ -11299,30 +11540,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Campaigncreativeassociations$Insert,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CampaignCreativeAssociation>;
+      params?: Params$Resource$Campaigncreativeassociations$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CampaignCreativeAssociation>;
     insert(
-        params: Params$Resource$Campaigncreativeassociations$Insert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CampaignCreativeAssociation>,
-        callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
-        void;
+      params: Params$Resource$Campaigncreativeassociations$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CampaignCreativeAssociation>,
+      callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>
+    ): void;
     insert(
-        params: Params$Resource$Campaigncreativeassociations$Insert,
-        callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
-        void;
-    insert(callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
-        void;
+      params: Params$Resource$Campaigncreativeassociations$Insert,
+      callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>
+    ): void;
     insert(
-        paramsOrCallback?: Params$Resource$Campaigncreativeassociations$Insert|
-        BodyResponseCallback<Schema$CampaignCreativeAssociation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CampaignCreativeAssociation>,
-        callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
-        void|GaxiosPromise<Schema$CampaignCreativeAssociation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Campaigncreativeassociations$Insert;
+      callback: BodyResponseCallback<Schema$CampaignCreativeAssociation>
+    ): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Campaigncreativeassociations$Insert
+        | BodyResponseCallback<Schema$CampaignCreativeAssociation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CampaignCreativeAssociation>,
+      callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>
+    ): void | GaxiosPromise<Schema$CampaignCreativeAssociation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Campaigncreativeassociations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11339,27 +11584,29 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CampaignCreativeAssociation>(parameters);
       }
     }
-
 
     /**
      * dfareporting.campaignCreativeAssociations.list
@@ -11379,31 +11626,42 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Campaigncreativeassociations$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse>;
+      params?: Params$Resource$Campaigncreativeassociations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse>;
     list(
-        params: Params$Resource$Campaigncreativeassociations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
-        callback: BodyResponseCallback<
-            Schema$CampaignCreativeAssociationsListResponse>): void;
+      params: Params$Resource$Campaigncreativeassociations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
+      callback: BodyResponseCallback<
+        Schema$CampaignCreativeAssociationsListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Campaigncreativeassociations$List,
-        callback: BodyResponseCallback<
-            Schema$CampaignCreativeAssociationsListResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$CampaignCreativeAssociationsListResponse>): void;
+      params: Params$Resource$Campaigncreativeassociations$List,
+      callback: BodyResponseCallback<
+        Schema$CampaignCreativeAssociationsListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Campaigncreativeassociations$List|
-        BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
-        callback?: BodyResponseCallback<
-            Schema$CampaignCreativeAssociationsListResponse>):
-        void|GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Campaigncreativeassociations$List;
+      callback: BodyResponseCallback<
+        Schema$CampaignCreativeAssociationsListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Campaigncreativeassociations$List
+        | BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$CampaignCreativeAssociationsListResponse
+      >
+    ): void | GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Campaigncreativeassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11420,35 +11678,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$CampaignCreativeAssociationsListResponse>(parameters);
+          Schema$CampaignCreativeAssociationsListResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Campaigncreativeassociations$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Campaigncreativeassociations$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Campaign ID in this association.
@@ -11464,12 +11726,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$CampaignCreativeAssociation;
   }
-  export interface Params$Resource$Campaigncreativeassociations$List extends
-      StandardParameters {
+  export interface Params$Resource$Campaigncreativeassociations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Campaign ID in this association.
@@ -11493,13 +11755,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Campaigns {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.campaigns.get
@@ -11514,19 +11774,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Campaigns$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Campaign>;
-    get(params: Params$Resource$Campaigns$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
-    get(params: Params$Resource$Campaigns$Get,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
+    get(
+      params?: Params$Resource$Campaigns$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Campaign>;
+    get(
+      params: Params$Resource$Campaigns$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
+    get(
+      params: Params$Resource$Campaigns$Get,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Campaign>): void;
-    get(paramsOrCallback?: Params$Resource$Campaigns$Get|
-        BodyResponseCallback<Schema$Campaign>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>):
-        void|GaxiosPromise<Schema$Campaign> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Campaigns$Get
+        | BodyResponseCallback<Schema$Campaign>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>
+    ): void | GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11544,18 +11812,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/campaigns/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/campaigns/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11563,7 +11832,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Campaign>(parameters);
       }
     }
-
 
     /**
      * dfareporting.campaigns.insert
@@ -11578,22 +11846,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Campaigns$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Campaign>;
     insert(
-        params: Params$Resource$Campaigns$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
+      params?: Params$Resource$Campaigns$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Campaign>;
     insert(
-        params: Params$Resource$Campaigns$Insert,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
+      params: Params$Resource$Campaigns$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
+    insert(
+      params: Params$Resource$Campaigns$Insert,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Campaign>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Campaigns$Insert|
-        BodyResponseCallback<Schema$Campaign>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>):
-        void|GaxiosPromise<Schema$Campaign> {
+      paramsOrCallback?:
+        | Params$Resource$Campaigns$Insert
+        | BodyResponseCallback<Schema$Campaign>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>
+    ): void | GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11611,17 +11884,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/campaigns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/campaigns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11629,7 +11903,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Campaign>(parameters);
       }
     }
-
 
     /**
      * dfareporting.campaigns.list
@@ -11657,24 +11930,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Campaigns$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CampaignsListResponse>;
     list(
-        params: Params$Resource$Campaigns$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CampaignsListResponse>,
-        callback: BodyResponseCallback<Schema$CampaignsListResponse>): void;
+      params?: Params$Resource$Campaigns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CampaignsListResponse>;
     list(
-        params: Params$Resource$Campaigns$List,
-        callback: BodyResponseCallback<Schema$CampaignsListResponse>): void;
+      params: Params$Resource$Campaigns$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CampaignsListResponse>,
+      callback: BodyResponseCallback<Schema$CampaignsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Campaigns$List,
+      callback: BodyResponseCallback<Schema$CampaignsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CampaignsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Campaigns$List|
-        BodyResponseCallback<Schema$CampaignsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CampaignsListResponse>,
-        callback?: BodyResponseCallback<Schema$CampaignsListResponse>):
-        void|GaxiosPromise<Schema$CampaignsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Campaigns$List
+        | BodyResponseCallback<Schema$CampaignsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CampaignsListResponse>,
+      callback?: BodyResponseCallback<Schema$CampaignsListResponse>
+    ): void | GaxiosPromise<Schema$CampaignsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11692,17 +11972,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/campaigns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/campaigns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CampaignsListResponse>(parameters, callback);
@@ -11710,7 +11991,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CampaignsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.campaigns.patch
@@ -11726,22 +12006,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Campaigns$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Campaign>;
     patch(
-        params: Params$Resource$Campaigns$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
+      params?: Params$Resource$Campaigns$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Campaign>;
     patch(
-        params: Params$Resource$Campaigns$Patch,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
+      params: Params$Resource$Campaigns$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
+    patch(
+      params: Params$Resource$Campaigns$Patch,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Campaign>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Campaigns$Patch|
-        BodyResponseCallback<Schema$Campaign>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>):
-        void|GaxiosPromise<Schema$Campaign> {
+      paramsOrCallback?:
+        | Params$Resource$Campaigns$Patch
+        | BodyResponseCallback<Schema$Campaign>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>
+    ): void | GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11759,17 +12044,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/campaigns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/campaigns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11777,7 +12063,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Campaign>(parameters);
       }
     }
-
 
     /**
      * dfareporting.campaigns.update
@@ -11792,22 +12077,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Campaigns$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Campaign>;
     update(
-        params: Params$Resource$Campaigns$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
+      params?: Params$Resource$Campaigns$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Campaign>;
     update(
-        params: Params$Resource$Campaigns$Update,
-        callback: BodyResponseCallback<Schema$Campaign>): void;
+      params: Params$Resource$Campaigns$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
+    update(
+      params: Params$Resource$Campaigns$Update,
+      callback: BodyResponseCallback<Schema$Campaign>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Campaign>): void;
     update(
-        paramsOrCallback?: Params$Resource$Campaigns$Update|
-        BodyResponseCallback<Schema$Campaign>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-        callback?: BodyResponseCallback<Schema$Campaign>):
-        void|GaxiosPromise<Schema$Campaign> {
+      paramsOrCallback?:
+        | Params$Resource$Campaigns$Update
+        | BodyResponseCallback<Schema$Campaign>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>
+    ): void | GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11825,17 +12115,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/campaigns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/campaigns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11849,7 +12140,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Campaign ID.
@@ -11864,7 +12155,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -11880,7 +12171,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only campaigns whose advertisers belong to these advertiser
@@ -11951,7 +12242,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Campaign ID.
@@ -11971,7 +12262,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -11984,13 +12275,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Campaign;
   }
 
-
   export class Resource$Changelogs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.changeLogs.get
@@ -12005,20 +12294,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Changelogs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ChangeLog>;
-    get(params: Params$Resource$Changelogs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
-        callback: BodyResponseCallback<Schema$ChangeLog>): void;
-    get(params: Params$Resource$Changelogs$Get,
-        callback: BodyResponseCallback<Schema$ChangeLog>): void;
+    get(
+      params?: Params$Resource$Changelogs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChangeLog>;
+    get(
+      params: Params$Resource$Changelogs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ChangeLog>,
+      callback: BodyResponseCallback<Schema$ChangeLog>
+    ): void;
+    get(
+      params: Params$Resource$Changelogs$Get,
+      callback: BodyResponseCallback<Schema$ChangeLog>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ChangeLog>): void;
-    get(paramsOrCallback?: Params$Resource$Changelogs$Get|
-        BodyResponseCallback<Schema$ChangeLog>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChangeLog>,
-        callback?: BodyResponseCallback<Schema$ChangeLog>):
-        void|GaxiosPromise<Schema$ChangeLog> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Changelogs$Get
+        | BodyResponseCallback<Schema$ChangeLog>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChangeLog>,
+      callback?: BodyResponseCallback<Schema$ChangeLog>
+    ): void | GaxiosPromise<Schema$ChangeLog> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12036,18 +12334,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/changeLogs/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/changeLogs/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChangeLog>(parameters, callback);
@@ -12055,7 +12354,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$ChangeLog>(parameters);
       }
     }
-
 
     /**
      * dfareporting.changeLogs.list
@@ -12079,24 +12377,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Changelogs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChangeLogsListResponse>;
     list(
-        params: Params$Resource$Changelogs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ChangeLogsListResponse>,
-        callback: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
+      params?: Params$Resource$Changelogs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChangeLogsListResponse>;
     list(
-        params: Params$Resource$Changelogs$List,
-        callback: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
+      params: Params$Resource$Changelogs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChangeLogsListResponse>,
+      callback: BodyResponseCallback<Schema$ChangeLogsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Changelogs$List,
+      callback: BodyResponseCallback<Schema$ChangeLogsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Changelogs$List|
-        BodyResponseCallback<Schema$ChangeLogsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChangeLogsListResponse>,
-        callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>):
-        void|GaxiosPromise<Schema$ChangeLogsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Changelogs$List
+        | BodyResponseCallback<Schema$ChangeLogsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChangeLogsListResponse>,
+      callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>
+    ): void | GaxiosPromise<Schema$ChangeLogsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12114,17 +12419,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/changeLogs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/changeLogs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChangeLogsListResponse>(parameters, callback);
@@ -12138,7 +12444,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Change log ID.
@@ -12153,7 +12459,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only change logs with the specified action.
@@ -12212,13 +12518,11 @@ export namespace dfareporting_v3_2 {
     userProfileIds?: string[];
   }
 
-
   export class Resource$Cities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.cities.list
@@ -12236,23 +12540,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Cities$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CitiesListResponse>;
     list(
-        params: Params$Resource$Cities$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
-        callback: BodyResponseCallback<Schema$CitiesListResponse>): void;
+      params?: Params$Resource$Cities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CitiesListResponse>;
     list(
-        params: Params$Resource$Cities$List,
-        callback: BodyResponseCallback<Schema$CitiesListResponse>): void;
+      params: Params$Resource$Cities$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CitiesListResponse>,
+      callback: BodyResponseCallback<Schema$CitiesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Cities$List,
+      callback: BodyResponseCallback<Schema$CitiesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CitiesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Cities$List|
-        BodyResponseCallback<Schema$CitiesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CitiesListResponse>,
-        callback?: BodyResponseCallback<Schema$CitiesListResponse>):
-        void|GaxiosPromise<Schema$CitiesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Cities$List
+        | BodyResponseCallback<Schema$CitiesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CitiesListResponse>,
+      callback?: BodyResponseCallback<Schema$CitiesListResponse>
+    ): void | GaxiosPromise<Schema$CitiesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12270,17 +12580,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/cities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/cities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CitiesListResponse>(parameters, callback);
@@ -12294,7 +12605,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only cities from these countries.
@@ -12318,13 +12629,11 @@ export namespace dfareporting_v3_2 {
     regionDartIds?: string[];
   }
 
-
   export class Resource$Connectiontypes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.connectionTypes.get
@@ -12339,22 +12648,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Connectiontypes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ConnectionType>;
-    get(params: Params$Resource$Connectiontypes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
-        callback: BodyResponseCallback<Schema$ConnectionType>): void;
-    get(params: Params$Resource$Connectiontypes$Get,
-        callback: BodyResponseCallback<Schema$ConnectionType>): void;
+    get(
+      params?: Params$Resource$Connectiontypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConnectionType>;
+    get(
+      params: Params$Resource$Connectiontypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConnectionType>,
+      callback: BodyResponseCallback<Schema$ConnectionType>
+    ): void;
+    get(
+      params: Params$Resource$Connectiontypes$Get,
+      callback: BodyResponseCallback<Schema$ConnectionType>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ConnectionType>): void;
-    get(paramsOrCallback?: Params$Resource$Connectiontypes$Get|
-        BodyResponseCallback<Schema$ConnectionType>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConnectionType>,
-        callback?: BodyResponseCallback<Schema$ConnectionType>):
-        void|GaxiosPromise<Schema$ConnectionType> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Connectiontypes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Connectiontypes$Get
+        | BodyResponseCallback<Schema$ConnectionType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConnectionType>,
+      callback?: BodyResponseCallback<Schema$ConnectionType>
+    ): void | GaxiosPromise<Schema$ConnectionType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Connectiontypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12371,18 +12689,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/connectionTypes/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/connectionTypes/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConnectionType>(parameters, callback);
@@ -12390,7 +12709,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$ConnectionType>(parameters);
       }
     }
-
 
     /**
      * dfareporting.connectionTypes.list
@@ -12405,29 +12723,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Connectiontypes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ConnectionTypesListResponse>;
+      params?: Params$Resource$Connectiontypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConnectionTypesListResponse>;
     list(
-        params: Params$Resource$Connectiontypes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ConnectionTypesListResponse>,
-        callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
-        void;
+      params: Params$Resource$Connectiontypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConnectionTypesListResponse>,
+      callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Connectiontypes$List,
-        callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
-        void;
+      params: Params$Resource$Connectiontypes$List,
+      callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Connectiontypes$List|
-        BodyResponseCallback<Schema$ConnectionTypesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConnectionTypesListResponse>,
-        callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
-        void|GaxiosPromise<Schema$ConnectionTypesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Connectiontypes$List;
+      callback: BodyResponseCallback<Schema$ConnectionTypesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Connectiontypes$List
+        | BodyResponseCallback<Schema$ConnectionTypesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConnectionTypesListResponse>,
+      callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>
+    ): void | GaxiosPromise<Schema$ConnectionTypesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Connectiontypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12444,34 +12767,37 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/connectionTypes')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/connectionTypes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConnectionTypesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ConnectionTypesListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Connectiontypes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Connectiontypes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Connection type ID.
@@ -12482,12 +12808,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Connectiontypes$List extends
-      StandardParameters {
+  export interface Params$Resource$Connectiontypes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -12495,13 +12821,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Contentcategories {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.contentCategories.delete
@@ -12517,23 +12841,28 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Contentcategories$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Contentcategories$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Contentcategories$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Contentcategories$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Contentcategories$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Contentcategories$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Contentcategories$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Contentcategories$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contentcategories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12550,18 +12879,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12569,7 +12899,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.contentCategories.get
@@ -12584,22 +12913,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Contentcategories$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
-    get(params: Params$Resource$Contentcategories$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
-    get(params: Params$Resource$Contentcategories$Get,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+    get(
+      params?: Params$Resource$Contentcategories$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContentCategory>;
+    get(
+      params: Params$Resource$Contentcategories$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ContentCategory>,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
+    get(
+      params: Params$Resource$Contentcategories$Get,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ContentCategory>): void;
-    get(paramsOrCallback?: Params$Resource$Contentcategories$Get|
-        BodyResponseCallback<Schema$ContentCategory>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|GaxiosPromise<Schema$ContentCategory> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Contentcategories$Get
+        | BodyResponseCallback<Schema$ContentCategory>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>
+    ): void | GaxiosPromise<Schema$ContentCategory> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contentcategories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12616,18 +12954,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -12635,7 +12974,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$ContentCategory>(parameters);
       }
     }
-
 
     /**
      * dfareporting.contentCategories.insert
@@ -12651,25 +12989,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Contentcategories$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
+      params?: Params$Resource$Contentcategories$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContentCategory>;
     insert(
-        params: Params$Resource$Contentcategories$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+      params: Params$Resource$Contentcategories$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ContentCategory>,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
     insert(
-        params: Params$Resource$Contentcategories$Insert,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+      params: Params$Resource$Contentcategories$Insert,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ContentCategory>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Contentcategories$Insert|
-        BodyResponseCallback<Schema$ContentCategory>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|GaxiosPromise<Schema$ContentCategory> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Contentcategories$Insert
+        | BodyResponseCallback<Schema$ContentCategory>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>
+    ): void | GaxiosPromise<Schema$ContentCategory> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contentcategories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12686,18 +13029,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -12705,7 +13049,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$ContentCategory>(parameters);
       }
     }
-
 
     /**
      * dfareporting.contentCategories.list
@@ -12727,30 +13070,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Contentcategories$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ContentCategoriesListResponse>;
+      params?: Params$Resource$Contentcategories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContentCategoriesListResponse>;
     list(
-        params: Params$Resource$Contentcategories$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ContentCategoriesListResponse>,
-        callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
-        void;
+      params: Params$Resource$Contentcategories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContentCategoriesListResponse>,
+      callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Contentcategories$List,
-        callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
-        void;
+      params: Params$Resource$Contentcategories$List,
+      callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Contentcategories$List|
-        BodyResponseCallback<Schema$ContentCategoriesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContentCategoriesListResponse>,
-        callback?: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
-        void|GaxiosPromise<Schema$ContentCategoriesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contentcategories$List;
+      callback: BodyResponseCallback<Schema$ContentCategoriesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Contentcategories$List
+        | BodyResponseCallback<Schema$ContentCategoriesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContentCategoriesListResponse>,
+      callback?: BodyResponseCallback<Schema$ContentCategoriesListResponse>
+    ): void | GaxiosPromise<Schema$ContentCategoriesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contentcategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12767,28 +13114,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategoriesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ContentCategoriesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.contentCategories.patch
@@ -12806,25 +13156,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Contentcategories$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
+      params?: Params$Resource$Contentcategories$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContentCategory>;
     patch(
-        params: Params$Resource$Contentcategories$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+      params: Params$Resource$Contentcategories$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ContentCategory>,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
     patch(
-        params: Params$Resource$Contentcategories$Patch,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+      params: Params$Resource$Contentcategories$Patch,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ContentCategory>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Contentcategories$Patch|
-        BodyResponseCallback<Schema$ContentCategory>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|GaxiosPromise<Schema$ContentCategory> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Contentcategories$Patch
+        | BodyResponseCallback<Schema$ContentCategory>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>
+    ): void | GaxiosPromise<Schema$ContentCategory> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contentcategories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12841,18 +13196,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -12860,7 +13216,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$ContentCategory>(parameters);
       }
     }
-
 
     /**
      * dfareporting.contentCategories.update
@@ -12876,25 +13231,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Contentcategories$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
+      params?: Params$Resource$Contentcategories$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ContentCategory>;
     update(
-        params: Params$Resource$Contentcategories$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+      params: Params$Resource$Contentcategories$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ContentCategory>,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
     update(
-        params: Params$Resource$Contentcategories$Update,
-        callback: BodyResponseCallback<Schema$ContentCategory>): void;
+      params: Params$Resource$Contentcategories$Update,
+      callback: BodyResponseCallback<Schema$ContentCategory>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ContentCategory>): void;
     update(
-        paramsOrCallback?: Params$Resource$Contentcategories$Update|
-        BodyResponseCallback<Schema$ContentCategory>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ContentCategory>,
-        callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|GaxiosPromise<Schema$ContentCategory> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Contentcategories$Update;
+      paramsOrCallback?:
+        | Params$Resource$Contentcategories$Update
+        | BodyResponseCallback<Schema$ContentCategory>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>
+    ): void | GaxiosPromise<Schema$ContentCategory> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Contentcategories$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -12911,18 +13271,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/contentCategories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -12932,12 +13293,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Contentcategories$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Contentcategories$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Content category ID.
@@ -12948,12 +13309,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Contentcategories$Get extends
-      StandardParameters {
+  export interface Params$Resource$Contentcategories$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Content category ID.
@@ -12964,12 +13325,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Contentcategories$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Contentcategories$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -12981,12 +13342,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$ContentCategory;
   }
-  export interface Params$Resource$Contentcategories$List extends
-      StandardParameters {
+  export interface Params$Resource$Contentcategories$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only content categories with these IDs.
@@ -13023,12 +13384,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Contentcategories$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Contentcategories$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Content category ID.
@@ -13044,12 +13405,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$ContentCategory;
   }
-  export interface Params$Resource$Contentcategories$Update extends
-      StandardParameters {
+  export interface Params$Resource$Contentcategories$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -13062,13 +13423,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$ContentCategory;
   }
 
-
   export class Resource$Conversions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.conversions.batchinsert
@@ -13084,31 +13443,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     batchinsert(
-        params?: Params$Resource$Conversions$Batchinsert,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionsBatchInsertResponse>;
+      params?: Params$Resource$Conversions$Batchinsert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionsBatchInsertResponse>;
     batchinsert(
-        params: Params$Resource$Conversions$Batchinsert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
-        callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
-        void;
+      params: Params$Resource$Conversions$Batchinsert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
+      callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>
+    ): void;
     batchinsert(
-        params: Params$Resource$Conversions$Batchinsert,
-        callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
-        void;
+      params: Params$Resource$Conversions$Batchinsert,
+      callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>
+    ): void;
     batchinsert(
-        callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>
+    ): void;
     batchinsert(
-        paramsOrCallback?: Params$Resource$Conversions$Batchinsert|
-        BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
-        callback?: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
-        void|GaxiosPromise<Schema$ConversionsBatchInsertResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Conversions$Batchinsert;
+      paramsOrCallback?:
+        | Params$Resource$Conversions$Batchinsert
+        | BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
+      callback?: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>
+    ): void | GaxiosPromise<Schema$ConversionsBatchInsertResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversions$Batchinsert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13125,28 +13487,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/conversions/batchinsert')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/conversions/batchinsert'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchInsertResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ConversionsBatchInsertResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.conversions.batchupdate
@@ -13162,31 +13527,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     batchupdate(
-        params?: Params$Resource$Conversions$Batchupdate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionsBatchUpdateResponse>;
+      params?: Params$Resource$Conversions$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionsBatchUpdateResponse>;
     batchupdate(
-        params: Params$Resource$Conversions$Batchupdate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
-        callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
-        void;
+      params: Params$Resource$Conversions$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
+      callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>
+    ): void;
     batchupdate(
-        params: Params$Resource$Conversions$Batchupdate,
-        callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
-        void;
+      params: Params$Resource$Conversions$Batchupdate,
+      callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>
+    ): void;
     batchupdate(
-        callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>
+    ): void;
     batchupdate(
-        paramsOrCallback?: Params$Resource$Conversions$Batchupdate|
-        BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
-        callback?: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
-        void|GaxiosPromise<Schema$ConversionsBatchUpdateResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Conversions$Batchupdate;
+      paramsOrCallback?:
+        | Params$Resource$Conversions$Batchupdate
+        | BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>
+    ): void | GaxiosPromise<Schema$ConversionsBatchUpdateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13203,35 +13571,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/conversions/batchupdate')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/conversions/batchupdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Conversions$Batchinsert extends
-      StandardParameters {
+  export interface Params$Resource$Conversions$Batchinsert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -13243,12 +13615,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$ConversionsBatchInsertRequest;
   }
-  export interface Params$Resource$Conversions$Batchupdate extends
-      StandardParameters {
+  export interface Params$Resource$Conversions$Batchupdate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -13261,13 +13633,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$ConversionsBatchUpdateRequest;
   }
 
-
   export class Resource$Countries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.countries.get
@@ -13282,19 +13652,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Countries$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Country>;
-    get(params: Params$Resource$Countries$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Country>,
-        callback: BodyResponseCallback<Schema$Country>): void;
-    get(params: Params$Resource$Countries$Get,
-        callback: BodyResponseCallback<Schema$Country>): void;
+    get(
+      params?: Params$Resource$Countries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Country>;
+    get(
+      params: Params$Resource$Countries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Country>,
+      callback: BodyResponseCallback<Schema$Country>
+    ): void;
+    get(
+      params: Params$Resource$Countries$Get,
+      callback: BodyResponseCallback<Schema$Country>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Country>): void;
-    get(paramsOrCallback?: Params$Resource$Countries$Get|
-        BodyResponseCallback<Schema$Country>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Country>,
-        callback?: BodyResponseCallback<Schema$Country>):
-        void|GaxiosPromise<Schema$Country> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Countries$Get
+        | BodyResponseCallback<Schema$Country>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Country>,
+      callback?: BodyResponseCallback<Schema$Country>
+    ): void | GaxiosPromise<Schema$Country> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13312,18 +13690,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/countries/{dartId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/countries/{dartId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Country>(parameters, callback);
@@ -13331,7 +13710,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Country>(parameters);
       }
     }
-
 
     /**
      * dfareporting.countries.list
@@ -13345,24 +13723,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Countries$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CountriesListResponse>;
     list(
-        params: Params$Resource$Countries$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CountriesListResponse>,
-        callback: BodyResponseCallback<Schema$CountriesListResponse>): void;
+      params?: Params$Resource$Countries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CountriesListResponse>;
     list(
-        params: Params$Resource$Countries$List,
-        callback: BodyResponseCallback<Schema$CountriesListResponse>): void;
+      params: Params$Resource$Countries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CountriesListResponse>,
+      callback: BodyResponseCallback<Schema$CountriesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Countries$List,
+      callback: BodyResponseCallback<Schema$CountriesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CountriesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Countries$List|
-        BodyResponseCallback<Schema$CountriesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CountriesListResponse>,
-        callback?: BodyResponseCallback<Schema$CountriesListResponse>):
-        void|GaxiosPromise<Schema$CountriesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Countries$List
+        | BodyResponseCallback<Schema$CountriesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CountriesListResponse>,
+      callback?: BodyResponseCallback<Schema$CountriesListResponse>
+    ): void | GaxiosPromise<Schema$CountriesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13380,17 +13765,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/countries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/countries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CountriesListResponse>(parameters, callback);
@@ -13404,7 +13790,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Country DART ID.
@@ -13419,7 +13805,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -13427,13 +13813,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Creativeassets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.creativeAssets.insert
@@ -13453,26 +13837,32 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Creativeassets$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeAssetMetadata>;
+      params?: Params$Resource$Creativeassets$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeAssetMetadata>;
     insert(
-        params: Params$Resource$Creativeassets$Insert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreativeAssetMetadata>,
-        callback: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
+      params: Params$Resource$Creativeassets$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeAssetMetadata>,
+      callback: BodyResponseCallback<Schema$CreativeAssetMetadata>
+    ): void;
     insert(
-        params: Params$Resource$Creativeassets$Insert,
-        callback: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
+      params: Params$Resource$Creativeassets$Insert,
+      callback: BodyResponseCallback<Schema$CreativeAssetMetadata>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Creativeassets$Insert|
-        BodyResponseCallback<Schema$CreativeAssetMetadata>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeAssetMetadata>,
-        callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>):
-        void|GaxiosPromise<Schema$CreativeAssetMetadata> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativeassets$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Creativeassets$Insert
+        | BodyResponseCallback<Schema$CreativeAssetMetadata>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeAssetMetadata>,
+      callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>
+    ): void | GaxiosPromise<Schema$CreativeAssetMetadata> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativeassets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13489,22 +13879,23 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/dfareporting/v3.2/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
-                .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl +
+          '/upload/dfareporting/v3.2/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeAssetMetadata>(parameters, callback);
@@ -13514,12 +13905,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Creativeassets$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Creativeassets$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Advertiser ID of this creative. This is a required field.
@@ -13551,13 +13942,11 @@ export namespace dfareporting_v3_2 {
     };
   }
 
-
   export class Resource$Creativefields {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.creativeFields.delete
@@ -13573,23 +13962,28 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Creativefields$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Creativefields$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Creativefields$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Creativefields$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Creativefields$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Creativefields$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Creativefields$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefields$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Creativefields$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefields$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13606,18 +14000,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13625,7 +14020,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFields.get
@@ -13640,22 +14034,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Creativefields$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
-    get(params: Params$Resource$Creativefields$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
-    get(params: Params$Resource$Creativefields$Get,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
+    get(
+      params?: Params$Resource$Creativefields$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeField>;
+    get(
+      params: Params$Resource$Creativefields$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeField>,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
+    get(
+      params: Params$Resource$Creativefields$Get,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CreativeField>): void;
-    get(paramsOrCallback?: Params$Resource$Creativefields$Get|
-        BodyResponseCallback<Schema$CreativeField>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|GaxiosPromise<Schema$CreativeField> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefields$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Creativefields$Get
+        | BodyResponseCallback<Schema$CreativeField>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>
+    ): void | GaxiosPromise<Schema$CreativeField> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13672,18 +14075,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -13691,7 +14095,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeField>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFields.insert
@@ -13707,25 +14110,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Creativefields$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
+      params?: Params$Resource$Creativefields$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeField>;
     insert(
-        params: Params$Resource$Creativefields$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
+      params: Params$Resource$Creativefields$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeField>,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
     insert(
-        params: Params$Resource$Creativefields$Insert,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
+      params: Params$Resource$Creativefields$Insert,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CreativeField>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Creativefields$Insert|
-        BodyResponseCallback<Schema$CreativeField>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|GaxiosPromise<Schema$CreativeField> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefields$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Creativefields$Insert
+        | BodyResponseCallback<Schema$CreativeField>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>
+    ): void | GaxiosPromise<Schema$CreativeField> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefields$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13742,18 +14150,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -13761,7 +14170,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeField>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFields.list
@@ -13783,29 +14191,35 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Creativefields$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CreativeFieldsListResponse>;
     list(
-        params: Params$Resource$Creativefields$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldsListResponse>,
-        callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
-        void;
+      params?: Params$Resource$Creativefields$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeFieldsListResponse>;
     list(
-        params: Params$Resource$Creativefields$List,
-        callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
-        void;
+      params: Params$Resource$Creativefields$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldsListResponse>,
+      callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Creativefields$List|
-        BodyResponseCallback<Schema$CreativeFieldsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldsListResponse>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
-        void|GaxiosPromise<Schema$CreativeFieldsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefields$List;
+      params: Params$Resource$Creativefields$List,
+      callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$CreativeFieldsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Creativefields$List
+        | BodyResponseCallback<Schema$CreativeFieldsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldsListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>
+    ): void | GaxiosPromise<Schema$CreativeFieldsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13822,27 +14236,29 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreativeFieldsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFields.patch
@@ -13860,25 +14276,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Creativefields$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
+      params?: Params$Resource$Creativefields$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeField>;
     patch(
-        params: Params$Resource$Creativefields$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
+      params: Params$Resource$Creativefields$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeField>,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
     patch(
-        params: Params$Resource$Creativefields$Patch,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
+      params: Params$Resource$Creativefields$Patch,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CreativeField>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Creativefields$Patch|
-        BodyResponseCallback<Schema$CreativeField>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|GaxiosPromise<Schema$CreativeField> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefields$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Creativefields$Patch
+        | BodyResponseCallback<Schema$CreativeField>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>
+    ): void | GaxiosPromise<Schema$CreativeField> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13895,18 +14316,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -13914,7 +14336,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeField>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFields.update
@@ -13930,25 +14351,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Creativefields$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
+      params?: Params$Resource$Creativefields$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeField>;
     update(
-        params: Params$Resource$Creativefields$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
+      params: Params$Resource$Creativefields$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeField>,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
     update(
-        params: Params$Resource$Creativefields$Update,
-        callback: BodyResponseCallback<Schema$CreativeField>): void;
+      params: Params$Resource$Creativefields$Update,
+      callback: BodyResponseCallback<Schema$CreativeField>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CreativeField>): void;
     update(
-        paramsOrCallback?: Params$Resource$Creativefields$Update|
-        BodyResponseCallback<Schema$CreativeField>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeField>,
-        callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|GaxiosPromise<Schema$CreativeField> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefields$Update;
+      paramsOrCallback?:
+        | Params$Resource$Creativefields$Update
+        | BodyResponseCallback<Schema$CreativeField>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>
+    ): void | GaxiosPromise<Schema$CreativeField> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefields$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -13965,18 +14391,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -13986,12 +14413,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Creativefields$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Creativefields$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative Field ID
@@ -14002,12 +14429,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefields$Get extends
-      StandardParameters {
+  export interface Params$Resource$Creativefields$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative Field ID
@@ -14018,12 +14445,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefields$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Creativefields$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -14035,12 +14462,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$CreativeField;
   }
-  export interface Params$Resource$Creativefields$List extends
-      StandardParameters {
+  export interface Params$Resource$Creativefields$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only creative fields that belong to these advertisers.
@@ -14081,12 +14508,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativefields$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Creativefields$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative Field ID
@@ -14102,12 +14529,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$CreativeField;
   }
-  export interface Params$Resource$Creativefields$Update extends
-      StandardParameters {
+  export interface Params$Resource$Creativefields$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -14120,13 +14547,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$CreativeField;
   }
 
-
   export class Resource$Creativefieldvalues {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.creativeFieldValues.delete
@@ -14143,23 +14568,28 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Creativefieldvalues$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Creativefieldvalues$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Creativefieldvalues$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Creativefieldvalues$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Creativefieldvalues$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Creativefieldvalues$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Creativefieldvalues$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Creativefieldvalues$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Creativefieldvalues$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefieldvalues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14176,18 +14606,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -14195,7 +14626,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFieldValues.get
@@ -14211,22 +14641,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Creativefieldvalues$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
-    get(params: Params$Resource$Creativefieldvalues$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
-    get(params: Params$Resource$Creativefieldvalues$Get,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+    get(
+      params?: Params$Resource$Creativefieldvalues$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeFieldValue>;
+    get(
+      params: Params$Resource$Creativefieldvalues$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
+    get(
+      params: Params$Resource$Creativefieldvalues$Get,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
-    get(paramsOrCallback?: Params$Resource$Creativefieldvalues$Get|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|GaxiosPromise<Schema$CreativeFieldValue> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Creativefieldvalues$Get
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void | GaxiosPromise<Schema$CreativeFieldValue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefieldvalues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14243,18 +14682,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14262,7 +14702,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFieldValues.insert
@@ -14279,25 +14718,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Creativefieldvalues$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
+      params?: Params$Resource$Creativefieldvalues$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeFieldValue>;
     insert(
-        params: Params$Resource$Creativefieldvalues$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+      params: Params$Resource$Creativefieldvalues$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
     insert(
-        params: Params$Resource$Creativefieldvalues$Insert,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+      params: Params$Resource$Creativefieldvalues$Insert,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Creativefieldvalues$Insert|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|GaxiosPromise<Schema$CreativeFieldValue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Creativefieldvalues$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Creativefieldvalues$Insert
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void | GaxiosPromise<Schema$CreativeFieldValue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefieldvalues$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14314,18 +14758,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14333,7 +14778,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFieldValues.list
@@ -14356,32 +14800,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Creativefieldvalues$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CreativeFieldValuesListResponse>;
+      params?: Params$Resource$Creativefieldvalues$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeFieldValuesListResponse>;
     list(
-        params: Params$Resource$Creativefieldvalues$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
-        callback: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
-        void;
+      params: Params$Resource$Creativefieldvalues$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
+      callback: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Creativefieldvalues$List,
-        callback: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
-        void;
+      params: Params$Resource$Creativefieldvalues$List,
+      callback: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Creativefieldvalues$List|
-        BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
-        void|GaxiosPromise<Schema$CreativeFieldValuesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$List;
+      callback: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Creativefieldvalues$List
+        | BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>
+    ): void | GaxiosPromise<Schema$CreativeFieldValuesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefieldvalues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14398,28 +14844,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValuesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreativeFieldValuesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.creativeFieldValues.patch
@@ -14438,25 +14887,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Creativefieldvalues$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
+      params?: Params$Resource$Creativefieldvalues$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeFieldValue>;
     patch(
-        params: Params$Resource$Creativefieldvalues$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+      params: Params$Resource$Creativefieldvalues$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
     patch(
-        params: Params$Resource$Creativefieldvalues$Patch,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+      params: Params$Resource$Creativefieldvalues$Patch,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Creativefieldvalues$Patch|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|GaxiosPromise<Schema$CreativeFieldValue> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Creativefieldvalues$Patch
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void | GaxiosPromise<Schema$CreativeFieldValue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefieldvalues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14473,18 +14927,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14492,7 +14947,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeFieldValues.update
@@ -14509,25 +14963,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Creativefieldvalues$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
+      params?: Params$Resource$Creativefieldvalues$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeFieldValue>;
     update(
-        params: Params$Resource$Creativefieldvalues$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+      params: Params$Resource$Creativefieldvalues$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
     update(
-        params: Params$Resource$Creativefieldvalues$Update,
-        callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+      params: Params$Resource$Creativefieldvalues$Update,
+      callback: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
     update(
-        paramsOrCallback?: Params$Resource$Creativefieldvalues$Update|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeFieldValue>,
-        callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|GaxiosPromise<Schema$CreativeFieldValue> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Creativefieldvalues$Update;
+      paramsOrCallback?:
+        | Params$Resource$Creativefieldvalues$Update
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>
+    ): void | GaxiosPromise<Schema$CreativeFieldValue> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativefieldvalues$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14544,18 +15003,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14565,12 +15025,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Creativefieldvalues$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative field ID for this creative field value.
@@ -14585,12 +15045,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Get extends
-      StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative field ID for this creative field value.
@@ -14605,12 +15065,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative field ID for this creative field value.
@@ -14626,12 +15086,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$CreativeFieldValue;
   }
-  export interface Params$Resource$Creativefieldvalues$List extends
-      StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative field ID for this creative field value.
@@ -14667,12 +15127,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative field ID for this creative field value.
@@ -14692,12 +15152,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$CreativeFieldValue;
   }
-  export interface Params$Resource$Creativefieldvalues$Update extends
-      StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative field ID for this creative field value.
@@ -14714,13 +15174,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$CreativeFieldValue;
   }
 
-
   export class Resource$Creativegroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.creativeGroups.get
@@ -14735,22 +15193,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Creativegroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
-    get(params: Params$Resource$Creativegroups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
-    get(params: Params$Resource$Creativegroups$Get,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+    get(
+      params?: Params$Resource$Creativegroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeGroup>;
+    get(
+      params: Params$Resource$Creativegroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeGroup>,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
+    get(
+      params: Params$Resource$Creativegroups$Get,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Creativegroups$Get|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|GaxiosPromise<Schema$CreativeGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Creativegroups$Get
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>
+    ): void | GaxiosPromise<Schema$CreativeGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14767,18 +15234,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -14786,7 +15254,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeGroups.insert
@@ -14802,25 +15269,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Creativegroups$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
+      params?: Params$Resource$Creativegroups$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeGroup>;
     insert(
-        params: Params$Resource$Creativegroups$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+      params: Params$Resource$Creativegroups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeGroup>,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
     insert(
-        params: Params$Resource$Creativegroups$Insert,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+      params: Params$Resource$Creativegroups$Insert,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Creativegroups$Insert|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|GaxiosPromise<Schema$CreativeGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Creativegroups$Insert
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>
+    ): void | GaxiosPromise<Schema$CreativeGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativegroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14837,18 +15309,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -14856,7 +15329,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeGroups.list
@@ -14879,29 +15351,35 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Creativegroups$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CreativeGroupsListResponse>;
     list(
-        params: Params$Resource$Creativegroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreativeGroupsListResponse>,
-        callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
-        void;
+      params?: Params$Resource$Creativegroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeGroupsListResponse>;
     list(
-        params: Params$Resource$Creativegroups$List,
-        callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
-        void;
+      params: Params$Resource$Creativegroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeGroupsListResponse>,
+      callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Creativegroups$List|
-        BodyResponseCallback<Schema$CreativeGroupsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeGroupsListResponse>,
-        callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
-        void|GaxiosPromise<Schema$CreativeGroupsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativegroups$List;
+      params: Params$Resource$Creativegroups$List,
+      callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$CreativeGroupsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Creativegroups$List
+        | BodyResponseCallback<Schema$CreativeGroupsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>
+    ): void | GaxiosPromise<Schema$CreativeGroupsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14918,27 +15396,29 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroupsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreativeGroupsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeGroups.patch
@@ -14956,25 +15436,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Creativegroups$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
+      params?: Params$Resource$Creativegroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeGroup>;
     patch(
-        params: Params$Resource$Creativegroups$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+      params: Params$Resource$Creativegroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeGroup>,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
     patch(
-        params: Params$Resource$Creativegroups$Patch,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+      params: Params$Resource$Creativegroups$Patch,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Creativegroups$Patch|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|GaxiosPromise<Schema$CreativeGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Creativegroups$Patch
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>
+    ): void | GaxiosPromise<Schema$CreativeGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -14991,18 +15476,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -15010,7 +15496,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creativeGroups.update
@@ -15026,25 +15511,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Creativegroups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
+      params?: Params$Resource$Creativegroups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativeGroup>;
     update(
-        params: Params$Resource$Creativegroups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+      params: Params$Resource$Creativegroups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativeGroup>,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
     update(
-        params: Params$Resource$Creativegroups$Update,
-        callback: BodyResponseCallback<Schema$CreativeGroup>): void;
+      params: Params$Resource$Creativegroups$Update,
+      callback: BodyResponseCallback<Schema$CreativeGroup>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CreativeGroup>): void;
     update(
-        paramsOrCallback?: Params$Resource$Creativegroups$Update|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativeGroup>,
-        callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|GaxiosPromise<Schema$CreativeGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Creativegroups$Update;
+      paramsOrCallback?:
+        | Params$Resource$Creativegroups$Update
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>
+    ): void | GaxiosPromise<Schema$CreativeGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Creativegroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -15061,18 +15551,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creativeGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -15082,12 +15573,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Creativegroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Creativegroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative group ID.
@@ -15098,12 +15589,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativegroups$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Creativegroups$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -15115,12 +15606,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$CreativeGroup;
   }
-  export interface Params$Resource$Creativegroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Creativegroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only creative groups that belong to these advertisers.
@@ -15165,12 +15656,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativegroups$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Creativegroups$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative group ID.
@@ -15186,12 +15677,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$CreativeGroup;
   }
-  export interface Params$Resource$Creativegroups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Creativegroups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -15204,13 +15695,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$CreativeGroup;
   }
 
-
   export class Resource$Creatives {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.creatives.get
@@ -15225,19 +15714,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Creatives$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Creative>;
-    get(params: Params$Resource$Creatives$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback: BodyResponseCallback<Schema$Creative>): void;
-    get(params: Params$Resource$Creatives$Get,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(
+      params?: Params$Resource$Creatives$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Creative>;
+    get(
+      params: Params$Resource$Creatives$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    get(
+      params: Params$Resource$Creatives$Get,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Creative>): void;
-    get(paramsOrCallback?: Params$Resource$Creatives$Get|
-        BodyResponseCallback<Schema$Creative>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>):
-        void|GaxiosPromise<Schema$Creative> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Creatives$Get
+        | BodyResponseCallback<Schema$Creative>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>
+    ): void | GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15255,18 +15752,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/creatives/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/creatives/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15274,7 +15772,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Creative>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creatives.insert
@@ -15289,22 +15786,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Creatives$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Creative>;
     insert(
-        params: Params$Resource$Creatives$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params?: Params$Resource$Creatives$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Creative>;
     insert(
-        params: Params$Resource$Creatives$Insert,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params: Params$Resource$Creatives$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    insert(
+      params: Params$Resource$Creatives$Insert,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Creative>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Creatives$Insert|
-        BodyResponseCallback<Schema$Creative>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>):
-        void|GaxiosPromise<Schema$Creative> {
+      paramsOrCallback?:
+        | Params$Resource$Creatives$Insert
+        | BodyResponseCallback<Schema$Creative>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>
+    ): void | GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15322,17 +15824,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/creatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/creatives'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15340,7 +15843,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Creative>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creatives.list
@@ -15371,24 +15873,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Creatives$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CreativesListResponse>;
     list(
-        params: Params$Resource$Creatives$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreativesListResponse>,
-        callback: BodyResponseCallback<Schema$CreativesListResponse>): void;
+      params?: Params$Resource$Creatives$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativesListResponse>;
     list(
-        params: Params$Resource$Creatives$List,
-        callback: BodyResponseCallback<Schema$CreativesListResponse>): void;
+      params: Params$Resource$Creatives$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativesListResponse>,
+      callback: BodyResponseCallback<Schema$CreativesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Creatives$List,
+      callback: BodyResponseCallback<Schema$CreativesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CreativesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Creatives$List|
-        BodyResponseCallback<Schema$CreativesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativesListResponse>,
-        callback?: BodyResponseCallback<Schema$CreativesListResponse>):
-        void|GaxiosPromise<Schema$CreativesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Creatives$List
+        | BodyResponseCallback<Schema$CreativesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativesListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativesListResponse>
+    ): void | GaxiosPromise<Schema$CreativesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15406,17 +15915,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/creatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/creatives'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativesListResponse>(parameters, callback);
@@ -15424,7 +15934,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$CreativesListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creatives.patch
@@ -15440,22 +15949,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Creatives$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Creative>;
     patch(
-        params: Params$Resource$Creatives$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params?: Params$Resource$Creatives$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Creative>;
     patch(
-        params: Params$Resource$Creatives$Patch,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params: Params$Resource$Creatives$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    patch(
+      params: Params$Resource$Creatives$Patch,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Creative>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Creatives$Patch|
-        BodyResponseCallback<Schema$Creative>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>):
-        void|GaxiosPromise<Schema$Creative> {
+      paramsOrCallback?:
+        | Params$Resource$Creatives$Patch
+        | BodyResponseCallback<Schema$Creative>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>
+    ): void | GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15473,17 +15987,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/creatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/creatives'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15491,7 +16006,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Creative>(parameters);
       }
     }
-
 
     /**
      * dfareporting.creatives.update
@@ -15506,22 +16020,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Creatives$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Creative>;
     update(
-        params: Params$Resource$Creatives$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params?: Params$Resource$Creatives$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Creative>;
     update(
-        params: Params$Resource$Creatives$Update,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params: Params$Resource$Creatives$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    update(
+      params: Params$Resource$Creatives$Update,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Creative>): void;
     update(
-        paramsOrCallback?: Params$Resource$Creatives$Update|
-        BodyResponseCallback<Schema$Creative>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>):
-        void|GaxiosPromise<Schema$Creative> {
+      paramsOrCallback?:
+        | Params$Resource$Creatives$Update
+        | BodyResponseCallback<Schema$Creative>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>
+    ): void | GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15539,17 +16058,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/creatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/creatives'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15563,7 +16083,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative ID.
@@ -15578,7 +16098,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -15594,7 +16114,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only active creatives. Leave blank to select active and inactive
@@ -15677,7 +16197,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Creative ID.
@@ -15697,7 +16217,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -15710,13 +16230,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Creative;
   }
 
-
   export class Resource$Dimensionvalues {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.dimensionValues.query
@@ -15734,25 +16252,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     query(
-        params?: Params$Resource$Dimensionvalues$Query,
-        options?: MethodOptions): GaxiosPromise<Schema$DimensionValueList>;
+      params?: Params$Resource$Dimensionvalues$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DimensionValueList>;
     query(
-        params: Params$Resource$Dimensionvalues$Query,
-        options: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
-        callback: BodyResponseCallback<Schema$DimensionValueList>): void;
+      params: Params$Resource$Dimensionvalues$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$DimensionValueList>,
+      callback: BodyResponseCallback<Schema$DimensionValueList>
+    ): void;
     query(
-        params: Params$Resource$Dimensionvalues$Query,
-        callback: BodyResponseCallback<Schema$DimensionValueList>): void;
+      params: Params$Resource$Dimensionvalues$Query,
+      callback: BodyResponseCallback<Schema$DimensionValueList>
+    ): void;
     query(callback: BodyResponseCallback<Schema$DimensionValueList>): void;
     query(
-        paramsOrCallback?: Params$Resource$Dimensionvalues$Query|
-        BodyResponseCallback<Schema$DimensionValueList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DimensionValueList>,
-        callback?: BodyResponseCallback<Schema$DimensionValueList>):
-        void|GaxiosPromise<Schema$DimensionValueList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Dimensionvalues$Query;
+      paramsOrCallback?:
+        | Params$Resource$Dimensionvalues$Query
+        | BodyResponseCallback<Schema$DimensionValueList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DimensionValueList>,
+      callback?: BodyResponseCallback<Schema$DimensionValueList>
+    ): void | GaxiosPromise<Schema$DimensionValueList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dimensionvalues$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -15769,18 +16292,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/dimensionvalues/query')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/dimensionvalues/query'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DimensionValueList>(parameters, callback);
@@ -15790,12 +16314,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Dimensionvalues$Query extends
-      StandardParameters {
+  export interface Params$Resource$Dimensionvalues$Query
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results to return.
@@ -15816,13 +16340,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$DimensionValueRequest;
   }
 
-
   export class Resource$Directorysitecontacts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.directorySiteContacts.get
@@ -15837,23 +16359,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Directorysitecontacts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DirectorySiteContact>;
-    get(params: Params$Resource$Directorysitecontacts$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySiteContact>,
-        callback: BodyResponseCallback<Schema$DirectorySiteContact>): void;
-    get(params: Params$Resource$Directorysitecontacts$Get,
-        callback: BodyResponseCallback<Schema$DirectorySiteContact>): void;
+    get(
+      params?: Params$Resource$Directorysitecontacts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectorySiteContact>;
+    get(
+      params: Params$Resource$Directorysitecontacts$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySiteContact>,
+      callback: BodyResponseCallback<Schema$DirectorySiteContact>
+    ): void;
+    get(
+      params: Params$Resource$Directorysitecontacts$Get,
+      callback: BodyResponseCallback<Schema$DirectorySiteContact>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DirectorySiteContact>): void;
-    get(paramsOrCallback?: Params$Resource$Directorysitecontacts$Get|
-        BodyResponseCallback<Schema$DirectorySiteContact>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySiteContact>,
-        callback?: BodyResponseCallback<Schema$DirectorySiteContact>):
-        void|GaxiosPromise<Schema$DirectorySiteContact> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Directorysitecontacts$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Directorysitecontacts$Get
+        | BodyResponseCallback<Schema$DirectorySiteContact>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySiteContact>,
+      callback?: BodyResponseCallback<Schema$DirectorySiteContact>
+    ): void | GaxiosPromise<Schema$DirectorySiteContact> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Directorysitecontacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -15870,18 +16402,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/directorySiteContacts/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/directorySiteContacts/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySiteContact>(parameters, callback);
@@ -15889,7 +16422,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$DirectorySiteContact>(parameters);
       }
     }
-
 
     /**
      * dfareporting.directorySiteContacts.list
@@ -15912,34 +16444,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Directorysitecontacts$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DirectorySiteContactsListResponse>;
+      params?: Params$Resource$Directorysitecontacts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectorySiteContactsListResponse>;
     list(
-        params: Params$Resource$Directorysitecontacts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
-        void;
+      params: Params$Resource$Directorysitecontacts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
+      callback: BodyResponseCallback<Schema$DirectorySiteContactsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Directorysitecontacts$List,
-        callback:
-            BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
-        void;
+      params: Params$Resource$Directorysitecontacts$List,
+      callback: BodyResponseCallback<Schema$DirectorySiteContactsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Directorysitecontacts$List|
-        BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
-        void|GaxiosPromise<Schema$DirectorySiteContactsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Directorysitecontacts$List;
+      callback: BodyResponseCallback<Schema$DirectorySiteContactsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Directorysitecontacts$List
+        | BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
+      callback?: BodyResponseCallback<Schema$DirectorySiteContactsListResponse>
+    ): void | GaxiosPromise<Schema$DirectorySiteContactsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Directorysitecontacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -15956,35 +16488,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/directorySiteContacts')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/directorySiteContacts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySiteContactsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DirectorySiteContactsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Directorysitecontacts$Get extends
-      StandardParameters {
+  export interface Params$Resource$Directorysitecontacts$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Directory site contact ID.
@@ -15995,12 +16531,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Directorysitecontacts$List extends
-      StandardParameters {
+  export interface Params$Resource$Directorysitecontacts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only directory site contacts with these directory site IDs. This
@@ -16044,13 +16580,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Directorysites {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.directorySites.get
@@ -16065,22 +16599,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Directorysites$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DirectorySite>;
-    get(params: Params$Resource$Directorysites$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
-        callback: BodyResponseCallback<Schema$DirectorySite>): void;
-    get(params: Params$Resource$Directorysites$Get,
-        callback: BodyResponseCallback<Schema$DirectorySite>): void;
+    get(
+      params?: Params$Resource$Directorysites$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectorySite>;
+    get(
+      params: Params$Resource$Directorysites$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DirectorySite>,
+      callback: BodyResponseCallback<Schema$DirectorySite>
+    ): void;
+    get(
+      params: Params$Resource$Directorysites$Get,
+      callback: BodyResponseCallback<Schema$DirectorySite>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DirectorySite>): void;
-    get(paramsOrCallback?: Params$Resource$Directorysites$Get|
-        BodyResponseCallback<Schema$DirectorySite>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySite>,
-        callback?: BodyResponseCallback<Schema$DirectorySite>):
-        void|GaxiosPromise<Schema$DirectorySite> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Directorysites$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Directorysites$Get
+        | BodyResponseCallback<Schema$DirectorySite>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySite>,
+      callback?: BodyResponseCallback<Schema$DirectorySite>
+    ): void | GaxiosPromise<Schema$DirectorySite> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Directorysites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -16097,18 +16640,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/directorySites/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/directorySites/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(parameters, callback);
@@ -16116,7 +16660,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$DirectorySite>(parameters);
       }
     }
-
 
     /**
      * dfareporting.directorySites.insert
@@ -16132,25 +16675,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Directorysites$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$DirectorySite>;
+      params?: Params$Resource$Directorysites$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectorySite>;
     insert(
-        params: Params$Resource$Directorysites$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
-        callback: BodyResponseCallback<Schema$DirectorySite>): void;
+      params: Params$Resource$Directorysites$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$DirectorySite>,
+      callback: BodyResponseCallback<Schema$DirectorySite>
+    ): void;
     insert(
-        params: Params$Resource$Directorysites$Insert,
-        callback: BodyResponseCallback<Schema$DirectorySite>): void;
+      params: Params$Resource$Directorysites$Insert,
+      callback: BodyResponseCallback<Schema$DirectorySite>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$DirectorySite>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Directorysites$Insert|
-        BodyResponseCallback<Schema$DirectorySite>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySite>,
-        callback?: BodyResponseCallback<Schema$DirectorySite>):
-        void|GaxiosPromise<Schema$DirectorySite> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Directorysites$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Directorysites$Insert
+        | BodyResponseCallback<Schema$DirectorySite>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySite>,
+      callback?: BodyResponseCallback<Schema$DirectorySite>
+    ): void | GaxiosPromise<Schema$DirectorySite> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Directorysites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -16167,18 +16715,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/directorySites')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/directorySites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(parameters, callback);
@@ -16186,7 +16735,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$DirectorySite>(parameters);
       }
     }
-
 
     /**
      * dfareporting.directorySites.list
@@ -16214,29 +16762,35 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Directorysites$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DirectorySitesListResponse>;
     list(
-        params: Params$Resource$Directorysites$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySitesListResponse>,
-        callback: BodyResponseCallback<Schema$DirectorySitesListResponse>):
-        void;
+      params?: Params$Resource$Directorysites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectorySitesListResponse>;
     list(
-        params: Params$Resource$Directorysites$List,
-        callback: BodyResponseCallback<Schema$DirectorySitesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$DirectorySitesListResponse>):
-        void;
+      params: Params$Resource$Directorysites$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySitesListResponse>,
+      callback: BodyResponseCallback<Schema$DirectorySitesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Directorysites$List|
-        BodyResponseCallback<Schema$DirectorySitesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectorySitesListResponse>,
-        callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>):
-        void|GaxiosPromise<Schema$DirectorySitesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Directorysites$List;
+      params: Params$Resource$Directorysites$List,
+      callback: BodyResponseCallback<Schema$DirectorySitesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$DirectorySitesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Directorysites$List
+        | BodyResponseCallback<Schema$DirectorySitesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectorySitesListResponse>,
+      callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>
+    ): void | GaxiosPromise<Schema$DirectorySitesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Directorysites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -16253,34 +16807,37 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/directorySites')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/directorySites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySitesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DirectorySitesListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Directorysites$Get extends
-      StandardParameters {
+  export interface Params$Resource$Directorysites$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Directory site ID.
@@ -16291,12 +16848,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Directorysites$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Directorysites$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -16308,12 +16865,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$DirectorySite;
   }
-  export interface Params$Resource$Directorysites$List extends
-      StandardParameters {
+  export interface Params$Resource$Directorysites$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * This search filter is no longer supported and will have no effect on the
@@ -16383,13 +16940,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Dynamictargetingkeys {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.dynamicTargetingKeys.delete
@@ -16407,23 +16962,28 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Dynamictargetingkeys$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Dynamictargetingkeys$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Dynamictargetingkeys$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Dynamictargetingkeys$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Dynamictargetingkeys$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Dynamictargetingkeys$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Dynamictargetingkeys$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Dynamictargetingkeys$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Dynamictargetingkeys$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamictargetingkeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -16440,18 +17000,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'objectId', 'name', 'objectType'],
         pathParams: ['objectId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -16459,7 +17020,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.dynamicTargetingKeys.insert
@@ -16479,25 +17039,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Dynamictargetingkeys$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$DynamicTargetingKey>;
+      params?: Params$Resource$Dynamictargetingkeys$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DynamicTargetingKey>;
     insert(
-        params: Params$Resource$Dynamictargetingkeys$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$DynamicTargetingKey>,
-        callback: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
+      params: Params$Resource$Dynamictargetingkeys$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicTargetingKey>,
+      callback: BodyResponseCallback<Schema$DynamicTargetingKey>
+    ): void;
     insert(
-        params: Params$Resource$Dynamictargetingkeys$Insert,
-        callback: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
+      params: Params$Resource$Dynamictargetingkeys$Insert,
+      callback: BodyResponseCallback<Schema$DynamicTargetingKey>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Dynamictargetingkeys$Insert|
-        BodyResponseCallback<Schema$DynamicTargetingKey>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DynamicTargetingKey>,
-        callback?: BodyResponseCallback<Schema$DynamicTargetingKey>):
-        void|GaxiosPromise<Schema$DynamicTargetingKey> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Dynamictargetingkeys$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Dynamictargetingkeys$Insert
+        | BodyResponseCallback<Schema$DynamicTargetingKey>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DynamicTargetingKey>,
+      callback?: BodyResponseCallback<Schema$DynamicTargetingKey>
+    ): void | GaxiosPromise<Schema$DynamicTargetingKey> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamictargetingkeys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -16514,18 +17079,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/dynamicTargetingKeys')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/dynamicTargetingKeys'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKey>(parameters, callback);
@@ -16533,7 +17099,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$DynamicTargetingKey>(parameters);
       }
     }
-
 
     /**
      * dfareporting.dynamicTargetingKeys.list
@@ -16552,34 +17117,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Dynamictargetingkeys$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DynamicTargetingKeysListResponse>;
+      params?: Params$Resource$Dynamictargetingkeys$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DynamicTargetingKeysListResponse>;
     list(
-        params: Params$Resource$Dynamictargetingkeys$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
-        callback:
-            BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
-        void;
+      params: Params$Resource$Dynamictargetingkeys$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
+      callback: BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>
+    ): void;
     list(
-        params: Params$Resource$Dynamictargetingkeys$List,
-        callback:
-            BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
-        void;
+      params: Params$Resource$Dynamictargetingkeys$List,
+      callback: BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Dynamictargetingkeys$List|
-        BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
-        void|GaxiosPromise<Schema$DynamicTargetingKeysListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Dynamictargetingkeys$List;
+      callback: BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Dynamictargetingkeys$List
+        | BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
+      callback?: BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>
+    ): void | GaxiosPromise<Schema$DynamicTargetingKeysListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamictargetingkeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -16596,35 +17161,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/dynamicTargetingKeys')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/dynamicTargetingKeys'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Dynamictargetingkeys$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Dynamictargetingkeys$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of this dynamic targeting key. This is a required field. Must be
@@ -16646,12 +17215,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Dynamictargetingkeys$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Dynamictargetingkeys$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -16663,12 +17232,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$DynamicTargetingKey;
   }
-  export interface Params$Resource$Dynamictargetingkeys$List extends
-      StandardParameters {
+  export interface Params$Resource$Dynamictargetingkeys$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only dynamic targeting keys whose object has this advertiser ID.
@@ -16692,13 +17261,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Eventtags {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.eventTags.delete
@@ -16713,21 +17280,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Eventtags$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Eventtags$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Eventtags$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Eventtags$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Eventtags$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Eventtags$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Eventtags$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Eventtags$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16745,18 +17318,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/eventTags/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/eventTags/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -16764,7 +17338,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.eventTags.get
@@ -16779,19 +17352,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Eventtags$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$EventTag>;
-    get(params: Params$Resource$Eventtags$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
-    get(params: Params$Resource$Eventtags$Get,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
+    get(
+      params?: Params$Resource$Eventtags$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventTag>;
+    get(
+      params: Params$Resource$Eventtags$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
+    get(
+      params: Params$Resource$Eventtags$Get,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
     get(callback: BodyResponseCallback<Schema$EventTag>): void;
-    get(paramsOrCallback?: Params$Resource$Eventtags$Get|
-        BodyResponseCallback<Schema$EventTag>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>):
-        void|GaxiosPromise<Schema$EventTag> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Eventtags$Get
+        | BodyResponseCallback<Schema$EventTag>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>
+    ): void | GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16809,18 +17390,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/eventTags/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/eventTags/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -16828,7 +17410,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$EventTag>(parameters);
       }
     }
-
 
     /**
      * dfareporting.eventTags.insert
@@ -16843,22 +17424,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Eventtags$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$EventTag>;
     insert(
-        params: Params$Resource$Eventtags$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
+      params?: Params$Resource$Eventtags$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventTag>;
     insert(
-        params: Params$Resource$Eventtags$Insert,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
+      params: Params$Resource$Eventtags$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
+    insert(
+      params: Params$Resource$Eventtags$Insert,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$EventTag>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Eventtags$Insert|
-        BodyResponseCallback<Schema$EventTag>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>):
-        void|GaxiosPromise<Schema$EventTag> {
+      paramsOrCallback?:
+        | Params$Resource$Eventtags$Insert
+        | BodyResponseCallback<Schema$EventTag>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>
+    ): void | GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16876,17 +17462,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/eventTags')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/eventTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -16894,7 +17481,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$EventTag>(parameters);
       }
     }
-
 
     /**
      * dfareporting.eventTags.list
@@ -16918,24 +17504,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Eventtags$List, options?: MethodOptions):
-        GaxiosPromise<Schema$EventTagsListResponse>;
     list(
-        params: Params$Resource$Eventtags$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$EventTagsListResponse>,
-        callback: BodyResponseCallback<Schema$EventTagsListResponse>): void;
+      params?: Params$Resource$Eventtags$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventTagsListResponse>;
     list(
-        params: Params$Resource$Eventtags$List,
-        callback: BodyResponseCallback<Schema$EventTagsListResponse>): void;
+      params: Params$Resource$Eventtags$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventTagsListResponse>,
+      callback: BodyResponseCallback<Schema$EventTagsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Eventtags$List,
+      callback: BodyResponseCallback<Schema$EventTagsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$EventTagsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Eventtags$List|
-        BodyResponseCallback<Schema$EventTagsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EventTagsListResponse>,
-        callback?: BodyResponseCallback<Schema$EventTagsListResponse>):
-        void|GaxiosPromise<Schema$EventTagsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Eventtags$List
+        | BodyResponseCallback<Schema$EventTagsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EventTagsListResponse>,
+      callback?: BodyResponseCallback<Schema$EventTagsListResponse>
+    ): void | GaxiosPromise<Schema$EventTagsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16953,17 +17546,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/eventTags')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/eventTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EventTagsListResponse>(parameters, callback);
@@ -16971,7 +17565,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$EventTagsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.eventTags.patch
@@ -16988,22 +17581,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Eventtags$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$EventTag>;
     patch(
-        params: Params$Resource$Eventtags$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
+      params?: Params$Resource$Eventtags$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventTag>;
     patch(
-        params: Params$Resource$Eventtags$Patch,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
+      params: Params$Resource$Eventtags$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
+    patch(
+      params: Params$Resource$Eventtags$Patch,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$EventTag>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Eventtags$Patch|
-        BodyResponseCallback<Schema$EventTag>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>):
-        void|GaxiosPromise<Schema$EventTag> {
+      paramsOrCallback?:
+        | Params$Resource$Eventtags$Patch
+        | BodyResponseCallback<Schema$EventTag>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>
+    ): void | GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17021,17 +17619,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/eventTags')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/eventTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -17039,7 +17638,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$EventTag>(parameters);
       }
     }
-
 
     /**
      * dfareporting.eventTags.update
@@ -17054,22 +17652,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Eventtags$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$EventTag>;
     update(
-        params: Params$Resource$Eventtags$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
+      params?: Params$Resource$Eventtags$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EventTag>;
     update(
-        params: Params$Resource$Eventtags$Update,
-        callback: BodyResponseCallback<Schema$EventTag>): void;
+      params: Params$Resource$Eventtags$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
+    update(
+      params: Params$Resource$Eventtags$Update,
+      callback: BodyResponseCallback<Schema$EventTag>
+    ): void;
     update(callback: BodyResponseCallback<Schema$EventTag>): void;
     update(
-        paramsOrCallback?: Params$Resource$Eventtags$Update|
-        BodyResponseCallback<Schema$EventTag>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-        callback?: BodyResponseCallback<Schema$EventTag>):
-        void|GaxiosPromise<Schema$EventTag> {
+      paramsOrCallback?:
+        | Params$Resource$Eventtags$Update
+        | BodyResponseCallback<Schema$EventTag>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>
+    ): void | GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17087,17 +17690,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/eventTags')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/eventTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -17111,7 +17715,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Event tag ID.
@@ -17126,7 +17730,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Event tag ID.
@@ -17141,7 +17745,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -17157,7 +17761,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only event tags that belong to this ad.
@@ -17228,7 +17832,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Event tag ID.
@@ -17248,7 +17852,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -17261,13 +17865,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$EventTag;
   }
 
-
   export class Resource$Files {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.files.get
@@ -17283,19 +17885,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Files$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$File>;
-    get(params: Params$Resource$Files$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
-    get(params: Params$Resource$Files$Get,
-        callback: BodyResponseCallback<Schema$File>): void;
+    get(
+      params?: Params$Resource$Files$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
+    get(
+      params: Params$Resource$Files$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    get(
+      params: Params$Resource$Files$Get,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     get(callback: BodyResponseCallback<Schema$File>): void;
-    get(paramsOrCallback?: Params$Resource$Files$Get|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Files$Get
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17313,17 +17923,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/reports/{reportId}/files/{fileId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/reports/{reportId}/files/{fileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['reportId', 'fileId'],
         pathParams: ['fileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -17331,7 +17942,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * dfareporting.files.list
@@ -17350,22 +17960,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Files$List, options?: MethodOptions):
-        GaxiosPromise<Schema$FileList>;
     list(
-        params: Params$Resource$Files$List,
-        options: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback: BodyResponseCallback<Schema$FileList>): void;
+      params?: Params$Resource$Files$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FileList>;
     list(
-        params: Params$Resource$Files$List,
-        callback: BodyResponseCallback<Schema$FileList>): void;
+      params: Params$Resource$Files$List,
+      options: MethodOptions | BodyResponseCallback<Schema$FileList>,
+      callback: BodyResponseCallback<Schema$FileList>
+    ): void;
+    list(
+      params: Params$Resource$Files$List,
+      callback: BodyResponseCallback<Schema$FileList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$FileList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Files$List|
-        BodyResponseCallback<Schema$FileList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback?: BodyResponseCallback<Schema$FileList>):
-        void|GaxiosPromise<Schema$FileList> {
+      paramsOrCallback?:
+        | Params$Resource$Files$List
+        | BodyResponseCallback<Schema$FileList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>
+    ): void | GaxiosPromise<Schema$FileList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17383,17 +17998,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/files')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/files'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FileList>(parameters, callback);
@@ -17407,7 +18023,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the report file.
@@ -17422,7 +18038,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results to return.
@@ -17450,13 +18066,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Floodlightactivities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.floodlightActivities.delete
@@ -17472,23 +18086,28 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Floodlightactivities$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Floodlightactivities$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Floodlightactivities$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Floodlightactivities$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Floodlightactivities$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Floodlightactivities$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Floodlightactivities$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivities$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivities$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -17505,18 +18124,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -17524,7 +18144,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightActivities.generatetag
@@ -17540,31 +18159,42 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     generatetag(
-        params?: Params$Resource$Floodlightactivities$Generatetag,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>;
+      params?: Params$Resource$Floodlightactivities$Generatetag,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>;
     generatetag(
-        params: Params$Resource$Floodlightactivities$Generatetag,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
-        callback: BodyResponseCallback<
-            Schema$FloodlightActivitiesGenerateTagResponse>): void;
+      params: Params$Resource$Floodlightactivities$Generatetag,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivitiesGenerateTagResponse
+      >
+    ): void;
     generatetag(
-        params: Params$Resource$Floodlightactivities$Generatetag,
-        callback: BodyResponseCallback<
-            Schema$FloodlightActivitiesGenerateTagResponse>): void;
-    generatetag(callback: BodyResponseCallback<
-                Schema$FloodlightActivitiesGenerateTagResponse>): void;
+      params: Params$Resource$Floodlightactivities$Generatetag,
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivitiesGenerateTagResponse
+      >
+    ): void;
     generatetag(
-        paramsOrCallback?: Params$Resource$Floodlightactivities$Generatetag|
-        BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
-        callback?: BodyResponseCallback<
-            Schema$FloodlightActivitiesGenerateTagResponse>):
-        void|GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivities$Generatetag;
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivitiesGenerateTagResponse
+      >
+    ): void;
+    generatetag(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivities$Generatetag
+        | BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
+      callback?: BodyResponseCallback<
+        Schema$FloodlightActivitiesGenerateTagResponse
+      >
+    ): void | GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivities$Generatetag;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -17581,28 +18211,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities/generatetag')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities/generatetag'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.floodlightActivities.get
@@ -17617,22 +18250,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Floodlightactivities$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
-    get(params: Params$Resource$Floodlightactivities$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
-    get(params: Params$Resource$Floodlightactivities$Get,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+    get(
+      params?: Params$Resource$Floodlightactivities$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivity>;
+    get(
+      params: Params$Resource$Floodlightactivities$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
+    get(
+      params: Params$Resource$Floodlightactivities$Get,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
     get(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
-    get(paramsOrCallback?: Params$Resource$Floodlightactivities$Get|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|GaxiosPromise<Schema$FloodlightActivity> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Floodlightactivities$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivities$Get
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void | GaxiosPromise<Schema$FloodlightActivity> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -17649,18 +18291,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -17668,7 +18311,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightActivities.insert
@@ -17684,25 +18326,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Floodlightactivities$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
+      params?: Params$Resource$Floodlightactivities$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivity>;
     insert(
-        params: Params$Resource$Floodlightactivities$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+      params: Params$Resource$Floodlightactivities$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
     insert(
-        params: Params$Resource$Floodlightactivities$Insert,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+      params: Params$Resource$Floodlightactivities$Insert,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Floodlightactivities$Insert|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|GaxiosPromise<Schema$FloodlightActivity> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivities$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivities$Insert
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void | GaxiosPromise<Schema$FloodlightActivity> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -17719,18 +18366,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -17738,7 +18386,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightActivities.list
@@ -17767,34 +18414,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Floodlightactivities$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$FloodlightActivitiesListResponse>;
+      params?: Params$Resource$Floodlightactivities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivitiesListResponse>;
     list(
-        params: Params$Resource$Floodlightactivities$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
-        callback:
-            BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
-        void;
+      params: Params$Resource$Floodlightactivities$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
+      callback: BodyResponseCallback<Schema$FloodlightActivitiesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Floodlightactivities$List,
-        callback:
-            BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
-        void;
+      params: Params$Resource$Floodlightactivities$List,
+      callback: BodyResponseCallback<Schema$FloodlightActivitiesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Floodlightactivities$List|
-        BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
-        void|GaxiosPromise<Schema$FloodlightActivitiesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Floodlightactivities$List;
+      callback: BodyResponseCallback<Schema$FloodlightActivitiesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivities$List
+        | BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivitiesListResponse>
+    ): void | GaxiosPromise<Schema$FloodlightActivitiesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -17811,28 +18458,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$FloodlightActivitiesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.floodlightActivities.patch
@@ -17850,25 +18500,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Floodlightactivities$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
+      params?: Params$Resource$Floodlightactivities$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivity>;
     patch(
-        params: Params$Resource$Floodlightactivities$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+      params: Params$Resource$Floodlightactivities$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
     patch(
-        params: Params$Resource$Floodlightactivities$Patch,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+      params: Params$Resource$Floodlightactivities$Patch,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Floodlightactivities$Patch|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|GaxiosPromise<Schema$FloodlightActivity> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivities$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivities$Patch
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void | GaxiosPromise<Schema$FloodlightActivity> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -17885,18 +18540,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -17904,7 +18560,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightActivities.update
@@ -17920,25 +18575,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Floodlightactivities$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
+      params?: Params$Resource$Floodlightactivities$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivity>;
     update(
-        params: Params$Resource$Floodlightactivities$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+      params: Params$Resource$Floodlightactivities$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
     update(
-        params: Params$Resource$Floodlightactivities$Update,
-        callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
+      params: Params$Resource$Floodlightactivities$Update,
+      callback: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void;
     update(callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
     update(
-        paramsOrCallback?: Params$Resource$Floodlightactivities$Update|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivity>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|GaxiosPromise<Schema$FloodlightActivity> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivities$Update;
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivities$Update
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>
+    ): void | GaxiosPromise<Schema$FloodlightActivity> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivities$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -17955,18 +18615,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivities'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -17976,12 +18637,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Floodlightactivities$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight activity ID.
@@ -17992,12 +18653,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Generatetag extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Generatetag
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight activity ID for which we want to generate a tag.
@@ -18008,12 +18669,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Get extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight activity ID.
@@ -18024,12 +18685,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -18041,12 +18702,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$FloodlightActivity;
   }
-  export interface Params$Resource$Floodlightactivities$List extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivities$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only floodlight activities for the specified advertiser ID. Must
@@ -18122,12 +18783,12 @@ export namespace dfareporting_v3_2 {
      */
     tagString?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight activity ID.
@@ -18143,12 +18804,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$FloodlightActivity;
   }
-  export interface Params$Resource$Floodlightactivities$Update extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -18161,13 +18822,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$FloodlightActivity;
   }
 
-
   export class Resource$Floodlightactivitygroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.floodlightActivityGroups.get
@@ -18182,23 +18841,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Floodlightactivitygroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
-    get(params: Params$Resource$Floodlightactivitygroups$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
-    get(params: Params$Resource$Floodlightactivitygroups$Get,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+    get(
+      params?: Params$Resource$Floodlightactivitygroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
+    get(
+      params: Params$Resource$Floodlightactivitygroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
+    get(
+      params: Params$Resource$Floodlightactivitygroups$Get,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Get|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivitygroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivitygroups$Get
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void | GaxiosPromise<Schema$FloodlightActivityGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivitygroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18215,18 +18884,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18234,7 +18904,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightActivityGroups.insert
@@ -18250,27 +18919,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Floodlightactivitygroups$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
+      params?: Params$Resource$Floodlightactivitygroups$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
     insert(
-        params: Params$Resource$Floodlightactivitygroups$Insert,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+      params: Params$Resource$Floodlightactivitygroups$Insert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
     insert(
-        params: Params$Resource$Floodlightactivitygroups$Insert,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
-    insert(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void;
+      params: Params$Resource$Floodlightactivitygroups$Insert,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
     insert(
-        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Insert|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivitygroups$Insert;
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivitygroups$Insert
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void | GaxiosPromise<Schema$FloodlightActivityGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivitygroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18287,18 +18963,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18306,7 +18983,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightActivityGroups.list
@@ -18331,34 +19007,42 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Floodlightactivitygroups$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$FloodlightActivityGroupsListResponse>;
+      params?: Params$Resource$Floodlightactivitygroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivityGroupsListResponse>;
     list(
-        params: Params$Resource$Floodlightactivitygroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
-        void;
+      params: Params$Resource$Floodlightactivitygroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivityGroupsListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Floodlightactivitygroups$List,
-        callback:
-            BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
-        void;
+      params: Params$Resource$Floodlightactivitygroups$List,
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivityGroupsListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$List|
-        BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
-        void|GaxiosPromise<Schema$FloodlightActivityGroupsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivitygroups$List;
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivityGroupsListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivitygroups$List
+        | BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$FloodlightActivityGroupsListResponse
+      >
+    ): void | GaxiosPromise<Schema$FloodlightActivityGroupsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivitygroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18375,28 +19059,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.floodlightActivityGroups.patch
@@ -18414,26 +19101,32 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Floodlightactivitygroups$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
+      params?: Params$Resource$Floodlightactivitygroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
     patch(
-        params: Params$Resource$Floodlightactivitygroups$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+      params: Params$Resource$Floodlightactivitygroups$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
     patch(
-        params: Params$Resource$Floodlightactivitygroups$Patch,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+      params: Params$Resource$Floodlightactivitygroups$Patch,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Patch|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivitygroups$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivitygroups$Patch
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void | GaxiosPromise<Schema$FloodlightActivityGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivitygroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18450,18 +19143,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18469,7 +19163,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightActivityGroups.update
@@ -18485,27 +19178,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Floodlightactivitygroups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
+      params?: Params$Resource$Floodlightactivitygroups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightActivityGroup>;
     update(
-        params: Params$Resource$Floodlightactivitygroups$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+      params: Params$Resource$Floodlightactivitygroups$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
     update(
-        params: Params$Resource$Floodlightactivitygroups$Update,
-        callback: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
-    update(callback: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void;
+      params: Params$Resource$Floodlightactivitygroups$Update,
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
     update(
-        paramsOrCallback?: Params$Resource$Floodlightactivitygroups$Update|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightActivityGroup>,
-        callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightactivitygroups$Update;
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightactivitygroups$Update
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>
+    ): void | GaxiosPromise<Schema$FloodlightActivityGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightactivitygroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18522,18 +19222,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightActivityGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18543,12 +19244,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Floodlightactivitygroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight activity Group ID.
@@ -18559,12 +19260,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -18576,12 +19277,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$FloodlightActivityGroup;
   }
-  export interface Params$Resource$Floodlightactivitygroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only floodlight activity groups with the specified advertiser ID.
@@ -18638,12 +19339,12 @@ export namespace dfareporting_v3_2 {
      */
     type?: string;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight activity Group ID.
@@ -18659,12 +19360,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$FloodlightActivityGroup;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -18677,13 +19378,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$FloodlightActivityGroup;
   }
 
-
   export class Resource$Floodlightconfigurations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.floodlightConfigurations.get
@@ -18698,23 +19397,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Floodlightconfigurations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightConfiguration>;
-    get(params: Params$Resource$Floodlightconfigurations$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
-    get(params: Params$Resource$Floodlightconfigurations$Get,
-        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+    get(
+      params?: Params$Resource$Floodlightconfigurations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightConfiguration>;
+    get(
+      params: Params$Resource$Floodlightconfigurations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void;
+    get(
+      params: Params$Resource$Floodlightconfigurations$Get,
+      callback: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void;
     get(callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
-    get(paramsOrCallback?: Params$Resource$Floodlightconfigurations$Get|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
-        void|GaxiosPromise<Schema$FloodlightConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightconfigurations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightconfigurations$Get
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void | GaxiosPromise<Schema$FloodlightConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18731,18 +19440,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
@@ -18750,7 +19460,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightConfigurations.list
@@ -18766,34 +19475,42 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Floodlightconfigurations$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$FloodlightConfigurationsListResponse>;
+      params?: Params$Resource$Floodlightconfigurations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightConfigurationsListResponse>;
     list(
-        params: Params$Resource$Floodlightconfigurations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
-        void;
+      params: Params$Resource$Floodlightconfigurations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
+      callback: BodyResponseCallback<
+        Schema$FloodlightConfigurationsListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Floodlightconfigurations$List,
-        callback:
-            BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
-        void;
+      params: Params$Resource$Floodlightconfigurations$List,
+      callback: BodyResponseCallback<
+        Schema$FloodlightConfigurationsListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Floodlightconfigurations$List|
-        BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
-        void|GaxiosPromise<Schema$FloodlightConfigurationsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightconfigurations$List;
+      callback: BodyResponseCallback<
+        Schema$FloodlightConfigurationsListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightconfigurations$List
+        | BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$FloodlightConfigurationsListResponse
+      >
+    ): void | GaxiosPromise<Schema$FloodlightConfigurationsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18810,28 +19527,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.floodlightConfigurations.patch
@@ -18849,26 +19569,32 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Floodlightconfigurations$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightConfiguration>;
+      params?: Params$Resource$Floodlightconfigurations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightConfiguration>;
     patch(
-        params: Params$Resource$Floodlightconfigurations$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+      params: Params$Resource$Floodlightconfigurations$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void;
     patch(
-        params: Params$Resource$Floodlightconfigurations$Patch,
-        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+      params: Params$Resource$Floodlightconfigurations$Patch,
+      callback: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Floodlightconfigurations$Patch|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
-        void|GaxiosPromise<Schema$FloodlightConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightconfigurations$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Floodlightconfigurations$Patch
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void | GaxiosPromise<Schema$FloodlightConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightconfigurations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18885,18 +19611,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
@@ -18904,7 +19631,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
       }
     }
-
 
     /**
      * dfareporting.floodlightConfigurations.update
@@ -18920,27 +19646,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Floodlightconfigurations$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$FloodlightConfiguration>;
+      params?: Params$Resource$Floodlightconfigurations$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FloodlightConfiguration>;
     update(
-        params: Params$Resource$Floodlightconfigurations$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+      params: Params$Resource$Floodlightconfigurations$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void;
     update(
-        params: Params$Resource$Floodlightconfigurations$Update,
-        callback: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
-    update(callback: BodyResponseCallback<Schema$FloodlightConfiguration>):
-        void;
+      params: Params$Resource$Floodlightconfigurations$Update,
+      callback: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void;
     update(
-        paramsOrCallback?: Params$Resource$Floodlightconfigurations$Update|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FloodlightConfiguration>,
-        callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
-        void|GaxiosPromise<Schema$FloodlightConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Floodlightconfigurations$Update;
+      callback: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Floodlightconfigurations$Update
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>
+    ): void | GaxiosPromise<Schema$FloodlightConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Floodlightconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -18957,18 +19690,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/floodlightConfigurations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
@@ -18978,12 +19712,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Floodlightconfigurations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight configuration ID.
@@ -18994,12 +19728,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightconfigurations$List extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Set of IDs of floodlight configurations to retrieve. Required field;
@@ -19011,12 +19745,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightconfigurations$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Floodlight configuration ID.
@@ -19032,12 +19766,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$FloodlightConfiguration;
   }
-  export interface Params$Resource$Floodlightconfigurations$Update extends
-      StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -19050,13 +19784,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$FloodlightConfiguration;
   }
 
-
   export class Resource$Inventoryitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.inventoryItems.get
@@ -19072,22 +19804,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Inventoryitems$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$InventoryItem>;
-    get(params: Params$Resource$Inventoryitems$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
-        callback: BodyResponseCallback<Schema$InventoryItem>): void;
-    get(params: Params$Resource$Inventoryitems$Get,
-        callback: BodyResponseCallback<Schema$InventoryItem>): void;
+    get(
+      params?: Params$Resource$Inventoryitems$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InventoryItem>;
+    get(
+      params: Params$Resource$Inventoryitems$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InventoryItem>,
+      callback: BodyResponseCallback<Schema$InventoryItem>
+    ): void;
+    get(
+      params: Params$Resource$Inventoryitems$Get,
+      callback: BodyResponseCallback<Schema$InventoryItem>
+    ): void;
     get(callback: BodyResponseCallback<Schema$InventoryItem>): void;
-    get(paramsOrCallback?: Params$Resource$Inventoryitems$Get|
-        BodyResponseCallback<Schema$InventoryItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InventoryItem>,
-        callback?: BodyResponseCallback<Schema$InventoryItem>):
-        void|GaxiosPromise<Schema$InventoryItem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inventoryitems$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Inventoryitems$Get
+        | BodyResponseCallback<Schema$InventoryItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InventoryItem>,
+      callback?: BodyResponseCallback<Schema$InventoryItem>
+    ): void | GaxiosPromise<Schema$InventoryItem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventoryitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -19104,18 +19845,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InventoryItem>(parameters, callback);
@@ -19123,7 +19865,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$InventoryItem>(parameters);
       }
     }
-
 
     /**
      * dfareporting.inventoryItems.list
@@ -19148,29 +19889,35 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Inventoryitems$List, options?: MethodOptions):
-        GaxiosPromise<Schema$InventoryItemsListResponse>;
     list(
-        params: Params$Resource$Inventoryitems$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$InventoryItemsListResponse>,
-        callback: BodyResponseCallback<Schema$InventoryItemsListResponse>):
-        void;
+      params?: Params$Resource$Inventoryitems$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InventoryItemsListResponse>;
     list(
-        params: Params$Resource$Inventoryitems$List,
-        callback: BodyResponseCallback<Schema$InventoryItemsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$InventoryItemsListResponse>):
-        void;
+      params: Params$Resource$Inventoryitems$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InventoryItemsListResponse>,
+      callback: BodyResponseCallback<Schema$InventoryItemsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Inventoryitems$List|
-        BodyResponseCallback<Schema$InventoryItemsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InventoryItemsListResponse>,
-        callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>):
-        void|GaxiosPromise<Schema$InventoryItemsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Inventoryitems$List;
+      params: Params$Resource$Inventoryitems$List,
+      callback: BodyResponseCallback<Schema$InventoryItemsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$InventoryItemsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Inventoryitems$List
+        | BodyResponseCallback<Schema$InventoryItemsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InventoryItemsListResponse>,
+      callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>
+    ): void | GaxiosPromise<Schema$InventoryItemsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventoryitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -19187,34 +19934,37 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/inventoryItems')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/inventoryItems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InventoryItemsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$InventoryItemsListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Inventoryitems$Get extends
-      StandardParameters {
+  export interface Params$Resource$Inventoryitems$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Inventory item ID.
@@ -19229,12 +19979,12 @@ export namespace dfareporting_v3_2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Inventoryitems$List extends
-      StandardParameters {
+  export interface Params$Resource$Inventoryitems$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only inventory items with these IDs.
@@ -19282,13 +20032,11 @@ export namespace dfareporting_v3_2 {
     type?: string;
   }
 
-
   export class Resource$Languages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.languages.list
@@ -19302,24 +20050,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Languages$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LanguagesListResponse>;
     list(
-        params: Params$Resource$Languages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LanguagesListResponse>,
-        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+      params?: Params$Resource$Languages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LanguagesListResponse>;
     list(
-        params: Params$Resource$Languages$List,
-        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+      params: Params$Resource$Languages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback: BodyResponseCallback<Schema$LanguagesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Languages$List,
+      callback: BodyResponseCallback<Schema$LanguagesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Languages$List|
-        BodyResponseCallback<Schema$LanguagesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LanguagesListResponse>,
-        callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
-        void|GaxiosPromise<Schema$LanguagesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Languages$List
+        | BodyResponseCallback<Schema$LanguagesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback?: BodyResponseCallback<Schema$LanguagesListResponse>
+    ): void | GaxiosPromise<Schema$LanguagesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19337,17 +20092,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/languages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/languages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
@@ -19361,7 +20117,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -19369,13 +20125,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Metros {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.metros.list
@@ -19389,23 +20143,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Metros$List, options?: MethodOptions):
-        GaxiosPromise<Schema$MetrosListResponse>;
     list(
-        params: Params$Resource$Metros$List,
-        options: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
-        callback: BodyResponseCallback<Schema$MetrosListResponse>): void;
+      params?: Params$Resource$Metros$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MetrosListResponse>;
     list(
-        params: Params$Resource$Metros$List,
-        callback: BodyResponseCallback<Schema$MetrosListResponse>): void;
+      params: Params$Resource$Metros$List,
+      options: MethodOptions | BodyResponseCallback<Schema$MetrosListResponse>,
+      callback: BodyResponseCallback<Schema$MetrosListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Metros$List,
+      callback: BodyResponseCallback<Schema$MetrosListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$MetrosListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Metros$List|
-        BodyResponseCallback<Schema$MetrosListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MetrosListResponse>,
-        callback?: BodyResponseCallback<Schema$MetrosListResponse>):
-        void|GaxiosPromise<Schema$MetrosListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Metros$List
+        | BodyResponseCallback<Schema$MetrosListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MetrosListResponse>,
+      callback?: BodyResponseCallback<Schema$MetrosListResponse>
+    ): void | GaxiosPromise<Schema$MetrosListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Metros$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19423,17 +20183,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/metros')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/metros'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MetrosListResponse>(parameters, callback);
@@ -19447,7 +20208,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -19455,13 +20216,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Mobileapps {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.mobileApps.get
@@ -19476,20 +20235,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Mobileapps$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$MobileApp>;
-    get(params: Params$Resource$Mobileapps$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$MobileApp>,
-        callback: BodyResponseCallback<Schema$MobileApp>): void;
-    get(params: Params$Resource$Mobileapps$Get,
-        callback: BodyResponseCallback<Schema$MobileApp>): void;
+    get(
+      params?: Params$Resource$Mobileapps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MobileApp>;
+    get(
+      params: Params$Resource$Mobileapps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MobileApp>,
+      callback: BodyResponseCallback<Schema$MobileApp>
+    ): void;
+    get(
+      params: Params$Resource$Mobileapps$Get,
+      callback: BodyResponseCallback<Schema$MobileApp>
+    ): void;
     get(callback: BodyResponseCallback<Schema$MobileApp>): void;
-    get(paramsOrCallback?: Params$Resource$Mobileapps$Get|
-        BodyResponseCallback<Schema$MobileApp>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MobileApp>,
-        callback?: BodyResponseCallback<Schema$MobileApp>):
-        void|GaxiosPromise<Schema$MobileApp> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Mobileapps$Get
+        | BodyResponseCallback<Schema$MobileApp>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MobileApp>,
+      callback?: BodyResponseCallback<Schema$MobileApp>
+    ): void | GaxiosPromise<Schema$MobileApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19507,18 +20275,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/mobileApps/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/mobileApps/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MobileApp>(parameters, callback);
@@ -19526,7 +20295,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$MobileApp>(parameters);
       }
     }
-
 
     /**
      * dfareporting.mobileApps.list
@@ -19545,24 +20313,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Mobileapps$List, options?: MethodOptions):
-        GaxiosPromise<Schema$MobileAppsListResponse>;
     list(
-        params: Params$Resource$Mobileapps$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$MobileAppsListResponse>,
-        callback: BodyResponseCallback<Schema$MobileAppsListResponse>): void;
+      params?: Params$Resource$Mobileapps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MobileAppsListResponse>;
     list(
-        params: Params$Resource$Mobileapps$List,
-        callback: BodyResponseCallback<Schema$MobileAppsListResponse>): void;
+      params: Params$Resource$Mobileapps$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MobileAppsListResponse>,
+      callback: BodyResponseCallback<Schema$MobileAppsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Mobileapps$List,
+      callback: BodyResponseCallback<Schema$MobileAppsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$MobileAppsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Mobileapps$List|
-        BodyResponseCallback<Schema$MobileAppsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MobileAppsListResponse>,
-        callback?: BodyResponseCallback<Schema$MobileAppsListResponse>):
-        void|GaxiosPromise<Schema$MobileAppsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Mobileapps$List
+        | BodyResponseCallback<Schema$MobileAppsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MobileAppsListResponse>,
+      callback?: BodyResponseCallback<Schema$MobileAppsListResponse>
+    ): void | GaxiosPromise<Schema$MobileAppsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19580,17 +20355,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/mobileApps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/mobileApps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MobileAppsListResponse>(parameters, callback);
@@ -19604,7 +20380,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Mobile app ID.
@@ -19619,7 +20395,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only apps from these directories.
@@ -19652,13 +20428,11 @@ export namespace dfareporting_v3_2 {
     searchString?: string;
   }
 
-
   export class Resource$Mobilecarriers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.mobileCarriers.get
@@ -19673,22 +20447,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Mobilecarriers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$MobileCarrier>;
-    get(params: Params$Resource$Mobilecarriers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
-        callback: BodyResponseCallback<Schema$MobileCarrier>): void;
-    get(params: Params$Resource$Mobilecarriers$Get,
-        callback: BodyResponseCallback<Schema$MobileCarrier>): void;
+    get(
+      params?: Params$Resource$Mobilecarriers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MobileCarrier>;
+    get(
+      params: Params$Resource$Mobilecarriers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MobileCarrier>,
+      callback: BodyResponseCallback<Schema$MobileCarrier>
+    ): void;
+    get(
+      params: Params$Resource$Mobilecarriers$Get,
+      callback: BodyResponseCallback<Schema$MobileCarrier>
+    ): void;
     get(callback: BodyResponseCallback<Schema$MobileCarrier>): void;
-    get(paramsOrCallback?: Params$Resource$Mobilecarriers$Get|
-        BodyResponseCallback<Schema$MobileCarrier>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MobileCarrier>,
-        callback?: BodyResponseCallback<Schema$MobileCarrier>):
-        void|GaxiosPromise<Schema$MobileCarrier> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Mobilecarriers$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Mobilecarriers$Get
+        | BodyResponseCallback<Schema$MobileCarrier>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MobileCarrier>,
+      callback?: BodyResponseCallback<Schema$MobileCarrier>
+    ): void | GaxiosPromise<Schema$MobileCarrier> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mobilecarriers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -19705,18 +20488,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/mobileCarriers/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/mobileCarriers/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MobileCarrier>(parameters, callback);
@@ -19724,7 +20508,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$MobileCarrier>(parameters);
       }
     }
-
 
     /**
      * dfareporting.mobileCarriers.list
@@ -19738,29 +20521,35 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Mobilecarriers$List, options?: MethodOptions):
-        GaxiosPromise<Schema$MobileCarriersListResponse>;
     list(
-        params: Params$Resource$Mobilecarriers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$MobileCarriersListResponse>,
-        callback: BodyResponseCallback<Schema$MobileCarriersListResponse>):
-        void;
+      params?: Params$Resource$Mobilecarriers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MobileCarriersListResponse>;
     list(
-        params: Params$Resource$Mobilecarriers$List,
-        callback: BodyResponseCallback<Schema$MobileCarriersListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$MobileCarriersListResponse>):
-        void;
+      params: Params$Resource$Mobilecarriers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MobileCarriersListResponse>,
+      callback: BodyResponseCallback<Schema$MobileCarriersListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Mobilecarriers$List|
-        BodyResponseCallback<Schema$MobileCarriersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MobileCarriersListResponse>,
-        callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>):
-        void|GaxiosPromise<Schema$MobileCarriersListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Mobilecarriers$List;
+      params: Params$Resource$Mobilecarriers$List,
+      callback: BodyResponseCallback<Schema$MobileCarriersListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$MobileCarriersListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Mobilecarriers$List
+        | BodyResponseCallback<Schema$MobileCarriersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MobileCarriersListResponse>,
+      callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>
+    ): void | GaxiosPromise<Schema$MobileCarriersListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mobilecarriers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -19777,34 +20566,37 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/mobileCarriers')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/mobileCarriers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MobileCarriersListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$MobileCarriersListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Mobilecarriers$Get extends
-      StandardParameters {
+  export interface Params$Resource$Mobilecarriers$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Mobile carrier ID.
@@ -19815,12 +20607,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Mobilecarriers$List extends
-      StandardParameters {
+  export interface Params$Resource$Mobilecarriers$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -19828,13 +20620,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Operatingsystems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.operatingSystems.get
@@ -19849,22 +20639,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operatingsystems$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$OperatingSystem>;
-    get(params: Params$Resource$Operatingsystems$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
-        callback: BodyResponseCallback<Schema$OperatingSystem>): void;
-    get(params: Params$Resource$Operatingsystems$Get,
-        callback: BodyResponseCallback<Schema$OperatingSystem>): void;
+    get(
+      params?: Params$Resource$Operatingsystems$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OperatingSystem>;
+    get(
+      params: Params$Resource$Operatingsystems$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$OperatingSystem>,
+      callback: BodyResponseCallback<Schema$OperatingSystem>
+    ): void;
+    get(
+      params: Params$Resource$Operatingsystems$Get,
+      callback: BodyResponseCallback<Schema$OperatingSystem>
+    ): void;
     get(callback: BodyResponseCallback<Schema$OperatingSystem>): void;
-    get(paramsOrCallback?: Params$Resource$Operatingsystems$Get|
-        BodyResponseCallback<Schema$OperatingSystem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OperatingSystem>,
-        callback?: BodyResponseCallback<Schema$OperatingSystem>):
-        void|GaxiosPromise<Schema$OperatingSystem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operatingsystems$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operatingsystems$Get
+        | BodyResponseCallback<Schema$OperatingSystem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperatingSystem>,
+      callback?: BodyResponseCallback<Schema$OperatingSystem>
+    ): void | GaxiosPromise<Schema$OperatingSystem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operatingsystems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -19881,18 +20680,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystems/{dartId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystems/{dartId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystem>(parameters, callback);
@@ -19900,7 +20700,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$OperatingSystem>(parameters);
       }
     }
-
 
     /**
      * dfareporting.operatingSystems.list
@@ -19915,30 +20714,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Operatingsystems$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OperatingSystemsListResponse>;
+      params?: Params$Resource$Operatingsystems$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OperatingSystemsListResponse>;
     list(
-        params: Params$Resource$Operatingsystems$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OperatingSystemsListResponse>,
-        callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
-        void;
+      params: Params$Resource$Operatingsystems$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperatingSystemsListResponse>,
+      callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Operatingsystems$List,
-        callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
-        void;
+      params: Params$Resource$Operatingsystems$List,
+      callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Operatingsystems$List|
-        BodyResponseCallback<Schema$OperatingSystemsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OperatingSystemsListResponse>,
-        callback?: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
-        void|GaxiosPromise<Schema$OperatingSystemsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operatingsystems$List;
+      callback: BodyResponseCallback<Schema$OperatingSystemsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Operatingsystems$List
+        | BodyResponseCallback<Schema$OperatingSystemsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperatingSystemsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperatingSystemsListResponse>
+    ): void | GaxiosPromise<Schema$OperatingSystemsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operatingsystems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -19955,35 +20758,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystems')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystemsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OperatingSystemsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Operatingsystems$Get extends
-      StandardParameters {
+  export interface Params$Resource$Operatingsystems$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Operating system DART ID.
@@ -19994,12 +20801,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Operatingsystems$List extends
-      StandardParameters {
+  export interface Params$Resource$Operatingsystems$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -20007,13 +20814,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Operatingsystemversions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.operatingSystemVersions.get
@@ -20028,23 +20833,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operatingsystemversions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$OperatingSystemVersion>;
-    get(params: Params$Resource$Operatingsystemversions$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OperatingSystemVersion>,
-        callback: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
-    get(params: Params$Resource$Operatingsystemversions$Get,
-        callback: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
+    get(
+      params?: Params$Resource$Operatingsystemversions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OperatingSystemVersion>;
+    get(
+      params: Params$Resource$Operatingsystemversions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperatingSystemVersion>,
+      callback: BodyResponseCallback<Schema$OperatingSystemVersion>
+    ): void;
+    get(
+      params: Params$Resource$Operatingsystemversions$Get,
+      callback: BodyResponseCallback<Schema$OperatingSystemVersion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
-    get(paramsOrCallback?: Params$Resource$Operatingsystemversions$Get|
-        BodyResponseCallback<Schema$OperatingSystemVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OperatingSystemVersion>,
-        callback?: BodyResponseCallback<Schema$OperatingSystemVersion>):
-        void|GaxiosPromise<Schema$OperatingSystemVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Operatingsystemversions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operatingsystemversions$Get
+        | BodyResponseCallback<Schema$OperatingSystemVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperatingSystemVersion>,
+      callback?: BodyResponseCallback<Schema$OperatingSystemVersion>
+    ): void | GaxiosPromise<Schema$OperatingSystemVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operatingsystemversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20061,18 +20876,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystemVersions/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystemVersions/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersion>(parameters, callback);
@@ -20080,7 +20896,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$OperatingSystemVersion>(parameters);
       }
     }
-
 
     /**
      * dfareporting.operatingSystemVersions.list
@@ -20095,34 +20910,36 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Operatingsystemversions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OperatingSystemVersionsListResponse>;
+      params?: Params$Resource$Operatingsystemversions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OperatingSystemVersionsListResponse>;
     list(
-        params: Params$Resource$Operatingsystemversions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
-        void;
+      params: Params$Resource$Operatingsystemversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
+      callback: BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Operatingsystemversions$List,
-        callback:
-            BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
-        void;
+      params: Params$Resource$Operatingsystemversions$List,
+      callback: BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Operatingsystemversions$List|
-        BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
-        void|GaxiosPromise<Schema$OperatingSystemVersionsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Operatingsystemversions$List;
+      callback: BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Operatingsystemversions$List
+        | BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$OperatingSystemVersionsListResponse
+      >
+    ): void | GaxiosPromise<Schema$OperatingSystemVersionsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operatingsystemversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20139,35 +20956,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystemVersions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/operatingSystemVersions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Operatingsystemversions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Operatingsystemversions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Operating system version ID.
@@ -20178,12 +20999,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Operatingsystemversions$List extends
-      StandardParameters {
+  export interface Params$Resource$Operatingsystemversions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -20191,13 +21012,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Orderdocuments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.orderDocuments.get
@@ -20213,22 +21032,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Orderdocuments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$OrderDocument>;
-    get(params: Params$Resource$Orderdocuments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
-        callback: BodyResponseCallback<Schema$OrderDocument>): void;
-    get(params: Params$Resource$Orderdocuments$Get,
-        callback: BodyResponseCallback<Schema$OrderDocument>): void;
+    get(
+      params?: Params$Resource$Orderdocuments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderDocument>;
+    get(
+      params: Params$Resource$Orderdocuments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$OrderDocument>,
+      callback: BodyResponseCallback<Schema$OrderDocument>
+    ): void;
+    get(
+      params: Params$Resource$Orderdocuments$Get,
+      callback: BodyResponseCallback<Schema$OrderDocument>
+    ): void;
     get(callback: BodyResponseCallback<Schema$OrderDocument>): void;
-    get(paramsOrCallback?: Params$Resource$Orderdocuments$Get|
-        BodyResponseCallback<Schema$OrderDocument>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderDocument>,
-        callback?: BodyResponseCallback<Schema$OrderDocument>):
-        void|GaxiosPromise<Schema$OrderDocument> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orderdocuments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Orderdocuments$Get
+        | BodyResponseCallback<Schema$OrderDocument>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderDocument>,
+      callback?: BodyResponseCallback<Schema$OrderDocument>
+    ): void | GaxiosPromise<Schema$OrderDocument> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderdocuments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20245,18 +21073,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrderDocument>(parameters, callback);
@@ -20264,7 +21093,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$OrderDocument>(parameters);
       }
     }
-
 
     /**
      * dfareporting.orderDocuments.list
@@ -20289,29 +21117,35 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Orderdocuments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$OrderDocumentsListResponse>;
     list(
-        params: Params$Resource$Orderdocuments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderDocumentsListResponse>,
-        callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
-        void;
+      params?: Params$Resource$Orderdocuments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrderDocumentsListResponse>;
     list(
-        params: Params$Resource$Orderdocuments$List,
-        callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
-        void;
+      params: Params$Resource$Orderdocuments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderDocumentsListResponse>,
+      callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Orderdocuments$List|
-        BodyResponseCallback<Schema$OrderDocumentsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderDocumentsListResponse>,
-        callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
-        void|GaxiosPromise<Schema$OrderDocumentsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Orderdocuments$List;
+      params: Params$Resource$Orderdocuments$List,
+      callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Orderdocuments$List
+        | BodyResponseCallback<Schema$OrderDocumentsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrderDocumentsListResponse>,
+      callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>
+    ): void | GaxiosPromise<Schema$OrderDocumentsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderdocuments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20328,34 +21162,37 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orderDocuments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orderDocuments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrderDocumentsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$OrderDocumentsListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Orderdocuments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Orderdocuments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Order document ID.
@@ -20370,12 +21207,12 @@ export namespace dfareporting_v3_2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Orderdocuments$List extends
-      StandardParameters {
+  export interface Params$Resource$Orderdocuments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only order documents that have been approved by at least one user.
@@ -20429,13 +21266,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Orders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.orders.get
@@ -20451,19 +21286,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Orders$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Order>;
-    get(params: Params$Resource$Orders$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Order>,
-        callback: BodyResponseCallback<Schema$Order>): void;
-    get(params: Params$Resource$Orders$Get,
-        callback: BodyResponseCallback<Schema$Order>): void;
+    get(
+      params?: Params$Resource$Orders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Order>;
+    get(
+      params: Params$Resource$Orders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Order>,
+      callback: BodyResponseCallback<Schema$Order>
+    ): void;
+    get(
+      params: Params$Resource$Orders$Get,
+      callback: BodyResponseCallback<Schema$Order>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Order>): void;
-    get(paramsOrCallback?: Params$Resource$Orders$Get|
-        BodyResponseCallback<Schema$Order>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Order>,
-        callback?: BodyResponseCallback<Schema$Order>):
-        void|GaxiosPromise<Schema$Order> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Get
+        | BodyResponseCallback<Schema$Order>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Order>,
+      callback?: BodyResponseCallback<Schema$Order>
+    ): void | GaxiosPromise<Schema$Order> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20481,18 +21324,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orders/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orders/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Order>(parameters, callback);
@@ -20500,7 +21344,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Order>(parameters);
       }
     }
-
 
     /**
      * dfareporting.orders.list
@@ -20523,23 +21366,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Orders$List, options?: MethodOptions):
-        GaxiosPromise<Schema$OrdersListResponse>;
     list(
-        params: Params$Resource$Orders$List,
-        options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
-        callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
+      params?: Params$Resource$Orders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrdersListResponse>;
     list(
-        params: Params$Resource$Orders$List,
-        callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
+      params: Params$Resource$Orders$List,
+      options: MethodOptions | BodyResponseCallback<Schema$OrdersListResponse>,
+      callback: BodyResponseCallback<Schema$OrdersListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Orders$List,
+      callback: BodyResponseCallback<Schema$OrdersListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Orders$List|
-        BodyResponseCallback<Schema$OrdersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrdersListResponse>,
-        callback?: BodyResponseCallback<Schema$OrdersListResponse>):
-        void|GaxiosPromise<Schema$OrdersListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Orders$List
+        | BodyResponseCallback<Schema$OrdersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrdersListResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersListResponse>
+    ): void | GaxiosPromise<Schema$OrdersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20557,18 +21406,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orders')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/projects/{projectId}/orders'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(parameters, callback);
@@ -20582,7 +21432,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Order ID.
@@ -20601,7 +21451,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only orders with these IDs.
@@ -20646,13 +21496,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Placementgroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.placementGroups.get
@@ -20667,22 +21515,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Placementgroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
-    get(params: Params$Resource$Placementgroups$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
-    get(params: Params$Resource$Placementgroups$Get,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+    get(
+      params?: Params$Resource$Placementgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementGroup>;
+    get(
+      params: Params$Resource$Placementgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementGroup>,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
+    get(
+      params: Params$Resource$Placementgroups$Get,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Placementgroups$Get|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|GaxiosPromise<Schema$PlacementGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Placementgroups$Get
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>
+    ): void | GaxiosPromise<Schema$PlacementGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20699,18 +21556,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -20718,7 +21576,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementGroups.insert
@@ -20734,25 +21591,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Placementgroups$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
+      params?: Params$Resource$Placementgroups$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementGroup>;
     insert(
-        params: Params$Resource$Placementgroups$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+      params: Params$Resource$Placementgroups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementGroup>,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
     insert(
-        params: Params$Resource$Placementgroups$Insert,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+      params: Params$Resource$Placementgroups$Insert,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Placementgroups$Insert|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|GaxiosPromise<Schema$PlacementGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Placementgroups$Insert
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>
+    ): void | GaxiosPromise<Schema$PlacementGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementgroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20769,18 +21631,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -20788,7 +21651,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementGroups.list
@@ -20823,29 +21685,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Placementgroups$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlacementGroupsListResponse>;
+      params?: Params$Resource$Placementgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementGroupsListResponse>;
     list(
-        params: Params$Resource$Placementgroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlacementGroupsListResponse>,
-        callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
-        void;
+      params: Params$Resource$Placementgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementGroupsListResponse>,
+      callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Placementgroups$List,
-        callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
-        void;
+      params: Params$Resource$Placementgroups$List,
+      callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Placementgroups$List|
-        BodyResponseCallback<Schema$PlacementGroupsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementGroupsListResponse>,
-        callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
-        void|GaxiosPromise<Schema$PlacementGroupsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementgroups$List;
+      callback: BodyResponseCallback<Schema$PlacementGroupsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Placementgroups$List
+        | BodyResponseCallback<Schema$PlacementGroupsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>
+    ): void | GaxiosPromise<Schema$PlacementGroupsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20862,27 +21729,29 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroupsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PlacementGroupsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementGroups.patch
@@ -20900,25 +21769,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Placementgroups$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
+      params?: Params$Resource$Placementgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementGroup>;
     patch(
-        params: Params$Resource$Placementgroups$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+      params: Params$Resource$Placementgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementGroup>,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
     patch(
-        params: Params$Resource$Placementgroups$Patch,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+      params: Params$Resource$Placementgroups$Patch,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Placementgroups$Patch|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|GaxiosPromise<Schema$PlacementGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Placementgroups$Patch
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>
+    ): void | GaxiosPromise<Schema$PlacementGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -20935,18 +21809,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -20954,7 +21829,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementGroups.update
@@ -20970,25 +21844,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Placementgroups$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
+      params?: Params$Resource$Placementgroups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementGroup>;
     update(
-        params: Params$Resource$Placementgroups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+      params: Params$Resource$Placementgroups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementGroup>,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
     update(
-        params: Params$Resource$Placementgroups$Update,
-        callback: BodyResponseCallback<Schema$PlacementGroup>): void;
+      params: Params$Resource$Placementgroups$Update,
+      callback: BodyResponseCallback<Schema$PlacementGroup>
+    ): void;
     update(callback: BodyResponseCallback<Schema$PlacementGroup>): void;
     update(
-        paramsOrCallback?: Params$Resource$Placementgroups$Update|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementGroup>,
-        callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|GaxiosPromise<Schema$PlacementGroup> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementgroups$Update;
+      paramsOrCallback?:
+        | Params$Resource$Placementgroups$Update
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>
+    ): void | GaxiosPromise<Schema$PlacementGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -21005,18 +21884,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -21026,12 +21906,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Placementgroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Placementgroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Placement group ID.
@@ -21042,12 +21922,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementgroups$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Placementgroups$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -21059,12 +21939,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$PlacementGroup;
   }
-  export interface Params$Resource$Placementgroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Placementgroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only placement groups that belong to these advertisers.
@@ -21168,12 +22048,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Placementgroups$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Placementgroups$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Placement group ID.
@@ -21189,12 +22069,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$PlacementGroup;
   }
-  export interface Params$Resource$Placementgroups$Update extends
-      StandardParameters {
+  export interface Params$Resource$Placementgroups$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -21207,13 +22087,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$PlacementGroup;
   }
 
-
   export class Resource$Placements {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.placements.generatetags
@@ -21231,31 +22109,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     generatetags(
-        params?: Params$Resource$Placements$Generatetags,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$PlacementsGenerateTagsResponse>;
+      params?: Params$Resource$Placements$Generatetags,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementsGenerateTagsResponse>;
     generatetags(
-        params: Params$Resource$Placements$Generatetags,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
-        callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
-        void;
+      params: Params$Resource$Placements$Generatetags,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
+      callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>
+    ): void;
     generatetags(
-        params: Params$Resource$Placements$Generatetags,
-        callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
-        void;
+      params: Params$Resource$Placements$Generatetags,
+      callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>
+    ): void;
     generatetags(
-        callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>
+    ): void;
     generatetags(
-        paramsOrCallback?: Params$Resource$Placements$Generatetags|
-        BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
-        callback?: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
-        void|GaxiosPromise<Schema$PlacementsGenerateTagsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placements$Generatetags;
+      paramsOrCallback?:
+        | Params$Resource$Placements$Generatetags
+        | BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>
+    ): void | GaxiosPromise<Schema$PlacementsGenerateTagsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placements$Generatetags;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -21272,28 +22153,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placements/generatetags')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placements/generatetags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.placements.get
@@ -21308,20 +22192,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Placements$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Placement>;
-    get(params: Params$Resource$Placements$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback: BodyResponseCallback<Schema$Placement>): void;
-    get(params: Params$Resource$Placements$Get,
-        callback: BodyResponseCallback<Schema$Placement>): void;
+    get(
+      params?: Params$Resource$Placements$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Placement>;
+    get(
+      params: Params$Resource$Placements$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Placement>,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
+    get(
+      params: Params$Resource$Placements$Get,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Placement>): void;
-    get(paramsOrCallback?: Params$Resource$Placements$Get|
-        BodyResponseCallback<Schema$Placement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>):
-        void|GaxiosPromise<Schema$Placement> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Placements$Get
+        | BodyResponseCallback<Schema$Placement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>
+    ): void | GaxiosPromise<Schema$Placement> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21339,18 +22232,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placements/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placements/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21358,7 +22252,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Placement>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placements.insert
@@ -21373,25 +22266,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Placements$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Placement>;
     insert(
-        params: Params$Resource$Placements$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback: BodyResponseCallback<Schema$Placement>): void;
+      params?: Params$Resource$Placements$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Placement>;
     insert(
-        params: Params$Resource$Placements$Insert,
-        callback: BodyResponseCallback<Schema$Placement>): void;
+      params: Params$Resource$Placements$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Placement>,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
+    insert(
+      params: Params$Resource$Placements$Insert,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Placement>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Placements$Insert|
-        BodyResponseCallback<Schema$Placement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>):
-        void|GaxiosPromise<Schema$Placement> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placements$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Placements$Insert
+        | BodyResponseCallback<Schema$Placement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>
+    ): void | GaxiosPromise<Schema$Placement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placements$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -21408,17 +22307,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/placements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/placements'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21426,7 +22326,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Placement>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placements.list
@@ -21463,24 +22362,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Placements$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlacementsListResponse>;
     list(
-        params: Params$Resource$Placements$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlacementsListResponse>,
-        callback: BodyResponseCallback<Schema$PlacementsListResponse>): void;
+      params?: Params$Resource$Placements$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementsListResponse>;
     list(
-        params: Params$Resource$Placements$List,
-        callback: BodyResponseCallback<Schema$PlacementsListResponse>): void;
+      params: Params$Resource$Placements$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementsListResponse>,
+      callback: BodyResponseCallback<Schema$PlacementsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Placements$List,
+      callback: BodyResponseCallback<Schema$PlacementsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PlacementsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Placements$List|
-        BodyResponseCallback<Schema$PlacementsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementsListResponse>,
-        callback?: BodyResponseCallback<Schema$PlacementsListResponse>):
-        void|GaxiosPromise<Schema$PlacementsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Placements$List
+        | BodyResponseCallback<Schema$PlacementsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementsListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementsListResponse>
+    ): void | GaxiosPromise<Schema$PlacementsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21498,17 +22404,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/placements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/placements'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementsListResponse>(parameters, callback);
@@ -21516,7 +22423,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlacementsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placements.patch
@@ -21533,23 +22439,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Placements$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Placement>;
     patch(
-        params: Params$Resource$Placements$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback: BodyResponseCallback<Schema$Placement>): void;
+      params?: Params$Resource$Placements$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Placement>;
     patch(
-        params: Params$Resource$Placements$Patch,
-        callback: BodyResponseCallback<Schema$Placement>): void;
+      params: Params$Resource$Placements$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Placement>,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
+    patch(
+      params: Params$Resource$Placements$Patch,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Placement>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Placements$Patch|
-        BodyResponseCallback<Schema$Placement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>):
-        void|GaxiosPromise<Schema$Placement> {
+      paramsOrCallback?:
+        | Params$Resource$Placements$Patch
+        | BodyResponseCallback<Schema$Placement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>
+    ): void | GaxiosPromise<Schema$Placement> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21567,17 +22479,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/placements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/placements'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21585,7 +22498,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Placement>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placements.update
@@ -21600,25 +22512,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Placements$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Placement>;
     update(
-        params: Params$Resource$Placements$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-        callback: BodyResponseCallback<Schema$Placement>): void;
+      params?: Params$Resource$Placements$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Placement>;
     update(
-        params: Params$Resource$Placements$Update,
-        callback: BodyResponseCallback<Schema$Placement>): void;
+      params: Params$Resource$Placements$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Placement>,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
+    update(
+      params: Params$Resource$Placements$Update,
+      callback: BodyResponseCallback<Schema$Placement>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Placement>): void;
     update(
-        paramsOrCallback?: Params$Resource$Placements$Update|
-        BodyResponseCallback<Schema$Placement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Placement>,
-        callback?: BodyResponseCallback<Schema$Placement>):
-        void|GaxiosPromise<Schema$Placement> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placements$Update;
+      paramsOrCallback?:
+        | Params$Resource$Placements$Update
+        | BodyResponseCallback<Schema$Placement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>
+    ): void | GaxiosPromise<Schema$Placement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placements$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -21635,17 +22553,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/placements')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/placements'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21655,12 +22574,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Placements$Generatetags extends
-      StandardParameters {
+  export interface Params$Resource$Placements$Generatetags
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Generate placements belonging to this campaign. This is a required field.
@@ -21684,7 +22603,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Placement ID.
@@ -21695,12 +22614,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placements$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Placements$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -21716,7 +22635,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only placements that belong to these advertisers.
@@ -21833,7 +22752,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Placement ID.
@@ -21849,12 +22768,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$Placement;
   }
-  export interface Params$Resource$Placements$Update extends
-      StandardParameters {
+  export interface Params$Resource$Placements$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -21867,13 +22786,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Placement;
   }
 
-
   export class Resource$Placementstrategies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.placementStrategies.delete
@@ -21889,23 +22806,28 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Placementstrategies$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Placementstrategies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Placementstrategies$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Placementstrategies$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Placementstrategies$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Placementstrategies$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Placementstrategies$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Placementstrategies$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Placementstrategies$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementstrategies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -21922,18 +22844,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -21941,7 +22864,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementStrategies.get
@@ -21956,22 +22878,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Placementstrategies$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
-    get(params: Params$Resource$Placementstrategies$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
-    get(params: Params$Resource$Placementstrategies$Get,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+    get(
+      params?: Params$Resource$Placementstrategies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementStrategy>;
+    get(
+      params: Params$Resource$Placementstrategies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
+    get(
+      params: Params$Resource$Placementstrategies$Get,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
     get(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
-    get(paramsOrCallback?: Params$Resource$Placementstrategies$Get|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|GaxiosPromise<Schema$PlacementStrategy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementstrategies$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Placementstrategies$Get
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void | GaxiosPromise<Schema$PlacementStrategy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementstrategies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -21988,18 +22919,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -22007,7 +22939,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementStrategies.insert
@@ -22023,25 +22954,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Placementstrategies$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
+      params?: Params$Resource$Placementstrategies$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementStrategy>;
     insert(
-        params: Params$Resource$Placementstrategies$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+      params: Params$Resource$Placementstrategies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
     insert(
-        params: Params$Resource$Placementstrategies$Insert,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+      params: Params$Resource$Placementstrategies$Insert,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Placementstrategies$Insert|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|GaxiosPromise<Schema$PlacementStrategy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Placementstrategies$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Placementstrategies$Insert
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void | GaxiosPromise<Schema$PlacementStrategy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementstrategies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -22058,18 +22994,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -22077,7 +23014,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementStrategies.list
@@ -22099,32 +23035,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Placementstrategies$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$PlacementStrategiesListResponse>;
+      params?: Params$Resource$Placementstrategies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementStrategiesListResponse>;
     list(
-        params: Params$Resource$Placementstrategies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
-        callback: BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
-        void;
+      params: Params$Resource$Placementstrategies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
+      callback: BodyResponseCallback<Schema$PlacementStrategiesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Placementstrategies$List,
-        callback: BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
-        void;
+      params: Params$Resource$Placementstrategies$List,
+      callback: BodyResponseCallback<Schema$PlacementStrategiesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Placementstrategies$List|
-        BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
-        void|GaxiosPromise<Schema$PlacementStrategiesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementstrategies$List;
+      callback: BodyResponseCallback<Schema$PlacementStrategiesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Placementstrategies$List
+        | BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategiesListResponse>
+    ): void | GaxiosPromise<Schema$PlacementStrategiesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementstrategies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -22141,28 +23079,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategiesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PlacementStrategiesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.placementStrategies.patch
@@ -22180,25 +23121,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Placementstrategies$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
+      params?: Params$Resource$Placementstrategies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementStrategy>;
     patch(
-        params: Params$Resource$Placementstrategies$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+      params: Params$Resource$Placementstrategies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
     patch(
-        params: Params$Resource$Placementstrategies$Patch,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+      params: Params$Resource$Placementstrategies$Patch,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Placementstrategies$Patch|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|GaxiosPromise<Schema$PlacementStrategy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Placementstrategies$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Placementstrategies$Patch
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void | GaxiosPromise<Schema$PlacementStrategy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementstrategies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -22215,18 +23161,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -22234,7 +23181,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
       }
     }
-
 
     /**
      * dfareporting.placementStrategies.update
@@ -22250,25 +23196,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Placementstrategies$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
+      params?: Params$Resource$Placementstrategies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlacementStrategy>;
     update(
-        params: Params$Resource$Placementstrategies$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+      params: Params$Resource$Placementstrategies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
     update(
-        params: Params$Resource$Placementstrategies$Update,
-        callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
+      params: Params$Resource$Placementstrategies$Update,
+      callback: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void;
     update(callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
     update(
-        paramsOrCallback?: Params$Resource$Placementstrategies$Update|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlacementStrategy>,
-        callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|GaxiosPromise<Schema$PlacementStrategy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Placementstrategies$Update;
+      paramsOrCallback?:
+        | Params$Resource$Placementstrategies$Update
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>
+    ): void | GaxiosPromise<Schema$PlacementStrategy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Placementstrategies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -22285,18 +23236,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/placementStrategies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -22306,12 +23258,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Placementstrategies$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Placementstrategies$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Placement strategy ID.
@@ -22322,12 +23274,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementstrategies$Get extends
-      StandardParameters {
+  export interface Params$Resource$Placementstrategies$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Placement strategy ID.
@@ -22338,12 +23290,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementstrategies$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Placementstrategies$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -22355,12 +23307,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$PlacementStrategy;
   }
-  export interface Params$Resource$Placementstrategies$List extends
-      StandardParameters {
+  export interface Params$Resource$Placementstrategies$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only placement strategies with these IDs.
@@ -22398,12 +23350,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Placementstrategies$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Placementstrategies$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Placement strategy ID.
@@ -22419,12 +23371,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$PlacementStrategy;
   }
-  export interface Params$Resource$Placementstrategies$Update extends
-      StandardParameters {
+  export interface Params$Resource$Placementstrategies$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -22437,13 +23389,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$PlacementStrategy;
   }
 
-
   export class Resource$Platformtypes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.platformTypes.get
@@ -22458,22 +23408,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Platformtypes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$PlatformType>;
-    get(params: Params$Resource$Platformtypes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
-        callback: BodyResponseCallback<Schema$PlatformType>): void;
-    get(params: Params$Resource$Platformtypes$Get,
-        callback: BodyResponseCallback<Schema$PlatformType>): void;
+    get(
+      params?: Params$Resource$Platformtypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlatformType>;
+    get(
+      params: Params$Resource$Platformtypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PlatformType>,
+      callback: BodyResponseCallback<Schema$PlatformType>
+    ): void;
+    get(
+      params: Params$Resource$Platformtypes$Get,
+      callback: BodyResponseCallback<Schema$PlatformType>
+    ): void;
     get(callback: BodyResponseCallback<Schema$PlatformType>): void;
-    get(paramsOrCallback?: Params$Resource$Platformtypes$Get|
-        BodyResponseCallback<Schema$PlatformType>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlatformType>,
-        callback?: BodyResponseCallback<Schema$PlatformType>):
-        void|GaxiosPromise<Schema$PlatformType> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Platformtypes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Platformtypes$Get
+        | BodyResponseCallback<Schema$PlatformType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlatformType>,
+      callback?: BodyResponseCallback<Schema$PlatformType>
+    ): void | GaxiosPromise<Schema$PlatformType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Platformtypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -22490,18 +23449,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/platformTypes/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/platformTypes/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlatformType>(parameters, callback);
@@ -22509,7 +23469,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PlatformType>(parameters);
       }
     }
-
 
     /**
      * dfareporting.platformTypes.list
@@ -22523,27 +23482,35 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Platformtypes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PlatformTypesListResponse>;
     list(
-        params: Params$Resource$Platformtypes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PlatformTypesListResponse>,
-        callback: BodyResponseCallback<Schema$PlatformTypesListResponse>): void;
+      params?: Params$Resource$Platformtypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlatformTypesListResponse>;
     list(
-        params: Params$Resource$Platformtypes$List,
-        callback: BodyResponseCallback<Schema$PlatformTypesListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$PlatformTypesListResponse>):
-        void;
+      params: Params$Resource$Platformtypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlatformTypesListResponse>,
+      callback: BodyResponseCallback<Schema$PlatformTypesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Platformtypes$List|
-        BodyResponseCallback<Schema$PlatformTypesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PlatformTypesListResponse>,
-        callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>):
-        void|GaxiosPromise<Schema$PlatformTypesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Platformtypes$List;
+      params: Params$Resource$Platformtypes$List,
+      callback: BodyResponseCallback<Schema$PlatformTypesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$PlatformTypesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Platformtypes$List
+        | BodyResponseCallback<Schema$PlatformTypesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PlatformTypesListResponse>,
+      callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>
+    ): void | GaxiosPromise<Schema$PlatformTypesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Platformtypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -22560,33 +23527,37 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/platformTypes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/platformTypes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PlatformTypesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PlatformTypesListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Platformtypes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Platformtypes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Platform type ID.
@@ -22597,12 +23568,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Platformtypes$List extends
-      StandardParameters {
+  export interface Params$Resource$Platformtypes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -22610,13 +23581,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Postalcodes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.postalCodes.get
@@ -22631,20 +23600,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Postalcodes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$PostalCode>;
-    get(params: Params$Resource$Postalcodes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
-        callback: BodyResponseCallback<Schema$PostalCode>): void;
-    get(params: Params$Resource$Postalcodes$Get,
-        callback: BodyResponseCallback<Schema$PostalCode>): void;
+    get(
+      params?: Params$Resource$Postalcodes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PostalCode>;
+    get(
+      params: Params$Resource$Postalcodes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PostalCode>,
+      callback: BodyResponseCallback<Schema$PostalCode>
+    ): void;
+    get(
+      params: Params$Resource$Postalcodes$Get,
+      callback: BodyResponseCallback<Schema$PostalCode>
+    ): void;
     get(callback: BodyResponseCallback<Schema$PostalCode>): void;
-    get(paramsOrCallback?: Params$Resource$Postalcodes$Get|
-        BodyResponseCallback<Schema$PostalCode>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PostalCode>,
-        callback?: BodyResponseCallback<Schema$PostalCode>):
-        void|GaxiosPromise<Schema$PostalCode> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Postalcodes$Get
+        | BodyResponseCallback<Schema$PostalCode>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PostalCode>,
+      callback?: BodyResponseCallback<Schema$PostalCode>
+    ): void | GaxiosPromise<Schema$PostalCode> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22662,18 +23640,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/postalCodes/{code}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/postalCodes/{code}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'code'],
         pathParams: ['code', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PostalCode>(parameters, callback);
@@ -22681,7 +23660,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$PostalCode>(parameters);
       }
     }
-
 
     /**
      * dfareporting.postalCodes.list
@@ -22695,24 +23673,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Postalcodes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PostalCodesListResponse>;
     list(
-        params: Params$Resource$Postalcodes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PostalCodesListResponse>,
-        callback: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
+      params?: Params$Resource$Postalcodes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PostalCodesListResponse>;
     list(
-        params: Params$Resource$Postalcodes$List,
-        callback: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
+      params: Params$Resource$Postalcodes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PostalCodesListResponse>,
+      callback: BodyResponseCallback<Schema$PostalCodesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Postalcodes$List,
+      callback: BodyResponseCallback<Schema$PostalCodesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Postalcodes$List|
-        BodyResponseCallback<Schema$PostalCodesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PostalCodesListResponse>,
-        callback?: BodyResponseCallback<Schema$PostalCodesListResponse>):
-        void|GaxiosPromise<Schema$PostalCodesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Postalcodes$List
+        | BodyResponseCallback<Schema$PostalCodesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PostalCodesListResponse>,
+      callback?: BodyResponseCallback<Schema$PostalCodesListResponse>
+    ): void | GaxiosPromise<Schema$PostalCodesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22730,17 +23715,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/postalCodes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/postalCodes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PostalCodesListResponse>(parameters, callback);
@@ -22754,7 +23741,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Postal code ID.
@@ -22769,7 +23756,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -22777,13 +23764,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.projects.get
@@ -22798,19 +23783,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Project>;
-    get(params: Params$Resource$Projects$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
-    get(params: Params$Resource$Projects$Get,
-        callback: BodyResponseCallback<Schema$Project>): void;
+    get(
+      params?: Params$Resource$Projects$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Get,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Project>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Get|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Get
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22828,17 +23821,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/projects/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/projects/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -22846,7 +23841,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Project>(parameters);
       }
     }
-
 
     /**
      * dfareporting.projects.list
@@ -22868,24 +23862,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ProjectsListResponse>;
     list(
-        params: Params$Resource$Projects$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ProjectsListResponse>,
-        callback: BodyResponseCallback<Schema$ProjectsListResponse>): void;
+      params?: Params$Resource$Projects$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectsListResponse>;
     list(
-        params: Params$Resource$Projects$List,
-        callback: BodyResponseCallback<Schema$ProjectsListResponse>): void;
+      params: Params$Resource$Projects$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectsListResponse>,
+      callback: BodyResponseCallback<Schema$ProjectsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$List,
+      callback: BodyResponseCallback<Schema$ProjectsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ProjectsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$List|
-        BodyResponseCallback<Schema$ProjectsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectsListResponse>,
-        callback?: BodyResponseCallback<Schema$ProjectsListResponse>):
-        void|GaxiosPromise<Schema$ProjectsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$List
+        | BodyResponseCallback<Schema$ProjectsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectsListResponse>,
+      callback?: BodyResponseCallback<Schema$ProjectsListResponse>
+    ): void | GaxiosPromise<Schema$ProjectsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22903,17 +23904,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/projects')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/projects'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectsListResponse>(parameters, callback);
@@ -22927,7 +23929,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID.
@@ -22942,7 +23944,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only projects with these advertiser IDs.
@@ -22983,13 +23985,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Regions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.regions.list
@@ -23003,23 +24003,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Regions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$RegionsListResponse>;
     list(
-        params: Params$Resource$Regions$List,
-        options: MethodOptions|BodyResponseCallback<Schema$RegionsListResponse>,
-        callback: BodyResponseCallback<Schema$RegionsListResponse>): void;
+      params?: Params$Resource$Regions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RegionsListResponse>;
     list(
-        params: Params$Resource$Regions$List,
-        callback: BodyResponseCallback<Schema$RegionsListResponse>): void;
+      params: Params$Resource$Regions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$RegionsListResponse>,
+      callback: BodyResponseCallback<Schema$RegionsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Regions$List,
+      callback: BodyResponseCallback<Schema$RegionsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$RegionsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Regions$List|
-        BodyResponseCallback<Schema$RegionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RegionsListResponse>,
-        callback?: BodyResponseCallback<Schema$RegionsListResponse>):
-        void|GaxiosPromise<Schema$RegionsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Regions$List
+        | BodyResponseCallback<Schema$RegionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegionsListResponse>,
+      callback?: BodyResponseCallback<Schema$RegionsListResponse>
+    ): void | GaxiosPromise<Schema$RegionsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23037,17 +24043,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/regions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/regions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RegionsListResponse>(parameters, callback);
@@ -23061,7 +24068,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -23069,13 +24076,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Remarketinglists {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.remarketingLists.get
@@ -23090,22 +24095,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Remarketinglists$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
-    get(params: Params$Resource$Remarketinglists$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
-    get(params: Params$Resource$Remarketinglists$Get,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+    get(
+      params?: Params$Resource$Remarketinglists$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingList>;
+    get(
+      params: Params$Resource$Remarketinglists$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingList>,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
+    get(
+      params: Params$Resource$Remarketinglists$Get,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
     get(callback: BodyResponseCallback<Schema$RemarketingList>): void;
-    get(paramsOrCallback?: Params$Resource$Remarketinglists$Get|
-        BodyResponseCallback<Schema$RemarketingList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|GaxiosPromise<Schema$RemarketingList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglists$Get
+        | BodyResponseCallback<Schema$RemarketingList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>
+    ): void | GaxiosPromise<Schema$RemarketingList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23122,18 +24136,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23141,7 +24156,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$RemarketingList>(parameters);
       }
     }
-
 
     /**
      * dfareporting.remarketingLists.insert
@@ -23157,25 +24171,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Remarketinglists$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
+      params?: Params$Resource$Remarketinglists$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingList>;
     insert(
-        params: Params$Resource$Remarketinglists$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+      params: Params$Resource$Remarketinglists$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingList>,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
     insert(
-        params: Params$Resource$Remarketinglists$Insert,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+      params: Params$Resource$Remarketinglists$Insert,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$RemarketingList>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Remarketinglists$Insert|
-        BodyResponseCallback<Schema$RemarketingList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|GaxiosPromise<Schema$RemarketingList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglists$Insert
+        | BodyResponseCallback<Schema$RemarketingList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>
+    ): void | GaxiosPromise<Schema$RemarketingList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23192,18 +24211,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23211,7 +24231,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$RemarketingList>(parameters);
       }
     }
-
 
     /**
      * dfareporting.remarketingLists.list
@@ -23235,30 +24254,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Remarketinglists$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RemarketingListsListResponse>;
+      params?: Params$Resource$Remarketinglists$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingListsListResponse>;
     list(
-        params: Params$Resource$Remarketinglists$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListsListResponse>,
-        callback: BodyResponseCallback<Schema$RemarketingListsListResponse>):
-        void;
+      params: Params$Resource$Remarketinglists$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListsListResponse>,
+      callback: BodyResponseCallback<Schema$RemarketingListsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Remarketinglists$List,
-        callback: BodyResponseCallback<Schema$RemarketingListsListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$RemarketingListsListResponse>):
-        void;
+      params: Params$Resource$Remarketinglists$List,
+      callback: BodyResponseCallback<Schema$RemarketingListsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Remarketinglists$List|
-        BodyResponseCallback<Schema$RemarketingListsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListsListResponse>,
-        callback?: BodyResponseCallback<Schema$RemarketingListsListResponse>):
-        void|GaxiosPromise<Schema$RemarketingListsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$List;
+      callback: BodyResponseCallback<Schema$RemarketingListsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglists$List
+        | BodyResponseCallback<Schema$RemarketingListsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListsListResponse>,
+      callback?: BodyResponseCallback<Schema$RemarketingListsListResponse>
+    ): void | GaxiosPromise<Schema$RemarketingListsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23275,28 +24298,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$RemarketingListsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.remarketingLists.patch
@@ -23314,25 +24340,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Remarketinglists$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
+      params?: Params$Resource$Remarketinglists$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingList>;
     patch(
-        params: Params$Resource$Remarketinglists$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+      params: Params$Resource$Remarketinglists$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingList>,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
     patch(
-        params: Params$Resource$Remarketinglists$Patch,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+      params: Params$Resource$Remarketinglists$Patch,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$RemarketingList>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Remarketinglists$Patch|
-        BodyResponseCallback<Schema$RemarketingList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|GaxiosPromise<Schema$RemarketingList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglists$Patch
+        | BodyResponseCallback<Schema$RemarketingList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>
+    ): void | GaxiosPromise<Schema$RemarketingList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23349,18 +24380,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23368,7 +24400,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$RemarketingList>(parameters);
       }
     }
-
 
     /**
      * dfareporting.remarketingLists.update
@@ -23384,25 +24415,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Remarketinglists$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
+      params?: Params$Resource$Remarketinglists$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingList>;
     update(
-        params: Params$Resource$Remarketinglists$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+      params: Params$Resource$Remarketinglists$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingList>,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
     update(
-        params: Params$Resource$Remarketinglists$Update,
-        callback: BodyResponseCallback<Schema$RemarketingList>): void;
+      params: Params$Resource$Remarketinglists$Update,
+      callback: BodyResponseCallback<Schema$RemarketingList>
+    ): void;
     update(callback: BodyResponseCallback<Schema$RemarketingList>): void;
     update(
-        paramsOrCallback?: Params$Resource$Remarketinglists$Update|
-        BodyResponseCallback<Schema$RemarketingList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingList>,
-        callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|GaxiosPromise<Schema$RemarketingList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Update;
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglists$Update
+        | BodyResponseCallback<Schema$RemarketingList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>
+    ): void | GaxiosPromise<Schema$RemarketingList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23419,18 +24455,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingLists'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23440,12 +24477,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Remarketinglists$Get extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglists$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Remarketing list ID.
@@ -23456,12 +24493,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Remarketinglists$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglists$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -23473,12 +24510,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$RemarketingList;
   }
-  export interface Params$Resource$Remarketinglists$List extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglists$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only active or only inactive remarketing lists.
@@ -23523,12 +24560,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Remarketinglists$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglists$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Remarketing list ID.
@@ -23544,12 +24581,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$RemarketingList;
   }
-  export interface Params$Resource$Remarketinglists$Update extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglists$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -23562,13 +24599,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$RemarketingList;
   }
 
-
   export class Resource$Remarketinglistshares {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.remarketingListShares.get
@@ -23583,23 +24618,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Remarketinglistshares$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingListShare>;
-    get(params: Params$Resource$Remarketinglistshares$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
-    get(params: Params$Resource$Remarketinglistshares$Get,
-        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+    get(
+      params?: Params$Resource$Remarketinglistshares$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingListShare>;
+    get(
+      params: Params$Resource$Remarketinglistshares$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      callback: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void;
+    get(
+      params: Params$Resource$Remarketinglistshares$Get,
+      callback: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void;
     get(callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
-    get(paramsOrCallback?: Params$Resource$Remarketinglistshares$Get|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        callback?: BodyResponseCallback<Schema$RemarketingListShare>):
-        void|GaxiosPromise<Schema$RemarketingListShare> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Remarketinglistshares$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglistshares$Get
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void | GaxiosPromise<Schema$RemarketingListShare> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglistshares$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23616,18 +24661,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingListShares/{remarketingListId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingListShares/{remarketingListId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId', 'remarketingListId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
@@ -23635,7 +24681,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
       }
     }
-
 
     /**
      * dfareporting.remarketingListShares.patch
@@ -23653,26 +24698,32 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Remarketinglistshares$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingListShare>;
+      params?: Params$Resource$Remarketinglistshares$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingListShare>;
     patch(
-        params: Params$Resource$Remarketinglistshares$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+      params: Params$Resource$Remarketinglistshares$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      callback: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void;
     patch(
-        params: Params$Resource$Remarketinglistshares$Patch,
-        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+      params: Params$Resource$Remarketinglistshares$Patch,
+      callback: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Remarketinglistshares$Patch|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        callback?: BodyResponseCallback<Schema$RemarketingListShare>):
-        void|GaxiosPromise<Schema$RemarketingListShare> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Remarketinglistshares$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglistshares$Patch
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void | GaxiosPromise<Schema$RemarketingListShare> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglistshares$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23689,18 +24740,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingListShares')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingListShares'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
@@ -23708,7 +24760,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
       }
     }
-
 
     /**
      * dfareporting.remarketingListShares.update
@@ -23724,26 +24775,32 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Remarketinglistshares$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingListShare>;
+      params?: Params$Resource$Remarketinglistshares$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingListShare>;
     update(
-        params: Params$Resource$Remarketinglistshares$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+      params: Params$Resource$Remarketinglistshares$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      callback: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void;
     update(
-        params: Params$Resource$Remarketinglistshares$Update,
-        callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
+      params: Params$Resource$Remarketinglistshares$Update,
+      callback: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void;
     update(callback: BodyResponseCallback<Schema$RemarketingListShare>): void;
     update(
-        paramsOrCallback?: Params$Resource$Remarketinglistshares$Update|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingListShare>,
-        callback?: BodyResponseCallback<Schema$RemarketingListShare>):
-        void|GaxiosPromise<Schema$RemarketingListShare> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Remarketinglistshares$Update;
+      paramsOrCallback?:
+        | Params$Resource$Remarketinglistshares$Update
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>
+    ): void | GaxiosPromise<Schema$RemarketingListShare> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Remarketinglistshares$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -23760,18 +24817,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/remarketingListShares')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/remarketingListShares'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
@@ -23781,12 +24839,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Remarketinglistshares$Get extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglistshares$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -23797,12 +24855,12 @@ export namespace dfareporting_v3_2 {
      */
     remarketingListId?: string;
   }
-  export interface Params$Resource$Remarketinglistshares$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglistshares$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -23818,12 +24876,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$RemarketingListShare;
   }
-  export interface Params$Resource$Remarketinglistshares$Update extends
-      StandardParameters {
+  export interface Params$Resource$Remarketinglistshares$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -23835,7 +24893,6 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$RemarketingListShare;
   }
-
 
   export class Resource$Reports {
     context: APIRequestContext;
@@ -23843,11 +24900,11 @@ export namespace dfareporting_v3_2 {
     files: Resource$Reports$Files;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.compatibleFields =
-          new Resource$Reports$Compatiblefields(this.context);
+      this.compatibleFields = new Resource$Reports$Compatiblefields(
+        this.context
+      );
       this.files = new Resource$Reports$Files(this.context);
     }
-
 
     /**
      * dfareporting.reports.delete
@@ -23862,21 +24919,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Reports$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Reports$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Reports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Reports$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Reports$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Reports$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Reports$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23894,18 +24957,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -23913,7 +24977,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.reports.get
@@ -23928,19 +24991,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Reports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
-    get(params: Params$Resource$Reports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
-    get(params: Params$Resource$Reports$Get,
-        callback: BodyResponseCallback<Schema$Report>): void;
+    get(
+      params?: Params$Resource$Reports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
+    get(
+      params: Params$Resource$Reports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    get(
+      params: Params$Resource$Reports$Get,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Report>): void;
-    get(paramsOrCallback?: Params$Resource$Reports$Get|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Get
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23958,18 +25029,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -23977,7 +25049,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * dfareporting.reports.insert
@@ -23992,22 +25063,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Reports$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Report>;
     insert(
-        params: Params$Resource$Reports$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params?: Params$Resource$Reports$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     insert(
-        params: Params$Resource$Reports$Insert,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    insert(
+      params: Params$Resource$Reports$Insert,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Report>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Reports$Insert|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Insert
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24025,17 +25101,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/reports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -24043,7 +25120,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * dfareporting.reports.list
@@ -24062,23 +25138,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Reports$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ReportList>;
     list(
-        params: Params$Resource$Reports$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ReportList>,
-        callback: BodyResponseCallback<Schema$ReportList>): void;
+      params?: Params$Resource$Reports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReportList>;
     list(
-        params: Params$Resource$Reports$List,
-        callback: BodyResponseCallback<Schema$ReportList>): void;
+      params: Params$Resource$Reports$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ReportList>,
+      callback: BodyResponseCallback<Schema$ReportList>
+    ): void;
+    list(
+      params: Params$Resource$Reports$List,
+      callback: BodyResponseCallback<Schema$ReportList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ReportList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Reports$List|
-        BodyResponseCallback<Schema$ReportList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReportList>,
-        callback?: BodyResponseCallback<Schema$ReportList>):
-        void|GaxiosPromise<Schema$ReportList> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$List
+        | BodyResponseCallback<Schema$ReportList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportList>,
+      callback?: BodyResponseCallback<Schema$ReportList>
+    ): void | GaxiosPromise<Schema$ReportList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24096,17 +25178,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/reports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReportList>(parameters, callback);
@@ -24114,7 +25197,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$ReportList>(parameters);
       }
     }
-
 
     /**
      * dfareporting.reports.patch
@@ -24130,22 +25212,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Reports$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Report>;
     patch(
-        params: Params$Resource$Reports$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params?: Params$Resource$Reports$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     patch(
-        params: Params$Resource$Reports$Patch,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    patch(
+      params: Params$Resource$Reports$Patch,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Report>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Reports$Patch|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Patch
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24163,18 +25250,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -24182,7 +25270,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * dfareporting.reports.run
@@ -24198,19 +25285,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: Params$Resource$Reports$Run,
-        options?: MethodOptions): GaxiosPromise<Schema$File>;
-    run(params: Params$Resource$Reports$Run,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
-    run(params: Params$Resource$Reports$Run,
-        callback: BodyResponseCallback<Schema$File>): void;
+    run(
+      params?: Params$Resource$Reports$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
+    run(
+      params: Params$Resource$Reports$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    run(
+      params: Params$Resource$Reports$Run,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     run(callback: BodyResponseCallback<Schema$File>): void;
-    run(paramsOrCallback?: Params$Resource$Reports$Run|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Run
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24228,18 +25323,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}/run')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}/run'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -24247,7 +25343,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * dfareporting.reports.update
@@ -24263,22 +25358,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Reports$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Report>;
     update(
-        params: Params$Resource$Reports$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params?: Params$Resource$Reports$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     update(
-        params: Params$Resource$Reports$Update,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    update(
+      params: Params$Resource$Reports$Update,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Report>): void;
     update(
-        paramsOrCallback?: Params$Resource$Reports$Update|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Update
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24296,18 +25396,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -24321,7 +25422,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DFA user profile ID.
@@ -24336,7 +25437,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DFA user profile ID.
@@ -24351,7 +25452,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DFA user profile ID.
@@ -24367,7 +25468,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results to return.
@@ -24398,7 +25499,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DFA user profile ID.
@@ -24418,7 +25519,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DFA profile ID.
@@ -24437,7 +25538,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DFA user profile ID.
@@ -24460,7 +25561,6 @@ export namespace dfareporting_v3_2 {
       this.context = context;
     }
 
-
     /**
      * dfareporting.reports.compatibleFields.query
      * @desc Returns the fields that are compatible to be selected in the
@@ -24477,25 +25577,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     query(
-        params?: Params$Resource$Reports$Compatiblefields$Query,
-        options?: MethodOptions): GaxiosPromise<Schema$CompatibleFields>;
+      params?: Params$Resource$Reports$Compatiblefields$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CompatibleFields>;
     query(
-        params: Params$Resource$Reports$Compatiblefields$Query,
-        options: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
-        callback: BodyResponseCallback<Schema$CompatibleFields>): void;
+      params: Params$Resource$Reports$Compatiblefields$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$CompatibleFields>,
+      callback: BodyResponseCallback<Schema$CompatibleFields>
+    ): void;
     query(
-        params: Params$Resource$Reports$Compatiblefields$Query,
-        callback: BodyResponseCallback<Schema$CompatibleFields>): void;
+      params: Params$Resource$Reports$Compatiblefields$Query,
+      callback: BodyResponseCallback<Schema$CompatibleFields>
+    ): void;
     query(callback: BodyResponseCallback<Schema$CompatibleFields>): void;
     query(
-        paramsOrCallback?: Params$Resource$Reports$Compatiblefields$Query|
-        BodyResponseCallback<Schema$CompatibleFields>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CompatibleFields>,
-        callback?: BodyResponseCallback<Schema$CompatibleFields>):
-        void|GaxiosPromise<Schema$CompatibleFields> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Reports$Compatiblefields$Query;
+      paramsOrCallback?:
+        | Params$Resource$Reports$Compatiblefields$Query
+        | BodyResponseCallback<Schema$CompatibleFields>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompatibleFields>,
+      callback?: BodyResponseCallback<Schema$CompatibleFields>
+    ): void | GaxiosPromise<Schema$CompatibleFields> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reports$Compatiblefields$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -24512,18 +25617,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/compatiblefields/query')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/compatiblefields/query'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CompatibleFields>(parameters, callback);
@@ -24533,12 +25639,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Reports$Compatiblefields$Query extends
-      StandardParameters {
+  export interface Params$Resource$Reports$Compatiblefields$Query
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The DFA user profile ID.
@@ -24551,13 +25657,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Report;
   }
 
-
   export class Resource$Reports$Files {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.reports.files.get
@@ -24573,21 +25677,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Reports$Files$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$File>;
-    get(params: Params$Resource$Reports$Files$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
-    get(params: Params$Resource$Reports$Files$Get,
-        callback: BodyResponseCallback<Schema$File>): void;
+    get(
+      params?: Params$Resource$Reports$Files$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
+    get(
+      params: Params$Resource$Reports$Files$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    get(
+      params: Params$Resource$Reports$Files$Get,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     get(callback: BodyResponseCallback<Schema$File>): void;
-    get(paramsOrCallback?: Params$Resource$Reports$Files$Get|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Reports$Files$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Files$Get
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reports$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -24604,18 +25716,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}/files/{fileId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'reportId', 'fileId'],
         pathParams: ['fileId', 'profileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -24623,7 +25736,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * dfareporting.reports.files.list
@@ -24642,24 +25754,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Reports$Files$List, options?: MethodOptions):
-        GaxiosPromise<Schema$FileList>;
     list(
-        params: Params$Resource$Reports$Files$List,
-        options: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback: BodyResponseCallback<Schema$FileList>): void;
+      params?: Params$Resource$Reports$Files$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FileList>;
     list(
-        params: Params$Resource$Reports$Files$List,
-        callback: BodyResponseCallback<Schema$FileList>): void;
+      params: Params$Resource$Reports$Files$List,
+      options: MethodOptions | BodyResponseCallback<Schema$FileList>,
+      callback: BodyResponseCallback<Schema$FileList>
+    ): void;
+    list(
+      params: Params$Resource$Reports$Files$List,
+      callback: BodyResponseCallback<Schema$FileList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$FileList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Reports$Files$List|
-        BodyResponseCallback<Schema$FileList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback?: BodyResponseCallback<Schema$FileList>):
-        void|GaxiosPromise<Schema$FileList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Reports$Files$List;
+      paramsOrCallback?:
+        | Params$Resource$Reports$Files$List
+        | BodyResponseCallback<Schema$FileList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>
+    ): void | GaxiosPromise<Schema$FileList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reports$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -24676,18 +25793,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}/files')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/reports/{reportId}/files'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FileList>(parameters, callback);
@@ -24697,12 +25815,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Reports$Files$Get extends
-      StandardParameters {
+  export interface Params$Resource$Reports$Files$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the report file.
@@ -24717,12 +25835,12 @@ export namespace dfareporting_v3_2 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Files$List extends
-      StandardParameters {
+  export interface Params$Resource$Reports$Files$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results to return.
@@ -24750,14 +25868,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
-
   export class Resource$Sites {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.sites.get
@@ -24772,19 +25887,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sites$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Site>;
-    get(params: Params$Resource$Sites$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback: BodyResponseCallback<Schema$Site>): void;
-    get(params: Params$Resource$Sites$Get,
-        callback: BodyResponseCallback<Schema$Site>): void;
+    get(
+      params?: Params$Resource$Sites$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
+    get(
+      params: Params$Resource$Sites$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Get,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Site>): void;
-    get(paramsOrCallback?: Params$Resource$Sites$Get|
-        BodyResponseCallback<Schema$Site>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>):
-        void|GaxiosPromise<Schema$Site> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Get
+        | BodyResponseCallback<Schema$Site>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>
+    ): void | GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24802,17 +25925,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sites/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sites/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -24820,7 +25944,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Site>(parameters);
       }
     }
-
 
     /**
      * dfareporting.sites.insert
@@ -24835,22 +25958,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Sites$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Site>;
     insert(
-        params: Params$Resource$Sites$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback: BodyResponseCallback<Schema$Site>): void;
+      params?: Params$Resource$Sites$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
     insert(
-        params: Params$Resource$Sites$Insert,
-        callback: BodyResponseCallback<Schema$Site>): void;
+      params: Params$Resource$Sites$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    insert(
+      params: Params$Resource$Sites$Insert,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Site>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Sites$Insert|
-        BodyResponseCallback<Schema$Site>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>):
-        void|GaxiosPromise<Schema$Site> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$Insert
+        | BodyResponseCallback<Schema$Site>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>
+    ): void | GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24868,17 +25996,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sites')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -24886,7 +26015,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Site>(parameters);
       }
     }
-
 
     /**
      * dfareporting.sites.list
@@ -24916,23 +26044,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sites$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SitesListResponse>;
     list(
-        params: Params$Resource$Sites$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
-        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+      params?: Params$Resource$Sites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SitesListResponse>;
     list(
-        params: Params$Resource$Sites$List,
-        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+      params: Params$Resource$Sites$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SitesListResponse>,
+      callback: BodyResponseCallback<Schema$SitesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sites$List,
+      callback: BodyResponseCallback<Schema$SitesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SitesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sites$List|
-        BodyResponseCallback<Schema$SitesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SitesListResponse>,
-        callback?: BodyResponseCallback<Schema$SitesListResponse>):
-        void|GaxiosPromise<Schema$SitesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$List
+        | BodyResponseCallback<Schema$SitesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SitesListResponse>,
+      callback?: BodyResponseCallback<Schema$SitesListResponse>
+    ): void | GaxiosPromise<Schema$SitesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24950,17 +26084,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sites')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(parameters, callback);
@@ -24968,7 +26103,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$SitesListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.sites.patch
@@ -24984,22 +26118,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Sites$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Site>;
     patch(
-        params: Params$Resource$Sites$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback: BodyResponseCallback<Schema$Site>): void;
+      params?: Params$Resource$Sites$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
     patch(
-        params: Params$Resource$Sites$Patch,
-        callback: BodyResponseCallback<Schema$Site>): void;
+      params: Params$Resource$Sites$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    patch(
+      params: Params$Resource$Sites$Patch,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Site>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Sites$Patch|
-        BodyResponseCallback<Schema$Site>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>):
-        void|GaxiosPromise<Schema$Site> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$Patch
+        | BodyResponseCallback<Schema$Site>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>
+    ): void | GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25017,17 +26156,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sites')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -25035,7 +26175,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Site>(parameters);
       }
     }
-
 
     /**
      * dfareporting.sites.update
@@ -25050,22 +26189,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Sites$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Site>;
     update(
-        params: Params$Resource$Sites$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback: BodyResponseCallback<Schema$Site>): void;
+      params?: Params$Resource$Sites$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
     update(
-        params: Params$Resource$Sites$Update,
-        callback: BodyResponseCallback<Schema$Site>): void;
+      params: Params$Resource$Sites$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    update(
+      params: Params$Resource$Sites$Update,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Site>): void;
     update(
-        paramsOrCallback?: Params$Resource$Sites$Update|
-        BodyResponseCallback<Schema$Site>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
-        callback?: BodyResponseCallback<Schema$Site>):
-        void|GaxiosPromise<Schema$Site> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$Update
+        | BodyResponseCallback<Schema$Site>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>
+    ): void | GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25083,17 +26227,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sites')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -25107,7 +26252,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Site ID.
@@ -25122,7 +26267,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -25138,7 +26283,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * This search filter is no longer supported and will have no effect on the
@@ -25216,7 +26361,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Site ID.
@@ -25236,7 +26381,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -25249,13 +26394,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Site;
   }
 
-
   export class Resource$Sizes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.sizes.get
@@ -25270,19 +26413,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sizes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Size>;
-    get(params: Params$Resource$Sizes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Size>,
-        callback: BodyResponseCallback<Schema$Size>): void;
-    get(params: Params$Resource$Sizes$Get,
-        callback: BodyResponseCallback<Schema$Size>): void;
+    get(
+      params?: Params$Resource$Sizes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Size>;
+    get(
+      params: Params$Resource$Sizes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Size>,
+      callback: BodyResponseCallback<Schema$Size>
+    ): void;
+    get(
+      params: Params$Resource$Sizes$Get,
+      callback: BodyResponseCallback<Schema$Size>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Size>): void;
-    get(paramsOrCallback?: Params$Resource$Sizes$Get|
-        BodyResponseCallback<Schema$Size>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Size>,
-        callback?: BodyResponseCallback<Schema$Size>):
-        void|GaxiosPromise<Schema$Size> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sizes$Get
+        | BodyResponseCallback<Schema$Size>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Size>,
+      callback?: BodyResponseCallback<Schema$Size>
+    ): void | GaxiosPromise<Schema$Size> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25300,17 +26451,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sizes/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sizes/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Size>(parameters, callback);
@@ -25318,7 +26470,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Size>(parameters);
       }
     }
-
 
     /**
      * dfareporting.sizes.insert
@@ -25333,22 +26484,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Sizes$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Size>;
     insert(
-        params: Params$Resource$Sizes$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Size>,
-        callback: BodyResponseCallback<Schema$Size>): void;
+      params?: Params$Resource$Sizes$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Size>;
     insert(
-        params: Params$Resource$Sizes$Insert,
-        callback: BodyResponseCallback<Schema$Size>): void;
+      params: Params$Resource$Sizes$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Size>,
+      callback: BodyResponseCallback<Schema$Size>
+    ): void;
+    insert(
+      params: Params$Resource$Sizes$Insert,
+      callback: BodyResponseCallback<Schema$Size>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Size>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Sizes$Insert|
-        BodyResponseCallback<Schema$Size>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Size>,
-        callback?: BodyResponseCallback<Schema$Size>):
-        void|GaxiosPromise<Schema$Size> {
+      paramsOrCallback?:
+        | Params$Resource$Sizes$Insert
+        | BodyResponseCallback<Schema$Size>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Size>,
+      callback?: BodyResponseCallback<Schema$Size>
+    ): void | GaxiosPromise<Schema$Size> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25366,17 +26522,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sizes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sizes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Size>(parameters, callback);
@@ -25384,7 +26541,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Size>(parameters);
       }
     }
-
 
     /**
      * dfareporting.sizes.list
@@ -25405,23 +26561,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sizes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SizesListResponse>;
     list(
-        params: Params$Resource$Sizes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
-        callback: BodyResponseCallback<Schema$SizesListResponse>): void;
+      params?: Params$Resource$Sizes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SizesListResponse>;
     list(
-        params: Params$Resource$Sizes$List,
-        callback: BodyResponseCallback<Schema$SizesListResponse>): void;
+      params: Params$Resource$Sizes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SizesListResponse>,
+      callback: BodyResponseCallback<Schema$SizesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sizes$List,
+      callback: BodyResponseCallback<Schema$SizesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SizesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sizes$List|
-        BodyResponseCallback<Schema$SizesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SizesListResponse>,
-        callback?: BodyResponseCallback<Schema$SizesListResponse>):
-        void|GaxiosPromise<Schema$SizesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sizes$List
+        | BodyResponseCallback<Schema$SizesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SizesListResponse>,
+      callback?: BodyResponseCallback<Schema$SizesListResponse>
+    ): void | GaxiosPromise<Schema$SizesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25439,17 +26601,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/sizes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/sizes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SizesListResponse>(parameters, callback);
@@ -25463,7 +26626,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Size ID.
@@ -25478,7 +26641,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -25494,7 +26657,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only sizes with this height.
@@ -25518,13 +26681,11 @@ export namespace dfareporting_v3_2 {
     width?: number;
   }
 
-
   export class Resource$Subaccounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.subaccounts.get
@@ -25539,20 +26700,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Subaccounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Subaccount>;
-    get(params: Params$Resource$Subaccounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
-    get(params: Params$Resource$Subaccounts$Get,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
+    get(
+      params?: Params$Resource$Subaccounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subaccount>;
+    get(
+      params: Params$Resource$Subaccounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Subaccount>,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
+    get(
+      params: Params$Resource$Subaccounts$Get,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Subaccount>): void;
-    get(paramsOrCallback?: Params$Resource$Subaccounts$Get|
-        BodyResponseCallback<Schema$Subaccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|GaxiosPromise<Schema$Subaccount> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Subaccounts$Get
+        | BodyResponseCallback<Schema$Subaccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>
+    ): void | GaxiosPromise<Schema$Subaccount> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25570,18 +26740,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25589,7 +26760,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Subaccount>(parameters);
       }
     }
-
 
     /**
      * dfareporting.subaccounts.insert
@@ -25605,25 +26775,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Subaccounts$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Subaccount>;
+      params?: Params$Resource$Subaccounts$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subaccount>;
     insert(
-        params: Params$Resource$Subaccounts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
+      params: Params$Resource$Subaccounts$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Subaccount>,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
     insert(
-        params: Params$Resource$Subaccounts$Insert,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
+      params: Params$Resource$Subaccounts$Insert,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Subaccount>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Subaccounts$Insert|
-        BodyResponseCallback<Schema$Subaccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|GaxiosPromise<Schema$Subaccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subaccounts$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Subaccounts$Insert
+        | BodyResponseCallback<Schema$Subaccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>
+    ): void | GaxiosPromise<Schema$Subaccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subaccounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -25640,17 +26815,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25658,7 +26835,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Subaccount>(parameters);
       }
     }
-
 
     /**
      * dfareporting.subaccounts.list
@@ -25679,24 +26855,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Subaccounts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SubaccountsListResponse>;
     list(
-        params: Params$Resource$Subaccounts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SubaccountsListResponse>,
-        callback: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
+      params?: Params$Resource$Subaccounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SubaccountsListResponse>;
     list(
-        params: Params$Resource$Subaccounts$List,
-        callback: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
+      params: Params$Resource$Subaccounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubaccountsListResponse>,
+      callback: BodyResponseCallback<Schema$SubaccountsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Subaccounts$List,
+      callback: BodyResponseCallback<Schema$SubaccountsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Subaccounts$List|
-        BodyResponseCallback<Schema$SubaccountsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SubaccountsListResponse>,
-        callback?: BodyResponseCallback<Schema$SubaccountsListResponse>):
-        void|GaxiosPromise<Schema$SubaccountsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Subaccounts$List
+        | BodyResponseCallback<Schema$SubaccountsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SubaccountsListResponse>,
+      callback?: BodyResponseCallback<Schema$SubaccountsListResponse>
+    ): void | GaxiosPromise<Schema$SubaccountsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25714,17 +26897,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SubaccountsListResponse>(parameters, callback);
@@ -25732,7 +26917,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$SubaccountsListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.subaccounts.patch
@@ -25749,25 +26933,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Subaccounts$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Subaccount>;
     patch(
-        params: Params$Resource$Subaccounts$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
+      params?: Params$Resource$Subaccounts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subaccount>;
     patch(
-        params: Params$Resource$Subaccounts$Patch,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
+      params: Params$Resource$Subaccounts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Subaccount>,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
+    patch(
+      params: Params$Resource$Subaccounts$Patch,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Subaccount>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Subaccounts$Patch|
-        BodyResponseCallback<Schema$Subaccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|GaxiosPromise<Schema$Subaccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subaccounts$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Subaccounts$Patch
+        | BodyResponseCallback<Schema$Subaccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>
+    ): void | GaxiosPromise<Schema$Subaccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -25784,17 +26974,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25802,7 +26994,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$Subaccount>(parameters);
       }
     }
-
 
     /**
      * dfareporting.subaccounts.update
@@ -25818,25 +27009,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Subaccounts$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Subaccount>;
+      params?: Params$Resource$Subaccounts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subaccount>;
     update(
-        params: Params$Resource$Subaccounts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
+      params: Params$Resource$Subaccounts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Subaccount>,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
     update(
-        params: Params$Resource$Subaccounts$Update,
-        callback: BodyResponseCallback<Schema$Subaccount>): void;
+      params: Params$Resource$Subaccounts$Update,
+      callback: BodyResponseCallback<Schema$Subaccount>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Subaccount>): void;
     update(
-        paramsOrCallback?: Params$Resource$Subaccounts$Update|
-        BodyResponseCallback<Schema$Subaccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subaccount>,
-        callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|GaxiosPromise<Schema$Subaccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subaccounts$Update;
+      paramsOrCallback?:
+        | Params$Resource$Subaccounts$Update
+        | BodyResponseCallback<Schema$Subaccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>
+    ): void | GaxiosPromise<Schema$Subaccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -25853,17 +27049,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/subaccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25877,7 +27075,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Subaccount ID.
@@ -25888,12 +27086,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Subaccounts$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Subaccounts$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -25909,7 +27107,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only subaccounts with these IDs.
@@ -25946,12 +27144,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Subaccounts$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Subaccounts$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Subaccount ID.
@@ -25967,12 +27165,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$Subaccount;
   }
-  export interface Params$Resource$Subaccounts$Update extends
-      StandardParameters {
+  export interface Params$Resource$Subaccounts$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -25985,13 +27183,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$Subaccount;
   }
 
-
   export class Resource$Targetableremarketinglists {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.targetableRemarketingLists.get
@@ -26006,24 +27202,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Targetableremarketinglists$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TargetableRemarketingList>;
-    get(params: Params$Resource$Targetableremarketinglists$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TargetableRemarketingList>,
-        callback: BodyResponseCallback<Schema$TargetableRemarketingList>): void;
-    get(params: Params$Resource$Targetableremarketinglists$Get,
-        callback: BodyResponseCallback<Schema$TargetableRemarketingList>): void;
+    get(
+      params?: Params$Resource$Targetableremarketinglists$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetableRemarketingList>;
+    get(
+      params: Params$Resource$Targetableremarketinglists$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetableRemarketingList>,
+      callback: BodyResponseCallback<Schema$TargetableRemarketingList>
+    ): void;
+    get(
+      params: Params$Resource$Targetableremarketinglists$Get,
+      callback: BodyResponseCallback<Schema$TargetableRemarketingList>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TargetableRemarketingList>): void;
-    get(paramsOrCallback?: Params$Resource$Targetableremarketinglists$Get|
-        BodyResponseCallback<Schema$TargetableRemarketingList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TargetableRemarketingList>,
-        callback?: BodyResponseCallback<Schema$TargetableRemarketingList>):
-        void|GaxiosPromise<Schema$TargetableRemarketingList> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Targetableremarketinglists$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Targetableremarketinglists$Get
+        | BodyResponseCallback<Schema$TargetableRemarketingList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetableRemarketingList>,
+      callback?: BodyResponseCallback<Schema$TargetableRemarketingList>
+    ): void | GaxiosPromise<Schema$TargetableRemarketingList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetableremarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26040,27 +27245,29 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/targetableRemarketingLists/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/targetableRemarketingLists/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingList>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TargetableRemarketingList>(parameters);
       }
     }
-
 
     /**
      * dfareporting.targetableRemarketingLists.list
@@ -26083,31 +27290,42 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Targetableremarketinglists$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TargetableRemarketingListsListResponse>;
+      params?: Params$Resource$Targetableremarketinglists$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetableRemarketingListsListResponse>;
     list(
-        params: Params$Resource$Targetableremarketinglists$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
-        callback: BodyResponseCallback<
-            Schema$TargetableRemarketingListsListResponse>): void;
+      params: Params$Resource$Targetableremarketinglists$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
+      callback: BodyResponseCallback<
+        Schema$TargetableRemarketingListsListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Targetableremarketinglists$List,
-        callback: BodyResponseCallback<
-            Schema$TargetableRemarketingListsListResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$TargetableRemarketingListsListResponse>): void;
+      params: Params$Resource$Targetableremarketinglists$List,
+      callback: BodyResponseCallback<
+        Schema$TargetableRemarketingListsListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Targetableremarketinglists$List|
-        BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
-        callback?: BodyResponseCallback<
-            Schema$TargetableRemarketingListsListResponse>):
-        void|GaxiosPromise<Schema$TargetableRemarketingListsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Targetableremarketinglists$List;
+      callback: BodyResponseCallback<
+        Schema$TargetableRemarketingListsListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Targetableremarketinglists$List
+        | BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$TargetableRemarketingListsListResponse
+      >
+    ): void | GaxiosPromise<Schema$TargetableRemarketingListsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetableremarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26124,35 +27342,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/targetableRemarketingLists')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/targetableRemarketingLists'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Targetableremarketinglists$Get extends
-      StandardParameters {
+  export interface Params$Resource$Targetableremarketinglists$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Remarketing list ID.
@@ -26163,12 +27385,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Targetableremarketinglists$List extends
-      StandardParameters {
+  export interface Params$Resource$Targetableremarketinglists$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only active or only inactive targetable remarketing lists.
@@ -26210,13 +27432,11 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
 
-
   export class Resource$Targetingtemplates {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.targetingTemplates.get
@@ -26231,22 +27451,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Targetingtemplates$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
-    get(params: Params$Resource$Targetingtemplates$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
-    get(params: Params$Resource$Targetingtemplates$Get,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+    get(
+      params?: Params$Resource$Targetingtemplates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetingTemplate>;
+    get(
+      params: Params$Resource$Targetingtemplates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
+    get(
+      params: Params$Resource$Targetingtemplates$Get,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
-    get(paramsOrCallback?: Params$Resource$Targetingtemplates$Get|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|GaxiosPromise<Schema$TargetingTemplate> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Targetingtemplates$Get
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void | GaxiosPromise<Schema$TargetingTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetingtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26263,18 +27492,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26282,7 +27512,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
       }
     }
-
 
     /**
      * dfareporting.targetingTemplates.insert
@@ -26298,25 +27527,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Targetingtemplates$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
+      params?: Params$Resource$Targetingtemplates$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetingTemplate>;
     insert(
-        params: Params$Resource$Targetingtemplates$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+      params: Params$Resource$Targetingtemplates$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
     insert(
-        params: Params$Resource$Targetingtemplates$Insert,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+      params: Params$Resource$Targetingtemplates$Insert,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Targetingtemplates$Insert|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|GaxiosPromise<Schema$TargetingTemplate> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Targetingtemplates$Insert
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void | GaxiosPromise<Schema$TargetingTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetingtemplates$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26333,18 +27567,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26352,7 +27587,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
       }
     }
-
 
     /**
      * dfareporting.targetingTemplates.list
@@ -26375,30 +27609,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Targetingtemplates$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TargetingTemplatesListResponse>;
+      params?: Params$Resource$Targetingtemplates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetingTemplatesListResponse>;
     list(
-        params: Params$Resource$Targetingtemplates$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
-        callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
-        void;
+      params: Params$Resource$Targetingtemplates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
+      callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Targetingtemplates$List,
-        callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
-        void;
+      params: Params$Resource$Targetingtemplates$List,
+      callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Targetingtemplates$List|
-        BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
-        void|GaxiosPromise<Schema$TargetingTemplatesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$List;
+      callback: BodyResponseCallback<Schema$TargetingTemplatesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Targetingtemplates$List
+        | BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplatesListResponse>
+    ): void | GaxiosPromise<Schema$TargetingTemplatesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetingtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26415,28 +27653,31 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplatesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TargetingTemplatesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * dfareporting.targetingTemplates.patch
@@ -26454,25 +27695,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Targetingtemplates$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
+      params?: Params$Resource$Targetingtemplates$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetingTemplate>;
     patch(
-        params: Params$Resource$Targetingtemplates$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+      params: Params$Resource$Targetingtemplates$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
     patch(
-        params: Params$Resource$Targetingtemplates$Patch,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+      params: Params$Resource$Targetingtemplates$Patch,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Targetingtemplates$Patch|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|GaxiosPromise<Schema$TargetingTemplate> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Targetingtemplates$Patch
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void | GaxiosPromise<Schema$TargetingTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetingtemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26489,18 +27735,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26508,7 +27755,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
       }
     }
-
 
     /**
      * dfareporting.targetingTemplates.update
@@ -26524,25 +27770,30 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Targetingtemplates$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
+      params?: Params$Resource$Targetingtemplates$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TargetingTemplate>;
     update(
-        params: Params$Resource$Targetingtemplates$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+      params: Params$Resource$Targetingtemplates$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
     update(
-        params: Params$Resource$Targetingtemplates$Update,
-        callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
+      params: Params$Resource$Targetingtemplates$Update,
+      callback: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void;
     update(callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
     update(
-        paramsOrCallback?: Params$Resource$Targetingtemplates$Update|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TargetingTemplate>,
-        callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|GaxiosPromise<Schema$TargetingTemplate> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Update;
+      paramsOrCallback?:
+        | Params$Resource$Targetingtemplates$Update
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>
+    ): void | GaxiosPromise<Schema$TargetingTemplate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetingtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26559,18 +27810,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/targetingTemplates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26580,12 +27832,12 @@ export namespace dfareporting_v3_2 {
     }
   }
 
-  export interface Params$Resource$Targetingtemplates$Get extends
-      StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Targeting template ID.
@@ -26596,12 +27848,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Targetingtemplates$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -26613,12 +27865,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$TargetingTemplate;
   }
-  export interface Params$Resource$Targetingtemplates$List extends
-      StandardParameters {
+  export interface Params$Resource$Targetingtemplates$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only targeting templates with this advertiser ID.
@@ -26659,12 +27911,12 @@ export namespace dfareporting_v3_2 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Targetingtemplates$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Targeting template ID.
@@ -26680,12 +27932,12 @@ export namespace dfareporting_v3_2 {
      */
     requestBody?: Schema$TargetingTemplate;
   }
-  export interface Params$Resource$Targetingtemplates$Update extends
-      StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -26698,13 +27950,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$TargetingTemplate;
   }
 
-
   export class Resource$Userprofiles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.userProfiles.get
@@ -26718,20 +27968,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userprofiles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UserProfile>;
-    get(params: Params$Resource$Userprofiles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
-        callback: BodyResponseCallback<Schema$UserProfile>): void;
-    get(params: Params$Resource$Userprofiles$Get,
-        callback: BodyResponseCallback<Schema$UserProfile>): void;
+    get(
+      params?: Params$Resource$Userprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserProfile>;
+    get(
+      params: Params$Resource$Userprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserProfile>,
+      callback: BodyResponseCallback<Schema$UserProfile>
+    ): void;
+    get(
+      params: Params$Resource$Userprofiles$Get,
+      callback: BodyResponseCallback<Schema$UserProfile>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UserProfile>): void;
-    get(paramsOrCallback?: Params$Resource$Userprofiles$Get|
-        BodyResponseCallback<Schema$UserProfile>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserProfile>,
-        callback?: BodyResponseCallback<Schema$UserProfile>):
-        void|GaxiosPromise<Schema$UserProfile> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$Get
+        | BodyResponseCallback<Schema$UserProfile>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserProfile>,
+      callback?: BodyResponseCallback<Schema$UserProfile>
+    ): void | GaxiosPromise<Schema$UserProfile> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26749,16 +28008,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserProfile>(parameters, callback);
@@ -26766,7 +28027,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$UserProfile>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userProfiles.list
@@ -26779,25 +28039,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Userprofiles$List, options?: MethodOptions):
-        GaxiosPromise<Schema$UserProfileList>;
     list(
-        params: Params$Resource$Userprofiles$List,
-        options: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
-        callback: BodyResponseCallback<Schema$UserProfileList>): void;
+      params?: Params$Resource$Userprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserProfileList>;
     list(
-        params: Params$Resource$Userprofiles$List,
-        callback: BodyResponseCallback<Schema$UserProfileList>): void;
+      params: Params$Resource$Userprofiles$List,
+      options: MethodOptions | BodyResponseCallback<Schema$UserProfileList>,
+      callback: BodyResponseCallback<Schema$UserProfileList>
+    ): void;
+    list(
+      params: Params$Resource$Userprofiles$List,
+      callback: BodyResponseCallback<Schema$UserProfileList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$UserProfileList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Userprofiles$List|
-        BodyResponseCallback<Schema$UserProfileList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserProfileList>,
-        callback?: BodyResponseCallback<Schema$UserProfileList>):
-        void|GaxiosPromise<Schema$UserProfileList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Userprofiles$List;
+      paramsOrCallback?:
+        | Params$Resource$Userprofiles$List
+        | BodyResponseCallback<Schema$UserProfileList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserProfileList>,
+      callback?: BodyResponseCallback<Schema$UserProfileList>
+    ): void | GaxiosPromise<Schema$UserProfileList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26814,16 +28080,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/dfareporting/v3.2/userprofiles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/dfareporting/v3.2/userprofiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserProfileList>(parameters, callback);
@@ -26837,28 +28106,26 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user profile ID.
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userprofiles$List extends
-      StandardParameters {
+  export interface Params$Resource$Userprofiles$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Userrolepermissiongroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.userRolePermissionGroups.get
@@ -26873,23 +28140,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userrolepermissiongroups$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UserRolePermissionGroup>;
-    get(params: Params$Resource$Userrolepermissiongroups$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UserRolePermissionGroup>,
-        callback: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
-    get(params: Params$Resource$Userrolepermissiongroups$Get,
-        callback: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
+    get(
+      params?: Params$Resource$Userrolepermissiongroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRolePermissionGroup>;
+    get(
+      params: Params$Resource$Userrolepermissiongroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolePermissionGroup>,
+      callback: BodyResponseCallback<Schema$UserRolePermissionGroup>
+    ): void;
+    get(
+      params: Params$Resource$Userrolepermissiongroups$Get,
+      callback: BodyResponseCallback<Schema$UserRolePermissionGroup>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
-    get(paramsOrCallback?: Params$Resource$Userrolepermissiongroups$Get|
-        BodyResponseCallback<Schema$UserRolePermissionGroup>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserRolePermissionGroup>,
-        callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>):
-        void|GaxiosPromise<Schema$UserRolePermissionGroup> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userrolepermissiongroups$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userrolepermissiongroups$Get
+        | BodyResponseCallback<Schema$UserRolePermissionGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolePermissionGroup>,
+      callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>
+    ): void | GaxiosPromise<Schema$UserRolePermissionGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userrolepermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26906,18 +28183,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissionGroups/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissionGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroup>(parameters, callback);
@@ -26925,7 +28203,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$UserRolePermissionGroup>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userRolePermissionGroups.list
@@ -26940,34 +28217,42 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Userrolepermissiongroups$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UserRolePermissionGroupsListResponse>;
+      params?: Params$Resource$Userrolepermissiongroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRolePermissionGroupsListResponse>;
     list(
-        params: Params$Resource$Userrolepermissiongroups$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
-        callback:
-            BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
-        void;
+      params: Params$Resource$Userrolepermissiongroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
+      callback: BodyResponseCallback<
+        Schema$UserRolePermissionGroupsListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Userrolepermissiongroups$List,
-        callback:
-            BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
-        void;
+      params: Params$Resource$Userrolepermissiongroups$List,
+      callback: BodyResponseCallback<
+        Schema$UserRolePermissionGroupsListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Userrolepermissiongroups$List|
-        BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
-        void|GaxiosPromise<Schema$UserRolePermissionGroupsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userrolepermissiongroups$List;
+      callback: BodyResponseCallback<
+        Schema$UserRolePermissionGroupsListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Userrolepermissiongroups$List
+        | BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$UserRolePermissionGroupsListResponse
+      >
+    ): void | GaxiosPromise<Schema$UserRolePermissionGroupsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userrolepermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -26984,35 +28269,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissionGroups')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissionGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Userrolepermissiongroups$Get extends
-      StandardParameters {
+  export interface Params$Resource$Userrolepermissiongroups$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User role permission group ID.
@@ -27023,12 +28312,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userrolepermissiongroups$List extends
-      StandardParameters {
+  export interface Params$Resource$Userrolepermissiongroups$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -27036,13 +28325,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Userrolepermissions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.userRolePermissions.get
@@ -27057,22 +28344,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userrolepermissions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UserRolePermission>;
-    get(params: Params$Resource$Userrolepermissions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
-        callback: BodyResponseCallback<Schema$UserRolePermission>): void;
-    get(params: Params$Resource$Userrolepermissions$Get,
-        callback: BodyResponseCallback<Schema$UserRolePermission>): void;
+    get(
+      params?: Params$Resource$Userrolepermissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRolePermission>;
+    get(
+      params: Params$Resource$Userrolepermissions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserRolePermission>,
+      callback: BodyResponseCallback<Schema$UserRolePermission>
+    ): void;
+    get(
+      params: Params$Resource$Userrolepermissions$Get,
+      callback: BodyResponseCallback<Schema$UserRolePermission>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UserRolePermission>): void;
-    get(paramsOrCallback?: Params$Resource$Userrolepermissions$Get|
-        BodyResponseCallback<Schema$UserRolePermission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserRolePermission>,
-        callback?: BodyResponseCallback<Schema$UserRolePermission>):
-        void|GaxiosPromise<Schema$UserRolePermission> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Userrolepermissions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userrolepermissions$Get
+        | BodyResponseCallback<Schema$UserRolePermission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolePermission>,
+      callback?: BodyResponseCallback<Schema$UserRolePermission>
+    ): void | GaxiosPromise<Schema$UserRolePermission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userrolepermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -27089,18 +28385,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissions/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissions/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermission>(parameters, callback);
@@ -27108,7 +28405,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$UserRolePermission>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userRolePermissions.list
@@ -27124,32 +28420,34 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Userrolepermissions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UserRolePermissionsListResponse>;
+      params?: Params$Resource$Userrolepermissions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRolePermissionsListResponse>;
     list(
-        params: Params$Resource$Userrolepermissions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
-        callback: BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
-        void;
+      params: Params$Resource$Userrolepermissions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
+      callback: BodyResponseCallback<Schema$UserRolePermissionsListResponse>
+    ): void;
     list(
-        params: Params$Resource$Userrolepermissions$List,
-        callback: BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
-        void;
+      params: Params$Resource$Userrolepermissions$List,
+      callback: BodyResponseCallback<Schema$UserRolePermissionsListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Userrolepermissions$List|
-        BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
-        void|GaxiosPromise<Schema$UserRolePermissionsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Userrolepermissions$List;
+      callback: BodyResponseCallback<Schema$UserRolePermissionsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Userrolepermissions$List
+        | BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
+      callback?: BodyResponseCallback<Schema$UserRolePermissionsListResponse>
+    ): void | GaxiosPromise<Schema$UserRolePermissionsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userrolepermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -27166,35 +28464,39 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/userRolePermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UserRolePermissionsListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Userrolepermissions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Userrolepermissions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User role permission ID.
@@ -27205,12 +28507,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userrolepermissions$List extends
-      StandardParameters {
+  export interface Params$Resource$Userrolepermissions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only user role permissions with these IDs.
@@ -27222,13 +28524,11 @@ export namespace dfareporting_v3_2 {
     profileId?: string;
   }
 
-
   export class Resource$Userroles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.userRoles.delete
@@ -27243,21 +28543,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Userroles$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Userroles$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Userroles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Userroles$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Userroles$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Userroles$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Userroles$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Userroles$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27275,18 +28581,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/userRoles/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/userRoles/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -27294,7 +28601,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userRoles.get
@@ -27309,19 +28615,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Userroles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UserRole>;
-    get(params: Params$Resource$Userroles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
-    get(params: Params$Resource$Userroles$Get,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
+    get(
+      params?: Params$Resource$Userroles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRole>;
+    get(
+      params: Params$Resource$Userroles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
+    get(
+      params: Params$Resource$Userroles$Get,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UserRole>): void;
-    get(paramsOrCallback?: Params$Resource$Userroles$Get|
-        BodyResponseCallback<Schema$UserRole>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>):
-        void|GaxiosPromise<Schema$UserRole> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Userroles$Get
+        | BodyResponseCallback<Schema$UserRole>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>
+    ): void | GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27339,18 +28653,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/userRoles/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/userRoles/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27358,7 +28673,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$UserRole>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userRoles.insert
@@ -27373,22 +28687,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Userroles$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$UserRole>;
     insert(
-        params: Params$Resource$Userroles$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
+      params?: Params$Resource$Userroles$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRole>;
     insert(
-        params: Params$Resource$Userroles$Insert,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
+      params: Params$Resource$Userroles$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
+    insert(
+      params: Params$Resource$Userroles$Insert,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$UserRole>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Userroles$Insert|
-        BodyResponseCallback<Schema$UserRole>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>):
-        void|GaxiosPromise<Schema$UserRole> {
+      paramsOrCallback?:
+        | Params$Resource$Userroles$Insert
+        | BodyResponseCallback<Schema$UserRole>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>
+    ): void | GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27406,17 +28725,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/userRoles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/userRoles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27424,7 +28744,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$UserRole>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userRoles.list
@@ -27447,24 +28766,31 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Userroles$List, options?: MethodOptions):
-        GaxiosPromise<Schema$UserRolesListResponse>;
     list(
-        params: Params$Resource$Userroles$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UserRolesListResponse>,
-        callback: BodyResponseCallback<Schema$UserRolesListResponse>): void;
+      params?: Params$Resource$Userroles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRolesListResponse>;
     list(
-        params: Params$Resource$Userroles$List,
-        callback: BodyResponseCallback<Schema$UserRolesListResponse>): void;
+      params: Params$Resource$Userroles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolesListResponse>,
+      callback: BodyResponseCallback<Schema$UserRolesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Userroles$List,
+      callback: BodyResponseCallback<Schema$UserRolesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$UserRolesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Userroles$List|
-        BodyResponseCallback<Schema$UserRolesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserRolesListResponse>,
-        callback?: BodyResponseCallback<Schema$UserRolesListResponse>):
-        void|GaxiosPromise<Schema$UserRolesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Userroles$List
+        | BodyResponseCallback<Schema$UserRolesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserRolesListResponse>,
+      callback?: BodyResponseCallback<Schema$UserRolesListResponse>
+    ): void | GaxiosPromise<Schema$UserRolesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27482,17 +28808,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/userRoles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/userRoles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRolesListResponse>(parameters, callback);
@@ -27500,7 +28827,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$UserRolesListResponse>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userRoles.patch
@@ -27517,22 +28843,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Userroles$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$UserRole>;
     patch(
-        params: Params$Resource$Userroles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
+      params?: Params$Resource$Userroles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRole>;
     patch(
-        params: Params$Resource$Userroles$Patch,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
+      params: Params$Resource$Userroles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
+    patch(
+      params: Params$Resource$Userroles$Patch,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$UserRole>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Userroles$Patch|
-        BodyResponseCallback<Schema$UserRole>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>):
-        void|GaxiosPromise<Schema$UserRole> {
+      paramsOrCallback?:
+        | Params$Resource$Userroles$Patch
+        | BodyResponseCallback<Schema$UserRole>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>
+    ): void | GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27550,17 +28881,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/userRoles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/userRoles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27568,7 +28900,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$UserRole>(parameters);
       }
     }
-
 
     /**
      * dfareporting.userRoles.update
@@ -27583,22 +28914,27 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Userroles$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$UserRole>;
     update(
-        params: Params$Resource$Userroles$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
+      params?: Params$Resource$Userroles$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserRole>;
     update(
-        params: Params$Resource$Userroles$Update,
-        callback: BodyResponseCallback<Schema$UserRole>): void;
+      params: Params$Resource$Userroles$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
+    update(
+      params: Params$Resource$Userroles$Update,
+      callback: BodyResponseCallback<Schema$UserRole>
+    ): void;
     update(callback: BodyResponseCallback<Schema$UserRole>): void;
     update(
-        paramsOrCallback?: Params$Resource$Userroles$Update|
-        BodyResponseCallback<Schema$UserRole>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-        callback?: BodyResponseCallback<Schema$UserRole>):
-        void|GaxiosPromise<Schema$UserRole> {
+      paramsOrCallback?:
+        | Params$Resource$Userroles$Update
+        | BodyResponseCallback<Schema$UserRole>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>
+    ): void | GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27616,17 +28952,18 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/userRoles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/dfareporting/v3.2/userprofiles/{profileId}/userRoles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27640,7 +28977,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User role ID.
@@ -27655,7 +28992,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User role ID.
@@ -27670,7 +29007,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -27686,7 +29023,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Select only account level user roles not associated with any specific
@@ -27736,7 +29073,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User role ID.
@@ -27756,7 +29093,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.
@@ -27769,13 +29106,11 @@ export namespace dfareporting_v3_2 {
     requestBody?: Schema$UserRole;
   }
 
-
   export class Resource$Videoformats {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * dfareporting.videoFormats.get
@@ -27790,20 +29125,29 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Videoformats$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$VideoFormat>;
-    get(params: Params$Resource$Videoformats$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
-        callback: BodyResponseCallback<Schema$VideoFormat>): void;
-    get(params: Params$Resource$Videoformats$Get,
-        callback: BodyResponseCallback<Schema$VideoFormat>): void;
+    get(
+      params?: Params$Resource$Videoformats$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoFormat>;
+    get(
+      params: Params$Resource$Videoformats$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$VideoFormat>,
+      callback: BodyResponseCallback<Schema$VideoFormat>
+    ): void;
+    get(
+      params: Params$Resource$Videoformats$Get,
+      callback: BodyResponseCallback<Schema$VideoFormat>
+    ): void;
     get(callback: BodyResponseCallback<Schema$VideoFormat>): void;
-    get(paramsOrCallback?: Params$Resource$Videoformats$Get|
-        BodyResponseCallback<Schema$VideoFormat>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoFormat>,
-        callback?: BodyResponseCallback<Schema$VideoFormat>):
-        void|GaxiosPromise<Schema$VideoFormat> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Videoformats$Get
+        | BodyResponseCallback<Schema$VideoFormat>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoFormat>,
+      callback?: BodyResponseCallback<Schema$VideoFormat>
+    ): void | GaxiosPromise<Schema$VideoFormat> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videoformats$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27821,18 +29165,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/dfareporting/v3.2/userprofiles/{profileId}/videoFormats/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/videoFormats/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoFormat>(parameters, callback);
@@ -27840,7 +29185,6 @@ export namespace dfareporting_v3_2 {
         return createAPIRequest<Schema$VideoFormat>(parameters);
       }
     }
-
 
     /**
      * dfareporting.videoFormats.list
@@ -27854,26 +29198,33 @@ export namespace dfareporting_v3_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Videoformats$List, options?: MethodOptions):
-        GaxiosPromise<Schema$VideoFormatsListResponse>;
     list(
-        params: Params$Resource$Videoformats$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$VideoFormatsListResponse>,
-        callback: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
+      params?: Params$Resource$Videoformats$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoFormatsListResponse>;
     list(
-        params: Params$Resource$Videoformats$List,
-        callback: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
+      params: Params$Resource$Videoformats$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoFormatsListResponse>,
+      callback: BodyResponseCallback<Schema$VideoFormatsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Videoformats$List,
+      callback: BodyResponseCallback<Schema$VideoFormatsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Videoformats$List|
-        BodyResponseCallback<Schema$VideoFormatsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VideoFormatsListResponse>,
-        callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>):
-        void|GaxiosPromise<Schema$VideoFormatsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Videoformats$List;
+      paramsOrCallback?:
+        | Params$Resource$Videoformats$List
+        | BodyResponseCallback<Schema$VideoFormatsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VideoFormatsListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>
+    ): void | GaxiosPromise<Schema$VideoFormatsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videoformats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -27890,17 +29241,19 @@ export namespace dfareporting_v3_2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/dfareporting/v3.2/userprofiles/{profileId}/videoFormats')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.2/userprofiles/{profileId}/videoFormats'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VideoFormatsListResponse>(parameters, callback);
@@ -27914,7 +29267,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Video format ID.
@@ -27925,12 +29278,12 @@ export namespace dfareporting_v3_2 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Videoformats$List extends
-      StandardParameters {
+  export interface Params$Resource$Videoformats$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User profile ID associated with this request.

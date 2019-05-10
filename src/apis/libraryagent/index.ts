@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {libraryagent_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': libraryagent_v1.Libraryagent,
+  v1: libraryagent_v1.Libraryagent,
 };
 
 export function libraryagent(version: 'v1'): libraryagent_v1.Libraryagent;
-export function libraryagent(options: libraryagent_v1.Options):
-    libraryagent_v1.Libraryagent;
+export function libraryagent(
+  options: libraryagent_v1.Options
+): libraryagent_v1.Libraryagent;
 export function libraryagent<T = libraryagent_v1.Libraryagent>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|libraryagent_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | libraryagent_v1.Options
+) {
   return getAPI<T>('libraryagent', versionOrOptions, VERSIONS, this);
 }
 

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -276,7 +288,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Required. The additional headers to add to the response.
      */
-    headers?: {[key: string]: string;};
+    headers?: {[key: string]: string};
   }
   export interface Schema$ListDomainsResponse {
     /**
@@ -318,7 +330,7 @@ export namespace firebasehosting_v1beta1 {
      * the path from the version. Calculate a hash by Gzipping the file then
      * taking the SHA256 hash of the newly compressed file.
      */
-    files?: {[key: string]: string;};
+    files?: {[key: string]: string};
   }
   export interface Schema$PopulateVersionFilesResponse {
     /**
@@ -519,7 +531,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The labels used for extra metadata and/or filtering.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The unique identifier for a version, in the format:
      * &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;&lt;/code&gt;
@@ -566,7 +578,6 @@ export namespace firebasehosting_v1beta1 {
     status?: string;
   }
 
-
   export class Resource$Sites {
     context: APIRequestContext;
     domains: Resource$Sites$Domains;
@@ -578,7 +589,6 @@ export namespace firebasehosting_v1beta1 {
       this.releases = new Resource$Sites$Releases(this.context);
       this.versions = new Resource$Sites$Versions(this.context);
     }
-
 
     /**
      * firebasehosting.sites.getConfig
@@ -593,23 +603,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     getConfig(
-        params?: Params$Resource$Sites$Getconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$SiteConfig>;
+      params?: Params$Resource$Sites$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteConfig>;
     getConfig(
-        params: Params$Resource$Sites$Getconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$SiteConfig>,
-        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+      params: Params$Resource$Sites$Getconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$SiteConfig>,
+      callback: BodyResponseCallback<Schema$SiteConfig>
+    ): void;
     getConfig(
-        params: Params$Resource$Sites$Getconfig,
-        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+      params: Params$Resource$Sites$Getconfig,
+      callback: BodyResponseCallback<Schema$SiteConfig>
+    ): void;
     getConfig(callback: BodyResponseCallback<Schema$SiteConfig>): void;
     getConfig(
-        paramsOrCallback?: Params$Resource$Sites$Getconfig|
-        BodyResponseCallback<Schema$SiteConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteConfig>,
-        callback?: BodyResponseCallback<Schema$SiteConfig>):
-        void|GaxiosPromise<Schema$SiteConfig> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$Getconfig
+        | BodyResponseCallback<Schema$SiteConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteConfig>,
+      callback?: BodyResponseCallback<Schema$SiteConfig>
+    ): void | GaxiosPromise<Schema$SiteConfig> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -625,18 +640,19 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(parameters, callback);
@@ -644,7 +660,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$SiteConfig>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.updateConfig
@@ -661,25 +676,30 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     updateConfig(
-        params?: Params$Resource$Sites$Updateconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$SiteConfig>;
+      params?: Params$Resource$Sites$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SiteConfig>;
     updateConfig(
-        params: Params$Resource$Sites$Updateconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$SiteConfig>,
-        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+      params: Params$Resource$Sites$Updateconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$SiteConfig>,
+      callback: BodyResponseCallback<Schema$SiteConfig>
+    ): void;
     updateConfig(
-        params: Params$Resource$Sites$Updateconfig,
-        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+      params: Params$Resource$Sites$Updateconfig,
+      callback: BodyResponseCallback<Schema$SiteConfig>
+    ): void;
     updateConfig(callback: BodyResponseCallback<Schema$SiteConfig>): void;
     updateConfig(
-        paramsOrCallback?: Params$Resource$Sites$Updateconfig|
-        BodyResponseCallback<Schema$SiteConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SiteConfig>,
-        callback?: BodyResponseCallback<Schema$SiteConfig>):
-        void|GaxiosPromise<Schema$SiteConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Updateconfig;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Updateconfig
+        | BodyResponseCallback<Schema$SiteConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SiteConfig>,
+      callback?: BodyResponseCallback<Schema$SiteConfig>
+    ): void | GaxiosPromise<Schema$SiteConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -694,18 +714,19 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(parameters, callback);
@@ -719,7 +740,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The site for which to get the SiteConfig, in the format:
@@ -727,12 +748,12 @@ export namespace firebasehosting_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Updateconfig extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Updateconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The site for which to update the SiteConfig, in the format:
@@ -759,7 +780,6 @@ export namespace firebasehosting_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * firebasehosting.sites.domains.create
      * @desc Creates a domain mapping on the specified site.
@@ -774,24 +794,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Sites$Domains$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Domain>;
+      params?: Params$Resource$Sites$Domains$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Domain>;
     create(
-        params: Params$Resource$Sites$Domains$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Domain>,
-        callback: BodyResponseCallback<Schema$Domain>): void;
+      params: Params$Resource$Sites$Domains$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Domain>,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
     create(
-        params: Params$Resource$Sites$Domains$Create,
-        callback: BodyResponseCallback<Schema$Domain>): void;
+      params: Params$Resource$Sites$Domains$Create,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Domain>): void;
     create(
-        paramsOrCallback?: Params$Resource$Sites$Domains$Create|
-        BodyResponseCallback<Schema$Domain>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domain>,
-        callback?: BodyResponseCallback<Schema$Domain>):
-        void|GaxiosPromise<Schema$Domain> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Domains$Create;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Domains$Create
+        | BodyResponseCallback<Schema$Domain>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
+      callback?: BodyResponseCallback<Schema$Domain>
+    ): void | GaxiosPromise<Schema$Domain> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Domains$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -806,19 +830,22 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/domains')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/domains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -826,7 +853,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$Domain>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.domains.delete
@@ -841,24 +867,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Sites$Domains$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Sites$Domains$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Sites$Domains$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Sites$Domains$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Sites$Domains$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Sites$Domains$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Sites$Domains$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Domains$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Domains$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -873,18 +903,19 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -892,7 +923,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.domains.get
@@ -906,21 +936,29 @@ export namespace firebasehosting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sites$Domains$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Domain>;
-    get(params: Params$Resource$Sites$Domains$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Domain>,
-        callback: BodyResponseCallback<Schema$Domain>): void;
-    get(params: Params$Resource$Sites$Domains$Get,
-        callback: BodyResponseCallback<Schema$Domain>): void;
+    get(
+      params?: Params$Resource$Sites$Domains$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Domain>;
+    get(
+      params: Params$Resource$Sites$Domains$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Domain>,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Domains$Get,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Domain>): void;
-    get(paramsOrCallback?: Params$Resource$Sites$Domains$Get|
-        BodyResponseCallback<Schema$Domain>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domain>,
-        callback?: BodyResponseCallback<Schema$Domain>):
-        void|GaxiosPromise<Schema$Domain> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Domains$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Domains$Get
+        | BodyResponseCallback<Schema$Domain>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
+      callback?: BodyResponseCallback<Schema$Domain>
+    ): void | GaxiosPromise<Schema$Domain> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -935,18 +973,19 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -954,7 +993,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$Domain>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.domains.list
@@ -970,25 +1008,31 @@ export namespace firebasehosting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sites$Domains$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListDomainsResponse>;
     list(
-        params: Params$Resource$Sites$Domains$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListDomainsResponse>,
-        callback: BodyResponseCallback<Schema$ListDomainsResponse>): void;
+      params?: Params$Resource$Sites$Domains$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDomainsResponse>;
     list(
-        params: Params$Resource$Sites$Domains$List,
-        callback: BodyResponseCallback<Schema$ListDomainsResponse>): void;
+      params: Params$Resource$Sites$Domains$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListDomainsResponse>,
+      callback: BodyResponseCallback<Schema$ListDomainsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sites$Domains$List,
+      callback: BodyResponseCallback<Schema$ListDomainsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDomainsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sites$Domains$List|
-        BodyResponseCallback<Schema$ListDomainsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDomainsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDomainsResponse>):
-        void|GaxiosPromise<Schema$ListDomainsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Domains$List;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Domains$List
+        | BodyResponseCallback<Schema$ListDomainsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDomainsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDomainsResponse>
+    ): void | GaxiosPromise<Schema$ListDomainsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1003,19 +1047,22 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/domains')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/domains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainsResponse>(parameters, callback);
@@ -1023,7 +1070,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.domains.update
@@ -1040,24 +1086,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Sites$Domains$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Domain>;
+      params?: Params$Resource$Sites$Domains$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Domain>;
     update(
-        params: Params$Resource$Sites$Domains$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Domain>,
-        callback: BodyResponseCallback<Schema$Domain>): void;
+      params: Params$Resource$Sites$Domains$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Domain>,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
     update(
-        params: Params$Resource$Sites$Domains$Update,
-        callback: BodyResponseCallback<Schema$Domain>): void;
+      params: Params$Resource$Sites$Domains$Update,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Domain>): void;
     update(
-        paramsOrCallback?: Params$Resource$Sites$Domains$Update|
-        BodyResponseCallback<Schema$Domain>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domain>,
-        callback?: BodyResponseCallback<Schema$Domain>):
-        void|GaxiosPromise<Schema$Domain> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Domains$Update;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Domains$Update
+        | BodyResponseCallback<Schema$Domain>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
+      callback?: BodyResponseCallback<Schema$Domain>
+    ): void | GaxiosPromise<Schema$Domain> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Domains$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1072,18 +1122,19 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -1093,12 +1144,12 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Domains$Create extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Domains$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The parent to create the domain association for, in the format:
@@ -1111,36 +1162,36 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Domain;
   }
-  export interface Params$Resource$Sites$Domains$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Domains$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the domain association to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Domains$Get extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Domains$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the domain configuration to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Domains$List extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Domains$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The page size to return. Defaults to 50.
@@ -1156,12 +1207,12 @@ export namespace firebasehosting_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Sites$Domains$Update extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Domains$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the domain association to update or create, if an
@@ -1175,13 +1226,11 @@ export namespace firebasehosting_v1beta1 {
     requestBody?: Schema$Domain;
   }
 
-
   export class Resource$Sites$Releases {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firebasehosting.sites.releases.create
@@ -1199,24 +1248,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Sites$Releases$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Release>;
+      params?: Params$Resource$Sites$Releases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
     create(
-        params: Params$Resource$Sites$Releases$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback: BodyResponseCallback<Schema$Release>): void;
+      params: Params$Resource$Sites$Releases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
     create(
-        params: Params$Resource$Sites$Releases$Create,
-        callback: BodyResponseCallback<Schema$Release>): void;
+      params: Params$Resource$Sites$Releases$Create,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Release>): void;
     create(
-        paramsOrCallback?: Params$Resource$Sites$Releases$Create|
-        BodyResponseCallback<Schema$Release>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback?: BodyResponseCallback<Schema$Release>):
-        void|GaxiosPromise<Schema$Release> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Releases$Create;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Releases$Create
+        | BodyResponseCallback<Schema$Release>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>
+    ): void | GaxiosPromise<Schema$Release> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1231,19 +1284,22 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/releases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -1251,7 +1307,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$Release>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.releases.list
@@ -1267,26 +1322,33 @@ export namespace firebasehosting_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sites$Releases$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListReleasesResponse>;
     list(
-        params: Params$Resource$Sites$Releases$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListReleasesResponse>,
-        callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+      params?: Params$Resource$Sites$Releases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReleasesResponse>;
     list(
-        params: Params$Resource$Sites$Releases$List,
-        callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+      params: Params$Resource$Sites$Releases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sites$Releases$List,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sites$Releases$List|
-        BodyResponseCallback<Schema$ListReleasesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReleasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListReleasesResponse>):
-        void|GaxiosPromise<Schema$ListReleasesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Releases$List;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Releases$List
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1301,19 +1363,22 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/releases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
@@ -1323,12 +1388,12 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Releases$Create extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Releases$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The site that the release belongs to, in the format:
@@ -1350,12 +1415,12 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Sites$Releases$List extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Releases$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The page size to return. Defaults to 100.
@@ -1372,7 +1437,6 @@ export namespace firebasehosting_v1beta1 {
     parent?: string;
   }
 
-
   export class Resource$Sites$Versions {
     context: APIRequestContext;
     files: Resource$Sites$Versions$Files;
@@ -1380,7 +1444,6 @@ export namespace firebasehosting_v1beta1 {
       this.context = context;
       this.files = new Resource$Sites$Versions$Files(this.context);
     }
-
 
     /**
      * firebasehosting.sites.versions.create
@@ -1398,24 +1461,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Sites$Versions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Version>;
+      params?: Params$Resource$Sites$Versions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
     create(
-        params: Params$Resource$Sites$Versions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback: BodyResponseCallback<Schema$Version>): void;
+      params: Params$Resource$Sites$Versions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     create(
-        params: Params$Resource$Sites$Versions$Create,
-        callback: BodyResponseCallback<Schema$Version>): void;
+      params: Params$Resource$Sites$Versions$Create,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Version>): void;
     create(
-        paramsOrCallback?: Params$Resource$Sites$Versions$Create|
-        BodyResponseCallback<Schema$Version>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>):
-        void|GaxiosPromise<Schema$Version> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Versions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Create
+        | BodyResponseCallback<Schema$Version>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback?: BodyResponseCallback<Schema$Version>
+    ): void | GaxiosPromise<Schema$Version> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1430,19 +1497,22 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/versions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1450,7 +1520,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$Version>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.versions.delete
@@ -1465,24 +1534,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Sites$Versions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Sites$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Sites$Versions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Sites$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Sites$Versions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Sites$Versions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Sites$Versions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Versions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1497,18 +1570,19 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1516,7 +1590,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.versions.patch
@@ -1538,24 +1611,28 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Sites$Versions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Version>;
+      params?: Params$Resource$Sites$Versions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
     patch(
-        params: Params$Resource$Sites$Versions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback: BodyResponseCallback<Schema$Version>): void;
+      params: Params$Resource$Sites$Versions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     patch(
-        params: Params$Resource$Sites$Versions$Patch,
-        callback: BodyResponseCallback<Schema$Version>): void;
+      params: Params$Resource$Sites$Versions$Patch,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Version>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Sites$Versions$Patch|
-        BodyResponseCallback<Schema$Version>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>):
-        void|GaxiosPromise<Schema$Version> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Versions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Patch
+        | BodyResponseCallback<Schema$Version>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback?: BodyResponseCallback<Schema$Version>
+    ): void | GaxiosPromise<Schema$Version> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1570,18 +1647,19 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1589,7 +1667,6 @@ export namespace firebasehosting_v1beta1 {
         return createAPIRequest<Schema$Version>(parameters);
       }
     }
-
 
     /**
      * firebasehosting.sites.versions.populateFiles
@@ -1605,31 +1682,34 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     populateFiles(
-        params?: Params$Resource$Sites$Versions$Populatefiles,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$PopulateVersionFilesResponse>;
+      params?: Params$Resource$Sites$Versions$Populatefiles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PopulateVersionFilesResponse>;
     populateFiles(
-        params: Params$Resource$Sites$Versions$Populatefiles,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
-        callback: BodyResponseCallback<Schema$PopulateVersionFilesResponse>):
-        void;
+      params: Params$Resource$Sites$Versions$Populatefiles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
+      callback: BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+    ): void;
     populateFiles(
-        params: Params$Resource$Sites$Versions$Populatefiles,
-        callback: BodyResponseCallback<Schema$PopulateVersionFilesResponse>):
-        void;
+      params: Params$Resource$Sites$Versions$Populatefiles,
+      callback: BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+    ): void;
     populateFiles(
-        callback: BodyResponseCallback<Schema$PopulateVersionFilesResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+    ): void;
     populateFiles(
-        paramsOrCallback?: Params$Resource$Sites$Versions$Populatefiles|
-        BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
-        callback?: BodyResponseCallback<Schema$PopulateVersionFilesResponse>):
-        void|GaxiosPromise<Schema$PopulateVersionFilesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Sites$Versions$Populatefiles;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Populatefiles
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
+      callback?: BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+    ): void | GaxiosPromise<Schema$PopulateVersionFilesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Populatefiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1644,36 +1724,42 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}:populateFiles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}:populateFiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PopulateVersionFilesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PopulateVersionFilesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Sites$Versions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Versions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The parent to create the version for, in the format:
@@ -1696,12 +1782,12 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Sites$Versions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Versions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the version to be deleted, in the format:
@@ -1709,12 +1795,12 @@ export namespace firebasehosting_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Sites$Versions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Versions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unique identifier for a version, in the format:
@@ -1736,12 +1822,12 @@ export namespace firebasehosting_v1beta1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Sites$Versions$Populatefiles extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Versions$Populatefiles
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The version to add files to, in the format:
@@ -1761,7 +1847,6 @@ export namespace firebasehosting_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * firebasehosting.sites.versions.files.list
      * @desc Lists the remaining files to be uploaded for the specified version.
@@ -1778,27 +1863,32 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Sites$Versions$Files$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListVersionFilesResponse>;
+      params?: Params$Resource$Sites$Versions$Files$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListVersionFilesResponse>;
     list(
-        params: Params$Resource$Sites$Versions$Files$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListVersionFilesResponse>,
-        callback: BodyResponseCallback<Schema$ListVersionFilesResponse>): void;
+      params: Params$Resource$Sites$Versions$Files$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
+      callback: BodyResponseCallback<Schema$ListVersionFilesResponse>
+    ): void;
     list(
-        params: Params$Resource$Sites$Versions$Files$List,
-        callback: BodyResponseCallback<Schema$ListVersionFilesResponse>): void;
+      params: Params$Resource$Sites$Versions$Files$List,
+      callback: BodyResponseCallback<Schema$ListVersionFilesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListVersionFilesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sites$Versions$Files$List|
-        BodyResponseCallback<Schema$ListVersionFilesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListVersionFilesResponse>,
-        callback?: BodyResponseCallback<Schema$ListVersionFilesResponse>):
-        void|GaxiosPromise<Schema$ListVersionFilesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Sites$Versions$Files$List;
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Files$List
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
+      callback?: BodyResponseCallback<Schema$ListVersionFilesResponse>
+    ): void | GaxiosPromise<Schema$ListVersionFilesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1813,19 +1903,22 @@ export namespace firebasehosting_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/files')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/files').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionFilesResponse>(parameters, callback);
@@ -1835,12 +1928,12 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Versions$Files$List extends
-      StandardParameters {
+  export interface Params$Resource$Sites$Versions$Files$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The page size to return. Defaults to 1000.

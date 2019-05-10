@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -182,7 +194,7 @@ export namespace servicecontrol_v1 {
      * Other service-specific data about the request, response, and other
      * information associated with the current audited event.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The name of the service method or operation. For API calls, this should
      * be the name of the API method. For example,
@@ -202,7 +214,7 @@ export namespace servicecontrol_v1 {
      * file contents. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    request?: {[key: string]: any;};
+    request?: {[key: string]: any};
     /**
      * Metadata about the operation.
      */
@@ -226,7 +238,7 @@ export namespace servicecontrol_v1 {
      * `service_data` fields. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    resourceOriginalState?: {[key: string]: any;};
+    resourceOriginalState?: {[key: string]: any};
     /**
      * The operation response. This may not include all response elements, such
      * as those that are too large, privacy-sensitive, or duplicated elsewhere
@@ -234,12 +246,12 @@ export namespace servicecontrol_v1 {
      * file contents. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
     /**
      * Deprecated, use `metadata` field instead. Other service-specific data
      * about the request, response, and other activities.
      */
-    serviceData?: {[key: string]: any;};
+    serviceData?: {[key: string]: any};
     /**
      * The name of the API service performing the operation. For example,
      * `&quot;datastore.googleapis.com&quot;`.
@@ -291,7 +303,7 @@ export namespace servicecontrol_v1 {
      * &#39;exp&#39;: 1353604926}  SAML assertions are similarly specified, but
      * with an identity provider dependent structure.
      */
-    claims?: {[key: string]: any;};
+    claims?: {[key: string]: any};
     /**
      * The authorized presenter of the credential. Reflects the optional
      * Authorized Presenter (`azp`) claim within a JWT or the OAuth client id.
@@ -344,7 +356,7 @@ export namespace servicecontrol_v1 {
      * the request. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    thirdPartyPrincipal?: {[key: string]: any;};
+    thirdPartyPrincipal?: {[key: string]: any};
   }
   /**
    * Authorization information for the operation.
@@ -596,7 +608,7 @@ export namespace servicecontrol_v1 {
     /**
      * Metadata about the service that uses the service account. .
      */
-    serviceMetadata?: {[key: string]: any;};
+    serviceMetadata?: {[key: string]: any};
   }
   /**
    * A common proto for logging HTTP requests. Only contains semantics defined
@@ -723,7 +735,7 @@ export namespace servicecontrol_v1 {
      * A set of user-defined (key, value) data that provides additional
      * information about the log entry.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Required. The log to which this log entry belongs. Examples:
      * `&quot;syslog&quot;`, `&quot;book_log&quot;`.
@@ -738,7 +750,7 @@ export namespace servicecontrol_v1 {
      * The log entry payload, represented as a protocol buffer that is expressed
      * as a JSON object. The only accepted type currently is AuditLog.
      */
-    protoPayload?: {[key: string]: any;};
+    protoPayload?: {[key: string]: any};
     /**
      * The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
@@ -748,7 +760,7 @@ export namespace servicecontrol_v1 {
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    structPayload?: {[key: string]: any;};
+    structPayload?: {[key: string]: any};
     /**
      * The log entry payload, represented as a Unicode string (UTF-8).
      */
@@ -824,7 +836,7 @@ export namespace servicecontrol_v1 {
      * google.api.servicecontrol.v1.Operation.labels for the overriding
      * relationship.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * A money value.
      */
@@ -918,7 +930,7 @@ export namespace servicecontrol_v1 {
      * the API is served, such as App Engine, Compute Engine, or Kubernetes
      * Engine.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Represents information to be logged.
      */
@@ -976,7 +988,7 @@ export namespace servicecontrol_v1 {
      * with. Only a combination of 1000 user labels per consumer project are
      * allowed.
      */
-    userLabels?: {[key: string]: string;};
+    userLabels?: {[key: string]: string};
   }
   /**
    * This message defines attributes for a node that handles a network request.
@@ -992,7 +1004,7 @@ export namespace servicecontrol_v1 {
     /**
      * The labels associated with the peer.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The network port of the peer.
      */
@@ -1055,7 +1067,7 @@ export namespace servicecontrol_v1 {
      * Castor (that scales quota usage) and &#39;quota_metrics&#39; for
      * SuperQuota (that doesn&#39;t scale quota usage).
      */
-    quotaConsumed?: {[key: string]: number;};
+    quotaConsumed?: {[key: string]: number};
     /**
      * Quota metrics to indicate the usage. Depending on the check request, one
      * or more of the following metrics will be included:  1. For rate quota,
@@ -1085,7 +1097,7 @@ export namespace servicecontrol_v1 {
     /**
      * Labels describing the operation.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Fully qualified name of the API method for which this quota operation is
      * requested. This name is used for matching quota rules or metric rules and
@@ -1229,7 +1241,7 @@ export namespace servicecontrol_v1 {
      * must be merged according to the HTTP spec. All header keys must be
      * lowercased, because HTTP header keys are case-insensitive.
      */
-    headers?: {[key: string]: string;};
+    headers?: {[key: string]: string};
     /**
      * The HTTP request `Host` header value.
      */
@@ -1342,7 +1354,7 @@ export namespace servicecontrol_v1 {
      * The labels or tags on the resource, such as AWS resource tags and
      * Kubernetes resource labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The stable identifier (name) of a resource on the `service`. A resource
      * can be logically identified as
@@ -1470,7 +1482,7 @@ export namespace servicecontrol_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1485,16 +1497,14 @@ export namespace servicecontrol_v1 {
     /**
      * Metadata about third party identity.
      */
-    thirdPartyClaims?: {[key: string]: any;};
+    thirdPartyClaims?: {[key: string]: any};
   }
-
 
   export class Resource$Services {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicecontrol.services.allocateQuota
@@ -1517,27 +1527,34 @@ export namespace servicecontrol_v1 {
      * @return {object} Request object
      */
     allocateQuota(
-        params?: Params$Resource$Services$Allocatequota,
-        options?: MethodOptions): GaxiosPromise<Schema$AllocateQuotaResponse>;
+      params?: Params$Resource$Services$Allocatequota,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AllocateQuotaResponse>;
     allocateQuota(
-        params: Params$Resource$Services$Allocatequota,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AllocateQuotaResponse>,
-        callback: BodyResponseCallback<Schema$AllocateQuotaResponse>): void;
+      params: Params$Resource$Services$Allocatequota,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AllocateQuotaResponse>,
+      callback: BodyResponseCallback<Schema$AllocateQuotaResponse>
+    ): void;
     allocateQuota(
-        params: Params$Resource$Services$Allocatequota,
-        callback: BodyResponseCallback<Schema$AllocateQuotaResponse>): void;
-    allocateQuota(callback: BodyResponseCallback<Schema$AllocateQuotaResponse>):
-        void;
+      params: Params$Resource$Services$Allocatequota,
+      callback: BodyResponseCallback<Schema$AllocateQuotaResponse>
+    ): void;
     allocateQuota(
-        paramsOrCallback?: Params$Resource$Services$Allocatequota|
-        BodyResponseCallback<Schema$AllocateQuotaResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AllocateQuotaResponse>,
-        callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>):
-        void|GaxiosPromise<Schema$AllocateQuotaResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Allocatequota;
+      callback: BodyResponseCallback<Schema$AllocateQuotaResponse>
+    ): void;
+    allocateQuota(
+      paramsOrCallback?:
+        | Params$Resource$Services$Allocatequota
+        | BodyResponseCallback<Schema$AllocateQuotaResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AllocateQuotaResponse>,
+      callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>
+    ): void | GaxiosPromise<Schema$AllocateQuotaResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Allocatequota;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1552,19 +1569,22 @@ export namespace servicecontrol_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicecontrol.googleapis.com/';
+        options.rootUrl || 'https://servicecontrol.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:allocateQuota')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:allocateQuota').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback);
@@ -1572,7 +1592,6 @@ export namespace servicecontrol_v1 {
         return createAPIRequest<Schema$AllocateQuotaResponse>(parameters);
       }
     }
-
 
     /**
      * servicecontrol.services.check
@@ -1597,23 +1616,29 @@ export namespace servicecontrol_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check(params?: Params$Resource$Services$Check, options?: MethodOptions):
-        GaxiosPromise<Schema$CheckResponse>;
     check(
-        params: Params$Resource$Services$Check,
-        options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
-        callback: BodyResponseCallback<Schema$CheckResponse>): void;
+      params?: Params$Resource$Services$Check,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckResponse>;
     check(
-        params: Params$Resource$Services$Check,
-        callback: BodyResponseCallback<Schema$CheckResponse>): void;
+      params: Params$Resource$Services$Check,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckResponse>,
+      callback: BodyResponseCallback<Schema$CheckResponse>
+    ): void;
+    check(
+      params: Params$Resource$Services$Check,
+      callback: BodyResponseCallback<Schema$CheckResponse>
+    ): void;
     check(callback: BodyResponseCallback<Schema$CheckResponse>): void;
     check(
-        paramsOrCallback?: Params$Resource$Services$Check|
-        BodyResponseCallback<Schema$CheckResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CheckResponse>,
-        callback?: BodyResponseCallback<Schema$CheckResponse>):
-        void|GaxiosPromise<Schema$CheckResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Services$Check
+        | BodyResponseCallback<Schema$CheckResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckResponse>,
+      callback?: BodyResponseCallback<Schema$CheckResponse>
+    ): void | GaxiosPromise<Schema$CheckResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1629,19 +1654,22 @@ export namespace servicecontrol_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicecontrol.googleapis.com/';
+        options.rootUrl || 'https://servicecontrol.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:check')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:check').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(parameters, callback);
@@ -1649,7 +1677,6 @@ export namespace servicecontrol_v1 {
         return createAPIRequest<Schema$CheckResponse>(parameters);
       }
     }
-
 
     /**
      * servicecontrol.services.report
@@ -1674,23 +1701,29 @@ export namespace servicecontrol_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    report(params?: Params$Resource$Services$Report, options?: MethodOptions):
-        GaxiosPromise<Schema$ReportResponse>;
     report(
-        params: Params$Resource$Services$Report,
-        options: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
-        callback: BodyResponseCallback<Schema$ReportResponse>): void;
+      params?: Params$Resource$Services$Report,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReportResponse>;
     report(
-        params: Params$Resource$Services$Report,
-        callback: BodyResponseCallback<Schema$ReportResponse>): void;
+      params: Params$Resource$Services$Report,
+      options: MethodOptions | BodyResponseCallback<Schema$ReportResponse>,
+      callback: BodyResponseCallback<Schema$ReportResponse>
+    ): void;
+    report(
+      params: Params$Resource$Services$Report,
+      callback: BodyResponseCallback<Schema$ReportResponse>
+    ): void;
     report(callback: BodyResponseCallback<Schema$ReportResponse>): void;
     report(
-        paramsOrCallback?: Params$Resource$Services$Report|
-        BodyResponseCallback<Schema$ReportResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReportResponse>,
-        callback?: BodyResponseCallback<Schema$ReportResponse>):
-        void|GaxiosPromise<Schema$ReportResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Services$Report
+        | BodyResponseCallback<Schema$ReportResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReportResponse>,
+      callback?: BodyResponseCallback<Schema$ReportResponse>
+    ): void | GaxiosPromise<Schema$ReportResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1706,19 +1739,22 @@ export namespace servicecontrol_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicecontrol.googleapis.com/';
+        options.rootUrl || 'https://servicecontrol.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:report')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:report').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReportResponse>(parameters, callback);
@@ -1728,12 +1764,12 @@ export namespace servicecontrol_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Allocatequota extends
-      StandardParameters {
+  export interface Params$Resource$Services$Allocatequota
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the service as specified in the service configuration. For
@@ -1751,7 +1787,7 @@ export namespace servicecontrol_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The service name as specified in its service configuration. For example,
@@ -1770,7 +1806,7 @@ export namespace servicecontrol_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The service name as specified in its service configuration. For example,

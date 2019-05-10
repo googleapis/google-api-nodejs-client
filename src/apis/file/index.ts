@@ -18,8 +18,8 @@ import {file_v1} from './v1';
 import {file_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1': file_v1.File,
-  'v1beta1': file_v1beta1.File,
+  v1: file_v1.File,
+  v1beta1: file_v1beta1.File,
 };
 
 export function file(version: 'v1'): file_v1.File;
@@ -27,8 +27,9 @@ export function file(options: file_v1.Options): file_v1.File;
 export function file(version: 'v1beta1'): file_v1beta1.File;
 export function file(options: file_v1beta1.Options): file_v1beta1.File;
 export function file<T = file_v1.File | file_v1beta1.File>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|file_v1.Options|'v1beta1'|file_v1beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | file_v1.Options | 'v1beta1' | file_v1beta1.Options
+) {
   return getAPI<T>('file', versionOrOptions, VERSIONS, this);
 }
 

@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {sourcerepo_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': sourcerepo_v1.Sourcerepo,
+  v1: sourcerepo_v1.Sourcerepo,
 };
 
 export function sourcerepo(version: 'v1'): sourcerepo_v1.Sourcerepo;
-export function sourcerepo(options: sourcerepo_v1.Options):
-    sourcerepo_v1.Sourcerepo;
+export function sourcerepo(
+  options: sourcerepo_v1.Options
+): sourcerepo_v1.Sourcerepo;
 export function sourcerepo<T = sourcerepo_v1.Sourcerepo>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|sourcerepo_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | sourcerepo_v1.Options
+) {
   return getAPI<T>('sourcerepo', versionOrOptions, VERSIONS, this);
 }
 

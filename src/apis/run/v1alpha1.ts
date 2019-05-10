@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1080,7 +1092,7 @@ export namespace run_v1alpha1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -1089,7 +1101,7 @@ export namespace run_v1alpha1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -1107,7 +1119,7 @@ export namespace run_v1alpha1 {
      * They are not queryable and should be preserved when modifying objects.
      * More info: http://kubernetes.io/docs/user-guide/annotations +optional
      */
-    annotations?: {[key: string]: string;};
+    annotations?: {[key: string]: string};
     /**
      * Not currently supported by Cloud Run.  The name of the cluster which the
      * object belongs to. This is used to distinguish resources with same name
@@ -1206,7 +1218,7 @@ export namespace run_v1alpha1 {
      * controllers and routes. More info:
      * http://kubernetes.io/docs/user-guide/labels +optional
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Name must be unique within a namespace, within a Cloud Run region. Is
      * required when creating resources, although some resources may allow a
@@ -1418,14 +1430,14 @@ export namespace run_v1alpha1 {
      * values of the map is string form of the &#39;quantity&#39; k8s type:
      * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
-    limits?: {[key: string]: string;};
+    limits?: {[key: string]: string};
     /**
      * Limits describes the maximum amount of compute resources allowed. This is
      * a temporary field created to migrate away from the map&lt;string,
      * Quantity&gt; limits field. This is done to become compliant with k8s
      * style API. This field is deprecated in favor of limits field.
      */
-    limitsInMap?: {[key: string]: Schema$Quantity;};
+    limitsInMap?: {[key: string]: Schema$Quantity};
     /**
      * Requests describes the minimum amount of compute resources required. If
      * Requests is omitted for a container, it defaults to Limits if that is
@@ -1433,7 +1445,7 @@ export namespace run_v1alpha1 {
      * values of the map is string form of the &#39;quantity&#39; k8s type:
      * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
-    requests?: {[key: string]: string;};
+    requests?: {[key: string]: string};
     /**
      * Requests describes the minimum amount of compute resources required. If
      * Requests is omitted for a container, it defaults to Limits if that is
@@ -1442,7 +1454,7 @@ export namespace run_v1alpha1 {
      * Quantity&gt; requests field. This is done to become compliant with k8s
      * style API. This field is deprecated in favor of requests field.
      */
-    requestsInMap?: {[key: string]: Schema$Quantity;};
+    requestsInMap?: {[key: string]: Schema$Quantity};
   }
   /**
    * Revision is an immutable snapshot of code and configuration.  A revision
@@ -2188,7 +2200,6 @@ export namespace run_v1alpha1 {
     subPath?: string;
   }
 
-
   export class Resource$Namespaces {
     context: APIRequestContext;
     authorizeddomains: Resource$Namespaces$Authorizeddomains;
@@ -2199,25 +2210,26 @@ export namespace run_v1alpha1 {
     services: Resource$Namespaces$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.authorizeddomains =
-          new Resource$Namespaces$Authorizeddomains(this.context);
-      this.configurations =
-          new Resource$Namespaces$Configurations(this.context);
-      this.domainmappings =
-          new Resource$Namespaces$Domainmappings(this.context);
+      this.authorizeddomains = new Resource$Namespaces$Authorizeddomains(
+        this.context
+      );
+      this.configurations = new Resource$Namespaces$Configurations(
+        this.context
+      );
+      this.domainmappings = new Resource$Namespaces$Domainmappings(
+        this.context
+      );
       this.revisions = new Resource$Namespaces$Revisions(this.context);
       this.routes = new Resource$Namespaces$Routes(this.context);
       this.services = new Resource$Namespaces$Services(this.context);
     }
   }
 
-
   export class Resource$Namespaces$Authorizeddomains {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.namespaces.authorizeddomains.list
@@ -2234,30 +2246,34 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Namespaces$Authorizeddomains$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+      params?: Params$Resource$Namespaces$Authorizeddomains$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
     list(
-        params: Params$Resource$Namespaces$Authorizeddomains$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
+      params: Params$Resource$Namespaces$Authorizeddomains$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
     list(
-        params: Params$Resource$Namespaces$Authorizeddomains$List,
-        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
+      params: Params$Resource$Namespaces$Authorizeddomains$List,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Namespaces$Authorizeddomains$List|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void|GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Authorizeddomains$List;
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Authorizeddomains$List
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void | GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2274,35 +2290,39 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apis/domains.cloudrun.com/v1alpha1/{+parent}/authorizeddomains')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apis/domains.cloudrun.com/v1alpha1/{+parent}/authorizeddomains'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Namespaces$Authorizeddomains$List extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Authorizeddomains$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum results to return per page.
@@ -2318,13 +2338,11 @@ export namespace run_v1alpha1 {
     parent?: string;
   }
 
-
   export class Resource$Namespaces$Configurations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.namespaces.configurations.get
@@ -2338,22 +2356,31 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Namespaces$Configurations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Configuration>;
-    get(params: Params$Resource$Namespaces$Configurations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
-        callback: BodyResponseCallback<Schema$Configuration>): void;
-    get(params: Params$Resource$Namespaces$Configurations$Get,
-        callback: BodyResponseCallback<Schema$Configuration>): void;
+    get(
+      params?: Params$Resource$Namespaces$Configurations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Configuration>;
+    get(
+      params: Params$Resource$Namespaces$Configurations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Configuration>,
+      callback: BodyResponseCallback<Schema$Configuration>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Configurations$Get,
+      callback: BodyResponseCallback<Schema$Configuration>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Configuration>): void;
-    get(paramsOrCallback?: Params$Resource$Namespaces$Configurations$Get|
-        BodyResponseCallback<Schema$Configuration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Configuration>,
-        callback?: BodyResponseCallback<Schema$Configuration>):
-        void|GaxiosPromise<Schema$Configuration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Configurations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Configurations$Get
+        | BodyResponseCallback<Schema$Configuration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>
+    ): void | GaxiosPromise<Schema$Configuration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Configurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2370,16 +2397,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -2387,7 +2416,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Configuration>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.configurations.list
@@ -2409,30 +2437,34 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Namespaces$Configurations$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListConfigurationsResponse>;
+      params?: Params$Resource$Namespaces$Configurations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConfigurationsResponse>;
     list(
-        params: Params$Resource$Namespaces$Configurations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListConfigurationsResponse>,
-        callback: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void;
+      params: Params$Resource$Namespaces$Configurations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+      callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Namespaces$Configurations$List,
-        callback: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void;
+      params: Params$Resource$Namespaces$Configurations$List,
+      callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Namespaces$Configurations$List|
-        BodyResponseCallback<Schema$ListConfigurationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListConfigurationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void|GaxiosPromise<Schema$ListConfigurationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Configurations$List;
+      callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Configurations$List
+        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void | GaxiosPromise<Schema$ListConfigurationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Configurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2449,34 +2481,37 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apis/serving.knative.dev/v1alpha1/{+parent}/configurations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apis/serving.knative.dev/v1alpha1/{+parent}/configurations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Namespaces$Configurations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Configurations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the configuration being retrieved. If needed, replace
@@ -2484,12 +2519,12 @@ export namespace run_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Configurations$List extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Configurations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -2531,13 +2566,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Namespaces$Domainmappings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.namespaces.domainmappings.create
@@ -2553,25 +2586,30 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Namespaces$Domainmappings$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$DomainMapping>;
+      params?: Params$Resource$Namespaces$Domainmappings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DomainMapping>;
     create(
-        params: Params$Resource$Namespaces$Domainmappings$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+      params: Params$Resource$Namespaces$Domainmappings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
     create(
-        params: Params$Resource$Namespaces$Domainmappings$Create,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+      params: Params$Resource$Namespaces$Domainmappings$Create,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
     create(callback: BodyResponseCallback<Schema$DomainMapping>): void;
     create(
-        paramsOrCallback?: Params$Resource$Namespaces$Domainmappings$Create|
-        BodyResponseCallback<Schema$DomainMapping>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DomainMapping>,
-        callback?: BodyResponseCallback<Schema$DomainMapping>):
-        void|GaxiosPromise<Schema$DomainMapping> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Domainmappings$Create;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Domainmappings$Create
+        | BodyResponseCallback<Schema$DomainMapping>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>,
+      callback?: BodyResponseCallback<Schema$DomainMapping>
+    ): void | GaxiosPromise<Schema$DomainMapping> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2588,18 +2626,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apis/domains.cloudrun.com/v1alpha1/{+parent}/domainmappings')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apis/domains.cloudrun.com/v1alpha1/{+parent}/domainmappings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -2607,7 +2646,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$DomainMapping>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.domainmappings.delete
@@ -2626,24 +2664,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Namespaces$Domainmappings$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Namespaces$Domainmappings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Namespaces$Domainmappings$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Namespaces$Domainmappings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Namespaces$Domainmappings$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Namespaces$Domainmappings$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Namespaces$Domainmappings$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Domainmappings$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Domainmappings$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2660,16 +2702,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/domains.cloudrun.com/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/domains.cloudrun.com/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2677,7 +2721,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.domainmappings.get
@@ -2691,22 +2734,31 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Namespaces$Domainmappings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DomainMapping>;
-    get(params: Params$Resource$Namespaces$Domainmappings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
-    get(params: Params$Resource$Namespaces$Domainmappings$Get,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+    get(
+      params?: Params$Resource$Namespaces$Domainmappings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DomainMapping>;
+    get(
+      params: Params$Resource$Namespaces$Domainmappings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Domainmappings$Get,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DomainMapping>): void;
-    get(paramsOrCallback?: Params$Resource$Namespaces$Domainmappings$Get|
-        BodyResponseCallback<Schema$DomainMapping>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DomainMapping>,
-        callback?: BodyResponseCallback<Schema$DomainMapping>):
-        void|GaxiosPromise<Schema$DomainMapping> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Domainmappings$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Domainmappings$Get
+        | BodyResponseCallback<Schema$DomainMapping>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>,
+      callback?: BodyResponseCallback<Schema$DomainMapping>
+    ): void | GaxiosPromise<Schema$DomainMapping> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2723,16 +2775,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/domains.cloudrun.com/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/domains.cloudrun.com/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -2740,7 +2794,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$DomainMapping>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.domainmappings.list
@@ -2762,30 +2815,34 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Namespaces$Domainmappings$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListDomainMappingsResponse>;
+      params?: Params$Resource$Namespaces$Domainmappings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
     list(
-        params: Params$Resource$Namespaces$Domainmappings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
+      params: Params$Resource$Namespaces$Domainmappings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
     list(
-        params: Params$Resource$Namespaces$Domainmappings$List,
-        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
+      params: Params$Resource$Namespaces$Domainmappings$List,
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Namespaces$Domainmappings$List|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void|GaxiosPromise<Schema$ListDomainMappingsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Domainmappings$List;
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Domainmappings$List
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void | GaxiosPromise<Schema$ListDomainMappingsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2802,34 +2859,37 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apis/domains.cloudrun.com/v1alpha1/{+parent}/domainmappings')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apis/domains.cloudrun.com/v1alpha1/{+parent}/domainmappings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Namespaces$Domainmappings$Create extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID or project number in which this domain mapping should be
@@ -2842,12 +2902,12 @@ export namespace run_v1alpha1 {
      */
     requestBody?: Schema$DomainMapping;
   }
-  export interface Params$Resource$Namespaces$Domainmappings$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud Run currently ignores this parameter.
@@ -2877,12 +2937,12 @@ export namespace run_v1alpha1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Domainmappings$Get extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the domain mapping being retrieved. If needed, replace
@@ -2890,12 +2950,12 @@ export namespace run_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Domainmappings$List extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Domainmappings$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -2937,13 +2997,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Namespaces$Revisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.namespaces.revisions.delete
@@ -2962,24 +3020,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Namespaces$Revisions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Namespaces$Revisions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Namespaces$Revisions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Namespaces$Revisions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Namespaces$Revisions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Namespaces$Revisions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Namespaces$Revisions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Revisions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Revisions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2996,16 +3058,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3013,7 +3077,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.revisions.get
@@ -3027,21 +3090,29 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Namespaces$Revisions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Revision>;
-    get(params: Params$Resource$Namespaces$Revisions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback: BodyResponseCallback<Schema$Revision>): void;
-    get(params: Params$Resource$Namespaces$Revisions$Get,
-        callback: BodyResponseCallback<Schema$Revision>): void;
+    get(
+      params?: Params$Resource$Namespaces$Revisions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Revision>;
+    get(
+      params: Params$Resource$Namespaces$Revisions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Revisions$Get,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Revision>): void;
-    get(paramsOrCallback?: Params$Resource$Namespaces$Revisions$Get|
-        BodyResponseCallback<Schema$Revision>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>):
-        void|GaxiosPromise<Schema$Revision> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Namespaces$Revisions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Revisions$Get
+        | BodyResponseCallback<Schema$Revision>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>
+    ): void | GaxiosPromise<Schema$Revision> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3058,16 +3129,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -3075,7 +3148,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Revision>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.revisions.list
@@ -3097,26 +3169,32 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Namespaces$Revisions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListRevisionsResponse>;
+      params?: Params$Resource$Namespaces$Revisions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRevisionsResponse>;
     list(
-        params: Params$Resource$Namespaces$Revisions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListRevisionsResponse>,
-        callback: BodyResponseCallback<Schema$ListRevisionsResponse>): void;
+      params: Params$Resource$Namespaces$Revisions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$ListRevisionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Namespaces$Revisions$List,
-        callback: BodyResponseCallback<Schema$ListRevisionsResponse>): void;
+      params: Params$Resource$Namespaces$Revisions$List,
+      callback: BodyResponseCallback<Schema$ListRevisionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRevisionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Namespaces$Revisions$List|
-        BodyResponseCallback<Schema$ListRevisionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRevisionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListRevisionsResponse>):
-        void|GaxiosPromise<Schema$ListRevisionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Namespaces$Revisions$List;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Revisions$List
+        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListRevisionsResponse>
+    ): void | GaxiosPromise<Schema$ListRevisionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3133,17 +3211,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/apis/serving.knative.dev/v1alpha1/{+parent}/revisions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+parent}/revisions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(parameters, callback);
@@ -3153,12 +3232,12 @@ export namespace run_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Revisions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Revisions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud Run currently ignores this parameter.
@@ -3188,12 +3267,12 @@ export namespace run_v1alpha1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Revisions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Revisions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the revision being retrieved. If needed, replace
@@ -3201,12 +3280,12 @@ export namespace run_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Revisions$List extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Revisions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -3248,13 +3327,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Namespaces$Routes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.namespaces.routes.get
@@ -3268,21 +3345,29 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Namespaces$Routes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Route>;
-    get(params: Params$Resource$Namespaces$Routes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Route>,
-        callback: BodyResponseCallback<Schema$Route>): void;
-    get(params: Params$Resource$Namespaces$Routes$Get,
-        callback: BodyResponseCallback<Schema$Route>): void;
+    get(
+      params?: Params$Resource$Namespaces$Routes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Route>;
+    get(
+      params: Params$Resource$Namespaces$Routes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Route>,
+      callback: BodyResponseCallback<Schema$Route>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Routes$Get,
+      callback: BodyResponseCallback<Schema$Route>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Route>): void;
-    get(paramsOrCallback?: Params$Resource$Namespaces$Routes$Get|
-        BodyResponseCallback<Schema$Route>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Route>,
-        callback?: BodyResponseCallback<Schema$Route>):
-        void|GaxiosPromise<Schema$Route> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Namespaces$Routes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Routes$Get
+        | BodyResponseCallback<Schema$Route>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Route>,
+      callback?: BodyResponseCallback<Schema$Route>
+    ): void | GaxiosPromise<Schema$Route> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Routes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3299,16 +3384,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Route>(parameters, callback);
@@ -3316,7 +3403,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Route>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.routes.list
@@ -3338,25 +3424,30 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Namespaces$Routes$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListRoutesResponse>;
+      params?: Params$Resource$Namespaces$Routes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRoutesResponse>;
     list(
-        params: Params$Resource$Namespaces$Routes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListRoutesResponse>,
-        callback: BodyResponseCallback<Schema$ListRoutesResponse>): void;
+      params: Params$Resource$Namespaces$Routes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRoutesResponse>,
+      callback: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void;
     list(
-        params: Params$Resource$Namespaces$Routes$List,
-        callback: BodyResponseCallback<Schema$ListRoutesResponse>): void;
+      params: Params$Resource$Namespaces$Routes$List,
+      callback: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRoutesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Namespaces$Routes$List|
-        BodyResponseCallback<Schema$ListRoutesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRoutesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRoutesResponse>):
-        void|GaxiosPromise<Schema$ListRoutesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Namespaces$Routes$List;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Routes$List
+        | BodyResponseCallback<Schema$ListRoutesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRoutesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void | GaxiosPromise<Schema$ListRoutesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Routes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3373,17 +3464,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/apis/serving.knative.dev/v1alpha1/{+parent}/routes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+parent}/routes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(parameters, callback);
@@ -3393,12 +3485,12 @@ export namespace run_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Routes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Routes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the route being retrieved. If needed, replace {namespace_id}
@@ -3406,12 +3498,12 @@ export namespace run_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Routes$List extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Routes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -3452,13 +3544,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Namespaces$Services {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.namespaces.services.create
@@ -3474,24 +3564,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Namespaces$Services$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
+      params?: Params$Resource$Namespaces$Services$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
     create(
-        params: Params$Resource$Namespaces$Services$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Namespaces$Services$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     create(
-        params: Params$Resource$Namespaces$Services$Create,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Namespaces$Services$Create,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Service>): void;
     create(
-        paramsOrCallback?: Params$Resource$Namespaces$Services$Create|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Services$Create;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Services$Create
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Services$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3508,17 +3602,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/apis/serving.knative.dev/v1alpha1/{+parent}/services')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+parent}/services'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3526,7 +3621,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.services.delete
@@ -3547,24 +3641,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Namespaces$Services$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Namespaces$Services$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Namespaces$Services$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Namespaces$Services$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Namespaces$Services$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Namespaces$Services$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Namespaces$Services$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Services$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Services$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3581,16 +3679,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3598,7 +3698,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.services.get
@@ -3612,21 +3711,29 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Namespaces$Services$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
-    get(params: Params$Resource$Namespaces$Services$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
-    get(params: Params$Resource$Namespaces$Services$Get,
-        callback: BodyResponseCallback<Schema$Service>): void;
+    get(
+      params?: Params$Resource$Namespaces$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    get(
+      params: Params$Resource$Namespaces$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Services$Get,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Service>): void;
-    get(paramsOrCallback?: Params$Resource$Namespaces$Services$Get|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Namespaces$Services$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Services$Get
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3643,16 +3750,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3660,7 +3769,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.services.list
@@ -3682,26 +3790,32 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Namespaces$Services$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListServicesResponse>;
+      params?: Params$Resource$Namespaces$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Namespaces$Services$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params: Params$Resource$Namespaces$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
     list(
-        params: Params$Resource$Namespaces$Services$List,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params: Params$Resource$Namespaces$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Namespaces$Services$List|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicesResponse>):
-        void|GaxiosPromise<Schema$ListServicesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Namespaces$Services$List;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback?: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void | GaxiosPromise<Schema$ListServicesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3718,17 +3832,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/apis/serving.knative.dev/v1alpha1/{+parent}/services')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+parent}/services'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -3736,7 +3851,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
       }
     }
-
 
     /**
      * run.namespaces.services.replaceService
@@ -3756,24 +3870,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     replaceService(
-        params?: Params$Resource$Namespaces$Services$Replaceservice,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
+      params?: Params$Resource$Namespaces$Services$Replaceservice,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
     replaceService(
-        params: Params$Resource$Namespaces$Services$Replaceservice,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Namespaces$Services$Replaceservice,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     replaceService(
-        params: Params$Resource$Namespaces$Services$Replaceservice,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Namespaces$Services$Replaceservice,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     replaceService(callback: BodyResponseCallback<Schema$Service>): void;
     replaceService(
-        paramsOrCallback?: Params$Resource$Namespaces$Services$Replaceservice|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Namespaces$Services$Replaceservice;
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Services$Replaceservice
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Services$Replaceservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3790,16 +3908,18 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apis/serving.knative.dev/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3809,12 +3929,12 @@ export namespace run_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$Services$Create extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID or project number in which this service should be created.
@@ -3826,12 +3946,12 @@ export namespace run_v1alpha1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Namespaces$Services$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud Run currently ignores this parameter.
@@ -3861,12 +3981,12 @@ export namespace run_v1alpha1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Namespaces$Services$Get extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service being retrieved. If needed, replace
@@ -3874,12 +3994,12 @@ export namespace run_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Namespaces$Services$List extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Services$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -3920,12 +4040,12 @@ export namespace run_v1alpha1 {
      */
     watch?: boolean;
   }
-  export interface Params$Resource$Namespaces$Services$Replaceservice extends
-      StandardParameters {
+  export interface Params$Resource$Namespaces$Services$Replaceservice
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service being replaced. If needed, replace {namespace_id}
@@ -3939,8 +4059,6 @@ export namespace run_v1alpha1 {
     requestBody?: Schema$Service;
   }
 
-
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -3949,7 +4067,6 @@ export namespace run_v1alpha1 {
       this.locations = new Resource$Projects$Locations(this.context);
     }
   }
-
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
@@ -3961,17 +4078,19 @@ export namespace run_v1alpha1 {
     services: Resource$Projects$Locations$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.authorizeddomains =
-          new Resource$Projects$Locations$Authorizeddomains(this.context);
-      this.configurations =
-          new Resource$Projects$Locations$Configurations(this.context);
-      this.domainmappings =
-          new Resource$Projects$Locations$Domainmappings(this.context);
+      this.authorizeddomains = new Resource$Projects$Locations$Authorizeddomains(
+        this.context
+      );
+      this.configurations = new Resource$Projects$Locations$Configurations(
+        this.context
+      );
+      this.domainmappings = new Resource$Projects$Locations$Domainmappings(
+        this.context
+      );
       this.revisions = new Resource$Projects$Locations$Revisions(this.context);
       this.routes = new Resource$Projects$Locations$Routes(this.context);
       this.services = new Resource$Projects$Locations$Services(this.context);
     }
-
 
     /**
      * run.projects.locations.list
@@ -3989,26 +4108,32 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4025,16 +4150,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+name}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -4044,12 +4172,12 @@ export namespace run_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -4075,7 +4203,6 @@ export namespace run_v1alpha1 {
       this.context = context;
     }
 
-
     /**
      * run.projects.locations.authorizeddomains.list
      * @desc RPC to list authorized domains.
@@ -4091,37 +4218,39 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Authorizeddomains$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+      params?: Params$Resource$Projects$Locations$Authorizeddomains$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Authorizeddomains$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Authorizeddomains$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Authorizeddomains$List,
-        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Authorizeddomains$List,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Authorizeddomains$List|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void|GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Authorizeddomains$List;
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizeddomains$List
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void | GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Authorizeddomains$List;
+        params = {} as Params$Resource$Projects$Locations$Authorizeddomains$List;
         options = {};
       }
 
@@ -4133,33 +4262,39 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/authorizeddomains')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/authorizeddomains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Locations$Authorizeddomains$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum results to return per page.
@@ -4175,13 +4310,11 @@ export namespace run_v1alpha1 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Locations$Configurations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.projects.locations.configurations.get
@@ -4195,23 +4328,31 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Configurations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Configuration>;
-    get(params: Params$Resource$Projects$Locations$Configurations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
-        callback: BodyResponseCallback<Schema$Configuration>): void;
-    get(params: Params$Resource$Projects$Locations$Configurations$Get,
-        callback: BodyResponseCallback<Schema$Configuration>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Configurations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Configuration>;
+    get(
+      params: Params$Resource$Projects$Locations$Configurations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Configuration>,
+      callback: BodyResponseCallback<Schema$Configuration>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Configurations$Get,
+      callback: BodyResponseCallback<Schema$Configuration>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Configuration>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Configurations$Get|
-        BodyResponseCallback<Schema$Configuration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Configuration>,
-        callback?: BodyResponseCallback<Schema$Configuration>):
-        void|GaxiosPromise<Schema$Configuration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Configurations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Configurations$Get
+        | BodyResponseCallback<Schema$Configuration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Configuration>,
+      callback?: BodyResponseCallback<Schema$Configuration>
+    ): void | GaxiosPromise<Schema$Configuration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Configurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4228,16 +4369,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -4245,7 +4386,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Configuration>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.configurations.list
@@ -4267,31 +4407,34 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Configurations$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListConfigurationsResponse>;
+      params?: Params$Resource$Projects$Locations$Configurations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConfigurationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Configurations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListConfigurationsResponse>,
-        callback: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Configurations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+      callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Configurations$List,
-        callback: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Configurations$List,
+      callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Configurations$List|
-        BodyResponseCallback<Schema$ListConfigurationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListConfigurationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListConfigurationsResponse>):
-        void|GaxiosPromise<Schema$ListConfigurationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Configurations$List;
+      callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Configurations$List
+        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConfigurationsResponse>
+    ): void | GaxiosPromise<Schema$ListConfigurationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Configurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4308,32 +4451,37 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/configurations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/configurations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Configurations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Configurations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the configuration being retrieved. If needed, replace
@@ -4342,11 +4490,11 @@ export namespace run_v1alpha1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Configurations$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -4388,13 +4536,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Projects$Locations$Domainmappings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.projects.locations.domainmappings.create
@@ -4410,26 +4556,30 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Domainmappings$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$DomainMapping>;
+      params?: Params$Resource$Projects$Locations$Domainmappings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DomainMapping>;
     create(
-        params: Params$Resource$Projects$Locations$Domainmappings$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+      params: Params$Resource$Projects$Locations$Domainmappings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Domainmappings$Create,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+      params: Params$Resource$Projects$Locations$Domainmappings$Create,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
     create(callback: BodyResponseCallback<Schema$DomainMapping>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Domainmappings$Create|
-        BodyResponseCallback<Schema$DomainMapping>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DomainMapping>,
-        callback?: BodyResponseCallback<Schema$DomainMapping>):
-        void|GaxiosPromise<Schema$DomainMapping> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Domainmappings$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Domainmappings$Create
+        | BodyResponseCallback<Schema$DomainMapping>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>,
+      callback?: BodyResponseCallback<Schema$DomainMapping>
+    ): void | GaxiosPromise<Schema$DomainMapping> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4446,16 +4596,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/domainmappings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/domainmappings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -4463,7 +4616,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$DomainMapping>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.domainmappings.delete
@@ -4482,25 +4634,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Domainmappings$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Domainmappings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Domainmappings$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Domainmappings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Domainmappings$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Domainmappings$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Domainmappings$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Domainmappings$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Domainmappings$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4517,16 +4672,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4534,7 +4689,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.domainmappings.get
@@ -4548,23 +4702,31 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Domainmappings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DomainMapping>;
-    get(params: Params$Resource$Projects$Locations$Domainmappings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
-    get(params: Params$Resource$Projects$Locations$Domainmappings$Get,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Domainmappings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DomainMapping>;
+    get(
+      params: Params$Resource$Projects$Locations$Domainmappings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Domainmappings$Get,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DomainMapping>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Domainmappings$Get|
-        BodyResponseCallback<Schema$DomainMapping>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DomainMapping>,
-        callback?: BodyResponseCallback<Schema$DomainMapping>):
-        void|GaxiosPromise<Schema$DomainMapping> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Domainmappings$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Domainmappings$Get
+        | BodyResponseCallback<Schema$DomainMapping>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>,
+      callback?: BodyResponseCallback<Schema$DomainMapping>
+    ): void | GaxiosPromise<Schema$DomainMapping> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4581,16 +4743,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -4598,7 +4760,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$DomainMapping>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.domainmappings.list
@@ -4620,31 +4781,34 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Domainmappings$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListDomainMappingsResponse>;
+      params?: Params$Resource$Projects$Locations$Domainmappings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Domainmappings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Domainmappings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Domainmappings$List,
-        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Domainmappings$List,
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Domainmappings$List|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void|GaxiosPromise<Schema$ListDomainMappingsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Domainmappings$List;
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Domainmappings$List
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void | GaxiosPromise<Schema$ListDomainMappingsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4661,20 +4825,25 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/domainmappings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/domainmappings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
       }
@@ -4682,11 +4851,11 @@ export namespace run_v1alpha1 {
   }
 
   export interface Params$Resource$Projects$Locations$Domainmappings$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID or project number in which this domain mapping should be
@@ -4700,11 +4869,11 @@ export namespace run_v1alpha1 {
     requestBody?: Schema$DomainMapping;
   }
   export interface Params$Resource$Projects$Locations$Domainmappings$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud Run currently ignores this parameter.
@@ -4734,12 +4903,12 @@ export namespace run_v1alpha1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Projects$Locations$Domainmappings$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Domainmappings$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the domain mapping being retrieved. If needed, replace
@@ -4748,11 +4917,11 @@ export namespace run_v1alpha1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Domainmappings$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -4794,13 +4963,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Projects$Locations$Revisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.projects.locations.revisions.delete
@@ -4819,24 +4986,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Revisions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Revisions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Revisions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Revisions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Revisions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Revisions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Revisions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Revisions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Revisions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4853,16 +5024,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4870,7 +5041,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.revisions.get
@@ -4884,21 +5054,29 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Revisions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Revision>;
-    get(params: Params$Resource$Projects$Locations$Revisions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback: BodyResponseCallback<Schema$Revision>): void;
-    get(params: Params$Resource$Projects$Locations$Revisions$Get,
-        callback: BodyResponseCallback<Schema$Revision>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Revisions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Revision>;
+    get(
+      params: Params$Resource$Projects$Locations$Revisions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Revisions$Get,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Revision>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Revisions$Get|
-        BodyResponseCallback<Schema$Revision>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>):
-        void|GaxiosPromise<Schema$Revision> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Revisions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Revisions$Get
+        | BodyResponseCallback<Schema$Revision>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>
+    ): void | GaxiosPromise<Schema$Revision> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4915,16 +5093,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -4932,7 +5110,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Revision>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.revisions.list
@@ -4954,26 +5131,32 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Revisions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListRevisionsResponse>;
+      params?: Params$Resource$Projects$Locations$Revisions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRevisionsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Revisions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListRevisionsResponse>,
-        callback: BodyResponseCallback<Schema$ListRevisionsResponse>): void;
+      params: Params$Resource$Projects$Locations$Revisions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$ListRevisionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Revisions$List,
-        callback: BodyResponseCallback<Schema$ListRevisionsResponse>): void;
+      params: Params$Resource$Projects$Locations$Revisions$List,
+      callback: BodyResponseCallback<Schema$ListRevisionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRevisionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Revisions$List|
-        BodyResponseCallback<Schema$ListRevisionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRevisionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListRevisionsResponse>):
-        void|GaxiosPromise<Schema$ListRevisionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Revisions$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Revisions$List
+        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListRevisionsResponse>
+    ): void | GaxiosPromise<Schema$ListRevisionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4990,16 +5173,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/revisions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/revisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(parameters, callback);
@@ -5009,12 +5195,12 @@ export namespace run_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Revisions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Revisions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud Run currently ignores this parameter.
@@ -5044,12 +5230,12 @@ export namespace run_v1alpha1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Projects$Locations$Revisions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Revisions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the revision being retrieved. If needed, replace
@@ -5057,12 +5243,12 @@ export namespace run_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Revisions$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Revisions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -5104,13 +5290,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Projects$Locations$Routes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.projects.locations.routes.get
@@ -5124,21 +5308,29 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Routes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Route>;
-    get(params: Params$Resource$Projects$Locations$Routes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Route>,
-        callback: BodyResponseCallback<Schema$Route>): void;
-    get(params: Params$Resource$Projects$Locations$Routes$Get,
-        callback: BodyResponseCallback<Schema$Route>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Routes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Route>;
+    get(
+      params: Params$Resource$Projects$Locations$Routes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Route>,
+      callback: BodyResponseCallback<Schema$Route>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Routes$Get,
+      callback: BodyResponseCallback<Schema$Route>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Route>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Routes$Get|
-        BodyResponseCallback<Schema$Route>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Route>,
-        callback?: BodyResponseCallback<Schema$Route>):
-        void|GaxiosPromise<Schema$Route> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Routes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Routes$Get
+        | BodyResponseCallback<Schema$Route>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Route>,
+      callback?: BodyResponseCallback<Schema$Route>
+    ): void | GaxiosPromise<Schema$Route> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Routes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5155,16 +5347,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Route>(parameters, callback);
@@ -5172,7 +5364,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Route>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.routes.list
@@ -5194,25 +5385,30 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Routes$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListRoutesResponse>;
+      params?: Params$Resource$Projects$Locations$Routes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRoutesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Routes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListRoutesResponse>,
-        callback: BodyResponseCallback<Schema$ListRoutesResponse>): void;
+      params: Params$Resource$Projects$Locations$Routes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRoutesResponse>,
+      callback: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Routes$List,
-        callback: BodyResponseCallback<Schema$ListRoutesResponse>): void;
+      params: Params$Resource$Projects$Locations$Routes$List,
+      callback: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListRoutesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Routes$List|
-        BodyResponseCallback<Schema$ListRoutesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListRoutesResponse>,
-        callback?: BodyResponseCallback<Schema$ListRoutesResponse>):
-        void|GaxiosPromise<Schema$ListRoutesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Routes$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Routes$List
+        | BodyResponseCallback<Schema$ListRoutesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRoutesResponse>,
+      callback?: BodyResponseCallback<Schema$ListRoutesResponse>
+    ): void | GaxiosPromise<Schema$ListRoutesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Routes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5229,16 +5425,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/routes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/routes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(parameters, callback);
@@ -5248,12 +5447,12 @@ export namespace run_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Routes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Routes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the route being retrieved. If needed, replace {namespace_id}
@@ -5261,12 +5460,12 @@ export namespace run_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Routes$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Routes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -5307,13 +5506,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
 
-
   export class Resource$Projects$Locations$Services {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * run.projects.locations.services.create
@@ -5329,24 +5526,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Services$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
+      params?: Params$Resource$Projects$Locations$Services$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
     create(
-        params: Params$Resource$Projects$Locations$Services$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Projects$Locations$Services$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Services$Create,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Projects$Locations$Services$Create,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Service>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Services$Create|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Create
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5363,16 +5564,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/services')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -5380,7 +5584,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.services.delete
@@ -5401,24 +5604,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Services$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Services$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Services$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Services$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Services$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Services$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Services$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5435,16 +5642,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5452,7 +5659,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.services.get
@@ -5466,21 +5672,29 @@ export namespace run_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Services$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
-    get(params: Params$Resource$Projects$Locations$Services$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
-    get(params: Params$Resource$Projects$Locations$Services$Get,
-        callback: BodyResponseCallback<Schema$Service>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Get,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Service>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Services$Get|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Get
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5497,16 +5711,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -5514,7 +5728,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.services.getIamPolicy
@@ -5530,25 +5743,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Locations$Services$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Services$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Locations$Services$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Services$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Locations$Services$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Services$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Services$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5565,16 +5781,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5582,7 +5801,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.services.list
@@ -5604,26 +5822,32 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Services$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListServicesResponse>;
+      params?: Params$Resource$Projects$Locations$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Services$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params: Params$Resource$Projects$Locations$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Services$List,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params: Params$Resource$Projects$Locations$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Services$List|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicesResponse>):
-        void|GaxiosPromise<Schema$ListServicesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback?: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void | GaxiosPromise<Schema$ListServicesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5640,16 +5864,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+parent}/services')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -5657,7 +5884,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.services.replaceService
@@ -5677,31 +5903,33 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     replaceService(
-        params?: Params$Resource$Projects$Locations$Services$Replaceservice,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
+      params?: Params$Resource$Projects$Locations$Services$Replaceservice,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
     replaceService(
-        params: Params$Resource$Projects$Locations$Services$Replaceservice,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Projects$Locations$Services$Replaceservice,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     replaceService(
-        params: Params$Resource$Projects$Locations$Services$Replaceservice,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Projects$Locations$Services$Replaceservice,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     replaceService(callback: BodyResponseCallback<Schema$Service>): void;
     replaceService(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Services$Replaceservice|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$Replaceservice;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Replaceservice
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Replaceservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Services$Replaceservice;
+        params = {} as Params$Resource$Projects$Locations$Services$Replaceservice;
         options = {};
       }
 
@@ -5713,16 +5941,16 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -5730,7 +5958,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.services.setIamPolicy
@@ -5747,25 +5974,28 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Locations$Services$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Locations$Services$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Locations$Services$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Services$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Locations$Services$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Locations$Services$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Services$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5782,16 +6012,19 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5799,7 +6032,6 @@ export namespace run_v1alpha1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * run.projects.locations.services.testIamPermissions
@@ -5816,38 +6048,39 @@ export namespace run_v1alpha1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Locations$Services$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Locations$Services$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Locations$Services$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Services$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Locations$Services$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Services$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Services$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Services$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Services$Testiampermissions;
+        params = {} as Params$Resource$Projects$Locations$Services$Testiampermissions;
         options = {};
       }
 
@@ -5859,32 +6092,37 @@ export namespace run_v1alpha1 {
       const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID or project number in which this service should be created.
@@ -5896,12 +6134,12 @@ export namespace run_v1alpha1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Cloud Run currently ignores this parameter.
@@ -5931,12 +6169,12 @@ export namespace run_v1alpha1 {
      */
     propagationPolicy?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service being retrieved. If needed, replace
@@ -5945,11 +6183,11 @@ export namespace run_v1alpha1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -5957,12 +6195,12 @@ export namespace run_v1alpha1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional encoded string to continue paging.
@@ -6004,11 +6242,11 @@ export namespace run_v1alpha1 {
     watch?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service being replaced. If needed, replace {namespace_id}
@@ -6022,11 +6260,11 @@ export namespace run_v1alpha1 {
     requestBody?: Schema$Service;
   }
   export interface Params$Resource$Projects$Locations$Services$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -6040,11 +6278,11 @@ export namespace run_v1alpha1 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.

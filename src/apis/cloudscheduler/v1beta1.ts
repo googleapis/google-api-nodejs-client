@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -147,7 +159,7 @@ export namespace cloudscheduler_v1beta1 {
      * internal use only.  In addition, some App Engine headers, which contain
      * job-specific information, are also be sent to the job handler.
      */
-    headers?: {[key: string]: string;};
+    headers?: {[key: string]: string};
     /**
      * The HTTP method to use for the request. PATCH and OPTIONS are not
      * permitted.
@@ -264,7 +276,7 @@ export namespace cloudscheduler_v1beta1 {
      * `X-Google-*`: Google internal use only. * `X-AppEngine-*`: Google
      * internal use only.  The total size of headers must be less than 80KB.
      */
-    headers?: {[key: string]: string;};
+    headers?: {[key: string]: string};
     /**
      * Which HTTP method to use for the request.
      */
@@ -440,7 +452,7 @@ export namespace cloudscheduler_v1beta1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -449,7 +461,7 @@ export namespace cloudscheduler_v1beta1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -516,7 +528,7 @@ export namespace cloudscheduler_v1beta1 {
     /**
      * Optional attributes for this message.
      */
-    attributes?: {[key: string]: string;};
+    attributes?: {[key: string]: string};
     /**
      * The message data field. If this field is empty, the message must contain
      * at least one attribute.
@@ -545,7 +557,7 @@ export namespace cloudscheduler_v1beta1 {
      * Attributes for PubsubMessage.  Pubsub message must contain either
      * non-empty data, or at least one attribute.
      */
-    attributes?: {[key: string]: string;};
+    attributes?: {[key: string]: string};
     /**
      * The message payload for PubsubMessage.  Pubsub message must contain
      * either non-empty data, or at least one attribute.
@@ -665,7 +677,7 @@ export namespace cloudscheduler_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -673,7 +685,6 @@ export namespace cloudscheduler_v1beta1 {
      */
     message?: string;
   }
-
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -684,7 +695,6 @@ export namespace cloudscheduler_v1beta1 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     jobs: Resource$Projects$Locations$Jobs;
@@ -692,7 +702,6 @@ export namespace cloudscheduler_v1beta1 {
       this.context = context;
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
     }
-
 
     /**
      * cloudscheduler.projects.locations.get
@@ -706,21 +715,29 @@ export namespace cloudscheduler_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Location>;
-    get(params: Params$Resource$Projects$Locations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback: BodyResponseCallback<Schema$Location>): void;
-    get(params: Params$Resource$Projects$Locations$Get,
-        callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
-        BodyResponseCallback<Schema$Location>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>):
-        void|GaxiosPromise<Schema$Location> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -735,18 +752,19 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -754,7 +772,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$Location>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.list
@@ -772,26 +789,32 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -806,19 +829,22 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -828,24 +854,24 @@ export namespace cloudscheduler_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -871,7 +897,6 @@ export namespace cloudscheduler_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * cloudscheduler.projects.locations.jobs.create
      * @desc Creates a job.
@@ -886,24 +911,28 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Jobs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Locations$Jobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Projects$Locations$Jobs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Jobs$Create,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Create|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Create
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -918,19 +947,22 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/jobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -938,7 +970,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.jobs.delete
@@ -953,24 +984,28 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Jobs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Jobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Jobs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Jobs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -985,18 +1020,19 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1004,7 +1040,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.jobs.get
@@ -1018,21 +1053,29 @@ export namespace cloudscheduler_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Jobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    get(params: Params$Resource$Projects$Locations$Jobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    get(params: Params$Resource$Projects$Locations$Jobs$Get,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Job>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Get|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Get
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1047,18 +1090,19 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -1066,7 +1110,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.jobs.list
@@ -1083,25 +1126,30 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Jobs$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListJobsResponse>;
+      params?: Params$Resource$Projects$Locations$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Jobs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Jobs$List,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Projects$Locations$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$List|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|GaxiosPromise<Schema$ListJobsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$List
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1116,19 +1164,22 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/jobs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/jobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -1136,7 +1187,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.jobs.patch
@@ -1158,24 +1208,28 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Jobs$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Locations$Jobs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     patch(
-        params: Params$Resource$Projects$Locations$Jobs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Jobs$Patch,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Patch,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Job>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Patch|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Patch
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1190,18 +1244,19 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -1209,7 +1264,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.jobs.pause
@@ -1228,24 +1282,28 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     pause(
-        params?: Params$Resource$Projects$Locations$Jobs$Pause,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Locations$Jobs$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     pause(
-        params: Params$Resource$Projects$Locations$Jobs$Pause,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     pause(
-        params: Params$Resource$Projects$Locations$Jobs$Pause,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Pause,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     pause(callback: BodyResponseCallback<Schema$Job>): void;
     pause(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Pause|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Pause;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Pause
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1260,19 +1318,22 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:pause')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:pause').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -1280,7 +1341,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.jobs.resume
@@ -1299,24 +1359,28 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     resume(
-        params?: Params$Resource$Projects$Locations$Jobs$Resume,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
+      params?: Params$Resource$Projects$Locations$Jobs$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     resume(
-        params: Params$Resource$Projects$Locations$Jobs$Resume,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     resume(
-        params: Params$Resource$Projects$Locations$Jobs$Resume,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Projects$Locations$Jobs$Resume,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     resume(callback: BodyResponseCallback<Schema$Job>): void;
     resume(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Resume|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Resume;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Resume
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1331,19 +1395,22 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:resume')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:resume').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -1351,7 +1418,6 @@ export namespace cloudscheduler_v1beta1 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * cloudscheduler.projects.locations.jobs.run
@@ -1367,21 +1433,29 @@ export namespace cloudscheduler_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: Params$Resource$Projects$Locations$Jobs$Run,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    run(params: Params$Resource$Projects$Locations$Jobs$Run,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    run(params: Params$Resource$Projects$Locations$Jobs$Run,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    run(
+      params?: Params$Resource$Projects$Locations$Jobs$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    run(
+      params: Params$Resource$Projects$Locations$Jobs$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Jobs$Run,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     run(callback: BodyResponseCallback<Schema$Job>): void;
-    run(paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Run|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Jobs$Run;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Run
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1396,19 +1470,22 @@ export namespace cloudscheduler_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudscheduler.googleapis.com/';
+        options.rootUrl || 'https://cloudscheduler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}:run')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}:run').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -1418,12 +1495,12 @@ export namespace cloudscheduler_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The location name. For example:
@@ -1436,12 +1513,12 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The job name. For example:
@@ -1449,12 +1526,12 @@ export namespace cloudscheduler_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The job name. For example:
@@ -1462,12 +1539,12 @@ export namespace cloudscheduler_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Requested page size.  The maximum page size is 500. If unspecified, the
@@ -1490,12 +1567,12 @@ export namespace cloudscheduler_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optionally caller-specified in CreateJob, after which it becomes output
@@ -1521,12 +1598,12 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Pause extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Pause
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The job name. For example:
@@ -1539,12 +1616,12 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$PauseJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Resume extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Resume
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The job name. For example:
@@ -1557,12 +1634,12 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$ResumeJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Run extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Run
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required.  The job name. For example:

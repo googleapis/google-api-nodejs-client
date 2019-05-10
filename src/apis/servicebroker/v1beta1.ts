@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -123,7 +135,7 @@ export namespace servicebroker_v1beta1 {
      * A JSON object that contains data for platform resources associated with
      * the binding to be created.
      */
-    bind_resource?: {[key: string]: any;};
+    bind_resource?: {[key: string]: any};
     /**
      * Output only. Timestamp for when the binding was created.
      */
@@ -136,7 +148,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Configuration options for the service binding.
      */
-    parameters?: {[key: string]: any;};
+    parameters?: {[key: string]: any};
     /**
      * The ID of the plan. See `Service` and `Plan` resources for details.
      * Maximum length is 64, GUID recommended. Required.
@@ -188,7 +200,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Credentials to use the binding.
      */
-    credentials?: {[key: string]: any;};
+    credentials?: {[key: string]: any};
     /**
      * Used to communicate description of the response. Usually for non-standard
      * error codes.
@@ -213,7 +225,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * An array of configuration for mounting volumes.
      */
-    volume_mounts?: Array<{[key: string]: any;}>;
+    volume_mounts?: Array<{[key: string]: any}>;
   }
   /**
    * Response for the `CreateServiceInstance()` method.
@@ -289,7 +301,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Credentials to use the binding.
      */
-    credentials?: {[key: string]: any;};
+    credentials?: {[key: string]: any};
     /**
      * String containing the Deployment Manager deployment name that was created
      * for this binding,
@@ -318,7 +330,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * An array of configurations for mounting volumes.
      */
-    volume_mounts?: Array<{[key: string]: any;}>;
+    volume_mounts?: Array<{[key: string]: any}>;
   }
   /**
    * The response for the `ListBindings()` method.
@@ -446,7 +458,7 @@ export namespace servicebroker_v1beta1 {
      * A list of metadata for a service offering. Metadata is an arbitrary JSON
      * object.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * User friendly name of the plan. The name must be globally unique within
      * GCP project. Note, which is different from (&quot;This must be globally
@@ -456,7 +468,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Schema definitions for service instances and bindings for the plan.
      */
-    schemas?: {[key: string]: any;};
+    schemas?: {[key: string]: any};
   }
   /**
    * The resource model mostly follows the Open Service Broker API, as described
@@ -499,7 +511,7 @@ export namespace servicebroker_v1beta1 {
      * A list of metadata for a service offering. Metadata is an arbitrary JSON
      * object.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * User friendly service name. Name must match [a-z0-9]+ regexp. The name
      * must be globally unique within GCP project. Note, which is different from
@@ -532,7 +544,7 @@ export namespace servicebroker_v1beta1 {
      * can also contain anything. Currently only used for logging context
      * information.
      */
-    context?: {[key: string]: any;};
+    context?: {[key: string]: any};
     /**
      * Output only. Timestamp for when the instance was created.
      */
@@ -561,7 +573,7 @@ export namespace servicebroker_v1beta1 {
      * Configuration options for the service instance. Parameters is JSON object
      * serialized to string.
      */
-    parameters?: {[key: string]: any;};
+    parameters?: {[key: string]: any};
     /**
      * The ID of the plan. See `Service` and `Plan` resources for details.
      * Maximum length is 64, GUID recommended. Required.
@@ -571,7 +583,7 @@ export namespace servicebroker_v1beta1 {
      * Used only in UpdateServiceInstance request to optionally specify previous
      * fields.
      */
-    previous_values?: {[key: string]: any;};
+    previous_values?: {[key: string]: any};
     /**
      * Output only. The resource name of the instance, e.g.
      * projects/project_id/brokers/broker_id/service_instances/instance_id
@@ -752,7 +764,6 @@ export namespace servicebroker_v1beta1 {
     title?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     brokers: Resource$Projects$Brokers;
@@ -761,7 +772,6 @@ export namespace servicebroker_v1beta1 {
       this.brokers = new Resource$Projects$Brokers(this.context);
     }
   }
-
 
   export class Resource$Projects$Brokers {
     context: APIRequestContext;
@@ -772,7 +782,6 @@ export namespace servicebroker_v1beta1 {
       this.instances = new Resource$Projects$Brokers$Instances(this.context);
       this.v2 = new Resource$Projects$Brokers$V2(this.context);
     }
-
 
     /**
      * servicebroker.projects.brokers.create
@@ -788,31 +797,42 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Brokers$Create,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker>;
+      params?: Params$Resource$Projects$Brokers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker>;
     create(
-        params: Params$Resource$Projects$Brokers$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Broker>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Broker>): void;
+      params: Params$Resource$Projects$Brokers$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Broker>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Broker
+      >
+    ): void;
     create(
-        params: Params$Resource$Projects$Brokers$Create,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Broker>): void;
-    create(callback: BodyResponseCallback<
-           Schema$GoogleCloudServicebrokerV1beta1__Broker>): void;
+      params: Params$Resource$Projects$Brokers$Create,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Broker
+      >
+    ): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Brokers$Create|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Broker>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Broker>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Broker>):
-        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Brokers$Create;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Broker
+      >
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$Create
+        | BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Broker>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Broker>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Broker
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -827,29 +847,34 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/brokers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/brokers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Broker>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Broker>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.delete
@@ -864,26 +889,32 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Brokers$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+      params?: Params$Resource$Projects$Brokers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
     delete(
-        params: Params$Resource$Projects$Brokers$Delete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+      params: Params$Resource$Projects$Brokers$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Brokers$Delete,
-        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+      params: Params$Resource$Projects$Brokers$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Brokers$Delete|
-        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
-        void|GaxiosPromise<Schema$GoogleProtobuf__Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Brokers$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$Delete
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -898,18 +929,19 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -917,7 +949,6 @@ export namespace servicebroker_v1beta1 {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.list
@@ -934,34 +965,52 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Brokers$List,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>;
+      params?: Params$Resource$Projects$Brokers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+    >;
     list(
-        params: Params$Resource$Projects$Brokers$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>): void;
+      params: Params$Resource$Projects$Brokers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Brokers$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>): void;
+      params: Params$Resource$Projects$Brokers$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Brokers$List|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Brokers$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -976,38 +1025,41 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/brokers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/brokers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Brokers$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project in which to create broker.
@@ -1019,24 +1071,24 @@ export namespace servicebroker_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudServicebrokerV1beta1__Broker;
   }
-  export interface Params$Resource$Projects$Brokers$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Brokers$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The broker to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Brokers$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Brokers$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the number of results to return per page. If there are fewer
@@ -1060,10 +1112,10 @@ export namespace servicebroker_v1beta1 {
     bindings: Resource$Projects$Brokers$Instances$Bindings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.bindings =
-          new Resource$Projects$Brokers$Instances$Bindings(this.context);
+      this.bindings = new Resource$Projects$Brokers$Instances$Bindings(
+        this.context
+      );
     }
-
 
     /**
      * servicebroker.projects.brokers.instances.get
@@ -1080,29 +1132,51 @@ export namespace servicebroker_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Brokers$Instances$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
-    get(params: Params$Resource$Projects$Brokers$Instances$Get,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void;
-    get(params: Params$Resource$Projects$Brokers$Instances$Get,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void;
-    get(callback: BodyResponseCallback<
-        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Brokers$Instances$Get|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void|
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$Instances$Get;
+    get(
+      params?: Params$Resource$Projects$Brokers$Instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
+    get(
+      params: Params$Resource$Projects$Brokers$Instances$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void;
+    get(
+      params: Params$Resource$Projects$Brokers$Instances$Get,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$Instances$Get
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1117,30 +1191,30 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.instances.getLast_operation
@@ -1159,38 +1233,53 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     getLast_operation(
-        params?: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+      params?: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
-        params: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        params: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
-    getLast_operation(callback: BodyResponseCallback<
-                      Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$Instances$Getlast_operation|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$Instances$Getlast_operation;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
+    getLast_operation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$Instances$Getlast_operation
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$Instances$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$Instances$Getlast_operation;
+        params = {} as Params$Resource$Projects$Brokers$Instances$Getlast_operation;
         options = {};
       }
 
@@ -1200,29 +1289,34 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}/last_operation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}/last_operation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>(parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__Operation
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.instances.list
@@ -1240,37 +1334,52 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Brokers$Instances$List,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>;
+      params?: Params$Resource$Projects$Brokers$Instances$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+    >;
     list(
-        params: Params$Resource$Projects$Brokers$Instances$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Brokers$Instances$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>):
-        void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$Instances$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Brokers$Instances$List|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$Instances$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$Instances$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1285,38 +1394,41 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$Instances$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Brokers$Instances$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the instance to return. Name must match
@@ -1327,11 +1439,11 @@ export namespace servicebroker_v1beta1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Brokers$Instances$Getlast_operation
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/`+
@@ -1352,12 +1464,12 @@ export namespace servicebroker_v1beta1 {
      */
     serviceId?: string;
   }
-  export interface Params$Resource$Projects$Brokers$Instances$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Brokers$Instances$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the number of results to return per page. If there are fewer
@@ -1382,7 +1494,6 @@ export namespace servicebroker_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * servicebroker.projects.brokers.instances.bindings.getLast_operation
      * @desc Returns the state of the last operation for the binding. Only last
@@ -1401,41 +1512,53 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     getLast_operation(
-        params?:
-            Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+      params?: Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
-        params:
-            Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        params:
-            Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
-    getLast_operation(callback: BodyResponseCallback<
-                      Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
+    getLast_operation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation;
+        params = {} as Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation;
         options = {};
       }
 
@@ -1445,29 +1568,34 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}/last_operation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}/last_operation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>(parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__Operation
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.instances.bindings.list
@@ -1484,37 +1612,52 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Brokers$Instances$Bindings$List,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>;
+      params?: Params$Resource$Projects$Brokers$Instances$Bindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+    >;
     list(
-        params: Params$Resource$Projects$Brokers$Instances$Bindings$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$Instances$Bindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Brokers$Instances$Bindings$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>):
-        void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>): void;
+      params: Params$Resource$Projects$Brokers$Instances$Bindings$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$Instances$Bindings$List|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$Instances$Bindings$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$Instances$Bindings$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$Instances$Bindings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1529,38 +1672,41 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/bindings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/bindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse
+        >(parameters);
       }
     }
   }
 
   export interface Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name must match
@@ -1582,11 +1728,11 @@ export namespace servicebroker_v1beta1 {
     serviceId?: string;
   }
   export interface Params$Resource$Projects$Brokers$Instances$Bindings$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the number of results to return per page. If there are fewer
@@ -1607,8 +1753,6 @@ export namespace servicebroker_v1beta1 {
     parent?: string;
   }
 
-
-
   export class Resource$Projects$Brokers$V2 {
     context: APIRequestContext;
     catalog: Resource$Projects$Brokers$V2$Catalog;
@@ -1616,18 +1760,17 @@ export namespace servicebroker_v1beta1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.catalog = new Resource$Projects$Brokers$V2$Catalog(this.context);
-      this.service_instances =
-          new Resource$Projects$Brokers$V2$Service_instances(this.context);
+      this.service_instances = new Resource$Projects$Brokers$V2$Service_instances(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Brokers$V2$Catalog {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.catalog.list
@@ -1646,34 +1789,52 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Brokers$V2$Catalog$List,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>;
+      params?: Params$Resource$Projects$Brokers$V2$Catalog$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+    >;
     list(
-        params: Params$Resource$Projects$Brokers$V2$Catalog$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>): void;
+      params: Params$Resource$Projects$Brokers$V2$Catalog$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Brokers$V2$Catalog$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>): void;
+      params: Params$Resource$Projects$Brokers$V2$Catalog$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Brokers$V2$Catalog$List|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Catalog$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Catalog$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Catalog$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1688,38 +1849,41 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/v2/catalog')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/v2/catalog').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$V2$Catalog$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Brokers$V2$Catalog$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies the number of results to return per page. If there are fewer
@@ -1738,18 +1902,15 @@ export namespace servicebroker_v1beta1 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Brokers$V2$Service_instances {
     context: APIRequestContext;
-    service_bindings:
-        Resource$Projects$Brokers$V2$Service_instances$Service_bindings;
+    service_bindings: Resource$Projects$Brokers$V2$Service_instances$Service_bindings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.service_bindings =
-          new Resource$Projects$Brokers$V2$Service_instances$Service_bindings(
-              this.context);
+      this.service_bindings = new Resource$Projects$Brokers$V2$Service_instances$Service_bindings(
+        this.context
+      );
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.create
@@ -1776,44 +1937,57 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>;
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+    >;
     create(
-        params: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+      >
+    ): void;
     create(
-        params: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>):
-        void;
-    create(callback: BodyResponseCallback<
-           Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+      >
+    ): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Create|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Create;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+      >
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Create
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Create;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Create;
         options = {};
       }
 
@@ -1823,32 +1997,32 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta1/{+parent}/v2/service_instances/{+instance_id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/v2/service_instances/{+instance_id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'instance_id'],
         pathParams: ['instance_id', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.delete
@@ -1868,44 +2042,57 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>;
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+    >;
     delete(
-        params: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+      >
+    ): void;
     delete(
-        params: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>):
-        void;
-    delete(callback: BodyResponseCallback<
-           Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+      >
+    ): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Delete|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Delete;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+      >
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Delete
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Delete;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Delete;
         options = {};
       }
 
@@ -1915,30 +2102,30 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.get
@@ -1955,36 +2142,56 @@ export namespace servicebroker_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
-    get(params: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void;
-    get(params: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void;
-    get(callback: BodyResponseCallback<
-        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Get|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void|
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Get;
+    get(
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
+    get(
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void;
+    get(
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Get
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Get;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Get;
         options = {};
       }
 
@@ -1994,30 +2201,30 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.getLast_operation
@@ -2037,41 +2244,53 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     getLast_operation(
-        params?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
-    getLast_operation(callback: BodyResponseCallback<
-                      Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
+    getLast_operation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation;
         options = {};
       }
 
@@ -2081,29 +2300,34 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}/last_operation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}/last_operation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>(parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__Operation
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.patch
@@ -2121,44 +2345,57 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>;
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+    >;
     patch(
-        params: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+      >
+    ): void;
     patch(
-        params: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>):
-        void;
-    patch(callback: BodyResponseCallback<
-          Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+      >
+    ): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Patch|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Patch;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+      >
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Patch
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Patch;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Patch;
         options = {};
       }
 
@@ -2168,37 +2405,38 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse
+        >(parameters);
       }
     }
   }
 
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Value indicating that API client supports asynchronous operations. If
@@ -2225,11 +2463,11 @@ export namespace servicebroker_v1beta1 {
     requestBody?: Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * See CreateServiceInstanceRequest for details.
@@ -2251,11 +2489,11 @@ export namespace servicebroker_v1beta1 {
     serviceId?: string;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the instance to return. Name must match
@@ -2266,11 +2504,11 @@ export namespace servicebroker_v1beta1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/`+
@@ -2292,11 +2530,11 @@ export namespace servicebroker_v1beta1 {
     serviceId?: string;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * See CreateServiceInstanceRequest for details.
@@ -2320,7 +2558,6 @@ export namespace servicebroker_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * servicebroker.projects.brokers.v2.service_instances.service_bindings.create
      * @desc CreateBinding generates a service binding to an existing service
@@ -2339,47 +2576,57 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>;
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+    >;
     create(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+      >
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>):
-        void;
-    create(callback: BodyResponseCallback<
-           Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+      >
+    ): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+      >
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create;
         options = {};
       }
 
@@ -2389,32 +2636,32 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1beta1/{+parent}/service_bindings/{+binding_id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/service_bindings/{+binding_id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'binding_id'],
         pathParams: ['binding_id', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.service_bindings.delete
@@ -2435,47 +2682,57 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>;
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+    >;
     delete(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+      >
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>):
-        void;
-    delete(callback: BodyResponseCallback<
-           Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>):
-        void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+      >
+    ): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+      >
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete;
         options = {};
       }
 
@@ -2485,30 +2742,30 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.service_bindings.get
@@ -2525,41 +2782,58 @@ export namespace servicebroker_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
-        options?: MethodOptions):
-        GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>;
-    get(params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>): void;
-    get(params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>): void;
-    get(callback: BodyResponseCallback<
-        Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get|
-        BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>):
-        void|GaxiosPromise<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get;
+    get(
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+    >;
+    get(
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+      >
+    ): void;
+    get(
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get;
         options = {};
       }
 
@@ -2569,30 +2843,30 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>(
-            parameters, callback);
+          Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>(
-            parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse
+        >(parameters);
       }
     }
-
 
     /**
      * servicebroker.projects.brokers.v2.service_instances.service_bindings.getLast_operation
@@ -2612,41 +2886,53 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     getLast_operation(
-        params?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+      params?: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        params:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
-        callback: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
-    getLast_operation(callback: BodyResponseCallback<
-                      Schema$GoogleCloudServicebrokerV1beta1__Operation>): void;
+      params: Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
     getLast_operation(
-        paramsOrCallback?:
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation;
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void;
+    getLast_operation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudServicebrokerV1beta1__Operation
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudServicebrokerV1beta1__Operation
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation;
+        params = {} as Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation;
         options = {};
       }
 
@@ -2656,36 +2942,42 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}/last_operation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}/last_operation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleCloudServicebrokerV1beta1__Operation>(parameters);
+          Schema$GoogleCloudServicebrokerV1beta1__Operation
+        >(parameters);
       }
     }
   }
 
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * See CreateServiceInstanceRequest for details.
@@ -2708,11 +3000,11 @@ export namespace servicebroker_v1beta1 {
     requestBody?: Schema$GoogleCloudServicebrokerV1beta1__Binding;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * See CreateServiceInstanceRequest for details.
@@ -2735,11 +3027,11 @@ export namespace servicebroker_v1beta1 {
     serviceId?: string;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name must match
@@ -2756,11 +3048,11 @@ export namespace servicebroker_v1beta1 {
     serviceId?: string;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name must match
@@ -2782,14 +3074,11 @@ export namespace servicebroker_v1beta1 {
     serviceId?: string;
   }
 
-
-
   export class Resource$V1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicebroker.getIamPolicy
@@ -2805,26 +3094,32 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$V1beta1$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+      params?: Params$Resource$V1beta1$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
-        params: Params$Resource$V1beta1$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+      params: Params$Resource$V1beta1$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$V1beta1$Getiampolicy,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void;
+      params: Params$Resource$V1beta1$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$V1beta1$Getiampolicy|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1beta1$Getiampolicy;
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2839,19 +3134,22 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2859,7 +3157,6 @@ export namespace servicebroker_v1beta1 {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
     }
-
 
     /**
      * servicebroker.setIamPolicy
@@ -2876,26 +3173,32 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$V1beta1$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+      params?: Params$Resource$V1beta1$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
-        params: Params$Resource$V1beta1$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+      params: Params$Resource$V1beta1$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$V1beta1$Setiampolicy,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void;
+      params: Params$Resource$V1beta1$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$V1beta1$Setiampolicy|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1beta1$Setiampolicy;
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2910,19 +3213,22 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2930,7 +3236,6 @@ export namespace servicebroker_v1beta1 {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
     }
-
 
     /**
      * servicebroker.testIamPermissions
@@ -2950,31 +3255,42 @@ export namespace servicebroker_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$V1beta1$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+      params?: Params$Resource$V1beta1$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$V1beta1$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+      params: Params$Resource$V1beta1$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void;
     testIamPermissions(
-        params: Params$Resource$V1beta1$Testiampermissions,
-        callback: BodyResponseCallback<
-            Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
-    testIamPermissions(callback: BodyResponseCallback<
-                       Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+      params: Params$Resource$V1beta1$Testiampermissions,
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$V1beta1$Testiampermissions|
-        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleIamV1__TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$V1beta1$Testiampermissions;
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void | GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2989,36 +3305,42 @@ export namespace servicebroker_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$V1beta1$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -3026,12 +3348,12 @@ export namespace servicebroker_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$V1beta1$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -3044,12 +3366,12 @@ export namespace servicebroker_v1beta1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$V1beta1$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.

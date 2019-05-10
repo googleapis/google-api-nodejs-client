@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -533,7 +545,7 @@ export namespace appengine_v1 {
      * part of this version. All files must be readable using the credentials
      * supplied with this call.
      */
-    files?: {[key: string]: Schema$FileInfo;};
+    files?: {[key: string]: Schema$FileInfo};
     /**
      * The zip file for this deployment, if this is a zip deployment.
      */
@@ -1060,7 +1072,7 @@ export namespace appengine_v1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: &quot;us-east1&quot;.
      */
@@ -1069,7 +1081,7 @@ export namespace appengine_v1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: &quot;projects/example-project/locations/us-east1&quot;
@@ -1208,7 +1220,7 @@ export namespace appengine_v1 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -1224,7 +1236,7 @@ export namespace appengine_v1 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Metadata for the given google.longrunning.Operation.
@@ -1544,7 +1556,7 @@ export namespace appengine_v1 {
     /**
      * HTTP headers to use for all responses from these URLs.
      */
-    httpHeaders?: {[key: string]: string;};
+    httpHeaders?: {[key: string]: string};
     /**
      * MIME type used to serve all files served by this handler.Defaults to
      * file-specific MIME types, which are derived from each file&#39;s filename
@@ -1612,7 +1624,7 @@ export namespace appengine_v1 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1635,7 +1647,7 @@ export namespace appengine_v1 {
      * for IP-based splits and up to three decimal places is supported for
      * cookie-based splits.
      */
-    allocations?: {[key: string]: number;};
+    allocations?: {[key: string]: number};
     /**
      * Mechanism used to determine which version a request is sent to. The
      * traffic selection algorithm will be stable for either type until
@@ -1739,7 +1751,7 @@ export namespace appengine_v1 {
      * Metadata settings that are supplied to this version to enable beta
      * runtime features.
      */
-    betaSettings?: {[key: string]: string;};
+    betaSettings?: {[key: string]: string};
     /**
      * Email address of the user who created this version.@OutputOnly
      */
@@ -1784,7 +1796,7 @@ export namespace appengine_v1 {
      * Environment variables available to the application.Only returned in GET
      * requests if view=FULL is set.
      */
-    envVariables?: {[key: string]: string;};
+    envVariables?: {[key: string]: string};
     /**
      * Custom static error pages. Limited to 10KB per page.Only returned in GET
      * requests if view=FULL is set.
@@ -1959,7 +1971,6 @@ export namespace appengine_v1 {
     sourceUrl?: string;
   }
 
-
   export class Resource$Apps {
     context: APIRequestContext;
     authorizedCertificates: Resource$Apps$Authorizedcertificates;
@@ -1971,17 +1982,18 @@ export namespace appengine_v1 {
     services: Resource$Apps$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.authorizedCertificates =
-          new Resource$Apps$Authorizedcertificates(this.context);
-      this.authorizedDomains =
-          new Resource$Apps$Authorizeddomains(this.context);
+      this.authorizedCertificates = new Resource$Apps$Authorizedcertificates(
+        this.context
+      );
+      this.authorizedDomains = new Resource$Apps$Authorizeddomains(
+        this.context
+      );
       this.domainMappings = new Resource$Apps$Domainmappings(this.context);
       this.firewall = new Resource$Apps$Firewall(this.context);
       this.locations = new Resource$Apps$Locations(this.context);
       this.operations = new Resource$Apps$Operations(this.context);
       this.services = new Resource$Apps$Services(this.context);
     }
-
 
     /**
      * appengine.apps.create
@@ -2001,23 +2013,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Apps$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Apps$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Apps$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Apps$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Apps$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Apps$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Apps$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2035,15 +2053,16 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2051,7 +2070,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.get
@@ -2065,20 +2083,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Application>;
-    get(params: Params$Resource$Apps$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Application>,
-        callback: BodyResponseCallback<Schema$Application>): void;
-    get(params: Params$Resource$Apps$Get,
-        callback: BodyResponseCallback<Schema$Application>): void;
+    get(
+      params?: Params$Resource$Apps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Application>;
+    get(
+      params: Params$Resource$Apps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Application>,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Get,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Application>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Get|
-        BodyResponseCallback<Schema$Application>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Application>,
-        callback?: BodyResponseCallback<Schema$Application>):
-        void|GaxiosPromise<Schema$Application> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Get
+        | BodyResponseCallback<Schema$Application>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Application>,
+      callback?: BodyResponseCallback<Schema$Application>
+    ): void | GaxiosPromise<Schema$Application> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2096,16 +2123,16 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/apps/{appsId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -2113,7 +2140,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Application>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.patch
@@ -2132,23 +2158,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Apps$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Apps$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Apps$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Apps$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Apps$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Apps$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Apps$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2166,16 +2198,16 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/apps/{appsId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2183,7 +2215,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.repair
@@ -2207,23 +2238,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    repair(params?: Params$Resource$Apps$Repair, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     repair(
-        params: Params$Resource$Apps$Repair,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Apps$Repair,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     repair(
-        params: Params$Resource$Apps$Repair,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Repair,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    repair(
+      params: Params$Resource$Apps$Repair,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     repair(callback: BodyResponseCallback<Schema$Operation>): void;
     repair(
-        paramsOrCallback?: Params$Resource$Apps$Repair|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Apps$Repair
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Repair;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2241,16 +2278,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}:repair')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}:repair').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2264,8 +2304,7 @@ export namespace appengine_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2276,7 +2315,7 @@ export namespace appengine_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the Application resource to get. Example:
@@ -2288,7 +2327,7 @@ export namespace appengine_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the Application resource to update. Example:
@@ -2309,7 +2348,7 @@ export namespace appengine_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the application to repair. Example: apps/myapp
@@ -2328,7 +2367,6 @@ export namespace appengine_v1 {
       this.context = context;
     }
 
-
     /**
      * appengine.apps.authorizedCertificates.create
      * @desc Uploads the specified SSL certificate.
@@ -2343,26 +2381,32 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Apps$Authorizedcertificates$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AuthorizedCertificate>;
+      params?: Params$Resource$Apps$Authorizedcertificates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuthorizedCertificate>;
     create(
-        params: Params$Resource$Apps$Authorizedcertificates$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+      params: Params$Resource$Apps$Authorizedcertificates$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      callback: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void;
     create(
-        params: Params$Resource$Apps$Authorizedcertificates$Create,
-        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+      params: Params$Resource$Apps$Authorizedcertificates$Create,
+      callback: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
     create(
-        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Create|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
-        void|GaxiosPromise<Schema$AuthorizedCertificate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Authorizedcertificates$Create;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Authorizedcertificates$Create
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Authorizedcertificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2379,16 +2423,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/authorizedCertificates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/authorizedCertificates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -2396,7 +2443,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.authorizedCertificates.delete
@@ -2412,24 +2458,28 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Apps$Authorizedcertificates$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Apps$Authorizedcertificates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Apps$Authorizedcertificates$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Apps$Authorizedcertificates$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Apps$Authorizedcertificates$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Apps$Authorizedcertificates$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Authorizedcertificates$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Authorizedcertificates$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Authorizedcertificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2446,18 +2496,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2465,7 +2516,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.authorizedCertificates.get
@@ -2481,23 +2531,33 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Authorizedcertificates$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AuthorizedCertificate>;
-    get(params: Params$Resource$Apps$Authorizedcertificates$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
-    get(params: Params$Resource$Apps$Authorizedcertificates$Get,
-        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    get(
+      params?: Params$Resource$Apps$Authorizedcertificates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    get(
+      params: Params$Resource$Apps$Authorizedcertificates$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      callback: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Authorizedcertificates$Get,
+      callback: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Get|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
-        void|GaxiosPromise<Schema$AuthorizedCertificate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Authorizedcertificates$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Authorizedcertificates$Get
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Authorizedcertificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2514,18 +2574,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -2533,7 +2594,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.authorizedCertificates.list
@@ -2551,34 +2611,34 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Apps$Authorizedcertificates$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
+      params?: Params$Resource$Apps$Authorizedcertificates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
     list(
-        params: Params$Resource$Apps$Authorizedcertificates$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
-        callback:
-            BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
-        void;
+      params: Params$Resource$Apps$Authorizedcertificates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+    ): void;
     list(
-        params: Params$Resource$Apps$Authorizedcertificates$List,
-        callback:
-            BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
-        void;
+      params: Params$Resource$Apps$Authorizedcertificates$List,
+      callback: BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$List|
-        BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
-        void|GaxiosPromise<Schema$ListAuthorizedCertificatesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Authorizedcertificates$List;
+      callback: BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Authorizedcertificates$List
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+    ): void | GaxiosPromise<Schema$ListAuthorizedCertificatesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Authorizedcertificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2595,26 +2655,31 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/authorizedCertificates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/authorizedCertificates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * appengine.apps.authorizedCertificates.patch
@@ -2636,26 +2701,32 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Apps$Authorizedcertificates$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$AuthorizedCertificate>;
+      params?: Params$Resource$Apps$Authorizedcertificates$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuthorizedCertificate>;
     patch(
-        params: Params$Resource$Apps$Authorizedcertificates$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+      params: Params$Resource$Apps$Authorizedcertificates$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      callback: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void;
     patch(
-        params: Params$Resource$Apps$Authorizedcertificates$Patch,
-        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+      params: Params$Resource$Apps$Authorizedcertificates$Patch,
+      callback: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Patch|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
-        void|GaxiosPromise<Schema$AuthorizedCertificate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Authorizedcertificates$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Authorizedcertificates$Patch
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
+    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Authorizedcertificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2672,18 +2743,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -2693,12 +2765,12 @@ export namespace appengine_v1 {
     }
   }
 
-  export interface Params$Resource$Apps$Authorizedcertificates$Create extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Authorizedcertificates$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Application resource. Example:
@@ -2711,12 +2783,12 @@ export namespace appengine_v1 {
      */
     requestBody?: Schema$AuthorizedCertificate;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Authorizedcertificates$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource to delete. Example:
@@ -2728,12 +2800,12 @@ export namespace appengine_v1 {
      */
     authorizedCertificatesId?: string;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Authorizedcertificates$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -2749,12 +2821,12 @@ export namespace appengine_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Authorizedcertificates$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Application resource. Example:
@@ -2774,12 +2846,12 @@ export namespace appengine_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Authorizedcertificates$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource to update. Example:
@@ -2802,13 +2874,11 @@ export namespace appengine_v1 {
     requestBody?: Schema$AuthorizedCertificate;
   }
 
-
   export class Resource$Apps$Authorizeddomains {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * appengine.apps.authorizedDomains.list
@@ -2825,30 +2895,34 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Apps$Authorizeddomains$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+      params?: Params$Resource$Apps$Authorizeddomains$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
     list(
-        params: Params$Resource$Apps$Authorizeddomains$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
+      params: Params$Resource$Apps$Authorizeddomains$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
     list(
-        params: Params$Resource$Apps$Authorizeddomains$List,
-        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void;
+      params: Params$Resource$Apps$Authorizeddomains$List,
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Authorizeddomains$List|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void|GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Authorizeddomains$List;
+      callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Authorizeddomains$List
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+    ): void | GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2865,33 +2939,39 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/authorizedDomains')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/authorizedDomains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Apps$Authorizeddomains$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Authorizeddomains$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Application resource. Example:
@@ -2908,13 +2988,11 @@ export namespace appengine_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Apps$Domainmappings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * appengine.apps.domainMappings.create
@@ -2934,25 +3012,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Apps$Domainmappings$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Domainmappings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Apps$Domainmappings$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Domainmappings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Apps$Domainmappings$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Domainmappings$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Apps$Domainmappings$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Domainmappings$Create;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Domainmappings$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2969,16 +3052,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/domainMappings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/domainMappings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2986,7 +3072,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.domainMappings.delete
@@ -3004,25 +3089,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Apps$Domainmappings$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Domainmappings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Apps$Domainmappings$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Domainmappings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Apps$Domainmappings$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Domainmappings$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Apps$Domainmappings$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Domainmappings$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Domainmappings$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3039,17 +3129,18 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/apps/{appsId}/domainMappings/{domainMappingsId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/domainMappings/{domainMappingsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3057,7 +3148,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.domainMappings.get
@@ -3072,22 +3162,31 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Domainmappings$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DomainMapping>;
-    get(params: Params$Resource$Apps$Domainmappings$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
-    get(params: Params$Resource$Apps$Domainmappings$Get,
-        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+    get(
+      params?: Params$Resource$Apps$Domainmappings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DomainMapping>;
+    get(
+      params: Params$Resource$Apps$Domainmappings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Domainmappings$Get,
+      callback: BodyResponseCallback<Schema$DomainMapping>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DomainMapping>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Domainmappings$Get|
-        BodyResponseCallback<Schema$DomainMapping>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DomainMapping>,
-        callback?: BodyResponseCallback<Schema$DomainMapping>):
-        void|GaxiosPromise<Schema$DomainMapping> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Domainmappings$Get
+        | BodyResponseCallback<Schema$DomainMapping>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>,
+      callback?: BodyResponseCallback<Schema$DomainMapping>
+    ): void | GaxiosPromise<Schema$DomainMapping> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3104,17 +3203,18 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/apps/{appsId}/domainMappings/{domainMappingsId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/domainMappings/{domainMappingsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -3122,7 +3222,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$DomainMapping>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.domainMappings.list
@@ -3139,30 +3238,34 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Apps$Domainmappings$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListDomainMappingsResponse>;
+      params?: Params$Resource$Apps$Domainmappings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
     list(
-        params: Params$Resource$Apps$Domainmappings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
+      params: Params$Resource$Apps$Domainmappings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
     list(
-        params: Params$Resource$Apps$Domainmappings$List,
-        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void;
+      params: Params$Resource$Apps$Domainmappings$List,
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Domainmappings$List|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void|GaxiosPromise<Schema$ListDomainMappingsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$List;
+      callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Domainmappings$List
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>
+    ): void | GaxiosPromise<Schema$ListDomainMappingsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3179,25 +3282,29 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/domainMappings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/domainMappings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.domainMappings.patch
@@ -3218,25 +3325,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Apps$Domainmappings$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Domainmappings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Apps$Domainmappings$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Domainmappings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Apps$Domainmappings$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Domainmappings$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Apps$Domainmappings$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Domainmappings$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Domainmappings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3253,17 +3365,18 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/apps/{appsId}/domainMappings/{domainMappingsId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/domainMappings/{domainMappingsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3273,12 +3386,12 @@ export namespace appengine_v1 {
     }
   }
 
-  export interface Params$Resource$Apps$Domainmappings$Create extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Domainmappings$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Application resource. Example:
@@ -3296,12 +3409,12 @@ export namespace appengine_v1 {
      */
     requestBody?: Schema$DomainMapping;
   }
-  export interface Params$Resource$Apps$Domainmappings$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Domainmappings$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource to delete. Example:
@@ -3313,12 +3426,12 @@ export namespace appengine_v1 {
      */
     domainMappingsId?: string;
   }
-  export interface Params$Resource$Apps$Domainmappings$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Domainmappings$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -3330,12 +3443,12 @@ export namespace appengine_v1 {
      */
     domainMappingsId?: string;
   }
-  export interface Params$Resource$Apps$Domainmappings$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Domainmappings$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Application resource. Example:
@@ -3351,12 +3464,12 @@ export namespace appengine_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Apps$Domainmappings$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Domainmappings$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource to update. Example:
@@ -3378,7 +3491,6 @@ export namespace appengine_v1 {
     requestBody?: Schema$DomainMapping;
   }
 
-
   export class Resource$Apps$Firewall {
     context: APIRequestContext;
     ingressRules: Resource$Apps$Firewall$Ingressrules;
@@ -3388,13 +3500,11 @@ export namespace appengine_v1 {
     }
   }
 
-
   export class Resource$Apps$Firewall$Ingressrules {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * appengine.apps.firewall.ingressRules.batchUpdate
@@ -3414,33 +3524,34 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     batchUpdate(
-        params?: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchUpdateIngressRulesResponse>;
+      params?: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdateIngressRulesResponse>;
     batchUpdate(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
-        callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
-        void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>
+    ): void;
     batchUpdate(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
-        callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
-        void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>
+    ): void;
     batchUpdate(
-        callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>
+    ): void;
     batchUpdate(
-        paramsOrCallback?:
-            Params$Resource$Apps$Firewall$Ingressrules$Batchupdate|
-        BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
-        void|GaxiosPromise<Schema$BatchUpdateIngressRulesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Firewall$Ingressrules$Batchupdate;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Firewall$Ingressrules$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>
+    ): void | GaxiosPromise<Schema$BatchUpdateIngressRulesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Firewall$Ingressrules$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3457,27 +3568,30 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/apps/{appsId}/firewall/ingressRules:batchUpdate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/firewall/ingressRules:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdateIngressRulesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchUpdateIngressRulesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * appengine.apps.firewall.ingressRules.create
@@ -3493,25 +3607,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Apps$Firewall$Ingressrules$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$FirewallRule>;
+      params?: Params$Resource$Apps$Firewall$Ingressrules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FirewallRule>;
     create(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
-        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$FirewallRule>,
+      callback: BodyResponseCallback<Schema$FirewallRule>
+    ): void;
     create(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Create,
-        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Create,
+      callback: BodyResponseCallback<Schema$FirewallRule>
+    ): void;
     create(callback: BodyResponseCallback<Schema$FirewallRule>): void;
     create(
-        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Create|
-        BodyResponseCallback<Schema$FirewallRule>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FirewallRule>,
-        callback?: BodyResponseCallback<Schema$FirewallRule>):
-        void|GaxiosPromise<Schema$FirewallRule> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Firewall$Ingressrules$Create;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Firewall$Ingressrules$Create
+        | BodyResponseCallback<Schema$FirewallRule>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FirewallRule>,
+      callback?: BodyResponseCallback<Schema$FirewallRule>
+    ): void | GaxiosPromise<Schema$FirewallRule> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Firewall$Ingressrules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3528,16 +3647,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FirewallRule>(parameters, callback);
@@ -3545,7 +3667,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$FirewallRule>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.firewall.ingressRules.delete
@@ -3561,24 +3682,28 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Apps$Firewall$Ingressrules$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Apps$Firewall$Ingressrules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Firewall$Ingressrules$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Firewall$Ingressrules$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Firewall$Ingressrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3595,17 +3720,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'ingressRulesId'],
         pathParams: ['appsId', 'ingressRulesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3613,7 +3740,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.firewall.ingressRules.get
@@ -3628,22 +3754,31 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Firewall$Ingressrules$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$FirewallRule>;
-    get(params: Params$Resource$Apps$Firewall$Ingressrules$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
-        callback: BodyResponseCallback<Schema$FirewallRule>): void;
-    get(params: Params$Resource$Apps$Firewall$Ingressrules$Get,
-        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    get(
+      params?: Params$Resource$Apps$Firewall$Ingressrules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FirewallRule>;
+    get(
+      params: Params$Resource$Apps$Firewall$Ingressrules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$FirewallRule>,
+      callback: BodyResponseCallback<Schema$FirewallRule>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Firewall$Ingressrules$Get,
+      callback: BodyResponseCallback<Schema$FirewallRule>
+    ): void;
     get(callback: BodyResponseCallback<Schema$FirewallRule>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Get|
-        BodyResponseCallback<Schema$FirewallRule>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FirewallRule>,
-        callback?: BodyResponseCallback<Schema$FirewallRule>):
-        void|GaxiosPromise<Schema$FirewallRule> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Firewall$Ingressrules$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Firewall$Ingressrules$Get
+        | BodyResponseCallback<Schema$FirewallRule>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FirewallRule>,
+      callback?: BodyResponseCallback<Schema$FirewallRule>
+    ): void | GaxiosPromise<Schema$FirewallRule> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Firewall$Ingressrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3660,17 +3795,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'ingressRulesId'],
         pathParams: ['appsId', 'ingressRulesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FirewallRule>(parameters, callback);
@@ -3678,7 +3815,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$FirewallRule>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.firewall.ingressRules.list
@@ -3696,27 +3832,32 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Apps$Firewall$Ingressrules$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListIngressRulesResponse>;
+      params?: Params$Resource$Apps$Firewall$Ingressrules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListIngressRulesResponse>;
     list(
-        params: Params$Resource$Apps$Firewall$Ingressrules$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListIngressRulesResponse>,
-        callback: BodyResponseCallback<Schema$ListIngressRulesResponse>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListIngressRulesResponse>,
+      callback: BodyResponseCallback<Schema$ListIngressRulesResponse>
+    ): void;
     list(
-        params: Params$Resource$Apps$Firewall$Ingressrules$List,
-        callback: BodyResponseCallback<Schema$ListIngressRulesResponse>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$List,
+      callback: BodyResponseCallback<Schema$ListIngressRulesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListIngressRulesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$List|
-        BodyResponseCallback<Schema$ListIngressRulesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListIngressRulesResponse>,
-        callback?: BodyResponseCallback<Schema$ListIngressRulesResponse>):
-        void|GaxiosPromise<Schema$ListIngressRulesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Firewall$Ingressrules$List;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Firewall$Ingressrules$List
+        | BodyResponseCallback<Schema$ListIngressRulesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListIngressRulesResponse>,
+      callback?: BodyResponseCallback<Schema$ListIngressRulesResponse>
+    ): void | GaxiosPromise<Schema$ListIngressRulesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Firewall$Ingressrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3733,16 +3874,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/firewall/ingressRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListIngressRulesResponse>(parameters, callback);
@@ -3750,7 +3894,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$ListIngressRulesResponse>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.firewall.ingressRules.patch
@@ -3768,25 +3911,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Apps$Firewall$Ingressrules$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$FirewallRule>;
+      params?: Params$Resource$Apps$Firewall$Ingressrules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FirewallRule>;
     patch(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
-        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$FirewallRule>,
+      callback: BodyResponseCallback<Schema$FirewallRule>
+    ): void;
     patch(
-        params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
-        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+      params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
+      callback: BodyResponseCallback<Schema$FirewallRule>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$FirewallRule>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Patch|
-        BodyResponseCallback<Schema$FirewallRule>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FirewallRule>,
-        callback?: BodyResponseCallback<Schema$FirewallRule>):
-        void|GaxiosPromise<Schema$FirewallRule> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Firewall$Ingressrules$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Firewall$Ingressrules$Patch
+        | BodyResponseCallback<Schema$FirewallRule>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FirewallRule>,
+      callback?: BodyResponseCallback<Schema$FirewallRule>
+    ): void | GaxiosPromise<Schema$FirewallRule> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Firewall$Ingressrules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3803,17 +3951,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/firewall/ingressRules/{ingressRulesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'ingressRulesId'],
         pathParams: ['appsId', 'ingressRulesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FirewallRule>(parameters, callback);
@@ -3824,11 +3974,11 @@ export namespace appengine_v1 {
   }
 
   export interface Params$Resource$Apps$Firewall$Ingressrules$Batchupdate
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the Firewall collection to set. Example:
@@ -3841,12 +3991,12 @@ export namespace appengine_v1 {
      */
     requestBody?: Schema$BatchUpdateIngressRulesRequest;
   }
-  export interface Params$Resource$Apps$Firewall$Ingressrules$Create extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Firewall collection in which to
@@ -3859,12 +4009,12 @@ export namespace appengine_v1 {
      */
     requestBody?: Schema$FirewallRule;
   }
-  export interface Params$Resource$Apps$Firewall$Ingressrules$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the Firewall resource to delete. Example:
@@ -3876,12 +4026,12 @@ export namespace appengine_v1 {
      */
     ingressRulesId?: string;
   }
-  export interface Params$Resource$Apps$Firewall$Ingressrules$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the Firewall resource to retrieve. Example:
@@ -3893,12 +4043,12 @@ export namespace appengine_v1 {
      */
     ingressRulesId?: string;
   }
-  export interface Params$Resource$Apps$Firewall$Ingressrules$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Firewall$Ingressrules$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the Firewall collection to retrieve. Example:
@@ -3920,12 +4070,12 @@ export namespace appengine_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Apps$Firewall$Ingressrules$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the Firewall resource to update. Example:
@@ -3947,14 +4097,11 @@ export namespace appengine_v1 {
     requestBody?: Schema$FirewallRule;
   }
 
-
-
   export class Resource$Apps$Locations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * appengine.apps.locations.get
@@ -3969,21 +4116,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Locations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Location>;
-    get(params: Params$Resource$Apps$Locations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback: BodyResponseCallback<Schema$Location>): void;
-    get(params: Params$Resource$Apps$Locations$Get,
-        callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      params?: Params$Resource$Apps$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Apps$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Locations$Get|
-        BodyResponseCallback<Schema$Location>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>):
-        void|GaxiosPromise<Schema$Location> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Locations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4000,16 +4155,18 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/locations/{locationsId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/locations/{locationsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'locationsId'],
         pathParams: ['appsId', 'locationsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -4017,7 +4174,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Location>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.locations.list
@@ -4034,26 +4190,33 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Apps$Locations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Apps$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params?: Params$Resource$Apps$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Apps$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Apps$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Apps$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4070,16 +4233,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -4089,12 +4255,12 @@ export namespace appengine_v1 {
     }
   }
 
-  export interface Params$Resource$Apps$Locations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Locations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Resource name for the location.
@@ -4105,12 +4271,12 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
   }
-  export interface Params$Resource$Apps$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. The resource that owns the locations collection, if
@@ -4131,13 +4297,11 @@ export namespace appengine_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Apps$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * appengine.apps.operations.get
@@ -4154,22 +4318,31 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Apps$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Apps$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Apps$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Apps$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4186,16 +4359,18 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/operations/{operationsId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/operations/{operationsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'operationsId'],
         pathParams: ['appsId', 'operationsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4203,7 +4378,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.operations.list
@@ -4229,26 +4403,32 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Apps$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Apps$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Apps$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Apps$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Apps$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Apps$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4265,16 +4445,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/operations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -4284,12 +4467,12 @@ export namespace appengine_v1 {
     }
   }
 
-  export interface Params$Resource$Apps$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. The name of the operation resource.
@@ -4300,12 +4483,12 @@ export namespace appengine_v1 {
      */
     operationsId?: string;
   }
-  export interface Params$Resource$Apps$Operations$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. The name of the operation's parent resource.
@@ -4325,7 +4508,6 @@ export namespace appengine_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Apps$Services {
     context: APIRequestContext;
     versions: Resource$Apps$Services$Versions;
@@ -4333,7 +4515,6 @@ export namespace appengine_v1 {
       this.context = context;
       this.versions = new Resource$Apps$Services$Versions(this.context);
     }
-
 
     /**
      * appengine.apps.services.delete
@@ -4349,25 +4530,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Apps$Services$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Services$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Apps$Services$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Apps$Services$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Apps$Services$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Services$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4384,16 +4570,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/services/{servicesId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/services/{servicesId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4401,7 +4590,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.get
@@ -4416,21 +4604,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Services$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
-    get(params: Params$Resource$Apps$Services$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
-    get(params: Params$Resource$Apps$Services$Get,
-        callback: BodyResponseCallback<Schema$Service>): void;
+    get(
+      params?: Params$Resource$Apps$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    get(
+      params: Params$Resource$Apps$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Services$Get,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Service>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Services$Get|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Services$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Get
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4447,16 +4643,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/services/{servicesId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/services/{servicesId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -4464,7 +4663,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.list
@@ -4480,26 +4678,33 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Apps$Services$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Apps$Services$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params?: Params$Resource$Apps$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Apps$Services$List,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params: Params$Resource$Apps$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Apps$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Services$List|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicesResponse>):
-        void|GaxiosPromise<Schema$ListServicesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Services$List;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback?: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void | GaxiosPromise<Schema$ListServicesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4516,16 +4721,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/services')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -4533,7 +4741,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.patch
@@ -4552,25 +4759,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Apps$Services$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Services$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Apps$Services$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Apps$Services$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Apps$Services$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Apps$Services$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4587,16 +4799,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/apps/{appsId}/services/{servicesId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/apps/{appsId}/services/{servicesId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4606,12 +4821,12 @@ export namespace appengine_v1 {
     }
   }
 
-  export interface Params$Resource$Apps$Services$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -4623,12 +4838,12 @@ export namespace appengine_v1 {
      */
     servicesId?: string;
   }
-  export interface Params$Resource$Apps$Services$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -4640,12 +4855,12 @@ export namespace appengine_v1 {
      */
     servicesId?: string;
   }
-  export interface Params$Resource$Apps$Services$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Application resource. Example:
@@ -4661,12 +4876,12 @@ export namespace appengine_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Apps$Services$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource to update. Example:
@@ -4709,10 +4924,10 @@ export namespace appengine_v1 {
     instances: Resource$Apps$Services$Versions$Instances;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.instances =
-          new Resource$Apps$Services$Versions$Instances(this.context);
+      this.instances = new Resource$Apps$Services$Versions$Instances(
+        this.context
+      );
     }
-
 
     /**
      * appengine.apps.services.versions.create
@@ -4729,25 +4944,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Apps$Services$Versions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Services$Versions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Apps$Services$Versions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Apps$Services$Versions$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Apps$Services$Versions$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4764,17 +4984,18 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/apps/{appsId}/services/{servicesId}/versions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/services/{servicesId}/versions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4782,7 +5003,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.versions.delete
@@ -4799,25 +5019,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Apps$Services$Versions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Services$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Apps$Services$Versions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Apps$Services$Versions$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Apps$Services$Versions$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4834,18 +5059,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4853,7 +5079,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.versions.get
@@ -4872,21 +5097,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Services$Versions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Version>;
-    get(params: Params$Resource$Apps$Services$Versions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback: BodyResponseCallback<Schema$Version>): void;
-    get(params: Params$Resource$Apps$Services$Versions$Get,
-        callback: BodyResponseCallback<Schema$Version>): void;
+    get(
+      params?: Params$Resource$Apps$Services$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
+    get(
+      params: Params$Resource$Apps$Services$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Services$Versions$Get,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Version>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Services$Versions$Get|
-        BodyResponseCallback<Schema$Version>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>):
-        void|GaxiosPromise<Schema$Version> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Get
+        | BodyResponseCallback<Schema$Version>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback?: BodyResponseCallback<Schema$Version>
+    ): void | GaxiosPromise<Schema$Version> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4903,18 +5136,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -4922,7 +5156,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Version>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.versions.list
@@ -4941,26 +5174,32 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Apps$Services$Versions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListVersionsResponse>;
+      params?: Params$Resource$Apps$Services$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListVersionsResponse>;
     list(
-        params: Params$Resource$Apps$Services$Versions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListVersionsResponse>,
-        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+      params: Params$Resource$Apps$Services$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListVersionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Apps$Services$Versions$List,
-        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+      params: Params$Resource$Apps$Services$Versions$List,
+      callback: BodyResponseCallback<Schema$ListVersionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$Services$Versions$List|
-        BodyResponseCallback<Schema$ListVersionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListVersionsResponse>):
-        void|GaxiosPromise<Schema$ListVersionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$List;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$List
+        | BodyResponseCallback<Schema$ListVersionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListVersionsResponse>
+    ): void | GaxiosPromise<Schema$ListVersionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4977,17 +5216,18 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/apps/{appsId}/services/{servicesId}/versions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/apps/{appsId}/services/{servicesId}/versions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
@@ -4995,7 +5235,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.versions.patch
@@ -5043,25 +5282,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Apps$Services$Versions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Services$Versions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Apps$Services$Versions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Apps$Services$Versions$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Apps$Services$Versions$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5078,18 +5322,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5099,12 +5344,12 @@ export namespace appengine_v1 {
     }
   }
 
-  export interface Params$Resource$Apps$Services$Versions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Versions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent resource to create this version
@@ -5121,12 +5366,12 @@ export namespace appengine_v1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Apps$Services$Versions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Versions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -5142,12 +5387,12 @@ export namespace appengine_v1 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Versions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -5167,12 +5412,12 @@ export namespace appengine_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Versions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Service resource. Example:
@@ -5196,12 +5441,12 @@ export namespace appengine_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Versions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource to update. Example:
@@ -5233,7 +5478,6 @@ export namespace appengine_v1 {
       this.context = context;
     }
 
-
     /**
      * appengine.apps.services.versions.instances.debug
      * @desc Enables debugging on a VM instance. This allows you to use the SSH
@@ -5256,26 +5500,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     debug(
-        params?: Params$Resource$Apps$Services$Versions$Instances$Debug,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Services$Versions$Instances$Debug,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     debug(
-        params: Params$Resource$Apps$Services$Versions$Instances$Debug,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Instances$Debug,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     debug(
-        params: Params$Resource$Apps$Services$Versions$Instances$Debug,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Instances$Debug,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     debug(callback: BodyResponseCallback<Schema$Operation>): void;
     debug(
-        paramsOrCallback?:
-            Params$Resource$Apps$Services$Versions$Instances$Debug|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Instances$Debug;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Instances$Debug
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Instances$Debug;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5292,18 +5540,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'servicesId', 'versionsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5311,7 +5560,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.versions.instances.delete
@@ -5329,26 +5577,30 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Apps$Services$Versions$Instances$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Apps$Services$Versions$Instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Apps$Services$Versions$Instances$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Instances$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Apps$Services$Versions$Instances$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Apps$Services$Versions$Instances$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Apps$Services$Versions$Instances$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Instances$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Instances$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5365,18 +5617,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'servicesId', 'versionsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5384,7 +5637,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.versions.instances.get
@@ -5401,21 +5653,29 @@ export namespace appengine_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Services$Versions$Instances$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
-    get(params: Params$Resource$Apps$Services$Versions$Instances$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback: BodyResponseCallback<Schema$Instance>): void;
-    get(params: Params$Resource$Apps$Services$Versions$Instances$Get,
-        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(
+      params?: Params$Resource$Apps$Services$Versions$Instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Instance>;
+    get(
+      params: Params$Resource$Apps$Services$Versions$Instances$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Services$Versions$Instances$Get,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Instance>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Services$Versions$Instances$Get|
-        BodyResponseCallback<Schema$Instance>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback?: BodyResponseCallback<Schema$Instance>):
-        void|GaxiosPromise<Schema$Instance> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Instances$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Instances$Get
+        | BodyResponseCallback<Schema$Instance>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>
+    ): void | GaxiosPromise<Schema$Instance> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5432,18 +5692,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'servicesId', 'versionsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -5451,7 +5712,6 @@ export namespace appengine_v1 {
         return createAPIRequest<Schema$Instance>(parameters);
       }
     }
-
 
     /**
      * appengine.apps.services.versions.instances.list
@@ -5472,27 +5732,32 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Apps$Services$Versions$Instances$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListInstancesResponse>;
+      params?: Params$Resource$Apps$Services$Versions$Instances$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstancesResponse>;
     list(
-        params: Params$Resource$Apps$Services$Versions$Instances$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+      params: Params$Resource$Apps$Services$Versions$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
     list(
-        params: Params$Resource$Apps$Services$Versions$Instances$List,
-        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+      params: Params$Resource$Apps$Services$Versions$Instances$List,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Apps$Services$Versions$Instances$List|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
-        void|GaxiosPromise<Schema$ListInstancesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Apps$Services$Versions$Instances$List;
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Instances$List
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void | GaxiosPromise<Schema$ListInstancesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5509,18 +5774,19 @@ export namespace appengine_v1 {
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}/instances'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -5531,11 +5797,11 @@ export namespace appengine_v1 {
   }
 
   export interface Params$Resource$Apps$Services$Versions$Instances$Debug
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -5561,11 +5827,11 @@ export namespace appengine_v1 {
     requestBody?: Schema$DebugInstanceRequest;
   }
   export interface Params$Resource$Apps$Services$Versions$Instances$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -5585,12 +5851,12 @@ export namespace appengine_v1 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Instances$Get extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Versions$Instances$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `name`. Name of the resource requested. Example:
@@ -5610,12 +5876,12 @@ export namespace appengine_v1 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Instances$List extends
-      StandardParameters {
+  export interface Params$Resource$Apps$Services$Versions$Instances$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Part of `parent`. Name of the parent Version resource. Example:

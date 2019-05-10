@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -110,8 +122,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Your bidder locations that have distinct URLs.
      */
-    bidderLocation?:
-        Array<{maximumQps?: number; region?: string; url?: string;}>;
+    bidderLocation?: Array<{
+      maximumQps?: number;
+      region?: string;
+      url?: string;
+    }>;
     /**
      * The nid parameter value used in cookie match requests. Please contact
      * your technical account manager if you need to change this.
@@ -271,7 +286,7 @@ export namespace adexchangebuyer_v1_3 {
      * Shows any corrections that were applied to this creative. Read-only. This
      * field should not be set in requests.
      */
-    corrections?: Array<{details?: string[]; reason?: string;}>;
+    corrections?: Array<{details?: string[]; reason?: string}>;
     /**
      * The reasons for disapproval, if any. Note that not all disapproval
      * reasons may be categorized, so it is possible for the creative to have a
@@ -279,14 +294,14 @@ export namespace adexchangebuyer_v1_3 {
      * case, please reach out to your TAM to help debug the issue. Read-only.
      * This field should not be set in requests.
      */
-    disapprovalReasons?: Array<{details?: string[]; reason?: string;}>;
+    disapprovalReasons?: Array<{details?: string[]; reason?: string}>;
     /**
      * The filtering reasons for the creative. Read-only. This field should not
      * be set in requests.
      */
     filteringReasons?: {
       date?: string;
-      reasons?: Array<{filteringCount?: string; filteringStatus?: number;}>;
+      reasons?: Array<{filteringCount?: string; filteringStatus?: number}>;
     };
     /**
      * Ad height.
@@ -310,14 +325,14 @@ export namespace adexchangebuyer_v1_3 {
      */
     nativeAd?: {
       advertiser?: string;
-      appIcon?: {height?: number; url?: string; width?: number;};
+      appIcon?: {height?: number; url?: string; width?: number};
       body?: string;
       callToAction?: string;
       clickTrackingUrl?: string;
       headline?: string;
-      image?: {height?: number; url?: string; width?: number;};
+      image?: {height?: number; url?: string; width?: number};
       impressionTrackingUrl?: string[];
-      logo?: {height?: number; url?: string; width?: number;};
+      logo?: {height?: number; url?: string; width?: number};
       price?: string;
       starRating?: number;
       store?: string;
@@ -612,7 +627,7 @@ export namespace adexchangebuyer_v1_3 {
      * Requests which allow one of these (width, height) pairs will match. All
      * pairs must be supported ad dimensions.
      */
-    dimensions?: Array<{height?: string; width?: string;}>;
+    dimensions?: Array<{height?: string; width?: string}>;
     /**
      * Requests with any of these content labels will not match. Values are from
      * content-labels.txt in the downloadable files section.
@@ -625,7 +640,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Requests containing any of these placements will not match.
      */
-    excludedPlacements?: Array<{token?: string; type?: string;}>;
+    excludedPlacements?: Array<{token?: string; type?: string}>;
     /**
      * Requests containing any of these users list ids will not match.
      */
@@ -670,7 +685,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Requests containing any of these placements will match.
      */
-    placements?: Array<{token?: string; type?: string;}>;
+    placements?: Array<{token?: string; type?: string}>;
     /**
      * Requests matching any of these platforms will match. Possible values are
      * PRETARGETING_PLATFORM_MOBILE, PRETARGETING_PLATFORM_DESKTOP, and
@@ -709,13 +724,11 @@ export namespace adexchangebuyer_v1_3 {
     kind?: string;
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexchangebuyer.accounts.get
@@ -729,19 +742,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Account>;
-    get(params: Params$Resource$Accounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
-    get(params: Params$Resource$Accounts$Get,
-        callback: BodyResponseCallback<Schema$Account>): void;
+    get(
+      params?: Params$Resource$Accounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Get,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Account>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Get|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Get
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -759,16 +780,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/accounts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/accounts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -776,7 +800,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.accounts.list
@@ -789,23 +812,29 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AccountsList>;
     list(
-        params: Params$Resource$Accounts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountsList>,
-        callback: BodyResponseCallback<Schema$AccountsList>): void;
+      params?: Params$Resource$Accounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountsList>;
     list(
-        params: Params$Resource$Accounts$List,
-        callback: BodyResponseCallback<Schema$AccountsList>): void;
+      params: Params$Resource$Accounts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountsList>,
+      callback: BodyResponseCallback<Schema$AccountsList>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$List,
+      callback: BodyResponseCallback<Schema$AccountsList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AccountsList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$List|
-        BodyResponseCallback<Schema$AccountsList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountsList>,
-        callback?: BodyResponseCallback<Schema$AccountsList>):
-        void|GaxiosPromise<Schema$AccountsList> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$List
+        | BodyResponseCallback<Schema$AccountsList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountsList>,
+      callback?: BodyResponseCallback<Schema$AccountsList>
+    ): void | GaxiosPromise<Schema$AccountsList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -823,16 +852,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/accounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountsList>(parameters, callback);
@@ -840,7 +872,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$AccountsList>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.accounts.patch
@@ -855,22 +886,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Accounts$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     patch(
-        params: Params$Resource$Accounts$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     patch(
-        params: Params$Resource$Accounts$Patch,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Patch,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Account>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Accounts$Patch|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Patch
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -888,16 +924,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/accounts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/accounts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -905,7 +944,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$Account>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.accounts.update
@@ -920,22 +958,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params?: Params$Resource$Accounts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Account>;
     update(
-        params: Params$Resource$Accounts$Update,
-        callback: BodyResponseCallback<Schema$Account>): void;
+      params: Params$Resource$Accounts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
+    update(
+      params: Params$Resource$Accounts$Update,
+      callback: BodyResponseCallback<Schema$Account>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Account>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Update|
-        BodyResponseCallback<Schema$Account>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>):
-        void|GaxiosPromise<Schema$Account> {
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Update
+        | BodyResponseCallback<Schema$Account>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>
+    ): void | GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -953,16 +996,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/accounts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/accounts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -976,7 +1022,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id
@@ -987,13 +1033,13 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
   export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id
@@ -1009,7 +1055,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id
@@ -1022,13 +1068,11 @@ export namespace adexchangebuyer_v1_3 {
     requestBody?: Schema$Account;
   }
 
-
   export class Resource$Billinginfo {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexchangebuyer.billingInfo.get
@@ -1043,20 +1087,29 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Billinginfo$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$BillingInfo>;
-    get(params: Params$Resource$Billinginfo$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$BillingInfo>,
-        callback: BodyResponseCallback<Schema$BillingInfo>): void;
-    get(params: Params$Resource$Billinginfo$Get,
-        callback: BodyResponseCallback<Schema$BillingInfo>): void;
+    get(
+      params?: Params$Resource$Billinginfo$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingInfo>;
+    get(
+      params: Params$Resource$Billinginfo$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingInfo>,
+      callback: BodyResponseCallback<Schema$BillingInfo>
+    ): void;
+    get(
+      params: Params$Resource$Billinginfo$Get,
+      callback: BodyResponseCallback<Schema$BillingInfo>
+    ): void;
     get(callback: BodyResponseCallback<Schema$BillingInfo>): void;
-    get(paramsOrCallback?: Params$Resource$Billinginfo$Get|
-        BodyResponseCallback<Schema$BillingInfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BillingInfo>,
-        callback?: BodyResponseCallback<Schema$BillingInfo>):
-        void|GaxiosPromise<Schema$BillingInfo> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billinginfo$Get
+        | BodyResponseCallback<Schema$BillingInfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingInfo>,
+      callback?: BodyResponseCallback<Schema$BillingInfo>
+    ): void | GaxiosPromise<Schema$BillingInfo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1074,16 +1127,18 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/billinginfo/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adexchangebuyer/v1.3/billinginfo/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BillingInfo>(parameters, callback);
@@ -1091,7 +1146,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$BillingInfo>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.billingInfo.list
@@ -1105,23 +1159,29 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Billinginfo$List, options?: MethodOptions):
-        GaxiosPromise<Schema$BillingInfoList>;
     list(
-        params: Params$Resource$Billinginfo$List,
-        options: MethodOptions|BodyResponseCallback<Schema$BillingInfoList>,
-        callback: BodyResponseCallback<Schema$BillingInfoList>): void;
+      params?: Params$Resource$Billinginfo$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingInfoList>;
     list(
-        params: Params$Resource$Billinginfo$List,
-        callback: BodyResponseCallback<Schema$BillingInfoList>): void;
+      params: Params$Resource$Billinginfo$List,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingInfoList>,
+      callback: BodyResponseCallback<Schema$BillingInfoList>
+    ): void;
+    list(
+      params: Params$Resource$Billinginfo$List,
+      callback: BodyResponseCallback<Schema$BillingInfoList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$BillingInfoList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Billinginfo$List|
-        BodyResponseCallback<Schema$BillingInfoList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BillingInfoList>,
-        callback?: BodyResponseCallback<Schema$BillingInfoList>):
-        void|GaxiosPromise<Schema$BillingInfoList> {
+      paramsOrCallback?:
+        | Params$Resource$Billinginfo$List
+        | BodyResponseCallback<Schema$BillingInfoList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingInfoList>,
+      callback?: BodyResponseCallback<Schema$BillingInfoList>
+    ): void | GaxiosPromise<Schema$BillingInfoList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1139,16 +1199,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/billinginfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/billinginfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BillingInfoList>(parameters, callback);
@@ -1162,7 +1225,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id.
@@ -1173,16 +1236,14 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Budget {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexchangebuyer.budget.get
@@ -1198,19 +1259,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Budget$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Budget>;
-    get(params: Params$Resource$Budget$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Budget>,
-        callback: BodyResponseCallback<Schema$Budget>): void;
-    get(params: Params$Resource$Budget$Get,
-        callback: BodyResponseCallback<Schema$Budget>): void;
+    get(
+      params?: Params$Resource$Budget$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Budget>;
+    get(
+      params: Params$Resource$Budget$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Budget>,
+      callback: BodyResponseCallback<Schema$Budget>
+    ): void;
+    get(
+      params: Params$Resource$Budget$Get,
+      callback: BodyResponseCallback<Schema$Budget>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Budget>): void;
-    get(paramsOrCallback?: Params$Resource$Budget$Get|
-        BodyResponseCallback<Schema$Budget>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Budget>,
-        callback?: BodyResponseCallback<Schema$Budget>):
-        void|GaxiosPromise<Schema$Budget> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Budget$Get
+        | BodyResponseCallback<Schema$Budget>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Budget>,
+      callback?: BodyResponseCallback<Schema$Budget>
+    ): void | GaxiosPromise<Schema$Budget> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1228,17 +1297,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Budget>(parameters, callback);
@@ -1246,7 +1317,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$Budget>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.budget.patch
@@ -1264,22 +1334,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Budget$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Budget>;
     patch(
-        params: Params$Resource$Budget$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Budget>,
-        callback: BodyResponseCallback<Schema$Budget>): void;
+      params?: Params$Resource$Budget$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Budget>;
     patch(
-        params: Params$Resource$Budget$Patch,
-        callback: BodyResponseCallback<Schema$Budget>): void;
+      params: Params$Resource$Budget$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Budget>,
+      callback: BodyResponseCallback<Schema$Budget>
+    ): void;
+    patch(
+      params: Params$Resource$Budget$Patch,
+      callback: BodyResponseCallback<Schema$Budget>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Budget>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Budget$Patch|
-        BodyResponseCallback<Schema$Budget>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Budget>,
-        callback?: BodyResponseCallback<Schema$Budget>):
-        void|GaxiosPromise<Schema$Budget> {
+      paramsOrCallback?:
+        | Params$Resource$Budget$Patch
+        | BodyResponseCallback<Schema$Budget>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Budget>,
+      callback?: BodyResponseCallback<Schema$Budget>
+    ): void | GaxiosPromise<Schema$Budget> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1297,17 +1372,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Budget>(parameters, callback);
@@ -1315,7 +1392,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$Budget>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.budget.update
@@ -1332,22 +1408,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Budget$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Budget>;
     update(
-        params: Params$Resource$Budget$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Budget>,
-        callback: BodyResponseCallback<Schema$Budget>): void;
+      params?: Params$Resource$Budget$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Budget>;
     update(
-        params: Params$Resource$Budget$Update,
-        callback: BodyResponseCallback<Schema$Budget>): void;
+      params: Params$Resource$Budget$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Budget>,
+      callback: BodyResponseCallback<Schema$Budget>
+    ): void;
+    update(
+      params: Params$Resource$Budget$Update,
+      callback: BodyResponseCallback<Schema$Budget>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Budget>): void;
     update(
-        paramsOrCallback?: Params$Resource$Budget$Update|
-        BodyResponseCallback<Schema$Budget>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Budget>,
-        callback?: BodyResponseCallback<Schema$Budget>):
-        void|GaxiosPromise<Schema$Budget> {
+      paramsOrCallback?:
+        | Params$Resource$Budget$Update
+        | BodyResponseCallback<Schema$Budget>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Budget>,
+      callback?: BodyResponseCallback<Schema$Budget>
+    ): void | GaxiosPromise<Schema$Budget> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1365,17 +1446,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Budget>(parameters, callback);
@@ -1389,7 +1472,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to get the budget information for.
@@ -1404,7 +1487,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id associated with the budget being updated.
@@ -1424,7 +1507,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id associated with the budget being updated.
@@ -1441,13 +1524,11 @@ export namespace adexchangebuyer_v1_3 {
     requestBody?: Schema$Budget;
   }
 
-
   export class Resource$Creatives {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexchangebuyer.creatives.get
@@ -1463,19 +1544,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Creatives$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Creative>;
-    get(params: Params$Resource$Creatives$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback: BodyResponseCallback<Schema$Creative>): void;
-    get(params: Params$Resource$Creatives$Get,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(
+      params?: Params$Resource$Creatives$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Creative>;
+    get(
+      params: Params$Resource$Creatives$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    get(
+      params: Params$Resource$Creatives$Get,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Creative>): void;
-    get(paramsOrCallback?: Params$Resource$Creatives$Get|
-        BodyResponseCallback<Schema$Creative>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>):
-        void|GaxiosPromise<Schema$Creative> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Creatives$Get
+        | BodyResponseCallback<Schema$Creative>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>
+    ): void | GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1493,18 +1582,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adexchangebuyer/v1.3/creatives/{accountId}/{buyerCreativeId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/creatives/{accountId}/{buyerCreativeId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'buyerCreativeId'],
         pathParams: ['accountId', 'buyerCreativeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -1512,7 +1602,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$Creative>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.creatives.insert
@@ -1526,22 +1615,27 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Creatives$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Creative>;
     insert(
-        params: Params$Resource$Creatives$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params?: Params$Resource$Creatives$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Creative>;
     insert(
-        params: Params$Resource$Creatives$Insert,
-        callback: BodyResponseCallback<Schema$Creative>): void;
+      params: Params$Resource$Creatives$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
+    insert(
+      params: Params$Resource$Creatives$Insert,
+      callback: BodyResponseCallback<Schema$Creative>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Creative>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Creatives$Insert|
-        BodyResponseCallback<Schema$Creative>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>):
-        void|GaxiosPromise<Schema$Creative> {
+      paramsOrCallback?:
+        | Params$Resource$Creatives$Insert
+        | BodyResponseCallback<Schema$Creative>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>
+    ): void | GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1559,16 +1653,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/creatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/creatives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -1576,7 +1673,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$Creative>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.creatives.list
@@ -1595,23 +1691,29 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Creatives$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CreativesList>;
     list(
-        params: Params$Resource$Creatives$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CreativesList>,
-        callback: BodyResponseCallback<Schema$CreativesList>): void;
+      params?: Params$Resource$Creatives$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreativesList>;
     list(
-        params: Params$Resource$Creatives$List,
-        callback: BodyResponseCallback<Schema$CreativesList>): void;
+      params: Params$Resource$Creatives$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CreativesList>,
+      callback: BodyResponseCallback<Schema$CreativesList>
+    ): void;
+    list(
+      params: Params$Resource$Creatives$List,
+      callback: BodyResponseCallback<Schema$CreativesList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CreativesList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Creatives$List|
-        BodyResponseCallback<Schema$CreativesList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreativesList>,
-        callback?: BodyResponseCallback<Schema$CreativesList>):
-        void|GaxiosPromise<Schema$CreativesList> {
+      paramsOrCallback?:
+        | Params$Resource$Creatives$List
+        | BodyResponseCallback<Schema$CreativesList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreativesList>,
+      callback?: BodyResponseCallback<Schema$CreativesList>
+    ): void | GaxiosPromise<Schema$CreativesList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1629,16 +1731,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/creatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/creatives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreativesList>(parameters, callback);
@@ -1652,7 +1757,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id for the account that will serve this creative.
@@ -1667,8 +1772,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1679,7 +1783,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * When specified, only creatives for the given account ids are returned.
@@ -1707,13 +1811,11 @@ export namespace adexchangebuyer_v1_3 {
     statusFilter?: string;
   }
 
-
   export class Resource$Directdeals {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexchangebuyer.directDeals.get
@@ -1727,20 +1829,29 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Directdeals$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DirectDeal>;
-    get(params: Params$Resource$Directdeals$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DirectDeal>,
-        callback: BodyResponseCallback<Schema$DirectDeal>): void;
-    get(params: Params$Resource$Directdeals$Get,
-        callback: BodyResponseCallback<Schema$DirectDeal>): void;
+    get(
+      params?: Params$Resource$Directdeals$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectDeal>;
+    get(
+      params: Params$Resource$Directdeals$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DirectDeal>,
+      callback: BodyResponseCallback<Schema$DirectDeal>
+    ): void;
+    get(
+      params: Params$Resource$Directdeals$Get,
+      callback: BodyResponseCallback<Schema$DirectDeal>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DirectDeal>): void;
-    get(paramsOrCallback?: Params$Resource$Directdeals$Get|
-        BodyResponseCallback<Schema$DirectDeal>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectDeal>,
-        callback?: BodyResponseCallback<Schema$DirectDeal>):
-        void|GaxiosPromise<Schema$DirectDeal> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Directdeals$Get
+        | BodyResponseCallback<Schema$DirectDeal>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectDeal>,
+      callback?: BodyResponseCallback<Schema$DirectDeal>
+    ): void | GaxiosPromise<Schema$DirectDeal> {
       let params = (paramsOrCallback || {}) as Params$Resource$Directdeals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1758,16 +1869,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/directdeals/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/directdeals/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectDeal>(parameters, callback);
@@ -1775,7 +1889,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$DirectDeal>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.directDeals.list
@@ -1788,23 +1901,29 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Directdeals$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DirectDealsList>;
     list(
-        params: Params$Resource$Directdeals$List,
-        options: MethodOptions|BodyResponseCallback<Schema$DirectDealsList>,
-        callback: BodyResponseCallback<Schema$DirectDealsList>): void;
+      params?: Params$Resource$Directdeals$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DirectDealsList>;
     list(
-        params: Params$Resource$Directdeals$List,
-        callback: BodyResponseCallback<Schema$DirectDealsList>): void;
+      params: Params$Resource$Directdeals$List,
+      options: MethodOptions | BodyResponseCallback<Schema$DirectDealsList>,
+      callback: BodyResponseCallback<Schema$DirectDealsList>
+    ): void;
+    list(
+      params: Params$Resource$Directdeals$List,
+      callback: BodyResponseCallback<Schema$DirectDealsList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DirectDealsList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Directdeals$List|
-        BodyResponseCallback<Schema$DirectDealsList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DirectDealsList>,
-        callback?: BodyResponseCallback<Schema$DirectDealsList>):
-        void|GaxiosPromise<Schema$DirectDealsList> {
+      paramsOrCallback?:
+        | Params$Resource$Directdeals$List
+        | BodyResponseCallback<Schema$DirectDealsList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DirectDealsList>,
+      callback?: BodyResponseCallback<Schema$DirectDealsList>
+    ): void | GaxiosPromise<Schema$DirectDealsList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Directdeals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1822,16 +1941,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/directdeals')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/directdeals').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DirectDealsList>(parameters, callback);
@@ -1845,7 +1967,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The direct deal id
@@ -1856,16 +1978,14 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Performancereport {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexchangebuyer.performanceReport.list
@@ -1884,26 +2004,32 @@ export namespace adexchangebuyer_v1_3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Performancereport$List,
-        options?: MethodOptions): GaxiosPromise<Schema$PerformanceReportList>;
+      params?: Params$Resource$Performancereport$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PerformanceReportList>;
     list(
-        params: Params$Resource$Performancereport$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PerformanceReportList>,
-        callback: BodyResponseCallback<Schema$PerformanceReportList>): void;
+      params: Params$Resource$Performancereport$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PerformanceReportList>,
+      callback: BodyResponseCallback<Schema$PerformanceReportList>
+    ): void;
     list(
-        params: Params$Resource$Performancereport$List,
-        callback: BodyResponseCallback<Schema$PerformanceReportList>): void;
+      params: Params$Resource$Performancereport$List,
+      callback: BodyResponseCallback<Schema$PerformanceReportList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PerformanceReportList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Performancereport$List|
-        BodyResponseCallback<Schema$PerformanceReportList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PerformanceReportList>,
-        callback?: BodyResponseCallback<Schema$PerformanceReportList>):
-        void|GaxiosPromise<Schema$PerformanceReportList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Performancereport$List;
+      paramsOrCallback?:
+        | Params$Resource$Performancereport$List
+        | BodyResponseCallback<Schema$PerformanceReportList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PerformanceReportList>,
+      callback?: BodyResponseCallback<Schema$PerformanceReportList>
+    ): void | GaxiosPromise<Schema$PerformanceReportList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Performancereport$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1920,16 +2046,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/adexchangebuyer/v1.3/performancereport')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/adexchangebuyer/v1.3/performancereport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'endDateTime', 'startDateTime'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PerformanceReportList>(parameters, callback);
@@ -1939,12 +2068,12 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Performancereport$List extends
-      StandardParameters {
+  export interface Params$Resource$Performancereport$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to get the reports.
@@ -1971,13 +2100,11 @@ export namespace adexchangebuyer_v1_3 {
     startDateTime?: string;
   }
 
-
   export class Resource$Pretargetingconfig {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * adexchangebuyer.pretargetingConfig.delete
@@ -1993,23 +2120,28 @@ export namespace adexchangebuyer_v1_3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Pretargetingconfig$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Pretargetingconfig$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Pretargetingconfig$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pretargetingconfig$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Pretargetingconfig$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pretargetingconfig$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Pretargetingconfig$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Pretargetingconfig$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pretargetingconfig$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2026,18 +2158,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2045,7 +2178,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.pretargetingConfig.get
@@ -2060,22 +2192,31 @@ export namespace adexchangebuyer_v1_3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Pretargetingconfig$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
-    get(params: Params$Resource$Pretargetingconfig$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
-    get(params: Params$Resource$Pretargetingconfig$Get,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+    get(
+      params?: Params$Resource$Pretargetingconfig$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    get(
+      params: Params$Resource$Pretargetingconfig$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Pretargetingconfig$Get,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
     get(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
-    get(paramsOrCallback?: Params$Resource$Pretargetingconfig$Get|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|GaxiosPromise<Schema$PretargetingConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Pretargetingconfig$Get
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback?: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pretargetingconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2092,18 +2233,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
@@ -2111,7 +2253,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.pretargetingConfig.insert
@@ -2127,25 +2268,30 @@ export namespace adexchangebuyer_v1_3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Pretargetingconfig$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
+      params?: Params$Resource$Pretargetingconfig$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
     insert(
-        params: Params$Resource$Pretargetingconfig$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+      params: Params$Resource$Pretargetingconfig$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
     insert(
-        params: Params$Resource$Pretargetingconfig$Insert,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+      params: Params$Resource$Pretargetingconfig$Insert,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Pretargetingconfig$Insert|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|GaxiosPromise<Schema$PretargetingConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Pretargetingconfig$Insert
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback?: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pretargetingconfig$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2162,17 +2308,18 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
@@ -2180,7 +2327,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.pretargetingConfig.list
@@ -2196,26 +2342,32 @@ export namespace adexchangebuyer_v1_3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Pretargetingconfig$List,
-        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfigList>;
+      params?: Params$Resource$Pretargetingconfig$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfigList>;
     list(
-        params: Params$Resource$Pretargetingconfig$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PretargetingConfigList>,
-        callback: BodyResponseCallback<Schema$PretargetingConfigList>): void;
+      params: Params$Resource$Pretargetingconfig$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfigList>,
+      callback: BodyResponseCallback<Schema$PretargetingConfigList>
+    ): void;
     list(
-        params: Params$Resource$Pretargetingconfig$List,
-        callback: BodyResponseCallback<Schema$PretargetingConfigList>): void;
+      params: Params$Resource$Pretargetingconfig$List,
+      callback: BodyResponseCallback<Schema$PretargetingConfigList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PretargetingConfigList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Pretargetingconfig$List|
-        BodyResponseCallback<Schema$PretargetingConfigList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PretargetingConfigList>,
-        callback?: BodyResponseCallback<Schema$PretargetingConfigList>):
-        void|GaxiosPromise<Schema$PretargetingConfigList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$List;
+      paramsOrCallback?:
+        | Params$Resource$Pretargetingconfig$List
+        | BodyResponseCallback<Schema$PretargetingConfigList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfigList>,
+      callback?: BodyResponseCallback<Schema$PretargetingConfigList>
+    ): void | GaxiosPromise<Schema$PretargetingConfigList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pretargetingconfig$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2232,17 +2384,18 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfigList>(parameters, callback);
@@ -2250,7 +2403,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$PretargetingConfigList>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.pretargetingConfig.patch
@@ -2268,25 +2420,30 @@ export namespace adexchangebuyer_v1_3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Pretargetingconfig$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
+      params?: Params$Resource$Pretargetingconfig$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
     patch(
-        params: Params$Resource$Pretargetingconfig$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+      params: Params$Resource$Pretargetingconfig$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
     patch(
-        params: Params$Resource$Pretargetingconfig$Patch,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+      params: Params$Resource$Pretargetingconfig$Patch,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Pretargetingconfig$Patch|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|GaxiosPromise<Schema$PretargetingConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Pretargetingconfig$Patch
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback?: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pretargetingconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2303,18 +2460,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
@@ -2322,7 +2480,6 @@ export namespace adexchangebuyer_v1_3 {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
       }
     }
-
 
     /**
      * adexchangebuyer.pretargetingConfig.update
@@ -2339,25 +2496,30 @@ export namespace adexchangebuyer_v1_3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Pretargetingconfig$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
+      params?: Params$Resource$Pretargetingconfig$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
     update(
-        params: Params$Resource$Pretargetingconfig$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+      params: Params$Resource$Pretargetingconfig$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
     update(
-        params: Params$Resource$Pretargetingconfig$Update,
-        callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+      params: Params$Resource$Pretargetingconfig$Update,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
     update(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
     update(
-        paramsOrCallback?: Params$Resource$Pretargetingconfig$Update|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PretargetingConfig>,
-        callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|GaxiosPromise<Schema$PretargetingConfig> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Update;
+      paramsOrCallback?:
+        | Params$Resource$Pretargetingconfig$Update
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback?: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void | GaxiosPromise<Schema$PretargetingConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pretargetingconfig$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2374,18 +2536,19 @@ export namespace adexchangebuyer_v1_3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
@@ -2395,12 +2558,12 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Pretargetingconfig$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Pretargetingconfig$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to delete the pretargeting config for.
@@ -2411,12 +2574,12 @@ export namespace adexchangebuyer_v1_3 {
      */
     configId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Get extends
-      StandardParameters {
+  export interface Params$Resource$Pretargetingconfig$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to get the pretargeting config for.
@@ -2427,12 +2590,12 @@ export namespace adexchangebuyer_v1_3 {
      */
     configId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Pretargetingconfig$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to insert the pretargeting config for.
@@ -2444,24 +2607,24 @@ export namespace adexchangebuyer_v1_3 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Pretargetingconfig$List extends
-      StandardParameters {
+  export interface Params$Resource$Pretargetingconfig$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to get the pretargeting configs for.
      */
     accountId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Pretargetingconfig$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to update the pretargeting config for.
@@ -2477,12 +2640,12 @@ export namespace adexchangebuyer_v1_3 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Pretargetingconfig$Update extends
-      StandardParameters {
+  export interface Params$Resource$Pretargetingconfig$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account id to update the pretargeting config for.

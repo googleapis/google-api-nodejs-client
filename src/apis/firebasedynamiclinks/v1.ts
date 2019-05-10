@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -737,13 +749,11 @@ export namespace firebasedynamiclinks_v1 {
     option?: string;
   }
 
-
   export class Resource$Managedshortlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firebasedynamiclinks.managedShortLinks.create
@@ -766,31 +776,34 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Managedshortlinks$Create,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$CreateManagedShortLinkResponse>;
+      params?: Params$Resource$Managedshortlinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateManagedShortLinkResponse>;
     create(
-        params: Params$Resource$Managedshortlinks$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
-        callback: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
-        void;
+      params: Params$Resource$Managedshortlinks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
+      callback: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
+    ): void;
     create(
-        params: Params$Resource$Managedshortlinks$Create,
-        callback: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
-        void;
-    create(callback:
-               BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
-        void;
+      params: Params$Resource$Managedshortlinks$Create,
+      callback: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
+    ): void;
     create(
-        paramsOrCallback?: Params$Resource$Managedshortlinks$Create|
-        BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
-        callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
-        void|GaxiosPromise<Schema$CreateManagedShortLinkResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Managedshortlinks$Create;
+      callback: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Managedshortlinks$Create
+        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
+      callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
+    ): void | GaxiosPromise<Schema$CreateManagedShortLinkResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedshortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -805,37 +818,42 @@ export namespace firebasedynamiclinks_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+        options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/managedShortLinks:create')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/managedShortLinks:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreateManagedShortLinkResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreateManagedShortLinkResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Managedshortlinks$Create extends
-      StandardParameters {
+  export interface Params$Resource$Managedshortlinks$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -843,13 +861,11 @@ export namespace firebasedynamiclinks_v1 {
     requestBody?: Schema$CreateManagedShortLinkRequest;
   }
 
-
   export class Resource$Shortlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firebasedynamiclinks.shortLinks.create
@@ -868,30 +884,35 @@ export namespace firebasedynamiclinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Shortlinks$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$CreateShortDynamicLinkResponse>;
     create(
-        params: Params$Resource$Shortlinks$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
-        callback: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
-        void;
+      params?: Params$Resource$Shortlinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateShortDynamicLinkResponse>;
     create(
-        params: Params$Resource$Shortlinks$Create,
-        callback: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
-        void;
-    create(callback:
-               BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
-        void;
+      params: Params$Resource$Shortlinks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
+      callback: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
+    ): void;
     create(
-        paramsOrCallback?: Params$Resource$Shortlinks$Create|
-        BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
-        callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
-        void|GaxiosPromise<Schema$CreateShortDynamicLinkResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Shortlinks$Create;
+      params: Params$Resource$Shortlinks$Create,
+      callback: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Shortlinks$Create
+        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
+      callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
+    ): void | GaxiosPromise<Schema$CreateShortDynamicLinkResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -906,36 +927,39 @@ export namespace firebasedynamiclinks_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+        options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/shortLinks').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/shortLinks').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Shortlinks$Create extends
-      StandardParameters {
+  export interface Params$Resource$Shortlinks$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -943,13 +967,11 @@ export namespace firebasedynamiclinks_v1 {
     requestBody?: Schema$CreateShortDynamicLinkRequest;
   }
 
-
   export class Resource$V1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firebasedynamiclinks.getLinkStats
@@ -968,23 +990,28 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     getLinkStats(
-        params?: Params$Resource$V1$Getlinkstats,
-        options?: MethodOptions): GaxiosPromise<Schema$DynamicLinkStats>;
+      params?: Params$Resource$V1$Getlinkstats,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DynamicLinkStats>;
     getLinkStats(
-        params: Params$Resource$V1$Getlinkstats,
-        options: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
-        callback: BodyResponseCallback<Schema$DynamicLinkStats>): void;
+      params: Params$Resource$V1$Getlinkstats,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicLinkStats>,
+      callback: BodyResponseCallback<Schema$DynamicLinkStats>
+    ): void;
     getLinkStats(
-        params: Params$Resource$V1$Getlinkstats,
-        callback: BodyResponseCallback<Schema$DynamicLinkStats>): void;
+      params: Params$Resource$V1$Getlinkstats,
+      callback: BodyResponseCallback<Schema$DynamicLinkStats>
+    ): void;
     getLinkStats(callback: BodyResponseCallback<Schema$DynamicLinkStats>): void;
     getLinkStats(
-        paramsOrCallback?: Params$Resource$V1$Getlinkstats|
-        BodyResponseCallback<Schema$DynamicLinkStats>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DynamicLinkStats>,
-        callback?: BodyResponseCallback<Schema$DynamicLinkStats>):
-        void|GaxiosPromise<Schema$DynamicLinkStats> {
+      paramsOrCallback?:
+        | Params$Resource$V1$Getlinkstats
+        | BodyResponseCallback<Schema$DynamicLinkStats>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DynamicLinkStats>,
+      callback?: BodyResponseCallback<Schema$DynamicLinkStats>
+    ): void | GaxiosPromise<Schema$DynamicLinkStats> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getlinkstats;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1000,19 +1027,22 @@ export namespace firebasedynamiclinks_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+        options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{dynamicLink}/linkStats')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{dynamicLink}/linkStats').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['dynamicLink'],
         pathParams: ['dynamicLink'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DynamicLinkStats>(parameters, callback);
@@ -1020,7 +1050,6 @@ export namespace firebasedynamiclinks_v1 {
         return createAPIRequest<Schema$DynamicLinkStats>(parameters);
       }
     }
-
 
     /**
      * firebasedynamiclinks.installAttribution
@@ -1035,35 +1064,42 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     installAttribution(
-        params?: Params$Resource$V1$Installattribution,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
+      params?: Params$Resource$V1$Installattribution,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
     installAttribution(
-        params: Params$Resource$V1$Installattribution,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
-        callback:
-            BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
-        void;
+      params: Params$Resource$V1$Installattribution,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
+      callback: BodyResponseCallback<
+        Schema$GetIosPostInstallAttributionResponse
+      >
+    ): void;
     installAttribution(
-        params: Params$Resource$V1$Installattribution,
-        callback:
-            BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
-        void;
+      params: Params$Resource$V1$Installattribution,
+      callback: BodyResponseCallback<
+        Schema$GetIosPostInstallAttributionResponse
+      >
+    ): void;
     installAttribution(
-        callback:
-            BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
-        void;
+      callback: BodyResponseCallback<
+        Schema$GetIosPostInstallAttributionResponse
+      >
+    ): void;
     installAttribution(
-        paramsOrCallback?: Params$Resource$V1$Installattribution|
-        BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
-        callback?:
-            BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
-        void|GaxiosPromise<Schema$GetIosPostInstallAttributionResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1$Installattribution;
+      paramsOrCallback?:
+        | Params$Resource$V1$Installattribution
+        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GetIosPostInstallAttributionResponse
+      >
+    ): void | GaxiosPromise<Schema$GetIosPostInstallAttributionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Installattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1078,29 +1114,34 @@ export namespace firebasedynamiclinks_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+        options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/installAttribution')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/installAttribution').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * firebasedynamiclinks.reopenAttribution
@@ -1115,31 +1156,34 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     reopenAttribution(
-        params?: Params$Resource$V1$Reopenattribution, options?: MethodOptions):
-        GaxiosPromise<Schema$GetIosReopenAttributionResponse>;
+      params?: Params$Resource$V1$Reopenattribution,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetIosReopenAttributionResponse>;
     reopenAttribution(
-        params: Params$Resource$V1$Reopenattribution,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
-        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
-        void;
+      params: Params$Resource$V1$Reopenattribution,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+      callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
+    ): void;
     reopenAttribution(
-        params: Params$Resource$V1$Reopenattribution,
-        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
-        void;
+      params: Params$Resource$V1$Reopenattribution,
+      callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
+    ): void;
     reopenAttribution(
-        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
+    ): void;
     reopenAttribution(
-        paramsOrCallback?: Params$Resource$V1$Reopenattribution|
-        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
-        callback?:
-            BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
-        void|GaxiosPromise<Schema$GetIosReopenAttributionResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1$Reopenattribution;
+      paramsOrCallback?:
+        | Params$Resource$V1$Reopenattribution
+        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+      callback?: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
+    ): void | GaxiosPromise<Schema$GetIosReopenAttributionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Reopenattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1154,26 +1198,32 @@ export namespace firebasedynamiclinks_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+        options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/reopenAttribution')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/reopenAttribution').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetIosReopenAttributionResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GetIosReopenAttributionResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
@@ -1182,7 +1232,7 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The span of time requested in days.
@@ -1197,26 +1247,24 @@ export namespace firebasedynamiclinks_v1 {
      */
     sdkVersion?: string;
   }
-  export interface Params$Resource$V1$Installattribution extends
-      StandardParameters {
+  export interface Params$Resource$V1$Installattribution
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$GetIosPostInstallAttributionRequest;
   }
-  export interface Params$Resource$V1$Reopenattribution extends
-      StandardParameters {
+  export interface Params$Resource$V1$Reopenattribution
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

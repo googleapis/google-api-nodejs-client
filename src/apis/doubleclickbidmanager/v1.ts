@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -549,13 +561,11 @@ export namespace doubleclickbidmanager_v1 {
     rowStatus?: Schema$RowStatus[];
   }
 
-
   export class Resource$Lineitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclickbidmanager.lineitems.downloadlineitems
@@ -571,28 +581,34 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     downloadlineitems(
-        params?: Params$Resource$Lineitems$Downloadlineitems,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$DownloadLineItemsResponse>;
+      params?: Params$Resource$Lineitems$Downloadlineitems,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadLineItemsResponse>;
     downloadlineitems(
-        params: Params$Resource$Lineitems$Downloadlineitems,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Downloadlineitems,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void;
     downloadlineitems(
-        params: Params$Resource$Lineitems$Downloadlineitems,
-        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Downloadlineitems,
+      callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void;
     downloadlineitems(
-        callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
+      callback: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void;
     downloadlineitems(
-        paramsOrCallback?: Params$Resource$Lineitems$Downloadlineitems|
-        BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DownloadLineItemsResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>):
-        void|GaxiosPromise<Schema$DownloadLineItemsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Lineitems$Downloadlineitems;
+      paramsOrCallback?:
+        | Params$Resource$Lineitems$Downloadlineitems
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>
+    ): void | GaxiosPromise<Schema$DownloadLineItemsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Lineitems$Downloadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -609,26 +625,28 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclickbidmanager/v1/lineitems/downloadlineitems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/lineitems/downloadlineitems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DownloadLineItemsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$DownloadLineItemsResponse>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.lineitems.uploadlineitems
@@ -644,27 +662,34 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     uploadlineitems(
-        params?: Params$Resource$Lineitems$Uploadlineitems,
-        options?: MethodOptions): GaxiosPromise<Schema$UploadLineItemsResponse>;
+      params?: Params$Resource$Lineitems$Uploadlineitems,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadLineItemsResponse>;
     uploadlineitems(
-        params: Params$Resource$Lineitems$Uploadlineitems,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UploadLineItemsResponse>,
-        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Uploadlineitems,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      callback: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void;
     uploadlineitems(
-        params: Params$Resource$Lineitems$Uploadlineitems,
-        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+      params: Params$Resource$Lineitems$Uploadlineitems,
+      callback: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void;
     uploadlineitems(
-        callback: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
+      callback: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void;
     uploadlineitems(
-        paramsOrCallback?: Params$Resource$Lineitems$Uploadlineitems|
-        BodyResponseCallback<Schema$UploadLineItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UploadLineItemsResponse>,
-        callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>):
-        void|GaxiosPromise<Schema$UploadLineItemsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Lineitems$Uploadlineitems;
+      paramsOrCallback?:
+        | Params$Resource$Lineitems$Uploadlineitems
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadLineItemsResponse>,
+      callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>
+    ): void | GaxiosPromise<Schema$UploadLineItemsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Lineitems$Uploadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -681,17 +706,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclickbidmanager/v1/lineitems/uploadlineitems')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/lineitems/uploadlineitems'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UploadLineItemsResponse>(parameters, callback);
@@ -701,26 +727,24 @@ export namespace doubleclickbidmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Lineitems$Downloadlineitems extends
-      StandardParameters {
+  export interface Params$Resource$Lineitems$Downloadlineitems
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$DownloadLineItemsRequest;
   }
-  export interface Params$Resource$Lineitems$Uploadlineitems extends
-      StandardParameters {
+  export interface Params$Resource$Lineitems$Uploadlineitems
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -728,13 +752,11 @@ export namespace doubleclickbidmanager_v1 {
     requestBody?: Schema$UploadLineItemsRequest;
   }
 
-
   export class Resource$Queries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclickbidmanager.queries.createquery
@@ -749,24 +771,28 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     createquery(
-        params?: Params$Resource$Queries$Createquery,
-        options?: MethodOptions): GaxiosPromise<Schema$Query>;
+      params?: Params$Resource$Queries$Createquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Query>;
     createquery(
-        params: Params$Resource$Queries$Createquery,
-        options: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Createquery,
+      options: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     createquery(
-        params: Params$Resource$Queries$Createquery,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Createquery,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     createquery(callback: BodyResponseCallback<Schema$Query>): void;
     createquery(
-        paramsOrCallback?: Params$Resource$Queries$Createquery|
-        BodyResponseCallback<Schema$Query>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback?: BodyResponseCallback<Schema$Query>):
-        void|GaxiosPromise<Schema$Query> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Queries$Createquery;
+      paramsOrCallback?:
+        | Params$Resource$Queries$Createquery
+        | BodyResponseCallback<Schema$Query>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>
+    ): void | GaxiosPromise<Schema$Query> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Queries$Createquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -783,16 +809,19 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -800,7 +829,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<Schema$Query>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.deletequery
@@ -815,23 +843,28 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     deletequery(
-        params?: Params$Resource$Queries$Deletequery,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Queries$Deletequery,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     deletequery(
-        params: Params$Resource$Queries$Deletequery,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Deletequery,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     deletequery(
-        params: Params$Resource$Queries$Deletequery,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Deletequery,
+      callback: BodyResponseCallback<void>
+    ): void;
     deletequery(callback: BodyResponseCallback<void>): void;
     deletequery(
-        paramsOrCallback?: Params$Resource$Queries$Deletequery|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Queries$Deletequery;
+      paramsOrCallback?:
+        | Params$Resource$Queries$Deletequery
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Queries$Deletequery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -848,16 +881,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/query/{queryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -865,7 +900,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.getquery
@@ -880,22 +914,26 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     getquery(
-        params?: Params$Resource$Queries$Getquery,
-        options?: MethodOptions): GaxiosPromise<Schema$Query>;
+      params?: Params$Resource$Queries$Getquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Query>;
     getquery(
-        params: Params$Resource$Queries$Getquery,
-        options: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Getquery,
+      options: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     getquery(
-        params: Params$Resource$Queries$Getquery,
-        callback: BodyResponseCallback<Schema$Query>): void;
+      params: Params$Resource$Queries$Getquery,
+      callback: BodyResponseCallback<Schema$Query>
+    ): void;
     getquery(callback: BodyResponseCallback<Schema$Query>): void;
     getquery(
-        paramsOrCallback?: Params$Resource$Queries$Getquery|
-        BodyResponseCallback<Schema$Query>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
-        callback?: BodyResponseCallback<Schema$Query>):
-        void|GaxiosPromise<Schema$Query> {
+      paramsOrCallback?:
+        | Params$Resource$Queries$Getquery
+        | BodyResponseCallback<Schema$Query>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Query>,
+      callback?: BodyResponseCallback<Schema$Query>
+    ): void | GaxiosPromise<Schema$Query> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Getquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -913,16 +951,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/query/{queryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -930,7 +970,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<Schema$Query>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.listqueries
@@ -944,26 +983,32 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     listqueries(
-        params?: Params$Resource$Queries$Listqueries,
-        options?: MethodOptions): GaxiosPromise<Schema$ListQueriesResponse>;
+      params?: Params$Resource$Queries$Listqueries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListQueriesResponse>;
     listqueries(
-        params: Params$Resource$Queries$Listqueries,
-        options: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
-        callback: BodyResponseCallback<Schema$ListQueriesResponse>): void;
+      params: Params$Resource$Queries$Listqueries,
+      options: MethodOptions | BodyResponseCallback<Schema$ListQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void;
     listqueries(
-        params: Params$Resource$Queries$Listqueries,
-        callback: BodyResponseCallback<Schema$ListQueriesResponse>): void;
-    listqueries(callback: BodyResponseCallback<Schema$ListQueriesResponse>):
-        void;
+      params: Params$Resource$Queries$Listqueries,
+      callback: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void;
     listqueries(
-        paramsOrCallback?: Params$Resource$Queries$Listqueries|
-        BodyResponseCallback<Schema$ListQueriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListQueriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListQueriesResponse>):
-        void|GaxiosPromise<Schema$ListQueriesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Queries$Listqueries;
+      callback: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void;
+    listqueries(
+      paramsOrCallback?:
+        | Params$Resource$Queries$Listqueries
+        | BodyResponseCallback<Schema$ListQueriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQueriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListQueriesResponse>
+    ): void | GaxiosPromise<Schema$ListQueriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Queries$Listqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -980,16 +1025,19 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/queries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/queries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListQueriesResponse>(parameters, callback);
@@ -997,7 +1045,6 @@ export namespace doubleclickbidmanager_v1 {
         return createAPIRequest<Schema$ListQueriesResponse>(parameters);
       }
     }
-
 
     /**
      * doubleclickbidmanager.queries.runquery
@@ -1013,21 +1060,26 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     runquery(
-        params?: Params$Resource$Queries$Runquery,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Queries$Runquery,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     runquery(
-        params: Params$Resource$Queries$Runquery,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Runquery,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     runquery(
-        params: Params$Resource$Queries$Runquery,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Queries$Runquery,
+      callback: BodyResponseCallback<void>
+    ): void;
     runquery(callback: BodyResponseCallback<void>): void;
     runquery(
-        paramsOrCallback?: Params$Resource$Queries$Runquery|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Queries$Runquery
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1045,16 +1097,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/query/{queryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/query/{queryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1064,25 +1118,24 @@ export namespace doubleclickbidmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Queries$Createquery extends
-      StandardParameters {
+  export interface Params$Resource$Queries$Createquery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Query;
   }
-  export interface Params$Resource$Queries$Deletequery extends
-      StandardParameters {
+  export interface Params$Resource$Queries$Deletequery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID to delete.
@@ -1093,25 +1146,25 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID to retrieve.
      */
     queryId?: string;
   }
-  export interface Params$Resource$Queries$Listqueries extends
-      StandardParameters {
+  export interface Params$Resource$Queries$Listqueries
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
   export interface Params$Resource$Queries$Runquery extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID to run.
@@ -1124,13 +1177,11 @@ export namespace doubleclickbidmanager_v1 {
     requestBody?: Schema$RunQueryRequest;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclickbidmanager.reports.listreports
@@ -1145,26 +1196,32 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     listreports(
-        params?: Params$Resource$Reports$Listreports,
-        options?: MethodOptions): GaxiosPromise<Schema$ListReportsResponse>;
+      params?: Params$Resource$Reports$Listreports,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReportsResponse>;
     listreports(
-        params: Params$Resource$Reports$Listreports,
-        options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
-        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+      params: Params$Resource$Reports$Listreports,
+      options: MethodOptions | BodyResponseCallback<Schema$ListReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
     listreports(
-        params: Params$Resource$Reports$Listreports,
-        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
-    listreports(callback: BodyResponseCallback<Schema$ListReportsResponse>):
-        void;
+      params: Params$Resource$Reports$Listreports,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
     listreports(
-        paramsOrCallback?: Params$Resource$Reports$Listreports|
-        BodyResponseCallback<Schema$ListReportsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReportsResponse>,
-        callback?: BodyResponseCallback<Schema$ListReportsResponse>):
-        void|GaxiosPromise<Schema$ListReportsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Reports$Listreports;
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
+    listreports(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Listreports
+        | BodyResponseCallback<Schema$ListReportsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReportsResponse>,
+      callback?: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void | GaxiosPromise<Schema$ListReportsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reports$Listreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1181,17 +1238,18 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclickbidmanager/v1/queries/{queryId}/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclickbidmanager/v1/queries/{queryId}/reports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
@@ -1201,12 +1259,12 @@ export namespace doubleclickbidmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Reports$Listreports extends
-      StandardParameters {
+  export interface Params$Resource$Reports$Listreports
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Query ID with which the reports are associated.
@@ -1214,13 +1272,11 @@ export namespace doubleclickbidmanager_v1 {
     queryId?: string;
   }
 
-
   export class Resource$Sdf {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclickbidmanager.sdf.download
@@ -1234,23 +1290,29 @@ export namespace doubleclickbidmanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download(params?: Params$Resource$Sdf$Download, options?: MethodOptions):
-        GaxiosPromise<Schema$DownloadResponse>;
     download(
-        params: Params$Resource$Sdf$Download,
-        options: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
-        callback: BodyResponseCallback<Schema$DownloadResponse>): void;
+      params?: Params$Resource$Sdf$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadResponse>;
     download(
-        params: Params$Resource$Sdf$Download,
-        callback: BodyResponseCallback<Schema$DownloadResponse>): void;
+      params: Params$Resource$Sdf$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$DownloadResponse>,
+      callback: BodyResponseCallback<Schema$DownloadResponse>
+    ): void;
+    download(
+      params: Params$Resource$Sdf$Download,
+      callback: BodyResponseCallback<Schema$DownloadResponse>
+    ): void;
     download(callback: BodyResponseCallback<Schema$DownloadResponse>): void;
     download(
-        paramsOrCallback?: Params$Resource$Sdf$Download|
-        BodyResponseCallback<Schema$DownloadResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DownloadResponse>,
-        callback?: BodyResponseCallback<Schema$DownloadResponse>):
-        void|GaxiosPromise<Schema$DownloadResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sdf$Download
+        | BodyResponseCallback<Schema$DownloadResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadResponse>,
+      callback?: BodyResponseCallback<Schema$DownloadResponse>
+    ): void | GaxiosPromise<Schema$DownloadResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sdf$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1268,16 +1330,19 @@ export namespace doubleclickbidmanager_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclickbidmanager/v1/sdf/download')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclickbidmanager/v1/sdf/download').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DownloadResponse>(parameters, callback);
@@ -1291,8 +1356,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

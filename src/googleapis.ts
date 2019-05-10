@@ -12,7 +12,12 @@
 // limitations under the License.
 
 import {Compute, GoogleAuth, JWT, OAuth2Client} from 'google-auth-library';
-import {APIEndpoint, Discovery, Endpoint, GlobalOptions} from 'googleapis-common';
+import {
+  APIEndpoint,
+  Discovery,
+  Endpoint,
+  GlobalOptions,
+} from 'googleapis-common';
 
 import * as apis from './apis';
 
@@ -104,9 +109,14 @@ export class GoogleApis extends apis.GeneratedAPIs {
    */
   discover(url: string): Promise<void>;
   discover(url: string, callback: (err?: Error) => void): void;
-  discover(url: string, callback?: (err?: Error) => void): void|Promise<void> {
+  discover(
+    url: string,
+    callback?: (err?: Error) => void
+  ): void | Promise<void> {
     if (callback) {
-      this.discoverAsync(url).then(() => callback()).catch(callback);
+      this.discoverAsync(url)
+        .then(() => callback())
+        .catch(callback);
     } else {
       return this.discoverAsync(url);
     }
@@ -125,11 +135,13 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * discovery doc.
    * @returns A promise that resolves with the configured endpoint.
    */
-  async discoverAPI(apiPath: string, options: {} = {}):
-      Promise<Readonly<Endpoint>> {
+  async discoverAPI(
+    apiPath: string,
+    options: {} = {}
+  ): Promise<Readonly<Endpoint>> {
     const endpointCreator = await this._discovery.discoverAPI(apiPath);
     const ep = endpointCreator(options, this);
-    ep.google = this;  // for drive.google.transporter
+    ep.google = this; // for drive.google.transporter
     return Object.freeze(ep);
   }
 }

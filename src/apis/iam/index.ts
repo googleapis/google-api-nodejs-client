@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {iam_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': iam_v1.Iam,
+  v1: iam_v1.Iam,
 };
 
 export function iam(version: 'v1'): iam_v1.Iam;
 export function iam(options: iam_v1.Options): iam_v1.Iam;
 export function iam<T = iam_v1.Iam>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|iam_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | iam_v1.Options
+) {
   return getAPI<T>('iam', versionOrOptions, VERSIONS, this);
 }
 

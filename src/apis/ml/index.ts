@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {ml_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': ml_v1.Ml,
+  v1: ml_v1.Ml,
 };
 
 export function ml(version: 'v1'): ml_v1.Ml;
 export function ml(options: ml_v1.Options): ml_v1.Ml;
 export function ml<T = ml_v1.Ml>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|ml_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | ml_v1.Options
+) {
   return getAPI<T>('ml', versionOrOptions, VERSIONS, this);
 }
 

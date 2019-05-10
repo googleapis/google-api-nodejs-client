@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -247,13 +259,11 @@ export namespace servicebroker_v1 {
     title?: string;
   }
 
-
   export class Resource$V1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicebroker.getIamPolicy
@@ -269,24 +279,30 @@ export namespace servicebroker_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$V1$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+      params?: Params$Resource$V1$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
-        params: Params$Resource$V1$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+      params: Params$Resource$V1$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$V1$Getiampolicy,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void;
+      params: Params$Resource$V1$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$V1$Getiampolicy|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$V1$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -302,19 +318,22 @@ export namespace servicebroker_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -322,7 +341,6 @@ export namespace servicebroker_v1 {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
     }
-
 
     /**
      * servicebroker.setIamPolicy
@@ -339,24 +357,30 @@ export namespace servicebroker_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$V1$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+      params?: Params$Resource$V1$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
-        params: Params$Resource$V1$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
+      params: Params$Resource$V1$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$V1$Setiampolicy,
-        callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void;
+      params: Params$Resource$V1$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$V1$Setiampolicy|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-        callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
+      callback: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$V1$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
+    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -372,19 +396,22 @@ export namespace servicebroker_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -392,7 +419,6 @@ export namespace servicebroker_v1 {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
     }
-
 
     /**
      * servicebroker.testIamPermissions
@@ -412,31 +438,42 @@ export namespace servicebroker_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$V1$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+      params?: Params$Resource$V1$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$V1$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+      params: Params$Resource$V1$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void;
     testIamPermissions(
-        params: Params$Resource$V1$Testiampermissions,
-        callback: BodyResponseCallback<
-            Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
-    testIamPermissions(callback: BodyResponseCallback<
-                       Schema$GoogleIamV1__TestIamPermissionsResponse>): void;
+      params: Params$Resource$V1$Testiampermissions,
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$V1$Testiampermissions|
-        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleIamV1__TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1$Testiampermissions;
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$V1$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
+    ): void | GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -451,26 +488,32 @@ export namespace servicebroker_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicebroker.googleapis.com/';
+        options.rootUrl || 'https://servicebroker.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
@@ -479,7 +522,7 @@ export namespace servicebroker_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -491,7 +534,7 @@ export namespace servicebroker_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -504,12 +547,12 @@ export namespace servicebroker_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$V1$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$V1$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.

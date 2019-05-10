@@ -26,16 +26,27 @@ export abstract class Utils {
   }
 
   static getDiscoveryUrl(name: string, version: string) {
-    return 'https://www.googleapis.com/discovery/v1/apis/' + name + '/' +
-        version + '/rest';
+    return (
+      'https://www.googleapis.com/discovery/v1/apis/' +
+      name +
+      '/' +
+      version +
+      '/rest'
+    );
   }
 
   // tslint:disable-next-line no-any
   static loadApi<T = any>(
-      google: GoogleApis, name: string, version: string, options = {}) {
-    return google.discoverAPI(Utils.getDiscoveryUrl(name, version), options) as
-               // tslint:disable-next-line no-any
-               any as T;
+    google: GoogleApis,
+    name: string,
+    version: string,
+    options = {}
+  ) {
+    return (google.discoverAPI(
+      Utils.getDiscoveryUrl(name, version),
+      options
+      // tslint:disable-next-line no-any
+    ) as any) as T;
   }
 
   static readonly noop = () => undefined;

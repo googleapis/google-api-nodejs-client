@@ -18,21 +18,28 @@ import {cloudasset_v1} from './v1';
 import {cloudasset_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1': cloudasset_v1.Cloudasset,
-  'v1beta1': cloudasset_v1beta1.Cloudasset,
+  v1: cloudasset_v1.Cloudasset,
+  v1beta1: cloudasset_v1beta1.Cloudasset,
 };
 
 export function cloudasset(version: 'v1'): cloudasset_v1.Cloudasset;
-export function cloudasset(options: cloudasset_v1.Options):
-    cloudasset_v1.Cloudasset;
+export function cloudasset(
+  options: cloudasset_v1.Options
+): cloudasset_v1.Cloudasset;
 export function cloudasset(version: 'v1beta1'): cloudasset_v1beta1.Cloudasset;
-export function cloudasset(options: cloudasset_v1beta1.Options):
-    cloudasset_v1beta1.Cloudasset;
-export function
-cloudasset<T = cloudasset_v1.Cloudasset | cloudasset_v1beta1.Cloudasset>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|cloudasset_v1.Options|'v1beta1'|
-    cloudasset_v1beta1.Options) {
+export function cloudasset(
+  options: cloudasset_v1beta1.Options
+): cloudasset_v1beta1.Cloudasset;
+export function cloudasset<
+  T = cloudasset_v1.Cloudasset | cloudasset_v1beta1.Cloudasset
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | cloudasset_v1.Options
+    | 'v1beta1'
+    | cloudasset_v1beta1.Options
+) {
   return getAPI<T>('cloudasset', versionOrOptions, VERSIONS, this);
 }
 

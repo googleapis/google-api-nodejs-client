@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -175,7 +187,7 @@ export namespace clouddebugger_v2 {
      * A set of custom breakpoint properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Breakpoint source location.
      */
@@ -321,7 +333,7 @@ export namespace clouddebugger_v2 {
      * A set of custom debuggee properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Project the debuggee is associated with. Use project number or id when
      * registering a Google Cloud Platform project.
@@ -368,7 +380,7 @@ export namespace clouddebugger_v2 {
     /**
      * Labels with user defined metadata.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
   }
   /**
    * Represents a message with parameters.
@@ -743,7 +755,6 @@ export namespace clouddebugger_v2 {
     varTableIndex?: number;
   }
 
-
   export class Resource$Controller {
     context: APIRequestContext;
     debuggees: Resource$Controller$Debuggees;
@@ -753,16 +764,15 @@ export namespace clouddebugger_v2 {
     }
   }
 
-
   export class Resource$Controller$Debuggees {
     context: APIRequestContext;
     breakpoints: Resource$Controller$Debuggees$Breakpoints;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.breakpoints =
-          new Resource$Controller$Debuggees$Breakpoints(this.context);
+      this.breakpoints = new Resource$Controller$Debuggees$Breakpoints(
+        this.context
+      );
     }
-
 
     /**
      * clouddebugger.controller.debuggees.register
@@ -836,28 +846,34 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     register(
-        params?: Params$Resource$Controller$Debuggees$Register,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RegisterDebuggeeResponse>;
+      params?: Params$Resource$Controller$Debuggees$Register,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RegisterDebuggeeResponse>;
     register(
-        params: Params$Resource$Controller$Debuggees$Register,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-        callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
+      params: Params$Resource$Controller$Debuggees$Register,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void;
     register(
-        params: Params$Resource$Controller$Debuggees$Register,
-        callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
-    register(callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Register,
+      callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void;
     register(
-        paramsOrCallback?: Params$Resource$Controller$Debuggees$Register|
-        BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-        callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
-        void|GaxiosPromise<Schema$RegisterDebuggeeResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Controller$Debuggees$Register;
+      callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void;
+    register(
+      paramsOrCallback?:
+        | Params$Resource$Controller$Debuggees$Register
+        | BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+      callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>
+    ): void | GaxiosPromise<Schema$RegisterDebuggeeResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Controller$Debuggees$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -872,19 +888,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/controller/debuggees/register')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/controller/debuggees/register').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RegisterDebuggeeResponse>(parameters, callback);
@@ -894,13 +913,12 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Controller$Debuggees$Register extends
-      StandardParameters {
+  export interface Params$Resource$Controller$Debuggees$Register
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -913,7 +931,6 @@ export namespace clouddebugger_v2 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * clouddebugger.controller.debuggees.breakpoints.list
@@ -990,31 +1007,34 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Controller$Debuggees$Breakpoints$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListActiveBreakpointsResponse>;
+      params?: Params$Resource$Controller$Debuggees$Breakpoints$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListActiveBreakpointsResponse>;
     list(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-        callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void;
     list(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$List,
-        callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$List,
+      callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Controller$Debuggees$Breakpoints$List|
-        BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-        callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void|GaxiosPromise<Schema$ListActiveBreakpointsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Controller$Debuggees$Breakpoints$List;
+      callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Controller$Debuggees$Breakpoints$List
+        | BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>
+    ): void | GaxiosPromise<Schema$ListActiveBreakpointsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Controller$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1029,30 +1049,33 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/controller/debuggees/{debuggeeId}/breakpoints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/controller/debuggees/{debuggeeId}/breakpoints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListActiveBreakpointsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListActiveBreakpointsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * clouddebugger.controller.debuggees.breakpoints.update
@@ -1135,32 +1158,34 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Controller$Debuggees$Breakpoints$Update,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UpdateActiveBreakpointResponse>;
+      params?: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UpdateActiveBreakpointResponse>;
     update(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-        callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void;
     update(
-        params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
-        callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void;
-    update(callback:
-               BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void;
+      params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+      callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Controller$Debuggees$Breakpoints$Update|
-        BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void|GaxiosPromise<Schema$UpdateActiveBreakpointResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Controller$Debuggees$Breakpoints$Update;
+      callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Controller$Debuggees$Breakpoints$Update
+        | BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>
+    ): void | GaxiosPromise<Schema$UpdateActiveBreakpointResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Controller$Debuggees$Breakpoints$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1175,37 +1200,41 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId', 'id'],
         pathParams: ['debuggeeId', 'id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Controller$Debuggees$Breakpoints$List extends
-      StandardParameters {
+  export interface Params$Resource$Controller$Debuggees$Breakpoints$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the debuggee.
@@ -1228,11 +1257,11 @@ export namespace clouddebugger_v2 {
     waitToken?: string;
   }
   export interface Params$Resource$Controller$Debuggees$Breakpoints$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the debuggee being debugged.
@@ -1249,8 +1278,6 @@ export namespace clouddebugger_v2 {
     requestBody?: Schema$UpdateActiveBreakpointRequest;
   }
 
-
-
   export class Resource$Debugger {
     context: APIRequestContext;
     debuggees: Resource$Debugger$Debuggees;
@@ -1260,16 +1287,15 @@ export namespace clouddebugger_v2 {
     }
   }
 
-
   export class Resource$Debugger$Debuggees {
     context: APIRequestContext;
     breakpoints: Resource$Debugger$Debuggees$Breakpoints;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.breakpoints =
-          new Resource$Debugger$Debuggees$Breakpoints(this.context);
+      this.breakpoints = new Resource$Debugger$Debuggees$Breakpoints(
+        this.context
+      );
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.list
@@ -1334,26 +1360,32 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Debugger$Debuggees$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDebuggeesResponse>;
+      params?: Params$Resource$Debugger$Debuggees$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDebuggeesResponse>;
     list(
-        params: Params$Resource$Debugger$Debuggees$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDebuggeesResponse>,
-        callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      callback: BodyResponseCallback<Schema$ListDebuggeesResponse>
+    ): void;
     list(
-        params: Params$Resource$Debugger$Debuggees$List,
-        callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$List,
+      callback: BodyResponseCallback<Schema$ListDebuggeesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Debugger$Debuggees$List|
-        BodyResponseCallback<Schema$ListDebuggeesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDebuggeesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>):
-        void|GaxiosPromise<Schema$ListDebuggeesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Debugger$Debuggees$List;
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$List
+        | BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>
+    ): void | GaxiosPromise<Schema$ListDebuggeesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1368,19 +1400,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/debugger/debuggees')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/debugger/debuggees').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDebuggeesResponse>(parameters, callback);
@@ -1390,12 +1425,12 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Debugger$Debuggees$List extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The client version making the call. Schema: `domain/type/version` (e.g.,
@@ -1418,7 +1453,6 @@ export namespace clouddebugger_v2 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.breakpoints.delete
@@ -1486,25 +1520,28 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Debugger$Debuggees$Breakpoints$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1519,21 +1556,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1541,7 +1579,6 @@ export namespace clouddebugger_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.breakpoints.get
@@ -1611,23 +1648,33 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GetBreakpointResponse>;
-    get(params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetBreakpointResponse>,
-        callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
-    get(params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
-        callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
+    get(
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetBreakpointResponse>;
+    get(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetBreakpointResponse>,
+      callback: BodyResponseCallback<Schema$GetBreakpointResponse>
+    ): void;
+    get(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+      callback: BodyResponseCallback<Schema$GetBreakpointResponse>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
-    get(paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$Get|
-        BodyResponseCallback<Schema$GetBreakpointResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$GetBreakpointResponse>):
-        void|GaxiosPromise<Schema$GetBreakpointResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$Get
+        | BodyResponseCallback<Schema$GetBreakpointResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$GetBreakpointResponse>
+    ): void | GaxiosPromise<Schema$GetBreakpointResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1642,21 +1689,22 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetBreakpointResponse>(parameters, callback);
@@ -1664,7 +1712,6 @@ export namespace clouddebugger_v2 {
         return createAPIRequest<Schema$GetBreakpointResponse>(parameters);
       }
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.breakpoints.list
@@ -1736,26 +1783,32 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Debugger$Debuggees$Breakpoints$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListBreakpointsResponse>;
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBreakpointsResponse>;
     list(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListBreakpointsResponse>,
-        callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListBreakpointsResponse>
+    ): void;
     list(
-        params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
-        callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+      callback: BodyResponseCallback<Schema$ListBreakpointsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$List|
-        BodyResponseCallback<Schema$ListBreakpointsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListBreakpointsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>):
-        void|GaxiosPromise<Schema$ListBreakpointsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$List;
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$List
+        | BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBreakpointsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>
+    ): void | GaxiosPromise<Schema$ListBreakpointsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1770,19 +1823,21 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListBreakpointsResponse>(parameters, callback);
@@ -1790,7 +1845,6 @@ export namespace clouddebugger_v2 {
         return createAPIRequest<Schema$ListBreakpointsResponse>(parameters);
       }
     }
-
 
     /**
      * clouddebugger.debugger.debuggees.breakpoints.set
@@ -1861,23 +1915,33 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
-        options?: MethodOptions): GaxiosPromise<Schema$SetBreakpointResponse>;
-    set(params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SetBreakpointResponse>,
-        callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
-    set(params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
-        callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
+    set(
+      params?: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SetBreakpointResponse>;
+    set(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetBreakpointResponse>,
+      callback: BodyResponseCallback<Schema$SetBreakpointResponse>
+    ): void;
+    set(
+      params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+      callback: BodyResponseCallback<Schema$SetBreakpointResponse>
+    ): void;
     set(callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
-    set(paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$Set|
-        BodyResponseCallback<Schema$SetBreakpointResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SetBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$SetBreakpointResponse>):
-        void|GaxiosPromise<Schema$SetBreakpointResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Debugger$Debuggees$Breakpoints$Set;
+    set(
+      paramsOrCallback?:
+        | Params$Resource$Debugger$Debuggees$Breakpoints$Set
+        | BodyResponseCallback<Schema$SetBreakpointResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SetBreakpointResponse>,
+      callback?: BodyResponseCallback<Schema$SetBreakpointResponse>
+    ): void | GaxiosPromise<Schema$SetBreakpointResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Debugger$Debuggees$Breakpoints$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1892,20 +1956,21 @@ export namespace clouddebugger_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://clouddebugger.googleapis.com/';
+        options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/debugger/debuggees/{debuggeeId}/breakpoints/set'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SetBreakpointResponse>(parameters, callback);
@@ -1915,12 +1980,12 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the breakpoint to delete.
@@ -1936,12 +2001,12 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the breakpoint to get.
@@ -1957,12 +2022,12 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$List extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Only breakpoints with the specified action will pass the filter.
@@ -2001,12 +2066,12 @@ export namespace clouddebugger_v2 {
      */
     waitToken?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set extends
-      StandardParameters {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The client version making the call. Schema: `domain/type/version` (e.g.,

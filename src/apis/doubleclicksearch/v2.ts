@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -339,7 +351,7 @@ export namespace doubleclicksearch_v2 {
      * Asynchronous report only. Contains a list of generated report files once
      * the report has succesfully completed.
      */
-    files?: Array<{byteCount?: string; url?: string;}>;
+    files?: Array<{byteCount?: string; url?: string}>;
     /**
      * Asynchronous report only. Id of the report.
      */
@@ -471,7 +483,8 @@ export namespace doubleclicksearch_v2 {
      * filters per request is 300.
      */
     filters?: Array<{
-      column?: Schema$ReportApiColumnSpec; operator?: string;
+      column?: Schema$ReportApiColumnSpec;
+      operator?: string;
       values?: any[];
     }>;
     /**
@@ -495,7 +508,7 @@ export namespace doubleclicksearch_v2 {
      * sorting to be performed on the report rows. The maximum number of
      * orderings per request is 300.
      */
-    orderBy?: Array<{column?: Schema$ReportApiColumnSpec; sortOrder?: string;}>;
+    orderBy?: Array<{column?: Schema$ReportApiColumnSpec; sortOrder?: string}>;
     /**
      * The reportScope is a set of IDs that are used to determine which subset
      * of entities will be returned in the report. The full lineage of IDs from
@@ -610,13 +623,11 @@ export namespace doubleclicksearch_v2 {
     availabilities?: Schema$Availability[];
   }
 
-
   export class Resource$Conversion {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclicksearch.conversion.get
@@ -641,20 +652,29 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Conversion$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ConversionList>;
-    get(params: Params$Resource$Conversion$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
-    get(params: Params$Resource$Conversion$Get,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+    get(
+      params?: Params$Resource$Conversion$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
+    get(
+      params: Params$Resource$Conversion$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    get(
+      params: Params$Resource$Conversion$Get,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ConversionList>): void;
-    get(paramsOrCallback?: Params$Resource$Conversion$Get|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Get
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -672,21 +692,27 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'agencyId', 'advertiserId', 'engineAccountId', 'endDate', 'rowCount',
-          'startDate', 'startRow'
+          'agencyId',
+          'advertiserId',
+          'engineAccountId',
+          'endDate',
+          'rowCount',
+          'startDate',
+          'startRow',
         ],
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -694,7 +720,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.conversion.insert
@@ -708,25 +733,31 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Conversion$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionList>;
     insert(
-        params: Params$Resource$Conversion$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params?: Params$Resource$Conversion$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
     insert(
-        params: Params$Resource$Conversion$Insert,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params: Params$Resource$Conversion$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    insert(
+      params: Params$Resource$Conversion$Insert,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ConversionList>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Conversion$Insert|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Conversion$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Insert
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversion$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -743,16 +774,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -760,7 +794,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.conversion.patch
@@ -782,23 +815,29 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Conversion$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionList>;
     patch(
-        params: Params$Resource$Conversion$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params?: Params$Resource$Conversion$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
     patch(
-        params: Params$Resource$Conversion$Patch,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params: Params$Resource$Conversion$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    patch(
+      params: Params$Resource$Conversion$Patch,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ConversionList>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Conversion$Patch|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Patch
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -816,19 +855,27 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount',
-          'startDate', 'startRow'
+          'advertiserId',
+          'agencyId',
+          'endDate',
+          'engineAccountId',
+          'rowCount',
+          'startDate',
+          'startRow',
         ],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -836,7 +883,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.conversion.update
@@ -850,25 +896,31 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Conversion$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$ConversionList>;
     update(
-        params: Params$Resource$Conversion$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params?: Params$Resource$Conversion$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConversionList>;
     update(
-        params: Params$Resource$Conversion$Update,
-        callback: BodyResponseCallback<Schema$ConversionList>): void;
+      params: Params$Resource$Conversion$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    update(
+      params: Params$Resource$Conversion$Update,
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ConversionList>): void;
     update(
-        paramsOrCallback?: Params$Resource$Conversion$Update|
-        BodyResponseCallback<Schema$ConversionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ConversionList>,
-        callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|GaxiosPromise<Schema$ConversionList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Conversion$Update;
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Update
+        | BodyResponseCallback<Schema$ConversionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>
+    ): void | GaxiosPromise<Schema$ConversionList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversion$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -885,16 +937,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -902,7 +957,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.conversion.updateAvailability
@@ -918,31 +972,34 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     updateAvailability(
-        params?: Params$Resource$Conversion$Updateavailability,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UpdateAvailabilityResponse>;
+      params?: Params$Resource$Conversion$Updateavailability,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UpdateAvailabilityResponse>;
     updateAvailability(
-        params: Params$Resource$Conversion$Updateavailability,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-        callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void;
+      params: Params$Resource$Conversion$Updateavailability,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void;
     updateAvailability(
-        params: Params$Resource$Conversion$Updateavailability,
-        callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void;
+      params: Params$Resource$Conversion$Updateavailability,
+      callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void;
     updateAvailability(
-        callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void;
     updateAvailability(
-        paramsOrCallback?: Params$Resource$Conversion$Updateavailability|
-        BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-        callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void|GaxiosPromise<Schema$UpdateAvailabilityResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Conversion$Updateavailability;
+      paramsOrCallback?:
+        | Params$Resource$Conversion$Updateavailability
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+    ): void | GaxiosPromise<Schema$UpdateAvailabilityResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conversion$Updateavailability;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -959,21 +1016,24 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/doubleclicksearch/v2/conversion/updateAvailability')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/doubleclicksearch/v2/conversion/updateAvailability'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UpdateAvailabilityResponse>(parameters);
       }
@@ -984,7 +1044,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Numeric ID of the ad group.
@@ -1033,13 +1093,12 @@ export namespace doubleclicksearch_v2 {
      */
     startRow?: number;
   }
-  export interface Params$Resource$Conversion$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Conversion$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1050,7 +1109,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Numeric ID of the advertiser.
@@ -1088,26 +1147,24 @@ export namespace doubleclicksearch_v2 {
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Update extends
-      StandardParameters {
+  export interface Params$Resource$Conversion$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Updateavailability extends
-      StandardParameters {
+  export interface Params$Resource$Conversion$Updateavailability
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1115,13 +1172,11 @@ export namespace doubleclicksearch_v2 {
     requestBody?: Schema$UpdateAvailabilityRequest;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclicksearch.reports.generate
@@ -1136,22 +1191,26 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     generate(
-        params?: Params$Resource$Reports$Generate,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
+      params?: Params$Resource$Reports$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     generate(
-        params: Params$Resource$Reports$Generate,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Generate,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(
-        params: Params$Resource$Reports$Generate,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Generate,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     generate(callback: BodyResponseCallback<Schema$Report>): void;
     generate(
-        paramsOrCallback?: Params$Resource$Reports$Generate|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Generate
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1169,16 +1228,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/reports/generate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports/generate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1186,7 +1248,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.reports.get
@@ -1200,19 +1261,27 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Reports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
-    get(params: Params$Resource$Reports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
-    get(params: Params$Resource$Reports$Get,
-        callback: BodyResponseCallback<Schema$Report>): void;
+    get(
+      params?: Params$Resource$Reports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
+    get(
+      params: Params$Resource$Reports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    get(
+      params: Params$Resource$Reports$Get,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Report>): void;
-    get(paramsOrCallback?: Params$Resource$Reports$Get|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Get
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1230,16 +1299,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['reportId'],
         pathParams: ['reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1247,7 +1319,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.reports.getFile
@@ -1262,21 +1333,27 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFile(params?: Params$Resource$Reports$Getfile, options?: MethodOptions):
-        GaxiosPromise<void>;
     getFile(
-        params: Params$Resource$Reports$Getfile,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Reports$Getfile,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     getFile(
-        params: Params$Resource$Reports$Getfile,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Reports$Getfile,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    getFile(
+      params: Params$Resource$Reports$Getfile,
+      callback: BodyResponseCallback<void>
+    ): void;
     getFile(callback: BodyResponseCallback<void>): void;
     getFile(
-        paramsOrCallback?: Params$Resource$Reports$Getfile|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Getfile
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1294,18 +1371,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['reportId', 'reportFragment'],
         pathParams: ['reportFragment', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1313,7 +1391,6 @@ export namespace doubleclicksearch_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * doubleclicksearch.reports.request
@@ -1327,22 +1404,27 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    request(params?: Params$Resource$Reports$Request, options?: MethodOptions):
-        GaxiosPromise<Schema$Report>;
     request(
-        params: Params$Resource$Reports$Request,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params?: Params$Resource$Reports$Request,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
     request(
-        params: Params$Resource$Reports$Request,
-        callback: BodyResponseCallback<Schema$Report>): void;
+      params: Params$Resource$Reports$Request,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    request(
+      params: Params$Resource$Reports$Request,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     request(callback: BodyResponseCallback<Schema$Report>): void;
     request(
-        paramsOrCallback?: Params$Resource$Reports$Request|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Request
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Request;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1360,16 +1442,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/doubleclicksearch/v2/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1383,8 +1468,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1395,7 +1479,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the report request being polled.
@@ -1406,7 +1490,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The index of the report fragment to download.
@@ -1421,8 +1505,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1430,13 +1513,11 @@ export namespace doubleclicksearch_v2 {
     requestBody?: Schema$ReportRequest;
   }
 
-
   export class Resource$Savedcolumns {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * doubleclicksearch.savedColumns.list
@@ -1451,25 +1532,31 @@ export namespace doubleclicksearch_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Savedcolumns$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SavedColumnList>;
     list(
-        params: Params$Resource$Savedcolumns$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SavedColumnList>,
-        callback: BodyResponseCallback<Schema$SavedColumnList>): void;
+      params?: Params$Resource$Savedcolumns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedColumnList>;
     list(
-        params: Params$Resource$Savedcolumns$List,
-        callback: BodyResponseCallback<Schema$SavedColumnList>): void;
+      params: Params$Resource$Savedcolumns$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedColumnList>,
+      callback: BodyResponseCallback<Schema$SavedColumnList>
+    ): void;
+    list(
+      params: Params$Resource$Savedcolumns$List,
+      callback: BodyResponseCallback<Schema$SavedColumnList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SavedColumnList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Savedcolumns$List|
-        BodyResponseCallback<Schema$SavedColumnList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SavedColumnList>,
-        callback?: BodyResponseCallback<Schema$SavedColumnList>):
-        void|GaxiosPromise<Schema$SavedColumnList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Savedcolumns$List;
+      paramsOrCallback?:
+        | Params$Resource$Savedcolumns$List
+        | BodyResponseCallback<Schema$SavedColumnList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SavedColumnList>,
+      callback?: BodyResponseCallback<Schema$SavedColumnList>
+    ): void | GaxiosPromise<Schema$SavedColumnList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Savedcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1486,18 +1573,19 @@ export namespace doubleclicksearch_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['agencyId', 'advertiserId'],
         pathParams: ['advertiserId', 'agencyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SavedColumnList>(parameters, callback);
@@ -1507,12 +1595,12 @@ export namespace doubleclicksearch_v2 {
     }
   }
 
-  export interface Params$Resource$Savedcolumns$List extends
-      StandardParameters {
+  export interface Params$Resource$Savedcolumns$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * DS ID of the advertiser.

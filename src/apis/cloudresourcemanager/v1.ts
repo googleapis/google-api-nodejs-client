@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -713,7 +725,7 @@ export namespace cloudresourcemanager_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -729,7 +741,7 @@ export namespace cloudresourcemanager_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * The root node in the resource hierarchy to which a particular entity&#39;s
@@ -896,7 +908,7 @@ export namespace cloudresourcemanager_v1 {
      * &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt;
      * Read-write.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The Project lifecycle state.  Read-only.
      */
@@ -1100,7 +1112,7 @@ export namespace cloudresourcemanager_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1135,13 +1147,11 @@ export namespace cloudresourcemanager_v1 {
    */
   export interface Schema$UndeleteProjectRequest {}
 
-
   export class Resource$Folders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.folders.clearOrgPolicy
@@ -1211,24 +1221,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     clearOrgPolicy(
-        params?: Params$Resource$Folders$Clearorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Folders$Clearorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params: Params$Resource$Folders$Clearorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Clearorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(
-        params: Params$Resource$Folders$Clearorgpolicy,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Clearorgpolicy,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
     clearOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Clearorgpolicy|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Clearorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Clearorgpolicy
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1243,19 +1257,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1263,7 +1280,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.getEffectiveOrgPolicy
@@ -1339,26 +1355,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getEffectiveOrgPolicy(
-        params?: Params$Resource$Folders$Geteffectiveorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Folders$Geteffectiveorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Folders$Geteffectiveorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Geteffectiveorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Folders$Geteffectiveorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
-    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
-        void;
+      params: Params$Resource$Folders$Geteffectiveorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Geteffectiveorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Geteffectiveorgpolicy;
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
+    getEffectiveOrgPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Geteffectiveorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1373,19 +1395,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1393,7 +1418,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.getOrgPolicy
@@ -1468,25 +1492,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getOrgPolicy(
-        params?: Params$Resource$Folders$Getorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Folders$Getorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params: Params$Resource$Folders$Getorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Getorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(
-        params: Params$Resource$Folders$Getorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Getorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     getOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Getorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Getorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1501,19 +1530,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1521,7 +1553,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.listAvailableOrgPolicyConstraints
@@ -1611,39 +1642,53 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listAvailableOrgPolicyConstraints(
-        params?: Params$Resource$Folders$Listavailableorgpolicyconstraints,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+      params?: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        paramsOrCallback?:
-            Params$Resource$Folders$Listavailableorgpolicyconstraints|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>):
-        void|GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Folders$Listavailableorgpolicyconstraints;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Listavailableorgpolicyconstraints
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Folders$Listavailableorgpolicyconstraints;
+        params = {} as Params$Resource$Folders$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -1653,30 +1698,33 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/{+resource}:listAvailableOrgPolicyConstraints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>(parameters);
+          Schema$ListAvailableOrgPolicyConstraintsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.listOrgPolicies
@@ -1762,27 +1810,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listOrgPolicies(
-        params?: Params$Resource$Folders$Listorgpolicies,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+      params?: Params$Resource$Folders$Listorgpolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params: Params$Resource$Folders$Listorgpolicies,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Folders$Listorgpolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        params: Params$Resource$Folders$Listorgpolicies,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Folders$Listorgpolicies,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        paramsOrCallback?: Params$Resource$Folders$Listorgpolicies|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListOrgPoliciesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Listorgpolicies;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Listorgpolicies
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListOrgPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1797,19 +1852,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -1817,7 +1875,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.folders.setOrgPolicy
@@ -1891,25 +1948,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setOrgPolicy(
-        params?: Params$Resource$Folders$Setorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Folders$Setorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params: Params$Resource$Folders$Setorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Setorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(
-        params: Params$Resource$Folders$Setorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Folders$Setorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     setOrgPolicy(
-        paramsOrCallback?: Params$Resource$Folders$Setorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Setorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Setorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1924,19 +1986,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1946,12 +2011,12 @@ export namespace cloudresourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Clearorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Clearorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource for the `Policy` to clear.
@@ -1963,12 +2028,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ClearOrgPolicyRequest;
   }
-  export interface Params$Resource$Folders$Geteffectiveorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Geteffectiveorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to start computing the effective `Policy`.
@@ -1980,12 +2045,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Folders$Getorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Getorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource the `Policy` is set on.
@@ -1998,11 +2063,11 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Folders$Listavailableorgpolicyconstraints
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list `Constraints` for.
@@ -2014,12 +2079,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Folders$Listorgpolicies extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Listorgpolicies
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list Policies for.
@@ -2031,12 +2096,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Folders$Setorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Setorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the resource to attach the `Policy`.
@@ -2049,13 +2114,11 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$SetOrgPolicyRequest;
   }
 
-
   export class Resource$Liens {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.liens.create
@@ -2127,22 +2190,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Liens$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Lien>;
     create(
-        params: Params$Resource$Liens$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback: BodyResponseCallback<Schema$Lien>): void;
+      params?: Params$Resource$Liens$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Lien>;
     create(
-        params: Params$Resource$Liens$Create,
-        callback: BodyResponseCallback<Schema$Lien>): void;
+      params: Params$Resource$Liens$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
+    create(
+      params: Params$Resource$Liens$Create,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Lien>): void;
     create(
-        paramsOrCallback?: Params$Resource$Liens$Create|
-        BodyResponseCallback<Schema$Lien>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback?: BodyResponseCallback<Schema$Lien>):
-        void|GaxiosPromise<Schema$Lien> {
+      paramsOrCallback?:
+        | Params$Resource$Liens$Create
+        | BodyResponseCallback<Schema$Lien>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback?: BodyResponseCallback<Schema$Lien>
+    ): void | GaxiosPromise<Schema$Lien> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2158,18 +2226,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Lien>(parameters, callback);
@@ -2177,7 +2246,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Lien>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.liens.delete
@@ -2244,22 +2312,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Liens$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Liens$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Liens$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Liens$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Liens$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Liens$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Liens$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Liens$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2275,18 +2348,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2294,7 +2368,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.liens.get
@@ -2311,19 +2384,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Liens$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Lien>;
-    get(params: Params$Resource$Liens$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback: BodyResponseCallback<Schema$Lien>): void;
-    get(params: Params$Resource$Liens$Get,
-        callback: BodyResponseCallback<Schema$Lien>): void;
+    get(
+      params?: Params$Resource$Liens$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Lien>;
+    get(
+      params: Params$Resource$Liens$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
+    get(
+      params: Params$Resource$Liens$Get,
+      callback: BodyResponseCallback<Schema$Lien>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Lien>): void;
-    get(paramsOrCallback?: Params$Resource$Liens$Get|
-        BodyResponseCallback<Schema$Lien>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Lien>,
-        callback?: BodyResponseCallback<Schema$Lien>):
-        void|GaxiosPromise<Schema$Lien> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Liens$Get
+        | BodyResponseCallback<Schema$Lien>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Lien>,
+      callback?: BodyResponseCallback<Schema$Lien>
+    ): void | GaxiosPromise<Schema$Lien> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2339,18 +2420,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Lien>(parameters, callback);
@@ -2358,7 +2440,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Lien>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.liens.list
@@ -2440,23 +2521,29 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Liens$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLiensResponse>;
     list(
-        params: Params$Resource$Liens$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
-        callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
+      params?: Params$Resource$Liens$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLiensResponse>;
     list(
-        params: Params$Resource$Liens$List,
-        callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
+      params: Params$Resource$Liens$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLiensResponse>,
+      callback: BodyResponseCallback<Schema$ListLiensResponse>
+    ): void;
+    list(
+      params: Params$Resource$Liens$List,
+      callback: BodyResponseCallback<Schema$ListLiensResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLiensResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Liens$List|
-        BodyResponseCallback<Schema$ListLiensResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLiensResponse>,
-        callback?: BodyResponseCallback<Schema$ListLiensResponse>):
-        void|GaxiosPromise<Schema$ListLiensResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Liens$List
+        | BodyResponseCallback<Schema$ListLiensResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLiensResponse>,
+      callback?: BodyResponseCallback<Schema$ListLiensResponse>
+    ): void | GaxiosPromise<Schema$ListLiensResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2472,18 +2559,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLiensResponse>(parameters, callback);
@@ -2497,8 +2585,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2509,7 +2596,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name/identifier of the Lien to delete.
@@ -2520,7 +2607,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name/identifier of the Lien.
@@ -2531,7 +2618,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of items to return. This is a suggestion for the
@@ -2550,13 +2637,11 @@ export namespace cloudresourcemanager_v1 {
     parent?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.operations.get
@@ -2625,20 +2710,29 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2654,18 +2748,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2679,7 +2774,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -2687,13 +2782,11 @@ export namespace cloudresourcemanager_v1 {
     name?: string;
   }
 
-
   export class Resource$Organizations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.organizations.clearOrgPolicy
@@ -2762,24 +2855,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     clearOrgPolicy(
-        params?: Params$Resource$Organizations$Clearorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Organizations$Clearorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params: Params$Resource$Organizations$Clearorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Clearorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(
-        params: Params$Resource$Organizations$Clearorgpolicy,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Clearorgpolicy,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
     clearOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Clearorgpolicy|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Clearorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Clearorgpolicy
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2794,19 +2891,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2814,7 +2914,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.get
@@ -2881,22 +2980,31 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Organization>;
-    get(params: Params$Resource$Organizations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Organization>,
-        callback: BodyResponseCallback<Schema$Organization>): void;
-    get(params: Params$Resource$Organizations$Get,
-        callback: BodyResponseCallback<Schema$Organization>): void;
+    get(
+      params?: Params$Resource$Organizations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Organization>;
+    get(
+      params: Params$Resource$Organizations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Organization>,
+      callback: BodyResponseCallback<Schema$Organization>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Get,
+      callback: BodyResponseCallback<Schema$Organization>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Organization>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Get|
-        BodyResponseCallback<Schema$Organization>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Organization>,
-        callback?: BodyResponseCallback<Schema$Organization>):
-        void|GaxiosPromise<Schema$Organization> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Get
+        | BodyResponseCallback<Schema$Organization>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Organization>,
+      callback?: BodyResponseCallback<Schema$Organization>
+    ): void | GaxiosPromise<Schema$Organization> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2911,18 +3019,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Organization>(parameters, callback);
@@ -2930,7 +3039,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Organization>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.getEffectiveOrgPolicy
@@ -3006,26 +3114,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getEffectiveOrgPolicy(
-        params?: Params$Resource$Organizations$Geteffectiveorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Organizations$Geteffectiveorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Organizations$Geteffectiveorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Geteffectiveorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Organizations$Geteffectiveorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
-    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
-        void;
+      params: Params$Resource$Organizations$Geteffectiveorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Geteffectiveorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Geteffectiveorgpolicy;
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
+    getEffectiveOrgPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Geteffectiveorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3040,19 +3154,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -3060,7 +3177,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.getIamPolicy
@@ -3138,24 +3254,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Organizations$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Organizations$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Organizations$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Organizations$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3170,19 +3290,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3190,7 +3313,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.getOrgPolicy
@@ -3266,25 +3388,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getOrgPolicy(
-        params?: Params$Resource$Organizations$Getorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Organizations$Getorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params: Params$Resource$Organizations$Getorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Getorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(
-        params: Params$Resource$Organizations$Getorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Getorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     getOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Getorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Getorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3299,19 +3426,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -3319,7 +3449,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints
@@ -3411,40 +3540,53 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listAvailableOrgPolicyConstraints(
-        params?:
-            Params$Resource$Organizations$Listavailableorgpolicyconstraints,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+      params?: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        paramsOrCallback?:
-            Params$Resource$Organizations$Listavailableorgpolicyconstraints|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>):
-        void|GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Listavailableorgpolicyconstraints;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Listavailableorgpolicyconstraints
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Organizations$Listavailableorgpolicyconstraints;
+        params = {} as Params$Resource$Organizations$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -3454,30 +3596,33 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/{+resource}:listAvailableOrgPolicyConstraints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>(parameters);
+          Schema$ListAvailableOrgPolicyConstraintsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.listOrgPolicies
@@ -3566,27 +3711,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listOrgPolicies(
-        params?: Params$Resource$Organizations$Listorgpolicies,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+      params?: Params$Resource$Organizations$Listorgpolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params: Params$Resource$Organizations$Listorgpolicies,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Organizations$Listorgpolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        params: Params$Resource$Organizations$Listorgpolicies,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Organizations$Listorgpolicies,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        paramsOrCallback?: Params$Resource$Organizations$Listorgpolicies|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListOrgPoliciesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Listorgpolicies;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Listorgpolicies
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListOrgPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3601,19 +3753,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -3621,7 +3776,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.search
@@ -3708,29 +3862,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Organizations$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchOrganizationsResponse>;
+      params?: Params$Resource$Organizations$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchOrganizationsResponse>;
     search(
-        params: Params$Resource$Organizations$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-        callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void;
+      params: Params$Resource$Organizations$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void;
     search(
-        params: Params$Resource$Organizations$Search,
-        callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void;
-    search(callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void;
+      params: Params$Resource$Organizations$Search,
+      callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Organizations$Search|
-        BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
-        void|GaxiosPromise<Schema$SearchOrganizationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Search;
+      callback: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Search
+        | BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>
+    ): void | GaxiosPromise<Schema$SearchOrganizationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3745,28 +3904,32 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/organizations:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/organizations:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchOrganizationsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SearchOrganizationsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.setIamPolicy
@@ -3844,24 +4007,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Organizations$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Organizations$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Organizations$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Organizations$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Organizations$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3876,19 +4043,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3896,7 +4066,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.setOrgPolicy
@@ -3971,25 +4140,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setOrgPolicy(
-        params?: Params$Resource$Organizations$Setorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Organizations$Setorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params: Params$Resource$Organizations$Setorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Setorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(
-        params: Params$Resource$Organizations$Setorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Organizations$Setorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     setOrgPolicy(
-        paramsOrCallback?: Params$Resource$Organizations$Setorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Setorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Setorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4004,19 +4178,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -4024,7 +4201,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.organizations.testIamPermissions
@@ -4101,31 +4277,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Organizations$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Organizations$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Organizations$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Organizations$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Organizations$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Organizations$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4140,35 +4319,40 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Clearorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Clearorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource for the `Policy` to clear.
@@ -4180,12 +4364,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ClearOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the Organization to fetch. This is the
@@ -4194,12 +4378,12 @@ export namespace cloudresourcemanager_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Geteffectiveorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Geteffectiveorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to start computing the effective `Policy`.
@@ -4211,12 +4395,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -4229,12 +4413,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Getorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Getorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource the `Policy` is set on.
@@ -4247,11 +4431,11 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list `Constraints` for.
@@ -4263,12 +4447,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Organizations$Listorgpolicies extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Listorgpolicies
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list Policies for.
@@ -4280,25 +4464,24 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Organizations$Search extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$SearchOrganizationsRequest;
   }
-  export interface Params$Resource$Organizations$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -4311,12 +4494,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Setorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Setorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the resource to attach the `Policy`.
@@ -4328,12 +4511,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetOrgPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -4347,13 +4530,11 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudresourcemanager.projects.clearOrgPolicy
@@ -4423,24 +4604,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     clearOrgPolicy(
-        params?: Params$Resource$Projects$Clearorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Clearorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     clearOrgPolicy(
-        params: Params$Resource$Projects$Clearorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Clearorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(
-        params: Params$Resource$Projects$Clearorgpolicy,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Clearorgpolicy,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     clearOrgPolicy(callback: BodyResponseCallback<Schema$Empty>): void;
     clearOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Clearorgpolicy|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Clearorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Clearorgpolicy
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Clearorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4455,19 +4640,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4475,7 +4663,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.create
@@ -4556,23 +4743,29 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Projects$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Projects$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4588,18 +4781,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4607,7 +4801,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.delete
@@ -4682,22 +4875,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Projects$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Projects$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4713,19 +4911,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4733,7 +4934,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.get
@@ -4803,19 +5003,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Project>;
-    get(params: Params$Resource$Projects$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
-    get(params: Params$Resource$Projects$Get,
-        callback: BodyResponseCallback<Schema$Project>): void;
+    get(
+      params?: Params$Resource$Projects$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Get,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Project>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Get|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Get
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4831,19 +5039,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -4851,7 +5062,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Project>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.getAncestry
@@ -4925,26 +5135,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getAncestry(
-        params?: Params$Resource$Projects$Getancestry,
-        options?: MethodOptions): GaxiosPromise<Schema$GetAncestryResponse>;
+      params?: Params$Resource$Projects$Getancestry,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetAncestryResponse>;
     getAncestry(
-        params: Params$Resource$Projects$Getancestry,
-        options: MethodOptions|BodyResponseCallback<Schema$GetAncestryResponse>,
-        callback: BodyResponseCallback<Schema$GetAncestryResponse>): void;
+      params: Params$Resource$Projects$Getancestry,
+      options: MethodOptions | BodyResponseCallback<Schema$GetAncestryResponse>,
+      callback: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void;
     getAncestry(
-        params: Params$Resource$Projects$Getancestry,
-        callback: BodyResponseCallback<Schema$GetAncestryResponse>): void;
-    getAncestry(callback: BodyResponseCallback<Schema$GetAncestryResponse>):
-        void;
+      params: Params$Resource$Projects$Getancestry,
+      callback: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void;
     getAncestry(
-        paramsOrCallback?: Params$Resource$Projects$Getancestry|
-        BodyResponseCallback<Schema$GetAncestryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetAncestryResponse>,
-        callback?: BodyResponseCallback<Schema$GetAncestryResponse>):
-        void|GaxiosPromise<Schema$GetAncestryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getancestry;
+      callback: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void;
+    getAncestry(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getancestry
+        | BodyResponseCallback<Schema$GetAncestryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetAncestryResponse>,
+      callback?: BodyResponseCallback<Schema$GetAncestryResponse>
+    ): void | GaxiosPromise<Schema$GetAncestryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getancestry;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4959,19 +5175,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}:getAncestry')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}:getAncestry').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetAncestryResponse>(parameters, callback);
@@ -4979,7 +5198,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$GetAncestryResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.getEffectiveOrgPolicy
@@ -5055,26 +5273,32 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getEffectiveOrgPolicy(
-        params?: Params$Resource$Projects$Geteffectiveorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Projects$Geteffectiveorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Projects$Geteffectiveorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Geteffectiveorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        params: Params$Resource$Projects$Geteffectiveorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
-    getEffectiveOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>):
-        void;
+      params: Params$Resource$Projects$Geteffectiveorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getEffectiveOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Geteffectiveorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Geteffectiveorgpolicy;
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
+    getEffectiveOrgPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Geteffectiveorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Geteffectiveorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5089,19 +5313,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -5109,7 +5336,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.getIamPolicy
@@ -5186,24 +5412,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5218,19 +5448,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5238,7 +5471,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.getOrgPolicy
@@ -5313,25 +5545,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     getOrgPolicy(
-        params?: Params$Resource$Projects$Getorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Projects$Getorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     getOrgPolicy(
-        params: Params$Resource$Projects$Getorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Getorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(
-        params: Params$Resource$Projects$Getorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Getorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     getOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     getOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Getorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5346,19 +5583,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -5366,7 +5606,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.list
@@ -5450,24 +5689,31 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListProjectsResponse>;
     list(
-        params: Params$Resource$Projects$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProjectsResponse>,
-        callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+      params?: Params$Resource$Projects$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProjectsResponse>;
     list(
-        params: Params$Resource$Projects$List,
-        callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+      params: Params$Resource$Projects$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProjectsResponse>,
+      callback: BodyResponseCallback<Schema$ListProjectsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$List,
+      callback: BodyResponseCallback<Schema$ListProjectsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListProjectsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$List|
-        BodyResponseCallback<Schema$ListProjectsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProjectsResponse>,
-        callback?: BodyResponseCallback<Schema$ListProjectsResponse>):
-        void|GaxiosPromise<Schema$ListProjectsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$List
+        | BodyResponseCallback<Schema$ListProjectsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProjectsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProjectsResponse>
+    ): void | GaxiosPromise<Schema$ListProjectsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5483,18 +5729,19 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectsResponse>(parameters, callback);
@@ -5502,7 +5749,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$ListProjectsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.listAvailableOrgPolicyConstraints
@@ -5592,39 +5838,53 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listAvailableOrgPolicyConstraints(
-        params?: Params$Resource$Projects$Listavailableorgpolicyconstraints,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+      params?: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        callback: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void;
     listAvailableOrgPolicyConstraints(
-        paramsOrCallback?:
-            Params$Resource$Projects$Listavailableorgpolicyconstraints|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>):
-        void|GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Listavailableorgpolicyconstraints;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Listavailableorgpolicyconstraints
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAvailableOrgPolicyConstraintsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ListAvailableOrgPolicyConstraintsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Listavailableorgpolicyconstraints;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Listavailableorgpolicyconstraints;
+        params = {} as Params$Resource$Projects$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -5634,30 +5894,33 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/{+resource}:listAvailableOrgPolicyConstraints')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListAvailableOrgPolicyConstraintsResponse>(parameters);
+          Schema$ListAvailableOrgPolicyConstraintsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.listOrgPolicies
@@ -5743,27 +6006,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     listOrgPolicies(
-        params?: Params$Resource$Projects$Listorgpolicies,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
+      params?: Params$Resource$Projects$Listorgpolicies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOrgPoliciesResponse>;
     listOrgPolicies(
-        params: Params$Resource$Projects$Listorgpolicies,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Projects$Listorgpolicies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        params: Params$Resource$Projects$Listorgpolicies,
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      params: Params$Resource$Projects$Listorgpolicies,
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+      callback: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void;
     listOrgPolicies(
-        paramsOrCallback?: Params$Resource$Projects$Listorgpolicies|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListOrgPoliciesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Listorgpolicies;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Listorgpolicies
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListOrgPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Listorgpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5778,19 +6048,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -5798,7 +6071,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.setIamPolicy
@@ -5898,24 +6170,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5930,19 +6206,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5950,7 +6229,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.setOrgPolicy
@@ -6024,25 +6302,30 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     setOrgPolicy(
-        params?: Params$Resource$Projects$Setorgpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$OrgPolicy>;
+      params?: Params$Resource$Projects$Setorgpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OrgPolicy>;
     setOrgPolicy(
-        params: Params$Resource$Projects$Setorgpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Setorgpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$OrgPolicy>,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(
-        params: Params$Resource$Projects$Setorgpolicy,
-        callback: BodyResponseCallback<Schema$OrgPolicy>): void;
+      params: Params$Resource$Projects$Setorgpolicy,
+      callback: BodyResponseCallback<Schema$OrgPolicy>
+    ): void;
     setOrgPolicy(callback: BodyResponseCallback<Schema$OrgPolicy>): void;
     setOrgPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Setorgpolicy|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrgPolicy>,
-        callback?: BodyResponseCallback<Schema$OrgPolicy>):
-        void|GaxiosPromise<Schema$OrgPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Setorgpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Setorgpolicy
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>
+    ): void | GaxiosPromise<Schema$OrgPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Setorgpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6057,19 +6340,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -6077,7 +6363,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$OrgPolicy>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.testIamPermissions
@@ -6151,31 +6436,34 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Projects$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6190,28 +6478,31 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/projects/{resource}:testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.undelete
@@ -6286,24 +6577,28 @@ export namespace cloudresourcemanager_v1 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Projects$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     undelete(
-        params: Params$Resource$Projects$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     undelete(
-        params: Params$Resource$Projects$Undelete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Undelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Empty>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Projects$Undelete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Undelete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Undelete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6318,19 +6613,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6338,7 +6636,6 @@ export namespace cloudresourcemanager_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * cloudresourcemanager.projects.update
@@ -6415,22 +6712,27 @@ export namespace cloudresourcemanager_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Projects$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Project>;
     update(
-        params: Params$Resource$Projects$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback: BodyResponseCallback<Schema$Project>): void;
+      params?: Params$Resource$Projects$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Project>;
     update(
-        params: Params$Resource$Projects$Update,
-        callback: BodyResponseCallback<Schema$Project>): void;
+      params: Params$Resource$Projects$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Update,
+      callback: BodyResponseCallback<Schema$Project>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Project>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Update|
-        BodyResponseCallback<Schema$Project>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
-        callback?: BodyResponseCallback<Schema$Project>):
-        void|GaxiosPromise<Schema$Project> {
+      paramsOrCallback?:
+        | Params$Resource$Projects$Update
+        | BodyResponseCallback<Schema$Project>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>
+    ): void | GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6446,19 +6748,22 @@ export namespace cloudresourcemanager_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/projects/{projectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/projects/{projectId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -6468,12 +6773,12 @@ export namespace cloudresourcemanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Clearorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Clearorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource for the `Policy` to clear.
@@ -6489,8 +6794,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -6501,7 +6805,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Project ID (for example, `foo-bar-123`).  Required.
@@ -6512,19 +6816,19 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Getancestry extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getancestry
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Project ID (for example, `my-project-123`).  Required.
@@ -6536,12 +6840,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetAncestryRequest;
   }
-  export interface Params$Resource$Projects$Geteffectiveorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Geteffectiveorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the resource to start computing the effective `Policy`.
@@ -6553,12 +6857,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetEffectiveOrgPolicyRequest;
   }
-  export interface Params$Resource$Projects$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -6571,12 +6875,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Getorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource the `Policy` is set on.
@@ -6592,7 +6896,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An expression for filtering the results of the request.  Filter rules are
@@ -6629,11 +6933,11 @@ export namespace cloudresourcemanager_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Listavailableorgpolicyconstraints
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list `Constraints` for.
@@ -6645,12 +6949,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListAvailableOrgPolicyConstraintsRequest;
   }
-  export interface Params$Resource$Projects$Listorgpolicies extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Listorgpolicies
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the resource to list Policies for.
@@ -6662,12 +6966,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$ListOrgPoliciesRequest;
   }
-  export interface Params$Resource$Projects$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -6680,12 +6984,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Setorgpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Setorgpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name of the resource to attach the `Policy`.
@@ -6697,12 +7001,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$SetOrgPolicyRequest;
   }
-  export interface Params$Resource$Projects$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -6715,12 +7019,12 @@ export namespace cloudresourcemanager_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Undelete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Undelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID (for example, `foo-bar-123`).  Required.
@@ -6736,7 +7040,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID (for example, `my-project-123`).  Required.

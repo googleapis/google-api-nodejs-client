@@ -21,31 +21,42 @@ import {drive_v2, GoogleApis, urlshortener_v1} from '../src';
 import {Utils} from './utils';
 
 async function testGet(drive: APIEndpoint) {
-  nock(Utils.baseUrl).get('/drive/v2/files/123?key=APIKEY').reply(200);
+  nock(Utils.baseUrl)
+    .get('/drive/v2/files/123?key=APIKEY')
+    .reply(200);
   const res = await drive.files.get({fileId: '123', auth: 'APIKEY'});
   assert.strictEqual(Utils.getQs(res), 'key=APIKEY');
 }
 
 async function testParams2(drive: APIEndpoint) {
-  nock(Utils.baseUrl).get('/drive/v2/files/123?key=API%20KEY').reply(200);
+  nock(Utils.baseUrl)
+    .get('/drive/v2/files/123?key=API%20KEY')
+    .reply(200);
   const res = await drive.files.get({fileId: '123', auth: 'API KEY'});
   assert.strictEqual(Utils.getQs(res), 'key=API%20KEY');
 }
 
 async function testKeyParam(drive: APIEndpoint) {
-  nock(Utils.baseUrl).get('/drive/v2/files/123?key=abc123').reply(200);
-  const res =
-      await drive.files.get({fileId: '123', auth: 'API KEY', key: 'abc123'});
+  nock(Utils.baseUrl)
+    .get('/drive/v2/files/123?key=abc123')
+    .reply(200);
+  const res = await drive.files.get({
+    fileId: '123',
+    auth: 'API KEY',
+    key: 'abc123',
+  });
   assert.strictEqual(Utils.getQs(res), 'key=abc123');
 }
 
 async function testAuthKey(urlshortener: APIEndpoint) {
   nock(Utils.baseUrl)
-      .get('/urlshortener/v1/url/history?key=YOUR%20API%20KEY')
-      .reply(200);
+    .get('/urlshortener/v1/url/history?key=YOUR%20API%20KEY')
+    .reply(200);
   const res = await urlshortener.url.list({auth: 'YOUR API KEY'});
   assert.strictEqual(
-      Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1, true);
+    Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1,
+    true
+  );
 }
 
 describe('API key', () => {
@@ -61,7 +72,7 @@ describe('API key', () => {
     nock.enableNetConnect();
     [remoteDrive, remoteUrlshortener] = await Promise.all([
       Utils.loadApi(google, 'drive', 'v2'),
-      Utils.loadApi(google, 'urlshortener', 'v1')
+      Utils.loadApi(google, 'urlshortener', 'v1'),
     ]);
     nock.disableNetConnect();
   });
@@ -87,11 +98,10 @@ describe('API key', () => {
     await testParams2(remoteDrive);
   });
 
-  it('should use key param over auth apikey param if both provided',
-     async () => {
-       await testKeyParam(localDrive);
-       await testKeyParam(remoteDrive);
-     });
+  it('should use key param over auth apikey param if both provided', async () => {
+    await testKeyParam(localDrive);
+    await testKeyParam(remoteDrive);
+  });
 
   it('should set API key parameter if it is present', async () => {
     await testAuthKey(localUrlshortener);

@@ -19,19 +19,27 @@ import {analytics_v3} from './v3';
 
 export const VERSIONS = {
   'v2.4': analytics_v2_4.Analytics,
-  'v3': analytics_v3.Analytics,
+  v3: analytics_v3.Analytics,
 };
 
 export function analytics(version: 'v2.4'): analytics_v2_4.Analytics;
-export function analytics(options: analytics_v2_4.Options):
-    analytics_v2_4.Analytics;
+export function analytics(
+  options: analytics_v2_4.Options
+): analytics_v2_4.Analytics;
 export function analytics(version: 'v3'): analytics_v3.Analytics;
-export function analytics(options: analytics_v3.Options):
-    analytics_v3.Analytics;
-export function
-analytics<T = analytics_v2_4.Analytics | analytics_v3.Analytics>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2.4'|analytics_v2_4.Options|'v3'|analytics_v3.Options) {
+export function analytics(
+  options: analytics_v3.Options
+): analytics_v3.Analytics;
+export function analytics<
+  T = analytics_v2_4.Analytics | analytics_v3.Analytics
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v2.4'
+    | analytics_v2_4.Options
+    | 'v3'
+    | analytics_v3.Options
+) {
   return getAPI<T>('analytics', versionOrOptions, VERSIONS, this);
 }
 

@@ -18,8 +18,8 @@ import {drive_v2} from './v2';
 import {drive_v3} from './v3';
 
 export const VERSIONS = {
-  'v2': drive_v2.Drive,
-  'v3': drive_v3.Drive,
+  v2: drive_v2.Drive,
+  v3: drive_v3.Drive,
 };
 
 export function drive(version: 'v2'): drive_v2.Drive;
@@ -27,8 +27,9 @@ export function drive(options: drive_v2.Options): drive_v2.Drive;
 export function drive(version: 'v3'): drive_v3.Drive;
 export function drive(options: drive_v3.Options): drive_v3.Drive;
 export function drive<T = drive_v2.Drive | drive_v3.Drive>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2'|drive_v2.Options|'v3'|drive_v3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | drive_v2.Options | 'v3' | drive_v3.Options
+) {
   return getAPI<T>('drive', versionOrOptions, VERSIONS, this);
 }
 

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -502,7 +514,6 @@ export namespace manufacturers_v1 {
     sectionName?: string;
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     products: Resource$Accounts$Products;
@@ -512,13 +523,11 @@ export namespace manufacturers_v1 {
     }
   }
 
-
   export class Resource$Accounts$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * manufacturers.accounts.products.delete
@@ -534,24 +543,28 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accounts$Products$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Accounts$Products$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Accounts$Products$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Accounts$Products$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accounts$Products$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -566,19 +579,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -586,7 +602,6 @@ export namespace manufacturers_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * manufacturers.accounts.products.get
@@ -606,21 +621,29 @@ export namespace manufacturers_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accounts$Products$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Product>;
-    get(params: Params$Resource$Accounts$Products$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
-    get(params: Params$Resource$Accounts$Products$Get,
-        callback: BodyResponseCallback<Schema$Product>): void;
+    get(
+      params?: Params$Resource$Accounts$Products$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Products$Get,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Product>): void;
-    get(paramsOrCallback?: Params$Resource$Accounts$Products$Get|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$Get
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -635,19 +658,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -655,7 +681,6 @@ export namespace manufacturers_v1 {
         return createAPIRequest<Schema$Product>(parameters);
       }
     }
-
 
     /**
      * manufacturers.accounts.products.list
@@ -673,26 +698,32 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accounts$Products$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListProductsResponse>;
+      params?: Params$Resource$Accounts$Products$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProductsResponse>;
     list(
-        params: Params$Resource$Accounts$Products$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+      params: Params$Resource$Accounts$Products$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void;
     list(
-        params: Params$Resource$Accounts$Products$List,
-        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+      params: Params$Resource$Accounts$Products$List,
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accounts$Products$List|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProductsResponse>,
-        callback?: BodyResponseCallback<Schema$ListProductsResponse>):
-        void|GaxiosPromise<Schema$ListProductsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$List;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$List
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProductsResponse>
+    ): void | GaxiosPromise<Schema$ListProductsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -707,19 +738,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -727,7 +761,6 @@ export namespace manufacturers_v1 {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
       }
     }
-
 
     /**
      * manufacturers.accounts.products.update
@@ -755,24 +788,28 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Accounts$Products$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Accounts$Products$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     update(
-        params: Params$Resource$Accounts$Products$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     update(
-        params: Params$Resource$Accounts$Products$Update,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Accounts$Products$Update,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Empty>): void;
     update(
-        paramsOrCallback?: Params$Resource$Accounts$Products$Update|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Update;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Products$Update
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -787,19 +824,22 @@ export namespace manufacturers_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://manufacturers.googleapis.com/';
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/products/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/products/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -809,12 +849,12 @@ export namespace manufacturers_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Products$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name in the format `{target_country}:{content_language}:{product_id}`.
@@ -832,12 +872,12 @@ export namespace manufacturers_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The information to be included in the response. Only sections listed here
@@ -860,12 +900,12 @@ export namespace manufacturers_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$List extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The information to be included in the response. Only sections listed here
@@ -887,12 +927,12 @@ export namespace manufacturers_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$Update extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Products$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name in the format `{target_country}:{content_language}:{product_id}`.

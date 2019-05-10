@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -862,7 +874,7 @@ export namespace vault_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -899,7 +911,6 @@ export namespace vault_v1 {
     email?: string;
   }
 
-
   export class Resource$Matters {
     context: APIRequestContext;
     exports: Resource$Matters$Exports;
@@ -911,7 +922,6 @@ export namespace vault_v1 {
       this.holds = new Resource$Matters$Holds(this.context);
       this.savedQueries = new Resource$Matters$Savedqueries(this.context);
     }
-
 
     /**
      * vault.matters.addPermissions
@@ -927,26 +937,32 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     addPermissions(
-        params?: Params$Resource$Matters$Addpermissions,
-        options?: MethodOptions): GaxiosPromise<Schema$MatterPermission>;
+      params?: Params$Resource$Matters$Addpermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MatterPermission>;
     addPermissions(
-        params: Params$Resource$Matters$Addpermissions,
-        options: MethodOptions|BodyResponseCallback<Schema$MatterPermission>,
-        callback: BodyResponseCallback<Schema$MatterPermission>): void;
+      params: Params$Resource$Matters$Addpermissions,
+      options: MethodOptions | BodyResponseCallback<Schema$MatterPermission>,
+      callback: BodyResponseCallback<Schema$MatterPermission>
+    ): void;
     addPermissions(
-        params: Params$Resource$Matters$Addpermissions,
-        callback: BodyResponseCallback<Schema$MatterPermission>): void;
-    addPermissions(callback: BodyResponseCallback<Schema$MatterPermission>):
-        void;
+      params: Params$Resource$Matters$Addpermissions,
+      callback: BodyResponseCallback<Schema$MatterPermission>
+    ): void;
     addPermissions(
-        paramsOrCallback?: Params$Resource$Matters$Addpermissions|
-        BodyResponseCallback<Schema$MatterPermission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MatterPermission>,
-        callback?: BodyResponseCallback<Schema$MatterPermission>):
-        void|GaxiosPromise<Schema$MatterPermission> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Addpermissions;
+      callback: BodyResponseCallback<Schema$MatterPermission>
+    ): void;
+    addPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Matters$Addpermissions
+        | BodyResponseCallback<Schema$MatterPermission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MatterPermission>,
+      callback?: BodyResponseCallback<Schema$MatterPermission>
+    ): void | GaxiosPromise<Schema$MatterPermission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Addpermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -963,16 +979,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}:addPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:addPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MatterPermission>(parameters, callback);
@@ -980,7 +999,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$MatterPermission>(parameters);
       }
     }
-
 
     /**
      * vault.matters.close
@@ -995,23 +1013,29 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    close(params?: Params$Resource$Matters$Close, options?: MethodOptions):
-        GaxiosPromise<Schema$CloseMatterResponse>;
     close(
-        params: Params$Resource$Matters$Close,
-        options: MethodOptions|BodyResponseCallback<Schema$CloseMatterResponse>,
-        callback: BodyResponseCallback<Schema$CloseMatterResponse>): void;
+      params?: Params$Resource$Matters$Close,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CloseMatterResponse>;
     close(
-        params: Params$Resource$Matters$Close,
-        callback: BodyResponseCallback<Schema$CloseMatterResponse>): void;
+      params: Params$Resource$Matters$Close,
+      options: MethodOptions | BodyResponseCallback<Schema$CloseMatterResponse>,
+      callback: BodyResponseCallback<Schema$CloseMatterResponse>
+    ): void;
+    close(
+      params: Params$Resource$Matters$Close,
+      callback: BodyResponseCallback<Schema$CloseMatterResponse>
+    ): void;
     close(callback: BodyResponseCallback<Schema$CloseMatterResponse>): void;
     close(
-        paramsOrCallback?: Params$Resource$Matters$Close|
-        BodyResponseCallback<Schema$CloseMatterResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CloseMatterResponse>,
-        callback?: BodyResponseCallback<Schema$CloseMatterResponse>):
-        void|GaxiosPromise<Schema$CloseMatterResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Matters$Close
+        | BodyResponseCallback<Schema$CloseMatterResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CloseMatterResponse>,
+      callback?: BodyResponseCallback<Schema$CloseMatterResponse>
+    ): void | GaxiosPromise<Schema$CloseMatterResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1029,16 +1053,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}:close')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:close').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CloseMatterResponse>(parameters, callback);
@@ -1046,7 +1073,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$CloseMatterResponse>(parameters);
       }
     }
-
 
     /**
      * vault.matters.create
@@ -1062,22 +1088,27 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Matters$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Matter>;
     create(
-        params: Params$Resource$Matters$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params?: Params$Resource$Matters$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Matter>;
     create(
-        params: Params$Resource$Matters$Create,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params: Params$Resource$Matters$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
+    create(
+      params: Params$Resource$Matters$Create,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Matter>): void;
     create(
-        paramsOrCallback?: Params$Resource$Matters$Create|
-        BodyResponseCallback<Schema$Matter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback?: BodyResponseCallback<Schema$Matter>):
-        void|GaxiosPromise<Schema$Matter> {
+      paramsOrCallback?:
+        | Params$Resource$Matters$Create
+        | BodyResponseCallback<Schema$Matter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>
+    ): void | GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1095,15 +1126,16 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1111,7 +1143,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Matter>(parameters);
       }
     }
-
 
     /**
      * vault.matters.delete
@@ -1125,22 +1156,27 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Matters$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Matter>;
     delete(
-        params: Params$Resource$Matters$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params?: Params$Resource$Matters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Matter>;
     delete(
-        params: Params$Resource$Matters$Delete,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params: Params$Resource$Matters$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
+    delete(
+      params: Params$Resource$Matters$Delete,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Matter>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Matters$Delete|
-        BodyResponseCallback<Schema$Matter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback?: BodyResponseCallback<Schema$Matter>):
-        void|GaxiosPromise<Schema$Matter> {
+      paramsOrCallback?:
+        | Params$Resource$Matters$Delete
+        | BodyResponseCallback<Schema$Matter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>
+    ): void | GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1158,16 +1194,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1175,7 +1214,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Matter>(parameters);
       }
     }
-
 
     /**
      * vault.matters.get
@@ -1190,19 +1228,27 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Matters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Matter>;
-    get(params: Params$Resource$Matters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback: BodyResponseCallback<Schema$Matter>): void;
-    get(params: Params$Resource$Matters$Get,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+    get(
+      params?: Params$Resource$Matters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Matter>;
+    get(
+      params: Params$Resource$Matters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
+    get(
+      params: Params$Resource$Matters$Get,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Matter>): void;
-    get(paramsOrCallback?: Params$Resource$Matters$Get|
-        BodyResponseCallback<Schema$Matter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback?: BodyResponseCallback<Schema$Matter>):
-        void|GaxiosPromise<Schema$Matter> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Matters$Get
+        | BodyResponseCallback<Schema$Matter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>
+    ): void | GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1220,16 +1266,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1237,7 +1286,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Matter>(parameters);
       }
     }
-
 
     /**
      * vault.matters.list
@@ -1254,23 +1302,29 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Matters$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListMattersResponse>;
     list(
-        params: Params$Resource$Matters$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListMattersResponse>,
-        callback: BodyResponseCallback<Schema$ListMattersResponse>): void;
+      params?: Params$Resource$Matters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMattersResponse>;
     list(
-        params: Params$Resource$Matters$List,
-        callback: BodyResponseCallback<Schema$ListMattersResponse>): void;
+      params: Params$Resource$Matters$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListMattersResponse>,
+      callback: BodyResponseCallback<Schema$ListMattersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Matters$List,
+      callback: BodyResponseCallback<Schema$ListMattersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListMattersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Matters$List|
-        BodyResponseCallback<Schema$ListMattersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMattersResponse>,
-        callback?: BodyResponseCallback<Schema$ListMattersResponse>):
-        void|GaxiosPromise<Schema$ListMattersResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Matters$List
+        | BodyResponseCallback<Schema$ListMattersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMattersResponse>,
+      callback?: BodyResponseCallback<Schema$ListMattersResponse>
+    ): void | GaxiosPromise<Schema$ListMattersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1288,15 +1342,16 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMattersResponse>(parameters, callback);
@@ -1304,7 +1359,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$ListMattersResponse>(parameters);
       }
     }
-
 
     /**
      * vault.matters.removePermissions
@@ -1320,24 +1374,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     removePermissions(
-        params?: Params$Resource$Matters$Removepermissions,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Matters$Removepermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     removePermissions(
-        params: Params$Resource$Matters$Removepermissions,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Removepermissions,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     removePermissions(
-        params: Params$Resource$Matters$Removepermissions,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Removepermissions,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     removePermissions(callback: BodyResponseCallback<Schema$Empty>): void;
     removePermissions(
-        paramsOrCallback?: Params$Resource$Matters$Removepermissions|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Removepermissions;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Removepermissions
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Removepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1354,16 +1412,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}:removePermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:removePermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1371,7 +1432,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vault.matters.reopen
@@ -1386,24 +1446,31 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reopen(params?: Params$Resource$Matters$Reopen, options?: MethodOptions):
-        GaxiosPromise<Schema$ReopenMatterResponse>;
     reopen(
-        params: Params$Resource$Matters$Reopen,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ReopenMatterResponse>,
-        callback: BodyResponseCallback<Schema$ReopenMatterResponse>): void;
+      params?: Params$Resource$Matters$Reopen,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReopenMatterResponse>;
     reopen(
-        params: Params$Resource$Matters$Reopen,
-        callback: BodyResponseCallback<Schema$ReopenMatterResponse>): void;
+      params: Params$Resource$Matters$Reopen,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReopenMatterResponse>,
+      callback: BodyResponseCallback<Schema$ReopenMatterResponse>
+    ): void;
+    reopen(
+      params: Params$Resource$Matters$Reopen,
+      callback: BodyResponseCallback<Schema$ReopenMatterResponse>
+    ): void;
     reopen(callback: BodyResponseCallback<Schema$ReopenMatterResponse>): void;
     reopen(
-        paramsOrCallback?: Params$Resource$Matters$Reopen|
-        BodyResponseCallback<Schema$ReopenMatterResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReopenMatterResponse>,
-        callback?: BodyResponseCallback<Schema$ReopenMatterResponse>):
-        void|GaxiosPromise<Schema$ReopenMatterResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Matters$Reopen
+        | BodyResponseCallback<Schema$ReopenMatterResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReopenMatterResponse>,
+      callback?: BodyResponseCallback<Schema$ReopenMatterResponse>
+    ): void | GaxiosPromise<Schema$ReopenMatterResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Reopen;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1421,16 +1488,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}:reopen')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:reopen').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReopenMatterResponse>(parameters, callback);
@@ -1438,7 +1508,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$ReopenMatterResponse>(parameters);
       }
     }
-
 
     /**
      * vault.matters.undelete
@@ -1454,22 +1523,26 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Matters$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Matter>;
+      params?: Params$Resource$Matters$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Matter>;
     undelete(
-        params: Params$Resource$Matters$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params: Params$Resource$Matters$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
     undelete(
-        params: Params$Resource$Matters$Undelete,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params: Params$Resource$Matters$Undelete,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Matter>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Matters$Undelete|
-        BodyResponseCallback<Schema$Matter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback?: BodyResponseCallback<Schema$Matter>):
-        void|GaxiosPromise<Schema$Matter> {
+      paramsOrCallback?:
+        | Params$Resource$Matters$Undelete
+        | BodyResponseCallback<Schema$Matter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>
+    ): void | GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1487,16 +1560,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1504,7 +1580,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Matter>(parameters);
       }
     }
-
 
     /**
      * vault.matters.update
@@ -1521,22 +1596,27 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Matters$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Matter>;
     update(
-        params: Params$Resource$Matters$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params?: Params$Resource$Matters$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Matter>;
     update(
-        params: Params$Resource$Matters$Update,
-        callback: BodyResponseCallback<Schema$Matter>): void;
+      params: Params$Resource$Matters$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
+    update(
+      params: Params$Resource$Matters$Update,
+      callback: BodyResponseCallback<Schema$Matter>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Matter>): void;
     update(
-        paramsOrCallback?: Params$Resource$Matters$Update|
-        BodyResponseCallback<Schema$Matter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
-        callback?: BodyResponseCallback<Schema$Matter>):
-        void|GaxiosPromise<Schema$Matter> {
+      paramsOrCallback?:
+        | Params$Resource$Matters$Update
+        | BodyResponseCallback<Schema$Matter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
+      callback?: BodyResponseCallback<Schema$Matter>
+    ): void | GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1554,16 +1634,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1573,12 +1656,12 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Addpermissions extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Addpermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -1594,7 +1677,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -1610,8 +1693,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1622,7 +1704,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID
@@ -1633,7 +1715,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -1648,7 +1730,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The number of matters to return in the response. Default and maximum are
@@ -1669,12 +1751,12 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Removepermissions extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Removepermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -1690,7 +1772,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -1706,7 +1788,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -1722,7 +1804,7 @@ export namespace vault_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -1741,7 +1823,6 @@ export namespace vault_v1 {
       this.context = context;
     }
 
-
     /**
      * vault.matters.exports.create
      * @desc Creates an Export.
@@ -1756,24 +1837,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Matters$Exports$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Export>;
+      params?: Params$Resource$Matters$Exports$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Export>;
     create(
-        params: Params$Resource$Matters$Exports$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Export>,
-        callback: BodyResponseCallback<Schema$Export>): void;
+      params: Params$Resource$Matters$Exports$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Export>,
+      callback: BodyResponseCallback<Schema$Export>
+    ): void;
     create(
-        params: Params$Resource$Matters$Exports$Create,
-        callback: BodyResponseCallback<Schema$Export>): void;
+      params: Params$Resource$Matters$Exports$Create,
+      callback: BodyResponseCallback<Schema$Export>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Export>): void;
     create(
-        paramsOrCallback?: Params$Resource$Matters$Exports$Create|
-        BodyResponseCallback<Schema$Export>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Export>,
-        callback?: BodyResponseCallback<Schema$Export>):
-        void|GaxiosPromise<Schema$Export> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Create;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Exports$Create
+        | BodyResponseCallback<Schema$Export>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Export>,
+      callback?: BodyResponseCallback<Schema$Export>
+    ): void | GaxiosPromise<Schema$Export> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Exports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1790,16 +1875,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/exports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/exports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Export>(parameters, callback);
@@ -1807,7 +1895,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Export>(parameters);
       }
     }
-
 
     /**
      * vault.matters.exports.delete
@@ -1823,24 +1910,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Matters$Exports$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Matters$Exports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Matters$Exports$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Exports$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Matters$Exports$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Exports$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Matters$Exports$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Exports$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Exports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1857,16 +1948,18 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/exports/{exportId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/matters/{matterId}/exports/{exportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'exportId'],
         pathParams: ['exportId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1874,7 +1967,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vault.matters.exports.get
@@ -1889,21 +1981,29 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Matters$Exports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Export>;
-    get(params: Params$Resource$Matters$Exports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Export>,
-        callback: BodyResponseCallback<Schema$Export>): void;
-    get(params: Params$Resource$Matters$Exports$Get,
-        callback: BodyResponseCallback<Schema$Export>): void;
+    get(
+      params?: Params$Resource$Matters$Exports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Export>;
+    get(
+      params: Params$Resource$Matters$Exports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Export>,
+      callback: BodyResponseCallback<Schema$Export>
+    ): void;
+    get(
+      params: Params$Resource$Matters$Exports$Get,
+      callback: BodyResponseCallback<Schema$Export>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Export>): void;
-    get(paramsOrCallback?: Params$Resource$Matters$Exports$Get|
-        BodyResponseCallback<Schema$Export>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Export>,
-        callback?: BodyResponseCallback<Schema$Export>):
-        void|GaxiosPromise<Schema$Export> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Matters$Exports$Get
+        | BodyResponseCallback<Schema$Export>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Export>,
+      callback?: BodyResponseCallback<Schema$Export>
+    ): void | GaxiosPromise<Schema$Export> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Exports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1920,16 +2020,18 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/exports/{exportId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/matters/{matterId}/exports/{exportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'exportId'],
         pathParams: ['exportId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Export>(parameters, callback);
@@ -1937,7 +2039,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Export>(parameters);
       }
     }
-
 
     /**
      * vault.matters.exports.list
@@ -1954,25 +2055,30 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Matters$Exports$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListExportsResponse>;
+      params?: Params$Resource$Matters$Exports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExportsResponse>;
     list(
-        params: Params$Resource$Matters$Exports$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListExportsResponse>,
-        callback: BodyResponseCallback<Schema$ListExportsResponse>): void;
+      params: Params$Resource$Matters$Exports$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListExportsResponse>,
+      callback: BodyResponseCallback<Schema$ListExportsResponse>
+    ): void;
     list(
-        params: Params$Resource$Matters$Exports$List,
-        callback: BodyResponseCallback<Schema$ListExportsResponse>): void;
+      params: Params$Resource$Matters$Exports$List,
+      callback: BodyResponseCallback<Schema$ListExportsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListExportsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Matters$Exports$List|
-        BodyResponseCallback<Schema$ListExportsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListExportsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExportsResponse>):
-        void|GaxiosPromise<Schema$ListExportsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Exports$List;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Exports$List
+        | BodyResponseCallback<Schema$ListExportsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExportsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExportsResponse>
+    ): void | GaxiosPromise<Schema$ListExportsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Exports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1989,16 +2095,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/exports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/exports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListExportsResponse>(parameters, callback);
@@ -2008,12 +2117,12 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Exports$Create extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Exports$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -2025,12 +2134,12 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$Export;
   }
-  export interface Params$Resource$Matters$Exports$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Exports$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The export ID.
@@ -2041,12 +2150,12 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Exports$Get extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Exports$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The export ID.
@@ -2057,12 +2166,12 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Exports$List extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Exports$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -2078,7 +2187,6 @@ export namespace vault_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Matters$Holds {
     context: APIRequestContext;
     accounts: Resource$Matters$Holds$Accounts;
@@ -2086,7 +2194,6 @@ export namespace vault_v1 {
       this.context = context;
       this.accounts = new Resource$Matters$Holds$Accounts(this.context);
     }
-
 
     /**
      * vault.matters.holds.addHeldAccounts
@@ -2105,27 +2212,34 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     addHeldAccounts(
-        params?: Params$Resource$Matters$Holds$Addheldaccounts,
-        options?: MethodOptions): GaxiosPromise<Schema$AddHeldAccountsResponse>;
+      params?: Params$Resource$Matters$Holds$Addheldaccounts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddHeldAccountsResponse>;
     addHeldAccounts(
-        params: Params$Resource$Matters$Holds$Addheldaccounts,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AddHeldAccountsResponse>,
-        callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>): void;
+      params: Params$Resource$Matters$Holds$Addheldaccounts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+      callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>
+    ): void;
     addHeldAccounts(
-        params: Params$Resource$Matters$Holds$Addheldaccounts,
-        callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>): void;
+      params: Params$Resource$Matters$Holds$Addheldaccounts,
+      callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>
+    ): void;
     addHeldAccounts(
-        callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>): void;
+      callback: BodyResponseCallback<Schema$AddHeldAccountsResponse>
+    ): void;
     addHeldAccounts(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Addheldaccounts|
-        BodyResponseCallback<Schema$AddHeldAccountsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AddHeldAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$AddHeldAccountsResponse>):
-        void|GaxiosPromise<Schema$AddHeldAccountsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Matters$Holds$Addheldaccounts;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Addheldaccounts
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$AddHeldAccountsResponse>
+    ): void | GaxiosPromise<Schema$AddHeldAccountsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Addheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2142,17 +2256,18 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/matters/{matterId}/holds/{holdId}:addHeldAccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/matters/{matterId}/holds/{holdId}:addHeldAccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AddHeldAccountsResponse>(parameters, callback);
@@ -2160,7 +2275,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$AddHeldAccountsResponse>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.create
@@ -2176,24 +2290,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Matters$Holds$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Hold>;
+      params?: Params$Resource$Matters$Holds$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Hold>;
     create(
-        params: Params$Resource$Matters$Holds$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Hold>,
-        callback: BodyResponseCallback<Schema$Hold>): void;
+      params: Params$Resource$Matters$Holds$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Hold>,
+      callback: BodyResponseCallback<Schema$Hold>
+    ): void;
     create(
-        params: Params$Resource$Matters$Holds$Create,
-        callback: BodyResponseCallback<Schema$Hold>): void;
+      params: Params$Resource$Matters$Holds$Create,
+      callback: BodyResponseCallback<Schema$Hold>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Hold>): void;
     create(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Create|
-        BodyResponseCallback<Schema$Hold>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Hold>,
-        callback?: BodyResponseCallback<Schema$Hold>):
-        void|GaxiosPromise<Schema$Hold> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Create;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Create
+        | BodyResponseCallback<Schema$Hold>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>
+    ): void | GaxiosPromise<Schema$Hold> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2210,16 +2328,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/holds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Hold>(parameters, callback);
@@ -2227,7 +2348,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Hold>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.delete
@@ -2244,24 +2364,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Matters$Holds$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Matters$Holds$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Matters$Holds$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Holds$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Matters$Holds$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Holds$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2278,16 +2402,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2295,7 +2422,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.get
@@ -2311,21 +2437,29 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Matters$Holds$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Hold>;
-    get(params: Params$Resource$Matters$Holds$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Hold>,
-        callback: BodyResponseCallback<Schema$Hold>): void;
-    get(params: Params$Resource$Matters$Holds$Get,
-        callback: BodyResponseCallback<Schema$Hold>): void;
+    get(
+      params?: Params$Resource$Matters$Holds$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Hold>;
+    get(
+      params: Params$Resource$Matters$Holds$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Hold>,
+      callback: BodyResponseCallback<Schema$Hold>
+    ): void;
+    get(
+      params: Params$Resource$Matters$Holds$Get,
+      callback: BodyResponseCallback<Schema$Hold>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Hold>): void;
-    get(paramsOrCallback?: Params$Resource$Matters$Holds$Get|
-        BodyResponseCallback<Schema$Hold>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Hold>,
-        callback?: BodyResponseCallback<Schema$Hold>):
-        void|GaxiosPromise<Schema$Hold> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Get
+        | BodyResponseCallback<Schema$Hold>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>
+    ): void | GaxiosPromise<Schema$Hold> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2342,16 +2476,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Hold>(parameters, callback);
@@ -2359,7 +2496,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Hold>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.list
@@ -2377,25 +2513,31 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Matters$Holds$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListHoldsResponse>;
     list(
-        params: Params$Resource$Matters$Holds$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListHoldsResponse>,
-        callback: BodyResponseCallback<Schema$ListHoldsResponse>): void;
+      params?: Params$Resource$Matters$Holds$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListHoldsResponse>;
     list(
-        params: Params$Resource$Matters$Holds$List,
-        callback: BodyResponseCallback<Schema$ListHoldsResponse>): void;
+      params: Params$Resource$Matters$Holds$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListHoldsResponse>,
+      callback: BodyResponseCallback<Schema$ListHoldsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Matters$Holds$List,
+      callback: BodyResponseCallback<Schema$ListHoldsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListHoldsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Matters$Holds$List|
-        BodyResponseCallback<Schema$ListHoldsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListHoldsResponse>,
-        callback?: BodyResponseCallback<Schema$ListHoldsResponse>):
-        void|GaxiosPromise<Schema$ListHoldsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Holds$List;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$List
+        | BodyResponseCallback<Schema$ListHoldsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHoldsResponse>,
+      callback?: BodyResponseCallback<Schema$ListHoldsResponse>
+    ): void | GaxiosPromise<Schema$ListHoldsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2412,16 +2554,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/holds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListHoldsResponse>(parameters, callback);
@@ -2429,7 +2574,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$ListHoldsResponse>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.removeHeldAccounts
@@ -2448,31 +2592,34 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     removeHeldAccounts(
-        params?: Params$Resource$Matters$Holds$Removeheldaccounts,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RemoveHeldAccountsResponse>;
+      params?: Params$Resource$Matters$Holds$Removeheldaccounts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemoveHeldAccountsResponse>;
     removeHeldAccounts(
-        params: Params$Resource$Matters$Holds$Removeheldaccounts,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
-        callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
-        void;
+      params: Params$Resource$Matters$Holds$Removeheldaccounts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+      callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+    ): void;
     removeHeldAccounts(
-        params: Params$Resource$Matters$Holds$Removeheldaccounts,
-        callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
-        void;
+      params: Params$Resource$Matters$Holds$Removeheldaccounts,
+      callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+    ): void;
     removeHeldAccounts(
-        callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+    ): void;
     removeHeldAccounts(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Removeheldaccounts|
-        BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
-        void|GaxiosPromise<Schema$RemoveHeldAccountsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Matters$Holds$Removeheldaccounts;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Removeheldaccounts
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+    ): void | GaxiosPromise<Schema$RemoveHeldAccountsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Removeheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2489,26 +2636,29 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/matters/{matterId}/holds/{holdId}:removeHeldAccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/matters/{matterId}/holds/{holdId}:removeHeldAccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemoveHeldAccountsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$RemoveHeldAccountsResponse>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.update
@@ -2527,24 +2677,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Matters$Holds$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Hold>;
+      params?: Params$Resource$Matters$Holds$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Hold>;
     update(
-        params: Params$Resource$Matters$Holds$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Hold>,
-        callback: BodyResponseCallback<Schema$Hold>): void;
+      params: Params$Resource$Matters$Holds$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Hold>,
+      callback: BodyResponseCallback<Schema$Hold>
+    ): void;
     update(
-        params: Params$Resource$Matters$Holds$Update,
-        callback: BodyResponseCallback<Schema$Hold>): void;
+      params: Params$Resource$Matters$Holds$Update,
+      callback: BodyResponseCallback<Schema$Hold>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Hold>): void;
     update(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Update|
-        BodyResponseCallback<Schema$Hold>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Hold>,
-        callback?: BodyResponseCallback<Schema$Hold>):
-        void|GaxiosPromise<Schema$Hold> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Update;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Update
+        | BodyResponseCallback<Schema$Hold>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
+      callback?: BodyResponseCallback<Schema$Hold>
+    ): void | GaxiosPromise<Schema$Hold> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2561,16 +2715,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Hold>(parameters, callback);
@@ -2580,12 +2737,12 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Holds$Addheldaccounts extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Addheldaccounts
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hold ID.
@@ -2601,12 +2758,12 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$AddHeldAccountsRequest;
   }
-  export interface Params$Resource$Matters$Holds$Create extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -2618,12 +2775,12 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$Hold;
   }
-  export interface Params$Resource$Matters$Holds$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hold ID.
@@ -2634,12 +2791,12 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Holds$Get extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hold ID.
@@ -2654,12 +2811,12 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Holds$List extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter ID.
@@ -2680,12 +2837,12 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Holds$Removeheldaccounts extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Removeheldaccounts
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hold ID.
@@ -2701,12 +2858,12 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$RemoveHeldAccountsRequest;
   }
-  export interface Params$Resource$Matters$Holds$Update extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the hold.
@@ -2729,7 +2886,6 @@ export namespace vault_v1 {
       this.context = context;
     }
 
-
     /**
      * vault.matters.holds.accounts.create
      * @desc Adds a HeldAccount to a hold. Accounts can only be added to a hold
@@ -2747,25 +2903,30 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Matters$Holds$Accounts$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$HeldAccount>;
+      params?: Params$Resource$Matters$Holds$Accounts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HeldAccount>;
     create(
-        params: Params$Resource$Matters$Holds$Accounts$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$HeldAccount>,
-        callback: BodyResponseCallback<Schema$HeldAccount>): void;
+      params: Params$Resource$Matters$Holds$Accounts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$HeldAccount>,
+      callback: BodyResponseCallback<Schema$HeldAccount>
+    ): void;
     create(
-        params: Params$Resource$Matters$Holds$Accounts$Create,
-        callback: BodyResponseCallback<Schema$HeldAccount>): void;
+      params: Params$Resource$Matters$Holds$Accounts$Create,
+      callback: BodyResponseCallback<Schema$HeldAccount>
+    ): void;
     create(callback: BodyResponseCallback<Schema$HeldAccount>): void;
     create(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Accounts$Create|
-        BodyResponseCallback<Schema$HeldAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$HeldAccount>,
-        callback?: BodyResponseCallback<Schema$HeldAccount>):
-        void|GaxiosPromise<Schema$HeldAccount> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Matters$Holds$Accounts$Create;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Accounts$Create
+        | BodyResponseCallback<Schema$HeldAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HeldAccount>,
+      callback?: BodyResponseCallback<Schema$HeldAccount>
+    ): void | GaxiosPromise<Schema$HeldAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Accounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2782,16 +2943,18 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HeldAccount>(parameters, callback);
@@ -2799,7 +2962,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$HeldAccount>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.accounts.delete
@@ -2817,24 +2979,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Matters$Holds$Accounts$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Matters$Holds$Accounts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Matters$Holds$Accounts$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Holds$Accounts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Matters$Holds$Accounts$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Holds$Accounts$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Accounts$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Matters$Holds$Accounts$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Accounts$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2851,18 +3017,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId', 'accountId'],
         pathParams: ['accountId', 'holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2870,7 +3037,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vault.matters.holds.accounts.list
@@ -2889,27 +3055,32 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Matters$Holds$Accounts$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListHeldAccountsResponse>;
+      params?: Params$Resource$Matters$Holds$Accounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListHeldAccountsResponse>;
     list(
-        params: Params$Resource$Matters$Holds$Accounts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListHeldAccountsResponse>,
-        callback: BodyResponseCallback<Schema$ListHeldAccountsResponse>): void;
+      params: Params$Resource$Matters$Holds$Accounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+      callback: BodyResponseCallback<Schema$ListHeldAccountsResponse>
+    ): void;
     list(
-        params: Params$Resource$Matters$Holds$Accounts$List,
-        callback: BodyResponseCallback<Schema$ListHeldAccountsResponse>): void;
+      params: Params$Resource$Matters$Holds$Accounts$List,
+      callback: BodyResponseCallback<Schema$ListHeldAccountsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListHeldAccountsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Matters$Holds$Accounts$List|
-        BodyResponseCallback<Schema$ListHeldAccountsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListHeldAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>):
-        void|GaxiosPromise<Schema$ListHeldAccountsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Matters$Holds$Accounts$List;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Holds$Accounts$List
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>
+    ): void | GaxiosPromise<Schema$ListHeldAccountsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Holds$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2926,16 +3097,18 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/matters/{matterId}/holds/{holdId}/accounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListHeldAccountsResponse>(parameters, callback);
@@ -2945,12 +3118,12 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Holds$Accounts$Create extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Accounts$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hold ID.
@@ -2966,12 +3139,12 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$HeldAccount;
   }
-  export interface Params$Resource$Matters$Holds$Accounts$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Accounts$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the account to remove from the hold.
@@ -2986,12 +3159,12 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Holds$Accounts$List extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Holds$Accounts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hold ID.
@@ -3003,14 +3176,11 @@ export namespace vault_v1 {
     matterId?: string;
   }
 
-
-
   export class Resource$Matters$Savedqueries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * vault.matters.savedQueries.create
@@ -3026,25 +3196,30 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Matters$Savedqueries$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$SavedQuery>;
+      params?: Params$Resource$Matters$Savedqueries$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
     create(
-        params: Params$Resource$Matters$Savedqueries$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$SavedQuery>,
-        callback: BodyResponseCallback<Schema$SavedQuery>): void;
+      params: Params$Resource$Matters$Savedqueries$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
     create(
-        params: Params$Resource$Matters$Savedqueries$Create,
-        callback: BodyResponseCallback<Schema$SavedQuery>): void;
+      params: Params$Resource$Matters$Savedqueries$Create,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
     create(callback: BodyResponseCallback<Schema$SavedQuery>): void;
     create(
-        paramsOrCallback?: Params$Resource$Matters$Savedqueries$Create|
-        BodyResponseCallback<Schema$SavedQuery>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SavedQuery>,
-        callback?: BodyResponseCallback<Schema$SavedQuery>):
-        void|GaxiosPromise<Schema$SavedQuery> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Matters$Savedqueries$Create;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Savedqueries$Create
+        | BodyResponseCallback<Schema$SavedQuery>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>,
+      callback?: BodyResponseCallback<Schema$SavedQuery>
+    ): void | GaxiosPromise<Schema$SavedQuery> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3061,16 +3236,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/savedQueries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SavedQuery>(parameters, callback);
@@ -3078,7 +3256,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$SavedQuery>(parameters);
       }
     }
-
 
     /**
      * vault.matters.savedQueries.delete
@@ -3094,24 +3271,28 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Matters$Savedqueries$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Matters$Savedqueries$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Matters$Savedqueries$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Savedqueries$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Matters$Savedqueries$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Matters$Savedqueries$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Matters$Savedqueries$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Matters$Savedqueries$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Savedqueries$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3128,17 +3309,18 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/matters/{matterId}/savedQueries/{savedQueryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/matters/{matterId}/savedQueries/{savedQueryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'savedQueryId'],
         pathParams: ['matterId', 'savedQueryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3146,7 +3328,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * vault.matters.savedQueries.get
@@ -3161,22 +3342,31 @@ export namespace vault_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Matters$Savedqueries$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SavedQuery>;
-    get(params: Params$Resource$Matters$Savedqueries$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$SavedQuery>,
-        callback: BodyResponseCallback<Schema$SavedQuery>): void;
-    get(params: Params$Resource$Matters$Savedqueries$Get,
-        callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(
+      params?: Params$Resource$Matters$Savedqueries$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SavedQuery>;
+    get(
+      params: Params$Resource$Matters$Savedqueries$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
+    get(
+      params: Params$Resource$Matters$Savedqueries$Get,
+      callback: BodyResponseCallback<Schema$SavedQuery>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SavedQuery>): void;
-    get(paramsOrCallback?: Params$Resource$Matters$Savedqueries$Get|
-        BodyResponseCallback<Schema$SavedQuery>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SavedQuery>,
-        callback?: BodyResponseCallback<Schema$SavedQuery>):
-        void|GaxiosPromise<Schema$SavedQuery> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Savedqueries$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Matters$Savedqueries$Get
+        | BodyResponseCallback<Schema$SavedQuery>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>,
+      callback?: BodyResponseCallback<Schema$SavedQuery>
+    ): void | GaxiosPromise<Schema$SavedQuery> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3193,17 +3383,18 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/matters/{matterId}/savedQueries/{savedQueryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/matters/{matterId}/savedQueries/{savedQueryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId', 'savedQueryId'],
         pathParams: ['matterId', 'savedQueryId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SavedQuery>(parameters, callback);
@@ -3211,7 +3402,6 @@ export namespace vault_v1 {
         return createAPIRequest<Schema$SavedQuery>(parameters);
       }
     }
-
 
     /**
      * vault.matters.savedQueries.list
@@ -3229,27 +3419,32 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Matters$Savedqueries$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListSavedQueriesResponse>;
+      params?: Params$Resource$Matters$Savedqueries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSavedQueriesResponse>;
     list(
-        params: Params$Resource$Matters$Savedqueries$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListSavedQueriesResponse>,
-        callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+      params: Params$Resource$Matters$Savedqueries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
     list(
-        params: Params$Resource$Matters$Savedqueries$List,
-        callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+      params: Params$Resource$Matters$Savedqueries$List,
+      callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Matters$Savedqueries$List|
-        BodyResponseCallback<Schema$ListSavedQueriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSavedQueriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListSavedQueriesResponse>):
-        void|GaxiosPromise<Schema$ListSavedQueriesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Matters$Savedqueries$List;
+      paramsOrCallback?:
+        | Params$Resource$Matters$Savedqueries$List
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListSavedQueriesResponse>
+    ): void | GaxiosPromise<Schema$ListSavedQueriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Matters$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3266,16 +3461,19 @@ export namespace vault_v1 {
       const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/matters/{matterId}/savedQueries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/matters/{matterId}/savedQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSavedQueriesResponse>(parameters, callback);
@@ -3285,12 +3483,12 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Savedqueries$Create extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter id of the parent matter for which the saved query is to be
@@ -3303,12 +3501,12 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$SavedQuery;
   }
-  export interface Params$Resource$Matters$Savedqueries$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter id of the parent matter for which the saved query is to be
@@ -3320,12 +3518,12 @@ export namespace vault_v1 {
      */
     savedQueryId?: string;
   }
-  export interface Params$Resource$Matters$Savedqueries$Get extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter id of the parent matter for which the saved query is to be
@@ -3337,12 +3535,12 @@ export namespace vault_v1 {
      */
     savedQueryId?: string;
   }
-  export interface Params$Resource$Matters$Savedqueries$List extends
-      StandardParameters {
+  export interface Params$Resource$Matters$Savedqueries$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The matter id of the parent matter for which the saved queries are to be

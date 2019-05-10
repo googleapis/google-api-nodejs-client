@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -345,7 +357,7 @@ export namespace accesscontextmanager_v1beta {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -361,7 +373,7 @@ export namespace accesscontextmanager_v1beta {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * A restriction on the OS type and version of devices making requests.
@@ -518,7 +530,7 @@ export namespace accesscontextmanager_v1beta {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -527,19 +539,19 @@ export namespace accesscontextmanager_v1beta {
     message?: string;
   }
 
-
   export class Resource$Accesspolicies {
     context: APIRequestContext;
     accessLevels: Resource$Accesspolicies$Accesslevels;
     servicePerimeters: Resource$Accesspolicies$Serviceperimeters;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.accessLevels =
-          new Resource$Accesspolicies$Accesslevels(this.context);
-      this.servicePerimeters =
-          new Resource$Accesspolicies$Serviceperimeters(this.context);
+      this.accessLevels = new Resource$Accesspolicies$Accesslevels(
+        this.context
+      );
+      this.servicePerimeters = new Resource$Accesspolicies$Serviceperimeters(
+        this.context
+      );
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.create
@@ -558,25 +570,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accesspolicies$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Accesspolicies$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Accesspolicies$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Accesspolicies$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -591,19 +608,22 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/accessPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/accessPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -611,7 +631,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.delete
@@ -628,25 +647,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accesspolicies$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Accesspolicies$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Accesspolicies$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accesspolicies$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -661,18 +685,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -680,7 +705,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.get
@@ -694,22 +718,31 @@ export namespace accesscontextmanager_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accesspolicies$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessPolicy>;
-    get(params: Params$Resource$Accesspolicies$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AccessPolicy>,
-        callback: BodyResponseCallback<Schema$AccessPolicy>): void;
-    get(params: Params$Resource$Accesspolicies$Get,
-        callback: BodyResponseCallback<Schema$AccessPolicy>): void;
+    get(
+      params?: Params$Resource$Accesspolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessPolicy>;
+    get(
+      params: Params$Resource$Accesspolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccessPolicy>,
+      callback: BodyResponseCallback<Schema$AccessPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Accesspolicies$Get,
+      callback: BodyResponseCallback<Schema$AccessPolicy>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccessPolicy>): void;
-    get(paramsOrCallback?: Params$Resource$Accesspolicies$Get|
-        BodyResponseCallback<Schema$AccessPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessPolicy>,
-        callback?: BodyResponseCallback<Schema$AccessPolicy>):
-        void|GaxiosPromise<Schema$AccessPolicy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Get
+        | BodyResponseCallback<Schema$AccessPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessPolicy>,
+      callback?: BodyResponseCallback<Schema$AccessPolicy>
+    ): void | GaxiosPromise<Schema$AccessPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -724,18 +757,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessPolicy>(parameters, callback);
@@ -743,7 +777,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$AccessPolicy>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.list
@@ -759,29 +792,35 @@ export namespace accesscontextmanager_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Accesspolicies$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListAccessPoliciesResponse>;
     list(
-        params: Params$Resource$Accesspolicies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
-        callback: BodyResponseCallback<Schema$ListAccessPoliciesResponse>):
-        void;
+      params?: Params$Resource$Accesspolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccessPoliciesResponse>;
     list(
-        params: Params$Resource$Accesspolicies$List,
-        callback: BodyResponseCallback<Schema$ListAccessPoliciesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListAccessPoliciesResponse>):
-        void;
+      params: Params$Resource$Accesspolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAccessPoliciesResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Accesspolicies$List|
-        BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
-        callback?: BodyResponseCallback<Schema$ListAccessPoliciesResponse>):
-        void|GaxiosPromise<Schema$ListAccessPoliciesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accesspolicies$List;
+      params: Params$Resource$Accesspolicies$List,
+      callback: BodyResponseCallback<Schema$ListAccessPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAccessPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$List
+        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAccessPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListAccessPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -796,28 +835,32 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/accessPolicies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/accessPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessPoliciesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAccessPoliciesResponse>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.patch
@@ -837,25 +880,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Accesspolicies$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Accesspolicies$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Accesspolicies$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Accesspolicies$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -870,18 +918,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -891,25 +940,24 @@ export namespace accesscontextmanager_v1beta {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Create extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$AccessPolicy;
   }
-  export interface Params$Resource$Accesspolicies$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the access policy to delete.  Format
@@ -917,12 +965,12 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the access policy to get.  Format
@@ -930,12 +978,12 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$List extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Number of AccessPolicy instances to include in the list. Default 100.
@@ -952,12 +1000,12 @@ export namespace accesscontextmanager_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Resource name of the `AccessPolicy`. Format:
@@ -981,7 +1029,6 @@ export namespace accesscontextmanager_v1beta {
       this.context = context;
     }
 
-
     /**
      * accesscontextmanager.accessPolicies.accessLevels.create
      * @desc Create an Access Level. The longrunning operation from this RPC
@@ -999,25 +1046,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accesspolicies$Accesslevels$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Accesslevels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Accesspolicies$Accesslevels$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Accesspolicies$Accesslevels$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Accesspolicies$Accesslevels$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Accesslevels$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Accesslevels$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Accesslevels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1032,19 +1084,22 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/accessLevels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/accessLevels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1052,7 +1107,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.accessLevels.delete
@@ -1069,25 +1123,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accesspolicies$Accesslevels$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Accesslevels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Accesspolicies$Accesslevels$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Accesspolicies$Accesslevels$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Accesspolicies$Accesslevels$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Accesslevels$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Accesslevels$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Accesslevels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1102,18 +1161,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1121,7 +1181,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.accessLevels.get
@@ -1136,22 +1195,31 @@ export namespace accesscontextmanager_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accesspolicies$Accesslevels$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AccessLevel>;
-    get(params: Params$Resource$Accesspolicies$Accesslevels$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AccessLevel>,
-        callback: BodyResponseCallback<Schema$AccessLevel>): void;
-    get(params: Params$Resource$Accesspolicies$Accesslevels$Get,
-        callback: BodyResponseCallback<Schema$AccessLevel>): void;
+    get(
+      params?: Params$Resource$Accesspolicies$Accesslevels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessLevel>;
+    get(
+      params: Params$Resource$Accesspolicies$Accesslevels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AccessLevel>,
+      callback: BodyResponseCallback<Schema$AccessLevel>
+    ): void;
+    get(
+      params: Params$Resource$Accesspolicies$Accesslevels$Get,
+      callback: BodyResponseCallback<Schema$AccessLevel>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AccessLevel>): void;
-    get(paramsOrCallback?: Params$Resource$Accesspolicies$Accesslevels$Get|
-        BodyResponseCallback<Schema$AccessLevel>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccessLevel>,
-        callback?: BodyResponseCallback<Schema$AccessLevel>):
-        void|GaxiosPromise<Schema$AccessLevel> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Accesslevels$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Accesslevels$Get
+        | BodyResponseCallback<Schema$AccessLevel>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessLevel>,
+      callback?: BodyResponseCallback<Schema$AccessLevel>
+    ): void | GaxiosPromise<Schema$AccessLevel> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Accesslevels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1166,18 +1234,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccessLevel>(parameters, callback);
@@ -1185,7 +1254,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$AccessLevel>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.accessLevels.list
@@ -1203,27 +1271,32 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accesspolicies$Accesslevels$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAccessLevelsResponse>;
+      params?: Params$Resource$Accesspolicies$Accesslevels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccessLevelsResponse>;
     list(
-        params: Params$Resource$Accesspolicies$Accesslevels$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAccessLevelsResponse>,
-        callback: BodyResponseCallback<Schema$ListAccessLevelsResponse>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccessLevelsResponse>,
+      callback: BodyResponseCallback<Schema$ListAccessLevelsResponse>
+    ): void;
     list(
-        params: Params$Resource$Accesspolicies$Accesslevels$List,
-        callback: BodyResponseCallback<Schema$ListAccessLevelsResponse>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$List,
+      callback: BodyResponseCallback<Schema$ListAccessLevelsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAccessLevelsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Accesspolicies$Accesslevels$List|
-        BodyResponseCallback<Schema$ListAccessLevelsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAccessLevelsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAccessLevelsResponse>):
-        void|GaxiosPromise<Schema$ListAccessLevelsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Accesslevels$List;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Accesslevels$List
+        | BodyResponseCallback<Schema$ListAccessLevelsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccessLevelsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAccessLevelsResponse>
+    ): void | GaxiosPromise<Schema$ListAccessLevelsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Accesslevels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1238,19 +1311,22 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/accessLevels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/accessLevels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessLevelsResponse>(parameters, callback);
@@ -1258,7 +1334,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$ListAccessLevelsResponse>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.accessLevels.patch
@@ -1278,25 +1353,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Accesspolicies$Accesslevels$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Accesslevels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Accesspolicies$Accesslevels$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Accesspolicies$Accesslevels$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Accesslevels$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Accesspolicies$Accesslevels$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Accesslevels$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Accesslevels$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Accesslevels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1311,18 +1391,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1332,12 +1413,12 @@ export namespace accesscontextmanager_v1beta {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Accesslevels$Create extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the access policy which owns this Access
@@ -1350,12 +1431,12 @@ export namespace accesscontextmanager_v1beta {
      */
     requestBody?: Schema$AccessLevel;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the Access Level.  Format:
@@ -1363,12 +1444,12 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression Language
@@ -1385,12 +1466,12 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$List extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression language,
@@ -1413,12 +1494,12 @@ export namespace accesscontextmanager_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the Access Level. The `short_name` component
@@ -1437,13 +1518,11 @@ export namespace accesscontextmanager_v1beta {
     requestBody?: Schema$AccessLevel;
   }
 
-
   export class Resource$Accesspolicies$Serviceperimeters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.create
@@ -1462,26 +1541,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accesspolicies$Serviceperimeters$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Serviceperimeters$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Accesspolicies$Serviceperimeters$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Serviceperimeters$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Serviceperimeters$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Serviceperimeters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1496,19 +1579,22 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/servicePerimeters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/servicePerimeters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1516,7 +1602,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.delete
@@ -1533,26 +1618,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Accesspolicies$Serviceperimeters$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Serviceperimeters$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Serviceperimeters$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Serviceperimeters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1567,18 +1656,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1586,7 +1676,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.get
@@ -1600,22 +1689,31 @@ export namespace accesscontextmanager_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Accesspolicies$Serviceperimeters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ServicePerimeter>;
-    get(params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ServicePerimeter>,
-        callback: BodyResponseCallback<Schema$ServicePerimeter>): void;
-    get(params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
-        callback: BodyResponseCallback<Schema$ServicePerimeter>): void;
+    get(
+      params?: Params$Resource$Accesspolicies$Serviceperimeters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServicePerimeter>;
+    get(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ServicePerimeter>,
+      callback: BodyResponseCallback<Schema$ServicePerimeter>
+    ): void;
+    get(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
+      callback: BodyResponseCallback<Schema$ServicePerimeter>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ServicePerimeter>): void;
-    get(paramsOrCallback?: Params$Resource$Accesspolicies$Serviceperimeters$Get|
-        BodyResponseCallback<Schema$ServicePerimeter>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServicePerimeter>,
-        callback?: BodyResponseCallback<Schema$ServicePerimeter>):
-        void|GaxiosPromise<Schema$ServicePerimeter> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Serviceperimeters$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Serviceperimeters$Get
+        | BodyResponseCallback<Schema$ServicePerimeter>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServicePerimeter>,
+      callback?: BodyResponseCallback<Schema$ServicePerimeter>
+    ): void | GaxiosPromise<Schema$ServicePerimeter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Serviceperimeters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1630,18 +1728,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServicePerimeter>(parameters, callback);
@@ -1649,7 +1748,6 @@ export namespace accesscontextmanager_v1beta {
         return createAPIRequest<Schema$ServicePerimeter>(parameters);
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.list
@@ -1666,31 +1764,34 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Accesspolicies$Serviceperimeters$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListServicePerimetersResponse>;
+      params?: Params$Resource$Accesspolicies$Serviceperimeters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicePerimetersResponse>;
     list(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServicePerimetersResponse>,
-        callback: BodyResponseCallback<Schema$ListServicePerimetersResponse>):
-        void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicePerimetersResponse>,
+      callback: BodyResponseCallback<Schema$ListServicePerimetersResponse>
+    ): void;
     list(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$List,
-        callback: BodyResponseCallback<Schema$ListServicePerimetersResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListServicePerimetersResponse>):
-        void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$List,
+      callback: BodyResponseCallback<Schema$ListServicePerimetersResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Accesspolicies$Serviceperimeters$List|
-        BodyResponseCallback<Schema$ListServicePerimetersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServicePerimetersResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicePerimetersResponse>):
-        void|GaxiosPromise<Schema$ListServicePerimetersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Serviceperimeters$List;
+      callback: BodyResponseCallback<Schema$ListServicePerimetersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Serviceperimeters$List
+        | BodyResponseCallback<Schema$ListServicePerimetersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicePerimetersResponse>,
+      callback?: BodyResponseCallback<Schema$ListServicePerimetersResponse>
+    ): void | GaxiosPromise<Schema$ListServicePerimetersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Serviceperimeters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1705,29 +1806,34 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+parent}/servicePerimeters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+parent}/servicePerimeters').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServicePerimetersResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListServicePerimetersResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.patch
@@ -1748,26 +1854,30 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Accesspolicies$Serviceperimeters$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accesspolicies$Serviceperimeters$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Serviceperimeters$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Serviceperimeters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1782,18 +1892,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1804,11 +1915,11 @@ export namespace accesscontextmanager_v1beta {
   }
 
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the access policy which owns this Service
@@ -1822,11 +1933,11 @@ export namespace accesscontextmanager_v1beta {
     requestBody?: Schema$ServicePerimeter;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the Service Perimeter.  Format:
@@ -1834,12 +1945,12 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Get extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the Service Perimeter.  Format:
@@ -1847,12 +1958,12 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$List extends
-      StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Number of Service Perimeters to include in the list. Default 100.
@@ -1870,11 +1981,11 @@ export namespace accesscontextmanager_v1beta {
     parent?: string;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. Resource name for the ServicePerimeter.  The `short_name`
@@ -1893,14 +2004,11 @@ export namespace accesscontextmanager_v1beta {
     requestBody?: Schema$ServicePerimeter;
   }
 
-
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * accesscontextmanager.operations.get
@@ -1916,20 +2024,29 @@ export namespace accesscontextmanager_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1945,18 +2062,19 @@ export namespace accesscontextmanager_v1beta {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1970,7 +2088,7 @@ export namespace accesscontextmanager_v1beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.

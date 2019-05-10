@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -756,7 +768,7 @@ export namespace slides_v1 {
      * a new random ID will be assigned. If the map is empty or unset, all
      * duplicate objects will receive a new random ID.
      */
-    objectIds?: {[key: string]: string;};
+    objectIds?: {[key: string]: string};
   }
   /**
    * The response of duplicating an object.
@@ -1155,7 +1167,7 @@ export namespace slides_v1 {
      * level. A list has at most nine levels of nesting, so the possible values
      * for the keys of this map are 0 through 8, inclusive.
      */
-    nestingLevel?: {[key: string]: Schema$NestingLevel;};
+    nestingLevel?: {[key: string]: Schema$NestingLevel};
   }
   /**
    * The properties of Page that are only relevant for pages with page_type
@@ -1898,8 +1910,7 @@ export namespace slides_v1 {
     /**
      * Replaces all shapes matching some criteria with a Google Sheets chart.
      */
-    replaceAllShapesWithSheetsChart?:
-        Schema$ReplaceAllShapesWithSheetsChartRequest;
+    replaceAllShapesWithSheetsChart?: Schema$ReplaceAllShapesWithSheetsChartRequest;
     /**
      * Replaces all instances of specified text.
      */
@@ -2046,8 +2057,7 @@ export namespace slides_v1 {
      * The result of replacing all shapes matching some criteria with a Google
      * Sheets chart.
      */
-    replaceAllShapesWithSheetsChart?:
-        Schema$ReplaceAllShapesWithSheetsChartResponse;
+    replaceAllShapesWithSheetsChart?: Schema$ReplaceAllShapesWithSheetsChartResponse;
     /**
      * The result of replacing text.
      */
@@ -2559,7 +2569,7 @@ export namespace slides_v1 {
     /**
      * The bulleted lists contained in this text, keyed by list ID.
      */
-    lists?: {[key: string]: Schema$List;};
+    lists?: {[key: string]: Schema$List};
     /**
      * The text contents broken down into its component parts, including styling
      * information. This property is read-only.
@@ -3299,7 +3309,6 @@ export namespace slides_v1 {
     requiredRevisionId?: string;
   }
 
-
   export class Resource$Presentations {
     context: APIRequestContext;
     pages: Resource$Presentations$Pages;
@@ -3307,7 +3316,6 @@ export namespace slides_v1 {
       this.context = context;
       this.pages = new Resource$Presentations$Pages(this.context);
     }
-
 
     /**
      * slides.presentations.batchUpdate
@@ -3336,32 +3344,34 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     batchUpdate(
-        params?: Params$Resource$Presentations$Batchupdate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchUpdatePresentationResponse>;
+      params?: Params$Resource$Presentations$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdatePresentationResponse>;
     batchUpdate(
-        params: Params$Resource$Presentations$Batchupdate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
-        callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
-        void;
+      params: Params$Resource$Presentations$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+    ): void;
     batchUpdate(
-        params: Params$Resource$Presentations$Batchupdate,
-        callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
-        void;
+      params: Params$Resource$Presentations$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+    ): void;
     batchUpdate(
-        callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+    ): void;
     batchUpdate(
-        paramsOrCallback?: Params$Resource$Presentations$Batchupdate|
-        BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
-        callback?:
-            BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
-        void|GaxiosPromise<Schema$BatchUpdatePresentationResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Presentations$Batchupdate;
+      paramsOrCallback?:
+        | Params$Resource$Presentations$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+    ): void | GaxiosPromise<Schema$BatchUpdatePresentationResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Presentations$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3378,26 +3388,30 @@ export namespace slides_v1 {
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/presentations/{presentationId}:batchUpdate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/presentations/{presentationId}:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['presentationId'],
         pathParams: ['presentationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePresentationResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchUpdatePresentationResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * slides.presentations.create
@@ -3416,25 +3430,30 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Presentations$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Presentation>;
+      params?: Params$Resource$Presentations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Presentation>;
     create(
-        params: Params$Resource$Presentations$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
-        callback: BodyResponseCallback<Schema$Presentation>): void;
+      params: Params$Resource$Presentations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Presentation>,
+      callback: BodyResponseCallback<Schema$Presentation>
+    ): void;
     create(
-        params: Params$Resource$Presentations$Create,
-        callback: BodyResponseCallback<Schema$Presentation>): void;
+      params: Params$Resource$Presentations$Create,
+      callback: BodyResponseCallback<Schema$Presentation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Presentation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Presentations$Create|
-        BodyResponseCallback<Schema$Presentation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Presentation>,
-        callback?: BodyResponseCallback<Schema$Presentation>):
-        void|GaxiosPromise<Schema$Presentation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Presentations$Create;
+      paramsOrCallback?:
+        | Params$Resource$Presentations$Create
+        | BodyResponseCallback<Schema$Presentation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Presentation>,
+      callback?: BodyResponseCallback<Schema$Presentation>
+    ): void | GaxiosPromise<Schema$Presentation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Presentations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3451,16 +3470,16 @@ export namespace slides_v1 {
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/presentations').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/presentations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Presentation>(parameters, callback);
@@ -3468,7 +3487,6 @@ export namespace slides_v1 {
         return createAPIRequest<Schema$Presentation>(parameters);
       }
     }
-
 
     /**
      * slides.presentations.get
@@ -3482,22 +3500,31 @@ export namespace slides_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Presentations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Presentation>;
-    get(params: Params$Resource$Presentations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
-        callback: BodyResponseCallback<Schema$Presentation>): void;
-    get(params: Params$Resource$Presentations$Get,
-        callback: BodyResponseCallback<Schema$Presentation>): void;
+    get(
+      params?: Params$Resource$Presentations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Presentation>;
+    get(
+      params: Params$Resource$Presentations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Presentation>,
+      callback: BodyResponseCallback<Schema$Presentation>
+    ): void;
+    get(
+      params: Params$Resource$Presentations$Get,
+      callback: BodyResponseCallback<Schema$Presentation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Presentation>): void;
-    get(paramsOrCallback?: Params$Resource$Presentations$Get|
-        BodyResponseCallback<Schema$Presentation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Presentation>,
-        callback?: BodyResponseCallback<Schema$Presentation>):
-        void|GaxiosPromise<Schema$Presentation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Presentations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Presentations$Get
+        | BodyResponseCallback<Schema$Presentation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Presentation>,
+      callback?: BodyResponseCallback<Schema$Presentation>
+    ): void | GaxiosPromise<Schema$Presentation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Presentations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3514,16 +3541,19 @@ export namespace slides_v1 {
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/presentations/{+presentationId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/presentations/{+presentationId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['presentationId'],
         pathParams: ['presentationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Presentation>(parameters, callback);
@@ -3533,12 +3563,12 @@ export namespace slides_v1 {
     }
   }
 
-  export interface Params$Resource$Presentations$Batchupdate extends
-      StandardParameters {
+  export interface Params$Resource$Presentations$Batchupdate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The presentation to apply the updates to.
@@ -3550,25 +3580,24 @@ export namespace slides_v1 {
      */
     requestBody?: Schema$BatchUpdatePresentationRequest;
   }
-  export interface Params$Resource$Presentations$Create extends
-      StandardParameters {
+  export interface Params$Resource$Presentations$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Presentation;
   }
-  export interface Params$Resource$Presentations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Presentations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the presentation to retrieve.
@@ -3581,7 +3610,6 @@ export namespace slides_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * slides.presentations.pages.get
@@ -3596,21 +3624,29 @@ export namespace slides_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Presentations$Pages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Page>;
-    get(params: Params$Resource$Presentations$Pages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback: BodyResponseCallback<Schema$Page>): void;
-    get(params: Params$Resource$Presentations$Pages$Get,
-        callback: BodyResponseCallback<Schema$Page>): void;
+    get(
+      params?: Params$Resource$Presentations$Pages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Page>;
+    get(
+      params: Params$Resource$Presentations$Pages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Page>,
+      callback: BodyResponseCallback<Schema$Page>
+    ): void;
+    get(
+      params: Params$Resource$Presentations$Pages$Get,
+      callback: BodyResponseCallback<Schema$Page>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Page>): void;
-    get(paramsOrCallback?: Params$Resource$Presentations$Pages$Get|
-        BodyResponseCallback<Schema$Page>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>):
-        void|GaxiosPromise<Schema$Page> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Presentations$Pages$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Presentations$Pages$Get
+        | BodyResponseCallback<Schema$Page>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Page>,
+      callback?: BodyResponseCallback<Schema$Page>
+    ): void | GaxiosPromise<Schema$Page> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Presentations$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3627,17 +3663,19 @@ export namespace slides_v1 {
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v1/presentations/{presentationId}/pages/{pageObjectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/presentations/{presentationId}/pages/{pageObjectId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['presentationId', 'pageObjectId'],
         pathParams: ['pageObjectId', 'presentationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -3645,7 +3683,6 @@ export namespace slides_v1 {
         return createAPIRequest<Schema$Page>(parameters);
       }
     }
-
 
     /**
      * slides.presentations.pages.getThumbnail
@@ -3666,25 +3703,30 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     getThumbnail(
-        params?: Params$Resource$Presentations$Pages$Getthumbnail,
-        options?: MethodOptions): GaxiosPromise<Schema$Thumbnail>;
+      params?: Params$Resource$Presentations$Pages$Getthumbnail,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Thumbnail>;
     getThumbnail(
-        params: Params$Resource$Presentations$Pages$Getthumbnail,
-        options: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
-        callback: BodyResponseCallback<Schema$Thumbnail>): void;
+      params: Params$Resource$Presentations$Pages$Getthumbnail,
+      options: MethodOptions | BodyResponseCallback<Schema$Thumbnail>,
+      callback: BodyResponseCallback<Schema$Thumbnail>
+    ): void;
     getThumbnail(
-        params: Params$Resource$Presentations$Pages$Getthumbnail,
-        callback: BodyResponseCallback<Schema$Thumbnail>): void;
+      params: Params$Resource$Presentations$Pages$Getthumbnail,
+      callback: BodyResponseCallback<Schema$Thumbnail>
+    ): void;
     getThumbnail(callback: BodyResponseCallback<Schema$Thumbnail>): void;
     getThumbnail(
-        paramsOrCallback?: Params$Resource$Presentations$Pages$Getthumbnail|
-        BodyResponseCallback<Schema$Thumbnail>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Thumbnail>,
-        callback?: BodyResponseCallback<Schema$Thumbnail>):
-        void|GaxiosPromise<Schema$Thumbnail> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Presentations$Pages$Getthumbnail;
+      paramsOrCallback?:
+        | Params$Resource$Presentations$Pages$Getthumbnail
+        | BodyResponseCallback<Schema$Thumbnail>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Thumbnail>,
+      callback?: BodyResponseCallback<Schema$Thumbnail>
+    ): void | GaxiosPromise<Schema$Thumbnail> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Presentations$Pages$Getthumbnail;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3701,18 +3743,19 @@ export namespace slides_v1 {
       const rootUrl = options.rootUrl || 'https://slides.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['presentationId', 'pageObjectId'],
         pathParams: ['pageObjectId', 'presentationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Thumbnail>(parameters, callback);
@@ -3722,12 +3765,12 @@ export namespace slides_v1 {
     }
   }
 
-  export interface Params$Resource$Presentations$Pages$Get extends
-      StandardParameters {
+  export interface Params$Resource$Presentations$Pages$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The object ID of the page to retrieve.
@@ -3738,12 +3781,12 @@ export namespace slides_v1 {
      */
     presentationId?: string;
   }
-  export interface Params$Resource$Presentations$Pages$Getthumbnail extends
-      StandardParameters {
+  export interface Params$Resource$Presentations$Pages$Getthumbnail
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The object ID of the page whose thumbnail to retrieve.

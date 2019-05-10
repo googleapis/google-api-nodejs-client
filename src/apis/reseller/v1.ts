@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -355,7 +367,7 @@ export namespace reseller_v1 {
      * the API concepts.
      */
     plan?: {
-      commitmentInterval?: {endTime?: string; startTime?: string;};
+      commitmentInterval?: {endTime?: string; startTime?: string};
       isCommitmentPlan?: boolean;
       planName?: string;
     };
@@ -436,7 +448,7 @@ export namespace reseller_v1 {
      * The G Suite annual commitment and flexible payment plans can be in a
      * 30-day free trial. For more information, see the API concepts.
      */
-    trialSettings?: {isInTrial?: boolean; trialEndTime?: string;};
+    trialSettings?: {isInTrial?: boolean; trialEndTime?: string};
   }
   /**
    * JSON template for a subscription list.
@@ -458,13 +470,11 @@ export namespace reseller_v1 {
     subscriptions?: Schema$Subscription[];
   }
 
-
   export class Resource$Customers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * reseller.customers.get
@@ -478,19 +488,27 @@ export namespace reseller_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Customers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Customer>;
-    get(params: Params$Resource$Customers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback: BodyResponseCallback<Schema$Customer>): void;
-    get(params: Params$Resource$Customers$Get,
-        callback: BodyResponseCallback<Schema$Customer>): void;
+    get(
+      params?: Params$Resource$Customers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Customer>;
+    get(
+      params: Params$Resource$Customers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Get,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Customer>): void;
-    get(paramsOrCallback?: Params$Resource$Customers$Get|
-        BodyResponseCallback<Schema$Customer>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback?: BodyResponseCallback<Schema$Customer>):
-        void|GaxiosPromise<Schema$Customer> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Get
+        | BodyResponseCallback<Schema$Customer>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>
+    ): void | GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -508,16 +526,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -525,7 +546,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Customer>(parameters);
       }
     }
-
 
     /**
      * reseller.customers.insert
@@ -540,22 +560,27 @@ export namespace reseller_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Customers$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Customer>;
     insert(
-        params: Params$Resource$Customers$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback: BodyResponseCallback<Schema$Customer>): void;
+      params?: Params$Resource$Customers$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Customer>;
     insert(
-        params: Params$Resource$Customers$Insert,
-        callback: BodyResponseCallback<Schema$Customer>): void;
+      params: Params$Resource$Customers$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    insert(
+      params: Params$Resource$Customers$Insert,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Customer>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Customers$Insert|
-        BodyResponseCallback<Schema$Customer>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback?: BodyResponseCallback<Schema$Customer>):
-        void|GaxiosPromise<Schema$Customer> {
+      paramsOrCallback?:
+        | Params$Resource$Customers$Insert
+        | BodyResponseCallback<Schema$Customer>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>
+    ): void | GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -573,16 +598,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/reseller/v1/customers')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -590,7 +618,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Customer>(parameters);
       }
     }
-
 
     /**
      * reseller.customers.patch
@@ -606,22 +633,27 @@ export namespace reseller_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Customers$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Customer>;
     patch(
-        params: Params$Resource$Customers$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback: BodyResponseCallback<Schema$Customer>): void;
+      params?: Params$Resource$Customers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Customer>;
     patch(
-        params: Params$Resource$Customers$Patch,
-        callback: BodyResponseCallback<Schema$Customer>): void;
+      params: Params$Resource$Customers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    patch(
+      params: Params$Resource$Customers$Patch,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Customer>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Customers$Patch|
-        BodyResponseCallback<Schema$Customer>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback?: BodyResponseCallback<Schema$Customer>):
-        void|GaxiosPromise<Schema$Customer> {
+      paramsOrCallback?:
+        | Params$Resource$Customers$Patch
+        | BodyResponseCallback<Schema$Customer>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>
+    ): void | GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -639,16 +671,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -656,7 +691,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Customer>(parameters);
       }
     }
-
 
     /**
      * reseller.customers.update
@@ -671,22 +705,27 @@ export namespace reseller_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Customers$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Customer>;
     update(
-        params: Params$Resource$Customers$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback: BodyResponseCallback<Schema$Customer>): void;
+      params?: Params$Resource$Customers$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Customer>;
     update(
-        params: Params$Resource$Customers$Update,
-        callback: BodyResponseCallback<Schema$Customer>): void;
+      params: Params$Resource$Customers$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    update(
+      params: Params$Resource$Customers$Update,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Customer>): void;
     update(
-        paramsOrCallback?: Params$Resource$Customers$Update|
-        BodyResponseCallback<Schema$Customer>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback?: BodyResponseCallback<Schema$Customer>):
-        void|GaxiosPromise<Schema$Customer> {
+      paramsOrCallback?:
+        | Params$Resource$Customers$Update
+        | BodyResponseCallback<Schema$Customer>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback?: BodyResponseCallback<Schema$Customer>
+    ): void | GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -704,16 +743,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/reseller/v1/customers/{customerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/apps/reseller/v1/customers/{customerId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -727,7 +769,7 @@ export namespace reseller_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -741,7 +783,7 @@ export namespace reseller_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The customerAuthToken query string is required when creating a resold
@@ -762,7 +804,7 @@ export namespace reseller_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -781,7 +823,7 @@ export namespace reseller_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -797,13 +839,11 @@ export namespace reseller_v1 {
     requestBody?: Schema$Customer;
   }
 
-
   export class Resource$Resellernotify {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * reseller.resellernotify.getwatchdetails
@@ -817,35 +857,42 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     getwatchdetails(
-        params?: Params$Resource$Resellernotify$Getwatchdetails,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse>;
+      params?: Params$Resource$Resellernotify$Getwatchdetails,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse>;
     getwatchdetails(
-        params: Params$Resource$Resellernotify$Getwatchdetails,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
-        callback:
-            BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>):
-        void;
+      params: Params$Resource$Resellernotify$Getwatchdetails,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
+      callback: BodyResponseCallback<
+        Schema$ResellernotifyGetwatchdetailsResponse
+      >
+    ): void;
     getwatchdetails(
-        params: Params$Resource$Resellernotify$Getwatchdetails,
-        callback:
-            BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>):
-        void;
+      params: Params$Resource$Resellernotify$Getwatchdetails,
+      callback: BodyResponseCallback<
+        Schema$ResellernotifyGetwatchdetailsResponse
+      >
+    ): void;
     getwatchdetails(
-        callback:
-            BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>):
-        void;
+      callback: BodyResponseCallback<
+        Schema$ResellernotifyGetwatchdetailsResponse
+      >
+    ): void;
     getwatchdetails(
-        paramsOrCallback?: Params$Resource$Resellernotify$Getwatchdetails|
-        BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>):
-        void|GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Resellernotify$Getwatchdetails;
+      paramsOrCallback?:
+        | Params$Resource$Resellernotify$Getwatchdetails
+        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ResellernotifyGetwatchdetailsResponse
+      >
+    ): void | GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Resellernotify$Getwatchdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -862,27 +909,30 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/apps/reseller/v1/resellernotify/getwatchdetails')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apps/reseller/v1/resellernotify/getwatchdetails'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * reseller.resellernotify.register
@@ -897,27 +947,34 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     register(
-        params?: Params$Resource$Resellernotify$Register,
-        options?: MethodOptions): GaxiosPromise<Schema$ResellernotifyResource>;
+      params?: Params$Resource$Resellernotify$Register,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResellernotifyResource>;
     register(
-        params: Params$Resource$Resellernotify$Register,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResellernotifyResource>,
-        callback: BodyResponseCallback<Schema$ResellernotifyResource>): void;
+      params: Params$Resource$Resellernotify$Register,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void;
     register(
-        params: Params$Resource$Resellernotify$Register,
-        callback: BodyResponseCallback<Schema$ResellernotifyResource>): void;
-    register(callback: BodyResponseCallback<Schema$ResellernotifyResource>):
-        void;
+      params: Params$Resource$Resellernotify$Register,
+      callback: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void;
     register(
-        paramsOrCallback?: Params$Resource$Resellernotify$Register|
-        BodyResponseCallback<Schema$ResellernotifyResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResellernotifyResource>,
-        callback?: BodyResponseCallback<Schema$ResellernotifyResource>):
-        void|GaxiosPromise<Schema$ResellernotifyResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Resellernotify$Register;
+      callback: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void;
+    register(
+      paramsOrCallback?:
+        | Params$Resource$Resellernotify$Register
+        | BodyResponseCallback<Schema$ResellernotifyResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback?: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void | GaxiosPromise<Schema$ResellernotifyResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Resellernotify$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -934,16 +991,18 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/reseller/v1/resellernotify/register')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apps/reseller/v1/resellernotify/register'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -951,7 +1010,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$ResellernotifyResource>(parameters);
       }
     }
-
 
     /**
      * reseller.resellernotify.unregister
@@ -966,27 +1024,34 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     unregister(
-        params?: Params$Resource$Resellernotify$Unregister,
-        options?: MethodOptions): GaxiosPromise<Schema$ResellernotifyResource>;
+      params?: Params$Resource$Resellernotify$Unregister,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResellernotifyResource>;
     unregister(
-        params: Params$Resource$Resellernotify$Unregister,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResellernotifyResource>,
-        callback: BodyResponseCallback<Schema$ResellernotifyResource>): void;
+      params: Params$Resource$Resellernotify$Unregister,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void;
     unregister(
-        params: Params$Resource$Resellernotify$Unregister,
-        callback: BodyResponseCallback<Schema$ResellernotifyResource>): void;
-    unregister(callback: BodyResponseCallback<Schema$ResellernotifyResource>):
-        void;
+      params: Params$Resource$Resellernotify$Unregister,
+      callback: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void;
     unregister(
-        paramsOrCallback?: Params$Resource$Resellernotify$Unregister|
-        BodyResponseCallback<Schema$ResellernotifyResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResellernotifyResource>,
-        callback?: BodyResponseCallback<Schema$ResellernotifyResource>):
-        void|GaxiosPromise<Schema$ResellernotifyResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Resellernotify$Unregister;
+      callback: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void;
+    unregister(
+      paramsOrCallback?:
+        | Params$Resource$Resellernotify$Unregister
+        | BodyResponseCallback<Schema$ResellernotifyResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResellernotifyResource>,
+      callback?: BodyResponseCallback<Schema$ResellernotifyResource>
+    ): void | GaxiosPromise<Schema$ResellernotifyResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Resellernotify$Unregister;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1003,16 +1068,18 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/reseller/v1/resellernotify/unregister')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apps/reseller/v1/resellernotify/unregister'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -1022,31 +1089,31 @@ export namespace reseller_v1 {
     }
   }
 
-  export interface Params$Resource$Resellernotify$Getwatchdetails extends
-      StandardParameters {
+  export interface Params$Resource$Resellernotify$Getwatchdetails
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Resellernotify$Register extends
-      StandardParameters {
+  export interface Params$Resource$Resellernotify$Register
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The service account which will own the created Cloud-PubSub topic.
      */
     serviceAccountEmailAddress?: string;
   }
-  export interface Params$Resource$Resellernotify$Unregister extends
-      StandardParameters {
+  export interface Params$Resource$Resellernotify$Unregister
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The service account which owns the Cloud-PubSub topic.
@@ -1054,13 +1121,11 @@ export namespace reseller_v1 {
     serviceAccountEmailAddress?: string;
   }
 
-
   export class Resource$Subscriptions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * reseller.subscriptions.activate
@@ -1076,25 +1141,30 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     activate(
-        params?: Params$Resource$Subscriptions$Activate,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     activate(
-        params: Params$Resource$Subscriptions$Activate,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     activate(
-        params: Params$Resource$Subscriptions$Activate,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Activate,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     activate(callback: BodyResponseCallback<Schema$Subscription>): void;
     activate(
-        paramsOrCallback?: Params$Resource$Subscriptions$Activate|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Activate;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Activate
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1111,18 +1181,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1130,7 +1201,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.changePlan
@@ -1149,25 +1219,30 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     changePlan(
-        params?: Params$Resource$Subscriptions$Changeplan,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Changeplan,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     changePlan(
-        params: Params$Resource$Subscriptions$Changeplan,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Changeplan,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     changePlan(
-        params: Params$Resource$Subscriptions$Changeplan,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Changeplan,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     changePlan(callback: BodyResponseCallback<Schema$Subscription>): void;
     changePlan(
-        paramsOrCallback?: Params$Resource$Subscriptions$Changeplan|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Changeplan;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Changeplan
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Changeplan;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1184,18 +1259,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1203,7 +1279,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.changeRenewalSettings
@@ -1221,26 +1296,32 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     changeRenewalSettings(
-        params?: Params$Resource$Subscriptions$Changerenewalsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Changerenewalsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     changeRenewalSettings(
-        params: Params$Resource$Subscriptions$Changerenewalsettings,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Changerenewalsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     changeRenewalSettings(
-        params: Params$Resource$Subscriptions$Changerenewalsettings,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
-    changeRenewalSettings(callback: BodyResponseCallback<Schema$Subscription>):
-        void;
+      params: Params$Resource$Subscriptions$Changerenewalsettings,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     changeRenewalSettings(
-        paramsOrCallback?: Params$Resource$Subscriptions$Changerenewalsettings|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Subscriptions$Changerenewalsettings;
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    changeRenewalSettings(
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Changerenewalsettings
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Changerenewalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1257,18 +1338,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1276,7 +1358,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.changeSeats
@@ -1293,25 +1374,30 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     changeSeats(
-        params?: Params$Resource$Subscriptions$Changeseats,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Changeseats,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     changeSeats(
-        params: Params$Resource$Subscriptions$Changeseats,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Changeseats,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     changeSeats(
-        params: Params$Resource$Subscriptions$Changeseats,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Changeseats,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     changeSeats(callback: BodyResponseCallback<Schema$Subscription>): void;
     changeSeats(
-        paramsOrCallback?: Params$Resource$Subscriptions$Changeseats|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Changeseats;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Changeseats
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Changeseats;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1328,18 +1414,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1347,7 +1434,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.delete
@@ -1364,23 +1450,28 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Subscriptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Subscriptions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Subscriptions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Subscriptions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1397,18 +1488,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1416,7 +1508,6 @@ export namespace reseller_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.get
@@ -1431,22 +1522,31 @@ export namespace reseller_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Subscriptions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
-    get(params: Params$Resource$Subscriptions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
-    get(params: Params$Resource$Subscriptions$Get,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+    get(
+      params?: Params$Resource$Subscriptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
+    get(
+      params: Params$Resource$Subscriptions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    get(
+      params: Params$Resource$Subscriptions$Get,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Subscription>): void;
-    get(paramsOrCallback?: Params$Resource$Subscriptions$Get|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Get
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1463,18 +1563,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1482,7 +1583,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.insert
@@ -1499,25 +1599,30 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Subscriptions$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(
-        params: Params$Resource$Subscriptions$Insert,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Insert,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Subscription>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Subscriptions$Insert|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Insert
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1534,17 +1639,18 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/apps/reseller/v1/customers/{customerId}/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apps/reseller/v1/customers/{customerId}/subscriptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1552,7 +1658,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.list
@@ -1572,25 +1677,31 @@ export namespace reseller_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Subscriptions>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscriptions>,
-        callback: BodyResponseCallback<Schema$Subscriptions>): void;
+      params?: Params$Resource$Subscriptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscriptions>;
     list(
-        params: Params$Resource$Subscriptions$List,
-        callback: BodyResponseCallback<Schema$Subscriptions>): void;
+      params: Params$Resource$Subscriptions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscriptions>,
+      callback: BodyResponseCallback<Schema$Subscriptions>
+    ): void;
+    list(
+      params: Params$Resource$Subscriptions$List,
+      callback: BodyResponseCallback<Schema$Subscriptions>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Subscriptions>): void;
     list(
-        paramsOrCallback?: Params$Resource$Subscriptions$List|
-        BodyResponseCallback<Schema$Subscriptions>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscriptions>,
-        callback?: BodyResponseCallback<Schema$Subscriptions>):
-        void|GaxiosPromise<Schema$Subscriptions> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$List
+        | BodyResponseCallback<Schema$Subscriptions>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscriptions>,
+      callback?: BodyResponseCallback<Schema$Subscriptions>
+    ): void | GaxiosPromise<Schema$Subscriptions> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1607,16 +1718,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/reseller/v1/subscriptions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/apps/reseller/v1/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscriptions>(parameters, callback);
@@ -1624,7 +1738,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscriptions>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.startPaidService
@@ -1641,25 +1754,30 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     startPaidService(
-        params?: Params$Resource$Subscriptions$Startpaidservice,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Startpaidservice,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     startPaidService(
-        params: Params$Resource$Subscriptions$Startpaidservice,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Startpaidservice,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     startPaidService(
-        params: Params$Resource$Subscriptions$Startpaidservice,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Startpaidservice,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     startPaidService(callback: BodyResponseCallback<Schema$Subscription>): void;
     startPaidService(
-        paramsOrCallback?: Params$Resource$Subscriptions$Startpaidservice|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Subscriptions$Startpaidservice;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Startpaidservice
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Startpaidservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1676,18 +1794,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1695,7 +1814,6 @@ export namespace reseller_v1 {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
-
 
     /**
      * reseller.subscriptions.suspend
@@ -1711,25 +1829,30 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     suspend(
-        params?: Params$Resource$Subscriptions$Suspend,
-        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
+      params?: Params$Resource$Subscriptions$Suspend,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Subscription>;
     suspend(
-        params: Params$Resource$Subscriptions$Suspend,
-        options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Suspend,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     suspend(
-        params: Params$Resource$Subscriptions$Suspend,
-        callback: BodyResponseCallback<Schema$Subscription>): void;
+      params: Params$Resource$Subscriptions$Suspend,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
     suspend(callback: BodyResponseCallback<Schema$Subscription>): void;
     suspend(
-        paramsOrCallback?: Params$Resource$Subscriptions$Suspend|
-        BodyResponseCallback<Schema$Subscription>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Subscription>,
-        callback?: BodyResponseCallback<Schema$Subscription>):
-        void|GaxiosPromise<Schema$Subscription> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Subscriptions$Suspend;
+      paramsOrCallback?:
+        | Params$Resource$Subscriptions$Suspend
+        | BodyResponseCallback<Schema$Subscription>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>
+    ): void | GaxiosPromise<Schema$Subscription> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Subscriptions$Suspend;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1746,18 +1869,19 @@ export namespace reseller_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1767,12 +1891,12 @@ export namespace reseller_v1 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Activate extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Activate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -1790,12 +1914,12 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Changeplan extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Changeplan
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -1818,12 +1942,12 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$ChangePlanRequest;
   }
-  export interface Params$Resource$Subscriptions$Changerenewalsettings extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Changerenewalsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -1846,12 +1970,12 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$RenewalSettings;
   }
-  export interface Params$Resource$Subscriptions$Changeseats extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Changeseats
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -1874,12 +1998,12 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Seats;
   }
-  export interface Params$Resource$Subscriptions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -1902,12 +2026,12 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -1925,12 +2049,12 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The customerAuthToken query string is required when creating a resold
@@ -1954,12 +2078,12 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The customerAuthToken query string is required when creating a resold
@@ -1998,12 +2122,12 @@ export namespace reseller_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Subscriptions$Startpaidservice extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Startpaidservice
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique
@@ -2021,12 +2145,12 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Suspend extends
-      StandardParameters {
+  export interface Params$Resource$Subscriptions$Suspend
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Either the customer's primary domain name or the customer's unique

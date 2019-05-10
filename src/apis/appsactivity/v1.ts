@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -314,13 +326,11 @@ export namespace appsactivity_v1 {
     photo?: Schema$Photo;
   }
 
-
   export class Resource$Activities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * appsactivity.activities.list
@@ -345,24 +355,31 @@ export namespace appsactivity_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListActivitiesResponse>;
     list(
-        params: Params$Resource$Activities$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListActivitiesResponse>,
-        callback: BodyResponseCallback<Schema$ListActivitiesResponse>): void;
+      params?: Params$Resource$Activities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListActivitiesResponse>;
     list(
-        params: Params$Resource$Activities$List,
-        callback: BodyResponseCallback<Schema$ListActivitiesResponse>): void;
+      params: Params$Resource$Activities$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListActivitiesResponse>,
+      callback: BodyResponseCallback<Schema$ListActivitiesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Activities$List,
+      callback: BodyResponseCallback<Schema$ListActivitiesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListActivitiesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Activities$List|
-        BodyResponseCallback<Schema$ListActivitiesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListActivitiesResponse>,
-        callback?: BodyResponseCallback<Schema$ListActivitiesResponse>):
-        void|GaxiosPromise<Schema$ListActivitiesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Activities$List
+        | BodyResponseCallback<Schema$ListActivitiesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListActivitiesResponse>,
+      callback?: BodyResponseCallback<Schema$ListActivitiesResponse>
+    ): void | GaxiosPromise<Schema$ListActivitiesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -380,16 +397,19 @@ export namespace appsactivity_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/appsactivity/v1/activities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/appsactivity/v1/activities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListActivitiesResponse>(parameters, callback);
@@ -403,7 +423,7 @@ export namespace appsactivity_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Identifies the Drive folder containing the items for which to return

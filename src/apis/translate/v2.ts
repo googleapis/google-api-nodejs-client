@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -235,13 +247,11 @@ export namespace translate_v2 {
     translatedText?: string;
   }
 
-
   export class Resource$Detections {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * language.detections.detect
@@ -255,26 +265,33 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    detect(params?: Params$Resource$Detections$Detect, options?: MethodOptions):
-        GaxiosPromise<Schema$DetectionsListResponse>;
     detect(
-        params: Params$Resource$Detections$Detect,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DetectionsListResponse>,
-        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+      params?: Params$Resource$Detections$Detect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DetectionsListResponse>;
     detect(
-        params: Params$Resource$Detections$Detect,
-        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+      params: Params$Resource$Detections$Detect,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback: BodyResponseCallback<Schema$DetectionsListResponse>
+    ): void;
+    detect(
+      params: Params$Resource$Detections$Detect,
+      callback: BodyResponseCallback<Schema$DetectionsListResponse>
+    ): void;
     detect(callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
     detect(
-        paramsOrCallback?: Params$Resource$Detections$Detect|
-        BodyResponseCallback<Schema$DetectionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DetectionsListResponse>,
-        callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
-        void|GaxiosPromise<Schema$DetectionsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Detections$Detect;
+      paramsOrCallback?:
+        | Params$Resource$Detections$Detect
+        | BodyResponseCallback<Schema$DetectionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback?: BodyResponseCallback<Schema$DetectionsListResponse>
+    ): void | GaxiosPromise<Schema$DetectionsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Detections$Detect;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -291,16 +308,19 @@ export namespace translate_v2 {
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/language/translate/v2/detect')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/language/translate/v2/detect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
@@ -308,7 +328,6 @@ export namespace translate_v2 {
         return createAPIRequest<Schema$DetectionsListResponse>(parameters);
       }
     }
-
 
     /**
      * language.detections.list
@@ -322,24 +341,31 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Detections$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DetectionsListResponse>;
     list(
-        params: Params$Resource$Detections$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DetectionsListResponse>,
-        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+      params?: Params$Resource$Detections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DetectionsListResponse>;
     list(
-        params: Params$Resource$Detections$List,
-        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+      params: Params$Resource$Detections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback: BodyResponseCallback<Schema$DetectionsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Detections$List,
+      callback: BodyResponseCallback<Schema$DetectionsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Detections$List|
-        BodyResponseCallback<Schema$DetectionsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DetectionsListResponse>,
-        callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
-        void|GaxiosPromise<Schema$DetectionsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Detections$List
+        | BodyResponseCallback<Schema$DetectionsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback?: BodyResponseCallback<Schema$DetectionsListResponse>
+    ): void | GaxiosPromise<Schema$DetectionsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Detections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -357,16 +383,19 @@ export namespace translate_v2 {
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/language/translate/v2/detect')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/language/translate/v2/detect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
@@ -376,13 +405,12 @@ export namespace translate_v2 {
     }
   }
 
-  export interface Params$Resource$Detections$Detect extends
-      StandardParameters {
+  export interface Params$Resource$Detections$Detect
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -393,7 +421,7 @@ export namespace translate_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The input text upon which to perform language detection. Repeat this
@@ -402,13 +430,11 @@ export namespace translate_v2 {
     q?: string[];
   }
 
-
   export class Resource$Languages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * language.languages.list
@@ -423,24 +449,31 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Languages$List, options?: MethodOptions):
-        GaxiosPromise<Schema$LanguagesListResponse>;
     list(
-        params: Params$Resource$Languages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LanguagesListResponse>,
-        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+      params?: Params$Resource$Languages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LanguagesListResponse>;
     list(
-        params: Params$Resource$Languages$List,
-        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+      params: Params$Resource$Languages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback: BodyResponseCallback<Schema$LanguagesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Languages$List,
+      callback: BodyResponseCallback<Schema$LanguagesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Languages$List|
-        BodyResponseCallback<Schema$LanguagesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LanguagesListResponse>,
-        callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
-        void|GaxiosPromise<Schema$LanguagesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Languages$List
+        | BodyResponseCallback<Schema$LanguagesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback?: BodyResponseCallback<Schema$LanguagesListResponse>
+    ): void | GaxiosPromise<Schema$LanguagesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -458,16 +491,19 @@ export namespace translate_v2 {
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/language/translate/v2/languages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/language/translate/v2/languages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
@@ -481,7 +517,7 @@ export namespace translate_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The model type for which supported languages should be returned.
@@ -494,13 +530,11 @@ export namespace translate_v2 {
     target?: string;
   }
 
-
   export class Resource$Translations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * language.translations.list
@@ -519,26 +553,33 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Translations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TranslationsListResponse>;
     list(
-        params: Params$Resource$Translations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TranslationsListResponse>,
-        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+      params?: Params$Resource$Translations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TranslationsListResponse>;
     list(
-        params: Params$Resource$Translations$List,
-        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+      params: Params$Resource$Translations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback: BodyResponseCallback<Schema$TranslationsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Translations$List,
+      callback: BodyResponseCallback<Schema$TranslationsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Translations$List|
-        BodyResponseCallback<Schema$TranslationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TranslationsListResponse>,
-        callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
-        void|GaxiosPromise<Schema$TranslationsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Translations$List;
+      paramsOrCallback?:
+        | Params$Resource$Translations$List
+        | BodyResponseCallback<Schema$TranslationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback?: BodyResponseCallback<Schema$TranslationsListResponse>
+    ): void | GaxiosPromise<Schema$TranslationsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Translations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -555,16 +596,19 @@ export namespace translate_v2 {
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/language/translate/v2')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/language/translate/v2').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['q', 'target'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
@@ -572,7 +616,6 @@ export namespace translate_v2 {
         return createAPIRequest<Schema$TranslationsListResponse>(parameters);
       }
     }
-
 
     /**
      * language.translations.translate
@@ -587,28 +630,34 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     translate(
-        params?: Params$Resource$Translations$Translate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TranslationsListResponse>;
+      params?: Params$Resource$Translations$Translate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TranslationsListResponse>;
     translate(
-        params: Params$Resource$Translations$Translate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TranslationsListResponse>,
-        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+      params: Params$Resource$Translations$Translate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback: BodyResponseCallback<Schema$TranslationsListResponse>
+    ): void;
     translate(
-        params: Params$Resource$Translations$Translate,
-        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
-    translate(callback: BodyResponseCallback<Schema$TranslationsListResponse>):
-        void;
+      params: Params$Resource$Translations$Translate,
+      callback: BodyResponseCallback<Schema$TranslationsListResponse>
+    ): void;
     translate(
-        paramsOrCallback?: Params$Resource$Translations$Translate|
-        BodyResponseCallback<Schema$TranslationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TranslationsListResponse>,
-        callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
-        void|GaxiosPromise<Schema$TranslationsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Translations$Translate;
+      callback: BodyResponseCallback<Schema$TranslationsListResponse>
+    ): void;
+    translate(
+      paramsOrCallback?:
+        | Params$Resource$Translations$Translate
+        | BodyResponseCallback<Schema$TranslationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback?: BodyResponseCallback<Schema$TranslationsListResponse>
+    ): void | GaxiosPromise<Schema$TranslationsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Translations$Translate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -625,16 +674,19 @@ export namespace translate_v2 {
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/language/translate/v2')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/language/translate/v2').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
@@ -644,12 +696,12 @@ export namespace translate_v2 {
     }
   }
 
-  export interface Params$Resource$Translations$List extends
-      StandardParameters {
+  export interface Params$Resource$Translations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The customization id for translate
@@ -684,13 +736,12 @@ export namespace translate_v2 {
      */
     target?: string;
   }
-  export interface Params$Resource$Translations$Translate extends
-      StandardParameters {
+  export interface Params$Resource$Translations$Translate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

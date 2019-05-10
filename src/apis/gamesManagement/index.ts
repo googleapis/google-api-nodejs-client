@@ -17,17 +17,21 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {gamesManagement_v1management} from './v1management';
 
 export const VERSIONS = {
-  'v1management': gamesManagement_v1management.Gamesmanagement,
+  v1management: gamesManagement_v1management.Gamesmanagement,
 };
 
-export function gamesManagement(version: 'v1management'):
-    gamesManagement_v1management.Gamesmanagement;
-export function gamesManagement(options: gamesManagement_v1management.Options):
-    gamesManagement_v1management.Gamesmanagement;
-export function
-gamesManagement<T = gamesManagement_v1management.Gamesmanagement>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1management'|gamesManagement_v1management.Options) {
+export function gamesManagement(
+  version: 'v1management'
+): gamesManagement_v1management.Gamesmanagement;
+export function gamesManagement(
+  options: gamesManagement_v1management.Options
+): gamesManagement_v1management.Gamesmanagement;
+export function gamesManagement<
+  T = gamesManagement_v1management.Gamesmanagement
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1management' | gamesManagement_v1management.Options
+) {
   return getAPI<T>('gamesManagement', versionOrOptions, VERSIONS, this);
 }
 

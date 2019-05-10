@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -178,8 +190,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * The details of the execution that originally produced this result.
      */
-    executionMetadata?:
-        Schema$BuildBazelRemoteExecutionV2ExecutedActionMetadata;
+    executionMetadata?: Schema$BuildBazelRemoteExecutionV2ExecutedActionMetadata;
     /**
      * The exit code of the command.
      */
@@ -298,8 +309,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * The responses to the requests.
      */
-    responses?:
-        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponseResponse[];
+    responses?: Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponseResponse[];
   }
   /**
    * A response corresponding to a single blob that the client tried to upload.
@@ -325,8 +335,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * The individual upload requests.
      */
-    requests?:
-        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsRequestRequest[];
+    requests?: Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsRequestRequest[];
   }
   /**
    * A request corresponding to a single blob that the client wants to upload.
@@ -348,8 +357,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * The responses to the requests.
      */
-    responses?:
-        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseResponse[];
+    responses?: Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseResponse[];
   }
   /**
    * A response corresponding to a single blob that the client tried to upload.
@@ -371,13 +379,11 @@ export namespace remotebuildexecution_v2 {
     /**
      * Capabilities for updating the action cache.
      */
-    actionCacheUpdateCapabilities?:
-        Schema$BuildBazelRemoteExecutionV2ActionCacheUpdateCapabilities;
+    actionCacheUpdateCapabilities?: Schema$BuildBazelRemoteExecutionV2ActionCacheUpdateCapabilities;
     /**
      * Supported cache priority range for both CAS and ActionCache.
      */
-    cachePriorityCapabilities?:
-        Schema$BuildBazelRemoteExecutionV2PriorityCapabilities;
+    cachePriorityCapabilities?: Schema$BuildBazelRemoteExecutionV2PriorityCapabilities;
     /**
      * All the digest functions supported by the remote cache. Remote cache may
      * support multiple digest functions simultaneously.
@@ -418,8 +424,7 @@ export namespace remotebuildexecution_v2 {
      * name. Sorting of strings is done by code point, equivalently, by the
      * UTF-8 bytes.
      */
-    environmentVariables?:
-        Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable[];
+    environmentVariables?: Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable[];
     /**
      * A list of the output directories that the client expects to retrieve from
      * the action. Only the listed directories will be returned (an entire
@@ -701,7 +706,7 @@ export namespace remotebuildexecution_v2 {
      * worker&#39;s setup phase. The keys SHOULD be human readable so that a
      * client can display them to a user.
      */
-    serverLogs?: {[key: string]: Schema$BuildBazelRemoteExecutionV2LogFile;};
+    serverLogs?: {[key: string]: Schema$BuildBazelRemoteExecutionV2LogFile};
     /**
      * If the status has a code other than `OK`, it indicates that the action
      * did not finish execution. For example, if the operation times out during
@@ -730,8 +735,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * Supported execution priority range.
      */
-    executionPriorityCapabilities?:
-        Schema$BuildBazelRemoteExecutionV2PriorityCapabilities;
+    executionPriorityCapabilities?: Schema$BuildBazelRemoteExecutionV2PriorityCapabilities;
   }
   /**
    * An `ExecutionPolicy` can be used to control the scheduling of the action.
@@ -922,8 +926,7 @@ export namespace remotebuildexecution_v2 {
    * cache and execution valid priority ranges.
    */
   export interface Schema$BuildBazelRemoteExecutionV2PriorityCapabilities {
-    priorities?:
-        Schema$BuildBazelRemoteExecutionV2PriorityCapabilitiesPriorityRange[];
+    priorities?: Schema$BuildBazelRemoteExecutionV2PriorityCapabilitiesPriorityRange[];
   }
   /**
    * Supported range of priorities, including boundaries.
@@ -994,8 +997,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * Capabilities of the remote execution system.
      */
-    executionCapabilities?:
-        Schema$BuildBazelRemoteExecutionV2ExecutionCapabilities;
+    executionCapabilities?: Schema$BuildBazelRemoteExecutionV2ExecutionCapabilities;
     /**
      * Latest RE API version supported.
      */
@@ -1181,8 +1183,7 @@ export namespace remotebuildexecution_v2 {
      * Specifies the worker pool to create. The name in the worker pool, if
      * specified, is ignored.
      */
-    workerPool?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
+    workerPool?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
   }
   /**
    * The request used for `DeleteInstance`.
@@ -1275,8 +1276,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * The list of worker pools in a given instance.
      */
-    workerPools?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
+    workerPools?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
   }
   /**
    * The request used for UpdateWorkerPool.
@@ -1295,8 +1295,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * Specifies the worker pool to update.
      */
-    workerPool?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
+    workerPool?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool;
   }
   /**
    * Defines the configuration to be used for a creating workers in the worker
@@ -1352,8 +1351,7 @@ export namespace remotebuildexecution_v2 {
      * Specifies the properties, such as machine type and disk size, used for
      * creating workers in a worker pool.
      */
-    workerConfig?:
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig;
+    workerConfig?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig;
     /**
      * The desired number of workers in the worker pool. Must be a value between
      * 0 and 1000.
@@ -1392,8 +1390,7 @@ export namespace remotebuildexecution_v2 {
      * &quot;b2c941073e...&quot;,           size: 1294,         },
      * is_executable: true       }     ]   } } ```
      */
-    outputDirectories?:
-        Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory[];
+    outputDirectories?: Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory[];
     /**
      * The output files of the action. For each output file requested in the
      * `output_files` field of the Action, if the corresponding file existed
@@ -1460,8 +1457,7 @@ export namespace remotebuildexecution_v2 {
      * name. Sorting of strings is done by code point, equivalently, by the
      * UTF-8 bytes.
      */
-    environmentVariables?:
-        Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable[];
+    environmentVariables?: Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable[];
   }
   /**
    * An `EnvironmentVariable` is one variable to set in the running
@@ -1608,8 +1604,9 @@ export namespace remotebuildexecution_v2 {
      * worker&#39;s setup phase. The keys SHOULD be human readable so that a
      * client can display them to a user.
      */
-    serverLogs?:
-        {[key: string]: Schema$GoogleDevtoolsRemoteexecutionV1testLogFile;};
+    serverLogs?: {
+      [key: string]: Schema$GoogleDevtoolsRemoteexecutionV1testLogFile;
+    };
     /**
      * If the status has a code other than `OK`, it indicates that the action
      * did not finish execution. For example, if the operation times out during
@@ -1869,7 +1866,7 @@ export namespace remotebuildexecution_v2 {
      * considered an error for the bot to provide the server with a field that
      * it doesn&#39;t know about.
      */
-    metadata?: Array<{[key: string]: any;}>;
+    metadata?: Array<{[key: string]: any}>;
     /**
      * The output files. The blob referenced by the digest should contain one of
      * the following (implementation-dependent):    * A marshalled
@@ -1897,8 +1894,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * The expected outputs from the task.
      */
-    expectedOutputs?:
-        Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs;
+    expectedOutputs?: Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs;
     /**
      * The inputs to the task.
      */
@@ -1926,8 +1922,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * All environment variables required by the task.
      */
-    environmentVariables?:
-        Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable[];
+    environmentVariables?: Schema$GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable[];
     /**
      * The input filesystem to be set up prior to the task beginning. The
      * contents should be a repeated set of FileMetadata messages though other
@@ -2127,7 +2122,7 @@ export namespace remotebuildexecution_v2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -2143,7 +2138,7 @@ export namespace remotebuildexecution_v2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2190,7 +2185,7 @@ export namespace remotebuildexecution_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2199,13 +2194,11 @@ export namespace remotebuildexecution_v2 {
     message?: string;
   }
 
-
   export class Resource$Actionresults {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * remotebuildexecution.actionResults.get
@@ -2222,27 +2215,43 @@ export namespace remotebuildexecution_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Actionresults$Get, options?: MethodOptions):
-        GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
-    get(params: Params$Resource$Actionresults$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ActionResult>): void;
-    get(params: Params$Resource$Actionresults$Get,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ActionResult>): void;
-    get(callback: BodyResponseCallback<
-        Schema$BuildBazelRemoteExecutionV2ActionResult>): void;
-    get(paramsOrCallback?: Params$Resource$Actionresults$Get|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-        callback?: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ActionResult>):
-        void|GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Actionresults$Get;
+    get(
+      params?: Params$Resource$Actionresults$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
+    get(
+      params: Params$Resource$Actionresults$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void;
+    get(
+      params: Params$Resource$Actionresults$Get,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Actionresults$Get
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+      callback?: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Actionresults$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2257,30 +2266,33 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/{+instanceName}/actionResults/{hash}/{sizeBytes}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/{+instanceName}/actionResults/{hash}/{sizeBytes}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName', 'hash', 'sizeBytes'],
         pathParams: ['hash', 'instanceName', 'sizeBytes'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * remotebuildexecution.actionResults.update
@@ -2306,30 +2318,42 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Actionresults$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
+      params?: Params$Resource$Actionresults$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult>;
     update(
-        params: Params$Resource$Actionresults$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ActionResult>): void;
+      params: Params$Resource$Actionresults$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void;
     update(
-        params: Params$Resource$Actionresults$Update,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ActionResult>): void;
-    update(callback: BodyResponseCallback<
-           Schema$BuildBazelRemoteExecutionV2ActionResult>): void;
+      params: Params$Resource$Actionresults$Update,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void;
     update(
-        paramsOrCallback?: Params$Resource$Actionresults$Update|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-        callback?: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ActionResult>):
-        void|GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Actionresults$Update;
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Actionresults$Update
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
+      callback?: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
+    ): void | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ActionResult> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Actionresults$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2344,37 +2368,41 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/{+instanceName}/actionResults/{hash}/{sizeBytes}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/{+instanceName}/actionResults/{hash}/{sizeBytes}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName', 'hash', 'sizeBytes'],
         pathParams: ['hash', 'instanceName', 'sizeBytes'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Actionresults$Get extends
-      StandardParameters {
+  export interface Params$Resource$Actionresults$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex
@@ -2394,12 +2422,12 @@ export namespace remotebuildexecution_v2 {
      */
     sizeBytes?: string;
   }
-  export interface Params$Resource$Actionresults$Update extends
-      StandardParameters {
+  export interface Params$Resource$Actionresults$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex
@@ -2435,13 +2463,11 @@ export namespace remotebuildexecution_v2 {
     requestBody?: Schema$BuildBazelRemoteExecutionV2ActionResult;
   }
 
-
   export class Resource$Actions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * remotebuildexecution.actions.execute
@@ -2497,27 +2523,33 @@ export namespace remotebuildexecution_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    execute(params?: Params$Resource$Actions$Execute, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     execute(
-        params: Params$Resource$Actions$Execute,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params?: Params$Resource$Actions$Execute,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     execute(
-        params: Params$Resource$Actions$Execute,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    execute(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Actions$Execute,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     execute(
-        paramsOrCallback?: Params$Resource$Actions$Execute|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      params: Params$Resource$Actions$Execute,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    execute(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    execute(
+      paramsOrCallback?:
+        | Params$Resource$Actions$Execute
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Actions$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2533,23 +2565,28 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+instanceName}/actions:execute')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+instanceName}/actions:execute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
@@ -2560,7 +2597,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The instance of the execution system to operate against. A server may
@@ -2577,13 +2614,11 @@ export namespace remotebuildexecution_v2 {
     requestBody?: Schema$BuildBazelRemoteExecutionV2ExecuteRequest;
   }
 
-
   export class Resource$Blobs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * remotebuildexecution.blobs.batchRead
@@ -2608,29 +2643,48 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     batchRead(
-        params?: Params$Resource$Blobs$Batchread, options?: MethodOptions):
-        GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>;
+      params?: Params$Resource$Blobs$Batchread,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>;
     batchRead(
-        params: Params$Resource$Blobs$Batchread,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>): void;
+      params: Params$Resource$Blobs$Batchread,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+      >
+    ): void;
     batchRead(
-        params: Params$Resource$Blobs$Batchread,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>): void;
-    batchRead(callback: BodyResponseCallback<
-              Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>): void;
+      params: Params$Resource$Blobs$Batchread,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+      >
+    ): void;
     batchRead(
-        paramsOrCallback?: Params$Resource$Blobs$Batchread|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>):
-        void|GaxiosPromise<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse> {
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+      >
+    ): void;
+    batchRead(
+      paramsOrCallback?:
+        | Params$Resource$Blobs$Batchread
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+    > {
       let params = (paramsOrCallback || {}) as Params$Resource$Blobs$Batchread;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2646,31 +2700,33 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+instanceName}/blobs:batchRead')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+instanceName}/blobs:batchRead').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>(
-            parameters, callback);
+          Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>(
-            parameters);
+          Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.blobs.batchUpdate
@@ -2697,34 +2753,52 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     batchUpdate(
-        params?: Params$Resource$Blobs$Batchupdate, options?: MethodOptions):
-        GaxiosPromise<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>;
+      params?: Params$Resource$Blobs$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+    >;
     batchUpdate(
-        params: Params$Resource$Blobs$Batchupdate,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>): void;
+      params: Params$Resource$Blobs$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+      >
+    ): void;
     batchUpdate(
-        params: Params$Resource$Blobs$Batchupdate,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>): void;
-    batchUpdate(callback: BodyResponseCallback<
-                Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>):
-        void;
+      params: Params$Resource$Blobs$Batchupdate,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+      >
+    ): void;
     batchUpdate(
-        paramsOrCallback?: Params$Resource$Blobs$Batchupdate|
-        BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>):
-        void|GaxiosPromise<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Blobs$Batchupdate;
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+      >
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Blobs$Batchupdate
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Blobs$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2739,31 +2813,33 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+instanceName}/blobs:batchUpdate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+instanceName}/blobs:batchUpdate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>(
-            parameters, callback);
+          Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>(
-            parameters);
+          Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.blobs.findMissing
@@ -2782,34 +2858,52 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     findMissing(
-        params?: Params$Resource$Blobs$Findmissing, options?: MethodOptions):
-        GaxiosPromise<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>;
+      params?: Params$Resource$Blobs$Findmissing,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+    >;
     findMissing(
-        params: Params$Resource$Blobs$Findmissing,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>): void;
+      params: Params$Resource$Blobs$Findmissing,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+      >
+    ): void;
     findMissing(
-        params: Params$Resource$Blobs$Findmissing,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>): void;
-    findMissing(callback: BodyResponseCallback<
-                Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>):
-        void;
+      params: Params$Resource$Blobs$Findmissing,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+      >
+    ): void;
     findMissing(
-        paramsOrCallback?: Params$Resource$Blobs$Findmissing|
-        BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>):
-        void|GaxiosPromise<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Blobs$Findmissing;
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+      >
+    ): void;
+    findMissing(
+      paramsOrCallback?:
+        | Params$Resource$Blobs$Findmissing
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Blobs$Findmissing;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2824,31 +2918,33 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+instanceName}/blobs:findMissing')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+instanceName}/blobs:findMissing').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>(
-            parameters, callback);
+          Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+        >(parameters, callback);
       } else {
         return createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>(
-            parameters);
+          Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * remotebuildexecution.blobs.getTree
@@ -2878,28 +2974,47 @@ export namespace remotebuildexecution_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getTree(params?: Params$Resource$Blobs$Gettree, options?: MethodOptions):
-        GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>;
     getTree(
-        params: Params$Resource$Blobs$Gettree,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2GetTreeResponse>): void;
+      params?: Params$Resource$Blobs$Gettree,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>;
     getTree(
-        params: Params$Resource$Blobs$Gettree,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2GetTreeResponse>): void;
-    getTree(callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2GetTreeResponse>): void;
+      params: Params$Resource$Blobs$Gettree,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+      >
+    ): void;
     getTree(
-        paramsOrCallback?: Params$Resource$Blobs$Gettree|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>,
-        callback?: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2GetTreeResponse>):
-        void|GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse> {
+      params: Params$Resource$Blobs$Gettree,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+      >
+    ): void;
+    getTree(
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+      >
+    ): void;
+    getTree(
+      paramsOrCallback?:
+        | Params$Resource$Blobs$Gettree
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+      >
+    ): void | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2GetTreeResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blobs$Gettree;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2915,27 +3030,31 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/v2/{+instanceName}/blobs/{hash}/{sizeBytes}:getTree')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v2/{+instanceName}/blobs/{hash}/{sizeBytes}:getTree'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName', 'hash', 'sizeBytes'],
         pathParams: ['hash', 'instanceName', 'sizeBytes'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2GetTreeResponse>(parameters);
+          Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+        >(parameters);
       }
     }
   }
@@ -2944,7 +3063,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The instance of the execution system to operate against. A server may
@@ -2960,12 +3079,12 @@ export namespace remotebuildexecution_v2 {
      */
     requestBody?: Schema$BuildBazelRemoteExecutionV2BatchReadBlobsRequest;
   }
-  export interface Params$Resource$Blobs$Batchupdate extends
-      StandardParameters {
+  export interface Params$Resource$Blobs$Batchupdate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The instance of the execution system to operate against. A server may
@@ -2981,12 +3100,12 @@ export namespace remotebuildexecution_v2 {
      */
     requestBody?: Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsRequest;
   }
-  export interface Params$Resource$Blobs$Findmissing extends
-      StandardParameters {
+  export interface Params$Resource$Blobs$Findmissing
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The instance of the execution system to operate against. A server may
@@ -3006,7 +3125,7 @@ export namespace remotebuildexecution_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex
@@ -3041,13 +3160,11 @@ export namespace remotebuildexecution_v2 {
     sizeBytes?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * remotebuildexecution.operations.waitExecution
@@ -3069,31 +3186,34 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     waitExecution(
-        params?: Params$Resource$Operations$Waitexecution,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Operations$Waitexecution,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     waitExecution(
-        params: Params$Resource$Operations$Waitexecution,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Operations$Waitexecution,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     waitExecution(
-        params: Params$Resource$Operations$Waitexecution,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    waitExecution(callback:
-                      BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Operations$Waitexecution,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     waitExecution(
-        paramsOrCallback?: Params$Resource$Operations$Waitexecution|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Waitexecution;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    waitExecution(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Waitexecution
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Waitexecution;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3108,35 +3228,40 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}:waitExecution')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}:waitExecution').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Operations$Waitexecution extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Waitexecution
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the Operation returned by Execute.
@@ -3149,13 +3274,11 @@ export namespace remotebuildexecution_v2 {
     requestBody?: Schema$BuildBazelRemoteExecutionV2WaitExecutionRequest;
   }
 
-
   export class Resource$V2 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * remotebuildexecution.getCapabilities
@@ -3170,32 +3293,50 @@ export namespace remotebuildexecution_v2 {
      * @return {object} Request object
      */
     getCapabilities(
-        params?: Params$Resource$V2$Getcapabilities, options?: MethodOptions):
-        GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>;
+      params?: Params$Resource$V2$Getcapabilities,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>;
     getCapabilities(
-        params: Params$Resource$V2$Getcapabilities,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ServerCapabilities>,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ServerCapabilities>): void;
+      params: Params$Resource$V2$Getcapabilities,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+      >
+    ): void;
     getCapabilities(
-        params: Params$Resource$V2$Getcapabilities,
-        callback: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ServerCapabilities>): void;
-    getCapabilities(callback: BodyResponseCallback<
-                    Schema$BuildBazelRemoteExecutionV2ServerCapabilities>):
-        void;
+      params: Params$Resource$V2$Getcapabilities,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+      >
+    ): void;
     getCapabilities(
-        paramsOrCallback?: Params$Resource$V2$Getcapabilities|
-        BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ServerCapabilities>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ServerCapabilities>,
-        callback?: BodyResponseCallback<
-            Schema$BuildBazelRemoteExecutionV2ServerCapabilities>): void|
-        GaxiosPromise<Schema$BuildBazelRemoteExecutionV2ServerCapabilities> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V2$Getcapabilities;
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+      >
+    ): void;
+    getCapabilities(
+      paramsOrCallback?:
+        | Params$Resource$V2$Getcapabilities
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >,
+      callback?: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+      >
+    ): void | GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V2$Getcapabilities;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3210,36 +3351,42 @@ export namespace remotebuildexecution_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
+        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+instanceName}/capabilities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+instanceName}/capabilities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$BuildBazelRemoteExecutionV2ServerCapabilities>(parameters);
+          Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$V2$Getcapabilities extends
-      StandardParameters {
+  export interface Params$Resource$V2$Getcapabilities
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The instance of the execution system to operate against. A server may

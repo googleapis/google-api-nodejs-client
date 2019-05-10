@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -115,8 +127,9 @@ export namespace logging_v2 {
       this.exclusions = new Resource$Exclusions(this.context);
       this.folders = new Resource$Folders(this.context);
       this.logs = new Resource$Logs(this.context);
-      this.monitoredResourceDescriptors =
-          new Resource$Monitoredresourcedescriptors(this.context);
+      this.monitoredResourceDescriptors = new Resource$Monitoredresourcedescriptors(
+        this.context
+      );
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.sinks = new Resource$Sinks(this.context);
@@ -491,12 +504,12 @@ export namespace logging_v2 {
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    jsonPayload?: {[key: string]: any;};
+    jsonPayload?: {[key: string]: any};
     /**
      * Optional. A set of user-defined (key, value) data that provides
      * additional information about the log entry.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Required. The resource name of the log to which this log entry belongs:
      * &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
@@ -537,7 +550,7 @@ export namespace logging_v2 {
      * The log entry payload, represented as a protocol buffer. Some Google
      * Cloud Platform services use this field for their log entry payloads.
      */
-    protoPayload?: {[key: string]: any;};
+    protoPayload?: {[key: string]: any};
     /**
      * Output only. The time the log entry was received by Logging.
      */
@@ -763,7 +776,7 @@ export namespace logging_v2 {
      * there are upper bounds on the maximum number of labels and the number of
      * active time series that are allowed in a project.
      */
-    labelExtractors?: {[key: string]: string;};
+    labelExtractors?: {[key: string]: string};
     /**
      * Optional. The metric descriptor associated with the logs-based metric. If
      * unspecified, it uses a default metric descriptor with a DELTA metric
@@ -1024,7 +1037,7 @@ export namespace logging_v2 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
@@ -1096,11 +1109,11 @@ export namespace logging_v2 {
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: {[key: string]: any;};
+    systemLabels?: {[key: string]: any};
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: {[key: string]: string;};
+    userLabels?: {[key: string]: string};
   }
   /**
    * Complete log information about a single HTTP request to an App Engine
@@ -1334,7 +1347,7 @@ export namespace logging_v2 {
      * as a label in this parameter, then the log entry&#39;s label is not
      * changed. See LogEntry.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Optional. A default log resource name that is assigned to all log entries
      * in entries that do not specify a value for log_name:
@@ -1372,7 +1385,6 @@ export namespace logging_v2 {
    */
   export interface Schema$WriteLogEntriesResponse {}
 
-
   export class Resource$Billingaccounts {
     context: APIRequestContext;
     exclusions: Resource$Billingaccounts$Exclusions;
@@ -1386,13 +1398,11 @@ export namespace logging_v2 {
     }
   }
 
-
   export class Resource$Billingaccounts$Exclusions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.billingAccounts.exclusions.create
@@ -1410,25 +1420,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Billingaccounts$Exclusions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Billingaccounts$Exclusions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     create(
-        params: Params$Resource$Billingaccounts$Exclusions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(
-        params: Params$Resource$Billingaccounts$Exclusions$Create,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$Create,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     create(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Create|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Exclusions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Exclusions$Create
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1445,16 +1460,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1462,7 +1480,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.exclusions.delete
@@ -1477,24 +1494,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Billingaccounts$Exclusions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Billingaccounts$Exclusions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Billingaccounts$Exclusions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Billingaccounts$Exclusions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Exclusions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Exclusions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1511,15 +1532,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1527,7 +1549,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.exclusions.get
@@ -1541,22 +1562,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Billingaccounts$Exclusions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
-    get(params: Params$Resource$Billingaccounts$Exclusions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params: Params$Resource$Billingaccounts$Exclusions$Get,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(
+      params?: Params$Resource$Billingaccounts$Exclusions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Billingaccounts$Exclusions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Exclusions$Get,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Get|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Exclusions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Exclusions$Get
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1573,15 +1603,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1589,7 +1620,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.exclusions.list
@@ -1606,26 +1636,32 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Billingaccounts$Exclusions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
+      params?: Params$Resource$Billingaccounts$Exclusions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params: Params$Resource$Billingaccounts$Exclusions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Billingaccounts$Exclusions$List,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$List,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$List|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|GaxiosPromise<Schema$ListExclusionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Exclusions$List;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Exclusions$List
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1642,16 +1678,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -1659,7 +1698,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.exclusions.patch
@@ -1676,25 +1714,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Billingaccounts$Exclusions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Billingaccounts$Exclusions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     patch(
-        params: Params$Resource$Billingaccounts$Exclusions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(
-        params: Params$Resource$Billingaccounts$Exclusions$Patch,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Billingaccounts$Exclusions$Patch,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Exclusions$Patch|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Exclusions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Exclusions$Patch
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1711,15 +1754,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1729,12 +1773,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Exclusions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The parent resource in which to create the exclusion:
@@ -1749,12 +1793,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion to delete:
@@ -1766,12 +1810,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion:
@@ -1783,12 +1827,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$List extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -1810,12 +1854,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the exclusion to update:
@@ -1842,13 +1886,11 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
-
   export class Resource$Billingaccounts$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.billingAccounts.logs.delete
@@ -1865,24 +1907,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Billingaccounts$Logs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Billingaccounts$Logs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Billingaccounts$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Billingaccounts$Logs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Billingaccounts$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Billingaccounts$Logs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Logs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Logs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1899,15 +1945,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1915,7 +1962,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.logs.list
@@ -1933,25 +1979,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Billingaccounts$Logs$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLogsResponse>;
+      params?: Params$Resource$Billingaccounts$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Billingaccounts$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params: Params$Resource$Billingaccounts$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
     list(
-        params: Params$Resource$Billingaccounts$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params: Params$Resource$Billingaccounts$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|GaxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Logs$List;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1968,16 +2019,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -1987,12 +2038,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Logs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Logs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the log to delete:
@@ -2006,12 +2057,12 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Logs$List extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Logs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -2034,13 +2085,11 @@ export namespace logging_v2 {
     parent?: string;
   }
 
-
   export class Resource$Billingaccounts$Sinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.billingAccounts.sinks.create
@@ -2060,24 +2109,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Billingaccounts$Sinks$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Billingaccounts$Sinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     create(
-        params: Params$Resource$Billingaccounts$Sinks$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(
-        params: Params$Resource$Billingaccounts$Sinks$Create,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Create,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogSink>): void;
     create(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Create|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Sinks$Create;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Sinks$Create
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2094,16 +2147,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2111,7 +2167,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.sinks.delete
@@ -2127,24 +2182,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Billingaccounts$Sinks$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Billingaccounts$Sinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Billingaccounts$Sinks$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Billingaccounts$Sinks$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Sinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Sinks$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2161,15 +2220,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2177,7 +2237,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.sinks.get
@@ -2191,21 +2250,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Billingaccounts$Sinks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
-    get(params: Params$Resource$Billingaccounts$Sinks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(params: Params$Resource$Billingaccounts$Sinks$Get,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(
+      params?: Params$Resource$Billingaccounts$Sinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Billingaccounts$Sinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Sinks$Get,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Get|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Sinks$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Sinks$Get
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2222,15 +2289,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2238,7 +2306,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.sinks.list
@@ -2255,25 +2322,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Billingaccounts$Sinks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListSinksResponse>;
+      params?: Params$Resource$Billingaccounts$Sinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Billingaccounts$Sinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params: Params$Resource$Billingaccounts$Sinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
     list(
-        params: Params$Resource$Billingaccounts$Sinks$List,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params: Params$Resource$Billingaccounts$Sinks$List,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$List|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|GaxiosPromise<Schema$ListSinksResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Sinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Sinks$List
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback?: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2290,16 +2362,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -2307,7 +2382,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.sinks.patch
@@ -2328,24 +2402,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Billingaccounts$Sinks$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Billingaccounts$Sinks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     patch(
-        params: Params$Resource$Billingaccounts$Sinks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(
-        params: Params$Resource$Billingaccounts$Sinks$Patch,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Patch,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogSink>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Patch|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Sinks$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Sinks$Patch
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2362,15 +2440,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2378,7 +2457,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.billingAccounts.sinks.update
@@ -2399,24 +2477,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Billingaccounts$Sinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Billingaccounts$Sinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     update(
-        params: Params$Resource$Billingaccounts$Sinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(
-        params: Params$Resource$Billingaccounts$Sinks$Update,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Billingaccounts$Sinks$Update,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LogSink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Sinks$Update|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Sinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Sinks$Update
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2433,15 +2515,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2451,12 +2534,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Sinks$Create extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource in which to create the sink:
@@ -2484,12 +2567,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to delete, including the
@@ -2502,12 +2585,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Get extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the sink:
@@ -2519,12 +2602,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -2546,12 +2629,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -2593,12 +2676,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Update extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -2640,15 +2723,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-
-
 
   export class Resource$Entries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.entries.list
@@ -2664,24 +2744,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Entries$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLogEntriesResponse>;
     list(
-        params: Params$Resource$Entries$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLogEntriesResponse>,
-        callback: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
+      params?: Params$Resource$Entries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogEntriesResponse>;
     list(
-        params: Params$Resource$Entries$List,
-        callback: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
+      params: Params$Resource$Entries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
+      callback: BodyResponseCallback<Schema$ListLogEntriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Entries$List,
+      callback: BodyResponseCallback<Schema$ListLogEntriesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLogEntriesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Entries$List|
-        BodyResponseCallback<Schema$ListLogEntriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogEntriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>):
-        void|GaxiosPromise<Schema$ListLogEntriesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Entries$List
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>
+    ): void | GaxiosPromise<Schema$ListLogEntriesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2699,15 +2786,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/entries:list').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/entries:list').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
@@ -2715,7 +2803,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListLogEntriesResponse>(parameters);
       }
     }
-
 
     /**
      * logging.entries.write
@@ -2734,24 +2821,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    write(params?: Params$Resource$Entries$Write, options?: MethodOptions):
-        GaxiosPromise<Schema$WriteLogEntriesResponse>;
     write(
-        params: Params$Resource$Entries$Write,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$WriteLogEntriesResponse>,
-        callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
+      params?: Params$Resource$Entries$Write,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WriteLogEntriesResponse>;
     write(
-        params: Params$Resource$Entries$Write,
-        callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
+      params: Params$Resource$Entries$Write,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+      callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>
+    ): void;
+    write(
+      params: Params$Resource$Entries$Write,
+      callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>
+    ): void;
     write(callback: BodyResponseCallback<Schema$WriteLogEntriesResponse>): void;
     write(
-        paramsOrCallback?: Params$Resource$Entries$Write|
-        BodyResponseCallback<Schema$WriteLogEntriesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WriteLogEntriesResponse>,
-        callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>):
-        void|GaxiosPromise<Schema$WriteLogEntriesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Entries$Write
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+      callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>
+    ): void | GaxiosPromise<Schema$WriteLogEntriesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2769,16 +2863,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v2/entries:write').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/entries:write').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
@@ -2792,8 +2886,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2804,8 +2897,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2813,13 +2905,11 @@ export namespace logging_v2 {
     requestBody?: Schema$WriteLogEntriesRequest;
   }
 
-
   export class Resource$Exclusions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.exclusions.create
@@ -2836,25 +2926,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Exclusions$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$LogExclusion>;
     create(
-        params: Params$Resource$Exclusions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params?: Params$Resource$Exclusions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     create(
-        params: Params$Resource$Exclusions$Create,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Exclusions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
+    create(
+      params: Params$Resource$Exclusions$Create,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     create(
-        paramsOrCallback?: Params$Resource$Exclusions$Create|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Exclusions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Exclusions$Create
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2871,16 +2967,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -2888,7 +2987,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.exclusions.delete
@@ -2902,24 +3000,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Exclusions$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Exclusions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Exclusions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Exclusions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Exclusions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Exclusions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Exclusions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Exclusions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Exclusions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2936,15 +3039,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2952,7 +3056,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.exclusions.get
@@ -2966,20 +3069,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Exclusions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
-    get(params: Params$Resource$Exclusions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params: Params$Resource$Exclusions$Get,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(
+      params?: Params$Resource$Exclusions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Exclusions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
+    get(
+      params: Params$Resource$Exclusions$Get,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(paramsOrCallback?: Params$Resource$Exclusions$Get|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Exclusions$Get
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2997,15 +3109,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3013,7 +3126,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.exclusions.list
@@ -3029,24 +3141,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Exclusions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params: Params$Resource$Exclusions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params?: Params$Resource$Exclusions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params: Params$Resource$Exclusions$List,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Exclusions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Exclusions$List,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Exclusions$List|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|GaxiosPromise<Schema$ListExclusionsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Exclusions$List
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3064,16 +3183,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3081,7 +3203,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
     }
-
 
     /**
      * logging.exclusions.patch
@@ -3097,23 +3218,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Exclusions$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$LogExclusion>;
     patch(
-        params: Params$Resource$Exclusions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params?: Params$Resource$Exclusions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     patch(
-        params: Params$Resource$Exclusions$Patch,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Exclusions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
+    patch(
+      params: Params$Resource$Exclusions$Patch,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Exclusions$Patch|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
+      paramsOrCallback?:
+        | Params$Resource$Exclusions$Patch
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3131,15 +3258,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3149,12 +3277,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Exclusions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Exclusions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The parent resource in which to create the exclusion:
@@ -3169,12 +3297,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Exclusions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Exclusions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion to delete:
@@ -3190,7 +3318,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion:
@@ -3206,7 +3334,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -3232,7 +3360,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the exclusion to update:
@@ -3259,7 +3387,6 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
-
   export class Resource$Folders {
     context: APIRequestContext;
     exclusions: Resource$Folders$Exclusions;
@@ -3273,13 +3400,11 @@ export namespace logging_v2 {
     }
   }
 
-
   export class Resource$Folders$Exclusions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.folders.exclusions.create
@@ -3297,25 +3422,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Folders$Exclusions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Folders$Exclusions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     create(
-        params: Params$Resource$Folders$Exclusions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Folders$Exclusions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(
-        params: Params$Resource$Folders$Exclusions$Create,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Folders$Exclusions$Create,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     create(
-        paramsOrCallback?: Params$Resource$Folders$Exclusions$Create|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Exclusions$Create
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3332,16 +3462,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3349,7 +3482,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.folders.exclusions.delete
@@ -3364,24 +3496,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Folders$Exclusions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Folders$Exclusions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Folders$Exclusions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Exclusions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Folders$Exclusions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Exclusions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Folders$Exclusions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Exclusions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3398,15 +3534,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3414,7 +3551,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.folders.exclusions.get
@@ -3428,22 +3564,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Folders$Exclusions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
-    get(params: Params$Resource$Folders$Exclusions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params: Params$Resource$Folders$Exclusions$Get,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(
+      params?: Params$Resource$Folders$Exclusions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Folders$Exclusions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Exclusions$Get,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(paramsOrCallback?: Params$Resource$Folders$Exclusions$Get|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Exclusions$Get
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3460,15 +3605,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3476,7 +3622,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.folders.exclusions.list
@@ -3493,26 +3638,32 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Folders$Exclusions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
+      params?: Params$Resource$Folders$Exclusions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params: Params$Resource$Folders$Exclusions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Folders$Exclusions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Folders$Exclusions$List,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Folders$Exclusions$List,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Folders$Exclusions$List|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|GaxiosPromise<Schema$ListExclusionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$List;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Exclusions$List
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3529,16 +3680,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3546,7 +3700,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
     }
-
 
     /**
      * logging.folders.exclusions.patch
@@ -3563,25 +3716,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Folders$Exclusions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Folders$Exclusions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     patch(
-        params: Params$Resource$Folders$Exclusions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Folders$Exclusions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(
-        params: Params$Resource$Folders$Exclusions$Patch,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Folders$Exclusions$Patch,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Folders$Exclusions$Patch|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Exclusions$Patch
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3598,15 +3756,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3616,12 +3775,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Exclusions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The parent resource in which to create the exclusion:
@@ -3636,12 +3795,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Folders$Exclusions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion to delete:
@@ -3653,12 +3812,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion:
@@ -3670,12 +3829,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$List extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -3697,12 +3856,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the exclusion to update:
@@ -3729,13 +3888,11 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
-
   export class Resource$Folders$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.folders.logs.delete
@@ -3752,24 +3909,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Folders$Logs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Folders$Logs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Folders$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Logs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Folders$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Logs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Folders$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Logs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Logs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3786,15 +3947,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3802,7 +3964,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.folders.logs.list
@@ -3819,25 +3980,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Folders$Logs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Folders$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params?: Params$Resource$Folders$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Folders$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params: Params$Resource$Folders$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Folders$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|GaxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Logs$List;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3854,16 +4021,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -3873,12 +4040,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Logs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Logs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the log to delete:
@@ -3892,12 +4059,12 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Folders$Logs$List extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Logs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -3920,13 +4087,11 @@ export namespace logging_v2 {
     parent?: string;
   }
 
-
   export class Resource$Folders$Sinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.folders.sinks.create
@@ -3946,24 +4111,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Folders$Sinks$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Folders$Sinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     create(
-        params: Params$Resource$Folders$Sinks$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Folders$Sinks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(
-        params: Params$Resource$Folders$Sinks$Create,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Folders$Sinks$Create,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogSink>): void;
     create(
-        paramsOrCallback?: Params$Resource$Folders$Sinks$Create|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Create;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sinks$Create
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3980,16 +4149,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -3997,7 +4169,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.folders.sinks.delete
@@ -4013,24 +4184,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Folders$Sinks$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Folders$Sinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Folders$Sinks$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Sinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Folders$Sinks$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Folders$Sinks$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Folders$Sinks$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sinks$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4047,15 +4222,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4063,7 +4239,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.folders.sinks.get
@@ -4077,21 +4252,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Folders$Sinks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
-    get(params: Params$Resource$Folders$Sinks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(params: Params$Resource$Folders$Sinks$Get,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(
+      params?: Params$Resource$Folders$Sinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Folders$Sinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Sinks$Get,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(paramsOrCallback?: Params$Resource$Folders$Sinks$Get|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sinks$Get
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4108,15 +4291,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4124,7 +4308,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.folders.sinks.list
@@ -4140,25 +4323,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Folders$Sinks$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Folders$Sinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params?: Params$Resource$Folders$Sinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Folders$Sinks$List,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params: Params$Resource$Folders$Sinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Sinks$List,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Folders$Sinks$List|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|GaxiosPromise<Schema$ListSinksResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sinks$List
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback?: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4175,16 +4364,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -4192,7 +4384,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
     }
-
 
     /**
      * logging.folders.sinks.patch
@@ -4213,24 +4404,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Folders$Sinks$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Folders$Sinks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     patch(
-        params: Params$Resource$Folders$Sinks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Folders$Sinks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(
-        params: Params$Resource$Folders$Sinks$Patch,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Folders$Sinks$Patch,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogSink>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Folders$Sinks$Patch|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sinks$Patch
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4247,15 +4442,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4263,7 +4459,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.folders.sinks.update
@@ -4284,24 +4479,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Folders$Sinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Folders$Sinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     update(
-        params: Params$Resource$Folders$Sinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Folders$Sinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(
-        params: Params$Resource$Folders$Sinks$Update,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Folders$Sinks$Update,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LogSink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Folders$Sinks$Update|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sinks$Update
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4318,15 +4517,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4336,12 +4536,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Sinks$Create extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource in which to create the sink:
@@ -4369,12 +4569,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to delete, including the
@@ -4387,12 +4587,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Get extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the sink:
@@ -4404,12 +4604,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Sinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -4431,12 +4631,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -4478,12 +4678,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Update extends
-      StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -4525,15 +4725,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-
-
 
   export class Resource$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.logs.delete
@@ -4549,22 +4746,27 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Logs$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Logs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Logs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Logs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Logs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4582,15 +4784,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4598,7 +4801,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.logs.list
@@ -4615,23 +4817,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Logs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params?: Params$Resource$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params: Params$Resource$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|GaxiosPromise<Schema$ListLogsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4649,16 +4857,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -4672,7 +4880,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the log to delete:
@@ -4690,7 +4898,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -4713,13 +4921,11 @@ export namespace logging_v2 {
     parent?: string;
   }
 
-
   export class Resource$Monitoredresourcedescriptors {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.monitoredResourceDescriptors.list
@@ -4735,31 +4941,42 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Monitoredresourcedescriptors$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+      params?: Params$Resource$Monitoredresourcedescriptors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
     list(
-        params: Params$Resource$Monitoredresourcedescriptors$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        callback: BodyResponseCallback<
-            Schema$ListMonitoredResourceDescriptorsResponse>): void;
+      params: Params$Resource$Monitoredresourcedescriptors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Monitoredresourcedescriptors$List,
-        callback: BodyResponseCallback<
-            Schema$ListMonitoredResourceDescriptorsResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$ListMonitoredResourceDescriptorsResponse>): void;
+      params: Params$Resource$Monitoredresourcedescriptors$List,
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Monitoredresourcedescriptors$List|
-        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ListMonitoredResourceDescriptorsResponse>):
-        void|GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Monitoredresourcedescriptors$List;
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Monitoredresourcedescriptors$List
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
+    ): void | GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monitoredresourcedescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4776,33 +4993,39 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/monitoredResourceDescriptors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/monitoredResourceDescriptors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ListMonitoredResourceDescriptorsResponse>(parameters);
+          Schema$ListMonitoredResourceDescriptorsResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Monitoredresourcedescriptors$List extends
-      StandardParameters {
+  export interface Params$Resource$Monitoredresourcedescriptors$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -4819,7 +5042,6 @@ export namespace logging_v2 {
     pageToken?: string;
   }
 
-
   export class Resource$Organizations {
     context: APIRequestContext;
     exclusions: Resource$Organizations$Exclusions;
@@ -4833,13 +5055,11 @@ export namespace logging_v2 {
     }
   }
 
-
   export class Resource$Organizations$Exclusions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.organizations.exclusions.create
@@ -4857,25 +5077,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Organizations$Exclusions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Organizations$Exclusions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     create(
-        params: Params$Resource$Organizations$Exclusions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Organizations$Exclusions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(
-        params: Params$Resource$Organizations$Exclusions$Create,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Organizations$Exclusions$Create,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     create(
-        paramsOrCallback?: Params$Resource$Organizations$Exclusions$Create|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Exclusions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Exclusions$Create
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4892,16 +5117,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -4909,7 +5137,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.exclusions.delete
@@ -4924,24 +5151,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Organizations$Exclusions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Organizations$Exclusions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Organizations$Exclusions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Exclusions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Organizations$Exclusions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Exclusions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Organizations$Exclusions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Exclusions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Exclusions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4958,15 +5189,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4974,7 +5206,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.exclusions.get
@@ -4988,22 +5219,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Exclusions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
-    get(params: Params$Resource$Organizations$Exclusions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params: Params$Resource$Organizations$Exclusions$Get,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(
+      params?: Params$Resource$Organizations$Exclusions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Organizations$Exclusions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Exclusions$Get,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Exclusions$Get|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Exclusions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Exclusions$Get
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5020,15 +5260,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5036,7 +5277,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.exclusions.list
@@ -5053,26 +5293,32 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Exclusions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
+      params?: Params$Resource$Organizations$Exclusions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params: Params$Resource$Organizations$Exclusions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Organizations$Exclusions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Exclusions$List,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Organizations$Exclusions$List,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Exclusions$List|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|GaxiosPromise<Schema$ListExclusionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Exclusions$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Exclusions$List
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5089,16 +5335,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -5106,7 +5355,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.exclusions.patch
@@ -5123,25 +5371,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Organizations$Exclusions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Organizations$Exclusions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     patch(
-        params: Params$Resource$Organizations$Exclusions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Organizations$Exclusions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(
-        params: Params$Resource$Organizations$Exclusions$Patch,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Organizations$Exclusions$Patch,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Organizations$Exclusions$Patch|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Exclusions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Exclusions$Patch
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5158,15 +5411,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5176,12 +5430,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Exclusions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The parent resource in which to create the exclusion:
@@ -5196,12 +5450,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Organizations$Exclusions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion to delete:
@@ -5213,12 +5467,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion:
@@ -5230,12 +5484,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -5257,12 +5511,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the exclusion to update:
@@ -5289,13 +5543,11 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
-
   export class Resource$Organizations$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.organizations.logs.delete
@@ -5312,24 +5564,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Organizations$Logs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Organizations$Logs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Organizations$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Logs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Organizations$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Logs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Organizations$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Logs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5346,15 +5602,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5362,7 +5619,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.logs.list
@@ -5380,25 +5636,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Logs$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLogsResponse>;
+      params?: Params$Resource$Organizations$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Organizations$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params: Params$Resource$Organizations$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params: Params$Resource$Organizations$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|GaxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5415,16 +5676,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -5434,12 +5695,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Logs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Logs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the log to delete:
@@ -5453,12 +5714,12 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Organizations$Logs$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Logs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -5481,13 +5742,11 @@ export namespace logging_v2 {
     parent?: string;
   }
 
-
   export class Resource$Organizations$Sinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.organizations.sinks.create
@@ -5507,24 +5766,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Organizations$Sinks$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Organizations$Sinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     create(
-        params: Params$Resource$Organizations$Sinks$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Organizations$Sinks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(
-        params: Params$Resource$Organizations$Sinks$Create,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Organizations$Sinks$Create,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogSink>): void;
     create(
-        paramsOrCallback?: Params$Resource$Organizations$Sinks$Create|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sinks$Create;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sinks$Create
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5541,16 +5804,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5558,7 +5824,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.sinks.delete
@@ -5574,24 +5839,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Organizations$Sinks$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Organizations$Sinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Organizations$Sinks$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Sinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Organizations$Sinks$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Organizations$Sinks$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Organizations$Sinks$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sinks$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5608,15 +5877,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5624,7 +5894,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.sinks.get
@@ -5638,21 +5907,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Organizations$Sinks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
-    get(params: Params$Resource$Organizations$Sinks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(params: Params$Resource$Organizations$Sinks$Get,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(
+      params?: Params$Resource$Organizations$Sinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Organizations$Sinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Sinks$Get,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Sinks$Get|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sinks$Get
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5669,15 +5946,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5685,7 +5963,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.sinks.list
@@ -5702,25 +5979,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Organizations$Sinks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListSinksResponse>;
+      params?: Params$Resource$Organizations$Sinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Organizations$Sinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params: Params$Resource$Organizations$Sinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
     list(
-        params: Params$Resource$Organizations$Sinks$List,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params: Params$Resource$Organizations$Sinks$List,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Organizations$Sinks$List|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|GaxiosPromise<Schema$ListSinksResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sinks$List
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback?: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5737,16 +6019,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -5754,7 +6039,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.sinks.patch
@@ -5775,24 +6059,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Organizations$Sinks$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Organizations$Sinks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     patch(
-        params: Params$Resource$Organizations$Sinks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Organizations$Sinks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(
-        params: Params$Resource$Organizations$Sinks$Patch,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Organizations$Sinks$Patch,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogSink>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Organizations$Sinks$Patch|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sinks$Patch
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5809,15 +6097,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5825,7 +6114,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.organizations.sinks.update
@@ -5846,24 +6134,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Organizations$Sinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Organizations$Sinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     update(
-        params: Params$Resource$Organizations$Sinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Organizations$Sinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(
-        params: Params$Resource$Organizations$Sinks$Update,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Organizations$Sinks$Update,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LogSink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Organizations$Sinks$Update|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Sinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sinks$Update
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5880,15 +6172,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5898,12 +6191,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sinks$Create extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource in which to create the sink:
@@ -5931,12 +6224,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to delete, including the
@@ -5949,12 +6242,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Get extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the sink:
@@ -5966,12 +6259,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -5993,12 +6286,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -6040,12 +6333,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Update extends
-      StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -6087,8 +6380,6 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-
-
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -6105,13 +6396,11 @@ export namespace logging_v2 {
     }
   }
 
-
   export class Resource$Projects$Exclusions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.projects.exclusions.create
@@ -6129,25 +6418,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Exclusions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Projects$Exclusions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     create(
-        params: Params$Resource$Projects$Exclusions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Projects$Exclusions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(
-        params: Params$Resource$Projects$Exclusions$Create,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Projects$Exclusions$Create,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Exclusions$Create|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Exclusions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Exclusions$Create
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6164,16 +6458,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6181,7 +6478,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.projects.exclusions.delete
@@ -6196,24 +6492,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Exclusions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Exclusions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Exclusions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Exclusions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Exclusions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Exclusions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Exclusions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Exclusions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Exclusions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6230,15 +6530,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6246,7 +6547,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.projects.exclusions.get
@@ -6260,22 +6560,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Exclusions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
-    get(params: Params$Resource$Projects$Exclusions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(params: Params$Resource$Projects$Exclusions$Get,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+    get(
+      params?: Params$Resource$Projects$Exclusions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Projects$Exclusions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Exclusions$Get,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogExclusion>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Exclusions$Get|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Exclusions$Get
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6292,15 +6601,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6308,7 +6618,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
     }
-
 
     /**
      * logging.projects.exclusions.list
@@ -6325,26 +6634,32 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Exclusions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
+      params?: Params$Resource$Projects$Exclusions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
-        params: Params$Resource$Projects$Exclusions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Projects$Exclusions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Exclusions$List,
-        callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
+      params: Params$Resource$Projects$Exclusions$List,
+      callback: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListExclusionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Exclusions$List|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListExclusionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|GaxiosPromise<Schema$ListExclusionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Exclusions$List
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
+    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6361,16 +6676,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/exclusions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/exclusions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -6378,7 +6696,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
     }
-
 
     /**
      * logging.projects.exclusions.patch
@@ -6395,25 +6712,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Exclusions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
+      params?: Params$Resource$Projects$Exclusions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogExclusion>;
     patch(
-        params: Params$Resource$Projects$Exclusions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Projects$Exclusions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Exclusions$Patch,
-        callback: BodyResponseCallback<Schema$LogExclusion>): void;
+      params: Params$Resource$Projects$Exclusions$Patch,
+      callback: BodyResponseCallback<Schema$LogExclusion>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogExclusion>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Exclusions$Patch|
-        BodyResponseCallback<Schema$LogExclusion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogExclusion>,
-        callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|GaxiosPromise<Schema$LogExclusion> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Exclusions$Patch
+        | BodyResponseCallback<Schema$LogExclusion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>,
+      callback?: BodyResponseCallback<Schema$LogExclusion>
+    ): void | GaxiosPromise<Schema$LogExclusion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6430,15 +6752,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6448,12 +6771,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Exclusions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The parent resource in which to create the exclusion:
@@ -6468,12 +6791,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Projects$Exclusions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion to delete:
@@ -6485,12 +6808,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of an existing exclusion:
@@ -6502,12 +6825,12 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -6529,12 +6852,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the exclusion to update:
@@ -6561,13 +6884,11 @@ export namespace logging_v2 {
     requestBody?: Schema$LogExclusion;
   }
 
-
   export class Resource$Projects$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.projects.logs.delete
@@ -6584,24 +6905,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Logs$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Logs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Logs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Logs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Logs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6618,15 +6943,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6634,7 +6960,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.projects.logs.list
@@ -6651,25 +6976,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$Logs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Projects$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params?: Params$Resource$Projects$Logs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogsResponse>;
     list(
-        params: Params$Resource$Projects$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
+      params: Params$Resource$Projects$Logs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Logs$List,
+      callback: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|GaxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Logs$List
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogsResponse>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6686,16 +7017,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -6705,12 +7036,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Logs$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Logs$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the log to delete:
@@ -6724,12 +7055,12 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Projects$Logs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Logs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -6752,13 +7083,11 @@ export namespace logging_v2 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Metrics {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.projects.metrics.create
@@ -6774,25 +7103,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Metrics$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogMetric>;
+      params?: Params$Resource$Projects$Metrics$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogMetric>;
     create(
-        params: Params$Resource$Projects$Metrics$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-        callback: BodyResponseCallback<Schema$LogMetric>): void;
+      params: Params$Resource$Projects$Metrics$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
+      callback: BodyResponseCallback<Schema$LogMetric>
+    ): void;
     create(
-        params: Params$Resource$Projects$Metrics$Create,
-        callback: BodyResponseCallback<Schema$LogMetric>): void;
+      params: Params$Resource$Projects$Metrics$Create,
+      callback: BodyResponseCallback<Schema$LogMetric>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogMetric>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Metrics$Create|
-        BodyResponseCallback<Schema$LogMetric>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogMetric>,
-        callback?: BodyResponseCallback<Schema$LogMetric>):
-        void|GaxiosPromise<Schema$LogMetric> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metrics$Create
+        | BodyResponseCallback<Schema$LogMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>
+    ): void | GaxiosPromise<Schema$LogMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6809,16 +7143,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/metrics')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/metrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6826,7 +7163,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
     }
-
 
     /**
      * logging.projects.metrics.delete
@@ -6841,24 +7177,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Metrics$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Metrics$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Metrics$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Metrics$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Metrics$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Metrics$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Metrics$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metrics$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metrics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6875,16 +7215,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6892,7 +7232,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.projects.metrics.get
@@ -6906,22 +7245,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Metrics$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogMetric>;
-    get(params: Params$Resource$Projects$Metrics$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-        callback: BodyResponseCallback<Schema$LogMetric>): void;
-    get(params: Params$Resource$Projects$Metrics$Get,
-        callback: BodyResponseCallback<Schema$LogMetric>): void;
+    get(
+      params?: Params$Resource$Projects$Metrics$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogMetric>;
+    get(
+      params: Params$Resource$Projects$Metrics$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
+      callback: BodyResponseCallback<Schema$LogMetric>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Metrics$Get,
+      callback: BodyResponseCallback<Schema$LogMetric>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogMetric>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Metrics$Get|
-        BodyResponseCallback<Schema$LogMetric>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogMetric>,
-        callback?: BodyResponseCallback<Schema$LogMetric>):
-        void|GaxiosPromise<Schema$LogMetric> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metrics$Get
+        | BodyResponseCallback<Schema$LogMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>
+    ): void | GaxiosPromise<Schema$LogMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6938,16 +7286,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6955,7 +7303,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
     }
-
 
     /**
      * logging.projects.metrics.list
@@ -6972,26 +7319,32 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Metrics$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLogMetricsResponse>;
+      params?: Params$Resource$Projects$Metrics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogMetricsResponse>;
     list(
-        params: Params$Resource$Projects$Metrics$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLogMetricsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
+      params: Params$Resource$Projects$Metrics$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
+      callback: BodyResponseCallback<Schema$ListLogMetricsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Metrics$List,
-        callback: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
+      params: Params$Resource$Projects$Metrics$List,
+      callback: BodyResponseCallback<Schema$ListLogMetricsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLogMetricsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Metrics$List|
-        BodyResponseCallback<Schema$ListLogMetricsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogMetricsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>):
-        void|GaxiosPromise<Schema$ListLogMetricsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metrics$List
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>
+    ): void | GaxiosPromise<Schema$ListLogMetricsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7008,16 +7361,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/metrics')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/metrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
@@ -7025,7 +7381,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListLogMetricsResponse>(parameters);
       }
     }
-
 
     /**
      * logging.projects.metrics.update
@@ -7041,25 +7396,30 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Metrics$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LogMetric>;
+      params?: Params$Resource$Projects$Metrics$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogMetric>;
     update(
-        params: Params$Resource$Projects$Metrics$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
-        callback: BodyResponseCallback<Schema$LogMetric>): void;
+      params: Params$Resource$Projects$Metrics$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
+      callback: BodyResponseCallback<Schema$LogMetric>
+    ): void;
     update(
-        params: Params$Resource$Projects$Metrics$Update,
-        callback: BodyResponseCallback<Schema$LogMetric>): void;
+      params: Params$Resource$Projects$Metrics$Update,
+      callback: BodyResponseCallback<Schema$LogMetric>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LogMetric>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Metrics$Update|
-        BodyResponseCallback<Schema$LogMetric>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LogMetric>,
-        callback?: BodyResponseCallback<Schema$LogMetric>):
-        void|GaxiosPromise<Schema$LogMetric> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Metrics$Update
+        | BodyResponseCallback<Schema$LogMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogMetric>,
+      callback?: BodyResponseCallback<Schema$LogMetric>
+    ): void | GaxiosPromise<Schema$LogMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Metrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7076,16 +7436,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -7095,12 +7455,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Metrics$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the project in which to create the metric:
@@ -7113,12 +7473,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogMetric;
   }
-  export interface Params$Resource$Projects$Metrics$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the metric to delete:
@@ -7126,12 +7486,12 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the desired metric:
@@ -7139,12 +7499,12 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metrics$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -7165,12 +7525,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the metric to update:
@@ -7187,13 +7547,11 @@ export namespace logging_v2 {
     requestBody?: Schema$LogMetric;
   }
 
-
   export class Resource$Projects$Sinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.projects.sinks.create
@@ -7213,24 +7571,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Sinks$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Projects$Sinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     create(
-        params: Params$Resource$Projects$Sinks$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Projects$Sinks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(
-        params: Params$Resource$Projects$Sinks$Create,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Projects$Sinks$Create,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogSink>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Sinks$Create|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sinks$Create
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7247,16 +7609,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7264,7 +7629,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.projects.sinks.delete
@@ -7280,24 +7644,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Sinks$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Sinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Sinks$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Sinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Sinks$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Sinks$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Sinks$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sinks$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7314,15 +7682,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7330,7 +7699,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.projects.sinks.get
@@ -7344,21 +7712,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Sinks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
-    get(params: Params$Resource$Projects$Sinks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(params: Params$Resource$Projects$Sinks$Get,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(
+      params?: Params$Resource$Projects$Sinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Projects$Sinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sinks$Get,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Sinks$Get|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sinks$Get
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7375,15 +7751,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7391,7 +7768,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.projects.sinks.list
@@ -7407,25 +7783,31 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Projects$Sinks$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Projects$Sinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params?: Params$Resource$Projects$Sinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Projects$Sinks$List,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params: Params$Resource$Projects$Sinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sinks$List,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Sinks$List|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|GaxiosPromise<Schema$ListSinksResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sinks$List
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback?: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7442,16 +7824,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -7459,7 +7844,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
     }
-
 
     /**
      * logging.projects.sinks.patch
@@ -7480,24 +7864,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Sinks$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Projects$Sinks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     patch(
-        params: Params$Resource$Projects$Sinks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Projects$Sinks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Sinks$Patch,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Projects$Sinks$Patch,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LogSink>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Sinks$Patch|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sinks$Patch
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7514,15 +7902,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7530,7 +7919,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.projects.sinks.update
@@ -7551,24 +7939,28 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Sinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
+      params?: Params$Resource$Projects$Sinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     update(
-        params: Params$Resource$Projects$Sinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Projects$Sinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(
-        params: Params$Resource$Projects$Sinks$Update,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Projects$Sinks$Update,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LogSink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Sinks$Update|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sinks$Update
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7585,15 +7977,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7603,12 +7996,12 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Sinks$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource in which to create the sink:
@@ -7636,12 +8029,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to delete, including the
@@ -7654,12 +8047,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the sink:
@@ -7671,12 +8064,12 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Sinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -7698,12 +8091,12 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -7745,12 +8138,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the
@@ -7792,15 +8185,12 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-
-
 
   export class Resource$Sinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * logging.sinks.create
@@ -7819,22 +8209,27 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Sinks$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$LogSink>;
     create(
-        params: Params$Resource$Sinks$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params?: Params$Resource$Sinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     create(
-        params: Params$Resource$Sinks$Create,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Sinks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
+    create(
+      params: Params$Resource$Sinks$Create,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     create(callback: BodyResponseCallback<Schema$LogSink>): void;
     create(
-        paramsOrCallback?: Params$Resource$Sinks$Create|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
+      paramsOrCallback?:
+        | Params$Resource$Sinks$Create
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7852,16 +8247,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7869,7 +8267,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.sinks.delete
@@ -7884,22 +8281,27 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Sinks$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Sinks$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Sinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Sinks$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Sinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Sinks$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Sinks$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Sinks$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7917,15 +8319,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7933,7 +8336,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * logging.sinks.get
@@ -7947,19 +8349,27 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sinks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
-    get(params: Params$Resource$Sinks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(params: Params$Resource$Sinks$Get,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+    get(
+      params?: Params$Resource$Sinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Sinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
+    get(
+      params: Params$Resource$Sinks$Get,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LogSink>): void;
-    get(paramsOrCallback?: Params$Resource$Sinks$Get|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sinks$Get
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7977,15 +8387,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7993,7 +8404,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
     }
-
 
     /**
      * logging.sinks.list
@@ -8009,23 +8419,29 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sinks$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Sinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params?: Params$Resource$Sinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSinksResponse>;
     list(
-        params: Params$Resource$Sinks$List,
-        callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
+      params: Params$Resource$Sinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sinks$List,
+      callback: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSinksResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sinks$List|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSinksResponse>,
-        callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|GaxiosPromise<Schema$ListSinksResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sinks$List
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>,
+      callback?: BodyResponseCallback<Schema$ListSinksResponse>
+    ): void | GaxiosPromise<Schema$ListSinksResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8043,16 +8459,19 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/sinks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/sinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -8060,7 +8479,6 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
     }
-
 
     /**
      * logging.sinks.update
@@ -8080,22 +8498,27 @@ export namespace logging_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Sinks$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$LogSink>;
     update(
-        params: Params$Resource$Sinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params?: Params$Resource$Sinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogSink>;
     update(
-        params: Params$Resource$Sinks$Update,
-        callback: BodyResponseCallback<Schema$LogSink>): void;
+      params: Params$Resource$Sinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
+    update(
+      params: Params$Resource$Sinks$Update,
+      callback: BodyResponseCallback<Schema$LogSink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LogSink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Sinks$Update|
-        BodyResponseCallback<Schema$LogSink>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
-        callback?: BodyResponseCallback<Schema$LogSink>):
-        void|GaxiosPromise<Schema$LogSink> {
+      paramsOrCallback?:
+        | Params$Resource$Sinks$Update
+        | BodyResponseCallback<Schema$LogSink>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
+      callback?: BodyResponseCallback<Schema$LogSink>
+    ): void | GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8113,15 +8536,16 @@ export namespace logging_v2 {
       const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -8135,7 +8559,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource in which to create the sink:
@@ -8167,7 +8591,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to delete, including the
@@ -8184,7 +8608,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the sink:
@@ -8200,7 +8624,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The maximum number of results to return from this request.
@@ -8226,7 +8650,7 @@ export namespace logging_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The full resource name of the sink to update, including the

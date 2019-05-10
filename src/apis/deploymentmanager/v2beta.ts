@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -754,7 +766,7 @@ export namespace deploymentmanager_v2beta {
      * this field will be populated.
      */
     error?: {
-      errors?: Array<{code?: string; location?: string; message?: string;}>;
+      errors?: Array<{code?: string; location?: string; message?: string}>;
     };
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
@@ -847,7 +859,7 @@ export namespace deploymentmanager_v2beta {
      */
     warnings?: Array<{
       code?: string;
-      data?: Array<{key?: string; value?: string;}>;
+      data?: Array<{key?: string; value?: string}>;
       message?: string;
     }>;
     /**
@@ -1033,7 +1045,7 @@ export namespace deploymentmanager_v2beta {
      */
     warnings?: Array<{
       code?: string;
-      data?: Array<{key?: string; value?: string;}>;
+      data?: Array<{key?: string; value?: string}>;
       message?: string;
     }>;
   }
@@ -1071,7 +1083,7 @@ export namespace deploymentmanager_v2beta {
      * field will be populated.
      */
     error?: {
-      errors?: Array<{code?: string; location?: string; message?: string;}>;
+      errors?: Array<{code?: string; location?: string; message?: string}>;
     };
     /**
      * Output only. The expanded properties of the resource with reference
@@ -1102,7 +1114,7 @@ export namespace deploymentmanager_v2beta {
      */
     warnings?: Array<{
       code?: string;
-      data?: Array<{key?: string; value?: string;}>;
+      data?: Array<{key?: string; value?: string}>;
       message?: string;
     }>;
   }
@@ -1421,13 +1433,11 @@ export namespace deploymentmanager_v2beta {
     undeclaredProperties?: string;
   }
 
-
   export class Resource$Compositetypes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.compositeTypes.delete
@@ -1443,25 +1453,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Compositetypes$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Compositetypes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Compositetypes$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Compositetypes$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Compositetypes$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Compositetypes$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Compositetypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1478,18 +1493,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1497,7 +1513,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.compositeTypes.get
@@ -1512,22 +1527,31 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Compositetypes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CompositeType>;
-    get(params: Params$Resource$Compositetypes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CompositeType>,
-        callback: BodyResponseCallback<Schema$CompositeType>): void;
-    get(params: Params$Resource$Compositetypes$Get,
-        callback: BodyResponseCallback<Schema$CompositeType>): void;
+    get(
+      params?: Params$Resource$Compositetypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CompositeType>;
+    get(
+      params: Params$Resource$Compositetypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CompositeType>,
+      callback: BodyResponseCallback<Schema$CompositeType>
+    ): void;
+    get(
+      params: Params$Resource$Compositetypes$Get,
+      callback: BodyResponseCallback<Schema$CompositeType>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CompositeType>): void;
-    get(paramsOrCallback?: Params$Resource$Compositetypes$Get|
-        BodyResponseCallback<Schema$CompositeType>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CompositeType>,
-        callback?: BodyResponseCallback<Schema$CompositeType>):
-        void|GaxiosPromise<Schema$CompositeType> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Compositetypes$Get
+        | BodyResponseCallback<Schema$CompositeType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompositeType>,
+      callback?: BodyResponseCallback<Schema$CompositeType>
+    ): void | GaxiosPromise<Schema$CompositeType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Compositetypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1544,18 +1568,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CompositeType>(parameters, callback);
@@ -1563,7 +1588,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$CompositeType>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.compositeTypes.insert
@@ -1579,25 +1603,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Compositetypes$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Compositetypes$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Compositetypes$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(
-        params: Params$Resource$Compositetypes$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Compositetypes$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Compositetypes$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Compositetypes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1614,18 +1643,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1633,7 +1663,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.compositeTypes.list
@@ -1651,29 +1680,35 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Compositetypes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CompositeTypesListResponse>;
     list(
-        params: Params$Resource$Compositetypes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CompositeTypesListResponse>,
-        callback: BodyResponseCallback<Schema$CompositeTypesListResponse>):
-        void;
+      params?: Params$Resource$Compositetypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CompositeTypesListResponse>;
     list(
-        params: Params$Resource$Compositetypes$List,
-        callback: BodyResponseCallback<Schema$CompositeTypesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$CompositeTypesListResponse>):
-        void;
+      params: Params$Resource$Compositetypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompositeTypesListResponse>,
+      callback: BodyResponseCallback<Schema$CompositeTypesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Compositetypes$List|
-        BodyResponseCallback<Schema$CompositeTypesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CompositeTypesListResponse>,
-        callback?: BodyResponseCallback<Schema$CompositeTypesListResponse>):
-        void|GaxiosPromise<Schema$CompositeTypesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Compositetypes$List;
+      params: Params$Resource$Compositetypes$List,
+      callback: BodyResponseCallback<Schema$CompositeTypesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$CompositeTypesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Compositetypes$List
+        | BodyResponseCallback<Schema$CompositeTypesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompositeTypesListResponse>,
+      callback?: BodyResponseCallback<Schema$CompositeTypesListResponse>
+    ): void | GaxiosPromise<Schema$CompositeTypesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Compositetypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1690,27 +1725,29 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CompositeTypesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$CompositeTypesListResponse>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.compositeTypes.patch
@@ -1727,25 +1764,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Compositetypes$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Compositetypes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Compositetypes$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Compositetypes$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Compositetypes$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Compositetypes$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Compositetypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1762,18 +1804,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1781,7 +1824,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.compositeTypes.update
@@ -1798,25 +1840,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Compositetypes$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Compositetypes$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Compositetypes$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Compositetypes$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Compositetypes$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Compositetypes$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Update;
+      paramsOrCallback?:
+        | Params$Resource$Compositetypes$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Compositetypes$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1833,18 +1880,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1854,12 +1902,12 @@ export namespace deploymentmanager_v2beta {
     }
   }
 
-  export interface Params$Resource$Compositetypes$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Compositetypes$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the type for this request.
@@ -1870,12 +1918,12 @@ export namespace deploymentmanager_v2beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Compositetypes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the composite type for this request.
@@ -1886,12 +1934,12 @@ export namespace deploymentmanager_v2beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Compositetypes$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this request.
@@ -1903,12 +1951,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$CompositeType;
   }
-  export interface Params$Resource$Compositetypes$List extends
-      StandardParameters {
+  export interface Params$Resource$Compositetypes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A filter expression that filters resources listed in the response. The
@@ -1958,12 +2006,12 @@ export namespace deploymentmanager_v2beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Compositetypes$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the composite type for this request.
@@ -1979,12 +2027,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$CompositeType;
   }
-  export interface Params$Resource$Compositetypes$Update extends
-      StandardParameters {
+  export interface Params$Resource$Compositetypes$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the composite type for this request.
@@ -2000,14 +2048,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$CompositeType;
   }
-
 
   export class Resource$Deployments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.deployments.cancelPreview
@@ -2025,25 +2071,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     cancelPreview(
-        params?: Params$Resource$Deployments$Cancelpreview,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Cancelpreview,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     cancelPreview(
-        params: Params$Resource$Deployments$Cancelpreview,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Cancelpreview,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     cancelPreview(
-        params: Params$Resource$Deployments$Cancelpreview,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Cancelpreview,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     cancelPreview(callback: BodyResponseCallback<Schema$Operation>): void;
     cancelPreview(
-        paramsOrCallback?: Params$Resource$Deployments$Cancelpreview|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Cancelpreview;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Cancelpreview
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Cancelpreview;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2060,18 +2111,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/cancelPreview')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/cancelPreview'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2079,7 +2131,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.delete
@@ -2096,25 +2147,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Deployments$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Deployments$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Deployments$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Deployments$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2131,18 +2187,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2150,7 +2207,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.get
@@ -2165,20 +2221,29 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Deployments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
-    get(params: Params$Resource$Deployments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
-    get(params: Params$Resource$Deployments$Get,
-        callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(
+      params?: Params$Resource$Deployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Deployment>;
+    get(
+      params: Params$Resource$Deployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
+    get(
+      params: Params$Resource$Deployments$Get,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Deployment>): void;
-    get(paramsOrCallback?: Params$Resource$Deployments$Get|
-        BodyResponseCallback<Schema$Deployment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>):
-        void|GaxiosPromise<Schema$Deployment> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Get
+        | BodyResponseCallback<Schema$Deployment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Deployment>,
+      callback?: BodyResponseCallback<Schema$Deployment>
+    ): void | GaxiosPromise<Schema$Deployment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2196,18 +2261,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -2215,7 +2281,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Deployment>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.getIamPolicy
@@ -2232,24 +2297,28 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Deployments$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Deployments$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Deployments$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Deployments$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Deployments$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2266,18 +2335,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/getIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2285,7 +2355,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.insert
@@ -2304,25 +2373,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Deployments$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Deployments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(
-        params: Params$Resource$Deployments$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Deployments$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2339,18 +2413,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2358,7 +2433,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.list
@@ -2376,24 +2450,31 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Deployments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DeploymentsListResponse>;
     list(
-        params: Params$Resource$Deployments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DeploymentsListResponse>,
-        callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
+      params?: Params$Resource$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeploymentsListResponse>;
     list(
-        params: Params$Resource$Deployments$List,
-        callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
+      params: Params$Resource$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeploymentsListResponse>,
+      callback: BodyResponseCallback<Schema$DeploymentsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Deployments$List,
+      callback: BodyResponseCallback<Schema$DeploymentsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Deployments$List|
-        BodyResponseCallback<Schema$DeploymentsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeploymentsListResponse>,
-        callback?: BodyResponseCallback<Schema$DeploymentsListResponse>):
-        void|GaxiosPromise<Schema$DeploymentsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Deployments$List
+        | BodyResponseCallback<Schema$DeploymentsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeploymentsListResponse>,
+      callback?: BodyResponseCallback<Schema$DeploymentsListResponse>
+    ): void | GaxiosPromise<Schema$DeploymentsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2411,18 +2492,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeploymentsListResponse>(parameters, callback);
@@ -2430,7 +2512,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$DeploymentsListResponse>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.patch
@@ -2450,25 +2531,31 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Deployments$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Deployments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Deployments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Deployments$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Deployments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Deployments$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2485,18 +2572,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2504,7 +2592,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.setIamPolicy
@@ -2522,24 +2609,28 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Deployments$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Deployments$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Deployments$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Deployments$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Deployments$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Deployments$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2556,18 +2647,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/setIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2575,7 +2667,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.stop
@@ -2592,23 +2683,29 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Deployments$Stop, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     stop(
-        params: Params$Resource$Deployments$Stop,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Deployments$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     stop(
-        params: Params$Resource$Deployments$Stop,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Deployments$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     stop(callback: BodyResponseCallback<Schema$Operation>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Deployments$Stop|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Stop
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2626,18 +2723,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/stop')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/stop'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2645,7 +2743,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.testIamPermissions
@@ -2662,27 +2759,34 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Deployments$Testiampermissions,
-        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
+      params?: Params$Resource$Deployments$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Deployments$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+      params: Params$Resource$Deployments$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Deployments$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+      params: Params$Resource$Deployments$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Deployments$Testiampermissions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Deployments$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2699,18 +2803,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/testIamPermissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -2718,7 +2823,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.deployments.update
@@ -2739,25 +2843,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Deployments$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Deployments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Deployments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Deployments$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Deployments$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Deployments$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Deployments$Update;
+      paramsOrCallback?:
+        | Params$Resource$Deployments$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2774,18 +2883,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2795,12 +2905,12 @@ export namespace deploymentmanager_v2beta {
     }
   }
 
-  export interface Params$Resource$Deployments$Cancelpreview extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Cancelpreview
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -2816,12 +2926,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
-  export interface Params$Resource$Deployments$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for deleting resources.
@@ -2840,7 +2950,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -2851,12 +2961,12 @@ export namespace deploymentmanager_v2beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID for this request.
@@ -2867,12 +2977,12 @@ export namespace deploymentmanager_v2beta {
      */
     resource?: string;
   }
-  export interface Params$Resource$Deployments$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for creating new resources.
@@ -2902,7 +3012,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A filter expression that filters resources listed in the response. The
@@ -2952,12 +3062,12 @@ export namespace deploymentmanager_v2beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for creating new resources.
@@ -2994,12 +3104,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID for this request.
@@ -3019,7 +3129,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -3035,12 +3145,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$DeploymentsStopRequest;
   }
-  export interface Params$Resource$Deployments$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Project ID for this request.
@@ -3056,12 +3166,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Deployments$Update extends
-      StandardParameters {
+  export interface Params$Resource$Deployments$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Sets the policy to use for creating new resources.
@@ -3099,13 +3209,11 @@ export namespace deploymentmanager_v2beta {
     requestBody?: Schema$Deployment;
   }
 
-
   export class Resource$Manifests {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.manifests.get
@@ -3121,19 +3229,27 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Manifests$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Manifest>;
-    get(params: Params$Resource$Manifests$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Manifest>,
-        callback: BodyResponseCallback<Schema$Manifest>): void;
-    get(params: Params$Resource$Manifests$Get,
-        callback: BodyResponseCallback<Schema$Manifest>): void;
+    get(
+      params?: Params$Resource$Manifests$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Manifest>;
+    get(
+      params: Params$Resource$Manifests$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Manifest>,
+      callback: BodyResponseCallback<Schema$Manifest>
+    ): void;
+    get(
+      params: Params$Resource$Manifests$Get,
+      callback: BodyResponseCallback<Schema$Manifest>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Manifest>): void;
-    get(paramsOrCallback?: Params$Resource$Manifests$Get|
-        BodyResponseCallback<Schema$Manifest>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Manifest>,
-        callback?: BodyResponseCallback<Schema$Manifest>):
-        void|GaxiosPromise<Schema$Manifest> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Manifests$Get
+        | BodyResponseCallback<Schema$Manifest>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Manifest>,
+      callback?: BodyResponseCallback<Schema$Manifest>
+    ): void | GaxiosPromise<Schema$Manifest> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3151,18 +3267,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/manifests/{manifest}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/manifests/{manifest}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Manifest>(parameters, callback);
@@ -3170,7 +3287,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Manifest>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.manifests.list
@@ -3189,24 +3305,31 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Manifests$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ManifestsListResponse>;
     list(
-        params: Params$Resource$Manifests$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManifestsListResponse>,
-        callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
+      params?: Params$Resource$Manifests$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManifestsListResponse>;
     list(
-        params: Params$Resource$Manifests$List,
-        callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
+      params: Params$Resource$Manifests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManifestsListResponse>,
+      callback: BodyResponseCallback<Schema$ManifestsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Manifests$List,
+      callback: BodyResponseCallback<Schema$ManifestsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Manifests$List|
-        BodyResponseCallback<Schema$ManifestsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManifestsListResponse>,
-        callback?: BodyResponseCallback<Schema$ManifestsListResponse>):
-        void|GaxiosPromise<Schema$ManifestsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Manifests$List
+        | BodyResponseCallback<Schema$ManifestsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManifestsListResponse>,
+      callback?: BodyResponseCallback<Schema$ManifestsListResponse>
+    ): void | GaxiosPromise<Schema$ManifestsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3224,18 +3347,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/manifests')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/manifests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManifestsListResponse>(parameters, callback);
@@ -3249,7 +3373,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -3268,7 +3392,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -3323,13 +3447,11 @@ export namespace deploymentmanager_v2beta {
     project?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.operations.get
@@ -3344,20 +3466,29 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3375,18 +3506,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/operations/{operation}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/operations/{operation}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3394,7 +3526,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.operations.list
@@ -3412,24 +3543,31 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$OperationsListResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OperationsListResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      callback: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OperationsListResponse>,
-        callback?: BodyResponseCallback<Schema$OperationsListResponse>):
-        void|GaxiosPromise<Schema$OperationsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OperationsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperationsListResponse>
+    ): void | GaxiosPromise<Schema$OperationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3447,18 +3585,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/operations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/operations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -3472,7 +3611,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation for this request.
@@ -3487,7 +3626,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A filter expression that filters resources listed in the response. The
@@ -3538,13 +3677,11 @@ export namespace deploymentmanager_v2beta {
     project?: string;
   }
 
-
   export class Resource$Resources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.resources.get
@@ -3560,19 +3697,27 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Resources$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Resource>;
-    get(params: Params$Resource$Resources$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Resource>,
-        callback: BodyResponseCallback<Schema$Resource>): void;
-    get(params: Params$Resource$Resources$Get,
-        callback: BodyResponseCallback<Schema$Resource>): void;
+    get(
+      params?: Params$Resource$Resources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Resource>;
+    get(
+      params: Params$Resource$Resources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Resource>,
+      callback: BodyResponseCallback<Schema$Resource>
+    ): void;
+    get(
+      params: Params$Resource$Resources$Get,
+      callback: BodyResponseCallback<Schema$Resource>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Resource>): void;
-    get(paramsOrCallback?: Params$Resource$Resources$Get|
-        BodyResponseCallback<Schema$Resource>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Resource>,
-        callback?: BodyResponseCallback<Schema$Resource>):
-        void|GaxiosPromise<Schema$Resource> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Resources$Get
+        | BodyResponseCallback<Schema$Resource>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Resource>,
+      callback?: BodyResponseCallback<Schema$Resource>
+    ): void | GaxiosPromise<Schema$Resource> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3590,18 +3735,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/resources/{resource}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/resources/{resource}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Resource>(parameters, callback);
@@ -3609,7 +3755,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Resource>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.resources.list
@@ -3628,24 +3773,31 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Resources$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ResourcesListResponse>;
     list(
-        params: Params$Resource$Resources$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResourcesListResponse>,
-        callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
+      params?: Params$Resource$Resources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResourcesListResponse>;
     list(
-        params: Params$Resource$Resources$List,
-        callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
+      params: Params$Resource$Resources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResourcesListResponse>,
+      callback: BodyResponseCallback<Schema$ResourcesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Resources$List,
+      callback: BodyResponseCallback<Schema$ResourcesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Resources$List|
-        BodyResponseCallback<Schema$ResourcesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResourcesListResponse>,
-        callback?: BodyResponseCallback<Schema$ResourcesListResponse>):
-        void|GaxiosPromise<Schema$ResourcesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Resources$List
+        | BodyResponseCallback<Schema$ResourcesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResourcesListResponse>,
+      callback?: BodyResponseCallback<Schema$ResourcesListResponse>
+    ): void | GaxiosPromise<Schema$ResourcesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3663,18 +3815,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/resources')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/resources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResourcesListResponse>(parameters, callback);
@@ -3688,7 +3841,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -3707,7 +3860,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the deployment for this request.
@@ -3762,13 +3915,11 @@ export namespace deploymentmanager_v2beta {
     project?: string;
   }
 
-
   export class Resource$Typeproviders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.typeProviders.delete
@@ -3784,25 +3935,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Typeproviders$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Typeproviders$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Typeproviders$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Typeproviders$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Typeproviders$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3819,18 +3975,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3838,7 +3995,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.typeProviders.get
@@ -3853,22 +4009,31 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Typeproviders$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TypeProvider>;
-    get(params: Params$Resource$Typeproviders$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TypeProvider>,
-        callback: BodyResponseCallback<Schema$TypeProvider>): void;
-    get(params: Params$Resource$Typeproviders$Get,
-        callback: BodyResponseCallback<Schema$TypeProvider>): void;
+    get(
+      params?: Params$Resource$Typeproviders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TypeProvider>;
+    get(
+      params: Params$Resource$Typeproviders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TypeProvider>,
+      callback: BodyResponseCallback<Schema$TypeProvider>
+    ): void;
+    get(
+      params: Params$Resource$Typeproviders$Get,
+      callback: BodyResponseCallback<Schema$TypeProvider>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TypeProvider>): void;
-    get(paramsOrCallback?: Params$Resource$Typeproviders$Get|
-        BodyResponseCallback<Schema$TypeProvider>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TypeProvider>,
-        callback?: BodyResponseCallback<Schema$TypeProvider>):
-        void|GaxiosPromise<Schema$TypeProvider> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$Get
+        | BodyResponseCallback<Schema$TypeProvider>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TypeProvider>,
+      callback?: BodyResponseCallback<Schema$TypeProvider>
+    ): void | GaxiosPromise<Schema$TypeProvider> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3885,18 +4050,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TypeProvider>(parameters, callback);
@@ -3904,7 +4070,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$TypeProvider>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.typeProviders.getType
@@ -3921,24 +4086,28 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     getType(
-        params?: Params$Resource$Typeproviders$Gettype,
-        options?: MethodOptions): GaxiosPromise<Schema$TypeInfo>;
+      params?: Params$Resource$Typeproviders$Gettype,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TypeInfo>;
     getType(
-        params: Params$Resource$Typeproviders$Gettype,
-        options: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
-        callback: BodyResponseCallback<Schema$TypeInfo>): void;
+      params: Params$Resource$Typeproviders$Gettype,
+      options: MethodOptions | BodyResponseCallback<Schema$TypeInfo>,
+      callback: BodyResponseCallback<Schema$TypeInfo>
+    ): void;
     getType(
-        params: Params$Resource$Typeproviders$Gettype,
-        callback: BodyResponseCallback<Schema$TypeInfo>): void;
+      params: Params$Resource$Typeproviders$Gettype,
+      callback: BodyResponseCallback<Schema$TypeInfo>
+    ): void;
     getType(callback: BodyResponseCallback<Schema$TypeInfo>): void;
     getType(
-        paramsOrCallback?: Params$Resource$Typeproviders$Gettype|
-        BodyResponseCallback<Schema$TypeInfo>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
-        callback?: BodyResponseCallback<Schema$TypeInfo>):
-        void|GaxiosPromise<Schema$TypeInfo> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Gettype;
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$Gettype
+        | BodyResponseCallback<Schema$TypeInfo>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$TypeInfo>,
+      callback?: BodyResponseCallback<Schema$TypeInfo>
+    ): void | GaxiosPromise<Schema$TypeInfo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$Gettype;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3955,18 +4124,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}/types/{type}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}/types/{type}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'typeProvider', 'type'],
         pathParams: ['project', 'type', 'typeProvider'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TypeInfo>(parameters, callback);
@@ -3974,7 +4144,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$TypeInfo>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.typeProviders.insert
@@ -3990,25 +4159,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Typeproviders$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Typeproviders$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     insert(
-        params: Params$Resource$Typeproviders$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(
-        params: Params$Resource$Typeproviders$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Typeproviders$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4025,18 +4199,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4044,7 +4219,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.typeProviders.list
@@ -4062,27 +4236,35 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Typeproviders$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TypeProvidersListResponse>;
     list(
-        params: Params$Resource$Typeproviders$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TypeProvidersListResponse>,
-        callback: BodyResponseCallback<Schema$TypeProvidersListResponse>): void;
+      params?: Params$Resource$Typeproviders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TypeProvidersListResponse>;
     list(
-        params: Params$Resource$Typeproviders$List,
-        callback: BodyResponseCallback<Schema$TypeProvidersListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$TypeProvidersListResponse>):
-        void;
+      params: Params$Resource$Typeproviders$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TypeProvidersListResponse>,
+      callback: BodyResponseCallback<Schema$TypeProvidersListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Typeproviders$List|
-        BodyResponseCallback<Schema$TypeProvidersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TypeProvidersListResponse>,
-        callback?: BodyResponseCallback<Schema$TypeProvidersListResponse>):
-        void|GaxiosPromise<Schema$TypeProvidersListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$List;
+      params: Params$Resource$Typeproviders$List,
+      callback: BodyResponseCallback<Schema$TypeProvidersListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$TypeProvidersListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$List
+        | BodyResponseCallback<Schema$TypeProvidersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TypeProvidersListResponse>,
+      callback?: BodyResponseCallback<Schema$TypeProvidersListResponse>
+    ): void | GaxiosPromise<Schema$TypeProvidersListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4099,27 +4281,29 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TypeProvidersListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TypeProvidersListResponse>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.typeProviders.listTypes
@@ -4139,31 +4323,34 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     listTypes(
-        params?: Params$Resource$Typeproviders$Listtypes,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TypeProvidersListTypesResponse>;
+      params?: Params$Resource$Typeproviders$Listtypes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TypeProvidersListTypesResponse>;
     listTypes(
-        params: Params$Resource$Typeproviders$Listtypes,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
-        callback: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
-        void;
+      params: Params$Resource$Typeproviders$Listtypes,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
+      callback: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>
+    ): void;
     listTypes(
-        params: Params$Resource$Typeproviders$Listtypes,
-        callback: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
-        void;
-    listTypes(callback:
-                  BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
-        void;
+      params: Params$Resource$Typeproviders$Listtypes,
+      callback: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>
+    ): void;
     listTypes(
-        paramsOrCallback?: Params$Resource$Typeproviders$Listtypes|
-        BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
-        callback?: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
-        void|GaxiosPromise<Schema$TypeProvidersListTypesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Listtypes;
+      callback: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>
+    ): void;
+    listTypes(
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$Listtypes
+        | BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
+      callback?: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>
+    ): void | GaxiosPromise<Schema$TypeProvidersListTypesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$Listtypes;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4180,28 +4367,31 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}/types')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}/types'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TypeProvidersListTypesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TypeProvidersListTypesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * deploymentmanager.typeProviders.patch
@@ -4218,25 +4408,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Typeproviders$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Typeproviders$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Typeproviders$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Typeproviders$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Typeproviders$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4253,18 +4448,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4272,7 +4468,6 @@ export namespace deploymentmanager_v2beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * deploymentmanager.typeProviders.update
@@ -4289,25 +4484,30 @@ export namespace deploymentmanager_v2beta {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Typeproviders$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Typeproviders$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Typeproviders$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Typeproviders$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Typeproviders$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Typeproviders$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Update;
+      paramsOrCallback?:
+        | Params$Resource$Typeproviders$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Typeproviders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4324,18 +4524,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4345,12 +4546,12 @@ export namespace deploymentmanager_v2beta {
     }
   }
 
-  export interface Params$Resource$Typeproviders$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this request.
@@ -4361,12 +4562,12 @@ export namespace deploymentmanager_v2beta {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Get extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this request.
@@ -4377,12 +4578,12 @@ export namespace deploymentmanager_v2beta {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Gettype extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$Gettype
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this request.
@@ -4397,12 +4598,12 @@ export namespace deploymentmanager_v2beta {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this request.
@@ -4414,12 +4615,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$TypeProvider;
   }
-  export interface Params$Resource$Typeproviders$List extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A filter expression that filters resources listed in the response. The
@@ -4469,12 +4670,12 @@ export namespace deploymentmanager_v2beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Typeproviders$Listtypes extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$Listtypes
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A filter expression that filters resources listed in the response. The
@@ -4528,12 +4729,12 @@ export namespace deploymentmanager_v2beta {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this request.
@@ -4549,12 +4750,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$TypeProvider;
   }
-  export interface Params$Resource$Typeproviders$Update extends
-      StandardParameters {
+  export interface Params$Resource$Typeproviders$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this request.
@@ -4570,14 +4771,12 @@ export namespace deploymentmanager_v2beta {
      */
     requestBody?: Schema$TypeProvider;
   }
-
 
   export class Resource$Types {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * deploymentmanager.types.list
@@ -4595,23 +4794,29 @@ export namespace deploymentmanager_v2beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Types$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TypesListResponse>;
     list(
-        params: Params$Resource$Types$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TypesListResponse>,
-        callback: BodyResponseCallback<Schema$TypesListResponse>): void;
+      params?: Params$Resource$Types$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TypesListResponse>;
     list(
-        params: Params$Resource$Types$List,
-        callback: BodyResponseCallback<Schema$TypesListResponse>): void;
+      params: Params$Resource$Types$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TypesListResponse>,
+      callback: BodyResponseCallback<Schema$TypesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Types$List,
+      callback: BodyResponseCallback<Schema$TypesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TypesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Types$List|
-        BodyResponseCallback<Schema$TypesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TypesListResponse>,
-        callback?: BodyResponseCallback<Schema$TypesListResponse>):
-        void|GaxiosPromise<Schema$TypesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Types$List
+        | BodyResponseCallback<Schema$TypesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TypesListResponse>,
+      callback?: BodyResponseCallback<Schema$TypesListResponse>
+    ): void | GaxiosPromise<Schema$TypesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4629,17 +4834,19 @@ export namespace deploymentmanager_v2beta {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/deploymentmanager/v2beta/projects/{project}/global/types')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/deploymentmanager/v2beta/projects/{project}/global/types'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TypesListResponse>(parameters, callback);
@@ -4653,7 +4860,7 @@ export namespace deploymentmanager_v2beta {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A filter expression that filters resources listed in the response. The

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1392,13 +1404,11 @@ export namespace analyticsreporting_v4 {
     sessionId?: string;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analyticsreporting.reports.batchGet
@@ -1413,23 +1423,28 @@ export namespace analyticsreporting_v4 {
      * @return {object} Request object
      */
     batchGet(
-        params?: Params$Resource$Reports$Batchget,
-        options?: MethodOptions): GaxiosPromise<Schema$GetReportsResponse>;
+      params?: Params$Resource$Reports$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetReportsResponse>;
     batchGet(
-        params: Params$Resource$Reports$Batchget,
-        options: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
-        callback: BodyResponseCallback<Schema$GetReportsResponse>): void;
+      params: Params$Resource$Reports$Batchget,
+      options: MethodOptions | BodyResponseCallback<Schema$GetReportsResponse>,
+      callback: BodyResponseCallback<Schema$GetReportsResponse>
+    ): void;
     batchGet(
-        params: Params$Resource$Reports$Batchget,
-        callback: BodyResponseCallback<Schema$GetReportsResponse>): void;
+      params: Params$Resource$Reports$Batchget,
+      callback: BodyResponseCallback<Schema$GetReportsResponse>
+    ): void;
     batchGet(callback: BodyResponseCallback<Schema$GetReportsResponse>): void;
     batchGet(
-        paramsOrCallback?: Params$Resource$Reports$Batchget|
-        BodyResponseCallback<Schema$GetReportsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetReportsResponse>,
-        callback?: BodyResponseCallback<Schema$GetReportsResponse>):
-        void|GaxiosPromise<Schema$GetReportsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Batchget
+        | BodyResponseCallback<Schema$GetReportsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetReportsResponse>,
+      callback?: BodyResponseCallback<Schema$GetReportsResponse>
+    ): void | GaxiosPromise<Schema$GetReportsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1445,19 +1460,22 @@ export namespace analyticsreporting_v4 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://analyticsreporting.googleapis.com/';
+        options.rootUrl || 'https://analyticsreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/reports:batchGet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/reports:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetReportsResponse>(parameters, callback);
@@ -1471,8 +1489,7 @@ export namespace analyticsreporting_v4 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1480,13 +1497,11 @@ export namespace analyticsreporting_v4 {
     requestBody?: Schema$GetReportsRequest;
   }
 
-
   export class Resource$Useractivity {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analyticsreporting.userActivity.search
@@ -1501,29 +1516,34 @@ export namespace analyticsreporting_v4 {
      * @return {object} Request object
      */
     search(
-        params?: Params$Resource$Useractivity$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchUserActivityResponse>;
+      params?: Params$Resource$Useractivity$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchUserActivityResponse>;
     search(
-        params: Params$Resource$Useractivity$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchUserActivityResponse>,
-        callback: BodyResponseCallback<Schema$SearchUserActivityResponse>):
-        void;
+      params: Params$Resource$Useractivity$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>,
+      callback: BodyResponseCallback<Schema$SearchUserActivityResponse>
+    ): void;
     search(
-        params: Params$Resource$Useractivity$Search,
-        callback: BodyResponseCallback<Schema$SearchUserActivityResponse>):
-        void;
-    search(callback: BodyResponseCallback<Schema$SearchUserActivityResponse>):
-        void;
+      params: Params$Resource$Useractivity$Search,
+      callback: BodyResponseCallback<Schema$SearchUserActivityResponse>
+    ): void;
     search(
-        paramsOrCallback?: Params$Resource$Useractivity$Search|
-        BodyResponseCallback<Schema$SearchUserActivityResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchUserActivityResponse>,
-        callback?: BodyResponseCallback<Schema$SearchUserActivityResponse>):
-        void|GaxiosPromise<Schema$SearchUserActivityResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Useractivity$Search;
+      callback: BodyResponseCallback<Schema$SearchUserActivityResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Useractivity$Search
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>,
+      callback?: BodyResponseCallback<Schema$SearchUserActivityResponse>
+    ): void | GaxiosPromise<Schema$SearchUserActivityResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Useractivity$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1538,36 +1558,40 @@ export namespace analyticsreporting_v4 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://analyticsreporting.googleapis.com/';
+        options.rootUrl || 'https://analyticsreporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v4/userActivity:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v4/userActivity:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchUserActivityResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SearchUserActivityResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Useractivity$Search extends
-      StandardParameters {
+  export interface Params$Resource$Useractivity$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

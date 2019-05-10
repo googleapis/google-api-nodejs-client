@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {toolresults_v1beta3} from './v1beta3';
 
 export const VERSIONS = {
-  'v1beta3': toolresults_v1beta3.Toolresults,
+  v1beta3: toolresults_v1beta3.Toolresults,
 };
 
-export function toolresults(version: 'v1beta3'):
-    toolresults_v1beta3.Toolresults;
-export function toolresults(options: toolresults_v1beta3.Options):
-    toolresults_v1beta3.Toolresults;
+export function toolresults(
+  version: 'v1beta3'
+): toolresults_v1beta3.Toolresults;
+export function toolresults(
+  options: toolresults_v1beta3.Options
+): toolresults_v1beta3.Toolresults;
 export function toolresults<T = toolresults_v1beta3.Toolresults>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta3'|toolresults_v1beta3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1beta3' | toolresults_v1beta3.Options
+) {
   return getAPI<T>('toolresults', versionOrOptions, VERSIONS, this);
 }
 

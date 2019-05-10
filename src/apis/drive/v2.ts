@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -127,7 +139,7 @@ export namespace drive_v2 {
      * specific type takes precedence.
      */
     additionalRoleInfo?: Array<{
-      roleSets?: Array<{additionalRoles?: string[]; primaryRole?: string;}>;
+      roleSets?: Array<{additionalRoles?: string[]; primaryRole?: string}>;
       type?: string;
     }>;
     /**
@@ -146,8 +158,11 @@ export namespace drive_v2 {
     /**
      * A list of themes that are supported for shared drives.
      */
-    driveThemes?:
-        Array<{backgroundImageLink?: string; colorRgb?: string; id?: string;}>;
+    driveThemes?: Array<{
+      backgroundImageLink?: string;
+      colorRgb?: string;
+      id?: string;
+    }>;
     /**
      * The ETag of the item.
      */
@@ -155,11 +170,11 @@ export namespace drive_v2 {
     /**
      * The allowable export formats.
      */
-    exportFormats?: Array<{source?: string; targets?: string[];}>;
+    exportFormats?: Array<{source?: string; targets?: string[]}>;
     /**
      * List of additional features enabled on this account.
      */
-    features?: Array<{featureName?: string; featureRate?: number;}>;
+    features?: Array<{featureName?: string; featureRate?: number}>;
     /**
      * The palette of allowable folder colors as RGB hex strings.
      */
@@ -167,7 +182,7 @@ export namespace drive_v2 {
     /**
      * The allowable import formats.
      */
-    importFormats?: Array<{source?: string; targets?: string[];}>;
+    importFormats?: Array<{source?: string; targets?: string[]}>;
     /**
      * A boolean indicating whether the authenticated app is installed by the
      * authenticated user.
@@ -191,7 +206,7 @@ export namespace drive_v2 {
      * List of max upload sizes for each file type. The most specific type takes
      * precedence.
      */
-    maxUploadSizes?: Array<{size?: string; type?: string;}>;
+    maxUploadSizes?: Array<{size?: string; type?: string}>;
     /**
      * The name of the current user.
      */
@@ -203,7 +218,7 @@ export namespace drive_v2 {
     /**
      * The amount of storage quota used by different Google services.
      */
-    quotaBytesByService?: Array<{bytesUsed?: string; serviceName?: string;}>;
+    quotaBytesByService?: Array<{bytesUsed?: string; serviceName?: string}>;
     /**
      * The total number of quota bytes.
      */
@@ -240,8 +255,11 @@ export namespace drive_v2 {
     /**
      * Deprecated - use driveThemes instead.
      */
-    teamDriveThemes?:
-        Array<{backgroundImageLink?: string; colorRgb?: string; id?: string;}>;
+    teamDriveThemes?: Array<{
+      backgroundImageLink?: string;
+      colorRgb?: string;
+      id?: string;
+    }>;
     /**
      * The authenticated user.
      */
@@ -275,7 +293,7 @@ export namespace drive_v2 {
     /**
      * The various icons for the app.
      */
-    icons?: Array<{category?: string; iconUrl?: string; size?: number;}>;
+    icons?: Array<{category?: string; iconUrl?: string; size?: number}>;
     /**
      * The ID of the app.
      */
@@ -512,7 +530,7 @@ export namespace drive_v2 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string;};
+    params?: {[key: string]: string};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -617,7 +635,7 @@ export namespace drive_v2 {
     /**
      * The context of the file which is being commented on.
      */
-    context?: {type?: string; value?: string;};
+    context?: {type?: string; value?: string};
     /**
      * The date when this comment was first created.
      */
@@ -989,7 +1007,7 @@ export namespace drive_v2 {
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks?: {[key: string]: string;};
+    exportLinks?: {[key: string]: string};
     /**
      * The final component of fullFileExtension with trailing text that does not
      * appear to be part of the extension removed. This field is only populated
@@ -1064,7 +1082,7 @@ export namespace drive_v2 {
       height?: number;
       isoSpeed?: number;
       lens?: string;
-      location?: {altitude?: number; latitude?: number; longitude?: number;};
+      location?: {altitude?: number; latitude?: number; longitude?: number};
       maxApertureValue?: number;
       meteringMode?: string;
       rotation?: number;
@@ -1076,7 +1094,7 @@ export namespace drive_v2 {
     /**
      * Indexable text attributes for the file (can only be written)
      */
-    indexableText?: {text?: string;};
+    indexableText?: {text?: string};
     /**
      * Whether the file was created or opened by the requesting app.
      */
@@ -1142,7 +1160,7 @@ export namespace drive_v2 {
      * file with that app. Only populated when the drive.apps.readonly scope is
      * used.
      */
-    openWithLinks?: {[key: string]: string;};
+    openWithLinks?: {[key: string]: string};
     /**
      * The original filename of the uploaded content if available, or else the
      * original value of the title field. This is only available for files with
@@ -1224,7 +1242,7 @@ export namespace drive_v2 {
      * A thumbnail for the file. This will only be used if a standard thumbnail
      * cannot be generated.
      */
-    thumbnail?: {image?: string; mimeType?: string;};
+    thumbnail?: {image?: string; mimeType?: string};
     /**
      * A short-lived link to the file&#39;s thumbnail. Typically lasts on the
      * order of hours. Only populated when the requesting app can access the
@@ -1264,8 +1282,11 @@ export namespace drive_v2 {
     /**
      * Metadata about video media. This will only be present for video types.
      */
-    videoMediaMetadata?:
-        {durationMillis?: string; height?: number; width?: number;};
+    videoMediaMetadata?: {
+      durationMillis?: string;
+      height?: number;
+      width?: number;
+    };
     /**
      * A link for downloading the content of the file in a browser using cookie
      * based authentication. In cases where the content is shared publicly, the
@@ -1613,7 +1634,7 @@ export namespace drive_v2 {
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks?: {[key: string]: string;};
+    exportLinks?: {[key: string]: string};
     /**
      * The size of the revision in bytes. This will only be populated on files
      * with content stored in Drive.
@@ -1856,16 +1877,14 @@ export namespace drive_v2 {
     /**
      * The user&#39;s profile picture.
      */
-    picture?: {url?: string;};
+    picture?: {url?: string};
   }
-
 
   export class Resource$About {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.about.get
@@ -1882,19 +1901,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$About$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$About>;
-    get(params: Params$Resource$About$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$About>,
-        callback: BodyResponseCallback<Schema$About>): void;
-    get(params: Params$Resource$About$Get,
-        callback: BodyResponseCallback<Schema$About>): void;
+    get(
+      params?: Params$Resource$About$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$About>;
+    get(
+      params: Params$Resource$About$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$About>,
+      callback: BodyResponseCallback<Schema$About>
+    ): void;
+    get(
+      params: Params$Resource$About$Get,
+      callback: BodyResponseCallback<Schema$About>
+    ): void;
     get(callback: BodyResponseCallback<Schema$About>): void;
-    get(paramsOrCallback?: Params$Resource$About$Get|
-        BodyResponseCallback<Schema$About>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$About>,
-        callback?: BodyResponseCallback<Schema$About>):
-        void|GaxiosPromise<Schema$About> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$About$Get
+        | BodyResponseCallback<Schema$About>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$About>,
+      callback?: BodyResponseCallback<Schema$About>
+    ): void | GaxiosPromise<Schema$About> {
       let params = (paramsOrCallback || {}) as Params$Resource$About$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1912,15 +1939,16 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/about').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/about').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$About>(parameters, callback);
@@ -1934,7 +1962,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to count changes outside the My Drive hierarchy. When set to
@@ -1954,13 +1982,11 @@ export namespace drive_v2 {
     startChangeId?: string;
   }
 
-
   export class Resource$Apps {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.apps.get
@@ -1974,19 +2000,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Apps$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$App>;
-    get(params: Params$Resource$Apps$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$App>,
-        callback: BodyResponseCallback<Schema$App>): void;
-    get(params: Params$Resource$Apps$Get,
-        callback: BodyResponseCallback<Schema$App>): void;
+    get(
+      params?: Params$Resource$Apps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$App>;
+    get(
+      params: Params$Resource$Apps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$App>,
+      callback: BodyResponseCallback<Schema$App>
+    ): void;
+    get(
+      params: Params$Resource$Apps$Get,
+      callback: BodyResponseCallback<Schema$App>
+    ): void;
     get(callback: BodyResponseCallback<Schema$App>): void;
-    get(paramsOrCallback?: Params$Resource$Apps$Get|
-        BodyResponseCallback<Schema$App>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$App>,
-        callback?: BodyResponseCallback<Schema$App>):
-        void|GaxiosPromise<Schema$App> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Get
+        | BodyResponseCallback<Schema$App>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$App>,
+      callback?: BodyResponseCallback<Schema$App>
+    ): void | GaxiosPromise<Schema$App> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2004,16 +2038,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/apps/{appId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/apps/{appId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['appId'],
         pathParams: ['appId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$App>(parameters, callback);
@@ -2021,7 +2058,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$App>(parameters);
       }
     }
-
 
     /**
      * drive.apps.list
@@ -2037,22 +2073,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Apps$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AppList>;
     list(
-        params: Params$Resource$Apps$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AppList>,
-        callback: BodyResponseCallback<Schema$AppList>): void;
+      params?: Params$Resource$Apps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppList>;
     list(
-        params: Params$Resource$Apps$List,
-        callback: BodyResponseCallback<Schema$AppList>): void;
+      params: Params$Resource$Apps$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AppList>,
+      callback: BodyResponseCallback<Schema$AppList>
+    ): void;
+    list(
+      params: Params$Resource$Apps$List,
+      callback: BodyResponseCallback<Schema$AppList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AppList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Apps$List|
-        BodyResponseCallback<Schema$AppList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppList>,
-        callback?: BodyResponseCallback<Schema$AppList>):
-        void|GaxiosPromise<Schema$AppList> {
+      paramsOrCallback?:
+        | Params$Resource$Apps$List
+        | BodyResponseCallback<Schema$AppList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppList>,
+      callback?: BodyResponseCallback<Schema$AppList>
+    ): void | GaxiosPromise<Schema$AppList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2070,15 +2111,16 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/apps').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/apps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppList>(parameters, callback);
@@ -2092,7 +2134,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the app.
@@ -2103,7 +2145,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A comma-separated list of file extensions for open with filtering. All
@@ -2127,13 +2169,11 @@ export namespace drive_v2 {
     languageCode?: string;
   }
 
-
   export class Resource$Changes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.changes.get
@@ -2152,19 +2192,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Changes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Change>;
-    get(params: Params$Resource$Changes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback: BodyResponseCallback<Schema$Change>): void;
-    get(params: Params$Resource$Changes$Get,
-        callback: BodyResponseCallback<Schema$Change>): void;
+    get(
+      params?: Params$Resource$Changes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Change>;
+    get(
+      params: Params$Resource$Changes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Change>,
+      callback: BodyResponseCallback<Schema$Change>
+    ): void;
+    get(
+      params: Params$Resource$Changes$Get,
+      callback: BodyResponseCallback<Schema$Change>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Change>): void;
-    get(paramsOrCallback?: Params$Resource$Changes$Get|
-        BodyResponseCallback<Schema$Change>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback?: BodyResponseCallback<Schema$Change>):
-        void|GaxiosPromise<Schema$Change> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Changes$Get
+        | BodyResponseCallback<Schema$Change>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Change>,
+      callback?: BodyResponseCallback<Schema$Change>
+    ): void | GaxiosPromise<Schema$Change> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2182,16 +2230,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/changes/{changeId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/changes/{changeId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['changeId'],
         pathParams: ['changeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -2199,7 +2250,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Change>(parameters);
       }
     }
-
 
     /**
      * drive.changes.getStartPageToken
@@ -2217,26 +2267,32 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     getStartPageToken(
-        params?: Params$Resource$Changes$Getstartpagetoken,
-        options?: MethodOptions): GaxiosPromise<Schema$StartPageToken>;
+      params?: Params$Resource$Changes$Getstartpagetoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StartPageToken>;
     getStartPageToken(
-        params: Params$Resource$Changes$Getstartpagetoken,
-        options: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
-        callback: BodyResponseCallback<Schema$StartPageToken>): void;
+      params: Params$Resource$Changes$Getstartpagetoken,
+      options: MethodOptions | BodyResponseCallback<Schema$StartPageToken>,
+      callback: BodyResponseCallback<Schema$StartPageToken>
+    ): void;
     getStartPageToken(
-        params: Params$Resource$Changes$Getstartpagetoken,
-        callback: BodyResponseCallback<Schema$StartPageToken>): void;
-    getStartPageToken(callback: BodyResponseCallback<Schema$StartPageToken>):
-        void;
+      params: Params$Resource$Changes$Getstartpagetoken,
+      callback: BodyResponseCallback<Schema$StartPageToken>
+    ): void;
     getStartPageToken(
-        paramsOrCallback?: Params$Resource$Changes$Getstartpagetoken|
-        BodyResponseCallback<Schema$StartPageToken>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StartPageToken>,
-        callback?: BodyResponseCallback<Schema$StartPageToken>):
-        void|GaxiosPromise<Schema$StartPageToken> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Changes$Getstartpagetoken;
+      callback: BodyResponseCallback<Schema$StartPageToken>
+    ): void;
+    getStartPageToken(
+      paramsOrCallback?:
+        | Params$Resource$Changes$Getstartpagetoken
+        | BodyResponseCallback<Schema$StartPageToken>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StartPageToken>,
+      callback?: BodyResponseCallback<Schema$StartPageToken>
+    ): void | GaxiosPromise<Schema$StartPageToken> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Changes$Getstartpagetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2253,16 +2309,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/changes/startPageToken')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/changes/startPageToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StartPageToken>(parameters, callback);
@@ -2270,7 +2329,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$StartPageToken>(parameters);
       }
     }
-
 
     /**
      * drive.changes.list
@@ -2296,23 +2354,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Changes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChangeList>;
     list(
-        params: Params$Resource$Changes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
-        callback: BodyResponseCallback<Schema$ChangeList>): void;
+      params?: Params$Resource$Changes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChangeList>;
     list(
-        params: Params$Resource$Changes$List,
-        callback: BodyResponseCallback<Schema$ChangeList>): void;
+      params: Params$Resource$Changes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ChangeList>,
+      callback: BodyResponseCallback<Schema$ChangeList>
+    ): void;
+    list(
+      params: Params$Resource$Changes$List,
+      callback: BodyResponseCallback<Schema$ChangeList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ChangeList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Changes$List|
-        BodyResponseCallback<Schema$ChangeList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChangeList>,
-        callback?: BodyResponseCallback<Schema$ChangeList>):
-        void|GaxiosPromise<Schema$ChangeList> {
+      paramsOrCallback?:
+        | Params$Resource$Changes$List
+        | BodyResponseCallback<Schema$ChangeList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChangeList>,
+      callback?: BodyResponseCallback<Schema$ChangeList>
+    ): void | GaxiosPromise<Schema$ChangeList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2330,16 +2394,16 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/drive/v2/changes').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/changes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChangeList>(parameters, callback);
@@ -2347,7 +2411,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$ChangeList>(parameters);
       }
     }
-
 
     /**
      * drive.changes.watch
@@ -2374,22 +2437,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Changes$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Changes$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Changes$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Changes$Watch,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Changes$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    watch(
+      params: Params$Resource$Changes$Watch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Changes$Watch|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Changes$Watch
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2407,16 +2475,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/changes/watch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/changes/watch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -2430,7 +2501,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the change.
@@ -2454,12 +2525,12 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Changes$Getstartpagetoken extends
-      StandardParameters {
+  export interface Params$Resource$Changes$Getstartpagetoken
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the shared drive for which the starting pageToken for listing
@@ -2484,7 +2555,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The shared drive from which changes will be returned. If specified the
@@ -2557,7 +2628,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The shared drive from which changes will be returned. If specified the
@@ -2632,13 +2703,11 @@ export namespace drive_v2 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Channels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.channels.stop
@@ -2652,21 +2721,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Channels$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Channels$Stop,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Channels$Stop,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      callback: BodyResponseCallback<void>
+    ): void;
     stop(callback: BodyResponseCallback<void>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Channels$Stop|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Channels$Stop
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2684,16 +2759,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/channels/stop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/channels/stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2707,8 +2785,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2716,13 +2793,11 @@ export namespace drive_v2 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Children {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.children.delete
@@ -2737,21 +2812,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Children$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Children$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Children$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Children$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Children$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Children$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Children$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Children$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2769,16 +2850,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{folderId}/children/{childId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['folderId', 'childId'],
         pathParams: ['childId', 'folderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2786,7 +2869,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.children.get
@@ -2801,20 +2883,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Children$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ChildReference>;
-    get(params: Params$Resource$Children$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
-        callback: BodyResponseCallback<Schema$ChildReference>): void;
-    get(params: Params$Resource$Children$Get,
-        callback: BodyResponseCallback<Schema$ChildReference>): void;
+    get(
+      params?: Params$Resource$Children$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChildReference>;
+    get(
+      params: Params$Resource$Children$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ChildReference>,
+      callback: BodyResponseCallback<Schema$ChildReference>
+    ): void;
+    get(
+      params: Params$Resource$Children$Get,
+      callback: BodyResponseCallback<Schema$ChildReference>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ChildReference>): void;
-    get(paramsOrCallback?: Params$Resource$Children$Get|
-        BodyResponseCallback<Schema$ChildReference>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChildReference>,
-        callback?: BodyResponseCallback<Schema$ChildReference>):
-        void|GaxiosPromise<Schema$ChildReference> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Children$Get
+        | BodyResponseCallback<Schema$ChildReference>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChildReference>,
+      callback?: BodyResponseCallback<Schema$ChildReference>
+    ): void | GaxiosPromise<Schema$ChildReference> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2832,16 +2923,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{folderId}/children/{childId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['folderId', 'childId'],
         pathParams: ['childId', 'folderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChildReference>(parameters, callback);
@@ -2849,7 +2942,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$ChildReference>(parameters);
       }
     }
-
 
     /**
      * drive.children.insert
@@ -2866,23 +2958,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Children$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$ChildReference>;
     insert(
-        params: Params$Resource$Children$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
-        callback: BodyResponseCallback<Schema$ChildReference>): void;
+      params?: Params$Resource$Children$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChildReference>;
     insert(
-        params: Params$Resource$Children$Insert,
-        callback: BodyResponseCallback<Schema$ChildReference>): void;
+      params: Params$Resource$Children$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ChildReference>,
+      callback: BodyResponseCallback<Schema$ChildReference>
+    ): void;
+    insert(
+      params: Params$Resource$Children$Insert,
+      callback: BodyResponseCallback<Schema$ChildReference>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ChildReference>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Children$Insert|
-        BodyResponseCallback<Schema$ChildReference>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChildReference>,
-        callback?: BodyResponseCallback<Schema$ChildReference>):
-        void|GaxiosPromise<Schema$ChildReference> {
+      paramsOrCallback?:
+        | Params$Resource$Children$Insert
+        | BodyResponseCallback<Schema$ChildReference>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChildReference>,
+      callback?: BodyResponseCallback<Schema$ChildReference>
+    ): void | GaxiosPromise<Schema$ChildReference> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2900,16 +2998,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{folderId}/children')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{folderId}/children').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['folderId'],
         pathParams: ['folderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChildReference>(parameters, callback);
@@ -2917,7 +3018,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$ChildReference>(parameters);
       }
     }
-
 
     /**
      * drive.children.list
@@ -2935,23 +3035,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Children$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ChildList>;
     list(
-        params: Params$Resource$Children$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ChildList>,
-        callback: BodyResponseCallback<Schema$ChildList>): void;
+      params?: Params$Resource$Children$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ChildList>;
     list(
-        params: Params$Resource$Children$List,
-        callback: BodyResponseCallback<Schema$ChildList>): void;
+      params: Params$Resource$Children$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ChildList>,
+      callback: BodyResponseCallback<Schema$ChildList>
+    ): void;
+    list(
+      params: Params$Resource$Children$List,
+      callback: BodyResponseCallback<Schema$ChildList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ChildList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Children$List|
-        BodyResponseCallback<Schema$ChildList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ChildList>,
-        callback?: BodyResponseCallback<Schema$ChildList>):
-        void|GaxiosPromise<Schema$ChildList> {
+      paramsOrCallback?:
+        | Params$Resource$Children$List
+        | BodyResponseCallback<Schema$ChildList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ChildList>,
+      callback?: BodyResponseCallback<Schema$ChildList>
+    ): void | GaxiosPromise<Schema$ChildList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2969,16 +3075,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{folderId}/children')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{folderId}/children').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['folderId'],
         pathParams: ['folderId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ChildList>(parameters, callback);
@@ -2992,7 +3101,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the child.
@@ -3007,7 +3116,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the child.
@@ -3022,7 +3131,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the folder.
@@ -3047,7 +3156,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the folder.
@@ -3077,13 +3186,11 @@ export namespace drive_v2 {
     q?: string;
   }
 
-
   export class Resource$Comments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.comments.delete
@@ -3098,21 +3205,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Comments$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Comments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Comments$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Comments$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Comments$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Comments$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3130,16 +3243,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3147,7 +3262,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.comments.get
@@ -3163,19 +3277,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
-    get(params: Params$Resource$Comments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
-    get(params: Params$Resource$Comments$Get,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(
+      params?: Params$Resource$Comments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    get(
+      params: Params$Resource$Comments$Get,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Comment>): void;
-    get(paramsOrCallback?: Params$Resource$Comments$Get|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Comments$Get
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3193,16 +3315,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3210,7 +3334,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Comment>(parameters);
       }
     }
-
 
     /**
      * drive.comments.insert
@@ -3225,22 +3348,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Comments$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
     insert(
-        params: Params$Resource$Comments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params?: Params$Resource$Comments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
     insert(
-        params: Params$Resource$Comments$Insert,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params: Params$Resource$Comments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    insert(
+      params: Params$Resource$Comments$Insert,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Comment>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Comments$Insert|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Insert
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3258,16 +3386,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3275,7 +3406,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Comment>(parameters);
       }
     }
-
 
     /**
      * drive.comments.list
@@ -3293,23 +3423,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentList>;
     list(
-        params: Params$Resource$Comments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
-        callback: BodyResponseCallback<Schema$CommentList>): void;
+      params?: Params$Resource$Comments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentList>;
     list(
-        params: Params$Resource$Comments$List,
-        callback: BodyResponseCallback<Schema$CommentList>): void;
+      params: Params$Resource$Comments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentList>,
+      callback: BodyResponseCallback<Schema$CommentList>
+    ): void;
+    list(
+      params: Params$Resource$Comments$List,
+      callback: BodyResponseCallback<Schema$CommentList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CommentList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Comments$List|
-        BodyResponseCallback<Schema$CommentList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentList>,
-        callback?: BodyResponseCallback<Schema$CommentList>):
-        void|GaxiosPromise<Schema$CommentList> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$List
+        | BodyResponseCallback<Schema$CommentList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentList>,
+      callback?: BodyResponseCallback<Schema$CommentList>
+    ): void | GaxiosPromise<Schema$CommentList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3327,16 +3463,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -3344,7 +3483,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$CommentList>(parameters);
       }
     }
-
 
     /**
      * drive.comments.patch
@@ -3360,22 +3498,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Comments$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
     patch(
-        params: Params$Resource$Comments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params?: Params$Resource$Comments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
     patch(
-        params: Params$Resource$Comments$Patch,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params: Params$Resource$Comments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    patch(
+      params: Params$Resource$Comments$Patch,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Comment>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Comments$Patch|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Patch
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3393,16 +3536,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3410,7 +3555,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Comment>(parameters);
       }
     }
-
 
     /**
      * drive.comments.update
@@ -3426,22 +3570,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Comments$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
     update(
-        params: Params$Resource$Comments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params?: Params$Resource$Comments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
     update(
-        params: Params$Resource$Comments$Update,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+      params: Params$Resource$Comments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    update(
+      params: Params$Resource$Comments$Update,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Comment>): void;
     update(
-        paramsOrCallback?: Params$Resource$Comments$Update|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$Update
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3459,16 +3608,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3482,7 +3633,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -3497,7 +3648,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -3517,7 +3668,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -3533,7 +3684,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -3565,7 +3716,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -3585,7 +3736,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -3602,13 +3753,11 @@ export namespace drive_v2 {
     requestBody?: Schema$Comment;
   }
 
-
   export class Resource$Drives {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.drives.delete
@@ -3623,21 +3772,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Drives$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Drives$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Drives$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Drives$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Drives$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Drives$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Drives$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Drives$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3655,16 +3810,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/drives/{driveId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/drives/{driveId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['driveId'],
         pathParams: ['driveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3672,7 +3830,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.drives.get
@@ -3687,19 +3844,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Drives$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Drive>;
-    get(params: Params$Resource$Drives$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback: BodyResponseCallback<Schema$Drive>): void;
-    get(params: Params$Resource$Drives$Get,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+    get(
+      params?: Params$Resource$Drives$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Drive>;
+    get(
+      params: Params$Resource$Drives$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
+    get(
+      params: Params$Resource$Drives$Get,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Drive>): void;
-    get(paramsOrCallback?: Params$Resource$Drives$Get|
-        BodyResponseCallback<Schema$Drive>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback?: BodyResponseCallback<Schema$Drive>):
-        void|GaxiosPromise<Schema$Drive> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Drives$Get
+        | BodyResponseCallback<Schema$Drive>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback?: BodyResponseCallback<Schema$Drive>
+    ): void | GaxiosPromise<Schema$Drive> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3717,16 +3882,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/drives/{driveId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/drives/{driveId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['driveId'],
         pathParams: ['driveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Drive>(parameters, callback);
@@ -3734,7 +3902,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Drive>(parameters);
       }
     }
-
 
     /**
      * drive.drives.hide
@@ -3748,22 +3915,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    hide(params?: Params$Resource$Drives$Hide, options?: MethodOptions):
-        GaxiosPromise<Schema$Drive>;
     hide(
-        params: Params$Resource$Drives$Hide,
-        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params?: Params$Resource$Drives$Hide,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Drive>;
     hide(
-        params: Params$Resource$Drives$Hide,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params: Params$Resource$Drives$Hide,
+      options: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
+    hide(
+      params: Params$Resource$Drives$Hide,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
     hide(callback: BodyResponseCallback<Schema$Drive>): void;
     hide(
-        paramsOrCallback?: Params$Resource$Drives$Hide|
-        BodyResponseCallback<Schema$Drive>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback?: BodyResponseCallback<Schema$Drive>):
-        void|GaxiosPromise<Schema$Drive> {
+      paramsOrCallback?:
+        | Params$Resource$Drives$Hide
+        | BodyResponseCallback<Schema$Drive>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback?: BodyResponseCallback<Schema$Drive>
+    ): void | GaxiosPromise<Schema$Drive> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3781,16 +3953,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/drives/{driveId}/hide')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/drives/{driveId}/hide').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['driveId'],
         pathParams: ['driveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Drive>(parameters, callback);
@@ -3798,7 +3973,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Drive>(parameters);
       }
     }
-
 
     /**
      * drive.drives.insert
@@ -3813,22 +3987,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Drives$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Drive>;
     insert(
-        params: Params$Resource$Drives$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params?: Params$Resource$Drives$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Drive>;
     insert(
-        params: Params$Resource$Drives$Insert,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params: Params$Resource$Drives$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
+    insert(
+      params: Params$Resource$Drives$Insert,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Drive>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Drives$Insert|
-        BodyResponseCallback<Schema$Drive>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback?: BodyResponseCallback<Schema$Drive>):
-        void|GaxiosPromise<Schema$Drive> {
+      paramsOrCallback?:
+        | Params$Resource$Drives$Insert
+        | BodyResponseCallback<Schema$Drive>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback?: BodyResponseCallback<Schema$Drive>
+    ): void | GaxiosPromise<Schema$Drive> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3846,15 +4025,16 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/drives').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/drives').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['requestId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Drive>(parameters, callback);
@@ -3862,7 +4042,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Drive>(parameters);
       }
     }
-
 
     /**
      * drive.drives.list
@@ -3879,23 +4058,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Drives$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DriveList>;
     list(
-        params: Params$Resource$Drives$List,
-        options: MethodOptions|BodyResponseCallback<Schema$DriveList>,
-        callback: BodyResponseCallback<Schema$DriveList>): void;
+      params?: Params$Resource$Drives$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DriveList>;
     list(
-        params: Params$Resource$Drives$List,
-        callback: BodyResponseCallback<Schema$DriveList>): void;
+      params: Params$Resource$Drives$List,
+      options: MethodOptions | BodyResponseCallback<Schema$DriveList>,
+      callback: BodyResponseCallback<Schema$DriveList>
+    ): void;
+    list(
+      params: Params$Resource$Drives$List,
+      callback: BodyResponseCallback<Schema$DriveList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DriveList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Drives$List|
-        BodyResponseCallback<Schema$DriveList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DriveList>,
-        callback?: BodyResponseCallback<Schema$DriveList>):
-        void|GaxiosPromise<Schema$DriveList> {
+      paramsOrCallback?:
+        | Params$Resource$Drives$List
+        | BodyResponseCallback<Schema$DriveList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DriveList>,
+      callback?: BodyResponseCallback<Schema$DriveList>
+    ): void | GaxiosPromise<Schema$DriveList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3913,15 +4098,16 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/drives').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/drives').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DriveList>(parameters, callback);
@@ -3929,7 +4115,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$DriveList>(parameters);
       }
     }
-
 
     /**
      * drive.drives.unhide
@@ -3943,22 +4128,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unhide(params?: Params$Resource$Drives$Unhide, options?: MethodOptions):
-        GaxiosPromise<Schema$Drive>;
     unhide(
-        params: Params$Resource$Drives$Unhide,
-        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params?: Params$Resource$Drives$Unhide,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Drive>;
     unhide(
-        params: Params$Resource$Drives$Unhide,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params: Params$Resource$Drives$Unhide,
+      options: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
+    unhide(
+      params: Params$Resource$Drives$Unhide,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
     unhide(callback: BodyResponseCallback<Schema$Drive>): void;
     unhide(
-        paramsOrCallback?: Params$Resource$Drives$Unhide|
-        BodyResponseCallback<Schema$Drive>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback?: BodyResponseCallback<Schema$Drive>):
-        void|GaxiosPromise<Schema$Drive> {
+      paramsOrCallback?:
+        | Params$Resource$Drives$Unhide
+        | BodyResponseCallback<Schema$Drive>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback?: BodyResponseCallback<Schema$Drive>
+    ): void | GaxiosPromise<Schema$Drive> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3976,16 +4166,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/drives/{driveId}/unhide')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/drives/{driveId}/unhide').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['driveId'],
         pathParams: ['driveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Drive>(parameters, callback);
@@ -3993,7 +4186,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Drive>(parameters);
       }
     }
-
 
     /**
      * drive.drives.update
@@ -4009,22 +4201,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Drives$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Drive>;
     update(
-        params: Params$Resource$Drives$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params?: Params$Resource$Drives$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Drive>;
     update(
-        params: Params$Resource$Drives$Update,
-        callback: BodyResponseCallback<Schema$Drive>): void;
+      params: Params$Resource$Drives$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
+    update(
+      params: Params$Resource$Drives$Update,
+      callback: BodyResponseCallback<Schema$Drive>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Drive>): void;
     update(
-        paramsOrCallback?: Params$Resource$Drives$Update|
-        BodyResponseCallback<Schema$Drive>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
-        callback?: BodyResponseCallback<Schema$Drive>):
-        void|GaxiosPromise<Schema$Drive> {
+      paramsOrCallback?:
+        | Params$Resource$Drives$Update
+        | BodyResponseCallback<Schema$Drive>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
+      callback?: BodyResponseCallback<Schema$Drive>
+    ): void | GaxiosPromise<Schema$Drive> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4042,16 +4239,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/drives/{driveId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/drives/{driveId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['driveId'],
         pathParams: ['driveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Drive>(parameters, callback);
@@ -4065,7 +4265,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the shared drive.
@@ -4076,7 +4276,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the shared drive.
@@ -4093,7 +4293,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the shared drive.
@@ -4104,7 +4304,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An ID, such as a random UUID, which uniquely identifies this user's
@@ -4124,7 +4324,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of shared drives to return.
@@ -4149,7 +4349,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the shared drive.
@@ -4160,7 +4360,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the shared drive.
@@ -4179,13 +4379,11 @@ export namespace drive_v2 {
     requestBody?: Schema$Drive;
   }
 
-
   export class Resource$Files {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.files.copy
@@ -4209,22 +4407,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy(params?: Params$Resource$Files$Copy, options?: MethodOptions):
-        GaxiosPromise<Schema$File>;
     copy(
-        params: Params$Resource$Files$Copy,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params?: Params$Resource$Files$Copy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
     copy(
-        params: Params$Resource$Files$Copy,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params: Params$Resource$Files$Copy,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    copy(
+      params: Params$Resource$Files$Copy,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     copy(callback: BodyResponseCallback<Schema$File>): void;
     copy(
-        paramsOrCallback?: Params$Resource$Files$Copy|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Copy
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4242,16 +4445,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/copy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/copy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4259,7 +4465,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.delete
@@ -4277,21 +4482,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Files$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Files$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Files$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Files$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Files$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Files$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Files$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4309,16 +4520,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4326,7 +4540,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.files.emptyTrash
@@ -4340,21 +4553,26 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     emptyTrash(
-        params?: Params$Resource$Files$Emptytrash,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Files$Emptytrash,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     emptyTrash(
-        params: Params$Resource$Files$Emptytrash,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Files$Emptytrash,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     emptyTrash(
-        params: Params$Resource$Files$Emptytrash,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Files$Emptytrash,
+      callback: BodyResponseCallback<void>
+    ): void;
     emptyTrash(callback: BodyResponseCallback<void>): void;
     emptyTrash(
-        paramsOrCallback?: Params$Resource$Files$Emptytrash|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Emptytrash
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Emptytrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4372,16 +4590,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/trash')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/trash').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4389,7 +4610,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.files.export
@@ -4406,21 +4626,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: Params$Resource$Files$Export, options?: MethodOptions):
-        GaxiosPromise<void>;
     export(
-        params: Params$Resource$Files$Export,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Files$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     export(
-        params: Params$Resource$Files$Export,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Files$Export,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    export(
+      params: Params$Resource$Files$Export,
+      callback: BodyResponseCallback<void>
+    ): void;
     export(callback: BodyResponseCallback<void>): void;
     export(
-        paramsOrCallback?: Params$Resource$Files$Export|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Export
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4438,16 +4664,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/export')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'mimeType'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4455,7 +4684,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.files.generateIds
@@ -4472,25 +4700,30 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     generateIds(
-        params?: Params$Resource$Files$Generateids,
-        options?: MethodOptions): GaxiosPromise<Schema$GeneratedIds>;
+      params?: Params$Resource$Files$Generateids,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GeneratedIds>;
     generateIds(
-        params: Params$Resource$Files$Generateids,
-        options: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
-        callback: BodyResponseCallback<Schema$GeneratedIds>): void;
+      params: Params$Resource$Files$Generateids,
+      options: MethodOptions | BodyResponseCallback<Schema$GeneratedIds>,
+      callback: BodyResponseCallback<Schema$GeneratedIds>
+    ): void;
     generateIds(
-        params: Params$Resource$Files$Generateids,
-        callback: BodyResponseCallback<Schema$GeneratedIds>): void;
+      params: Params$Resource$Files$Generateids,
+      callback: BodyResponseCallback<Schema$GeneratedIds>
+    ): void;
     generateIds(callback: BodyResponseCallback<Schema$GeneratedIds>): void;
     generateIds(
-        paramsOrCallback?: Params$Resource$Files$Generateids|
-        BodyResponseCallback<Schema$GeneratedIds>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GeneratedIds>,
-        callback?: BodyResponseCallback<Schema$GeneratedIds>):
-        void|GaxiosPromise<Schema$GeneratedIds> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Files$Generateids;
+      paramsOrCallback?:
+        | Params$Resource$Files$Generateids
+        | BodyResponseCallback<Schema$GeneratedIds>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GeneratedIds>,
+      callback?: BodyResponseCallback<Schema$GeneratedIds>
+    ): void | GaxiosPromise<Schema$GeneratedIds> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Files$Generateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4507,16 +4740,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/generateIds')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/generateIds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GeneratedIds>(parameters, callback);
@@ -4524,7 +4760,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$GeneratedIds>(parameters);
       }
     }
-
 
     /**
      * drive.files.get
@@ -4544,19 +4779,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Files$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$File>;
-    get(params: Params$Resource$Files$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
-    get(params: Params$Resource$Files$Get,
-        callback: BodyResponseCallback<Schema$File>): void;
+    get(
+      params?: Params$Resource$Files$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
+    get(
+      params: Params$Resource$Files$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    get(
+      params: Params$Resource$Files$Get,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     get(callback: BodyResponseCallback<Schema$File>): void;
-    get(paramsOrCallback?: Params$Resource$Files$Get|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Files$Get
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4574,16 +4817,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4591,7 +4837,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.insert
@@ -4618,22 +4863,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Files$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$File>;
     insert(
-        params: Params$Resource$Files$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params?: Params$Resource$Files$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
     insert(
-        params: Params$Resource$Files$Insert,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params: Params$Resource$Files$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    insert(
+      params: Params$Resource$Files$Insert,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$File>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Files$Insert|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Insert
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4651,17 +4901,20 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl + '/upload/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/drive/v2/files').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4669,7 +4922,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.list
@@ -4696,22 +4948,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Files$List, options?: MethodOptions):
-        GaxiosPromise<Schema$FileList>;
     list(
-        params: Params$Resource$Files$List,
-        options: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback: BodyResponseCallback<Schema$FileList>): void;
+      params?: Params$Resource$Files$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FileList>;
     list(
-        params: Params$Resource$Files$List,
-        callback: BodyResponseCallback<Schema$FileList>): void;
+      params: Params$Resource$Files$List,
+      options: MethodOptions | BodyResponseCallback<Schema$FileList>,
+      callback: BodyResponseCallback<Schema$FileList>
+    ): void;
+    list(
+      params: Params$Resource$Files$List,
+      callback: BodyResponseCallback<Schema$FileList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$FileList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Files$List|
-        BodyResponseCallback<Schema$FileList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback?: BodyResponseCallback<Schema$FileList>):
-        void|GaxiosPromise<Schema$FileList> {
+      paramsOrCallback?:
+        | Params$Resource$Files$List
+        | BodyResponseCallback<Schema$FileList>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>
+    ): void | GaxiosPromise<Schema$FileList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4729,15 +4986,16 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FileList>(parameters, callback);
@@ -4745,7 +5003,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$FileList>(parameters);
       }
     }
-
 
     /**
      * drive.files.patch
@@ -4776,22 +5033,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Files$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$File>;
     patch(
-        params: Params$Resource$Files$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params?: Params$Resource$Files$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
     patch(
-        params: Params$Resource$Files$Patch,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params: Params$Resource$Files$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    patch(
+      params: Params$Resource$Files$Patch,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$File>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Files$Patch|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Patch
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4809,16 +5071,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4826,7 +5091,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.touch
@@ -4842,22 +5106,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    touch(params?: Params$Resource$Files$Touch, options?: MethodOptions):
-        GaxiosPromise<Schema$File>;
     touch(
-        params: Params$Resource$Files$Touch,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params?: Params$Resource$Files$Touch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
     touch(
-        params: Params$Resource$Files$Touch,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params: Params$Resource$Files$Touch,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    touch(
+      params: Params$Resource$Files$Touch,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     touch(callback: BodyResponseCallback<Schema$File>): void;
     touch(
-        paramsOrCallback?: Params$Resource$Files$Touch|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Touch
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Touch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4875,16 +5144,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/touch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/touch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4892,7 +5164,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.trash
@@ -4910,22 +5181,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    trash(params?: Params$Resource$Files$Trash, options?: MethodOptions):
-        GaxiosPromise<Schema$File>;
     trash(
-        params: Params$Resource$Files$Trash,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params?: Params$Resource$Files$Trash,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
     trash(
-        params: Params$Resource$Files$Trash,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params: Params$Resource$Files$Trash,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    trash(
+      params: Params$Resource$Files$Trash,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     trash(callback: BodyResponseCallback<Schema$File>): void;
     trash(
-        paramsOrCallback?: Params$Resource$Files$Trash|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Trash
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4943,16 +5219,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/trash')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/trash').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4960,7 +5239,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.untrash
@@ -4976,22 +5254,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    untrash(params?: Params$Resource$Files$Untrash, options?: MethodOptions):
-        GaxiosPromise<Schema$File>;
     untrash(
-        params: Params$Resource$Files$Untrash,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params?: Params$Resource$Files$Untrash,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
     untrash(
-        params: Params$Resource$Files$Untrash,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params: Params$Resource$Files$Untrash,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    untrash(
+      params: Params$Resource$Files$Untrash,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     untrash(callback: BodyResponseCallback<Schema$File>): void;
     untrash(
-        paramsOrCallback?: Params$Resource$Files$Untrash|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Untrash
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5009,16 +5292,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/untrash')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/untrash').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -5026,7 +5312,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.update
@@ -5059,22 +5344,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Files$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$File>;
     update(
-        params: Params$Resource$Files$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params?: Params$Resource$Files$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$File>;
     update(
-        params: Params$Resource$Files$Update,
-        callback: BodyResponseCallback<Schema$File>): void;
+      params: Params$Resource$Files$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
+    update(
+      params: Params$Resource$Files$Update,
+      callback: BodyResponseCallback<Schema$File>
+    ): void;
     update(callback: BodyResponseCallback<Schema$File>): void;
     update(
-        paramsOrCallback?: Params$Resource$Files$Update|
-        BodyResponseCallback<Schema$File>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>):
-        void|GaxiosPromise<Schema$File> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Update
+        | BodyResponseCallback<Schema$File>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>
+    ): void | GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5092,18 +5382,23 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -5111,7 +5406,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$File>(parameters);
       }
     }
-
 
     /**
      * drive.files.watch
@@ -5132,22 +5426,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Files$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Files$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params?: Params$Resource$Files$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
     watch(
-        params: Params$Resource$Files$Watch,
-        callback: BodyResponseCallback<Schema$Channel>): void;
+      params: Params$Resource$Files$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    watch(
+      params: Params$Resource$Files$Watch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Files$Watch|
-        BodyResponseCallback<Schema$Channel>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>):
-        void|GaxiosPromise<Schema$Channel> {
+      paramsOrCallback?:
+        | Params$Resource$Files$Watch
+        | BodyResponseCallback<Schema$Channel>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>
+    ): void | GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5165,16 +5464,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/watch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/watch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -5188,7 +5490,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to convert this file to the corresponding Google Docs format.
@@ -5244,7 +5546,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file to delete.
@@ -5264,13 +5566,13 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
   export interface Params$Resource$Files$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -5281,12 +5583,12 @@ export namespace drive_v2 {
      */
     mimeType?: string;
   }
-  export interface Params$Resource$Files$Generateids extends
-      StandardParameters {
+  export interface Params$Resource$Files$Generateids
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of IDs to return.
@@ -5302,7 +5604,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether the user is acknowledging the risk of downloading known malware
@@ -5341,7 +5643,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether to convert this file to the corresponding Google Docs format.
@@ -5412,7 +5714,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Bodies of items (files/documents) to which the query applies. Supported
@@ -5490,7 +5792,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Comma-separated list of parent IDs to add.
@@ -5580,7 +5882,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file to update.
@@ -5600,7 +5902,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file to trash.
@@ -5620,7 +5922,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file to untrash.
@@ -5640,7 +5942,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Comma-separated list of parent IDs to add.
@@ -5745,7 +6047,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Whether the user is acknowledging the risk of downloading known malware
@@ -5786,13 +6088,11 @@ export namespace drive_v2 {
     requestBody?: Schema$Channel;
   }
 
-
   export class Resource$Parents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.parents.delete
@@ -5807,21 +6107,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Parents$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Parents$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Parents$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Parents$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Parents$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Parents$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Parents$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Parents$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5839,16 +6145,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'parentId'],
         pathParams: ['fileId', 'parentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5856,7 +6164,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.parents.get
@@ -5871,20 +6178,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Parents$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ParentReference>;
-    get(params: Params$Resource$Parents$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
-        callback: BodyResponseCallback<Schema$ParentReference>): void;
-    get(params: Params$Resource$Parents$Get,
-        callback: BodyResponseCallback<Schema$ParentReference>): void;
+    get(
+      params?: Params$Resource$Parents$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ParentReference>;
+    get(
+      params: Params$Resource$Parents$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ParentReference>,
+      callback: BodyResponseCallback<Schema$ParentReference>
+    ): void;
+    get(
+      params: Params$Resource$Parents$Get,
+      callback: BodyResponseCallback<Schema$ParentReference>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ParentReference>): void;
-    get(paramsOrCallback?: Params$Resource$Parents$Get|
-        BodyResponseCallback<Schema$ParentReference>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ParentReference>,
-        callback?: BodyResponseCallback<Schema$ParentReference>):
-        void|GaxiosPromise<Schema$ParentReference> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Parents$Get
+        | BodyResponseCallback<Schema$ParentReference>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ParentReference>,
+      callback?: BodyResponseCallback<Schema$ParentReference>
+    ): void | GaxiosPromise<Schema$ParentReference> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5902,16 +6218,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'parentId'],
         pathParams: ['fileId', 'parentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ParentReference>(parameters, callback);
@@ -5919,7 +6237,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$ParentReference>(parameters);
       }
     }
-
 
     /**
      * drive.parents.insert
@@ -5936,23 +6253,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Parents$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$ParentReference>;
     insert(
-        params: Params$Resource$Parents$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
-        callback: BodyResponseCallback<Schema$ParentReference>): void;
+      params?: Params$Resource$Parents$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ParentReference>;
     insert(
-        params: Params$Resource$Parents$Insert,
-        callback: BodyResponseCallback<Schema$ParentReference>): void;
+      params: Params$Resource$Parents$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ParentReference>,
+      callback: BodyResponseCallback<Schema$ParentReference>
+    ): void;
+    insert(
+      params: Params$Resource$Parents$Insert,
+      callback: BodyResponseCallback<Schema$ParentReference>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ParentReference>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Parents$Insert|
-        BodyResponseCallback<Schema$ParentReference>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ParentReference>,
-        callback?: BodyResponseCallback<Schema$ParentReference>):
-        void|GaxiosPromise<Schema$ParentReference> {
+      paramsOrCallback?:
+        | Params$Resource$Parents$Insert
+        | BodyResponseCallback<Schema$ParentReference>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ParentReference>,
+      callback?: BodyResponseCallback<Schema$ParentReference>
+    ): void | GaxiosPromise<Schema$ParentReference> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5970,16 +6293,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/parents')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/parents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ParentReference>(parameters, callback);
@@ -5987,7 +6313,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$ParentReference>(parameters);
       }
     }
-
 
     /**
      * drive.parents.list
@@ -6001,23 +6326,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Parents$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ParentList>;
     list(
-        params: Params$Resource$Parents$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ParentList>,
-        callback: BodyResponseCallback<Schema$ParentList>): void;
+      params?: Params$Resource$Parents$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ParentList>;
     list(
-        params: Params$Resource$Parents$List,
-        callback: BodyResponseCallback<Schema$ParentList>): void;
+      params: Params$Resource$Parents$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ParentList>,
+      callback: BodyResponseCallback<Schema$ParentList>
+    ): void;
+    list(
+      params: Params$Resource$Parents$List,
+      callback: BodyResponseCallback<Schema$ParentList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ParentList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Parents$List|
-        BodyResponseCallback<Schema$ParentList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ParentList>,
-        callback?: BodyResponseCallback<Schema$ParentList>):
-        void|GaxiosPromise<Schema$ParentList> {
+      paramsOrCallback?:
+        | Params$Resource$Parents$List
+        | BodyResponseCallback<Schema$ParentList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ParentList>,
+      callback?: BodyResponseCallback<Schema$ParentList>
+    ): void | GaxiosPromise<Schema$ParentList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6035,16 +6366,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/parents')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/parents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ParentList>(parameters, callback);
@@ -6058,7 +6392,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -6073,7 +6407,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -6088,7 +6422,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -6113,7 +6447,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -6121,13 +6455,11 @@ export namespace drive_v2 {
     fileId?: string;
   }
 
-
   export class Resource$Permissions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.permissions.delete
@@ -6146,23 +6478,28 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Permissions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Permissions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Permissions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Permissions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Permissions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Permissions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Permissions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Permissions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6179,17 +6516,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6197,7 +6535,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.permissions.get
@@ -6215,20 +6552,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Permissions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
-    get(params: Params$Resource$Permissions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback: BodyResponseCallback<Schema$Permission>): void;
-    get(params: Params$Resource$Permissions$Get,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+    get(
+      params?: Params$Resource$Permissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Permission>;
+    get(
+      params: Params$Resource$Permissions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Permission>,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
+    get(
+      params: Params$Resource$Permissions$Get,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Permission>): void;
-    get(paramsOrCallback?: Params$Resource$Permissions$Get|
-        BodyResponseCallback<Schema$Permission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>):
-        void|GaxiosPromise<Schema$Permission> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Get
+        | BodyResponseCallback<Schema$Permission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>
+    ): void | GaxiosPromise<Schema$Permission> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6246,17 +6592,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -6264,7 +6611,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Permission>(parameters);
       }
     }
-
 
     /**
      * drive.permissions.getIdForEmail
@@ -6279,25 +6625,30 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     getIdForEmail(
-        params?: Params$Resource$Permissions$Getidforemail,
-        options?: MethodOptions): GaxiosPromise<Schema$PermissionId>;
+      params?: Params$Resource$Permissions$Getidforemail,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PermissionId>;
     getIdForEmail(
-        params: Params$Resource$Permissions$Getidforemail,
-        options: MethodOptions|BodyResponseCallback<Schema$PermissionId>,
-        callback: BodyResponseCallback<Schema$PermissionId>): void;
+      params: Params$Resource$Permissions$Getidforemail,
+      options: MethodOptions | BodyResponseCallback<Schema$PermissionId>,
+      callback: BodyResponseCallback<Schema$PermissionId>
+    ): void;
     getIdForEmail(
-        params: Params$Resource$Permissions$Getidforemail,
-        callback: BodyResponseCallback<Schema$PermissionId>): void;
+      params: Params$Resource$Permissions$Getidforemail,
+      callback: BodyResponseCallback<Schema$PermissionId>
+    ): void;
     getIdForEmail(callback: BodyResponseCallback<Schema$PermissionId>): void;
     getIdForEmail(
-        paramsOrCallback?: Params$Resource$Permissions$Getidforemail|
-        BodyResponseCallback<Schema$PermissionId>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PermissionId>,
-        callback?: BodyResponseCallback<Schema$PermissionId>):
-        void|GaxiosPromise<Schema$PermissionId> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Permissions$Getidforemail;
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Getidforemail
+        | BodyResponseCallback<Schema$PermissionId>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PermissionId>,
+      callback?: BodyResponseCallback<Schema$PermissionId>
+    ): void | GaxiosPromise<Schema$PermissionId> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Permissions$Getidforemail;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6314,16 +6665,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/permissionIds/{email}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/permissionIds/{email}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['email'],
         pathParams: ['email'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PermissionId>(parameters, callback);
@@ -6331,7 +6685,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$PermissionId>(parameters);
       }
     }
-
 
     /**
      * drive.permissions.insert
@@ -6352,25 +6705,30 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Permissions$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
+      params?: Params$Resource$Permissions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Permission>;
     insert(
-        params: Params$Resource$Permissions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+      params: Params$Resource$Permissions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Permission>,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
     insert(
-        params: Params$Resource$Permissions$Insert,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+      params: Params$Resource$Permissions$Insert,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Permission>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Permissions$Insert|
-        BodyResponseCallback<Schema$Permission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>):
-        void|GaxiosPromise<Schema$Permission> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Permissions$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Insert
+        | BodyResponseCallback<Schema$Permission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>
+    ): void | GaxiosPromise<Schema$Permission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Permissions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6387,16 +6745,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/permissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/permissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -6404,7 +6765,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Permission>(parameters);
       }
     }
-
 
     /**
      * drive.permissions.list
@@ -6423,23 +6783,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Permissions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PermissionList>;
     list(
-        params: Params$Resource$Permissions$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
-        callback: BodyResponseCallback<Schema$PermissionList>): void;
+      params?: Params$Resource$Permissions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PermissionList>;
     list(
-        params: Params$Resource$Permissions$List,
-        callback: BodyResponseCallback<Schema$PermissionList>): void;
+      params: Params$Resource$Permissions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PermissionList>,
+      callback: BodyResponseCallback<Schema$PermissionList>
+    ): void;
+    list(
+      params: Params$Resource$Permissions$List,
+      callback: BodyResponseCallback<Schema$PermissionList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PermissionList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Permissions$List|
-        BodyResponseCallback<Schema$PermissionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PermissionList>,
-        callback?: BodyResponseCallback<Schema$PermissionList>):
-        void|GaxiosPromise<Schema$PermissionList> {
+      paramsOrCallback?:
+        | Params$Resource$Permissions$List
+        | BodyResponseCallback<Schema$PermissionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PermissionList>,
+      callback?: BodyResponseCallback<Schema$PermissionList>
+    ): void | GaxiosPromise<Schema$PermissionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6457,16 +6823,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/permissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/permissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PermissionList>(parameters, callback);
@@ -6474,7 +6843,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$PermissionList>(parameters);
       }
     }
-
 
     /**
      * drive.permissions.patch
@@ -6495,25 +6863,31 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Permissions$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Permission>;
     patch(
-        params: Params$Resource$Permissions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+      params?: Params$Resource$Permissions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Permission>;
     patch(
-        params: Params$Resource$Permissions$Patch,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+      params: Params$Resource$Permissions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Permission>,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
+    patch(
+      params: Params$Resource$Permissions$Patch,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Permission>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Permissions$Patch|
-        BodyResponseCallback<Schema$Permission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>):
-        void|GaxiosPromise<Schema$Permission> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Permissions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Patch
+        | BodyResponseCallback<Schema$Permission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>
+    ): void | GaxiosPromise<Schema$Permission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Permissions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6530,17 +6904,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -6548,7 +6923,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Permission>(parameters);
       }
     }
-
 
     /**
      * drive.permissions.update
@@ -6570,25 +6944,30 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Permissions$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
+      params?: Params$Resource$Permissions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Permission>;
     update(
-        params: Params$Resource$Permissions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+      params: Params$Resource$Permissions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Permission>,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
     update(
-        params: Params$Resource$Permissions$Update,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+      params: Params$Resource$Permissions$Update,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Permission>): void;
     update(
-        paramsOrCallback?: Params$Resource$Permissions$Update|
-        BodyResponseCallback<Schema$Permission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>):
-        void|GaxiosPromise<Schema$Permission> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Permissions$Update;
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Update
+        | BodyResponseCallback<Schema$Permission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>
+    ): void | GaxiosPromise<Schema$Permission> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6605,17 +6984,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/permissions/{permissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -6625,12 +7005,12 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Permissions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Permissions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the file or shared drive.
@@ -6661,7 +7041,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the file or shared drive.
@@ -6688,24 +7068,24 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Getidforemail extends
-      StandardParameters {
+  export interface Params$Resource$Permissions$Getidforemail
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The email address for which to return a permission ID
      */
     email?: string;
   }
-  export interface Params$Resource$Permissions$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Permissions$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A plain text custom message to include in notification emails.
@@ -6746,7 +7126,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the file or shared drive.
@@ -6781,12 +7161,12 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Permissions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the file or shared drive.
@@ -6827,12 +7207,12 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Permission;
   }
-  export interface Params$Resource$Permissions$Update extends
-      StandardParameters {
+  export interface Params$Resource$Permissions$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the file or shared drive.
@@ -6873,14 +7253,12 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Permission;
   }
-
 
   export class Resource$Properties {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.properties.delete
@@ -6896,23 +7274,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Properties$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Properties$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Properties$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Properties$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Properties$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Properties$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Properties$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Properties$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6929,17 +7313,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6947,7 +7332,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.properties.get
@@ -6963,19 +7347,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Properties$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Property>;
-    get(params: Params$Resource$Properties$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback: BodyResponseCallback<Schema$Property>): void;
-    get(params: Params$Resource$Properties$Get,
-        callback: BodyResponseCallback<Schema$Property>): void;
+    get(
+      params?: Params$Resource$Properties$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Property>;
+    get(
+      params: Params$Resource$Properties$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Get,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Property>): void;
-    get(paramsOrCallback?: Params$Resource$Properties$Get|
-        BodyResponseCallback<Schema$Property>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>):
-        void|GaxiosPromise<Schema$Property> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Get
+        | BodyResponseCallback<Schema$Property>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>
+    ): void | GaxiosPromise<Schema$Property> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6993,17 +7385,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -7011,7 +7404,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Property>(parameters);
       }
     }
-
 
     /**
      * drive.properties.insert
@@ -7026,24 +7418,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Properties$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Property>;
     insert(
-        params: Params$Resource$Properties$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback: BodyResponseCallback<Schema$Property>): void;
+      params?: Params$Resource$Properties$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Property>;
     insert(
-        params: Params$Resource$Properties$Insert,
-        callback: BodyResponseCallback<Schema$Property>): void;
+      params: Params$Resource$Properties$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
+    insert(
+      params: Params$Resource$Properties$Insert,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Property>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Properties$Insert|
-        BodyResponseCallback<Schema$Property>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>):
-        void|GaxiosPromise<Schema$Property> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Properties$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Properties$Insert
+        | BodyResponseCallback<Schema$Property>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>
+    ): void | GaxiosPromise<Schema$Property> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7060,16 +7457,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/properties')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -7077,7 +7477,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Property>(parameters);
       }
     }
-
 
     /**
      * drive.properties.list
@@ -7091,23 +7490,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Properties$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PropertyList>;
     list(
-        params: Params$Resource$Properties$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PropertyList>,
-        callback: BodyResponseCallback<Schema$PropertyList>): void;
+      params?: Params$Resource$Properties$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PropertyList>;
     list(
-        params: Params$Resource$Properties$List,
-        callback: BodyResponseCallback<Schema$PropertyList>): void;
+      params: Params$Resource$Properties$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PropertyList>,
+      callback: BodyResponseCallback<Schema$PropertyList>
+    ): void;
+    list(
+      params: Params$Resource$Properties$List,
+      callback: BodyResponseCallback<Schema$PropertyList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PropertyList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Properties$List|
-        BodyResponseCallback<Schema$PropertyList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PropertyList>,
-        callback?: BodyResponseCallback<Schema$PropertyList>):
-        void|GaxiosPromise<Schema$PropertyList> {
+      paramsOrCallback?:
+        | Params$Resource$Properties$List
+        | BodyResponseCallback<Schema$PropertyList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PropertyList>,
+      callback?: BodyResponseCallback<Schema$PropertyList>
+    ): void | GaxiosPromise<Schema$PropertyList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7125,16 +7530,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/properties')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PropertyList>(parameters, callback);
@@ -7142,7 +7550,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$PropertyList>(parameters);
       }
     }
-
 
     /**
      * drive.properties.patch
@@ -7159,22 +7566,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Properties$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Property>;
     patch(
-        params: Params$Resource$Properties$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback: BodyResponseCallback<Schema$Property>): void;
+      params?: Params$Resource$Properties$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Property>;
     patch(
-        params: Params$Resource$Properties$Patch,
-        callback: BodyResponseCallback<Schema$Property>): void;
+      params: Params$Resource$Properties$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Patch,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Property>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Properties$Patch|
-        BodyResponseCallback<Schema$Property>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>):
-        void|GaxiosPromise<Schema$Property> {
+      paramsOrCallback?:
+        | Params$Resource$Properties$Patch
+        | BodyResponseCallback<Schema$Property>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>
+    ): void | GaxiosPromise<Schema$Property> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7192,17 +7604,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -7210,7 +7623,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Property>(parameters);
       }
     }
-
 
     /**
      * drive.properties.update
@@ -7227,24 +7639,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Properties$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Property>;
     update(
-        params: Params$Resource$Properties$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback: BodyResponseCallback<Schema$Property>): void;
+      params?: Params$Resource$Properties$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Property>;
     update(
-        params: Params$Resource$Properties$Update,
-        callback: BodyResponseCallback<Schema$Property>): void;
+      params: Params$Resource$Properties$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
+    update(
+      params: Params$Resource$Properties$Update,
+      callback: BodyResponseCallback<Schema$Property>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Property>): void;
     update(
-        paramsOrCallback?: Params$Resource$Properties$Update|
-        BodyResponseCallback<Schema$Property>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>):
-        void|GaxiosPromise<Schema$Property> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Properties$Update;
+      paramsOrCallback?:
+        | Params$Resource$Properties$Update
+        | BodyResponseCallback<Schema$Property>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>
+    ): void | GaxiosPromise<Schema$Property> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7261,17 +7678,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -7281,12 +7699,12 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Properties$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Properties$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -7305,7 +7723,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -7320,12 +7738,12 @@ export namespace drive_v2 {
      */
     visibility?: string;
   }
-  export interface Params$Resource$Properties$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Properties$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -7341,7 +7759,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -7352,7 +7770,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -7373,12 +7791,12 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Property;
   }
-  export interface Params$Resource$Properties$Update extends
-      StandardParameters {
+  export interface Params$Resource$Properties$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -7399,14 +7817,12 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Property;
   }
-
 
   export class Resource$Realtime {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.realtime.get
@@ -7422,18 +7838,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Realtime$Get,
-        options?: MethodOptions): GaxiosPromise<void>;
-    get(params: Params$Resource$Realtime$Get,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    get(params: Params$Resource$Realtime$Get,
-        callback: BodyResponseCallback<void>): void;
+    get(
+      params?: Params$Resource$Realtime$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    get(
+      params: Params$Resource$Realtime$Get,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    get(
+      params: Params$Resource$Realtime$Get,
+      callback: BodyResponseCallback<void>
+    ): void;
     get(callback: BodyResponseCallback<void>): void;
-    get(paramsOrCallback?: Params$Resource$Realtime$Get|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Realtime$Get
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Realtime$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7451,16 +7876,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/realtime')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/realtime').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7468,7 +7896,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.realtime.update
@@ -7487,21 +7914,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Realtime$Update, options?: MethodOptions):
-        GaxiosPromise<void>;
     update(
-        params: Params$Resource$Realtime$Update,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Realtime$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     update(
-        params: Params$Resource$Realtime$Update,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Realtime$Update,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    update(
+      params: Params$Resource$Realtime$Update,
+      callback: BodyResponseCallback<void>
+    ): void;
     update(callback: BodyResponseCallback<void>): void;
     update(
-        paramsOrCallback?: Params$Resource$Realtime$Update|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Realtime$Update
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Realtime$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7519,18 +7952,22 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/realtime')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/realtime').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}/realtime')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/drive/v2/files/{fileId}/realtime'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7544,7 +7981,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file that the Realtime API data model is associated with.
@@ -7561,7 +7998,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The revision of the model to diff the uploaded model against. If set, the
@@ -7575,7 +8012,6 @@ export namespace drive_v2 {
      * The ID of the file that the Realtime API data model is associated with.
      */
     fileId?: string;
-
 
     /**
      * Media metadata
@@ -7593,13 +8029,11 @@ export namespace drive_v2 {
     };
   }
 
-
   export class Resource$Replies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.replies.delete
@@ -7615,21 +8049,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Replies$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Replies$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Replies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Replies$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Replies$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Replies$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Replies$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Replies$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7647,18 +8087,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7666,7 +8107,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.replies.get
@@ -7683,20 +8123,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Replies$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CommentReply>;
-    get(params: Params$Resource$Replies$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
-    get(params: Params$Resource$Replies$Get,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
+    get(
+      params?: Params$Resource$Replies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentReply>;
+    get(
+      params: Params$Resource$Replies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
+    get(
+      params: Params$Resource$Replies$Get,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CommentReply>): void;
-    get(paramsOrCallback?: Params$Resource$Replies$Get|
-        BodyResponseCallback<Schema$CommentReply>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>):
-        void|GaxiosPromise<Schema$CommentReply> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Replies$Get
+        | BodyResponseCallback<Schema$CommentReply>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>
+    ): void | GaxiosPromise<Schema$CommentReply> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7714,18 +8163,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -7733,7 +8183,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$CommentReply>(parameters);
       }
     }
-
 
     /**
      * drive.replies.insert
@@ -7749,23 +8198,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Replies$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentReply>;
     insert(
-        params: Params$Resource$Replies$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
+      params?: Params$Resource$Replies$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentReply>;
     insert(
-        params: Params$Resource$Replies$Insert,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
+      params: Params$Resource$Replies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
+    insert(
+      params: Params$Resource$Replies$Insert,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CommentReply>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Replies$Insert|
-        BodyResponseCallback<Schema$CommentReply>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>):
-        void|GaxiosPromise<Schema$CommentReply> {
+      paramsOrCallback?:
+        | Params$Resource$Replies$Insert
+        | BodyResponseCallback<Schema$CommentReply>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>
+    ): void | GaxiosPromise<Schema$CommentReply> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7783,17 +8238,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/comments/{commentId}/replies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -7801,7 +8257,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$CommentReply>(parameters);
       }
     }
-
 
     /**
      * drive.replies.list
@@ -7819,23 +8274,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Replies$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentReplyList>;
     list(
-        params: Params$Resource$Replies$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentReplyList>,
-        callback: BodyResponseCallback<Schema$CommentReplyList>): void;
+      params?: Params$Resource$Replies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentReplyList>;
     list(
-        params: Params$Resource$Replies$List,
-        callback: BodyResponseCallback<Schema$CommentReplyList>): void;
+      params: Params$Resource$Replies$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentReplyList>,
+      callback: BodyResponseCallback<Schema$CommentReplyList>
+    ): void;
+    list(
+      params: Params$Resource$Replies$List,
+      callback: BodyResponseCallback<Schema$CommentReplyList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CommentReplyList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Replies$List|
-        BodyResponseCallback<Schema$CommentReplyList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentReplyList>,
-        callback?: BodyResponseCallback<Schema$CommentReplyList>):
-        void|GaxiosPromise<Schema$CommentReplyList> {
+      paramsOrCallback?:
+        | Params$Resource$Replies$List
+        | BodyResponseCallback<Schema$CommentReplyList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentReplyList>,
+      callback?: BodyResponseCallback<Schema$CommentReplyList>
+    ): void | GaxiosPromise<Schema$CommentReplyList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7853,17 +8314,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/drive/v2/files/{fileId}/comments/{commentId}/replies')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}/replies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentReplyList>(parameters, callback);
@@ -7871,7 +8333,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$CommentReplyList>(parameters);
       }
     }
-
 
     /**
      * drive.replies.patch
@@ -7888,23 +8349,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Replies$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentReply>;
     patch(
-        params: Params$Resource$Replies$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
+      params?: Params$Resource$Replies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentReply>;
     patch(
-        params: Params$Resource$Replies$Patch,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
+      params: Params$Resource$Replies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
+    patch(
+      params: Params$Resource$Replies$Patch,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CommentReply>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Replies$Patch|
-        BodyResponseCallback<Schema$CommentReply>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>):
-        void|GaxiosPromise<Schema$CommentReply> {
+      paramsOrCallback?:
+        | Params$Resource$Replies$Patch
+        | BodyResponseCallback<Schema$CommentReply>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>
+    ): void | GaxiosPromise<Schema$CommentReply> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7922,18 +8389,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -7941,7 +8409,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$CommentReply>(parameters);
       }
     }
-
 
     /**
      * drive.replies.update
@@ -7958,23 +8425,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Replies$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentReply>;
     update(
-        params: Params$Resource$Replies$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
+      params?: Params$Resource$Replies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentReply>;
     update(
-        params: Params$Resource$Replies$Update,
-        callback: BodyResponseCallback<Schema$CommentReply>): void;
+      params: Params$Resource$Replies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
+    update(
+      params: Params$Resource$Replies$Update,
+      callback: BodyResponseCallback<Schema$CommentReply>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CommentReply>): void;
     update(
-        paramsOrCallback?: Params$Resource$Replies$Update|
-        BodyResponseCallback<Schema$CommentReply>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>):
-        void|GaxiosPromise<Schema$CommentReply> {
+      paramsOrCallback?:
+        | Params$Resource$Replies$Update
+        | BodyResponseCallback<Schema$CommentReply>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>
+    ): void | GaxiosPromise<Schema$CommentReply> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7992,18 +8465,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -8017,7 +8491,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -8036,7 +8510,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -8059,7 +8533,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -8079,7 +8553,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -8110,7 +8584,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -8134,7 +8608,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment.
@@ -8155,13 +8629,11 @@ export namespace drive_v2 {
     requestBody?: Schema$CommentReply;
   }
 
-
   export class Resource$Revisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.revisions.delete
@@ -8179,21 +8651,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Revisions$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Revisions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Revisions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Revisions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Revisions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Revisions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Revisions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Revisions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8211,16 +8689,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8228,7 +8708,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.revisions.get
@@ -8243,19 +8722,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Revisions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Revision>;
-    get(params: Params$Resource$Revisions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback: BodyResponseCallback<Schema$Revision>): void;
-    get(params: Params$Resource$Revisions$Get,
-        callback: BodyResponseCallback<Schema$Revision>): void;
+    get(
+      params?: Params$Resource$Revisions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Revision>;
+    get(
+      params: Params$Resource$Revisions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
+    get(
+      params: Params$Resource$Revisions$Get,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Revision>): void;
-    get(paramsOrCallback?: Params$Resource$Revisions$Get|
-        BodyResponseCallback<Schema$Revision>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>):
-        void|GaxiosPromise<Schema$Revision> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Revisions$Get
+        | BodyResponseCallback<Schema$Revision>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>
+    ): void | GaxiosPromise<Schema$Revision> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8273,16 +8760,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -8290,7 +8779,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Revision>(parameters);
       }
     }
-
 
     /**
      * drive.revisions.list
@@ -8306,23 +8794,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Revisions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$RevisionList>;
     list(
-        params: Params$Resource$Revisions$List,
-        options: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
-        callback: BodyResponseCallback<Schema$RevisionList>): void;
+      params?: Params$Resource$Revisions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevisionList>;
     list(
-        params: Params$Resource$Revisions$List,
-        callback: BodyResponseCallback<Schema$RevisionList>): void;
+      params: Params$Resource$Revisions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$RevisionList>,
+      callback: BodyResponseCallback<Schema$RevisionList>
+    ): void;
+    list(
+      params: Params$Resource$Revisions$List,
+      callback: BodyResponseCallback<Schema$RevisionList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$RevisionList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Revisions$List|
-        BodyResponseCallback<Schema$RevisionList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RevisionList>,
-        callback?: BodyResponseCallback<Schema$RevisionList>):
-        void|GaxiosPromise<Schema$RevisionList> {
+      paramsOrCallback?:
+        | Params$Resource$Revisions$List
+        | BodyResponseCallback<Schema$RevisionList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevisionList>,
+      callback?: BodyResponseCallback<Schema$RevisionList>
+    ): void | GaxiosPromise<Schema$RevisionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8340,16 +8834,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/revisions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/revisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RevisionList>(parameters, callback);
@@ -8357,7 +8854,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$RevisionList>(parameters);
       }
     }
-
 
     /**
      * drive.revisions.patch
@@ -8373,22 +8869,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Revisions$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Revision>;
     patch(
-        params: Params$Resource$Revisions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback: BodyResponseCallback<Schema$Revision>): void;
+      params?: Params$Resource$Revisions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Revision>;
     patch(
-        params: Params$Resource$Revisions$Patch,
-        callback: BodyResponseCallback<Schema$Revision>): void;
+      params: Params$Resource$Revisions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
+    patch(
+      params: Params$Resource$Revisions$Patch,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Revision>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Revisions$Patch|
-        BodyResponseCallback<Schema$Revision>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>):
-        void|GaxiosPromise<Schema$Revision> {
+      paramsOrCallback?:
+        | Params$Resource$Revisions$Patch
+        | BodyResponseCallback<Schema$Revision>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>
+    ): void | GaxiosPromise<Schema$Revision> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8406,16 +8907,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -8423,7 +8926,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$Revision>(parameters);
       }
     }
-
 
     /**
      * drive.revisions.update
@@ -8439,22 +8941,27 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Revisions$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Revision>;
     update(
-        params: Params$Resource$Revisions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback: BodyResponseCallback<Schema$Revision>): void;
+      params?: Params$Resource$Revisions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Revision>;
     update(
-        params: Params$Resource$Revisions$Update,
-        callback: BodyResponseCallback<Schema$Revision>): void;
+      params: Params$Resource$Revisions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
+    update(
+      params: Params$Resource$Revisions$Update,
+      callback: BodyResponseCallback<Schema$Revision>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Revision>): void;
     update(
-        paramsOrCallback?: Params$Resource$Revisions$Update|
-        BodyResponseCallback<Schema$Revision>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>):
-        void|GaxiosPromise<Schema$Revision> {
+      paramsOrCallback?:
+        | Params$Resource$Revisions$Update
+        | BodyResponseCallback<Schema$Revision>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>
+    ): void | GaxiosPromise<Schema$Revision> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8472,16 +8979,18 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -8495,7 +9004,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -8510,7 +9019,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -8525,7 +9034,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the file.
@@ -8545,7 +9054,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the file.
@@ -8565,7 +9074,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the file.
@@ -8582,13 +9091,11 @@ export namespace drive_v2 {
     requestBody?: Schema$Revision;
   }
 
-
   export class Resource$Teamdrives {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * drive.teamdrives.delete
@@ -8602,23 +9109,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Teamdrives$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Teamdrives$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Teamdrives$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Teamdrives$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Teamdrives$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Teamdrives$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Teamdrives$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Teamdrives$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Teamdrives$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Teamdrives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8635,16 +9148,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8652,7 +9168,6 @@ export namespace drive_v2 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * drive.teamdrives.get
@@ -8667,20 +9182,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Teamdrives$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TeamDrive>;
-    get(params: Params$Resource$Teamdrives$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-        callback: BodyResponseCallback<Schema$TeamDrive>): void;
-    get(params: Params$Resource$Teamdrives$Get,
-        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    get(
+      params?: Params$Resource$Teamdrives$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TeamDrive>;
+    get(
+      params: Params$Resource$Teamdrives$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
+      callback: BodyResponseCallback<Schema$TeamDrive>
+    ): void;
+    get(
+      params: Params$Resource$Teamdrives$Get,
+      callback: BodyResponseCallback<Schema$TeamDrive>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TeamDrive>): void;
-    get(paramsOrCallback?: Params$Resource$Teamdrives$Get|
-        BodyResponseCallback<Schema$TeamDrive>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TeamDrive>,
-        callback?: BodyResponseCallback<Schema$TeamDrive>):
-        void|GaxiosPromise<Schema$TeamDrive> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Teamdrives$Get
+        | BodyResponseCallback<Schema$TeamDrive>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>
+    ): void | GaxiosPromise<Schema$TeamDrive> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8698,16 +9222,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -8715,7 +9242,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
     }
-
 
     /**
      * drive.teamdrives.insert
@@ -8730,25 +9256,31 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Teamdrives$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$TeamDrive>;
     insert(
-        params: Params$Resource$Teamdrives$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+      params?: Params$Resource$Teamdrives$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TeamDrive>;
     insert(
-        params: Params$Resource$Teamdrives$Insert,
-        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+      params: Params$Resource$Teamdrives$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
+      callback: BodyResponseCallback<Schema$TeamDrive>
+    ): void;
+    insert(
+      params: Params$Resource$Teamdrives$Insert,
+      callback: BodyResponseCallback<Schema$TeamDrive>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$TeamDrive>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Teamdrives$Insert|
-        BodyResponseCallback<Schema$TeamDrive>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TeamDrive>,
-        callback?: BodyResponseCallback<Schema$TeamDrive>):
-        void|GaxiosPromise<Schema$TeamDrive> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Teamdrives$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Teamdrives$Insert
+        | BodyResponseCallback<Schema$TeamDrive>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>
+    ): void | GaxiosPromise<Schema$TeamDrive> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Teamdrives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8765,16 +9297,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/teamdrives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/teamdrives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['requestId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -8782,7 +9317,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
     }
-
 
     /**
      * drive.teamdrives.list
@@ -8799,23 +9333,29 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Teamdrives$List, options?: MethodOptions):
-        GaxiosPromise<Schema$TeamDriveList>;
     list(
-        params: Params$Resource$Teamdrives$List,
-        options: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
-        callback: BodyResponseCallback<Schema$TeamDriveList>): void;
+      params?: Params$Resource$Teamdrives$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TeamDriveList>;
     list(
-        params: Params$Resource$Teamdrives$List,
-        callback: BodyResponseCallback<Schema$TeamDriveList>): void;
+      params: Params$Resource$Teamdrives$List,
+      options: MethodOptions | BodyResponseCallback<Schema$TeamDriveList>,
+      callback: BodyResponseCallback<Schema$TeamDriveList>
+    ): void;
+    list(
+      params: Params$Resource$Teamdrives$List,
+      callback: BodyResponseCallback<Schema$TeamDriveList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$TeamDriveList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Teamdrives$List|
-        BodyResponseCallback<Schema$TeamDriveList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TeamDriveList>,
-        callback?: BodyResponseCallback<Schema$TeamDriveList>):
-        void|GaxiosPromise<Schema$TeamDriveList> {
+      paramsOrCallback?:
+        | Params$Resource$Teamdrives$List
+        | BodyResponseCallback<Schema$TeamDriveList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TeamDriveList>,
+      callback?: BodyResponseCallback<Schema$TeamDriveList>
+    ): void | GaxiosPromise<Schema$TeamDriveList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8833,16 +9373,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/teamdrives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/teamdrives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TeamDriveList>(parameters, callback);
@@ -8850,7 +9393,6 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$TeamDriveList>(parameters);
       }
     }
-
 
     /**
      * drive.teamdrives.update
@@ -8866,25 +9408,31 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Teamdrives$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$TeamDrive>;
     update(
-        params: Params$Resource$Teamdrives$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+      params?: Params$Resource$Teamdrives$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TeamDrive>;
     update(
-        params: Params$Resource$Teamdrives$Update,
-        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+      params: Params$Resource$Teamdrives$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
+      callback: BodyResponseCallback<Schema$TeamDrive>
+    ): void;
+    update(
+      params: Params$Resource$Teamdrives$Update,
+      callback: BodyResponseCallback<Schema$TeamDrive>
+    ): void;
     update(callback: BodyResponseCallback<Schema$TeamDrive>): void;
     update(
-        paramsOrCallback?: Params$Resource$Teamdrives$Update|
-        BodyResponseCallback<Schema$TeamDrive>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TeamDrive>,
-        callback?: BodyResponseCallback<Schema$TeamDrive>):
-        void|GaxiosPromise<Schema$TeamDrive> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Teamdrives$Update;
+      paramsOrCallback?:
+        | Params$Resource$Teamdrives$Update
+        | BodyResponseCallback<Schema$TeamDrive>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>
+    ): void | GaxiosPromise<Schema$TeamDrive> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Teamdrives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8901,16 +9449,19 @@ export namespace drive_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -8920,12 +9471,12 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Teamdrives$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Teamdrives$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the Team Drive
@@ -8936,7 +9487,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the Team Drive
@@ -8949,12 +9500,12 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Teamdrives$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An ID, such as a random UUID, which uniquely identifies this user's
@@ -8974,7 +9525,7 @@ export namespace drive_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of Team Drives to return.
@@ -8995,12 +9546,12 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Update extends
-      StandardParameters {
+  export interface Params$Resource$Teamdrives$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the Team Drive

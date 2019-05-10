@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {manufacturers_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': manufacturers_v1.Manufacturers,
+  v1: manufacturers_v1.Manufacturers,
 };
 
 export function manufacturers(version: 'v1'): manufacturers_v1.Manufacturers;
-export function manufacturers(options: manufacturers_v1.Options):
-    manufacturers_v1.Manufacturers;
+export function manufacturers(
+  options: manufacturers_v1.Options
+): manufacturers_v1.Manufacturers;
 export function manufacturers<T = manufacturers_v1.Manufacturers>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|manufacturers_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | manufacturers_v1.Options
+) {
   return getAPI<T>('manufacturers', versionOrOptions, VERSIONS, this);
 }
 

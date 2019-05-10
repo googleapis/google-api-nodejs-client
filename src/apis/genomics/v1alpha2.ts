@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -165,7 +177,7 @@ export namespace genomics_v1alpha2 {
      * set will contain any ports exposed using the `PUBLISH_EXPOSED_PORTS` flag
      * as well as any specified in the `Action` definition.
      */
-    portMappings?: {[key: string]: number;};
+    portMappings?: {[key: string]: number};
   }
   /**
    * An event generated when a container exits.
@@ -197,13 +209,13 @@ export namespace genomics_v1alpha2 {
    */
   export interface Schema$ControllerConfig {
     cmd?: string;
-    disks?: {[key: string]: string;};
+    disks?: {[key: string]: string};
     gcsLogPath?: string;
-    gcsSinks?: {[key: string]: Schema$RepeatedString;};
-    gcsSources?: {[key: string]: Schema$RepeatedString;};
+    gcsSinks?: {[key: string]: Schema$RepeatedString};
+    gcsSources?: {[key: string]: Schema$RepeatedString};
     image?: string;
     machineType?: string;
-    vars?: {[key: string]: string;};
+    vars?: {[key: string]: string};
   }
   /**
    * An event generated whenever a resource limitation or transient error delays
@@ -310,7 +322,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Machine-readable details about the event.
      */
-    details?: {[key: string]: any;};
+    details?: {[key: string]: any};
     /**
      * The time at which the event occurred.
      */
@@ -411,7 +423,7 @@ export namespace genomics_v1alpha2 {
      * An OperationMetadata or Metadata object. This will always be returned
      * with the Operation.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. For example&amp;#58;
@@ -421,7 +433,7 @@ export namespace genomics_v1alpha2 {
     /**
      * An Empty object.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * An event that occurred during an Operation.
@@ -469,7 +481,7 @@ export namespace genomics_v1alpha2 {
      * Optionally provided by the caller when submitting the request that
      * creates the operation.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The Google Cloud Project in which the job is scoped.
      */
@@ -480,11 +492,11 @@ export namespace genomics_v1alpha2 {
      * API and a GetOperation is performed on v1 API, a v1 request will be
      * returned.
      */
-    request?: {[key: string]: any;};
+    request?: {[key: string]: any};
     /**
      * Runtime metadata on this Operation.
      */
-    runtimeMetadata?: {[key: string]: any;};
+    runtimeMetadata?: {[key: string]: any};
     /**
      * The time at which the job began to run.
      */
@@ -710,7 +722,7 @@ export namespace genomics_v1alpha2 {
      * If parameters with defaults are specified here, the defaults will be
      * overridden.
      */
-    inputs?: {[key: string]: string;};
+    inputs?: {[key: string]: string};
     /**
      * How long to keep the VM up after a failure (for example docker command
      * failed, copying input or output files failed, etc). While the VM is up,
@@ -730,7 +742,7 @@ export namespace genomics_v1alpha2 {
      * lowercase letter, and all following characters must be a dash, lowercase
      * letter, or digit, except the last character, which cannot be a dash.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Required. Logging options. Used by the service to communicate results to
      * the user.
@@ -742,7 +754,7 @@ export namespace genomics_v1alpha2 {
      * specified.  If parameters with defaults are specified here, the defaults
      * will be overridden.
      */
-    outputs?: {[key: string]: string;};
+    outputs?: {[key: string]: string};
     /**
      * Required. The project in which to run the pipeline. The caller must have
      * WRITER access to all Google Cloud services and resources (e.g. Google
@@ -873,7 +885,7 @@ export namespace genomics_v1alpha2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -939,13 +951,11 @@ export namespace genomics_v1alpha2 {
     zone?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * genomics.operations.cancel
@@ -1020,24 +1030,29 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1054,16 +1069,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1071,7 +1089,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * genomics.operations.get
@@ -1142,20 +1159,29 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1173,16 +1199,16 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1190,7 +1216,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * genomics.operations.list
@@ -1277,24 +1302,31 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1312,16 +1344,16 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1331,12 +1363,12 @@ export namespace genomics_v1alpha2 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
@@ -1352,7 +1384,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -1363,7 +1395,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A string for filtering Operations. In v2alpha1, the following filter
@@ -1401,13 +1433,11 @@ export namespace genomics_v1alpha2 {
     pageToken?: string;
   }
 
-
   export class Resource$Pipelines {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * genomics.pipelines.create
@@ -1478,22 +1508,27 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Pipelines$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Pipeline>;
     create(
-        params: Params$Resource$Pipelines$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
-        callback: BodyResponseCallback<Schema$Pipeline>): void;
+      params?: Params$Resource$Pipelines$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Pipeline>;
     create(
-        params: Params$Resource$Pipelines$Create,
-        callback: BodyResponseCallback<Schema$Pipeline>): void;
+      params: Params$Resource$Pipelines$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Pipeline>,
+      callback: BodyResponseCallback<Schema$Pipeline>
+    ): void;
+    create(
+      params: Params$Resource$Pipelines$Create,
+      callback: BodyResponseCallback<Schema$Pipeline>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Pipeline>): void;
     create(
-        paramsOrCallback?: Params$Resource$Pipelines$Create|
-        BodyResponseCallback<Schema$Pipeline>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
-        callback?: BodyResponseCallback<Schema$Pipeline>):
-        void|GaxiosPromise<Schema$Pipeline> {
+      paramsOrCallback?:
+        | Params$Resource$Pipelines$Create
+        | BodyResponseCallback<Schema$Pipeline>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Pipeline>,
+      callback?: BodyResponseCallback<Schema$Pipeline>
+    ): void | GaxiosPromise<Schema$Pipeline> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1511,16 +1546,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/pipelines')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/pipelines').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1528,7 +1566,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$Pipeline>(parameters);
       }
     }
-
 
     /**
      * genomics.pipelines.delete
@@ -1595,22 +1632,27 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Pipelines$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Pipelines$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Pipelines$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Pipelines$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Pipelines$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Pipelines$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Pipelines$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Pipelines$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1628,16 +1670,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/pipelines/{pipelineId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/pipelines/{pipelineId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1645,7 +1690,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * genomics.pipelines.get
@@ -1714,19 +1758,27 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Pipelines$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Pipeline>;
-    get(params: Params$Resource$Pipelines$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
-        callback: BodyResponseCallback<Schema$Pipeline>): void;
-    get(params: Params$Resource$Pipelines$Get,
-        callback: BodyResponseCallback<Schema$Pipeline>): void;
+    get(
+      params?: Params$Resource$Pipelines$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Pipeline>;
+    get(
+      params: Params$Resource$Pipelines$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Pipeline>,
+      callback: BodyResponseCallback<Schema$Pipeline>
+    ): void;
+    get(
+      params: Params$Resource$Pipelines$Get,
+      callback: BodyResponseCallback<Schema$Pipeline>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Pipeline>): void;
-    get(paramsOrCallback?: Params$Resource$Pipelines$Get|
-        BodyResponseCallback<Schema$Pipeline>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
-        callback?: BodyResponseCallback<Schema$Pipeline>):
-        void|GaxiosPromise<Schema$Pipeline> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Pipelines$Get
+        | BodyResponseCallback<Schema$Pipeline>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Pipeline>,
+      callback?: BodyResponseCallback<Schema$Pipeline>
+    ): void | GaxiosPromise<Schema$Pipeline> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1744,16 +1796,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/pipelines/{pipelineId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/pipelines/{pipelineId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1761,7 +1816,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$Pipeline>(parameters);
       }
     }
-
 
     /**
      * genomics.pipelines.getControllerConfig
@@ -1826,26 +1880,32 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     getControllerConfig(
-        params?: Params$Resource$Pipelines$Getcontrollerconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$ControllerConfig>;
+      params?: Params$Resource$Pipelines$Getcontrollerconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ControllerConfig>;
     getControllerConfig(
-        params: Params$Resource$Pipelines$Getcontrollerconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$ControllerConfig>,
-        callback: BodyResponseCallback<Schema$ControllerConfig>): void;
+      params: Params$Resource$Pipelines$Getcontrollerconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$ControllerConfig>,
+      callback: BodyResponseCallback<Schema$ControllerConfig>
+    ): void;
     getControllerConfig(
-        params: Params$Resource$Pipelines$Getcontrollerconfig,
-        callback: BodyResponseCallback<Schema$ControllerConfig>): void;
+      params: Params$Resource$Pipelines$Getcontrollerconfig,
+      callback: BodyResponseCallback<Schema$ControllerConfig>
+    ): void;
     getControllerConfig(
-        callback: BodyResponseCallback<Schema$ControllerConfig>): void;
+      callback: BodyResponseCallback<Schema$ControllerConfig>
+    ): void;
     getControllerConfig(
-        paramsOrCallback?: Params$Resource$Pipelines$Getcontrollerconfig|
-        BodyResponseCallback<Schema$ControllerConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ControllerConfig>,
-        callback?: BodyResponseCallback<Schema$ControllerConfig>):
-        void|GaxiosPromise<Schema$ControllerConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Pipelines$Getcontrollerconfig;
+      paramsOrCallback?:
+        | Params$Resource$Pipelines$Getcontrollerconfig
+        | BodyResponseCallback<Schema$ControllerConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ControllerConfig>,
+      callback?: BodyResponseCallback<Schema$ControllerConfig>
+    ): void | GaxiosPromise<Schema$ControllerConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pipelines$Getcontrollerconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1862,16 +1922,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/pipelines:getControllerConfig')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/pipelines:getControllerConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ControllerConfig>(parameters, callback);
@@ -1879,7 +1942,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$ControllerConfig>(parameters);
       }
     }
-
 
     /**
      * genomics.pipelines.list
@@ -1959,24 +2021,31 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Pipelines$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListPipelinesResponse>;
     list(
-        params: Params$Resource$Pipelines$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListPipelinesResponse>,
-        callback: BodyResponseCallback<Schema$ListPipelinesResponse>): void;
+      params?: Params$Resource$Pipelines$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPipelinesResponse>;
     list(
-        params: Params$Resource$Pipelines$List,
-        callback: BodyResponseCallback<Schema$ListPipelinesResponse>): void;
+      params: Params$Resource$Pipelines$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPipelinesResponse>,
+      callback: BodyResponseCallback<Schema$ListPipelinesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Pipelines$List,
+      callback: BodyResponseCallback<Schema$ListPipelinesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListPipelinesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Pipelines$List|
-        BodyResponseCallback<Schema$ListPipelinesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListPipelinesResponse>,
-        callback?: BodyResponseCallback<Schema$ListPipelinesResponse>):
-        void|GaxiosPromise<Schema$ListPipelinesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Pipelines$List
+        | BodyResponseCallback<Schema$ListPipelinesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPipelinesResponse>,
+      callback?: BodyResponseCallback<Schema$ListPipelinesResponse>
+    ): void | GaxiosPromise<Schema$ListPipelinesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1994,16 +2063,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/pipelines')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/pipelines').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListPipelinesResponse>(parameters, callback);
@@ -2011,7 +2083,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$ListPipelinesResponse>(parameters);
       }
     }
-
 
     /**
      * genomics.pipelines.run
@@ -2085,20 +2156,29 @@ export namespace genomics_v1alpha2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: Params$Resource$Pipelines$Run,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    run(params: Params$Resource$Pipelines$Run,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    run(params: Params$Resource$Pipelines$Run,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      params?: Params$Resource$Pipelines$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Pipelines$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Pipelines$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     run(callback: BodyResponseCallback<Schema$Operation>): void;
-    run(paramsOrCallback?: Params$Resource$Pipelines$Run|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Pipelines$Run
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2116,16 +2196,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/pipelines:run')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/pipelines:run').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2133,7 +2216,6 @@ export namespace genomics_v1alpha2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * genomics.pipelines.setOperationStatus
@@ -2203,24 +2285,28 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     setOperationStatus(
-        params?: Params$Resource$Pipelines$Setoperationstatus,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Pipelines$Setoperationstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     setOperationStatus(
-        params: Params$Resource$Pipelines$Setoperationstatus,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Pipelines$Setoperationstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     setOperationStatus(
-        params: Params$Resource$Pipelines$Setoperationstatus,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Pipelines$Setoperationstatus,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     setOperationStatus(callback: BodyResponseCallback<Schema$Empty>): void;
     setOperationStatus(
-        paramsOrCallback?: Params$Resource$Pipelines$Setoperationstatus|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Pipelines$Setoperationstatus;
+      paramsOrCallback?:
+        | Params$Resource$Pipelines$Setoperationstatus
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pipelines$Setoperationstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2237,16 +2323,19 @@ export namespace genomics_v1alpha2 {
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/pipelines:setOperationStatus')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha2/pipelines:setOperationStatus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2260,8 +2349,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -2272,7 +2360,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Caller must have WRITE access to the project in which this pipeline is
@@ -2284,7 +2372,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Caller must have READ access to the project in which this pipeline is
@@ -2292,12 +2380,12 @@ export namespace genomics_v1alpha2 {
      */
     pipelineId?: string;
   }
-  export interface Params$Resource$Pipelines$Getcontrollerconfig extends
-      StandardParameters {
+  export interface Params$Resource$Pipelines$Getcontrollerconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The operation to retrieve controller configuration for.
@@ -2312,7 +2400,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Pipelines with names that match this prefix should be returned.  If
@@ -2339,21 +2427,19 @@ export namespace genomics_v1alpha2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$RunPipelineRequest;
   }
-  export interface Params$Resource$Pipelines$Setoperationstatus extends
-      StandardParameters {
+  export interface Params$Resource$Pipelines$Setoperationstatus
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

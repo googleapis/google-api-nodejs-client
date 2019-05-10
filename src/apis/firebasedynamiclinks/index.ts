@@ -17,17 +17,21 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {firebasedynamiclinks_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': firebasedynamiclinks_v1.Firebasedynamiclinks,
+  v1: firebasedynamiclinks_v1.Firebasedynamiclinks,
 };
 
-export function firebasedynamiclinks(version: 'v1'):
-    firebasedynamiclinks_v1.Firebasedynamiclinks;
-export function firebasedynamiclinks(options: firebasedynamiclinks_v1.Options):
-    firebasedynamiclinks_v1.Firebasedynamiclinks;
-export function
-firebasedynamiclinks<T = firebasedynamiclinks_v1.Firebasedynamiclinks>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|firebasedynamiclinks_v1.Options) {
+export function firebasedynamiclinks(
+  version: 'v1'
+): firebasedynamiclinks_v1.Firebasedynamiclinks;
+export function firebasedynamiclinks(
+  options: firebasedynamiclinks_v1.Options
+): firebasedynamiclinks_v1.Firebasedynamiclinks;
+export function firebasedynamiclinks<
+  T = firebasedynamiclinks_v1.Firebasedynamiclinks
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | firebasedynamiclinks_v1.Options
+) {
   return getAPI<T>('firebasedynamiclinks', versionOrOptions, VERSIONS, this);
 }
 

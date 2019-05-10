@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -644,7 +656,6 @@ export namespace fitness_v1 {
     value?: Schema$MapValue;
   }
 
-
   export class Resource$Users {
     context: APIRequestContext;
     dataset: Resource$Users$Dataset;
@@ -658,13 +669,11 @@ export namespace fitness_v1 {
     }
   }
 
-
   export class Resource$Users$Dataset {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * fitness.users.dataset.aggregate
@@ -683,25 +692,30 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     aggregate(
-        params?: Params$Resource$Users$Dataset$Aggregate,
-        options?: MethodOptions): GaxiosPromise<Schema$AggregateResponse>;
+      params?: Params$Resource$Users$Dataset$Aggregate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AggregateResponse>;
     aggregate(
-        params: Params$Resource$Users$Dataset$Aggregate,
-        options: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
-        callback: BodyResponseCallback<Schema$AggregateResponse>): void;
+      params: Params$Resource$Users$Dataset$Aggregate,
+      options: MethodOptions | BodyResponseCallback<Schema$AggregateResponse>,
+      callback: BodyResponseCallback<Schema$AggregateResponse>
+    ): void;
     aggregate(
-        params: Params$Resource$Users$Dataset$Aggregate,
-        callback: BodyResponseCallback<Schema$AggregateResponse>): void;
+      params: Params$Resource$Users$Dataset$Aggregate,
+      callback: BodyResponseCallback<Schema$AggregateResponse>
+    ): void;
     aggregate(callback: BodyResponseCallback<Schema$AggregateResponse>): void;
     aggregate(
-        paramsOrCallback?: Params$Resource$Users$Dataset$Aggregate|
-        BodyResponseCallback<Schema$AggregateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AggregateResponse>,
-        callback?: BodyResponseCallback<Schema$AggregateResponse>):
-        void|GaxiosPromise<Schema$AggregateResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Dataset$Aggregate;
+      paramsOrCallback?:
+        | Params$Resource$Users$Dataset$Aggregate
+        | BodyResponseCallback<Schema$AggregateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AggregateResponse>,
+      callback?: BodyResponseCallback<Schema$AggregateResponse>
+    ): void | GaxiosPromise<Schema$AggregateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Dataset$Aggregate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -718,16 +732,18 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fitness/v1/users/{userId}/dataset:aggregate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AggregateResponse>(parameters, callback);
@@ -737,12 +753,12 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Dataset$Aggregate extends
-      StandardParameters {
+  export interface Params$Resource$Users$Dataset$Aggregate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Aggregate data for the person identified. Use me to indicate the
@@ -756,18 +772,17 @@ export namespace fitness_v1 {
     requestBody?: Schema$AggregateRequest;
   }
 
-
   export class Resource$Users$Datasources {
     context: APIRequestContext;
     dataPointChanges: Resource$Users$Datasources$Datapointchanges;
     datasets: Resource$Users$Datasources$Datasets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.dataPointChanges =
-          new Resource$Users$Datasources$Datapointchanges(this.context);
+      this.dataPointChanges = new Resource$Users$Datasources$Datapointchanges(
+        this.context
+      );
       this.datasets = new Resource$Users$Datasources$Datasets(this.context);
     }
-
 
     /**
      * fitness.users.dataSources.create
@@ -790,25 +805,30 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Users$Datasources$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
+      params?: Params$Resource$Users$Datasources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataSource>;
     create(
-        params: Params$Resource$Users$Datasources$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+      params: Params$Resource$Users$Datasources$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     create(
-        params: Params$Resource$Users$Datasources$Create,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+      params: Params$Resource$Users$Datasources$Create,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     create(callback: BodyResponseCallback<Schema$DataSource>): void;
     create(
-        paramsOrCallback?: Params$Resource$Users$Datasources$Create|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Create;
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Create
+        | BodyResponseCallback<Schema$DataSource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>
+    ): void | GaxiosPromise<Schema$DataSource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -825,16 +845,19 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -842,7 +865,6 @@ export namespace fitness_v1 {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
     }
-
 
     /**
      * fitness.users.dataSources.delete
@@ -859,25 +881,30 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Datasources$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
+      params?: Params$Resource$Users$Datasources$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataSource>;
     delete(
-        params: Params$Resource$Users$Datasources$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+      params: Params$Resource$Users$Datasources$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     delete(
-        params: Params$Resource$Users$Datasources$Delete,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+      params: Params$Resource$Users$Datasources$Delete,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$DataSource>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Datasources$Delete|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Delete
+        | BodyResponseCallback<Schema$DataSource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>
+    ): void | GaxiosPromise<Schema$DataSource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -894,17 +921,18 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -912,7 +940,6 @@ export namespace fitness_v1 {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
     }
-
 
     /**
      * fitness.users.dataSources.get
@@ -927,22 +954,31 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Datasources$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
-    get(params: Params$Resource$Users$Datasources$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(params: Params$Resource$Users$Datasources$Get,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+    get(
+      params?: Params$Resource$Users$Datasources$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataSource>;
+    get(
+      params: Params$Resource$Users$Datasources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
+    get(
+      params: Params$Resource$Users$Datasources$Get,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     get(callback: BodyResponseCallback<Schema$DataSource>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Datasources$Get|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Get
+        | BodyResponseCallback<Schema$DataSource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>
+    ): void | GaxiosPromise<Schema$DataSource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -959,17 +995,18 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -977,7 +1014,6 @@ export namespace fitness_v1 {
         return createAPIRequest<Schema$DataSource>(parameters);
       }
     }
-
 
     /**
      * fitness.users.dataSources.list
@@ -996,26 +1032,32 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Datasources$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDataSourcesResponse>;
+      params?: Params$Resource$Users$Datasources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDataSourcesResponse>;
     list(
-        params: Params$Resource$Users$Datasources$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+      params: Params$Resource$Users$Datasources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Datasources$List,
-        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+      params: Params$Resource$Users$Datasources$List,
+      callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Datasources$List|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
-        void|GaxiosPromise<Schema$ListDataSourcesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$List
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>
+    ): void | GaxiosPromise<Schema$ListDataSourcesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1032,16 +1074,19 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fitness/v1/users/{userId}/dataSources')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/dataSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -1049,7 +1094,6 @@ export namespace fitness_v1 {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
       }
     }
-
 
     /**
      * fitness.users.dataSources.update
@@ -1069,25 +1113,30 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Users$Datasources$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
+      params?: Params$Resource$Users$Datasources$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DataSource>;
     update(
-        params: Params$Resource$Users$Datasources$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+      params: Params$Resource$Users$Datasources$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSource>,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     update(
-        params: Params$Resource$Users$Datasources$Update,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
+      params: Params$Resource$Users$Datasources$Update,
+      callback: BodyResponseCallback<Schema$DataSource>
+    ): void;
     update(callback: BodyResponseCallback<Schema$DataSource>): void;
     update(
-        paramsOrCallback?: Params$Resource$Users$Datasources$Update|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Update;
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Update
+        | BodyResponseCallback<Schema$DataSource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>
+    ): void | GaxiosPromise<Schema$DataSource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1104,17 +1153,18 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fitness/v1/users/{userId}/dataSources/{dataSourceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1124,12 +1174,12 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Create extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Create the data source for the person identified. Use me to indicate the
@@ -1142,12 +1192,12 @@ export namespace fitness_v1 {
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Users$Datasources$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The data stream ID of the data source to delete.
@@ -1159,12 +1209,12 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The data stream ID of the data source to retrieve.
@@ -1176,12 +1226,12 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The names of data types to include in the list. If not specified, all
@@ -1194,12 +1244,12 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Update extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The data stream ID of the data source to update.
@@ -1223,7 +1273,6 @@ export namespace fitness_v1 {
       this.context = context;
     }
 
-
     /**
      * fitness.users.dataSources.dataPointChanges.list
      * @desc Queries for user's data point changes for a particular data source.
@@ -1240,31 +1289,34 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Datasources$Datapointchanges$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListDataPointChangesResponse>;
+      params?: Params$Resource$Users$Datasources$Datapointchanges$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDataPointChangesResponse>;
     list(
-        params: Params$Resource$Users$Datasources$Datapointchanges$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDataPointChangesResponse>,
-        callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
-        void;
+      params: Params$Resource$Users$Datasources$Datapointchanges$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataPointChangesResponse>,
+      callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Datasources$Datapointchanges$List,
-        callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
-        void;
+      params: Params$Resource$Users$Datasources$Datapointchanges$List,
+      callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Users$Datasources$Datapointchanges$List|
-        BodyResponseCallback<Schema$ListDataPointChangesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDataPointChangesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
-        void|GaxiosPromise<Schema$ListDataPointChangesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Datasources$Datapointchanges$List;
+      callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Datapointchanges$List
+        | BodyResponseCallback<Schema$ListDataPointChangesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDataPointChangesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>
+    ): void | GaxiosPromise<Schema$ListDataPointChangesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Datapointchanges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1281,35 +1333,39 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/dataPointChanges')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/dataPointChanges'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDataPointChangesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListDataPointChangesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Users$Datasources$Datapointchanges$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The data stream ID of the data source that created the dataset.
@@ -1333,13 +1389,11 @@ export namespace fitness_v1 {
     userId?: string;
   }
 
-
   export class Resource$Users$Datasources$Datasets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * fitness.users.dataSources.datasets.delete
@@ -1364,23 +1418,28 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Datasources$Datasets$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Datasources$Datasets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Datasources$Datasets$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Datasources$Datasets$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Datasources$Datasets$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Datasources$Datasets$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Datasources$Datasets$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Datasources$Datasets$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Datasets$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1397,18 +1456,19 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1416,7 +1476,6 @@ export namespace fitness_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * fitness.users.dataSources.datasets.get
@@ -1438,21 +1497,29 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Datasources$Datasets$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
-    get(params: Params$Resource$Users$Datasources$Datasets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(params: Params$Resource$Users$Datasources$Datasets$Get,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(
+      params?: Params$Resource$Users$Datasources$Datasets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
+    get(
+      params: Params$Resource$Users$Datasources$Datasets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
+    get(
+      params: Params$Resource$Users$Datasources$Datasets$Get,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Datasources$Datasets$Get|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Datasources$Datasets$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Datasets$Get
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1469,18 +1536,19 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1488,7 +1556,6 @@ export namespace fitness_v1 {
         return createAPIRequest<Schema$Dataset>(parameters);
       }
     }
-
 
     /**
      * fitness.users.dataSources.datasets.patch
@@ -1510,24 +1577,28 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Users$Datasources$Datasets$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
+      params?: Params$Resource$Users$Datasources$Datasets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Dataset>;
     patch(
-        params: Params$Resource$Users$Datasources$Datasets$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params: Params$Resource$Users$Datasources$Datasets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     patch(
-        params: Params$Resource$Users$Datasources$Datasets$Patch,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
+      params: Params$Resource$Users$Datasources$Datasets$Patch,
+      callback: BodyResponseCallback<Schema$Dataset>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Dataset>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Users$Datasources$Datasets$Patch|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|GaxiosPromise<Schema$Dataset> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Datasources$Datasets$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Users$Datasources$Datasets$Patch
+        | BodyResponseCallback<Schema$Dataset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>
+    ): void | GaxiosPromise<Schema$Dataset> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Datasources$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1544,18 +1615,19 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1565,12 +1637,12 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Datasets$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$Datasets$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The client's current time in milliseconds since epoch.
@@ -1597,12 +1669,12 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Datasets$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$Datasets$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Dataset identifier that is a composite of the minimum data point start
@@ -1635,12 +1707,12 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Datasets$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Users$Datasources$Datasets$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The client's current time in milliseconds since epoch. Note that the
@@ -1671,14 +1743,11 @@ export namespace fitness_v1 {
     requestBody?: Schema$Dataset;
   }
 
-
-
   export class Resource$Users$Sessions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * fitness.users.sessions.delete
@@ -1695,23 +1764,28 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Sessions$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Sessions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Sessions$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Sessions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Sessions$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Sessions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Sessions$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Sessions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Sessions$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1728,16 +1802,18 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1745,7 +1821,6 @@ export namespace fitness_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * fitness.users.sessions.list
@@ -1763,26 +1838,33 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$Sessions$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListSessionsResponse>;
     list(
-        params: Params$Resource$Users$Sessions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListSessionsResponse>,
-        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+      params?: Params$Resource$Users$Sessions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSessionsResponse>;
     list(
-        params: Params$Resource$Users$Sessions$List,
-        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+      params: Params$Resource$Users$Sessions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSessionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Sessions$List,
+      callback: BodyResponseCallback<Schema$ListSessionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Sessions$List|
-        BodyResponseCallback<Schema$ListSessionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSessionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
-        void|GaxiosPromise<Schema$ListSessionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Sessions$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Sessions$List
+        | BodyResponseCallback<Schema$ListSessionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSessionsResponse>
+    ): void | GaxiosPromise<Schema$ListSessionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1799,16 +1881,19 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fitness/v1/users/{userId}/sessions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/fitness/v1/users/{userId}/sessions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -1816,7 +1901,6 @@ export namespace fitness_v1 {
         return createAPIRequest<Schema$ListSessionsResponse>(parameters);
       }
     }
-
 
     /**
      * fitness.users.sessions.update
@@ -1834,24 +1918,28 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Users$Sessions$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Session>;
+      params?: Params$Resource$Users$Sessions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Session>;
     update(
-        params: Params$Resource$Users$Sessions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback: BodyResponseCallback<Schema$Session>): void;
+      params: Params$Resource$Users$Sessions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Session>,
+      callback: BodyResponseCallback<Schema$Session>
+    ): void;
     update(
-        params: Params$Resource$Users$Sessions$Update,
-        callback: BodyResponseCallback<Schema$Session>): void;
+      params: Params$Resource$Users$Sessions$Update,
+      callback: BodyResponseCallback<Schema$Session>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Session>): void;
     update(
-        paramsOrCallback?: Params$Resource$Users$Sessions$Update|
-        BodyResponseCallback<Schema$Session>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback?: BodyResponseCallback<Schema$Session>):
-        void|GaxiosPromise<Schema$Session> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Sessions$Update;
+      paramsOrCallback?:
+        | Params$Resource$Users$Sessions$Update
+        | BodyResponseCallback<Schema$Session>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>
+    ): void | GaxiosPromise<Schema$Session> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sessions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1868,16 +1956,18 @@ export namespace fitness_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/fitness/v1/users/{userId}/sessions/{sessionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -1887,12 +1977,12 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Sessions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Sessions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The client's current time in milliseconds since epoch.
@@ -1908,12 +1998,12 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Sessions$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Sessions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An RFC3339 timestamp. Only sessions ending between the start and end
@@ -1947,12 +2037,12 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Sessions$Update extends
-      StandardParameters {
+  export interface Params$Resource$Users$Sessions$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The client's current time in milliseconds since epoch.

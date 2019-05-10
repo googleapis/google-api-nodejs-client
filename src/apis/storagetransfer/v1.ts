@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -105,8 +117,9 @@ export namespace storagetransfer_v1 {
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {_options: options || {}, google};
 
-      this.googleServiceAccounts =
-          new Resource$Googleserviceaccounts(this.context);
+      this.googleServiceAccounts = new Resource$Googleserviceaccounts(
+        this.context
+      );
       this.transferJobs = new Resource$Transferjobs(this.context);
       this.transferOperations = new Resource$Transferoperations(this.context);
     }
@@ -374,7 +387,7 @@ export namespace storagetransfer_v1 {
     /**
      * Represents the transfer operation object.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -390,7 +403,7 @@ export namespace storagetransfer_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Request passed to PauseTransferOperation.
@@ -471,7 +484,7 @@ export namespace storagetransfer_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -758,13 +771,11 @@ export namespace storagetransfer_v1 {
     updateTransferJobFieldMask?: string;
   }
 
-
   export class Resource$Googleserviceaccounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * storagetransfer.googleServiceAccounts.get
@@ -838,23 +849,33 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Googleserviceaccounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GoogleServiceAccount>;
-    get(params: Params$Resource$Googleserviceaccounts$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleServiceAccount>,
-        callback: BodyResponseCallback<Schema$GoogleServiceAccount>): void;
-    get(params: Params$Resource$Googleserviceaccounts$Get,
-        callback: BodyResponseCallback<Schema$GoogleServiceAccount>): void;
+    get(
+      params?: Params$Resource$Googleserviceaccounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleServiceAccount>;
+    get(
+      params: Params$Resource$Googleserviceaccounts$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleServiceAccount>,
+      callback: BodyResponseCallback<Schema$GoogleServiceAccount>
+    ): void;
+    get(
+      params: Params$Resource$Googleserviceaccounts$Get,
+      callback: BodyResponseCallback<Schema$GoogleServiceAccount>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GoogleServiceAccount>): void;
-    get(paramsOrCallback?: Params$Resource$Googleserviceaccounts$Get|
-        BodyResponseCallback<Schema$GoogleServiceAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleServiceAccount>,
-        callback?: BodyResponseCallback<Schema$GoogleServiceAccount>):
-        void|GaxiosPromise<Schema$GoogleServiceAccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Googleserviceaccounts$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Googleserviceaccounts$Get
+        | BodyResponseCallback<Schema$GoogleServiceAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleServiceAccount>,
+      callback?: BodyResponseCallback<Schema$GoogleServiceAccount>
+    ): void | GaxiosPromise<Schema$GoogleServiceAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Googleserviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -869,19 +890,22 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/googleServiceAccounts/{projectId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/googleServiceAccounts/{projectId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleServiceAccount>(parameters, callback);
@@ -891,12 +915,12 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Googleserviceaccounts$Get extends
-      StandardParameters {
+  export interface Params$Resource$Googleserviceaccounts$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the Google Cloud Platform Console project that the Google
@@ -905,13 +929,11 @@ export namespace storagetransfer_v1 {
     projectId?: string;
   }
 
-
   export class Resource$Transferjobs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * storagetransfer.transferJobs.create
@@ -980,25 +1002,30 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Transferjobs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferJob>;
+      params?: Params$Resource$Transferjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferJob>;
     create(
-        params: Params$Resource$Transferjobs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
-        callback: BodyResponseCallback<Schema$TransferJob>): void;
+      params: Params$Resource$Transferjobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferJob>,
+      callback: BodyResponseCallback<Schema$TransferJob>
+    ): void;
     create(
-        params: Params$Resource$Transferjobs$Create,
-        callback: BodyResponseCallback<Schema$TransferJob>): void;
+      params: Params$Resource$Transferjobs$Create,
+      callback: BodyResponseCallback<Schema$TransferJob>
+    ): void;
     create(callback: BodyResponseCallback<Schema$TransferJob>): void;
     create(
-        paramsOrCallback?: Params$Resource$Transferjobs$Create|
-        BodyResponseCallback<Schema$TransferJob>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferJob>,
-        callback?: BodyResponseCallback<Schema$TransferJob>):
-        void|GaxiosPromise<Schema$TransferJob> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferjobs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Transferjobs$Create
+        | BodyResponseCallback<Schema$TransferJob>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferJob>,
+      callback?: BodyResponseCallback<Schema$TransferJob>
+    ): void | GaxiosPromise<Schema$TransferJob> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1013,18 +1040,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1032,7 +1060,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$TransferJob>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferJobs.get
@@ -1102,20 +1129,29 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Transferjobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TransferJob>;
-    get(params: Params$Resource$Transferjobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
-        callback: BodyResponseCallback<Schema$TransferJob>): void;
-    get(params: Params$Resource$Transferjobs$Get,
-        callback: BodyResponseCallback<Schema$TransferJob>): void;
+    get(
+      params?: Params$Resource$Transferjobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferJob>;
+    get(
+      params: Params$Resource$Transferjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferJob>,
+      callback: BodyResponseCallback<Schema$TransferJob>
+    ): void;
+    get(
+      params: Params$Resource$Transferjobs$Get,
+      callback: BodyResponseCallback<Schema$TransferJob>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TransferJob>): void;
-    get(paramsOrCallback?: Params$Resource$Transferjobs$Get|
-        BodyResponseCallback<Schema$TransferJob>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferJob>,
-        callback?: BodyResponseCallback<Schema$TransferJob>):
-        void|GaxiosPromise<Schema$TransferJob> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Transferjobs$Get
+        | BodyResponseCallback<Schema$TransferJob>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferJob>,
+      callback?: BodyResponseCallback<Schema$TransferJob>
+    ): void | GaxiosPromise<Schema$TransferJob> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1131,18 +1167,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1150,7 +1187,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$TransferJob>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferJobs.list
@@ -1230,26 +1266,33 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Transferjobs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListTransferJobsResponse>;
     list(
-        params: Params$Resource$Transferjobs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListTransferJobsResponse>): void;
+      params?: Params$Resource$Transferjobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransferJobsResponse>;
     list(
-        params: Params$Resource$Transferjobs$List,
-        callback: BodyResponseCallback<Schema$ListTransferJobsResponse>): void;
+      params: Params$Resource$Transferjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Transferjobs$List,
+      callback: BodyResponseCallback<Schema$ListTransferJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListTransferJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Transferjobs$List|
-        BodyResponseCallback<Schema$ListTransferJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTransferJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferJobsResponse>):
-        void|GaxiosPromise<Schema$ListTransferJobsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferjobs$List;
+      paramsOrCallback?:
+        | Params$Resource$Transferjobs$List
+        | BodyResponseCallback<Schema$ListTransferJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferJobsResponse>
+    ): void | GaxiosPromise<Schema$ListTransferJobsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1264,18 +1307,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/transferJobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferJobsResponse>(parameters, callback);
@@ -1283,7 +1327,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$ListTransferJobsResponse>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferJobs.patch
@@ -1361,25 +1404,31 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Transferjobs$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$TransferJob>;
     patch(
-        params: Params$Resource$Transferjobs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
-        callback: BodyResponseCallback<Schema$TransferJob>): void;
+      params?: Params$Resource$Transferjobs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TransferJob>;
     patch(
-        params: Params$Resource$Transferjobs$Patch,
-        callback: BodyResponseCallback<Schema$TransferJob>): void;
+      params: Params$Resource$Transferjobs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferJob>,
+      callback: BodyResponseCallback<Schema$TransferJob>
+    ): void;
+    patch(
+      params: Params$Resource$Transferjobs$Patch,
+      callback: BodyResponseCallback<Schema$TransferJob>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$TransferJob>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Transferjobs$Patch|
-        BodyResponseCallback<Schema$TransferJob>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TransferJob>,
-        callback?: BodyResponseCallback<Schema$TransferJob>):
-        void|GaxiosPromise<Schema$TransferJob> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferjobs$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Transferjobs$Patch
+        | BodyResponseCallback<Schema$TransferJob>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TransferJob>,
+      callback?: BodyResponseCallback<Schema$TransferJob>
+    ): void | GaxiosPromise<Schema$TransferJob> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferjobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1394,18 +1443,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1415,13 +1465,12 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transferjobs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Transferjobs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1432,7 +1481,7 @@ export namespace storagetransfer_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The job to get. Required.
@@ -1444,12 +1493,12 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Transferjobs$List extends
-      StandardParameters {
+  export interface Params$Resource$Transferjobs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A list of query parameters specified as JSON text in the form of
@@ -1470,12 +1519,12 @@ export namespace storagetransfer_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Transferjobs$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Transferjobs$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of job to update. Required.
@@ -1488,13 +1537,11 @@ export namespace storagetransfer_v1 {
     requestBody?: Schema$UpdateTransferJobRequest;
   }
 
-
   export class Resource$Transferoperations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * storagetransfer.transferOperations.cancel
@@ -1562,24 +1609,28 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Transferoperations$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Transferoperations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Transferoperations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(
-        params: Params$Resource$Transferoperations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Transferoperations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Transferoperations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferoperations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1594,19 +1645,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1614,7 +1665,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferOperations.delete
@@ -1681,24 +1731,28 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Transferoperations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Transferoperations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Transferoperations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Transferoperations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Transferoperations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Transferoperations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferoperations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1713,18 +1767,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1732,7 +1787,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferOperations.get
@@ -1800,22 +1854,31 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Transferoperations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Transferoperations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Transferoperations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Transferoperations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Transferoperations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Transferoperations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Transferoperations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Transferoperations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1830,18 +1893,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1849,7 +1913,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferOperations.list
@@ -1942,26 +2005,32 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Transferoperations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Transferoperations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Transferoperations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Transferoperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Transferoperations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Transferoperations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Transferoperations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferoperations$List;
+      paramsOrCallback?:
+        | Params$Resource$Transferoperations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1976,18 +2045,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1995,7 +2065,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferOperations.pause
@@ -2067,24 +2136,28 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     pause(
-        params?: Params$Resource$Transferoperations$Pause,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Transferoperations$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     pause(
-        params: Params$Resource$Transferoperations$Pause,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     pause(
-        params: Params$Resource$Transferoperations$Pause,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Pause,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     pause(callback: BodyResponseCallback<Schema$Empty>): void;
     pause(
-        paramsOrCallback?: Params$Resource$Transferoperations$Pause|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Pause;
+      paramsOrCallback?:
+        | Params$Resource$Transferoperations$Pause
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferoperations$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2099,19 +2172,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2119,7 +2192,6 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * storagetransfer.transferOperations.resume
@@ -2191,24 +2263,28 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     resume(
-        params?: Params$Resource$Transferoperations$Resume,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Transferoperations$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     resume(
-        params: Params$Resource$Transferoperations$Resume,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     resume(
-        params: Params$Resource$Transferoperations$Resume,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Transferoperations$Resume,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     resume(callback: BodyResponseCallback<Schema$Empty>): void;
     resume(
-        paramsOrCallback?: Params$Resource$Transferoperations$Resume|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Resume;
+      paramsOrCallback?:
+        | Params$Resource$Transferoperations$Resume
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferoperations$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2223,19 +2299,19 @@ export namespace storagetransfer_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://storagetransfer.googleapis.com/';
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:resume')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2245,48 +2321,48 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transferoperations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Transferoperations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Transferoperations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Transferoperations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$List extends
-      StandardParameters {
+  export interface Params$Resource$Transferoperations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A list of query parameters specified as JSON text in the form of
@@ -2311,12 +2387,12 @@ export namespace storagetransfer_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Transferoperations$Pause extends
-      StandardParameters {
+  export interface Params$Resource$Transferoperations$Pause
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the transfer operation. Required.
@@ -2328,12 +2404,12 @@ export namespace storagetransfer_v1 {
      */
     requestBody?: Schema$PauseTransferOperationRequest;
   }
-  export interface Params$Resource$Transferoperations$Resume extends
-      StandardParameters {
+  export interface Params$Resource$Transferoperations$Resume
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the transfer operation. Required.

@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {testing_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': testing_v1.Testing,
+  v1: testing_v1.Testing,
 };
 
 export function testing(version: 'v1'): testing_v1.Testing;
 export function testing(options: testing_v1.Options): testing_v1.Testing;
 export function testing<T = testing_v1.Testing>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|testing_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | testing_v1.Options
+) {
   return getAPI<T>('testing', versionOrOptions, VERSIONS, this);
 }
 

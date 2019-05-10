@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -134,7 +146,7 @@ export namespace composer_v1 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
      * constrained to be &lt;= 128 bytes in size.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The resource name of the environment, in the form:
      * &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
@@ -355,7 +367,7 @@ export namespace composer_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -371,7 +383,7 @@ export namespace composer_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Metadata describing an operation.
@@ -425,7 +437,7 @@ export namespace composer_v1 {
      * [blacklisted](/composer/docs/how-to/managing/setting-airflow-configurations#airflow_configuration_blacklists),
      * and cannot be overridden.
      */
-    airflowConfigOverrides?: {[key: string]: string;};
+    airflowConfigOverrides?: {[key: string]: string};
     /**
      * Optional. Additional environment variables to provide to the Apache
      * Airflow scheduler, worker, and webserver processes.  Environment variable
@@ -437,7 +449,7 @@ export namespace composer_v1 {
      * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` *
      * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
      */
-    envVariables?: {[key: string]: string;};
+    envVariables?: {[key: string]: string};
     /**
      * The version of the software running in the environment. This encapsulates
      * both the version of Cloud Composer functionality and the version of
@@ -465,7 +477,7 @@ export namespace composer_v1 {
      * &quot;[devel]&gt;=1.8.2, &lt;1.9.2&quot;. To specify a package without
      * pinning it to a version specifier, use the empty string as the value.
      */
-    pypiPackages?: {[key: string]: string;};
+    pypiPackages?: {[key: string]: string};
     /**
      * Optional. The major version of Python used to run the Apache Airflow
      * scheduler, worker, and webserver processes.  Can be set to &#39;2&#39; or
@@ -519,7 +531,7 @@ export namespace composer_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -527,7 +539,6 @@ export namespace composer_v1 {
      */
     message?: string;
   }
-
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -538,7 +549,6 @@ export namespace composer_v1 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     environments: Resource$Projects$Locations$Environments;
@@ -546,22 +556,23 @@ export namespace composer_v1 {
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.environments =
-          new Resource$Projects$Locations$Environments(this.context);
-      this.imageVersions =
-          new Resource$Projects$Locations$Imageversions(this.context);
-      this.operations =
-          new Resource$Projects$Locations$Operations(this.context);
+      this.environments = new Resource$Projects$Locations$Environments(
+        this.context
+      );
+      this.imageVersions = new Resource$Projects$Locations$Imageversions(
+        this.context
+      );
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Locations$Environments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * composer.projects.locations.environments.create
@@ -577,26 +588,30 @@ export namespace composer_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Environments$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Environments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Locations$Environments$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Environments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Environments$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Environments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Environments$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Environments$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -613,16 +628,19 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/environments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/environments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -630,7 +648,6 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * composer.projects.locations.environments.delete
@@ -645,26 +662,30 @@ export namespace composer_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Environments$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Environments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Projects$Locations$Environments$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Environments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Environments$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Environments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Environments$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Environments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -681,15 +702,16 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -697,7 +719,6 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * composer.projects.locations.environments.get
@@ -711,22 +732,31 @@ export namespace composer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Environments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
-    get(params: Params$Resource$Projects$Locations$Environments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback: BodyResponseCallback<Schema$Environment>): void;
-    get(params: Params$Resource$Projects$Locations$Environments$Get,
-        callback: BodyResponseCallback<Schema$Environment>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Environments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Environments$Get,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Environment>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Environments$Get|
-        BodyResponseCallback<Schema$Environment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>):
-        void|GaxiosPromise<Schema$Environment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Environments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Get
+        | BodyResponseCallback<Schema$Environment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>
+    ): void | GaxiosPromise<Schema$Environment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -743,15 +773,16 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -759,7 +790,6 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$Environment>(parameters);
       }
     }
-
 
     /**
      * composer.projects.locations.environments.list
@@ -776,27 +806,32 @@ export namespace composer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Environments$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListEnvironmentsResponse>;
+      params?: Params$Resource$Projects$Locations$Environments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Environments$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-        callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+      params: Params$Resource$Projects$Locations$Environments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Environments$List,
-        callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+      params: Params$Resource$Projects$Locations$Environments$List,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Environments$List|
-        BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>):
-        void|GaxiosPromise<Schema$ListEnvironmentsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Environments$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$List
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void | GaxiosPromise<Schema$ListEnvironmentsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -813,16 +848,19 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/environments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/environments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
@@ -830,7 +868,6 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
       }
     }
-
 
     /**
      * composer.projects.locations.environments.patch
@@ -847,26 +884,30 @@ export namespace composer_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Locations$Environments$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Environments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Projects$Locations$Environments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Environments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Locations$Environments$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Environments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Environments$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Environments$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -883,15 +924,16 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -902,11 +944,11 @@ export namespace composer_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Environments$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The parent must be of the form
@@ -920,11 +962,11 @@ export namespace composer_v1 {
     requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Projects$Locations$Environments$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The environment to delete, in the form:
@@ -932,12 +974,12 @@ export namespace composer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the environment to get, in the form:
@@ -945,12 +987,12 @@ export namespace composer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of environments to return.
@@ -966,12 +1008,12 @@ export namespace composer_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The relative resource name of the environment to update, in the form:
@@ -1062,13 +1104,11 @@ export namespace composer_v1 {
     requestBody?: Schema$Environment;
   }
 
-
   export class Resource$Projects$Locations$Imageversions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * composer.projects.locations.imageVersions.list
@@ -1085,29 +1125,34 @@ export namespace composer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Imageversions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListImageVersionsResponse>;
+      params?: Params$Resource$Projects$Locations$Imageversions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListImageVersionsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Imageversions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListImageVersionsResponse>,
-        callback: BodyResponseCallback<Schema$ListImageVersionsResponse>): void;
+      params: Params$Resource$Projects$Locations$Imageversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListImageVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListImageVersionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Imageversions$List,
-        callback: BodyResponseCallback<Schema$ListImageVersionsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListImageVersionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Imageversions$List,
+      callback: BodyResponseCallback<Schema$ListImageVersionsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Imageversions$List|
-        BodyResponseCallback<Schema$ListImageVersionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListImageVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListImageVersionsResponse>):
-        void|GaxiosPromise<Schema$ListImageVersionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Imageversions$List;
+      callback: BodyResponseCallback<Schema$ListImageVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Imageversions$List
+        | BodyResponseCallback<Schema$ListImageVersionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListImageVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListImageVersionsResponse>
+    ): void | GaxiosPromise<Schema$ListImageVersionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Imageversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1124,32 +1169,37 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/imageVersions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/imageVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListImageVersionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListImageVersionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Imageversions$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageversions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of image_versions to return.
@@ -1166,13 +1216,11 @@ export namespace composer_v1 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * composer.projects.locations.operations.delete
@@ -1190,24 +1238,28 @@ export namespace composer_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Operations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1224,15 +1276,16 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1240,7 +1293,6 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * composer.projects.locations.operations.get
@@ -1256,22 +1308,31 @@ export namespace composer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Locations$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Locations$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1288,15 +1349,16 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1304,7 +1366,6 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * composer.projects.locations.operations.list
@@ -1330,26 +1391,32 @@ export namespace composer_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Projects$Locations$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1366,16 +1433,19 @@ export namespace composer_v1 {
       const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/operations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1385,36 +1455,36 @@ export namespace composer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.

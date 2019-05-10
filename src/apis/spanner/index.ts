@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {spanner_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': spanner_v1.Spanner,
+  v1: spanner_v1.Spanner,
 };
 
 export function spanner(version: 'v1'): spanner_v1.Spanner;
 export function spanner(options: spanner_v1.Options): spanner_v1.Spanner;
 export function spanner<T = spanner_v1.Spanner>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|spanner_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | spanner_v1.Options
+) {
   return getAPI<T>('spanner', versionOrOptions, VERSIONS, this);
 }
 

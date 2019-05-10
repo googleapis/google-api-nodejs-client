@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -501,7 +513,7 @@ export namespace firestore_v1beta2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -517,7 +529,7 @@ export namespace firestore_v1beta2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -564,7 +576,7 @@ export namespace firestore_v1beta2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -572,7 +584,6 @@ export namespace firestore_v1beta2 {
      */
     message?: string;
   }
-
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -583,16 +594,15 @@ export namespace firestore_v1beta2 {
     }
   }
 
-
   export class Resource$Projects$Databases {
     context: APIRequestContext;
     collectionGroups: Resource$Projects$Databases$Collectiongroups;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.collectionGroups =
-          new Resource$Projects$Databases$Collectiongroups(this.context);
+      this.collectionGroups = new Resource$Projects$Databases$Collectiongroups(
+        this.context
+      );
     }
-
 
     /**
      * firestore.projects.databases.exportDocuments
@@ -615,31 +625,34 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     exportDocuments(
-        params?: Params$Resource$Projects$Databases$Exportdocuments,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Databases$Exportdocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     exportDocuments(
-        params: Params$Resource$Projects$Databases$Exportdocuments,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Exportdocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     exportDocuments(
-        params: Params$Resource$Projects$Databases$Exportdocuments,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Exportdocuments,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     exportDocuments(
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     exportDocuments(
-        paramsOrCallback?: Params$Resource$Projects$Databases$Exportdocuments|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Exportdocuments;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Exportdocuments
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Exportdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -656,25 +669,29 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}:exportDocuments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}:exportDocuments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
 
     /**
      * firestore.projects.databases.importDocuments
@@ -695,31 +712,34 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     importDocuments(
-        params?: Params$Resource$Projects$Databases$Importdocuments,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Databases$Importdocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     importDocuments(
-        params: Params$Resource$Projects$Databases$Importdocuments,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Importdocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     importDocuments(
-        params: Params$Resource$Projects$Databases$Importdocuments,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Importdocuments,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     importDocuments(
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     importDocuments(
-        paramsOrCallback?: Params$Resource$Projects$Databases$Importdocuments|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Importdocuments;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Importdocuments
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -736,32 +756,37 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}:importDocuments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}:importDocuments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Exportdocuments extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Databases$Exportdocuments
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Database to export. Should be of the form:
@@ -774,12 +799,12 @@ export namespace firestore_v1beta2 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta2ExportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Importdocuments extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Databases$Importdocuments
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Database to import into. Should be of the form:
@@ -799,20 +824,20 @@ export namespace firestore_v1beta2 {
     indexes: Resource$Projects$Databases$Collectiongroups$Indexes;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.fields =
-          new Resource$Projects$Databases$Collectiongroups$Fields(this.context);
+      this.fields = new Resource$Projects$Databases$Collectiongroups$Fields(
+        this.context
+      );
       this.indexes = new Resource$Projects$Databases$Collectiongroups$Indexes(
-          this.context);
+        this.context
+      );
     }
   }
-
 
   export class Resource$Projects$Databases$Collectiongroups$Fields {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firestore.projects.databases.collectionGroups.fields.get
@@ -826,38 +851,40 @@ export namespace firestore_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>;
-    get(params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
-        callback:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>):
-        void;
-    get(params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
-        callback:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>):
-        void;
-    get(callback:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>):
-        void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$Get|
-        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
-        callback?:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>):
-        void|GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
+    get(
+      params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>;
+    get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Collectiongroups$Fields$Get
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
+      callback?: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
+    ): void | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
+        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
         options = {};
       }
 
@@ -869,25 +896,28 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * firestore.projects.databases.collectionGroups.fields.list
@@ -909,40 +939,55 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>;
+      params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>;
     list(
-        params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>): void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>): void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$List|
-        BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>): void|
-        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Collectiongroups$Fields$List
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
+        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
         options = {};
       }
 
@@ -954,26 +999,31 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/fields')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/fields').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>(parameters);
+          Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+        >(parameters);
       }
     }
-
 
     /**
      * firestore.projects.databases.collectionGroups.fields.patch
@@ -999,40 +1049,39 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     patch(
-        params?:
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     patch(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     patch(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    patch(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
+        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
         options = {};
       }
 
@@ -1044,19 +1093,22 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
@@ -1064,11 +1116,11 @@ export namespace firestore_v1beta2 {
   }
 
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A name of the form
@@ -1077,11 +1129,11 @@ export namespace firestore_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter to apply to list results. Currently, FirestoreAdmin.ListFields
@@ -1106,11 +1158,11 @@ export namespace firestore_v1beta2 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A field name of the form
@@ -1146,13 +1198,11 @@ export namespace firestore_v1beta2 {
     requestBody?: Schema$GoogleFirestoreAdminV1beta2Field;
   }
 
-
   export class Resource$Projects$Databases$Collectiongroups$Indexes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * firestore.projects.databases.collectionGroups.indexes.create
@@ -1171,40 +1221,39 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     create(
-        params?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
+      params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     create(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    create(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
+        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
         options = {};
       }
 
@@ -1216,25 +1265,29 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/indexes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/indexes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
 
     /**
      * firestore.projects.databases.collectionGroups.indexes.delete
@@ -1249,34 +1302,33 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
+        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
         options = {};
       }
 
@@ -1288,15 +1340,16 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1304,7 +1357,6 @@ export namespace firestore_v1beta2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * firestore.projects.databases.collectionGroups.indexes.get
@@ -1318,39 +1370,40 @@ export namespace firestore_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>;
-    get(params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
-        callback:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
-        void;
-    get(params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
-        callback:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
-        void;
-    get(callback:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
-        void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get|
-        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
-        callback?:
-            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
-        void|GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
+    get(
+      params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>;
+    get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
+      callback?: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
+    ): void | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
+        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
         options = {};
       }
 
@@ -1362,25 +1415,28 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * firestore.projects.databases.collectionGroups.indexes.list
@@ -1398,42 +1454,55 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
+      params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
     list(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
-        callback: BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+      >
+    ): void;
     list(
-        params:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
-        callback: BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void;
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$List|
-        BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
-        callback?: BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void|
-        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
+      callback: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Collectiongroups$Indexes$List
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
+        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
         options = {};
       }
 
@@ -1445,33 +1514,39 @@ export namespace firestore_v1beta2 {
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/indexes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/indexes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(parameters);
+          Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+        >(parameters);
       }
     }
   }
 
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A parent name of the form
@@ -1485,11 +1560,11 @@ export namespace firestore_v1beta2 {
     requestBody?: Schema$GoogleFirestoreAdminV1beta2Index;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A name of the form
@@ -1498,11 +1573,11 @@ export namespace firestore_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A name of the form
@@ -1511,11 +1586,11 @@ export namespace firestore_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter to apply to list results.

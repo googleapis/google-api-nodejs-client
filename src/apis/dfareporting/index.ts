@@ -25,20 +25,32 @@ export const VERSIONS = {
 };
 
 export function dfareporting(version: 'v3.1'): dfareporting_v3_1.Dfareporting;
-export function dfareporting(options: dfareporting_v3_1.Options):
-    dfareporting_v3_1.Dfareporting;
+export function dfareporting(
+  options: dfareporting_v3_1.Options
+): dfareporting_v3_1.Dfareporting;
 export function dfareporting(version: 'v3.2'): dfareporting_v3_2.Dfareporting;
-export function dfareporting(options: dfareporting_v3_2.Options):
-    dfareporting_v3_2.Dfareporting;
+export function dfareporting(
+  options: dfareporting_v3_2.Options
+): dfareporting_v3_2.Dfareporting;
 export function dfareporting(version: 'v3.3'): dfareporting_v3_3.Dfareporting;
-export function dfareporting(options: dfareporting_v3_3.Options):
-    dfareporting_v3_3.Dfareporting;
+export function dfareporting(
+  options: dfareporting_v3_3.Options
+): dfareporting_v3_3.Dfareporting;
 export function dfareporting<
-    T = dfareporting_v3_1.Dfareporting | dfareporting_v3_2.Dfareporting |
-        dfareporting_v3_3.Dfareporting>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v3.1'|dfareporting_v3_1.Options|'v3.2'|
-    dfareporting_v3_2.Options|'v3.3'|dfareporting_v3_3.Options) {
+  T =
+    | dfareporting_v3_1.Dfareporting
+    | dfareporting_v3_2.Dfareporting
+    | dfareporting_v3_3.Dfareporting
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v3.1'
+    | dfareporting_v3_1.Options
+    | 'v3.2'
+    | dfareporting_v3_2.Options
+    | 'v3.3'
+    | dfareporting_v3_3.Options
+) {
   return getAPI<T>('dfareporting', versionOrOptions, VERSIONS, this);
 }
 

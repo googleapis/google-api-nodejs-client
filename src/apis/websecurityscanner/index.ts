@@ -18,25 +18,34 @@ import {websecurityscanner_v1alpha} from './v1alpha';
 import {websecurityscanner_v1beta} from './v1beta';
 
 export const VERSIONS = {
-  'v1alpha': websecurityscanner_v1alpha.Websecurityscanner,
-  'v1beta': websecurityscanner_v1beta.Websecurityscanner,
+  v1alpha: websecurityscanner_v1alpha.Websecurityscanner,
+  v1beta: websecurityscanner_v1beta.Websecurityscanner,
 };
 
-export function websecurityscanner(version: 'v1alpha'):
-    websecurityscanner_v1alpha.Websecurityscanner;
-export function websecurityscanner(options: websecurityscanner_v1alpha.Options):
-    websecurityscanner_v1alpha.Websecurityscanner;
-export function websecurityscanner(version: 'v1beta'):
-    websecurityscanner_v1beta.Websecurityscanner;
-export function websecurityscanner(options: websecurityscanner_v1beta.Options):
-    websecurityscanner_v1beta.Websecurityscanner;
+export function websecurityscanner(
+  version: 'v1alpha'
+): websecurityscanner_v1alpha.Websecurityscanner;
+export function websecurityscanner(
+  options: websecurityscanner_v1alpha.Options
+): websecurityscanner_v1alpha.Websecurityscanner;
+export function websecurityscanner(
+  version: 'v1beta'
+): websecurityscanner_v1beta.Websecurityscanner;
+export function websecurityscanner(
+  options: websecurityscanner_v1beta.Options
+): websecurityscanner_v1beta.Websecurityscanner;
 export function websecurityscanner<
-    T = websecurityscanner_v1alpha.Websecurityscanner |
-        websecurityscanner_v1beta.Websecurityscanner>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1alpha'|
-    websecurityscanner_v1alpha.Options|'v1beta'|
-    websecurityscanner_v1beta.Options) {
+  T =
+    | websecurityscanner_v1alpha.Websecurityscanner
+    | websecurityscanner_v1beta.Websecurityscanner
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1alpha'
+    | websecurityscanner_v1alpha.Options
+    | 'v1beta'
+    | websecurityscanner_v1beta.Options
+) {
   return getAPI<T>('websecurityscanner', versionOrOptions, VERSIONS, this);
 }
 

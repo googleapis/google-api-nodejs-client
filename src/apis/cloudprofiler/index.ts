@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {cloudprofiler_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': cloudprofiler_v2.Cloudprofiler,
+  v2: cloudprofiler_v2.Cloudprofiler,
 };
 
 export function cloudprofiler(version: 'v2'): cloudprofiler_v2.Cloudprofiler;
-export function cloudprofiler(options: cloudprofiler_v2.Options):
-    cloudprofiler_v2.Cloudprofiler;
+export function cloudprofiler(
+  options: cloudprofiler_v2.Options
+): cloudprofiler_v2.Cloudprofiler;
 export function cloudprofiler<T = cloudprofiler_v2.Cloudprofiler>(
-    this: GoogleConfigurable, versionOrOptions: 'v2'|cloudprofiler_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | cloudprofiler_v2.Options
+) {
   return getAPI<T>('cloudprofiler', versionOrOptions, VERSIONS, this);
 }
 

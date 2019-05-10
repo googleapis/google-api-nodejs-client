@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -209,7 +221,7 @@ export namespace tpu_v1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -218,7 +230,7 @@ export namespace tpu_v1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -282,7 +294,7 @@ export namespace tpu_v1 {
     /**
      * Resource labels to represent user-provided metadata.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. The immutable name of the TPU
      */
@@ -343,7 +355,7 @@ export namespace tpu_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -359,7 +371,7 @@ export namespace tpu_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -459,7 +471,7 @@ export namespace tpu_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -485,7 +497,6 @@ export namespace tpu_v1 {
     version?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -495,7 +506,6 @@ export namespace tpu_v1 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
@@ -504,15 +514,17 @@ export namespace tpu_v1 {
     tensorflowVersions: Resource$Projects$Locations$Tensorflowversions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.acceleratorTypes =
-          new Resource$Projects$Locations$Acceleratortypes(this.context);
+      this.acceleratorTypes = new Resource$Projects$Locations$Acceleratortypes(
+        this.context
+      );
       this.nodes = new Resource$Projects$Locations$Nodes(this.context);
-      this.operations =
-          new Resource$Projects$Locations$Operations(this.context);
-      this.tensorflowVersions =
-          new Resource$Projects$Locations$Tensorflowversions(this.context);
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.tensorflowVersions = new Resource$Projects$Locations$Tensorflowversions(
+        this.context
+      );
     }
-
 
     /**
      * tpu.projects.locations.get
@@ -526,21 +538,29 @@ export namespace tpu_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Location>;
-    get(params: Params$Resource$Projects$Locations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback: BodyResponseCallback<Schema$Location>): void;
-    get(params: Params$Resource$Projects$Locations$Get,
-        callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
-        BodyResponseCallback<Schema$Location>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>):
-        void|GaxiosPromise<Schema$Location> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$Location>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>
+    ): void | GaxiosPromise<Schema$Location> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -557,15 +577,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -573,7 +594,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Location>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.list
@@ -591,26 +611,32 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -627,16 +653,19 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -646,24 +675,24 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -689,7 +718,6 @@ export namespace tpu_v1 {
       this.context = context;
     }
 
-
     /**
      * tpu.projects.locations.acceleratorTypes.get
      * @desc Gets AcceleratorType.
@@ -702,23 +730,31 @@ export namespace tpu_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Acceleratortypes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$AcceleratorType>;
-    get(params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
-        callback: BodyResponseCallback<Schema$AcceleratorType>): void;
-    get(params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
-        callback: BodyResponseCallback<Schema$AcceleratorType>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Acceleratortypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AcceleratorType>;
+    get(
+      params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AcceleratorType>,
+      callback: BodyResponseCallback<Schema$AcceleratorType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
+      callback: BodyResponseCallback<Schema$AcceleratorType>
+    ): void;
     get(callback: BodyResponseCallback<Schema$AcceleratorType>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Acceleratortypes$Get|
-        BodyResponseCallback<Schema$AcceleratorType>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AcceleratorType>,
-        callback?: BodyResponseCallback<Schema$AcceleratorType>):
-        void|GaxiosPromise<Schema$AcceleratorType> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Acceleratortypes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Acceleratortypes$Get
+        | BodyResponseCallback<Schema$AcceleratorType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AcceleratorType>,
+      callback?: BodyResponseCallback<Schema$AcceleratorType>
+    ): void | GaxiosPromise<Schema$AcceleratorType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Acceleratortypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -735,15 +771,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(parameters, callback);
@@ -751,7 +788,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$AcceleratorType>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.acceleratorTypes.list
@@ -770,31 +806,34 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Acceleratortypes$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListAcceleratorTypesResponse>;
+      params?: Params$Resource$Projects$Locations$Acceleratortypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAcceleratorTypesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Acceleratortypes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
-        callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Acceleratortypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Acceleratortypes$List,
-        callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Acceleratortypes$List,
+      callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Acceleratortypes$List|
-        BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
-        callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void|GaxiosPromise<Schema$ListAcceleratorTypesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Acceleratortypes$List;
+      callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Acceleratortypes$List
+        | BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>
+    ): void | GaxiosPromise<Schema$ListAcceleratorTypesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Acceleratortypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -811,33 +850,39 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/acceleratorTypes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/acceleratorTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAcceleratorTypesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAcceleratorTypesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Locations$Acceleratortypes$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name.
@@ -845,11 +890,11 @@ export namespace tpu_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Acceleratortypes$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * List filter.
@@ -873,13 +918,11 @@ export namespace tpu_v1 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Locations$Nodes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tpu.projects.locations.nodes.create
@@ -896,25 +939,30 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Nodes$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Nodes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Locations$Nodes$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Nodes$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -931,16 +979,19 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/nodes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/nodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -948,7 +999,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.nodes.delete
@@ -963,25 +1013,30 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Nodes$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Nodes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Projects$Locations$Nodes$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Nodes$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -998,15 +1053,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1014,7 +1070,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.nodes.get
@@ -1028,21 +1083,29 @@ export namespace tpu_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Nodes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Node>;
-    get(params: Params$Resource$Projects$Locations$Nodes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Node>,
-        callback: BodyResponseCallback<Schema$Node>): void;
-    get(params: Params$Resource$Projects$Locations$Nodes$Get,
-        callback: BodyResponseCallback<Schema$Node>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Nodes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Node>;
+    get(
+      params: Params$Resource$Projects$Locations$Nodes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Node>,
+      callback: BodyResponseCallback<Schema$Node>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Nodes$Get,
+      callback: BodyResponseCallback<Schema$Node>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Node>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Get|
-        BodyResponseCallback<Schema$Node>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Node>,
-        callback?: BodyResponseCallback<Schema$Node>):
-        void|GaxiosPromise<Schema$Node> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Get
+        | BodyResponseCallback<Schema$Node>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Node>,
+      callback?: BodyResponseCallback<Schema$Node>
+    ): void | GaxiosPromise<Schema$Node> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1059,15 +1122,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Node>(parameters, callback);
@@ -1075,7 +1139,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Node>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.nodes.list
@@ -1092,25 +1155,30 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Nodes$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListNodesResponse>;
+      params?: Params$Resource$Projects$Locations$Nodes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNodesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Nodes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
-        callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+      params: Params$Resource$Projects$Locations$Nodes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListNodesResponse>,
+      callback: BodyResponseCallback<Schema$ListNodesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Nodes$List,
-        callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+      params: Params$Resource$Projects$Locations$Nodes$List,
+      callback: BodyResponseCallback<Schema$ListNodesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$List|
-        BodyResponseCallback<Schema$ListNodesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListNodesResponse>,
-        callback?: BodyResponseCallback<Schema$ListNodesResponse>):
-        void|GaxiosPromise<Schema$ListNodesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$List
+        | BodyResponseCallback<Schema$ListNodesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNodesResponse>,
+      callback?: BodyResponseCallback<Schema$ListNodesResponse>
+    ): void | GaxiosPromise<Schema$ListNodesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1127,16 +1195,19 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/nodes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/nodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListNodesResponse>(parameters, callback);
@@ -1144,7 +1215,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$ListNodesResponse>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.nodes.reimage
@@ -1160,25 +1230,30 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     reimage(
-        params?: Params$Resource$Projects$Locations$Nodes$Reimage,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Nodes$Reimage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     reimage(
-        params: Params$Resource$Projects$Locations$Nodes$Reimage,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Reimage,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     reimage(
-        params: Params$Resource$Projects$Locations$Nodes$Reimage,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Reimage,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     reimage(callback: BodyResponseCallback<Schema$Operation>): void;
     reimage(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Reimage|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Reimage;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Reimage
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Reimage;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1195,16 +1270,19 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:reimage')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:reimage').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1212,7 +1290,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.nodes.start
@@ -1228,25 +1305,30 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     start(
-        params?: Params$Resource$Projects$Locations$Nodes$Start,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Nodes$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     start(
-        params: Params$Resource$Projects$Locations$Nodes$Start,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     start(
-        params: Params$Resource$Projects$Locations$Nodes$Start,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Start,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     start(callback: BodyResponseCallback<Schema$Operation>): void;
     start(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Start|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Start;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Start
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1263,16 +1345,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1280,7 +1362,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.nodes.stop
@@ -1296,25 +1377,30 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     stop(
-        params?: Params$Resource$Projects$Locations$Nodes$Stop,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Nodes$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     stop(
-        params: Params$Resource$Projects$Locations$Nodes$Stop,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     stop(
-        params: Params$Resource$Projects$Locations$Nodes$Stop,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Nodes$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     stop(callback: BodyResponseCallback<Schema$Operation>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Stop|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Stop;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Stop
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1331,15 +1417,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1349,12 +1436,12 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Nodes$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The unqualified resource name.
@@ -1370,36 +1457,36 @@ export namespace tpu_v1 {
      */
     requestBody?: Schema$Node;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of items to return.
@@ -1414,12 +1501,12 @@ export namespace tpu_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Reimage extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Reimage
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name.
@@ -1431,12 +1518,12 @@ export namespace tpu_v1 {
      */
     requestBody?: Schema$ReimageNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Start extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Start
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name.
@@ -1448,12 +1535,12 @@ export namespace tpu_v1 {
      */
     requestBody?: Schema$StartNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Stop extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Nodes$Stop
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name.
@@ -1466,13 +1553,11 @@ export namespace tpu_v1 {
     requestBody?: Schema$StopNodeRequest;
   }
 
-
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tpu.projects.locations.operations.cancel
@@ -1495,24 +1580,28 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Projects$Locations$Operations$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Projects$Locations$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(
-        params: Params$Resource$Projects$Locations$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1529,16 +1618,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1546,7 +1635,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.operations.delete
@@ -1564,24 +1652,28 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Operations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Locations$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1598,15 +1690,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1614,7 +1707,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.operations.get
@@ -1630,22 +1722,31 @@ export namespace tpu_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Locations$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Locations$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1662,15 +1763,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1678,7 +1780,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.operations.list
@@ -1704,26 +1805,32 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Projects$Locations$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1740,16 +1847,19 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/operations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1759,48 +1869,48 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -1820,13 +1930,11 @@ export namespace tpu_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects$Locations$Tensorflowversions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * tpu.projects.locations.tensorflowVersions.get
@@ -1840,29 +1948,36 @@ export namespace tpu_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Tensorflowversions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$TensorFlowVersion>;
-    get(params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
-        callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
-    get(params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
-        callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Tensorflowversions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TensorFlowVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TensorFlowVersion>,
+      callback: BodyResponseCallback<Schema$TensorFlowVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
+      callback: BodyResponseCallback<Schema$TensorFlowVersion>
+    ): void;
     get(callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Tensorflowversions$Get|
-        BodyResponseCallback<Schema$TensorFlowVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TensorFlowVersion>,
-        callback?: BodyResponseCallback<Schema$TensorFlowVersion>):
-        void|GaxiosPromise<Schema$TensorFlowVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Tensorflowversions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tensorflowversions$Get
+        | BodyResponseCallback<Schema$TensorFlowVersion>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TensorFlowVersion>,
+      callback?: BodyResponseCallback<Schema$TensorFlowVersion>
+    ): void | GaxiosPromise<Schema$TensorFlowVersion> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tensorflowversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Tensorflowversions$Get;
+        params = {} as Params$Resource$Projects$Locations$Tensorflowversions$Get;
         options = {};
       }
 
@@ -1874,15 +1989,16 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TensorFlowVersion>(parameters, callback);
@@ -1890,7 +2006,6 @@ export namespace tpu_v1 {
         return createAPIRequest<Schema$TensorFlowVersion>(parameters);
       }
     }
-
 
     /**
      * tpu.projects.locations.tensorflowVersions.list
@@ -1909,37 +2024,39 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Tensorflowversions$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTensorFlowVersionsResponse>;
+      params?: Params$Resource$Projects$Locations$Tensorflowversions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTensorFlowVersionsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Tensorflowversions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
-        callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Tensorflowversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Tensorflowversions$List,
-        callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Tensorflowversions$List,
+      callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Tensorflowversions$List|
-        BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void|GaxiosPromise<Schema$ListTensorFlowVersionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Tensorflowversions$List;
+      callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Tensorflowversions$List
+        | BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>
+    ): void | GaxiosPromise<Schema$ListTensorFlowVersionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Tensorflowversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Tensorflowversions$List;
+        params = {} as Params$Resource$Projects$Locations$Tensorflowversions$List;
         options = {};
       }
 
@@ -1951,33 +2068,39 @@ export namespace tpu_v1 {
       const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/tensorflowVersions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/tensorflowVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTensorFlowVersionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListTensorFlowVersionsResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Projects$Locations$Tensorflowversions$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name.
@@ -1985,11 +2108,11 @@ export namespace tpu_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tensorflowversions$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * List filter.

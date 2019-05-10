@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {searchconsole_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': searchconsole_v1.Searchconsole,
+  v1: searchconsole_v1.Searchconsole,
 };
 
 export function searchconsole(version: 'v1'): searchconsole_v1.Searchconsole;
-export function searchconsole(options: searchconsole_v1.Options):
-    searchconsole_v1.Searchconsole;
+export function searchconsole(
+  options: searchconsole_v1.Options
+): searchconsole_v1.Searchconsole;
 export function searchconsole<T = searchconsole_v1.Searchconsole>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|searchconsole_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | searchconsole_v1.Options
+) {
   return getAPI<T>('searchconsole', versionOrOptions, VERSIONS, this);
 }
 

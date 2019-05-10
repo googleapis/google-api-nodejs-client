@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -202,7 +214,7 @@ export namespace alertcenter_v1beta1 {
      * Optional. The data associated with this alert, for example
      * google.apps.alertcenter.type.DeviceCompromised.
      */
-    data?: {[key: string]: any;};
+    data?: {[key: string]: any};
     /**
      * Output only. `True` if this alert is marked for deletion.
      */
@@ -678,7 +690,6 @@ export namespace alertcenter_v1beta1 {
     customerId?: string;
   }
 
-
   export class Resource$Alerts {
     context: APIRequestContext;
     feedback: Resource$Alerts$Feedback;
@@ -686,7 +697,6 @@ export namespace alertcenter_v1beta1 {
       this.context = context;
       this.feedback = new Resource$Alerts$Feedback(this.context);
     }
-
 
     /**
      * alertcenter.alerts.delete
@@ -705,22 +715,27 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Alerts$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Alerts$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Alerts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Alerts$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Alerts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Alerts$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Alerts$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -738,16 +753,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -755,7 +773,6 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * alertcenter.alerts.get
@@ -771,19 +788,27 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Alerts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Alert>;
-    get(params: Params$Resource$Alerts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback: BodyResponseCallback<Schema$Alert>): void;
-    get(params: Params$Resource$Alerts$Get,
-        callback: BodyResponseCallback<Schema$Alert>): void;
+    get(
+      params?: Params$Resource$Alerts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Alert>;
+    get(
+      params: Params$Resource$Alerts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
+    get(
+      params: Params$Resource$Alerts$Get,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Alert>): void;
-    get(paramsOrCallback?: Params$Resource$Alerts$Get|
-        BodyResponseCallback<Schema$Alert>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback?: BodyResponseCallback<Schema$Alert>):
-        void|GaxiosPromise<Schema$Alert> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Get
+        | BodyResponseCallback<Schema$Alert>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback?: BodyResponseCallback<Schema$Alert>
+    ): void | GaxiosPromise<Schema$Alert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -801,16 +826,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Alert>(parameters, callback);
@@ -818,7 +846,6 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$Alert>(parameters);
       }
     }
-
 
     /**
      * alertcenter.alerts.list
@@ -836,23 +863,29 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Alerts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListAlertsResponse>;
     list(
-        params: Params$Resource$Alerts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListAlertsResponse>,
-        callback: BodyResponseCallback<Schema$ListAlertsResponse>): void;
+      params?: Params$Resource$Alerts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAlertsResponse>;
     list(
-        params: Params$Resource$Alerts$List,
-        callback: BodyResponseCallback<Schema$ListAlertsResponse>): void;
+      params: Params$Resource$Alerts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAlertsResponse>,
+      callback: BodyResponseCallback<Schema$ListAlertsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Alerts$List,
+      callback: BodyResponseCallback<Schema$ListAlertsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAlertsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Alerts$List|
-        BodyResponseCallback<Schema$ListAlertsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAlertsResponse>):
-        void|GaxiosPromise<Schema$ListAlertsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Alerts$List
+        | BodyResponseCallback<Schema$ListAlertsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAlertsResponse>
+    ): void | GaxiosPromise<Schema$ListAlertsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -870,15 +903,16 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertsResponse>(parameters, callback);
@@ -886,7 +920,6 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$ListAlertsResponse>(parameters);
       }
     }
-
 
     /**
      * alertcenter.alerts.undelete
@@ -906,22 +939,27 @@ export namespace alertcenter_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: Params$Resource$Alerts$Undelete, options?: MethodOptions):
-        GaxiosPromise<Schema$Alert>;
     undelete(
-        params: Params$Resource$Alerts$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback: BodyResponseCallback<Schema$Alert>): void;
+      params?: Params$Resource$Alerts$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Alert>;
     undelete(
-        params: Params$Resource$Alerts$Undelete,
-        callback: BodyResponseCallback<Schema$Alert>): void;
+      params: Params$Resource$Alerts$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
+    undelete(
+      params: Params$Resource$Alerts$Undelete,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Alert>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Alerts$Undelete|
-        BodyResponseCallback<Schema$Alert>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alert>,
-        callback?: BodyResponseCallback<Schema$Alert>):
-        void|GaxiosPromise<Schema$Alert> {
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Undelete
+        | BodyResponseCallback<Schema$Alert>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback?: BodyResponseCallback<Schema$Alert>
+    ): void | GaxiosPromise<Schema$Alert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -939,16 +977,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Alert>(parameters, callback);
@@ -962,7 +1003,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert to delete.
@@ -979,7 +1020,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert to retrieve.
@@ -996,7 +1037,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The unique identifier of the G Suite organization account of
@@ -1035,7 +1076,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert to undelete.
@@ -1054,7 +1095,6 @@ export namespace alertcenter_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * alertcenter.alerts.feedback.create
      * @desc Creates new feedback for an alert. Attempting to create a feedback
@@ -1071,25 +1111,30 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Alerts$Feedback$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$AlertFeedback>;
+      params?: Params$Resource$Alerts$Feedback$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AlertFeedback>;
     create(
-        params: Params$Resource$Alerts$Feedback$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$AlertFeedback>,
-        callback: BodyResponseCallback<Schema$AlertFeedback>): void;
+      params: Params$Resource$Alerts$Feedback$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AlertFeedback>,
+      callback: BodyResponseCallback<Schema$AlertFeedback>
+    ): void;
     create(
-        params: Params$Resource$Alerts$Feedback$Create,
-        callback: BodyResponseCallback<Schema$AlertFeedback>): void;
+      params: Params$Resource$Alerts$Feedback$Create,
+      callback: BodyResponseCallback<Schema$AlertFeedback>
+    ): void;
     create(callback: BodyResponseCallback<Schema$AlertFeedback>): void;
     create(
-        paramsOrCallback?: Params$Resource$Alerts$Feedback$Create|
-        BodyResponseCallback<Schema$AlertFeedback>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AlertFeedback>,
-        callback?: BodyResponseCallback<Schema$AlertFeedback>):
-        void|GaxiosPromise<Schema$AlertFeedback> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Alerts$Feedback$Create;
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Feedback$Create
+        | BodyResponseCallback<Schema$AlertFeedback>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AlertFeedback>,
+      callback?: BodyResponseCallback<Schema$AlertFeedback>
+    ): void | GaxiosPromise<Schema$AlertFeedback> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Alerts$Feedback$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1106,16 +1151,19 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AlertFeedback>(parameters, callback);
@@ -1123,7 +1171,6 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$AlertFeedback>(parameters);
       }
     }
-
 
     /**
      * alertcenter.alerts.feedback.list
@@ -1141,27 +1188,34 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Alerts$Feedback$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListAlertFeedbackResponse>;
+      params?: Params$Resource$Alerts$Feedback$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAlertFeedbackResponse>;
     list(
-        params: Params$Resource$Alerts$Feedback$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
-        callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>): void;
+      params: Params$Resource$Alerts$Feedback$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
+      callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void;
     list(
-        params: Params$Resource$Alerts$Feedback$List,
-        callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>):
-        void;
+      params: Params$Resource$Alerts$Feedback$List,
+      callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Alerts$Feedback$List|
-        BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
-        callback?: BodyResponseCallback<Schema$ListAlertFeedbackResponse>):
-        void|GaxiosPromise<Schema$ListAlertFeedbackResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Alerts$Feedback$List;
+      callback: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Alerts$Feedback$List
+        | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
+      callback?: BodyResponseCallback<Schema$ListAlertFeedbackResponse>
+    ): void | GaxiosPromise<Schema$ListAlertFeedbackResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Alerts$Feedback$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1178,32 +1232,37 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/alerts/{alertId}/feedback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertFeedbackResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListAlertFeedbackResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Alerts$Feedback$Create extends
-      StandardParameters {
+  export interface Params$Resource$Alerts$Feedback$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The identifier of the alert this feedback belongs to.
@@ -1221,12 +1280,12 @@ export namespace alertcenter_v1beta1 {
      */
     requestBody?: Schema$AlertFeedback;
   }
-  export interface Params$Resource$Alerts$Feedback$List extends
-      StandardParameters {
+  export interface Params$Resource$Alerts$Feedback$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The alert identifier. The "-" wildcard could be used to
@@ -1248,14 +1307,11 @@ export namespace alertcenter_v1beta1 {
     filter?: string;
   }
 
-
-
   export class Resource$V1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * alertcenter.getSettings
@@ -1270,24 +1326,28 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     getSettings(
-        params?: Params$Resource$V1beta1$Getsettings,
-        options?: MethodOptions): GaxiosPromise<Schema$Settings>;
+      params?: Params$Resource$V1beta1$Getsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Settings>;
     getSettings(
-        params: Params$Resource$V1beta1$Getsettings,
-        options: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Getsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     getSettings(
-        params: Params$Resource$V1beta1$Getsettings,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Getsettings,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     getSettings(callback: BodyResponseCallback<Schema$Settings>): void;
     getSettings(
-        paramsOrCallback?: Params$Resource$V1beta1$Getsettings|
-        BodyResponseCallback<Schema$Settings>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback?: BodyResponseCallback<Schema$Settings>):
-        void|GaxiosPromise<Schema$Settings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1beta1$Getsettings;
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Getsettings
+        | BodyResponseCallback<Schema$Settings>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback?: BodyResponseCallback<Schema$Settings>
+    ): void | GaxiosPromise<Schema$Settings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1304,16 +1364,16 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -1321,7 +1381,6 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$Settings>(parameters);
       }
     }
-
 
     /**
      * alertcenter.updateSettings
@@ -1337,24 +1396,28 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     updateSettings(
-        params?: Params$Resource$V1beta1$Updatesettings,
-        options?: MethodOptions): GaxiosPromise<Schema$Settings>;
+      params?: Params$Resource$V1beta1$Updatesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Settings>;
     updateSettings(
-        params: Params$Resource$V1beta1$Updatesettings,
-        options: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Updatesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     updateSettings(
-        params: Params$Resource$V1beta1$Updatesettings,
-        callback: BodyResponseCallback<Schema$Settings>): void;
+      params: Params$Resource$V1beta1$Updatesettings,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
     updateSettings(callback: BodyResponseCallback<Schema$Settings>): void;
     updateSettings(
-        paramsOrCallback?: Params$Resource$V1beta1$Updatesettings|
-        BodyResponseCallback<Schema$Settings>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
-        callback?: BodyResponseCallback<Schema$Settings>):
-        void|GaxiosPromise<Schema$Settings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1beta1$Updatesettings;
+      paramsOrCallback?:
+        | Params$Resource$V1beta1$Updatesettings
+        | BodyResponseCallback<Schema$Settings>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback?: BodyResponseCallback<Schema$Settings>
+    ): void | GaxiosPromise<Schema$Settings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta1$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1371,16 +1434,16 @@ export namespace alertcenter_v1beta1 {
       const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -1390,12 +1453,12 @@ export namespace alertcenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$V1beta1$Getsettings extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Getsettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The unique identifier of the G Suite organization account of
@@ -1404,12 +1467,12 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
   }
-  export interface Params$Resource$V1beta1$Updatesettings extends
-      StandardParameters {
+  export interface Params$Resource$V1beta1$Updatesettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Optional. The unique identifier of the G Suite organization account of

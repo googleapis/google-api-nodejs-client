@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -103,7 +115,6 @@ export namespace playcustomapp_v1 {
     title?: string;
   }
 
-
   export class Resource$Accounts {
     context: APIRequestContext;
     customApps: Resource$Accounts$Customapps;
@@ -113,13 +124,11 @@ export namespace playcustomapp_v1 {
     }
   }
 
-
   export class Resource$Accounts$Customapps {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * playcustomapp.accounts.customApps.create
@@ -138,25 +147,30 @@ export namespace playcustomapp_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Accounts$Customapps$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomApp>;
+      params?: Params$Resource$Accounts$Customapps$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomApp>;
     create(
-        params: Params$Resource$Accounts$Customapps$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
-        callback: BodyResponseCallback<Schema$CustomApp>): void;
+      params: Params$Resource$Accounts$Customapps$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomApp>,
+      callback: BodyResponseCallback<Schema$CustomApp>
+    ): void;
     create(
-        params: Params$Resource$Accounts$Customapps$Create,
-        callback: BodyResponseCallback<Schema$CustomApp>): void;
+      params: Params$Resource$Accounts$Customapps$Create,
+      callback: BodyResponseCallback<Schema$CustomApp>
+    ): void;
     create(callback: BodyResponseCallback<Schema$CustomApp>): void;
     create(
-        paramsOrCallback?: Params$Resource$Accounts$Customapps$Create|
-        BodyResponseCallback<Schema$CustomApp>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomApp>,
-        callback?: BodyResponseCallback<Schema$CustomApp>):
-        void|GaxiosPromise<Schema$CustomApp> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Customapps$Create;
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Customapps$Create
+        | BodyResponseCallback<Schema$CustomApp>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomApp>,
+      callback?: BodyResponseCallback<Schema$CustomApp>
+    ): void | GaxiosPromise<Schema$CustomApp> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Customapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -173,19 +187,21 @@ export namespace playcustomapp_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/playcustomapp/v1/accounts/{account}/customApps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/playcustomapp/v1/accounts/{account}/customApps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl + '/upload/playcustomapp/v1/accounts/{account}/customApps')
-                .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/playcustomapp/v1/accounts/{account}/customApps'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['account'],
         pathParams: ['account'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomApp>(parameters, callback);
@@ -195,12 +211,12 @@ export namespace playcustomapp_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customapps$Create extends
-      StandardParameters {
+  export interface Params$Resource$Accounts$Customapps$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Developer account ID.

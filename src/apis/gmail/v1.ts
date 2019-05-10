@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -955,7 +967,6 @@ export namespace gmail_v1 {
     historyId?: string;
   }
 
-
   export class Resource$Users {
     context: APIRequestContext;
     drafts: Resource$Users$Drafts;
@@ -974,7 +985,6 @@ export namespace gmail_v1 {
       this.threads = new Resource$Users$Threads(this.context);
     }
 
-
     /**
      * gmail.users.getProfile
      * @desc Gets the current user's Gmail profile.
@@ -988,22 +998,26 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     getProfile(
-        params?: Params$Resource$Users$Getprofile,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
+      params?: Params$Resource$Users$Getprofile,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
     getProfile(
-        params: Params$Resource$Users$Getprofile,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Users$Getprofile,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     getProfile(
-        params: Params$Resource$Users$Getprofile,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Users$Getprofile,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     getProfile(callback: BodyResponseCallback<Schema$Profile>): void;
     getProfile(
-        paramsOrCallback?: Params$Resource$Users$Getprofile|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Getprofile
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Getprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1021,16 +1035,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/profile')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/profile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -1038,7 +1055,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$Profile>(parameters);
       }
     }
-
 
     /**
      * gmail.users.stop
@@ -1052,21 +1068,27 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: Params$Resource$Users$Stop, options?: MethodOptions):
-        GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Users$Stop,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Users$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     stop(
-        params: Params$Resource$Users$Stop,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Stop,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    stop(
+      params: Params$Resource$Users$Stop,
+      callback: BodyResponseCallback<void>
+    ): void;
     stop(callback: BodyResponseCallback<void>): void;
     stop(
-        paramsOrCallback?: Params$Resource$Users$Stop|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Stop
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1084,16 +1106,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/stop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/stop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1101,7 +1126,6 @@ export namespace gmail_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.watch
@@ -1117,23 +1141,29 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: Params$Resource$Users$Watch, options?: MethodOptions):
-        GaxiosPromise<Schema$WatchResponse>;
     watch(
-        params: Params$Resource$Users$Watch,
-        options: MethodOptions|BodyResponseCallback<Schema$WatchResponse>,
-        callback: BodyResponseCallback<Schema$WatchResponse>): void;
+      params?: Params$Resource$Users$Watch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WatchResponse>;
     watch(
-        params: Params$Resource$Users$Watch,
-        callback: BodyResponseCallback<Schema$WatchResponse>): void;
+      params: Params$Resource$Users$Watch,
+      options: MethodOptions | BodyResponseCallback<Schema$WatchResponse>,
+      callback: BodyResponseCallback<Schema$WatchResponse>
+    ): void;
+    watch(
+      params: Params$Resource$Users$Watch,
+      callback: BodyResponseCallback<Schema$WatchResponse>
+    ): void;
     watch(callback: BodyResponseCallback<Schema$WatchResponse>): void;
     watch(
-        paramsOrCallback?: Params$Resource$Users$Watch|
-        BodyResponseCallback<Schema$WatchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WatchResponse>,
-        callback?: BodyResponseCallback<Schema$WatchResponse>):
-        void|GaxiosPromise<Schema$WatchResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Watch
+        | BodyResponseCallback<Schema$WatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WatchResponse>,
+      callback?: BodyResponseCallback<Schema$WatchResponse>
+    ): void | GaxiosPromise<Schema$WatchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1151,16 +1181,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/watch')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/watch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WatchResponse>(parameters, callback);
@@ -1174,7 +1207,7 @@ export namespace gmail_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -1186,7 +1219,7 @@ export namespace gmail_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -1198,7 +1231,7 @@ export namespace gmail_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -1218,7 +1251,6 @@ export namespace gmail_v1 {
       this.context = context;
     }
 
-
     /**
      * gmail.users.drafts.create
      * @desc Creates a new draft with the DRAFT label.
@@ -1236,24 +1268,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Users$Drafts$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Draft>;
+      params?: Params$Resource$Users$Drafts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Draft>;
     create(
-        params: Params$Resource$Users$Drafts$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Draft>,
-        callback: BodyResponseCallback<Schema$Draft>): void;
+      params: Params$Resource$Users$Drafts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Draft>,
+      callback: BodyResponseCallback<Schema$Draft>
+    ): void;
     create(
-        params: Params$Resource$Users$Drafts$Create,
-        callback: BodyResponseCallback<Schema$Draft>): void;
+      params: Params$Resource$Users$Drafts$Create,
+      callback: BodyResponseCallback<Schema$Draft>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Draft>): void;
     create(
-        paramsOrCallback?: Params$Resource$Users$Drafts$Create|
-        BodyResponseCallback<Schema$Draft>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Draft>,
-        callback?: BodyResponseCallback<Schema$Draft>):
-        void|GaxiosPromise<Schema$Draft> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Create;
+      paramsOrCallback?:
+        | Params$Resource$Users$Drafts$Create
+        | BodyResponseCallback<Schema$Draft>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>
+    ): void | GaxiosPromise<Schema$Draft> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Drafts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1270,18 +1306,23 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Draft>(parameters, callback);
@@ -1289,7 +1330,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$Draft>(parameters);
       }
     }
-
 
     /**
      * gmail.users.drafts.delete
@@ -1306,23 +1346,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Drafts$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Drafts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Drafts$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Drafts$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Drafts$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Drafts$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Drafts$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Drafts$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Drafts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1339,16 +1384,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1356,7 +1404,6 @@ export namespace gmail_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.drafts.get
@@ -1372,19 +1419,27 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Drafts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Draft>;
-    get(params: Params$Resource$Users$Drafts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Draft>,
-        callback: BodyResponseCallback<Schema$Draft>): void;
-    get(params: Params$Resource$Users$Drafts$Get,
-        callback: BodyResponseCallback<Schema$Draft>): void;
+    get(
+      params?: Params$Resource$Users$Drafts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Draft>;
+    get(
+      params: Params$Resource$Users$Drafts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Draft>,
+      callback: BodyResponseCallback<Schema$Draft>
+    ): void;
+    get(
+      params: Params$Resource$Users$Drafts$Get,
+      callback: BodyResponseCallback<Schema$Draft>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Draft>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Drafts$Get|
-        BodyResponseCallback<Schema$Draft>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Draft>,
-        callback?: BodyResponseCallback<Schema$Draft>):
-        void|GaxiosPromise<Schema$Draft> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Drafts$Get
+        | BodyResponseCallback<Schema$Draft>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>
+    ): void | GaxiosPromise<Schema$Draft> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1402,16 +1457,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Draft>(parameters, callback);
@@ -1419,7 +1477,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$Draft>(parameters);
       }
     }
-
 
     /**
      * gmail.users.drafts.list
@@ -1437,25 +1494,31 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$Drafts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListDraftsResponse>;
     list(
-        params: Params$Resource$Users$Drafts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListDraftsResponse>,
-        callback: BodyResponseCallback<Schema$ListDraftsResponse>): void;
+      params?: Params$Resource$Users$Drafts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDraftsResponse>;
     list(
-        params: Params$Resource$Users$Drafts$List,
-        callback: BodyResponseCallback<Schema$ListDraftsResponse>): void;
+      params: Params$Resource$Users$Drafts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListDraftsResponse>,
+      callback: BodyResponseCallback<Schema$ListDraftsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Drafts$List,
+      callback: BodyResponseCallback<Schema$ListDraftsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDraftsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Drafts$List|
-        BodyResponseCallback<Schema$ListDraftsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDraftsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDraftsResponse>):
-        void|GaxiosPromise<Schema$ListDraftsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Drafts$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Drafts$List
+        | BodyResponseCallback<Schema$ListDraftsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDraftsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDraftsResponse>
+    ): void | GaxiosPromise<Schema$ListDraftsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Drafts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1472,16 +1535,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/drafts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDraftsResponse>(parameters, callback);
@@ -1489,7 +1555,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$ListDraftsResponse>(parameters);
       }
     }
-
 
     /**
      * gmail.users.drafts.send
@@ -1508,24 +1573,29 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    send(params?: Params$Resource$Users$Drafts$Send, options?: MethodOptions):
-        GaxiosPromise<Schema$Message>;
     send(
-        params: Params$Resource$Users$Drafts$Send,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params?: Params$Resource$Users$Drafts$Send,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     send(
-        params: Params$Resource$Users$Drafts$Send,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Drafts$Send,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    send(
+      params: Params$Resource$Users$Drafts$Send,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     send(callback: BodyResponseCallback<Schema$Message>): void;
     send(
-        paramsOrCallback?: Params$Resource$Users$Drafts$Send|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Send;
+      paramsOrCallback?:
+        | Params$Resource$Users$Drafts$Send
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Drafts$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1542,18 +1612,22 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/drafts/send')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/send').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/send')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/gmail/v1/users/{userId}/drafts/send'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1561,7 +1635,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * gmail.users.drafts.update
@@ -1581,24 +1654,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Users$Drafts$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Draft>;
+      params?: Params$Resource$Users$Drafts$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Draft>;
     update(
-        params: Params$Resource$Users$Drafts$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Draft>,
-        callback: BodyResponseCallback<Schema$Draft>): void;
+      params: Params$Resource$Users$Drafts$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Draft>,
+      callback: BodyResponseCallback<Schema$Draft>
+    ): void;
     update(
-        params: Params$Resource$Users$Drafts$Update,
-        callback: BodyResponseCallback<Schema$Draft>): void;
+      params: Params$Resource$Users$Drafts$Update,
+      callback: BodyResponseCallback<Schema$Draft>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Draft>): void;
     update(
-        paramsOrCallback?: Params$Resource$Users$Drafts$Update|
-        BodyResponseCallback<Schema$Draft>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Draft>,
-        callback?: BodyResponseCallback<Schema$Draft>):
-        void|GaxiosPromise<Schema$Draft> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Update;
+      paramsOrCallback?:
+        | Params$Resource$Users$Drafts$Update
+        | BodyResponseCallback<Schema$Draft>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Draft>,
+      callback?: BodyResponseCallback<Schema$Draft>
+    ): void | GaxiosPromise<Schema$Draft> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Drafts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1615,18 +1692,22 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/drafts/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/drafts/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/gmail/v1/users/{userId}/drafts/{id}'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Draft>(parameters, callback);
@@ -1636,12 +1717,12 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Drafts$Create extends
-      StandardParameters {
+  export interface Params$Resource$Users$Drafts$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -1669,12 +1750,12 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Drafts$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Drafts$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the draft to delete.
@@ -1690,7 +1771,7 @@ export namespace gmail_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The format to return the draft in.
@@ -1706,12 +1787,12 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Drafts$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Drafts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Include drafts from SPAM and TRASH in the results.
@@ -1737,12 +1818,12 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Drafts$Send extends
-      StandardParameters {
+  export interface Params$Resource$Users$Drafts$Send
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -1770,12 +1851,12 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Drafts$Update extends
-      StandardParameters {
+  export interface Params$Resource$Users$Drafts$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the draft to update.
@@ -1808,13 +1889,11 @@ export namespace gmail_v1 {
     };
   }
 
-
   export class Resource$Users$History {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * gmail.users.history.list
@@ -1834,25 +1913,31 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$History$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListHistoryResponse>;
     list(
-        params: Params$Resource$Users$History$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListHistoryResponse>,
-        callback: BodyResponseCallback<Schema$ListHistoryResponse>): void;
+      params?: Params$Resource$Users$History$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListHistoryResponse>;
     list(
-        params: Params$Resource$Users$History$List,
-        callback: BodyResponseCallback<Schema$ListHistoryResponse>): void;
+      params: Params$Resource$Users$History$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListHistoryResponse>,
+      callback: BodyResponseCallback<Schema$ListHistoryResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$History$List,
+      callback: BodyResponseCallback<Schema$ListHistoryResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListHistoryResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$History$List|
-        BodyResponseCallback<Schema$ListHistoryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListHistoryResponse>,
-        callback?: BodyResponseCallback<Schema$ListHistoryResponse>):
-        void|GaxiosPromise<Schema$ListHistoryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$History$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$History$List
+        | BodyResponseCallback<Schema$ListHistoryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListHistoryResponse>,
+      callback?: BodyResponseCallback<Schema$ListHistoryResponse>
+    ): void | GaxiosPromise<Schema$ListHistoryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$History$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1869,16 +1954,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/history')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/history').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListHistoryResponse>(parameters, callback);
@@ -1888,12 +1976,12 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$History$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$History$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * History types to be returned by the function
@@ -1932,13 +2020,11 @@ export namespace gmail_v1 {
     userId?: string;
   }
 
-
   export class Resource$Users$Labels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * gmail.users.labels.create
@@ -1954,24 +2040,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Users$Labels$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Label>;
+      params?: Params$Resource$Users$Labels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Label>;
     create(
-        params: Params$Resource$Users$Labels$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback: BodyResponseCallback<Schema$Label>): void;
+      params: Params$Resource$Users$Labels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
     create(
-        params: Params$Resource$Users$Labels$Create,
-        callback: BodyResponseCallback<Schema$Label>): void;
+      params: Params$Resource$Users$Labels$Create,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Label>): void;
     create(
-        paramsOrCallback?: Params$Resource$Users$Labels$Create|
-        BodyResponseCallback<Schema$Label>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback?: BodyResponseCallback<Schema$Label>):
-        void|GaxiosPromise<Schema$Label> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Labels$Create;
+      paramsOrCallback?:
+        | Params$Resource$Users$Labels$Create
+        | BodyResponseCallback<Schema$Label>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>
+    ): void | GaxiosPromise<Schema$Label> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1988,16 +2078,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/labels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2005,7 +2098,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$Label>(parameters);
       }
     }
-
 
     /**
      * gmail.users.labels.delete
@@ -2022,23 +2114,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Labels$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Labels$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Labels$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Labels$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Labels$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Labels$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Labels$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Labels$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Labels$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2055,16 +2152,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2072,7 +2172,6 @@ export namespace gmail_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.labels.get
@@ -2087,19 +2186,27 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Labels$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Label>;
-    get(params: Params$Resource$Users$Labels$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback: BodyResponseCallback<Schema$Label>): void;
-    get(params: Params$Resource$Users$Labels$Get,
-        callback: BodyResponseCallback<Schema$Label>): void;
+    get(
+      params?: Params$Resource$Users$Labels$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Label>;
+    get(
+      params: Params$Resource$Users$Labels$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
+    get(
+      params: Params$Resource$Users$Labels$Get,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Label>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Labels$Get|
-        BodyResponseCallback<Schema$Label>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback?: BodyResponseCallback<Schema$Label>):
-        void|GaxiosPromise<Schema$Label> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Labels$Get
+        | BodyResponseCallback<Schema$Label>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>
+    ): void | GaxiosPromise<Schema$Label> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Labels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2117,16 +2224,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2134,7 +2244,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$Label>(parameters);
       }
     }
-
 
     /**
      * gmail.users.labels.list
@@ -2148,25 +2257,31 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$Labels$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListLabelsResponse>;
     list(
-        params: Params$Resource$Users$Labels$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLabelsResponse>,
-        callback: BodyResponseCallback<Schema$ListLabelsResponse>): void;
+      params?: Params$Resource$Users$Labels$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLabelsResponse>;
     list(
-        params: Params$Resource$Users$Labels$List,
-        callback: BodyResponseCallback<Schema$ListLabelsResponse>): void;
+      params: Params$Resource$Users$Labels$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListLabelsResponse>,
+      callback: BodyResponseCallback<Schema$ListLabelsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Labels$List,
+      callback: BodyResponseCallback<Schema$ListLabelsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLabelsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Labels$List|
-        BodyResponseCallback<Schema$ListLabelsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLabelsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLabelsResponse>):
-        void|GaxiosPromise<Schema$ListLabelsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Labels$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Labels$List
+        | BodyResponseCallback<Schema$ListLabelsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLabelsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLabelsResponse>
+    ): void | GaxiosPromise<Schema$ListLabelsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2183,16 +2298,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/labels')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLabelsResponse>(parameters, callback);
@@ -2200,7 +2318,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$ListLabelsResponse>(parameters);
       }
     }
-
 
     /**
      * gmail.users.labels.patch
@@ -2216,24 +2333,29 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Users$Labels$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Label>;
     patch(
-        params: Params$Resource$Users$Labels$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback: BodyResponseCallback<Schema$Label>): void;
+      params?: Params$Resource$Users$Labels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Label>;
     patch(
-        params: Params$Resource$Users$Labels$Patch,
-        callback: BodyResponseCallback<Schema$Label>): void;
+      params: Params$Resource$Users$Labels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Labels$Patch,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Label>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Users$Labels$Patch|
-        BodyResponseCallback<Schema$Label>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback?: BodyResponseCallback<Schema$Label>):
-        void|GaxiosPromise<Schema$Label> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Labels$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Users$Labels$Patch
+        | BodyResponseCallback<Schema$Label>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>
+    ): void | GaxiosPromise<Schema$Label> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Labels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2250,16 +2372,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2267,7 +2392,6 @@ export namespace gmail_v1 {
         return createAPIRequest<Schema$Label>(parameters);
       }
     }
-
 
     /**
      * gmail.users.labels.update
@@ -2284,24 +2408,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Users$Labels$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Label>;
+      params?: Params$Resource$Users$Labels$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Label>;
     update(
-        params: Params$Resource$Users$Labels$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback: BodyResponseCallback<Schema$Label>): void;
+      params: Params$Resource$Users$Labels$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
     update(
-        params: Params$Resource$Users$Labels$Update,
-        callback: BodyResponseCallback<Schema$Label>): void;
+      params: Params$Resource$Users$Labels$Update,
+      callback: BodyResponseCallback<Schema$Label>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Label>): void;
     update(
-        paramsOrCallback?: Params$Resource$Users$Labels$Update|
-        BodyResponseCallback<Schema$Label>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
-        callback?: BodyResponseCallback<Schema$Label>):
-        void|GaxiosPromise<Schema$Label> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Labels$Update;
+      paramsOrCallback?:
+        | Params$Resource$Users$Labels$Update
+        | BodyResponseCallback<Schema$Label>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
+      callback?: BodyResponseCallback<Schema$Label>
+    ): void | GaxiosPromise<Schema$Label> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Labels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2318,16 +2446,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/labels/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2337,12 +2468,12 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Labels$Create extends
-      StandardParameters {
+  export interface Params$Resource$Users$Labels$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -2355,12 +2486,12 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Label;
   }
-  export interface Params$Resource$Users$Labels$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Labels$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the label to delete.
@@ -2376,7 +2507,7 @@ export namespace gmail_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the label to retrieve.
@@ -2388,12 +2519,12 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Labels$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Labels$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -2401,12 +2532,12 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Labels$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Users$Labels$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the label to update.
@@ -2423,12 +2554,12 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Label;
   }
-  export interface Params$Resource$Users$Labels$Update extends
-      StandardParameters {
+  export interface Params$Resource$Users$Labels$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the label to update.
@@ -2445,7 +2576,6 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Label;
   }
-
 
   export class Resource$Users$Messages {
     context: APIRequestContext;
@@ -2454,7 +2584,6 @@ export namespace gmail_v1 {
       this.context = context;
       this.attachments = new Resource$Users$Messages$Attachments(this.context);
     }
-
 
     /**
      * gmail.users.messages.batchDelete
@@ -2471,23 +2600,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     batchDelete(
-        params?: Params$Resource$Users$Messages$Batchdelete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Messages$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     batchDelete(
-        params: Params$Resource$Users$Messages$Batchdelete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Messages$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     batchDelete(
-        params: Params$Resource$Users$Messages$Batchdelete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Messages$Batchdelete,
+      callback: BodyResponseCallback<void>
+    ): void;
     batchDelete(callback: BodyResponseCallback<void>): void;
     batchDelete(
-        paramsOrCallback?: Params$Resource$Users$Messages$Batchdelete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Messages$Batchdelete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Batchdelete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2504,16 +2638,18 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/messages/batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2521,7 +2657,6 @@ export namespace gmail_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.batchModify
@@ -2537,23 +2672,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     batchModify(
-        params?: Params$Resource$Users$Messages$Batchmodify,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Messages$Batchmodify,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     batchModify(
-        params: Params$Resource$Users$Messages$Batchmodify,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Messages$Batchmodify,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     batchModify(
-        params: Params$Resource$Users$Messages$Batchmodify,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Messages$Batchmodify,
+      callback: BodyResponseCallback<void>
+    ): void;
     batchModify(callback: BodyResponseCallback<void>): void;
     batchModify(
-        paramsOrCallback?: Params$Resource$Users$Messages$Batchmodify|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Messages$Batchmodify;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Batchmodify
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2570,16 +2710,18 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/batchModify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/messages/batchModify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2587,7 +2729,6 @@ export namespace gmail_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.delete
@@ -2604,23 +2745,28 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Messages$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Messages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Messages$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Messages$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Messages$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Messages$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Messages$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2637,16 +2783,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2654,7 +2803,6 @@ export namespace gmail_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.get
@@ -2671,21 +2819,29 @@ export namespace gmail_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Messages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
-    get(params: Params$Resource$Users$Messages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
-    get(params: Params$Resource$Users$Messages$Get,
-        callback: BodyResponseCallback<Schema$Message>): void;
+    get(
+      params?: Params$Resource$Users$Messages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    get(
+      params: Params$Resource$Users$Messages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    get(
+      params: Params$Resource$Users$Messages$Get,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Message>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Messages$Get|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Get
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2702,16 +2858,19 @@ export namespace gmail_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -2720,88 +2879,132 @@ export namespace gmail_v1 {
       }
     }
 
+    /**
+     * gmail.users.messages.import
+     * @desc Imports a message into only this user's mailbox, with standard email
+     * delivery scanning and classification similar to receiving via SMTP. Does not
+     * send a message.
+     * @alias gmail.users.messages.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
+     * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
+     * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
+     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Users$Messages$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    import(
+      params: Params$Resource$Users$Messages$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    import(
+      params: Params$Resource$Users$Messages$Import,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Message>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Import
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
 
-/**
- * gmail.users.messages.import
- * @desc Imports a message into only this user's mailbox, with standard email
- * delivery scanning and classification similar to receiving via SMTP. Does not
- * send a message.
- * @alias gmail.users.messages.import
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
- * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
- * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
- * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
- * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
- * @param  {object} params.resource Media resource metadata
- * @param {object} params.media Media object
- * @param {string} params.media.mimeType Media mime-type
- * @param {string|object} params.media.body Media body contents
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-import(params?: Params$Resource$Users$Messages$Import, options?: MethodOptions): GaxiosPromise<Schema$Message>;
-import(params: Params$Resource$Users$Messages$Import, options: MethodOptions|BodyResponseCallback<Schema$Message>, callback: BodyResponseCallback<Schema$Message>): void;
-import(params: Params$Resource$Users$Messages$Import, callback: BodyResponseCallback<Schema$Message>): void;
-import(callback: BodyResponseCallback<Schema$Message>): void;
-import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCallback<Schema$Message>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>, callback?: BodyResponseCallback<Schema$Message>): void|GaxiosPromise<Schema$Message> {let params = (paramsOrCallback || {}) as Params$Resource$Users$Messages$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Messages$Import;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                                        if(typeof paramsOrCallback === 'function') {
-    callback = paramsOrCallback;
-    params = {} as Params$Resource$Users$Messages$Import;
-    options = {};
-                                                                                                                                                                                                                                                                        }
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
 
-                                                                                                                                                                                                                                                                        if(typeof optionsOrCallback === 'function') {
-    callback = optionsOrCallback;
-    options = {};
-                                                                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), requiredParams: ['userId'], pathParams: ['userId'], context: this.context}; if(callback) {
-    createAPIRequest<Schema$Message>(parameters, callback);
-                                                                                                                                                                                                                                                                        } else {
-    return createAPIRequest<Schema$Message>(parameters);
-                                                                                                                                                                                                                                                                        }}
-
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/gmail/v1/users/{userId}/messages/import'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Message>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Message>(parameters);
+      }
+    }
 
     /**
- * gmail.users.messages.insert
- * @desc Directly inserts a message into only this user's mailbox similar to IMAP APPEND, bypassing most scanning and classification. Does not send a message.
- * @alias gmail.users.messages.insert
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
- * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
- * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-      * @param  {object} params.resource Media resource metadata
-    * @param {object} params.media Media object
-  * @param {string} params.media.mimeType Media mime-type
-  * @param {string|object} params.media.body Media body contents
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-    insert(params?: Params$Resource$Users$Messages$Insert, options?: MethodOptions): GaxiosPromise<Schema$Message>;
+     * gmail.users.messages.insert
+     * @desc Directly inserts a message into only this user's mailbox similar to IMAP APPEND, bypassing most scanning and classification. Does not send a message.
+     * @alias gmail.users.messages.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
+     * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param  {object} params.resource Media resource metadata
+     * @param {object} params.media Media object
+     * @param {string} params.media.mimeType Media mime-type
+     * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
     insert(
-        params: Params$Resource$Users$Messages$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params?: Params$Resource$Users$Messages$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     insert(
-        params: Params$Resource$Users$Messages$Insert,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    insert(
+      params: Params$Resource$Users$Messages$Insert,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Message>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Users$Messages$Insert|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Insert
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2818,18 +3021,22 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/gmail/v1/users/{userId}/messages'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -2837,7 +3044,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.list
@@ -2856,26 +3062,33 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$Messages$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListMessagesResponse>;
     list(
-        params: Params$Resource$Users$Messages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListMessagesResponse>,
-        callback: BodyResponseCallback<Schema$ListMessagesResponse>): void;
+      params?: Params$Resource$Users$Messages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMessagesResponse>;
     list(
-        params: Params$Resource$Users$Messages$List,
-        callback: BodyResponseCallback<Schema$ListMessagesResponse>): void;
+      params: Params$Resource$Users$Messages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMessagesResponse>,
+      callback: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Messages$List,
+      callback: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListMessagesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Messages$List|
-        BodyResponseCallback<Schema$ListMessagesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$ListMessagesResponse>):
-        void|GaxiosPromise<Schema$ListMessagesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$List
+        | BodyResponseCallback<Schema$ListMessagesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void | GaxiosPromise<Schema$ListMessagesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2892,16 +3105,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListMessagesResponse>(parameters, callback);
@@ -2909,7 +3125,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ListMessagesResponse>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.modify
@@ -2926,24 +3141,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     modify(
-        params?: Params$Resource$Users$Messages$Modify,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
+      params?: Params$Resource$Users$Messages$Modify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     modify(
-        params: Params$Resource$Users$Messages$Modify,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Modify,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     modify(
-        params: Params$Resource$Users$Messages$Modify,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Modify,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     modify(callback: BodyResponseCallback<Schema$Message>): void;
     modify(
-        paramsOrCallback?: Params$Resource$Users$Messages$Modify|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$Modify;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Modify
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2960,16 +3179,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/messages/{id}/modify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -2977,7 +3198,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.send
@@ -2996,24 +3216,29 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    send(params?: Params$Resource$Users$Messages$Send, options?: MethodOptions):
-        GaxiosPromise<Schema$Message>;
     send(
-        params: Params$Resource$Users$Messages$Send,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params?: Params$Resource$Users$Messages$Send,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     send(
-        params: Params$Resource$Users$Messages$Send,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Send,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    send(
+      params: Params$Resource$Users$Messages$Send,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     send(callback: BodyResponseCallback<Schema$Message>): void;
     send(
-        paramsOrCallback?: Params$Resource$Users$Messages$Send|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$Send;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Send
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3030,18 +3255,22 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/send')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/messages/send').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/send')
-                      .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl + '/upload/gmail/v1/users/{userId}/messages/send'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -3049,7 +3278,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.trash
@@ -3065,24 +3293,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     trash(
-        params?: Params$Resource$Users$Messages$Trash,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
+      params?: Params$Resource$Users$Messages$Trash,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     trash(
-        params: Params$Resource$Users$Messages$Trash,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Trash,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     trash(
-        params: Params$Resource$Users$Messages$Trash,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Trash,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     trash(callback: BodyResponseCallback<Schema$Message>): void;
     trash(
-        paramsOrCallback?: Params$Resource$Users$Messages$Trash|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$Trash;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Trash
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3099,16 +3331,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/messages/{id}/trash'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -3116,7 +3350,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
-
 
     /**
      * gmail.users.messages.untrash
@@ -3132,24 +3365,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     untrash(
-        params?: Params$Resource$Users$Messages$Untrash,
-        options?: MethodOptions): GaxiosPromise<Schema$Message>;
+      params?: Params$Resource$Users$Messages$Untrash,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
     untrash(
-        params: Params$Resource$Users$Messages$Untrash,
-        options: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Untrash,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     untrash(
-        params: Params$Resource$Users$Messages$Untrash,
-        callback: BodyResponseCallback<Schema$Message>): void;
+      params: Params$Resource$Users$Messages$Untrash,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
     untrash(callback: BodyResponseCallback<Schema$Message>): void;
     untrash(
-        paramsOrCallback?: Params$Resource$Users$Messages$Untrash|
-        BodyResponseCallback<Schema$Message>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
-        callback?: BodyResponseCallback<Schema$Message>):
-        void|GaxiosPromise<Schema$Message> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Messages$Untrash;
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Untrash
+        | BodyResponseCallback<Schema$Message>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>
+    ): void | GaxiosPromise<Schema$Message> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3166,16 +3403,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/messages/{id}/untrash'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -3185,12 +3424,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Messages$Batchdelete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Batchdelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -3203,12 +3442,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$BatchDeleteMessagesRequest;
   }
-  export interface Params$Resource$Users$Messages$Batchmodify extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Batchmodify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -3221,12 +3460,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$BatchModifyMessagesRequest;
   }
-  export interface Params$Resource$Users$Messages$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the message to delete.
@@ -3238,12 +3477,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The format to return the message in.
@@ -3263,12 +3502,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Import extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Import
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Mark the email as permanently deleted (not TRASH) and only visible in
@@ -3315,12 +3554,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Mark the email as permanently deleted (not TRASH) and only visible in
@@ -3357,12 +3596,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Include messages from SPAM and TRASH in the results.
@@ -3395,12 +3634,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Modify extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Modify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the message to modify.
@@ -3417,12 +3656,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$ModifyMessageRequest;
   }
-  export interface Params$Resource$Users$Messages$Send extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Send
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The user's email address. The special value me can be used to indicate
@@ -3450,12 +3689,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$Trash extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Trash
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the message to Trash.
@@ -3467,12 +3706,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Untrash extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Untrash
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the message to remove from Trash.
@@ -3491,7 +3730,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       this.context = context;
     }
 
-
     /**
      * gmail.users.messages.attachments.get
      * @desc Gets the specified message attachment.
@@ -3506,22 +3744,31 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Messages$Attachments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$MessagePartBody>;
-    get(params: Params$Resource$Users$Messages$Attachments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$MessagePartBody>,
-        callback: BodyResponseCallback<Schema$MessagePartBody>): void;
-    get(params: Params$Resource$Users$Messages$Attachments$Get,
-        callback: BodyResponseCallback<Schema$MessagePartBody>): void;
+    get(
+      params?: Params$Resource$Users$Messages$Attachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MessagePartBody>;
+    get(
+      params: Params$Resource$Users$Messages$Attachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MessagePartBody>,
+      callback: BodyResponseCallback<Schema$MessagePartBody>
+    ): void;
+    get(
+      params: Params$Resource$Users$Messages$Attachments$Get,
+      callback: BodyResponseCallback<Schema$MessagePartBody>
+    ): void;
     get(callback: BodyResponseCallback<Schema$MessagePartBody>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Messages$Attachments$Get|
-        BodyResponseCallback<Schema$MessagePartBody>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$MessagePartBody>,
-        callback?: BodyResponseCallback<Schema$MessagePartBody>):
-        void|GaxiosPromise<Schema$MessagePartBody> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Messages$Attachments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Messages$Attachments$Get
+        | BodyResponseCallback<Schema$MessagePartBody>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MessagePartBody>,
+      callback?: BodyResponseCallback<Schema$MessagePartBody>
+    ): void | GaxiosPromise<Schema$MessagePartBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Messages$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3538,18 +3785,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'messageId', 'id'],
         pathParams: ['id', 'messageId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$MessagePartBody>(parameters, callback);
@@ -3559,12 +3807,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Messages$Attachments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Messages$Attachments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the attachment.
@@ -3581,8 +3829,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
 
-
-
   export class Resource$Users$Settings {
     context: APIRequestContext;
     delegates: Resource$Users$Settings$Delegates;
@@ -3593,11 +3839,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       this.context = context;
       this.delegates = new Resource$Users$Settings$Delegates(this.context);
       this.filters = new Resource$Users$Settings$Filters(this.context);
-      this.forwardingAddresses =
-          new Resource$Users$Settings$Forwardingaddresses(this.context);
+      this.forwardingAddresses = new Resource$Users$Settings$Forwardingaddresses(
+        this.context
+      );
       this.sendAs = new Resource$Users$Settings$Sendas(this.context);
     }
-
 
     /**
      * gmail.users.settings.getAutoForwarding
@@ -3612,26 +3858,32 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     getAutoForwarding(
-        params?: Params$Resource$Users$Settings$Getautoforwarding,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoForwarding>;
+      params?: Params$Resource$Users$Settings$Getautoforwarding,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoForwarding>;
     getAutoForwarding(
-        params: Params$Resource$Users$Settings$Getautoforwarding,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
-        callback: BodyResponseCallback<Schema$AutoForwarding>): void;
+      params: Params$Resource$Users$Settings$Getautoforwarding,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoForwarding>,
+      callback: BodyResponseCallback<Schema$AutoForwarding>
+    ): void;
     getAutoForwarding(
-        params: Params$Resource$Users$Settings$Getautoforwarding,
-        callback: BodyResponseCallback<Schema$AutoForwarding>): void;
-    getAutoForwarding(callback: BodyResponseCallback<Schema$AutoForwarding>):
-        void;
+      params: Params$Resource$Users$Settings$Getautoforwarding,
+      callback: BodyResponseCallback<Schema$AutoForwarding>
+    ): void;
     getAutoForwarding(
-        paramsOrCallback?: Params$Resource$Users$Settings$Getautoforwarding|
-        BodyResponseCallback<Schema$AutoForwarding>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoForwarding>,
-        callback?: BodyResponseCallback<Schema$AutoForwarding>):
-        void|GaxiosPromise<Schema$AutoForwarding> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Getautoforwarding;
+      callback: BodyResponseCallback<Schema$AutoForwarding>
+    ): void;
+    getAutoForwarding(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Getautoforwarding
+        | BodyResponseCallback<Schema$AutoForwarding>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoForwarding>,
+      callback?: BodyResponseCallback<Schema$AutoForwarding>
+    ): void | GaxiosPromise<Schema$AutoForwarding> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Getautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3648,17 +3900,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoForwarding>(parameters, callback);
@@ -3666,7 +3919,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$AutoForwarding>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.getImap
@@ -3681,25 +3933,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     getImap(
-        params?: Params$Resource$Users$Settings$Getimap,
-        options?: MethodOptions): GaxiosPromise<Schema$ImapSettings>;
+      params?: Params$Resource$Users$Settings$Getimap,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImapSettings>;
     getImap(
-        params: Params$Resource$Users$Settings$Getimap,
-        options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
-        callback: BodyResponseCallback<Schema$ImapSettings>): void;
+      params: Params$Resource$Users$Settings$Getimap,
+      options: MethodOptions | BodyResponseCallback<Schema$ImapSettings>,
+      callback: BodyResponseCallback<Schema$ImapSettings>
+    ): void;
     getImap(
-        params: Params$Resource$Users$Settings$Getimap,
-        callback: BodyResponseCallback<Schema$ImapSettings>): void;
+      params: Params$Resource$Users$Settings$Getimap,
+      callback: BodyResponseCallback<Schema$ImapSettings>
+    ): void;
     getImap(callback: BodyResponseCallback<Schema$ImapSettings>): void;
     getImap(
-        paramsOrCallback?: Params$Resource$Users$Settings$Getimap|
-        BodyResponseCallback<Schema$ImapSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ImapSettings>,
-        callback?: BodyResponseCallback<Schema$ImapSettings>):
-        void|GaxiosPromise<Schema$ImapSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Settings$Getimap;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Getimap
+        | BodyResponseCallback<Schema$ImapSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImapSettings>,
+      callback?: BodyResponseCallback<Schema$ImapSettings>
+    ): void | GaxiosPromise<Schema$ImapSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Getimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3716,16 +3973,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ImapSettings>(parameters, callback);
@@ -3733,7 +3993,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ImapSettings>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.getPop
@@ -3748,25 +4007,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     getPop(
-        params?: Params$Resource$Users$Settings$Getpop,
-        options?: MethodOptions): GaxiosPromise<Schema$PopSettings>;
+      params?: Params$Resource$Users$Settings$Getpop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PopSettings>;
     getPop(
-        params: Params$Resource$Users$Settings$Getpop,
-        options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
-        callback: BodyResponseCallback<Schema$PopSettings>): void;
+      params: Params$Resource$Users$Settings$Getpop,
+      options: MethodOptions | BodyResponseCallback<Schema$PopSettings>,
+      callback: BodyResponseCallback<Schema$PopSettings>
+    ): void;
     getPop(
-        params: Params$Resource$Users$Settings$Getpop,
-        callback: BodyResponseCallback<Schema$PopSettings>): void;
+      params: Params$Resource$Users$Settings$Getpop,
+      callback: BodyResponseCallback<Schema$PopSettings>
+    ): void;
     getPop(callback: BodyResponseCallback<Schema$PopSettings>): void;
     getPop(
-        paramsOrCallback?: Params$Resource$Users$Settings$Getpop|
-        BodyResponseCallback<Schema$PopSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PopSettings>,
-        callback?: BodyResponseCallback<Schema$PopSettings>):
-        void|GaxiosPromise<Schema$PopSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Settings$Getpop;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Getpop
+        | BodyResponseCallback<Schema$PopSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PopSettings>,
+      callback?: BodyResponseCallback<Schema$PopSettings>
+    ): void | GaxiosPromise<Schema$PopSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Getpop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3783,16 +4047,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PopSettings>(parameters, callback);
@@ -3800,7 +4067,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$PopSettings>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.getVacation
@@ -3815,25 +4081,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     getVacation(
-        params?: Params$Resource$Users$Settings$Getvacation,
-        options?: MethodOptions): GaxiosPromise<Schema$VacationSettings>;
+      params?: Params$Resource$Users$Settings$Getvacation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VacationSettings>;
     getVacation(
-        params: Params$Resource$Users$Settings$Getvacation,
-        options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
-        callback: BodyResponseCallback<Schema$VacationSettings>): void;
+      params: Params$Resource$Users$Settings$Getvacation,
+      options: MethodOptions | BodyResponseCallback<Schema$VacationSettings>,
+      callback: BodyResponseCallback<Schema$VacationSettings>
+    ): void;
     getVacation(
-        params: Params$Resource$Users$Settings$Getvacation,
-        callback: BodyResponseCallback<Schema$VacationSettings>): void;
+      params: Params$Resource$Users$Settings$Getvacation,
+      callback: BodyResponseCallback<Schema$VacationSettings>
+    ): void;
     getVacation(callback: BodyResponseCallback<Schema$VacationSettings>): void;
     getVacation(
-        paramsOrCallback?: Params$Resource$Users$Settings$Getvacation|
-        BodyResponseCallback<Schema$VacationSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VacationSettings>,
-        callback?: BodyResponseCallback<Schema$VacationSettings>):
-        void|GaxiosPromise<Schema$VacationSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Getvacation;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Getvacation
+        | BodyResponseCallback<Schema$VacationSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VacationSettings>,
+      callback?: BodyResponseCallback<Schema$VacationSettings>
+    ): void | GaxiosPromise<Schema$VacationSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Getvacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3850,16 +4121,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/vacation'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VacationSettings>(parameters, callback);
@@ -3867,7 +4140,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$VacationSettings>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.updateAutoForwarding
@@ -3886,26 +4158,32 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     updateAutoForwarding(
-        params?: Params$Resource$Users$Settings$Updateautoforwarding,
-        options?: MethodOptions): GaxiosPromise<Schema$AutoForwarding>;
+      params?: Params$Resource$Users$Settings$Updateautoforwarding,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoForwarding>;
     updateAutoForwarding(
-        params: Params$Resource$Users$Settings$Updateautoforwarding,
-        options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
-        callback: BodyResponseCallback<Schema$AutoForwarding>): void;
+      params: Params$Resource$Users$Settings$Updateautoforwarding,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoForwarding>,
+      callback: BodyResponseCallback<Schema$AutoForwarding>
+    ): void;
     updateAutoForwarding(
-        params: Params$Resource$Users$Settings$Updateautoforwarding,
-        callback: BodyResponseCallback<Schema$AutoForwarding>): void;
-    updateAutoForwarding(callback: BodyResponseCallback<Schema$AutoForwarding>):
-        void;
+      params: Params$Resource$Users$Settings$Updateautoforwarding,
+      callback: BodyResponseCallback<Schema$AutoForwarding>
+    ): void;
     updateAutoForwarding(
-        paramsOrCallback?: Params$Resource$Users$Settings$Updateautoforwarding|
-        BodyResponseCallback<Schema$AutoForwarding>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AutoForwarding>,
-        callback?: BodyResponseCallback<Schema$AutoForwarding>):
-        void|GaxiosPromise<Schema$AutoForwarding> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Updateautoforwarding;
+      callback: BodyResponseCallback<Schema$AutoForwarding>
+    ): void;
+    updateAutoForwarding(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Updateautoforwarding
+        | BodyResponseCallback<Schema$AutoForwarding>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoForwarding>,
+      callback?: BodyResponseCallback<Schema$AutoForwarding>
+    ): void | GaxiosPromise<Schema$AutoForwarding> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Updateautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3922,17 +4200,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/autoForwarding'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AutoForwarding>(parameters, callback);
@@ -3940,7 +4219,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$AutoForwarding>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.updateImap
@@ -3956,25 +4234,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     updateImap(
-        params?: Params$Resource$Users$Settings$Updateimap,
-        options?: MethodOptions): GaxiosPromise<Schema$ImapSettings>;
+      params?: Params$Resource$Users$Settings$Updateimap,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ImapSettings>;
     updateImap(
-        params: Params$Resource$Users$Settings$Updateimap,
-        options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
-        callback: BodyResponseCallback<Schema$ImapSettings>): void;
+      params: Params$Resource$Users$Settings$Updateimap,
+      options: MethodOptions | BodyResponseCallback<Schema$ImapSettings>,
+      callback: BodyResponseCallback<Schema$ImapSettings>
+    ): void;
     updateImap(
-        params: Params$Resource$Users$Settings$Updateimap,
-        callback: BodyResponseCallback<Schema$ImapSettings>): void;
+      params: Params$Resource$Users$Settings$Updateimap,
+      callback: BodyResponseCallback<Schema$ImapSettings>
+    ): void;
     updateImap(callback: BodyResponseCallback<Schema$ImapSettings>): void;
     updateImap(
-        paramsOrCallback?: Params$Resource$Users$Settings$Updateimap|
-        BodyResponseCallback<Schema$ImapSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ImapSettings>,
-        callback?: BodyResponseCallback<Schema$ImapSettings>):
-        void|GaxiosPromise<Schema$ImapSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Settings$Updateimap;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Updateimap
+        | BodyResponseCallback<Schema$ImapSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ImapSettings>,
+      callback?: BodyResponseCallback<Schema$ImapSettings>
+    ): void | GaxiosPromise<Schema$ImapSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Updateimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3991,16 +4274,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/imap').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ImapSettings>(parameters, callback);
@@ -4008,7 +4294,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ImapSettings>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.updatePop
@@ -4024,25 +4309,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     updatePop(
-        params?: Params$Resource$Users$Settings$Updatepop,
-        options?: MethodOptions): GaxiosPromise<Schema$PopSettings>;
+      params?: Params$Resource$Users$Settings$Updatepop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PopSettings>;
     updatePop(
-        params: Params$Resource$Users$Settings$Updatepop,
-        options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
-        callback: BodyResponseCallback<Schema$PopSettings>): void;
+      params: Params$Resource$Users$Settings$Updatepop,
+      options: MethodOptions | BodyResponseCallback<Schema$PopSettings>,
+      callback: BodyResponseCallback<Schema$PopSettings>
+    ): void;
     updatePop(
-        params: Params$Resource$Users$Settings$Updatepop,
-        callback: BodyResponseCallback<Schema$PopSettings>): void;
+      params: Params$Resource$Users$Settings$Updatepop,
+      callback: BodyResponseCallback<Schema$PopSettings>
+    ): void;
     updatePop(callback: BodyResponseCallback<Schema$PopSettings>): void;
     updatePop(
-        paramsOrCallback?: Params$Resource$Users$Settings$Updatepop|
-        BodyResponseCallback<Schema$PopSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PopSettings>,
-        callback?: BodyResponseCallback<Schema$PopSettings>):
-        void|GaxiosPromise<Schema$PopSettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Settings$Updatepop;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Updatepop
+        | BodyResponseCallback<Schema$PopSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PopSettings>,
+      callback?: BodyResponseCallback<Schema$PopSettings>
+    ): void | GaxiosPromise<Schema$PopSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Updatepop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4059,16 +4349,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/pop').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PopSettings>(parameters, callback);
@@ -4076,7 +4369,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$PopSettings>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.updateVacation
@@ -4092,26 +4384,32 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     updateVacation(
-        params?: Params$Resource$Users$Settings$Updatevacation,
-        options?: MethodOptions): GaxiosPromise<Schema$VacationSettings>;
+      params?: Params$Resource$Users$Settings$Updatevacation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VacationSettings>;
     updateVacation(
-        params: Params$Resource$Users$Settings$Updatevacation,
-        options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
-        callback: BodyResponseCallback<Schema$VacationSettings>): void;
+      params: Params$Resource$Users$Settings$Updatevacation,
+      options: MethodOptions | BodyResponseCallback<Schema$VacationSettings>,
+      callback: BodyResponseCallback<Schema$VacationSettings>
+    ): void;
     updateVacation(
-        params: Params$Resource$Users$Settings$Updatevacation,
-        callback: BodyResponseCallback<Schema$VacationSettings>): void;
-    updateVacation(callback: BodyResponseCallback<Schema$VacationSettings>):
-        void;
+      params: Params$Resource$Users$Settings$Updatevacation,
+      callback: BodyResponseCallback<Schema$VacationSettings>
+    ): void;
     updateVacation(
-        paramsOrCallback?: Params$Resource$Users$Settings$Updatevacation|
-        BodyResponseCallback<Schema$VacationSettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VacationSettings>,
-        callback?: BodyResponseCallback<Schema$VacationSettings>):
-        void|GaxiosPromise<Schema$VacationSettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Updatevacation;
+      callback: BodyResponseCallback<Schema$VacationSettings>
+    ): void;
+    updateVacation(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Updatevacation
+        | BodyResponseCallback<Schema$VacationSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VacationSettings>,
+      callback?: BodyResponseCallback<Schema$VacationSettings>
+    ): void | GaxiosPromise<Schema$VacationSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Updatevacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4128,16 +4426,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/vacation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/vacation'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VacationSettings>(parameters, callback);
@@ -4147,12 +4447,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Getautoforwarding extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Getautoforwarding
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4160,12 +4460,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getimap extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Getimap
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4173,12 +4473,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getpop extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Getpop
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4186,12 +4486,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getvacation extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Getvacation
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4199,12 +4499,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Updateautoforwarding extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Updateautoforwarding
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4217,12 +4517,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$AutoForwarding;
   }
-  export interface Params$Resource$Users$Settings$Updateimap extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Updateimap
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4235,12 +4535,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$ImapSettings;
   }
-  export interface Params$Resource$Users$Settings$Updatepop extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Updatepop
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4253,12 +4553,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$PopSettings;
   }
-  export interface Params$Resource$Users$Settings$Updatevacation extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Updatevacation
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4277,7 +4577,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * gmail.users.settings.delegates.create
@@ -4303,24 +4602,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Users$Settings$Delegates$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Delegate>;
+      params?: Params$Resource$Users$Settings$Delegates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Delegate>;
     create(
-        params: Params$Resource$Users$Settings$Delegates$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Delegate>,
-        callback: BodyResponseCallback<Schema$Delegate>): void;
+      params: Params$Resource$Users$Settings$Delegates$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Delegate>,
+      callback: BodyResponseCallback<Schema$Delegate>
+    ): void;
     create(
-        params: Params$Resource$Users$Settings$Delegates$Create,
-        callback: BodyResponseCallback<Schema$Delegate>): void;
+      params: Params$Resource$Users$Settings$Delegates$Create,
+      callback: BodyResponseCallback<Schema$Delegate>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Delegate>): void;
     create(
-        paramsOrCallback?: Params$Resource$Users$Settings$Delegates$Create|
-        BodyResponseCallback<Schema$Delegate>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Delegate>,
-        callback?: BodyResponseCallback<Schema$Delegate>):
-        void|GaxiosPromise<Schema$Delegate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Delegates$Create;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Delegates$Create
+        | BodyResponseCallback<Schema$Delegate>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Delegate>,
+      callback?: BodyResponseCallback<Schema$Delegate>
+    ): void | GaxiosPromise<Schema$Delegate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Delegates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4337,16 +4640,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/delegates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/delegates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Delegate>(parameters, callback);
@@ -4354,7 +4659,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Delegate>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.delegates.delete
@@ -4374,23 +4678,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Settings$Delegates$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Settings$Delegates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Settings$Delegates$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Delegates$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Settings$Delegates$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Delegates$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Settings$Delegates$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Delegates$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Delegates$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Delegates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4407,18 +4716,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'delegateEmail'],
         pathParams: ['delegateEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4426,7 +4736,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.delegates.get
@@ -4444,21 +4753,29 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Settings$Delegates$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Delegate>;
-    get(params: Params$Resource$Users$Settings$Delegates$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Delegate>,
-        callback: BodyResponseCallback<Schema$Delegate>): void;
-    get(params: Params$Resource$Users$Settings$Delegates$Get,
-        callback: BodyResponseCallback<Schema$Delegate>): void;
+    get(
+      params?: Params$Resource$Users$Settings$Delegates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Delegate>;
+    get(
+      params: Params$Resource$Users$Settings$Delegates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Delegate>,
+      callback: BodyResponseCallback<Schema$Delegate>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Delegates$Get,
+      callback: BodyResponseCallback<Schema$Delegate>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Delegate>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Settings$Delegates$Get|
-        BodyResponseCallback<Schema$Delegate>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Delegate>,
-        callback?: BodyResponseCallback<Schema$Delegate>):
-        void|GaxiosPromise<Schema$Delegate> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Delegates$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Delegates$Get
+        | BodyResponseCallback<Schema$Delegate>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Delegate>,
+      callback?: BodyResponseCallback<Schema$Delegate>
+    ): void | GaxiosPromise<Schema$Delegate> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Delegates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4475,18 +4792,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'delegateEmail'],
         pathParams: ['delegateEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Delegate>(parameters, callback);
@@ -4494,7 +4812,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Delegate>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.delegates.list
@@ -4511,26 +4828,32 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Settings$Delegates$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDelegatesResponse>;
+      params?: Params$Resource$Users$Settings$Delegates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDelegatesResponse>;
     list(
-        params: Params$Resource$Users$Settings$Delegates$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDelegatesResponse>,
-        callback: BodyResponseCallback<Schema$ListDelegatesResponse>): void;
+      params: Params$Resource$Users$Settings$Delegates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDelegatesResponse>,
+      callback: BodyResponseCallback<Schema$ListDelegatesResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Settings$Delegates$List,
-        callback: BodyResponseCallback<Schema$ListDelegatesResponse>): void;
+      params: Params$Resource$Users$Settings$Delegates$List,
+      callback: BodyResponseCallback<Schema$ListDelegatesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDelegatesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Settings$Delegates$List|
-        BodyResponseCallback<Schema$ListDelegatesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDelegatesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDelegatesResponse>):
-        void|GaxiosPromise<Schema$ListDelegatesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Delegates$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Delegates$List
+        | BodyResponseCallback<Schema$ListDelegatesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDelegatesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDelegatesResponse>
+    ): void | GaxiosPromise<Schema$ListDelegatesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Delegates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4547,16 +4870,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/delegates')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/delegates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDelegatesResponse>(parameters, callback);
@@ -4566,12 +4891,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Delegates$Create extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4584,12 +4909,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$Delegate;
   }
-  export interface Params$Resource$Users$Settings$Delegates$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The email address of the user to be removed as a delegate.
@@ -4601,12 +4926,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Delegates$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The email address of the user whose delegate relationship is to be
@@ -4619,12 +4944,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Delegates$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Delegates$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4633,13 +4958,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
 
-
   export class Resource$Users$Settings$Filters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * gmail.users.settings.filters.create
@@ -4655,24 +4978,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Users$Settings$Filters$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
+      params?: Params$Resource$Users$Settings$Filters$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filter>;
     create(
-        params: Params$Resource$Users$Settings$Filters$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Users$Settings$Filters$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     create(
-        params: Params$Resource$Users$Settings$Filters$Create,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Users$Settings$Filters$Create,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Filter>): void;
     create(
-        paramsOrCallback?: Params$Resource$Users$Settings$Filters$Create|
-        BodyResponseCallback<Schema$Filter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>):
-        void|GaxiosPromise<Schema$Filter> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Filters$Create;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Filters$Create
+        | BodyResponseCallback<Schema$Filter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>
+    ): void | GaxiosPromise<Schema$Filter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Filters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4689,16 +5016,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/filters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -4706,7 +5035,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Filter>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.filters.delete
@@ -4722,23 +5050,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Settings$Filters$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Settings$Filters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Settings$Filters$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Filters$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Settings$Filters$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Filters$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Settings$Filters$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Filters$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Filters$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4755,16 +5088,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4772,7 +5107,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.filters.get
@@ -4787,21 +5121,29 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Settings$Filters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
-    get(params: Params$Resource$Users$Settings$Filters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback: BodyResponseCallback<Schema$Filter>): void;
-    get(params: Params$Resource$Users$Settings$Filters$Get,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+    get(
+      params?: Params$Resource$Users$Settings$Filters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filter>;
+    get(
+      params: Params$Resource$Users$Settings$Filters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Filters$Get,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Filter>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Settings$Filters$Get|
-        BodyResponseCallback<Schema$Filter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>):
-        void|GaxiosPromise<Schema$Filter> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Filters$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Filters$Get
+        | BodyResponseCallback<Schema$Filter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>
+    ): void | GaxiosPromise<Schema$Filter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4818,16 +5160,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/filters/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -4835,7 +5179,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Filter>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.filters.list
@@ -4850,25 +5193,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Settings$Filters$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListFiltersResponse>;
+      params?: Params$Resource$Users$Settings$Filters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFiltersResponse>;
     list(
-        params: Params$Resource$Users$Settings$Filters$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListFiltersResponse>,
-        callback: BodyResponseCallback<Schema$ListFiltersResponse>): void;
+      params: Params$Resource$Users$Settings$Filters$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListFiltersResponse>,
+      callback: BodyResponseCallback<Schema$ListFiltersResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Settings$Filters$List,
-        callback: BodyResponseCallback<Schema$ListFiltersResponse>): void;
+      params: Params$Resource$Users$Settings$Filters$List,
+      callback: BodyResponseCallback<Schema$ListFiltersResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListFiltersResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Settings$Filters$List|
-        BodyResponseCallback<Schema$ListFiltersResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFiltersResponse>,
-        callback?: BodyResponseCallback<Schema$ListFiltersResponse>):
-        void|GaxiosPromise<Schema$ListFiltersResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Filters$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Filters$List
+        | BodyResponseCallback<Schema$ListFiltersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFiltersResponse>,
+      callback?: BodyResponseCallback<Schema$ListFiltersResponse>
+    ): void | GaxiosPromise<Schema$ListFiltersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4885,16 +5233,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/filters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/filters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFiltersResponse>(parameters, callback);
@@ -4904,12 +5254,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Filters$Create extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4922,12 +5272,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Users$Settings$Filters$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the filter to be deleted.
@@ -4939,12 +5289,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Filters$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the filter to be fetched.
@@ -4956,12 +5306,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Filters$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Filters$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -4970,13 +5320,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
 
-
   export class Resource$Users$Settings$Forwardingaddresses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * gmail.users.settings.forwardingAddresses.create
@@ -4997,32 +5345,35 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Users$Settings$Forwardingaddresses$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$ForwardingAddress>;
+      params?: Params$Resource$Users$Settings$Forwardingaddresses$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ForwardingAddress>;
     create(
-        params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
-        callback: BodyResponseCallback<Schema$ForwardingAddress>): void;
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ForwardingAddress>,
+      callback: BodyResponseCallback<Schema$ForwardingAddress>
+    ): void;
     create(
-        params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
-        callback: BodyResponseCallback<Schema$ForwardingAddress>): void;
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
+      callback: BodyResponseCallback<Schema$ForwardingAddress>
+    ): void;
     create(callback: BodyResponseCallback<Schema$ForwardingAddress>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Users$Settings$Forwardingaddresses$Create|
-        BodyResponseCallback<Schema$ForwardingAddress>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ForwardingAddress>,
-        callback?: BodyResponseCallback<Schema$ForwardingAddress>):
-        void|GaxiosPromise<Schema$ForwardingAddress> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Forwardingaddresses$Create;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Forwardingaddresses$Create
+        | BodyResponseCallback<Schema$ForwardingAddress>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ForwardingAddress>,
+      callback?: BodyResponseCallback<Schema$ForwardingAddress>
+    ): void | GaxiosPromise<Schema$ForwardingAddress> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Forwardingaddresses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Users$Settings$Forwardingaddresses$Create;
+        params = {} as Params$Resource$Users$Settings$Forwardingaddresses$Create;
         options = {};
       }
 
@@ -5034,17 +5385,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/gmail/v1/users/{userId}/settings/forwardingAddresses')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
@@ -5052,7 +5404,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ForwardingAddress>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.forwardingAddresses.delete
@@ -5071,30 +5422,33 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Users$Settings$Forwardingaddresses$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Forwardingaddresses$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Forwardingaddresses$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Forwardingaddresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Users$Settings$Forwardingaddresses$Delete;
+        params = {} as Params$Resource$Users$Settings$Forwardingaddresses$Delete;
         options = {};
       }
 
@@ -5106,18 +5460,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'forwardingEmail'],
         pathParams: ['forwardingEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5125,7 +5480,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.forwardingAddresses.get
@@ -5140,23 +5494,31 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Settings$Forwardingaddresses$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ForwardingAddress>;
-    get(params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
-        callback: BodyResponseCallback<Schema$ForwardingAddress>): void;
-    get(params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
-        callback: BodyResponseCallback<Schema$ForwardingAddress>): void;
+    get(
+      params?: Params$Resource$Users$Settings$Forwardingaddresses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ForwardingAddress>;
+    get(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ForwardingAddress>,
+      callback: BodyResponseCallback<Schema$ForwardingAddress>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
+      callback: BodyResponseCallback<Schema$ForwardingAddress>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ForwardingAddress>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Users$Settings$Forwardingaddresses$Get|
-        BodyResponseCallback<Schema$ForwardingAddress>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ForwardingAddress>,
-        callback?: BodyResponseCallback<Schema$ForwardingAddress>):
-        void|GaxiosPromise<Schema$ForwardingAddress> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Forwardingaddresses$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Forwardingaddresses$Get
+        | BodyResponseCallback<Schema$ForwardingAddress>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ForwardingAddress>,
+      callback?: BodyResponseCallback<Schema$ForwardingAddress>
+    ): void | GaxiosPromise<Schema$ForwardingAddress> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Forwardingaddresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5173,18 +5535,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'forwardingEmail'],
         pathParams: ['forwardingEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
@@ -5192,7 +5555,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ForwardingAddress>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.forwardingAddresses.list
@@ -5207,33 +5569,34 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Settings$Forwardingaddresses$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListForwardingAddressesResponse>;
+      params?: Params$Resource$Users$Settings$Forwardingaddresses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListForwardingAddressesResponse>;
     list(
-        params: Params$Resource$Users$Settings$Forwardingaddresses$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
-        callback: BodyResponseCallback<Schema$ListForwardingAddressesResponse>):
-        void;
+      params: Params$Resource$Users$Settings$Forwardingaddresses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
+      callback: BodyResponseCallback<Schema$ListForwardingAddressesResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Settings$Forwardingaddresses$List,
-        callback: BodyResponseCallback<Schema$ListForwardingAddressesResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$ListForwardingAddressesResponse>):
-        void;
+      params: Params$Resource$Users$Settings$Forwardingaddresses$List,
+      callback: BodyResponseCallback<Schema$ListForwardingAddressesResponse>
+    ): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Users$Settings$Forwardingaddresses$List|
-        BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListForwardingAddressesResponse>):
-        void|GaxiosPromise<Schema$ListForwardingAddressesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Forwardingaddresses$List;
+      callback: BodyResponseCallback<Schema$ListForwardingAddressesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Forwardingaddresses$List
+        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
+      callback?: BodyResponseCallback<Schema$ListForwardingAddressesResponse>
+    ): void | GaxiosPromise<Schema$ListForwardingAddressesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Forwardingaddresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5250,34 +5613,38 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/gmail/v1/users/{userId}/settings/forwardingAddresses')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/forwardingAddresses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListForwardingAddressesResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListForwardingAddressesResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -5291,11 +5658,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     requestBody?: Schema$ForwardingAddress;
   }
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The forwarding address to be deleted.
@@ -5308,11 +5675,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The forwarding address to be retrieved.
@@ -5325,11 +5692,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Forwardingaddresses$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -5338,16 +5705,15 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
 
-
   export class Resource$Users$Settings$Sendas {
     context: APIRequestContext;
     smimeInfo: Resource$Users$Settings$Sendas$Smimeinfo;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.smimeInfo =
-          new Resource$Users$Settings$Sendas$Smimeinfo(this.context);
+      this.smimeInfo = new Resource$Users$Settings$Sendas$Smimeinfo(
+        this.context
+      );
     }
-
 
     /**
      * gmail.users.settings.sendAs.create
@@ -5371,24 +5737,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Users$Settings$Sendas$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
+      params?: Params$Resource$Users$Settings$Sendas$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendAs>;
     create(
-        params: Params$Resource$Users$Settings$Sendas$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
+      params: Params$Resource$Users$Settings$Sendas$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
     create(
-        params: Params$Resource$Users$Settings$Sendas$Create,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
+      params: Params$Resource$Users$Settings$Sendas$Create,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
     create(callback: BodyResponseCallback<Schema$SendAs>): void;
     create(
-        paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Create|
-        BodyResponseCallback<Schema$SendAs>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback?: BodyResponseCallback<Schema$SendAs>):
-        void|GaxiosPromise<Schema$SendAs> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Create;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Create
+        | BodyResponseCallback<Schema$SendAs>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>
+    ): void | GaxiosPromise<Schema$SendAs> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5405,16 +5775,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5422,7 +5795,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$SendAs>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.delete
@@ -5440,23 +5812,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Settings$Sendas$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Settings$Sendas$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Settings$Sendas$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Settings$Sendas$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5473,17 +5850,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5491,7 +5869,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.get
@@ -5507,21 +5884,29 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Settings$Sendas$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
-    get(params: Params$Resource$Users$Settings$Sendas$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
-    get(params: Params$Resource$Users$Settings$Sendas$Get,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
+    get(
+      params?: Params$Resource$Users$Settings$Sendas$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendAs>;
+    get(
+      params: Params$Resource$Users$Settings$Sendas$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Sendas$Get,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SendAs>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Get|
-        BodyResponseCallback<Schema$SendAs>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback?: BodyResponseCallback<Schema$SendAs>):
-        void|GaxiosPromise<Schema$SendAs> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Settings$Sendas$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Get
+        | BodyResponseCallback<Schema$SendAs>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>
+    ): void | GaxiosPromise<Schema$SendAs> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5538,17 +5923,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5556,7 +5942,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$SendAs>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.list
@@ -5573,25 +5958,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Settings$Sendas$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListSendAsResponse>;
+      params?: Params$Resource$Users$Settings$Sendas$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSendAsResponse>;
     list(
-        params: Params$Resource$Users$Settings$Sendas$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSendAsResponse>,
-        callback: BodyResponseCallback<Schema$ListSendAsResponse>): void;
+      params: Params$Resource$Users$Settings$Sendas$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSendAsResponse>,
+      callback: BodyResponseCallback<Schema$ListSendAsResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Settings$Sendas$List,
-        callback: BodyResponseCallback<Schema$ListSendAsResponse>): void;
+      params: Params$Resource$Users$Settings$Sendas$List,
+      callback: BodyResponseCallback<Schema$ListSendAsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSendAsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Settings$Sendas$List|
-        BodyResponseCallback<Schema$ListSendAsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSendAsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSendAsResponse>):
-        void|GaxiosPromise<Schema$ListSendAsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$List
+        | BodyResponseCallback<Schema$ListSendAsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSendAsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSendAsResponse>
+    ): void | GaxiosPromise<Schema$ListSendAsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5608,16 +5998,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/settings/sendAs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSendAsResponse>(parameters, callback);
@@ -5625,7 +6018,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ListSendAsResponse>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.patch
@@ -5646,24 +6038,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Users$Settings$Sendas$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
+      params?: Params$Resource$Users$Settings$Sendas$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendAs>;
     patch(
-        params: Params$Resource$Users$Settings$Sendas$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
+      params: Params$Resource$Users$Settings$Sendas$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
     patch(
-        params: Params$Resource$Users$Settings$Sendas$Patch,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
+      params: Params$Resource$Users$Settings$Sendas$Patch,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$SendAs>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Patch|
-        BodyResponseCallback<Schema$SendAs>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback?: BodyResponseCallback<Schema$SendAs>):
-        void|GaxiosPromise<Schema$SendAs> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Patch
+        | BodyResponseCallback<Schema$SendAs>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>
+    ): void | GaxiosPromise<Schema$SendAs> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5680,17 +6076,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5698,7 +6095,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$SendAs>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.update
@@ -5718,24 +6114,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Users$Settings$Sendas$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
+      params?: Params$Resource$Users$Settings$Sendas$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SendAs>;
     update(
-        params: Params$Resource$Users$Settings$Sendas$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
+      params: Params$Resource$Users$Settings$Sendas$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
     update(
-        params: Params$Resource$Users$Settings$Sendas$Update,
-        callback: BodyResponseCallback<Schema$SendAs>): void;
+      params: Params$Resource$Users$Settings$Sendas$Update,
+      callback: BodyResponseCallback<Schema$SendAs>
+    ): void;
     update(callback: BodyResponseCallback<Schema$SendAs>): void;
     update(
-        paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Update|
-        BodyResponseCallback<Schema$SendAs>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
-        callback?: BodyResponseCallback<Schema$SendAs>):
-        void|GaxiosPromise<Schema$SendAs> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Update;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Update
+        | BodyResponseCallback<Schema$SendAs>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
+      callback?: BodyResponseCallback<Schema$SendAs>
+    ): void | GaxiosPromise<Schema$SendAs> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5752,17 +6152,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5770,7 +6171,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$SendAs>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.verify
@@ -5789,23 +6189,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     verify(
-        params?: Params$Resource$Users$Settings$Sendas$Verify,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Settings$Sendas$Verify,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     verify(
-        params: Params$Resource$Users$Settings$Sendas$Verify,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Verify,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     verify(
-        params: Params$Resource$Users$Settings$Sendas$Verify,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Verify,
+      callback: BodyResponseCallback<void>
+    ): void;
     verify(callback: BodyResponseCallback<void>): void;
     verify(
-        paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Verify|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Verify;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Verify
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5822,18 +6227,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5843,12 +6249,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Sendas$Create extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -5861,12 +6267,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The send-as alias to be deleted.
@@ -5878,12 +6284,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The send-as alias to be retrieved.
@@ -5895,12 +6301,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * User's email address. The special value "me" can be used to indicate the
@@ -5908,12 +6314,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The send-as alias to be updated.
@@ -5930,12 +6336,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Update extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The send-as alias to be updated.
@@ -5952,12 +6358,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Verify extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Verify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The send-as alias to be verified.
@@ -5976,7 +6382,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       this.context = context;
     }
 
-
     /**
      * gmail.users.settings.sendAs.smimeInfo.delete
      * @desc Deletes the specified S/MIME config for the specified send-as
@@ -5993,24 +6398,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6027,18 +6436,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail', 'id'],
         pathParams: ['id', 'sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6046,7 +6456,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.smimeInfo.get
@@ -6062,22 +6471,31 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$SmimeInfo>;
-    get(params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
-        callback: BodyResponseCallback<Schema$SmimeInfo>): void;
-    get(params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
-        callback: BodyResponseCallback<Schema$SmimeInfo>): void;
+    get(
+      params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SmimeInfo>;
+    get(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SmimeInfo>,
+      callback: BodyResponseCallback<Schema$SmimeInfo>
+    ): void;
+    get(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
+      callback: BodyResponseCallback<Schema$SmimeInfo>
+    ): void;
     get(callback: BodyResponseCallback<Schema$SmimeInfo>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get|
-        BodyResponseCallback<Schema$SmimeInfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SmimeInfo>,
-        callback?: BodyResponseCallback<Schema$SmimeInfo>):
-        void|GaxiosPromise<Schema$SmimeInfo> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Smimeinfo$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Smimeinfo$Get
+        | BodyResponseCallback<Schema$SmimeInfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SmimeInfo>,
+      callback?: BodyResponseCallback<Schema$SmimeInfo>
+    ): void | GaxiosPromise<Schema$SmimeInfo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6094,18 +6512,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail', 'id'],
         pathParams: ['id', 'sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SmimeInfo>(parameters, callback);
@@ -6113,7 +6532,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$SmimeInfo>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.smimeInfo.insert
@@ -6131,26 +6549,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$SmimeInfo>;
+      params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SmimeInfo>;
     insert(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
-        callback: BodyResponseCallback<Schema$SmimeInfo>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$SmimeInfo>,
+      callback: BodyResponseCallback<Schema$SmimeInfo>
+    ): void;
     insert(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
-        callback: BodyResponseCallback<Schema$SmimeInfo>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
+      callback: BodyResponseCallback<Schema$SmimeInfo>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$SmimeInfo>): void;
     insert(
-        paramsOrCallback?:
-            Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert|
-        BodyResponseCallback<Schema$SmimeInfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SmimeInfo>,
-        callback?: BodyResponseCallback<Schema$SmimeInfo>):
-        void|GaxiosPromise<Schema$SmimeInfo> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert
+        | BodyResponseCallback<Schema$SmimeInfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SmimeInfo>,
+      callback?: BodyResponseCallback<Schema$SmimeInfo>
+    ): void | GaxiosPromise<Schema$SmimeInfo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6167,18 +6589,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SmimeInfo>(parameters, callback);
@@ -6186,7 +6609,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$SmimeInfo>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.smimeInfo.list
@@ -6202,26 +6624,32 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListSmimeInfoResponse>;
+      params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSmimeInfoResponse>;
     list(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListSmimeInfoResponse>,
-        callback: BodyResponseCallback<Schema$ListSmimeInfoResponse>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSmimeInfoResponse>,
+      callback: BodyResponseCallback<Schema$ListSmimeInfoResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
-        callback: BodyResponseCallback<Schema$ListSmimeInfoResponse>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
+      callback: BodyResponseCallback<Schema$ListSmimeInfoResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSmimeInfoResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Smimeinfo$List|
-        BodyResponseCallback<Schema$ListSmimeInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSmimeInfoResponse>,
-        callback?: BodyResponseCallback<Schema$ListSmimeInfoResponse>):
-        void|GaxiosPromise<Schema$ListSmimeInfoResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Smimeinfo$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Smimeinfo$List
+        | BodyResponseCallback<Schema$ListSmimeInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSmimeInfoResponse>,
+      callback?: BodyResponseCallback<Schema$ListSmimeInfoResponse>
+    ): void | GaxiosPromise<Schema$ListSmimeInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6238,18 +6666,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSmimeInfoResponse>(parameters, callback);
@@ -6257,7 +6686,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ListSmimeInfoResponse>(parameters);
       }
     }
-
 
     /**
      * gmail.users.settings.sendAs.smimeInfo.setDefault
@@ -6274,30 +6702,33 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     setDefault(
-        params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     setDefault(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     setDefault(
-        params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
+      callback: BodyResponseCallback<void>
+    ): void;
     setDefault(callback: BodyResponseCallback<void>): void;
     setDefault(
-        paramsOrCallback?:
-            Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
+        params = {} as Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
         options = {};
       }
 
@@ -6309,18 +6740,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'sendAsEmail', 'id'],
         pathParams: ['id', 'sendAsEmail', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6331,11 +6763,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
   }
 
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The immutable ID for the SmimeInfo.
@@ -6352,12 +6784,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The immutable ID for the SmimeInfo.
@@ -6375,11 +6807,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The email address that appears in the "From:" header for mail sent using
@@ -6397,12 +6829,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$SmimeInfo;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The email address that appears in the "From:" header for mail sent using
@@ -6416,11 +6848,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The immutable ID for the SmimeInfo.
@@ -6438,14 +6870,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     userId?: string;
   }
 
-
-
   export class Resource$Users$Threads {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * gmail.users.threads.delete
@@ -6462,23 +6891,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Users$Threads$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Threads$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Threads$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Threads$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Users$Threads$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Threads$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Threads$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Threads$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Users$Threads$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Threads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6495,16 +6929,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6512,7 +6949,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * gmail.users.threads.get
@@ -6529,21 +6965,29 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Threads$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
-    get(params: Params$Resource$Users$Threads$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback: BodyResponseCallback<Schema$Thread>): void;
-    get(params: Params$Resource$Users$Threads$Get,
-        callback: BodyResponseCallback<Schema$Thread>): void;
+    get(
+      params?: Params$Resource$Users$Threads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Thread>;
+    get(
+      params: Params$Resource$Users$Threads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
+    get(
+      params: Params$Resource$Users$Threads$Get,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Thread>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Threads$Get|
-        BodyResponseCallback<Schema$Thread>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback?: BodyResponseCallback<Schema$Thread>):
-        void|GaxiosPromise<Schema$Thread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Threads$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Threads$Get
+        | BodyResponseCallback<Schema$Thread>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>
+    ): void | GaxiosPromise<Schema$Thread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Threads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6560,16 +7004,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);
@@ -6577,7 +7024,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Thread>(parameters);
       }
     }
-
 
     /**
      * gmail.users.threads.list
@@ -6596,25 +7042,31 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$Threads$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListThreadsResponse>;
     list(
-        params: Params$Resource$Users$Threads$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListThreadsResponse>,
-        callback: BodyResponseCallback<Schema$ListThreadsResponse>): void;
+      params?: Params$Resource$Users$Threads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListThreadsResponse>;
     list(
-        params: Params$Resource$Users$Threads$List,
-        callback: BodyResponseCallback<Schema$ListThreadsResponse>): void;
+      params: Params$Resource$Users$Threads$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListThreadsResponse>,
+      callback: BodyResponseCallback<Schema$ListThreadsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Threads$List,
+      callback: BodyResponseCallback<Schema$ListThreadsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListThreadsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Threads$List|
-        BodyResponseCallback<Schema$ListThreadsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListThreadsResponse>,
-        callback?: BodyResponseCallback<Schema$ListThreadsResponse>):
-        void|GaxiosPromise<Schema$ListThreadsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Threads$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Threads$List
+        | BodyResponseCallback<Schema$ListThreadsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListThreadsResponse>,
+      callback?: BodyResponseCallback<Schema$ListThreadsResponse>
+    ): void | GaxiosPromise<Schema$ListThreadsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Threads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6631,16 +7083,19 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/threads')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/gmail/v1/users/{userId}/threads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListThreadsResponse>(parameters, callback);
@@ -6648,7 +7103,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$ListThreadsResponse>(parameters);
       }
     }
-
 
     /**
      * gmail.users.threads.modify
@@ -6666,24 +7120,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     modify(
-        params?: Params$Resource$Users$Threads$Modify,
-        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
+      params?: Params$Resource$Users$Threads$Modify,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Thread>;
     modify(
-        params: Params$Resource$Users$Threads$Modify,
-        options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback: BodyResponseCallback<Schema$Thread>): void;
+      params: Params$Resource$Users$Threads$Modify,
+      options: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
     modify(
-        params: Params$Resource$Users$Threads$Modify,
-        callback: BodyResponseCallback<Schema$Thread>): void;
+      params: Params$Resource$Users$Threads$Modify,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
     modify(callback: BodyResponseCallback<Schema$Thread>): void;
     modify(
-        paramsOrCallback?: Params$Resource$Users$Threads$Modify|
-        BodyResponseCallback<Schema$Thread>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback?: BodyResponseCallback<Schema$Thread>):
-        void|GaxiosPromise<Schema$Thread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Threads$Modify;
+      paramsOrCallback?:
+        | Params$Resource$Users$Threads$Modify
+        | BodyResponseCallback<Schema$Thread>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>
+    ): void | GaxiosPromise<Schema$Thread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Threads$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6700,16 +7158,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/threads/{id}/modify'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);
@@ -6717,7 +7177,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Thread>(parameters);
       }
     }
-
 
     /**
      * gmail.users.threads.trash
@@ -6733,24 +7192,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     trash(
-        params?: Params$Resource$Users$Threads$Trash,
-        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
+      params?: Params$Resource$Users$Threads$Trash,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Thread>;
     trash(
-        params: Params$Resource$Users$Threads$Trash,
-        options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback: BodyResponseCallback<Schema$Thread>): void;
+      params: Params$Resource$Users$Threads$Trash,
+      options: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
     trash(
-        params: Params$Resource$Users$Threads$Trash,
-        callback: BodyResponseCallback<Schema$Thread>): void;
+      params: Params$Resource$Users$Threads$Trash,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
     trash(callback: BodyResponseCallback<Schema$Thread>): void;
     trash(
-        paramsOrCallback?: Params$Resource$Users$Threads$Trash|
-        BodyResponseCallback<Schema$Thread>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback?: BodyResponseCallback<Schema$Thread>):
-        void|GaxiosPromise<Schema$Thread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Threads$Trash;
+      paramsOrCallback?:
+        | Params$Resource$Users$Threads$Trash
+        | BodyResponseCallback<Schema$Thread>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>
+    ): void | GaxiosPromise<Schema$Thread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Threads$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6767,16 +7230,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/threads/{id}/trash'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);
@@ -6784,7 +7249,6 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         return createAPIRequest<Schema$Thread>(parameters);
       }
     }
-
 
     /**
      * gmail.users.threads.untrash
@@ -6800,24 +7264,28 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     untrash(
-        params?: Params$Resource$Users$Threads$Untrash,
-        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
+      params?: Params$Resource$Users$Threads$Untrash,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Thread>;
     untrash(
-        params: Params$Resource$Users$Threads$Untrash,
-        options: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback: BodyResponseCallback<Schema$Thread>): void;
+      params: Params$Resource$Users$Threads$Untrash,
+      options: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
     untrash(
-        params: Params$Resource$Users$Threads$Untrash,
-        callback: BodyResponseCallback<Schema$Thread>): void;
+      params: Params$Resource$Users$Threads$Untrash,
+      callback: BodyResponseCallback<Schema$Thread>
+    ): void;
     untrash(callback: BodyResponseCallback<Schema$Thread>): void;
     untrash(
-        paramsOrCallback?: Params$Resource$Users$Threads$Untrash|
-        BodyResponseCallback<Schema$Thread>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
-        callback?: BodyResponseCallback<Schema$Thread>):
-        void|GaxiosPromise<Schema$Thread> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Threads$Untrash;
+      paramsOrCallback?:
+        | Params$Resource$Users$Threads$Untrash
+        | BodyResponseCallback<Schema$Thread>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
+      callback?: BodyResponseCallback<Schema$Thread>
+    ): void | GaxiosPromise<Schema$Thread> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Threads$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6834,16 +7302,18 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/threads/{id}/untrash'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);
@@ -6853,12 +7323,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Threads$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Users$Threads$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the Thread to delete.
@@ -6870,12 +7340,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Get extends
-      StandardParameters {
+  export interface Params$Resource$Users$Threads$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The format to return the messages in.
@@ -6895,12 +7365,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Threads$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Include threads from SPAM and TRASH in the results.
@@ -6932,12 +7402,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Modify extends
-      StandardParameters {
+  export interface Params$Resource$Users$Threads$Modify
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the thread to modify.
@@ -6954,12 +7424,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$ModifyThreadRequest;
   }
-  export interface Params$Resource$Users$Threads$Trash extends
-      StandardParameters {
+  export interface Params$Resource$Users$Threads$Trash
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the thread to Trash.
@@ -6971,12 +7441,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Untrash extends
-      StandardParameters {
+  export interface Params$Resource$Users$Threads$Untrash
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the thread to remove from Trash.

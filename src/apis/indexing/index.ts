@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {indexing_v3} from './v3';
 
 export const VERSIONS = {
-  'v3': indexing_v3.Indexing,
+  v3: indexing_v3.Indexing,
 };
 
 export function indexing(version: 'v3'): indexing_v3.Indexing;
 export function indexing(options: indexing_v3.Options): indexing_v3.Indexing;
 export function indexing<T = indexing_v3.Indexing>(
-    this: GoogleConfigurable, versionOrOptions: 'v3'|indexing_v3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v3' | indexing_v3.Options
+) {
   return getAPI<T>('indexing', versionOrOptions, VERSIONS, this);
 }
 

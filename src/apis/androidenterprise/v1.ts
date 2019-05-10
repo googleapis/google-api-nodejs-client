@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -106,12 +118,15 @@ export namespace androidenterprise_v1 {
       this.grouplicenses = new Resource$Grouplicenses(this.context);
       this.grouplicenseusers = new Resource$Grouplicenseusers(this.context);
       this.installs = new Resource$Installs(this.context);
-      this.managedconfigurationsfordevice =
-          new Resource$Managedconfigurationsfordevice(this.context);
-      this.managedconfigurationsforuser =
-          new Resource$Managedconfigurationsforuser(this.context);
-      this.managedconfigurationssettings =
-          new Resource$Managedconfigurationssettings(this.context);
+      this.managedconfigurationsfordevice = new Resource$Managedconfigurationsfordevice(
+        this.context
+      );
+      this.managedconfigurationsforuser = new Resource$Managedconfigurationsforuser(
+        this.context
+      );
+      this.managedconfigurationssettings = new Resource$Managedconfigurationssettings(
+        this.context
+      );
       this.permissions = new Resource$Permissions(this.context);
       this.products = new Resource$Products(this.context);
       this.serviceaccountkeys = new Resource$Serviceaccountkeys(this.context);
@@ -160,8 +175,7 @@ export namespace androidenterprise_v1 {
     /**
      * Options for displaying the Managed Configuration page.
      */
-    managedConfigurations?:
-        Schema$AdministratorWebTokenSpecManagedConfigurations;
+    managedConfigurations?: Schema$AdministratorWebTokenSpecManagedConfigurations;
     /**
      * The URI of the parent frame hosting the iframe. To prevent XSS, the
      * iframe may not be hosted at other URIs. This URI must be https.
@@ -1955,13 +1969,11 @@ export namespace androidenterprise_v1 {
     webApp?: Schema$WebApp[];
   }
 
-
   export class Resource$Devices {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.devices.get
@@ -1977,19 +1989,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Devices$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Device>;
-    get(params: Params$Resource$Devices$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback: BodyResponseCallback<Schema$Device>): void;
-    get(params: Params$Resource$Devices$Get,
-        callback: BodyResponseCallback<Schema$Device>): void;
+    get(
+      params?: Params$Resource$Devices$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Device>;
+    get(
+      params: Params$Resource$Devices$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Device>,
+      callback: BodyResponseCallback<Schema$Device>
+    ): void;
+    get(
+      params: Params$Resource$Devices$Get,
+      callback: BodyResponseCallback<Schema$Device>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Device>): void;
-    get(paramsOrCallback?: Params$Resource$Devices$Get|
-        BodyResponseCallback<Schema$Device>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback?: BodyResponseCallback<Schema$Device>):
-        void|GaxiosPromise<Schema$Device> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Devices$Get
+        | BodyResponseCallback<Schema$Device>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
+      callback?: BodyResponseCallback<Schema$Device>
+    ): void | GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2007,18 +2027,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2026,7 +2047,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Device>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.devices.getState
@@ -2047,23 +2067,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     getState(
-        params?: Params$Resource$Devices$Getstate,
-        options?: MethodOptions): GaxiosPromise<Schema$DeviceState>;
+      params?: Params$Resource$Devices$Getstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceState>;
     getState(
-        params: Params$Resource$Devices$Getstate,
-        options: MethodOptions|BodyResponseCallback<Schema$DeviceState>,
-        callback: BodyResponseCallback<Schema$DeviceState>): void;
+      params: Params$Resource$Devices$Getstate,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceState>,
+      callback: BodyResponseCallback<Schema$DeviceState>
+    ): void;
     getState(
-        params: Params$Resource$Devices$Getstate,
-        callback: BodyResponseCallback<Schema$DeviceState>): void;
+      params: Params$Resource$Devices$Getstate,
+      callback: BodyResponseCallback<Schema$DeviceState>
+    ): void;
     getState(callback: BodyResponseCallback<Schema$DeviceState>): void;
     getState(
-        paramsOrCallback?: Params$Resource$Devices$Getstate|
-        BodyResponseCallback<Schema$DeviceState>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeviceState>,
-        callback?: BodyResponseCallback<Schema$DeviceState>):
-        void|GaxiosPromise<Schema$DeviceState> {
+      paramsOrCallback?:
+        | Params$Resource$Devices$Getstate
+        | BodyResponseCallback<Schema$DeviceState>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeviceState>,
+      callback?: BodyResponseCallback<Schema$DeviceState>
+    ): void | GaxiosPromise<Schema$DeviceState> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Getstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2081,18 +2106,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeviceState>(parameters, callback);
@@ -2100,7 +2126,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$DeviceState>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.devices.list
@@ -2115,23 +2140,29 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Devices$List, options?: MethodOptions):
-        GaxiosPromise<Schema$DevicesListResponse>;
     list(
-        params: Params$Resource$Devices$List,
-        options: MethodOptions|BodyResponseCallback<Schema$DevicesListResponse>,
-        callback: BodyResponseCallback<Schema$DevicesListResponse>): void;
+      params?: Params$Resource$Devices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DevicesListResponse>;
     list(
-        params: Params$Resource$Devices$List,
-        callback: BodyResponseCallback<Schema$DevicesListResponse>): void;
+      params: Params$Resource$Devices$List,
+      options: MethodOptions | BodyResponseCallback<Schema$DevicesListResponse>,
+      callback: BodyResponseCallback<Schema$DevicesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Devices$List,
+      callback: BodyResponseCallback<Schema$DevicesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$DevicesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Devices$List|
-        BodyResponseCallback<Schema$DevicesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DevicesListResponse>,
-        callback?: BodyResponseCallback<Schema$DevicesListResponse>):
-        void|GaxiosPromise<Schema$DevicesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Devices$List
+        | BodyResponseCallback<Schema$DevicesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DevicesListResponse>,
+      callback?: BodyResponseCallback<Schema$DevicesListResponse>
+    ): void | GaxiosPromise<Schema$DevicesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2149,18 +2180,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DevicesListResponse>(parameters, callback);
@@ -2168,7 +2200,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$DevicesListResponse>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.devices.patch
@@ -2186,22 +2217,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Devices$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Device>;
     patch(
-        params: Params$Resource$Devices$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback: BodyResponseCallback<Schema$Device>): void;
+      params?: Params$Resource$Devices$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Device>;
     patch(
-        params: Params$Resource$Devices$Patch,
-        callback: BodyResponseCallback<Schema$Device>): void;
+      params: Params$Resource$Devices$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Device>,
+      callback: BodyResponseCallback<Schema$Device>
+    ): void;
+    patch(
+      params: Params$Resource$Devices$Patch,
+      callback: BodyResponseCallback<Schema$Device>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Device>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Devices$Patch|
-        BodyResponseCallback<Schema$Device>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback?: BodyResponseCallback<Schema$Device>):
-        void|GaxiosPromise<Schema$Device> {
+      paramsOrCallback?:
+        | Params$Resource$Devices$Patch
+        | BodyResponseCallback<Schema$Device>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
+      callback?: BodyResponseCallback<Schema$Device>
+    ): void | GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2219,18 +2255,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2238,7 +2275,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Device>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.devices.setState
@@ -2260,23 +2296,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     setState(
-        params?: Params$Resource$Devices$Setstate,
-        options?: MethodOptions): GaxiosPromise<Schema$DeviceState>;
+      params?: Params$Resource$Devices$Setstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceState>;
     setState(
-        params: Params$Resource$Devices$Setstate,
-        options: MethodOptions|BodyResponseCallback<Schema$DeviceState>,
-        callback: BodyResponseCallback<Schema$DeviceState>): void;
+      params: Params$Resource$Devices$Setstate,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceState>,
+      callback: BodyResponseCallback<Schema$DeviceState>
+    ): void;
     setState(
-        params: Params$Resource$Devices$Setstate,
-        callback: BodyResponseCallback<Schema$DeviceState>): void;
+      params: Params$Resource$Devices$Setstate,
+      callback: BodyResponseCallback<Schema$DeviceState>
+    ): void;
     setState(callback: BodyResponseCallback<Schema$DeviceState>): void;
     setState(
-        paramsOrCallback?: Params$Resource$Devices$Setstate|
-        BodyResponseCallback<Schema$DeviceState>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DeviceState>,
-        callback?: BodyResponseCallback<Schema$DeviceState>):
-        void|GaxiosPromise<Schema$DeviceState> {
+      paramsOrCallback?:
+        | Params$Resource$Devices$Setstate
+        | BodyResponseCallback<Schema$DeviceState>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeviceState>,
+      callback?: BodyResponseCallback<Schema$DeviceState>
+    ): void | GaxiosPromise<Schema$DeviceState> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Setstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2294,18 +2335,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DeviceState>(parameters, callback);
@@ -2313,7 +2355,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$DeviceState>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.devices.update
@@ -2331,22 +2372,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Devices$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Device>;
     update(
-        params: Params$Resource$Devices$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback: BodyResponseCallback<Schema$Device>): void;
+      params?: Params$Resource$Devices$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Device>;
     update(
-        params: Params$Resource$Devices$Update,
-        callback: BodyResponseCallback<Schema$Device>): void;
+      params: Params$Resource$Devices$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Device>,
+      callback: BodyResponseCallback<Schema$Device>
+    ): void;
+    update(
+      params: Params$Resource$Devices$Update,
+      callback: BodyResponseCallback<Schema$Device>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Device>): void;
     update(
-        paramsOrCallback?: Params$Resource$Devices$Update|
-        BodyResponseCallback<Schema$Device>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback?: BodyResponseCallback<Schema$Device>):
-        void|GaxiosPromise<Schema$Device> {
+      paramsOrCallback?:
+        | Params$Resource$Devices$Update
+        | BodyResponseCallback<Schema$Device>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
+      callback?: BodyResponseCallback<Schema$Device>
+    ): void | GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2364,18 +2410,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2389,7 +2436,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the device.
@@ -2408,7 +2455,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the device.
@@ -2427,7 +2474,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -2442,7 +2489,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the device.
@@ -2472,7 +2519,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the device.
@@ -2496,7 +2543,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the device.
@@ -2523,13 +2570,11 @@ export namespace androidenterprise_v1 {
     requestBody?: Schema$Device;
   }
 
-
   export class Resource$Enterprises {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.enterprises.acknowledgeNotificationSet
@@ -2546,24 +2591,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     acknowledgeNotificationSet(
-        params?: Params$Resource$Enterprises$Acknowledgenotificationset,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Enterprises$Acknowledgenotificationset,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     acknowledgeNotificationSet(
-        params: Params$Resource$Enterprises$Acknowledgenotificationset,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Enterprises$Acknowledgenotificationset,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     acknowledgeNotificationSet(
-        params: Params$Resource$Enterprises$Acknowledgenotificationset,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Enterprises$Acknowledgenotificationset,
+      callback: BodyResponseCallback<void>
+    ): void;
     acknowledgeNotificationSet(callback: BodyResponseCallback<void>): void;
     acknowledgeNotificationSet(
-        paramsOrCallback?:
-            Params$Resource$Enterprises$Acknowledgenotificationset|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Acknowledgenotificationset;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Acknowledgenotificationset
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Acknowledgenotificationset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2580,18 +2629,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/acknowledgeNotificationSet')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/acknowledgeNotificationSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2599,7 +2649,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.completeSignup
@@ -2617,25 +2666,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     completeSignup(
-        params?: Params$Resource$Enterprises$Completesignup,
-        options?: MethodOptions): GaxiosPromise<Schema$Enterprise>;
+      params?: Params$Resource$Enterprises$Completesignup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Enterprise>;
     completeSignup(
-        params: Params$Resource$Enterprises$Completesignup,
-        options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
+      params: Params$Resource$Enterprises$Completesignup,
+      options: MethodOptions | BodyResponseCallback<Schema$Enterprise>,
+      callback: BodyResponseCallback<Schema$Enterprise>
+    ): void;
     completeSignup(
-        params: Params$Resource$Enterprises$Completesignup,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
+      params: Params$Resource$Enterprises$Completesignup,
+      callback: BodyResponseCallback<Schema$Enterprise>
+    ): void;
     completeSignup(callback: BodyResponseCallback<Schema$Enterprise>): void;
     completeSignup(
-        paramsOrCallback?: Params$Resource$Enterprises$Completesignup|
-        BodyResponseCallback<Schema$Enterprise>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Enterprise>,
-        callback?: BodyResponseCallback<Schema$Enterprise>):
-        void|GaxiosPromise<Schema$Enterprise> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Completesignup;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Completesignup
+        | BodyResponseCallback<Schema$Enterprise>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Enterprise>,
+      callback?: BodyResponseCallback<Schema$Enterprise>
+    ): void | GaxiosPromise<Schema$Enterprise> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Completesignup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2652,17 +2706,18 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/androidenterprise/v1/enterprises/completeSignup')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidenterprise/v1/enterprises/completeSignup'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2670,7 +2725,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Enterprise>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.createWebToken
@@ -2689,27 +2743,34 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     createWebToken(
-        params?: Params$Resource$Enterprises$Createwebtoken,
-        options?: MethodOptions): GaxiosPromise<Schema$AdministratorWebToken>;
+      params?: Params$Resource$Enterprises$Createwebtoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdministratorWebToken>;
     createWebToken(
-        params: Params$Resource$Enterprises$Createwebtoken,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AdministratorWebToken>,
-        callback: BodyResponseCallback<Schema$AdministratorWebToken>): void;
+      params: Params$Resource$Enterprises$Createwebtoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdministratorWebToken>,
+      callback: BodyResponseCallback<Schema$AdministratorWebToken>
+    ): void;
     createWebToken(
-        params: Params$Resource$Enterprises$Createwebtoken,
-        callback: BodyResponseCallback<Schema$AdministratorWebToken>): void;
+      params: Params$Resource$Enterprises$Createwebtoken,
+      callback: BodyResponseCallback<Schema$AdministratorWebToken>
+    ): void;
     createWebToken(
-        callback: BodyResponseCallback<Schema$AdministratorWebToken>): void;
+      callback: BodyResponseCallback<Schema$AdministratorWebToken>
+    ): void;
     createWebToken(
-        paramsOrCallback?: Params$Resource$Enterprises$Createwebtoken|
-        BodyResponseCallback<Schema$AdministratorWebToken>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AdministratorWebToken>,
-        callback?: BodyResponseCallback<Schema$AdministratorWebToken>):
-        void|GaxiosPromise<Schema$AdministratorWebToken> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Createwebtoken;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Createwebtoken
+        | BodyResponseCallback<Schema$AdministratorWebToken>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdministratorWebToken>,
+      callback?: BodyResponseCallback<Schema$AdministratorWebToken>
+    ): void | GaxiosPromise<Schema$AdministratorWebToken> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Createwebtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2726,18 +2787,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AdministratorWebToken>(parameters, callback);
@@ -2745,7 +2807,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$AdministratorWebToken>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.enroll
@@ -2761,25 +2822,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     enroll(
-        params?: Params$Resource$Enterprises$Enroll,
-        options?: MethodOptions): GaxiosPromise<Schema$Enterprise>;
+      params?: Params$Resource$Enterprises$Enroll,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Enterprise>;
     enroll(
-        params: Params$Resource$Enterprises$Enroll,
-        options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
+      params: Params$Resource$Enterprises$Enroll,
+      options: MethodOptions | BodyResponseCallback<Schema$Enterprise>,
+      callback: BodyResponseCallback<Schema$Enterprise>
+    ): void;
     enroll(
-        params: Params$Resource$Enterprises$Enroll,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
+      params: Params$Resource$Enterprises$Enroll,
+      callback: BodyResponseCallback<Schema$Enterprise>
+    ): void;
     enroll(callback: BodyResponseCallback<Schema$Enterprise>): void;
     enroll(
-        paramsOrCallback?: Params$Resource$Enterprises$Enroll|
-        BodyResponseCallback<Schema$Enterprise>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Enterprise>,
-        callback?: BodyResponseCallback<Schema$Enterprise>):
-        void|GaxiosPromise<Schema$Enterprise> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Enterprises$Enroll;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Enroll
+        | BodyResponseCallback<Schema$Enterprise>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Enterprise>,
+      callback?: BodyResponseCallback<Schema$Enterprise>
+    ): void | GaxiosPromise<Schema$Enterprise> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2796,16 +2862,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/androidenterprise/v1/enterprises/enroll')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/androidenterprise/v1/enterprises/enroll').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['token'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2813,7 +2882,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Enterprise>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.generateSignupUrl
@@ -2828,25 +2896,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     generateSignupUrl(
-        params?: Params$Resource$Enterprises$Generatesignupurl,
-        options?: MethodOptions): GaxiosPromise<Schema$SignupInfo>;
+      params?: Params$Resource$Enterprises$Generatesignupurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SignupInfo>;
     generateSignupUrl(
-        params: Params$Resource$Enterprises$Generatesignupurl,
-        options: MethodOptions|BodyResponseCallback<Schema$SignupInfo>,
-        callback: BodyResponseCallback<Schema$SignupInfo>): void;
+      params: Params$Resource$Enterprises$Generatesignupurl,
+      options: MethodOptions | BodyResponseCallback<Schema$SignupInfo>,
+      callback: BodyResponseCallback<Schema$SignupInfo>
+    ): void;
     generateSignupUrl(
-        params: Params$Resource$Enterprises$Generatesignupurl,
-        callback: BodyResponseCallback<Schema$SignupInfo>): void;
+      params: Params$Resource$Enterprises$Generatesignupurl,
+      callback: BodyResponseCallback<Schema$SignupInfo>
+    ): void;
     generateSignupUrl(callback: BodyResponseCallback<Schema$SignupInfo>): void;
     generateSignupUrl(
-        paramsOrCallback?: Params$Resource$Enterprises$Generatesignupurl|
-        BodyResponseCallback<Schema$SignupInfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SignupInfo>,
-        callback?: BodyResponseCallback<Schema$SignupInfo>):
-        void|GaxiosPromise<Schema$SignupInfo> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Generatesignupurl;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Generatesignupurl
+        | BodyResponseCallback<Schema$SignupInfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignupInfo>,
+      callback?: BodyResponseCallback<Schema$SignupInfo>
+    ): void | GaxiosPromise<Schema$SignupInfo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Generatesignupurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2863,16 +2936,18 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/androidenterprise/v1/enterprises/signupUrl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidenterprise/v1/enterprises/signupUrl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SignupInfo>(parameters, callback);
@@ -2880,7 +2955,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$SignupInfo>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.get
@@ -2894,20 +2968,29 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Enterprises$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Enterprise>;
-    get(params: Params$Resource$Enterprises$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
-    get(params: Params$Resource$Enterprises$Get,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
+    get(
+      params?: Params$Resource$Enterprises$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Enterprise>;
+    get(
+      params: Params$Resource$Enterprises$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Enterprise>,
+      callback: BodyResponseCallback<Schema$Enterprise>
+    ): void;
+    get(
+      params: Params$Resource$Enterprises$Get,
+      callback: BodyResponseCallback<Schema$Enterprise>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Enterprise>): void;
-    get(paramsOrCallback?: Params$Resource$Enterprises$Get|
-        BodyResponseCallback<Schema$Enterprise>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Enterprise>,
-        callback?: BodyResponseCallback<Schema$Enterprise>):
-        void|GaxiosPromise<Schema$Enterprise> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Get
+        | BodyResponseCallback<Schema$Enterprise>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Enterprise>,
+      callback?: BodyResponseCallback<Schema$Enterprise>
+    ): void | GaxiosPromise<Schema$Enterprise> {
       let params = (paramsOrCallback || {}) as Params$Resource$Enterprises$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2925,17 +3008,18 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2943,7 +3027,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Enterprise>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.getServiceAccount
@@ -2969,26 +3052,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     getServiceAccount(
-        params?: Params$Resource$Enterprises$Getserviceaccount,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
+      params?: Params$Resource$Enterprises$Getserviceaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccount>;
     getServiceAccount(
-        params: Params$Resource$Enterprises$Getserviceaccount,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+      params: Params$Resource$Enterprises$Getserviceaccount,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccount>,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     getServiceAccount(
-        params: Params$Resource$Enterprises$Getserviceaccount,
-        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
-    getServiceAccount(callback: BodyResponseCallback<Schema$ServiceAccount>):
-        void;
+      params: Params$Resource$Enterprises$Getserviceaccount,
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
     getServiceAccount(
-        paramsOrCallback?: Params$Resource$Enterprises$Getserviceaccount|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|GaxiosPromise<Schema$ServiceAccount> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Getserviceaccount;
+      callback: BodyResponseCallback<Schema$ServiceAccount>
+    ): void;
+    getServiceAccount(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Getserviceaccount
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccount>,
+      callback?: BodyResponseCallback<Schema$ServiceAccount>
+    ): void | GaxiosPromise<Schema$ServiceAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3005,18 +3094,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -3024,7 +3114,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.getStoreLayout
@@ -3041,25 +3130,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     getStoreLayout(
-        params?: Params$Resource$Enterprises$Getstorelayout,
-        options?: MethodOptions): GaxiosPromise<Schema$StoreLayout>;
+      params?: Params$Resource$Enterprises$Getstorelayout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreLayout>;
     getStoreLayout(
-        params: Params$Resource$Enterprises$Getstorelayout,
-        options: MethodOptions|BodyResponseCallback<Schema$StoreLayout>,
-        callback: BodyResponseCallback<Schema$StoreLayout>): void;
+      params: Params$Resource$Enterprises$Getstorelayout,
+      options: MethodOptions | BodyResponseCallback<Schema$StoreLayout>,
+      callback: BodyResponseCallback<Schema$StoreLayout>
+    ): void;
     getStoreLayout(
-        params: Params$Resource$Enterprises$Getstorelayout,
-        callback: BodyResponseCallback<Schema$StoreLayout>): void;
+      params: Params$Resource$Enterprises$Getstorelayout,
+      callback: BodyResponseCallback<Schema$StoreLayout>
+    ): void;
     getStoreLayout(callback: BodyResponseCallback<Schema$StoreLayout>): void;
     getStoreLayout(
-        paramsOrCallback?: Params$Resource$Enterprises$Getstorelayout|
-        BodyResponseCallback<Schema$StoreLayout>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreLayout>,
-        callback?: BodyResponseCallback<Schema$StoreLayout>):
-        void|GaxiosPromise<Schema$StoreLayout> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Getstorelayout;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Getstorelayout
+        | BodyResponseCallback<Schema$StoreLayout>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreLayout>,
+      callback?: BodyResponseCallback<Schema$StoreLayout>
+    ): void | GaxiosPromise<Schema$StoreLayout> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Getstorelayout;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3076,18 +3170,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(parameters, callback);
@@ -3095,7 +3190,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StoreLayout>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.list
@@ -3113,24 +3207,31 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Enterprises$List, options?: MethodOptions):
-        GaxiosPromise<Schema$EnterprisesListResponse>;
     list(
-        params: Params$Resource$Enterprises$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$EnterprisesListResponse>,
-        callback: BodyResponseCallback<Schema$EnterprisesListResponse>): void;
+      params?: Params$Resource$Enterprises$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EnterprisesListResponse>;
     list(
-        params: Params$Resource$Enterprises$List,
-        callback: BodyResponseCallback<Schema$EnterprisesListResponse>): void;
+      params: Params$Resource$Enterprises$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EnterprisesListResponse>,
+      callback: BodyResponseCallback<Schema$EnterprisesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Enterprises$List,
+      callback: BodyResponseCallback<Schema$EnterprisesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$EnterprisesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Enterprises$List|
-        BodyResponseCallback<Schema$EnterprisesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EnterprisesListResponse>,
-        callback?: BodyResponseCallback<Schema$EnterprisesListResponse>):
-        void|GaxiosPromise<Schema$EnterprisesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$List
+        | BodyResponseCallback<Schema$EnterprisesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EnterprisesListResponse>,
+      callback?: BodyResponseCallback<Schema$EnterprisesListResponse>
+    ): void | GaxiosPromise<Schema$EnterprisesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Enterprises$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3148,16 +3249,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/androidenterprise/v1/enterprises')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/androidenterprise/v1/enterprises').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['domain'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EnterprisesListResponse>(parameters, callback);
@@ -3165,7 +3269,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$EnterprisesListResponse>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.pullNotificationSet
@@ -3193,26 +3296,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     pullNotificationSet(
-        params?: Params$Resource$Enterprises$Pullnotificationset,
-        options?: MethodOptions): GaxiosPromise<Schema$NotificationSet>;
+      params?: Params$Resource$Enterprises$Pullnotificationset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationSet>;
     pullNotificationSet(
-        params: Params$Resource$Enterprises$Pullnotificationset,
-        options: MethodOptions|BodyResponseCallback<Schema$NotificationSet>,
-        callback: BodyResponseCallback<Schema$NotificationSet>): void;
+      params: Params$Resource$Enterprises$Pullnotificationset,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationSet>,
+      callback: BodyResponseCallback<Schema$NotificationSet>
+    ): void;
     pullNotificationSet(
-        params: Params$Resource$Enterprises$Pullnotificationset,
-        callback: BodyResponseCallback<Schema$NotificationSet>): void;
-    pullNotificationSet(callback: BodyResponseCallback<Schema$NotificationSet>):
-        void;
+      params: Params$Resource$Enterprises$Pullnotificationset,
+      callback: BodyResponseCallback<Schema$NotificationSet>
+    ): void;
     pullNotificationSet(
-        paramsOrCallback?: Params$Resource$Enterprises$Pullnotificationset|
-        BodyResponseCallback<Schema$NotificationSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$NotificationSet>,
-        callback?: BodyResponseCallback<Schema$NotificationSet>):
-        void|GaxiosPromise<Schema$NotificationSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Pullnotificationset;
+      callback: BodyResponseCallback<Schema$NotificationSet>
+    ): void;
+    pullNotificationSet(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Pullnotificationset
+        | BodyResponseCallback<Schema$NotificationSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationSet>,
+      callback?: BodyResponseCallback<Schema$NotificationSet>
+    ): void | GaxiosPromise<Schema$NotificationSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Pullnotificationset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3229,17 +3338,18 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/pullNotificationSet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidenterprise/v1/enterprises/pullNotificationSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$NotificationSet>(parameters, callback);
@@ -3247,7 +3357,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$NotificationSet>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.sendTestPushNotification
@@ -3263,33 +3372,50 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     sendTestPushNotification(
-        params?: Params$Resource$Enterprises$Sendtestpushnotification,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$EnterprisesSendTestPushNotificationResponse>;
+      params?: Params$Resource$Enterprises$Sendtestpushnotification,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EnterprisesSendTestPushNotificationResponse>;
     sendTestPushNotification(
-        params: Params$Resource$Enterprises$Sendtestpushnotification,
-        options: MethodOptions|BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse>,
-        callback: BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse>): void;
+      params: Params$Resource$Enterprises$Sendtestpushnotification,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$EnterprisesSendTestPushNotificationResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$EnterprisesSendTestPushNotificationResponse
+      >
+    ): void;
     sendTestPushNotification(
-        params: Params$Resource$Enterprises$Sendtestpushnotification,
-        callback: BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse>): void;
+      params: Params$Resource$Enterprises$Sendtestpushnotification,
+      callback: BodyResponseCallback<
+        Schema$EnterprisesSendTestPushNotificationResponse
+      >
+    ): void;
     sendTestPushNotification(
-        callback: BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse>): void;
+      callback: BodyResponseCallback<
+        Schema$EnterprisesSendTestPushNotificationResponse
+      >
+    ): void;
     sendTestPushNotification(
-        paramsOrCallback?: Params$Resource$Enterprises$Sendtestpushnotification|
-        BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse>,
-        callback?: BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse>):
-        void|GaxiosPromise<Schema$EnterprisesSendTestPushNotificationResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Sendtestpushnotification;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Sendtestpushnotification
+        | BodyResponseCallback<
+            Schema$EnterprisesSendTestPushNotificationResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$EnterprisesSendTestPushNotificationResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$EnterprisesSendTestPushNotificationResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$EnterprisesSendTestPushNotificationResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Sendtestpushnotification;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3306,28 +3432,31 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EnterprisesSendTestPushNotificationResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$EnterprisesSendTestPushNotificationResponse>(parameters);
+          Schema$EnterprisesSendTestPushNotificationResponse
+        >(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.setAccount
@@ -3344,25 +3473,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     setAccount(
-        params?: Params$Resource$Enterprises$Setaccount,
-        options?: MethodOptions): GaxiosPromise<Schema$EnterpriseAccount>;
+      params?: Params$Resource$Enterprises$Setaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EnterpriseAccount>;
     setAccount(
-        params: Params$Resource$Enterprises$Setaccount,
-        options: MethodOptions|BodyResponseCallback<Schema$EnterpriseAccount>,
-        callback: BodyResponseCallback<Schema$EnterpriseAccount>): void;
+      params: Params$Resource$Enterprises$Setaccount,
+      options: MethodOptions | BodyResponseCallback<Schema$EnterpriseAccount>,
+      callback: BodyResponseCallback<Schema$EnterpriseAccount>
+    ): void;
     setAccount(
-        params: Params$Resource$Enterprises$Setaccount,
-        callback: BodyResponseCallback<Schema$EnterpriseAccount>): void;
+      params: Params$Resource$Enterprises$Setaccount,
+      callback: BodyResponseCallback<Schema$EnterpriseAccount>
+    ): void;
     setAccount(callback: BodyResponseCallback<Schema$EnterpriseAccount>): void;
     setAccount(
-        paramsOrCallback?: Params$Resource$Enterprises$Setaccount|
-        BodyResponseCallback<Schema$EnterpriseAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EnterpriseAccount>,
-        callback?: BodyResponseCallback<Schema$EnterpriseAccount>):
-        void|GaxiosPromise<Schema$EnterpriseAccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Enterprises$Setaccount;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Setaccount
+        | BodyResponseCallback<Schema$EnterpriseAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EnterpriseAccount>,
+      callback?: BodyResponseCallback<Schema$EnterpriseAccount>
+    ): void | GaxiosPromise<Schema$EnterpriseAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Setaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3379,17 +3513,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/account')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/account'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EnterpriseAccount>(parameters, callback);
@@ -3397,7 +3533,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$EnterpriseAccount>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.setStoreLayout
@@ -3420,25 +3555,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     setStoreLayout(
-        params?: Params$Resource$Enterprises$Setstorelayout,
-        options?: MethodOptions): GaxiosPromise<Schema$StoreLayout>;
+      params?: Params$Resource$Enterprises$Setstorelayout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreLayout>;
     setStoreLayout(
-        params: Params$Resource$Enterprises$Setstorelayout,
-        options: MethodOptions|BodyResponseCallback<Schema$StoreLayout>,
-        callback: BodyResponseCallback<Schema$StoreLayout>): void;
+      params: Params$Resource$Enterprises$Setstorelayout,
+      options: MethodOptions | BodyResponseCallback<Schema$StoreLayout>,
+      callback: BodyResponseCallback<Schema$StoreLayout>
+    ): void;
     setStoreLayout(
-        params: Params$Resource$Enterprises$Setstorelayout,
-        callback: BodyResponseCallback<Schema$StoreLayout>): void;
+      params: Params$Resource$Enterprises$Setstorelayout,
+      callback: BodyResponseCallback<Schema$StoreLayout>
+    ): void;
     setStoreLayout(callback: BodyResponseCallback<Schema$StoreLayout>): void;
     setStoreLayout(
-        paramsOrCallback?: Params$Resource$Enterprises$Setstorelayout|
-        BodyResponseCallback<Schema$StoreLayout>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreLayout>,
-        callback?: BodyResponseCallback<Schema$StoreLayout>):
-        void|GaxiosPromise<Schema$StoreLayout> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Setstorelayout;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Setstorelayout
+        | BodyResponseCallback<Schema$StoreLayout>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreLayout>,
+      callback?: BodyResponseCallback<Schema$StoreLayout>
+    ): void | GaxiosPromise<Schema$StoreLayout> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Setstorelayout;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3455,18 +3595,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(parameters, callback);
@@ -3474,7 +3615,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StoreLayout>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.enterprises.unenroll
@@ -3489,23 +3629,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     unenroll(
-        params?: Params$Resource$Enterprises$Unenroll,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Enterprises$Unenroll,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     unenroll(
-        params: Params$Resource$Enterprises$Unenroll,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Enterprises$Unenroll,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     unenroll(
-        params: Params$Resource$Enterprises$Unenroll,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Enterprises$Unenroll,
+      callback: BodyResponseCallback<void>
+    ): void;
     unenroll(callback: BodyResponseCallback<void>): void;
     unenroll(
-        paramsOrCallback?: Params$Resource$Enterprises$Unenroll|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Enterprises$Unenroll;
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Unenroll
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3522,17 +3667,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/unenroll')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/unenroll'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3543,11 +3690,11 @@ export namespace androidenterprise_v1 {
   }
 
   export interface Params$Resource$Enterprises$Acknowledgenotificationset
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The notification set ID as returned by Enterprises.PullNotificationSet.
@@ -3555,12 +3702,12 @@ export namespace androidenterprise_v1 {
      */
     notificationSetId?: string;
   }
-  export interface Params$Resource$Enterprises$Completesignup extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Completesignup
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Completion token initially returned by GenerateSignupUrl.
@@ -3571,12 +3718,12 @@ export namespace androidenterprise_v1 {
      */
     enterpriseToken?: string;
   }
-  export interface Params$Resource$Enterprises$Createwebtoken extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Createwebtoken
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -3588,12 +3735,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$AdministratorWebTokenSpec;
   }
-  export interface Params$Resource$Enterprises$Enroll extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Enroll
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The token provided by the enterprise to register the EMM.
@@ -3605,12 +3752,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Enterprise;
   }
-  export interface Params$Resource$Enterprises$Generatesignupurl extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Generatesignupurl
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The callback URL to which the Admin will be redirected after successfully
@@ -3627,19 +3774,19 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Getserviceaccount extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Getserviceaccount
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -3650,12 +3797,12 @@ export namespace androidenterprise_v1 {
      */
     keyType?: string;
   }
-  export interface Params$Resource$Enterprises$Getstorelayout extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Getstorelayout
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -3666,19 +3813,19 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The exact primary domain name of the enterprise to look up.
      */
     domain?: string;
   }
-  export interface Params$Resource$Enterprises$Pullnotificationset extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Pullnotificationset
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The request mode for pulling notifications. Specifying
@@ -3691,24 +3838,24 @@ export namespace androidenterprise_v1 {
      */
     requestMode?: string;
   }
-  export interface Params$Resource$Enterprises$Sendtestpushnotification extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Sendtestpushnotification
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Setaccount extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Setaccount
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -3720,12 +3867,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$EnterpriseAccount;
   }
-  export interface Params$Resource$Enterprises$Setstorelayout extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Setstorelayout
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -3737,12 +3884,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreLayout;
   }
-  export interface Params$Resource$Enterprises$Unenroll extends
-      StandardParameters {
+  export interface Params$Resource$Enterprises$Unenroll
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -3750,13 +3897,11 @@ export namespace androidenterprise_v1 {
     enterpriseId?: string;
   }
 
-
   export class Resource$Entitlements {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.entitlements.delete
@@ -3773,23 +3918,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Entitlements$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Entitlements$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Entitlements$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Entitlements$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Entitlements$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Entitlements$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Entitlements$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Entitlements$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Entitlements$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Entitlements$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3806,18 +3956,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3825,7 +3976,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.entitlements.get
@@ -3841,20 +3991,29 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Entitlements$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Entitlement>;
-    get(params: Params$Resource$Entitlements$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Entitlement>,
-        callback: BodyResponseCallback<Schema$Entitlement>): void;
-    get(params: Params$Resource$Entitlements$Get,
-        callback: BodyResponseCallback<Schema$Entitlement>): void;
+    get(
+      params?: Params$Resource$Entitlements$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Entitlement>;
+    get(
+      params: Params$Resource$Entitlements$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Entitlement>,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
+    get(
+      params: Params$Resource$Entitlements$Get,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Entitlement>): void;
-    get(paramsOrCallback?: Params$Resource$Entitlements$Get|
-        BodyResponseCallback<Schema$Entitlement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Entitlement>,
-        callback?: BodyResponseCallback<Schema$Entitlement>):
-        void|GaxiosPromise<Schema$Entitlement> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Entitlements$Get
+        | BodyResponseCallback<Schema$Entitlement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Entitlement>,
+      callback?: BodyResponseCallback<Schema$Entitlement>
+    ): void | GaxiosPromise<Schema$Entitlement> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entitlements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3872,18 +4031,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -3891,7 +4051,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Entitlement>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.entitlements.list
@@ -3906,26 +4065,33 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Entitlements$List, options?: MethodOptions):
-        GaxiosPromise<Schema$EntitlementsListResponse>;
     list(
-        params: Params$Resource$Entitlements$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$EntitlementsListResponse>,
-        callback: BodyResponseCallback<Schema$EntitlementsListResponse>): void;
+      params?: Params$Resource$Entitlements$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntitlementsListResponse>;
     list(
-        params: Params$Resource$Entitlements$List,
-        callback: BodyResponseCallback<Schema$EntitlementsListResponse>): void;
+      params: Params$Resource$Entitlements$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntitlementsListResponse>,
+      callback: BodyResponseCallback<Schema$EntitlementsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Entitlements$List,
+      callback: BodyResponseCallback<Schema$EntitlementsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$EntitlementsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Entitlements$List|
-        BodyResponseCallback<Schema$EntitlementsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntitlementsListResponse>,
-        callback?: BodyResponseCallback<Schema$EntitlementsListResponse>):
-        void|GaxiosPromise<Schema$EntitlementsListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Entitlements$List;
+      paramsOrCallback?:
+        | Params$Resource$Entitlements$List
+        | BodyResponseCallback<Schema$EntitlementsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntitlementsListResponse>,
+      callback?: BodyResponseCallback<Schema$EntitlementsListResponse>
+    ): void | GaxiosPromise<Schema$EntitlementsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Entitlements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3942,18 +4108,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntitlementsListResponse>(parameters, callback);
@@ -3961,7 +4128,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$EntitlementsListResponse>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.entitlements.patch
@@ -3980,25 +4146,31 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Entitlements$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Entitlement>;
     patch(
-        params: Params$Resource$Entitlements$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Entitlement>,
-        callback: BodyResponseCallback<Schema$Entitlement>): void;
+      params?: Params$Resource$Entitlements$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Entitlement>;
     patch(
-        params: Params$Resource$Entitlements$Patch,
-        callback: BodyResponseCallback<Schema$Entitlement>): void;
+      params: Params$Resource$Entitlements$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Entitlement>,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
+    patch(
+      params: Params$Resource$Entitlements$Patch,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Entitlement>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Entitlements$Patch|
-        BodyResponseCallback<Schema$Entitlement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Entitlement>,
-        callback?: BodyResponseCallback<Schema$Entitlement>):
-        void|GaxiosPromise<Schema$Entitlement> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Entitlements$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Entitlements$Patch
+        | BodyResponseCallback<Schema$Entitlement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Entitlement>,
+      callback?: BodyResponseCallback<Schema$Entitlement>
+    ): void | GaxiosPromise<Schema$Entitlement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Entitlements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4015,18 +4187,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -4034,7 +4207,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Entitlement>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.entitlements.update
@@ -4053,25 +4225,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Entitlements$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Entitlement>;
+      params?: Params$Resource$Entitlements$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Entitlement>;
     update(
-        params: Params$Resource$Entitlements$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Entitlement>,
-        callback: BodyResponseCallback<Schema$Entitlement>): void;
+      params: Params$Resource$Entitlements$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Entitlement>,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
     update(
-        params: Params$Resource$Entitlements$Update,
-        callback: BodyResponseCallback<Schema$Entitlement>): void;
+      params: Params$Resource$Entitlements$Update,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Entitlement>): void;
     update(
-        paramsOrCallback?: Params$Resource$Entitlements$Update|
-        BodyResponseCallback<Schema$Entitlement>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Entitlement>,
-        callback?: BodyResponseCallback<Schema$Entitlement>):
-        void|GaxiosPromise<Schema$Entitlement> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Entitlements$Update;
+      paramsOrCallback?:
+        | Params$Resource$Entitlements$Update
+        | BodyResponseCallback<Schema$Entitlement>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Entitlement>,
+      callback?: BodyResponseCallback<Schema$Entitlement>
+    ): void | GaxiosPromise<Schema$Entitlement> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Entitlements$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4088,18 +4265,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -4109,12 +4287,12 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Entitlements$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Entitlements$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -4134,7 +4312,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -4150,12 +4328,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$List extends
-      StandardParameters {
+  export interface Params$Resource$Entitlements$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -4166,45 +4344,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Entitlements$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the entitlement (a product ID), e.g.
-     * "app:com.google.android.gm".
-     */
-    entitlementId?: string;
-    /**
-     * Set to true to also install the product on all the user's devices where
-     * possible. Failure to install on one or more devices will not prevent this
-     * operation from returning successfully, as long as the entitlement was
-     * successfully assigned to the user.
-     */
-    install?: boolean;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Entitlement;
-  }
-  export interface Params$Resource$Entitlements$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -4232,14 +4377,45 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Entitlement;
   }
+  export interface Params$Resource$Entitlements$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the entitlement (a product ID), e.g.
+     * "app:com.google.android.gm".
+     */
+    entitlementId?: string;
+    /**
+     * Set to true to also install the product on all the user's devices where
+     * possible. Failure to install on one or more devices will not prevent this
+     * operation from returning successfully, as long as the entitlement was
+     * successfully assigned to the user.
+     */
+    install?: boolean;
+    /**
+     * The ID of the user.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Entitlement;
+  }
 
   export class Resource$Grouplicenses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.grouplicenses.get
@@ -4254,22 +4430,31 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Grouplicenses$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GroupLicense>;
-    get(params: Params$Resource$Grouplicenses$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$GroupLicense>,
-        callback: BodyResponseCallback<Schema$GroupLicense>): void;
-    get(params: Params$Resource$Grouplicenses$Get,
-        callback: BodyResponseCallback<Schema$GroupLicense>): void;
+    get(
+      params?: Params$Resource$Grouplicenses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupLicense>;
+    get(
+      params: Params$Resource$Grouplicenses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GroupLicense>,
+      callback: BodyResponseCallback<Schema$GroupLicense>
+    ): void;
+    get(
+      params: Params$Resource$Grouplicenses$Get,
+      callback: BodyResponseCallback<Schema$GroupLicense>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GroupLicense>): void;
-    get(paramsOrCallback?: Params$Resource$Grouplicenses$Get|
-        BodyResponseCallback<Schema$GroupLicense>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupLicense>,
-        callback?: BodyResponseCallback<Schema$GroupLicense>):
-        void|GaxiosPromise<Schema$GroupLicense> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Grouplicenses$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Grouplicenses$Get
+        | BodyResponseCallback<Schema$GroupLicense>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupLicense>,
+      callback?: BodyResponseCallback<Schema$GroupLicense>
+    ): void | GaxiosPromise<Schema$GroupLicense> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Grouplicenses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4286,18 +4471,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicense>(parameters, callback);
@@ -4305,7 +4491,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$GroupLicense>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.grouplicenses.list
@@ -4320,27 +4505,35 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Grouplicenses$List, options?: MethodOptions):
-        GaxiosPromise<Schema$GroupLicensesListResponse>;
     list(
-        params: Params$Resource$Grouplicenses$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GroupLicensesListResponse>,
-        callback: BodyResponseCallback<Schema$GroupLicensesListResponse>): void;
+      params?: Params$Resource$Grouplicenses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupLicensesListResponse>;
     list(
-        params: Params$Resource$Grouplicenses$List,
-        callback: BodyResponseCallback<Schema$GroupLicensesListResponse>): void;
-    list(callback: BodyResponseCallback<Schema$GroupLicensesListResponse>):
-        void;
+      params: Params$Resource$Grouplicenses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupLicensesListResponse>,
+      callback: BodyResponseCallback<Schema$GroupLicensesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Grouplicenses$List|
-        BodyResponseCallback<Schema$GroupLicensesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupLicensesListResponse>,
-        callback?: BodyResponseCallback<Schema$GroupLicensesListResponse>):
-        void|GaxiosPromise<Schema$GroupLicensesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Grouplicenses$List;
+      params: Params$Resource$Grouplicenses$List,
+      callback: BodyResponseCallback<Schema$GroupLicensesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GroupLicensesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Grouplicenses$List
+        | BodyResponseCallback<Schema$GroupLicensesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupLicensesListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupLicensesListResponse>
+    ): void | GaxiosPromise<Schema$GroupLicensesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Grouplicenses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4357,34 +4550,37 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicensesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GroupLicensesListResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Grouplicenses$Get extends
-      StandardParameters {
+  export interface Params$Resource$Grouplicenses$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -4396,12 +4592,12 @@ export namespace androidenterprise_v1 {
      */
     groupLicenseId?: string;
   }
-  export interface Params$Resource$Grouplicenses$List extends
-      StandardParameters {
+  export interface Params$Resource$Grouplicenses$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -4409,13 +4605,11 @@ export namespace androidenterprise_v1 {
     enterpriseId?: string;
   }
 
-
   export class Resource$Grouplicenseusers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.grouplicenseusers.list
@@ -4432,30 +4626,34 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Grouplicenseusers$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GroupLicenseUsersListResponse>;
+      params?: Params$Resource$Grouplicenseusers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupLicenseUsersListResponse>;
     list(
-        params: Params$Resource$Grouplicenseusers$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GroupLicenseUsersListResponse>,
-        callback: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>):
-        void;
+      params: Params$Resource$Grouplicenseusers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupLicenseUsersListResponse>,
+      callback: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>
+    ): void;
     list(
-        params: Params$Resource$Grouplicenseusers$List,
-        callback: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>):
-        void;
+      params: Params$Resource$Grouplicenseusers$List,
+      callback: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Grouplicenseusers$List|
-        BodyResponseCallback<Schema$GroupLicenseUsersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupLicenseUsersListResponse>,
-        callback?: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>):
-        void|GaxiosPromise<Schema$GroupLicenseUsersListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Grouplicenseusers$List;
+      callback: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Grouplicenseusers$List
+        | BodyResponseCallback<Schema$GroupLicenseUsersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupLicenseUsersListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>
+    ): void | GaxiosPromise<Schema$GroupLicenseUsersListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Grouplicenseusers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4472,35 +4670,39 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicenseUsersListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GroupLicenseUsersListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Grouplicenseusers$List extends
-      StandardParameters {
+  export interface Params$Resource$Grouplicenseusers$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -4513,13 +4715,11 @@ export namespace androidenterprise_v1 {
     groupLicenseId?: string;
   }
 
-
   export class Resource$Installs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.installs.delete
@@ -4538,21 +4738,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Installs$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Installs$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Installs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Installs$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Installs$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Installs$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Installs$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Installs$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4570,18 +4776,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4589,7 +4796,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.installs.get
@@ -4606,19 +4812,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Installs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Install>;
-    get(params: Params$Resource$Installs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Install>,
-        callback: BodyResponseCallback<Schema$Install>): void;
-    get(params: Params$Resource$Installs$Get,
-        callback: BodyResponseCallback<Schema$Install>): void;
+    get(
+      params?: Params$Resource$Installs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Install>;
+    get(
+      params: Params$Resource$Installs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Install>,
+      callback: BodyResponseCallback<Schema$Install>
+    ): void;
+    get(
+      params: Params$Resource$Installs$Get,
+      callback: BodyResponseCallback<Schema$Install>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Install>): void;
-    get(paramsOrCallback?: Params$Resource$Installs$Get|
-        BodyResponseCallback<Schema$Install>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Install>,
-        callback?: BodyResponseCallback<Schema$Install>):
-        void|GaxiosPromise<Schema$Install> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Installs$Get
+        | BodyResponseCallback<Schema$Install>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Install>,
+      callback?: BodyResponseCallback<Schema$Install>
+    ): void | GaxiosPromise<Schema$Install> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4636,18 +4850,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4655,7 +4870,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Install>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.installs.list
@@ -4672,24 +4886,31 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Installs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$InstallsListResponse>;
     list(
-        params: Params$Resource$Installs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$InstallsListResponse>,
-        callback: BodyResponseCallback<Schema$InstallsListResponse>): void;
+      params?: Params$Resource$Installs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstallsListResponse>;
     list(
-        params: Params$Resource$Installs$List,
-        callback: BodyResponseCallback<Schema$InstallsListResponse>): void;
+      params: Params$Resource$Installs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstallsListResponse>,
+      callback: BodyResponseCallback<Schema$InstallsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Installs$List,
+      callback: BodyResponseCallback<Schema$InstallsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$InstallsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Installs$List|
-        BodyResponseCallback<Schema$InstallsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InstallsListResponse>,
-        callback?: BodyResponseCallback<Schema$InstallsListResponse>):
-        void|GaxiosPromise<Schema$InstallsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Installs$List
+        | BodyResponseCallback<Schema$InstallsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstallsListResponse>,
+      callback?: BodyResponseCallback<Schema$InstallsListResponse>
+    ): void | GaxiosPromise<Schema$InstallsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4707,18 +4928,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InstallsListResponse>(parameters, callback);
@@ -4726,7 +4948,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$InstallsListResponse>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.installs.patch
@@ -4746,22 +4967,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Installs$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Install>;
     patch(
-        params: Params$Resource$Installs$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Install>,
-        callback: BodyResponseCallback<Schema$Install>): void;
+      params?: Params$Resource$Installs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Install>;
     patch(
-        params: Params$Resource$Installs$Patch,
-        callback: BodyResponseCallback<Schema$Install>): void;
+      params: Params$Resource$Installs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Install>,
+      callback: BodyResponseCallback<Schema$Install>
+    ): void;
+    patch(
+      params: Params$Resource$Installs$Patch,
+      callback: BodyResponseCallback<Schema$Install>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Install>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Installs$Patch|
-        BodyResponseCallback<Schema$Install>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Install>,
-        callback?: BodyResponseCallback<Schema$Install>):
-        void|GaxiosPromise<Schema$Install> {
+      paramsOrCallback?:
+        | Params$Resource$Installs$Patch
+        | BodyResponseCallback<Schema$Install>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Install>,
+      callback?: BodyResponseCallback<Schema$Install>
+    ): void | GaxiosPromise<Schema$Install> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4779,18 +5005,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4798,7 +5025,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Install>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.installs.update
@@ -4818,22 +5044,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Installs$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Install>;
     update(
-        params: Params$Resource$Installs$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Install>,
-        callback: BodyResponseCallback<Schema$Install>): void;
+      params?: Params$Resource$Installs$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Install>;
     update(
-        params: Params$Resource$Installs$Update,
-        callback: BodyResponseCallback<Schema$Install>): void;
+      params: Params$Resource$Installs$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Install>,
+      callback: BodyResponseCallback<Schema$Install>
+    ): void;
+    update(
+      params: Params$Resource$Installs$Update,
+      callback: BodyResponseCallback<Schema$Install>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Install>): void;
     update(
-        paramsOrCallback?: Params$Resource$Installs$Update|
-        BodyResponseCallback<Schema$Install>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Install>,
-        callback?: BodyResponseCallback<Schema$Install>):
-        void|GaxiosPromise<Schema$Install> {
+      paramsOrCallback?:
+        | Params$Resource$Installs$Update
+        | BodyResponseCallback<Schema$Install>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Install>,
+      callback?: BodyResponseCallback<Schema$Install>
+    ): void | GaxiosPromise<Schema$Install> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4851,18 +5082,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4876,7 +5108,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -4900,7 +5132,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -4924,7 +5156,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -4943,7 +5175,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -4972,7 +5204,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -4998,13 +5230,11 @@ export namespace androidenterprise_v1 {
     requestBody?: Schema$Install;
   }
 
-
   export class Resource$Managedconfigurationsfordevice {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.managedconfigurationsfordevice.delete
@@ -5023,24 +5253,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Managedconfigurationsfordevice$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Managedconfigurationsfordevice$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Managedconfigurationsfordevice$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Managedconfigurationsfordevice$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Managedconfigurationsfordevice$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsfordevice$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsfordevice$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsfordevice$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5057,24 +5291,29 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'enterpriseId', 'userId', 'deviceId',
-          'managedConfigurationForDeviceId'
+          'enterpriseId',
+          'userId',
+          'deviceId',
+          'managedConfigurationForDeviceId',
         ],
         pathParams: [
-          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
-          'userId'
+          'deviceId',
+          'enterpriseId',
+          'managedConfigurationForDeviceId',
+          'userId',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5082,7 +5321,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsfordevice.get
@@ -5099,23 +5337,33 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Managedconfigurationsfordevice$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
-    get(params: Params$Resource$Managedconfigurationsfordevice$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
-    get(params: Params$Resource$Managedconfigurationsfordevice$Get,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+    get(
+      params?: Params$Resource$Managedconfigurationsfordevice$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfiguration>;
+    get(
+      params: Params$Resource$Managedconfigurationsfordevice$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
+    get(
+      params: Params$Resource$Managedconfigurationsfordevice$Get,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
-    get(paramsOrCallback?: Params$Resource$Managedconfigurationsfordevice$Get|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsfordevice$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsfordevice$Get
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsfordevice$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5132,24 +5380,29 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'enterpriseId', 'userId', 'deviceId',
-          'managedConfigurationForDeviceId'
+          'enterpriseId',
+          'userId',
+          'deviceId',
+          'managedConfigurationForDeviceId',
         ],
         pathParams: [
-          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
-          'userId'
+          'deviceId',
+          'enterpriseId',
+          'managedConfigurationForDeviceId',
+          'userId',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5157,7 +5410,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsfordevice.list
@@ -5175,31 +5427,48 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Managedconfigurationsfordevice$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse>;
+      params?: Params$Resource$Managedconfigurationsfordevice$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse>;
     list(
-        params: Params$Resource$Managedconfigurationsfordevice$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>,
-        callback: BodyResponseCallback<
-            Schema$ManagedConfigurationsForDeviceListResponse>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ManagedConfigurationsForDeviceListResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsForDeviceListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Managedconfigurationsfordevice$List,
-        callback: BodyResponseCallback<
-            Schema$ManagedConfigurationsForDeviceListResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$ManagedConfigurationsForDeviceListResponse>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$List,
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsForDeviceListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Managedconfigurationsfordevice$List|
-        BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ManagedConfigurationsForDeviceListResponse>):
-        void|GaxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsfordevice$List;
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsForDeviceListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsfordevice$List
+        | BodyResponseCallback<
+            Schema$ManagedConfigurationsForDeviceListResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ManagedConfigurationsForDeviceListResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ManagedConfigurationsForDeviceListResponse
+      >
+    ): void | GaxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsfordevice$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5216,28 +5485,31 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForDeviceListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ManagedConfigurationsForDeviceListResponse>(parameters);
+          Schema$ManagedConfigurationsForDeviceListResponse
+        >(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsfordevice.patch
@@ -5257,26 +5529,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Managedconfigurationsfordevice$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
+      params?: Params$Resource$Managedconfigurationsfordevice$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfiguration>;
     patch(
-        params: Params$Resource$Managedconfigurationsfordevice$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     patch(
-        params: Params$Resource$Managedconfigurationsfordevice$Patch,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$Patch,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Managedconfigurationsfordevice$Patch|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsfordevice$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsfordevice$Patch
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsfordevice$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5293,24 +5571,29 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'enterpriseId', 'userId', 'deviceId',
-          'managedConfigurationForDeviceId'
+          'enterpriseId',
+          'userId',
+          'deviceId',
+          'managedConfigurationForDeviceId',
         ],
         pathParams: [
-          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
-          'userId'
+          'deviceId',
+          'enterpriseId',
+          'managedConfigurationForDeviceId',
+          'userId',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5318,7 +5601,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsfordevice.update
@@ -5338,27 +5620,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Managedconfigurationsfordevice$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
+      params?: Params$Resource$Managedconfigurationsfordevice$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfiguration>;
     update(
-        params: Params$Resource$Managedconfigurationsfordevice$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     update(
-        params: Params$Resource$Managedconfigurationsfordevice$Update,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsfordevice$Update,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Managedconfigurationsfordevice$Update|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsfordevice$Update;
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsfordevice$Update
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsfordevice$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5375,24 +5662,29 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: [
-          'enterpriseId', 'userId', 'deviceId',
-          'managedConfigurationForDeviceId'
+          'enterpriseId',
+          'userId',
+          'deviceId',
+          'managedConfigurationForDeviceId',
         ],
         pathParams: [
-          'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
-          'userId'
+          'deviceId',
+          'enterpriseId',
+          'managedConfigurationForDeviceId',
+          'userId',
         ],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5402,12 +5694,12 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsfordevice$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -5427,12 +5719,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Get extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -5452,12 +5744,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$List extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -5472,42 +5764,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsfordevice$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The Android ID of the device.
-     */
-    deviceId?: string;
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the managed configuration (a product ID), e.g.
-     * "app:com.google.android.gm".
-     */
-    managedConfigurationForDeviceId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ManagedConfiguration;
-  }
-  export interface Params$Resource$Managedconfigurationsfordevice$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The Android ID of the device.
@@ -5532,14 +5794,42 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ManagedConfiguration;
   }
+  export interface Params$Resource$Managedconfigurationsfordevice$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The Android ID of the device.
+     */
+    deviceId?: string;
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the managed configuration (a product ID), e.g.
+     * "app:com.google.android.gm".
+     */
+    managedConfigurationForDeviceId?: string;
+    /**
+     * The ID of the user.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManagedConfiguration;
+  }
 
   export class Resource$Managedconfigurationsforuser {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.managedconfigurationsforuser.delete
@@ -5557,23 +5847,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Managedconfigurationsforuser$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Managedconfigurationsforuser$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Managedconfigurationsforuser$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Managedconfigurationsforuser$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Managedconfigurationsforuser$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Managedconfigurationsforuser$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Managedconfigurationsforuser$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsforuser$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsforuser$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsforuser$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5590,19 +5885,23 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        requiredParams: [
+          'enterpriseId',
+          'userId',
+          'managedConfigurationForUserId',
+        ],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5610,7 +5909,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsforuser.get
@@ -5627,23 +5925,33 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Managedconfigurationsforuser$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
-    get(params: Params$Resource$Managedconfigurationsforuser$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
-    get(params: Params$Resource$Managedconfigurationsforuser$Get,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+    get(
+      params?: Params$Resource$Managedconfigurationsforuser$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfiguration>;
+    get(
+      params: Params$Resource$Managedconfigurationsforuser$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
+    get(
+      params: Params$Resource$Managedconfigurationsforuser$Get,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
-    get(paramsOrCallback?: Params$Resource$Managedconfigurationsforuser$Get|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsforuser$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsforuser$Get
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsforuser$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5660,19 +5968,23 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        requiredParams: [
+          'enterpriseId',
+          'userId',
+          'managedConfigurationForUserId',
+        ],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5680,7 +5992,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsforuser.list
@@ -5697,31 +6008,42 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Managedconfigurationsforuser$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ManagedConfigurationsForUserListResponse>;
+      params?: Params$Resource$Managedconfigurationsforuser$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfigurationsForUserListResponse>;
     list(
-        params: Params$Resource$Managedconfigurationsforuser$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
-        callback: BodyResponseCallback<
-            Schema$ManagedConfigurationsForUserListResponse>): void;
+      params: Params$Resource$Managedconfigurationsforuser$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsForUserListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Managedconfigurationsforuser$List,
-        callback: BodyResponseCallback<
-            Schema$ManagedConfigurationsForUserListResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$ManagedConfigurationsForUserListResponse>): void;
+      params: Params$Resource$Managedconfigurationsforuser$List,
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsForUserListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Managedconfigurationsforuser$List|
-        BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ManagedConfigurationsForUserListResponse>):
-        void|GaxiosPromise<Schema$ManagedConfigurationsForUserListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsforuser$List;
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsForUserListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsforuser$List
+        | BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ManagedConfigurationsForUserListResponse
+      >
+    ): void | GaxiosPromise<Schema$ManagedConfigurationsForUserListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsforuser$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5738,28 +6060,31 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForUserListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ManagedConfigurationsForUserListResponse>(parameters);
+          Schema$ManagedConfigurationsForUserListResponse
+        >(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsforuser.patch
@@ -5782,26 +6107,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Managedconfigurationsforuser$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
+      params?: Params$Resource$Managedconfigurationsforuser$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfiguration>;
     patch(
-        params: Params$Resource$Managedconfigurationsforuser$Patch,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsforuser$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     patch(
-        params: Params$Resource$Managedconfigurationsforuser$Patch,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsforuser$Patch,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Managedconfigurationsforuser$Patch|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsforuser$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsforuser$Patch
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsforuser$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5818,19 +6149,23 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        requiredParams: [
+          'enterpriseId',
+          'userId',
+          'managedConfigurationForUserId',
+        ],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5838,7 +6173,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.managedconfigurationsforuser.update
@@ -5861,26 +6195,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Managedconfigurationsforuser$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
+      params?: Params$Resource$Managedconfigurationsforuser$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfiguration>;
     update(
-        params: Params$Resource$Managedconfigurationsforuser$Update,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsforuser$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     update(
-        params: Params$Resource$Managedconfigurationsforuser$Update,
-        callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
+      params: Params$Resource$Managedconfigurationsforuser$Update,
+      callback: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
     update(
-        paramsOrCallback?: Params$Resource$Managedconfigurationsforuser$Update|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfiguration>,
-        callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationsforuser$Update;
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationsforuser$Update
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedConfiguration>,
+      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
+    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationsforuser$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5897,19 +6237,23 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
+        requiredParams: [
+          'enterpriseId',
+          'userId',
+          'managedConfigurationForUserId',
+        ],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5919,12 +6263,12 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsforuser$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -5940,12 +6284,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Get extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -5961,12 +6305,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$List extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -5977,38 +6321,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationsforuser$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the managed configuration (a product ID), e.g.
-     * "app:com.google.android.gm".
-     */
-    managedConfigurationForUserId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ManagedConfiguration;
-  }
-  export interface Params$Resource$Managedconfigurationsforuser$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6029,14 +6347,38 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ManagedConfiguration;
   }
+  export interface Params$Resource$Managedconfigurationsforuser$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the managed configuration (a product ID), e.g.
+     * "app:com.google.android.gm".
+     */
+    managedConfigurationForUserId?: string;
+    /**
+     * The ID of the user.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManagedConfiguration;
+  }
 
   export class Resource$Managedconfigurationssettings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.managedconfigurationssettings.list
@@ -6053,31 +6395,48 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Managedconfigurationssettings$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ManagedConfigurationsSettingsListResponse>;
+      params?: Params$Resource$Managedconfigurationssettings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedConfigurationsSettingsListResponse>;
     list(
-        params: Params$Resource$Managedconfigurationssettings$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>,
-        callback: BodyResponseCallback<
-            Schema$ManagedConfigurationsSettingsListResponse>): void;
+      params: Params$Resource$Managedconfigurationssettings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ManagedConfigurationsSettingsListResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsSettingsListResponse
+      >
+    ): void;
     list(
-        params: Params$Resource$Managedconfigurationssettings$List,
-        callback: BodyResponseCallback<
-            Schema$ManagedConfigurationsSettingsListResponse>): void;
-    list(callback: BodyResponseCallback<
-         Schema$ManagedConfigurationsSettingsListResponse>): void;
+      params: Params$Resource$Managedconfigurationssettings$List,
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsSettingsListResponse
+      >
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Managedconfigurationssettings$List|
-        BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>,
-        callback?: BodyResponseCallback<
-            Schema$ManagedConfigurationsSettingsListResponse>):
-        void|GaxiosPromise<Schema$ManagedConfigurationsSettingsListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Managedconfigurationssettings$List;
+      callback: BodyResponseCallback<
+        Schema$ManagedConfigurationsSettingsListResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Managedconfigurationssettings$List
+        | BodyResponseCallback<
+            Schema$ManagedConfigurationsSettingsListResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ManagedConfigurationsSettingsListResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ManagedConfigurationsSettingsListResponse
+      >
+    ): void | GaxiosPromise<Schema$ManagedConfigurationsSettingsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Managedconfigurationssettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6094,35 +6453,39 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/managedConfigurationsSettings')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/managedConfigurationsSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsSettingsListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<
-            Schema$ManagedConfigurationsSettingsListResponse>(parameters);
+          Schema$ManagedConfigurationsSettingsListResponse
+        >(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Managedconfigurationssettings$List extends
-      StandardParameters {
+  export interface Params$Resource$Managedconfigurationssettings$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6135,13 +6498,11 @@ export namespace androidenterprise_v1 {
     productId?: string;
   }
 
-
   export class Resource$Permissions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.permissions.get
@@ -6157,20 +6518,29 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Permissions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
-    get(params: Params$Resource$Permissions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback: BodyResponseCallback<Schema$Permission>): void;
-    get(params: Params$Resource$Permissions$Get,
-        callback: BodyResponseCallback<Schema$Permission>): void;
+    get(
+      params?: Params$Resource$Permissions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Permission>;
+    get(
+      params: Params$Resource$Permissions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Permission>,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
+    get(
+      params: Params$Resource$Permissions$Get,
+      callback: BodyResponseCallback<Schema$Permission>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Permission>): void;
-    get(paramsOrCallback?: Params$Resource$Permissions$Get|
-        BodyResponseCallback<Schema$Permission>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>):
-        void|GaxiosPromise<Schema$Permission> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Permissions$Get
+        | BodyResponseCallback<Schema$Permission>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>
+    ): void | GaxiosPromise<Schema$Permission> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6188,17 +6558,18 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/androidenterprise/v1/permissions/{permissionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidenterprise/v1/permissions/{permissionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['permissionId'],
         pathParams: ['permissionId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -6212,7 +6583,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The BCP47 tag for the user's preferred language (e.g. "en-US", "de")
@@ -6224,13 +6595,11 @@ export namespace androidenterprise_v1 {
     permissionId?: string;
   }
 
-
   export class Resource$Products {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.products.approve
@@ -6250,21 +6619,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    approve(params?: Params$Resource$Products$Approve, options?: MethodOptions):
-        GaxiosPromise<void>;
     approve(
-        params: Params$Resource$Products$Approve,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Products$Approve,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     approve(
-        params: Params$Resource$Products$Approve,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Products$Approve,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    approve(
+      params: Params$Resource$Products$Approve,
+      callback: BodyResponseCallback<void>
+    ): void;
     approve(callback: BodyResponseCallback<void>): void;
     approve(
-        paramsOrCallback?: Params$Resource$Products$Approve|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Products$Approve
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6282,18 +6657,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6301,7 +6677,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.products.generateApprovalUrl
@@ -6325,35 +6700,36 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     generateApprovalUrl(
-        params?: Params$Resource$Products$Generateapprovalurl,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ProductsGenerateApprovalUrlResponse>;
+      params?: Params$Resource$Products$Generateapprovalurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductsGenerateApprovalUrlResponse>;
     generateApprovalUrl(
-        params: Params$Resource$Products$Generateapprovalurl,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>,
-        callback:
-            BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>):
-        void;
+      params: Params$Resource$Products$Generateapprovalurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>,
+      callback: BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>
+    ): void;
     generateApprovalUrl(
-        params: Params$Resource$Products$Generateapprovalurl,
-        callback:
-            BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>):
-        void;
+      params: Params$Resource$Products$Generateapprovalurl,
+      callback: BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>
+    ): void;
     generateApprovalUrl(
-        callback:
-            BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>
+    ): void;
     generateApprovalUrl(
-        paramsOrCallback?: Params$Resource$Products$Generateapprovalurl|
-        BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>):
-        void|GaxiosPromise<Schema$ProductsGenerateApprovalUrlResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Products$Generateapprovalurl;
+      paramsOrCallback?:
+        | Params$Resource$Products$Generateapprovalurl
+        | BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ProductsGenerateApprovalUrlResponse
+      >
+    ): void | GaxiosPromise<Schema$ProductsGenerateApprovalUrlResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Products$Generateapprovalurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6370,28 +6746,31 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductsGenerateApprovalUrlResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ProductsGenerateApprovalUrlResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * androidenterprise.products.get
@@ -6407,19 +6786,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Products$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Product>;
-    get(params: Params$Resource$Products$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback: BodyResponseCallback<Schema$Product>): void;
-    get(params: Params$Resource$Products$Get,
-        callback: BodyResponseCallback<Schema$Product>): void;
+    get(
+      params?: Params$Resource$Products$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Products$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    get(
+      params: Params$Resource$Products$Get,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Product>): void;
-    get(paramsOrCallback?: Params$Resource$Products$Get|
-        BodyResponseCallback<Schema$Product>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
-        callback?: BodyResponseCallback<Schema$Product>):
-        void|GaxiosPromise<Schema$Product> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Products$Get
+        | BodyResponseCallback<Schema$Product>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback?: BodyResponseCallback<Schema$Product>
+    ): void | GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6437,18 +6824,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6456,7 +6844,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$Product>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.products.getAppRestrictionsSchema
@@ -6478,27 +6865,34 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     getAppRestrictionsSchema(
-        params?: Params$Resource$Products$Getapprestrictionsschema,
-        options?: MethodOptions): GaxiosPromise<Schema$AppRestrictionsSchema>;
+      params?: Params$Resource$Products$Getapprestrictionsschema,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AppRestrictionsSchema>;
     getAppRestrictionsSchema(
-        params: Params$Resource$Products$Getapprestrictionsschema,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AppRestrictionsSchema>,
-        callback: BodyResponseCallback<Schema$AppRestrictionsSchema>): void;
+      params: Params$Resource$Products$Getapprestrictionsschema,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AppRestrictionsSchema>,
+      callback: BodyResponseCallback<Schema$AppRestrictionsSchema>
+    ): void;
     getAppRestrictionsSchema(
-        params: Params$Resource$Products$Getapprestrictionsschema,
-        callback: BodyResponseCallback<Schema$AppRestrictionsSchema>): void;
+      params: Params$Resource$Products$Getapprestrictionsschema,
+      callback: BodyResponseCallback<Schema$AppRestrictionsSchema>
+    ): void;
     getAppRestrictionsSchema(
-        callback: BodyResponseCallback<Schema$AppRestrictionsSchema>): void;
+      callback: BodyResponseCallback<Schema$AppRestrictionsSchema>
+    ): void;
     getAppRestrictionsSchema(
-        paramsOrCallback?: Params$Resource$Products$Getapprestrictionsschema|
-        BodyResponseCallback<Schema$AppRestrictionsSchema>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AppRestrictionsSchema>,
-        callback?: BodyResponseCallback<Schema$AppRestrictionsSchema>):
-        void|GaxiosPromise<Schema$AppRestrictionsSchema> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Products$Getapprestrictionsschema;
+      paramsOrCallback?:
+        | Params$Resource$Products$Getapprestrictionsschema
+        | BodyResponseCallback<Schema$AppRestrictionsSchema>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AppRestrictionsSchema>,
+      callback?: BodyResponseCallback<Schema$AppRestrictionsSchema>
+    ): void | GaxiosPromise<Schema$AppRestrictionsSchema> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Products$Getapprestrictionsschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6515,18 +6909,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AppRestrictionsSchema>(parameters, callback);
@@ -6534,7 +6929,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$AppRestrictionsSchema>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.products.getPermissions
@@ -6550,26 +6944,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     getPermissions(
-        params?: Params$Resource$Products$Getpermissions,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductPermissions>;
+      params?: Params$Resource$Products$Getpermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductPermissions>;
     getPermissions(
-        params: Params$Resource$Products$Getpermissions,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductPermissions>,
-        callback: BodyResponseCallback<Schema$ProductPermissions>): void;
+      params: Params$Resource$Products$Getpermissions,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductPermissions>,
+      callback: BodyResponseCallback<Schema$ProductPermissions>
+    ): void;
     getPermissions(
-        params: Params$Resource$Products$Getpermissions,
-        callback: BodyResponseCallback<Schema$ProductPermissions>): void;
-    getPermissions(callback: BodyResponseCallback<Schema$ProductPermissions>):
-        void;
+      params: Params$Resource$Products$Getpermissions,
+      callback: BodyResponseCallback<Schema$ProductPermissions>
+    ): void;
     getPermissions(
-        paramsOrCallback?: Params$Resource$Products$Getpermissions|
-        BodyResponseCallback<Schema$ProductPermissions>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductPermissions>,
-        callback?: BodyResponseCallback<Schema$ProductPermissions>):
-        void|GaxiosPromise<Schema$ProductPermissions> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Products$Getpermissions;
+      callback: BodyResponseCallback<Schema$ProductPermissions>
+    ): void;
+    getPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Products$Getpermissions
+        | BodyResponseCallback<Schema$ProductPermissions>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductPermissions>,
+      callback?: BodyResponseCallback<Schema$ProductPermissions>
+    ): void | GaxiosPromise<Schema$ProductPermissions> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Products$Getpermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6586,18 +6986,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductPermissions>(parameters, callback);
@@ -6605,7 +7006,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ProductPermissions>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.products.list
@@ -6625,24 +7025,31 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Products$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ProductsListResponse>;
     list(
-        params: Params$Resource$Products$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ProductsListResponse>,
-        callback: BodyResponseCallback<Schema$ProductsListResponse>): void;
+      params?: Params$Resource$Products$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductsListResponse>;
     list(
-        params: Params$Resource$Products$List,
-        callback: BodyResponseCallback<Schema$ProductsListResponse>): void;
+      params: Params$Resource$Products$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsListResponse>,
+      callback: BodyResponseCallback<Schema$ProductsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Products$List,
+      callback: BodyResponseCallback<Schema$ProductsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ProductsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Products$List|
-        BodyResponseCallback<Schema$ProductsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductsListResponse>,
-        callback?: BodyResponseCallback<Schema$ProductsListResponse>):
-        void|GaxiosPromise<Schema$ProductsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Products$List
+        | BodyResponseCallback<Schema$ProductsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductsListResponse>,
+      callback?: BodyResponseCallback<Schema$ProductsListResponse>
+    ): void | GaxiosPromise<Schema$ProductsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6660,17 +7067,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/products')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(parameters, callback);
@@ -6678,7 +7087,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ProductsListResponse>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.products.unapprove
@@ -6695,23 +7103,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     unapprove(
-        params?: Params$Resource$Products$Unapprove,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Products$Unapprove,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     unapprove(
-        params: Params$Resource$Products$Unapprove,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Products$Unapprove,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     unapprove(
-        params: Params$Resource$Products$Unapprove,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Products$Unapprove,
+      callback: BodyResponseCallback<void>
+    ): void;
     unapprove(callback: BodyResponseCallback<void>): void;
     unapprove(
-        paramsOrCallback?: Params$Resource$Products$Unapprove|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Products$Unapprove;
+      paramsOrCallback?:
+        | Params$Resource$Products$Unapprove
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Products$Unapprove;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6728,18 +7141,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6753,7 +7167,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6769,12 +7183,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ProductsApproveRequest;
   }
-  export interface Params$Resource$Products$Generateapprovalurl extends
-      StandardParameters {
+  export interface Params$Resource$Products$Generateapprovalurl
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6794,7 +7208,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6809,12 +7223,12 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getapprestrictionsschema extends
-      StandardParameters {
+  export interface Params$Resource$Products$Getapprestrictionsschema
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6829,12 +7243,12 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getpermissions extends
-      StandardParameters {
+  export interface Params$Resource$Products$Getpermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6849,7 +7263,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specifies whether to search among all products (false) or among only
@@ -6888,12 +7302,12 @@ export namespace androidenterprise_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Products$Unapprove extends
-      StandardParameters {
+  export interface Params$Resource$Products$Unapprove
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -6905,13 +7319,11 @@ export namespace androidenterprise_v1 {
     productId?: string;
   }
 
-
   export class Resource$Serviceaccountkeys {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.serviceaccountkeys.delete
@@ -6931,23 +7343,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Serviceaccountkeys$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Serviceaccountkeys$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Serviceaccountkeys$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Serviceaccountkeys$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Serviceaccountkeys$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Serviceaccountkeys$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Serviceaccountkeys$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Serviceaccountkeys$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Serviceaccountkeys$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Serviceaccountkeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6964,18 +7381,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'keyId'],
         pathParams: ['enterpriseId', 'keyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6983,7 +7401,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.serviceaccountkeys.insert
@@ -7003,25 +7420,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Serviceaccountkeys$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccountKey>;
+      params?: Params$Resource$Serviceaccountkeys$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccountKey>;
     insert(
-        params: Params$Resource$Serviceaccountkeys$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+      params: Params$Resource$Serviceaccountkeys$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
     insert(
-        params: Params$Resource$Serviceaccountkeys$Insert,
-        callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
+      params: Params$Resource$Serviceaccountkeys$Insert,
+      callback: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Serviceaccountkeys$Insert|
-        BodyResponseCallback<Schema$ServiceAccountKey>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccountKey>,
-        callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
-        void|GaxiosPromise<Schema$ServiceAccountKey> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Serviceaccountkeys$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Serviceaccountkeys$Insert
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKey>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKey>
+    ): void | GaxiosPromise<Schema$ServiceAccountKey> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Serviceaccountkeys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7038,18 +7460,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -7057,7 +7480,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.serviceaccountkeys.list
@@ -7076,30 +7498,34 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Serviceaccountkeys$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ServiceAccountKeysListResponse>;
+      params?: Params$Resource$Serviceaccountkeys$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccountKeysListResponse>;
     list(
-        params: Params$Resource$Serviceaccountkeys$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccountKeysListResponse>,
-        callback: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>):
-        void;
+      params: Params$Resource$Serviceaccountkeys$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKeysListResponse>,
+      callback: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>
+    ): void;
     list(
-        params: Params$Resource$Serviceaccountkeys$List,
-        callback: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>):
-        void;
+      params: Params$Resource$Serviceaccountkeys$List,
+      callback: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Serviceaccountkeys$List|
-        BodyResponseCallback<Schema$ServiceAccountKeysListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ServiceAccountKeysListResponse>,
-        callback?: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>):
-        void|GaxiosPromise<Schema$ServiceAccountKeysListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Serviceaccountkeys$List;
+      callback: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Serviceaccountkeys$List
+        | BodyResponseCallback<Schema$ServiceAccountKeysListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountKeysListResponse>,
+      callback?: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>
+    ): void | GaxiosPromise<Schema$ServiceAccountKeysListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Serviceaccountkeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7116,35 +7542,39 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKeysListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ServiceAccountKeysListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Serviceaccountkeys$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Serviceaccountkeys$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -7155,12 +7585,12 @@ export namespace androidenterprise_v1 {
      */
     keyId?: string;
   }
-  export interface Params$Resource$Serviceaccountkeys$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Serviceaccountkeys$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -7172,12 +7602,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ServiceAccountKey;
   }
-  export interface Params$Resource$Serviceaccountkeys$List extends
-      StandardParameters {
+  export interface Params$Resource$Serviceaccountkeys$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -7185,13 +7615,11 @@ export namespace androidenterprise_v1 {
     enterpriseId?: string;
   }
 
-
   export class Resource$Storelayoutclusters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.storelayoutclusters.delete
@@ -7208,23 +7636,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Storelayoutclusters$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Storelayoutclusters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Storelayoutclusters$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Storelayoutclusters$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Storelayoutclusters$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Storelayoutclusters$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Storelayoutclusters$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Storelayoutclusters$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutclusters$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7241,18 +7674,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7260,7 +7694,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutclusters.get
@@ -7276,22 +7709,31 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Storelayoutclusters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
-    get(params: Params$Resource$Storelayoutclusters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
-    get(params: Params$Resource$Storelayoutclusters$Get,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
+    get(
+      params?: Params$Resource$Storelayoutclusters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreCluster>;
+    get(
+      params: Params$Resource$Storelayoutclusters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$StoreCluster>,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
+    get(
+      params: Params$Resource$Storelayoutclusters$Get,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
     get(callback: BodyResponseCallback<Schema$StoreCluster>): void;
-    get(paramsOrCallback?: Params$Resource$Storelayoutclusters$Get|
-        BodyResponseCallback<Schema$StoreCluster>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreCluster>,
-        callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|GaxiosPromise<Schema$StoreCluster> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutclusters$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutclusters$Get
+        | BodyResponseCallback<Schema$StoreCluster>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreCluster>,
+      callback?: BodyResponseCallback<Schema$StoreCluster>
+    ): void | GaxiosPromise<Schema$StoreCluster> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7308,18 +7750,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7327,7 +7770,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StoreCluster>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutclusters.insert
@@ -7344,25 +7786,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Storelayoutclusters$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
+      params?: Params$Resource$Storelayoutclusters$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreCluster>;
     insert(
-        params: Params$Resource$Storelayoutclusters$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
+      params: Params$Resource$Storelayoutclusters$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$StoreCluster>,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
     insert(
-        params: Params$Resource$Storelayoutclusters$Insert,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
+      params: Params$Resource$Storelayoutclusters$Insert,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$StoreCluster>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Storelayoutclusters$Insert|
-        BodyResponseCallback<Schema$StoreCluster>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreCluster>,
-        callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|GaxiosPromise<Schema$StoreCluster> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Storelayoutclusters$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutclusters$Insert
+        | BodyResponseCallback<Schema$StoreCluster>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreCluster>,
+      callback?: BodyResponseCallback<Schema$StoreCluster>
+    ): void | GaxiosPromise<Schema$StoreCluster> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutclusters$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7379,18 +7826,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7398,7 +7846,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StoreCluster>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutclusters.list
@@ -7414,32 +7861,34 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Storelayoutclusters$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$StoreLayoutClustersListResponse>;
+      params?: Params$Resource$Storelayoutclusters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreLayoutClustersListResponse>;
     list(
-        params: Params$Resource$Storelayoutclusters$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$StoreLayoutClustersListResponse>,
-        callback: BodyResponseCallback<Schema$StoreLayoutClustersListResponse>):
-        void;
+      params: Params$Resource$Storelayoutclusters$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreLayoutClustersListResponse>,
+      callback: BodyResponseCallback<Schema$StoreLayoutClustersListResponse>
+    ): void;
     list(
-        params: Params$Resource$Storelayoutclusters$List,
-        callback: BodyResponseCallback<Schema$StoreLayoutClustersListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$StoreLayoutClustersListResponse>):
-        void;
+      params: Params$Resource$Storelayoutclusters$List,
+      callback: BodyResponseCallback<Schema$StoreLayoutClustersListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Storelayoutclusters$List|
-        BodyResponseCallback<Schema$StoreLayoutClustersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreLayoutClustersListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$StoreLayoutClustersListResponse>):
-        void|GaxiosPromise<Schema$StoreLayoutClustersListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutclusters$List;
+      callback: BodyResponseCallback<Schema$StoreLayoutClustersListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutclusters$List
+        | BodyResponseCallback<Schema$StoreLayoutClustersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreLayoutClustersListResponse>,
+      callback?: BodyResponseCallback<Schema$StoreLayoutClustersListResponse>
+    ): void | GaxiosPromise<Schema$StoreLayoutClustersListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7456,28 +7905,31 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayoutClustersListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$StoreLayoutClustersListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * androidenterprise.storelayoutclusters.patch
@@ -7495,25 +7947,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Storelayoutclusters$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
+      params?: Params$Resource$Storelayoutclusters$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreCluster>;
     patch(
-        params: Params$Resource$Storelayoutclusters$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
+      params: Params$Resource$Storelayoutclusters$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$StoreCluster>,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
     patch(
-        params: Params$Resource$Storelayoutclusters$Patch,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
+      params: Params$Resource$Storelayoutclusters$Patch,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$StoreCluster>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Storelayoutclusters$Patch|
-        BodyResponseCallback<Schema$StoreCluster>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreCluster>,
-        callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|GaxiosPromise<Schema$StoreCluster> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutclusters$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutclusters$Patch
+        | BodyResponseCallback<Schema$StoreCluster>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreCluster>,
+      callback?: BodyResponseCallback<Schema$StoreCluster>
+    ): void | GaxiosPromise<Schema$StoreCluster> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7530,18 +7987,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7549,7 +8007,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StoreCluster>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutclusters.update
@@ -7567,25 +8024,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Storelayoutclusters$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
+      params?: Params$Resource$Storelayoutclusters$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreCluster>;
     update(
-        params: Params$Resource$Storelayoutclusters$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
+      params: Params$Resource$Storelayoutclusters$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$StoreCluster>,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
     update(
-        params: Params$Resource$Storelayoutclusters$Update,
-        callback: BodyResponseCallback<Schema$StoreCluster>): void;
+      params: Params$Resource$Storelayoutclusters$Update,
+      callback: BodyResponseCallback<Schema$StoreCluster>
+    ): void;
     update(callback: BodyResponseCallback<Schema$StoreCluster>): void;
     update(
-        paramsOrCallback?: Params$Resource$Storelayoutclusters$Update|
-        BodyResponseCallback<Schema$StoreCluster>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreCluster>,
-        callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|GaxiosPromise<Schema$StoreCluster> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Storelayoutclusters$Update;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutclusters$Update
+        | BodyResponseCallback<Schema$StoreCluster>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreCluster>,
+      callback?: BodyResponseCallback<Schema$StoreCluster>
+    ): void | GaxiosPromise<Schema$StoreCluster> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutclusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7602,18 +8064,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7623,12 +8086,12 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutclusters$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the cluster.
@@ -7643,12 +8106,12 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Get extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the cluster.
@@ -7663,12 +8126,12 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -7684,12 +8147,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreCluster;
   }
-  export interface Params$Resource$Storelayoutclusters$List extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -7700,37 +8163,12 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutclusters$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the cluster.
-     */
-    clusterId?: string;
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the page.
-     */
-    pageId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$StoreCluster;
-  }
-  export interface Params$Resource$Storelayoutclusters$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the cluster.
@@ -7750,14 +8188,37 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreCluster;
   }
+  export interface Params$Resource$Storelayoutclusters$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The ID of the cluster.
+     */
+    clusterId?: string;
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the page.
+     */
+    pageId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StoreCluster;
+  }
 
   export class Resource$Storelayoutpages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.storelayoutpages.delete
@@ -7773,23 +8234,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Storelayoutpages$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Storelayoutpages$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Storelayoutpages$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Storelayoutpages$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Storelayoutpages$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Storelayoutpages$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Storelayoutpages$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutpages$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutpages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7806,18 +8272,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7825,7 +8292,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutpages.get
@@ -7840,22 +8306,31 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Storelayoutpages$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
-    get(params: Params$Resource$Storelayoutpages$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
-    get(params: Params$Resource$Storelayoutpages$Get,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
+    get(
+      params?: Params$Resource$Storelayoutpages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StorePage>;
+    get(
+      params: Params$Resource$Storelayoutpages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$StorePage>,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
+    get(
+      params: Params$Resource$Storelayoutpages$Get,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
     get(callback: BodyResponseCallback<Schema$StorePage>): void;
-    get(paramsOrCallback?: Params$Resource$Storelayoutpages$Get|
-        BodyResponseCallback<Schema$StorePage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StorePage>,
-        callback?: BodyResponseCallback<Schema$StorePage>):
-        void|GaxiosPromise<Schema$StorePage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutpages$Get
+        | BodyResponseCallback<Schema$StorePage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StorePage>,
+      callback?: BodyResponseCallback<Schema$StorePage>
+    ): void | GaxiosPromise<Schema$StorePage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutpages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7872,18 +8347,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -7891,7 +8367,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StorePage>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutpages.insert
@@ -7907,25 +8382,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Storelayoutpages$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
+      params?: Params$Resource$Storelayoutpages$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StorePage>;
     insert(
-        params: Params$Resource$Storelayoutpages$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
+      params: Params$Resource$Storelayoutpages$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$StorePage>,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
     insert(
-        params: Params$Resource$Storelayoutpages$Insert,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
+      params: Params$Resource$Storelayoutpages$Insert,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$StorePage>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Storelayoutpages$Insert|
-        BodyResponseCallback<Schema$StorePage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StorePage>,
-        callback?: BodyResponseCallback<Schema$StorePage>):
-        void|GaxiosPromise<Schema$StorePage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutpages$Insert
+        | BodyResponseCallback<Schema$StorePage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StorePage>,
+      callback?: BodyResponseCallback<Schema$StorePage>
+    ): void | GaxiosPromise<Schema$StorePage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutpages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7942,18 +8422,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -7961,7 +8442,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StorePage>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutpages.list
@@ -7976,30 +8456,34 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Storelayoutpages$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$StoreLayoutPagesListResponse>;
+      params?: Params$Resource$Storelayoutpages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StoreLayoutPagesListResponse>;
     list(
-        params: Params$Resource$Storelayoutpages$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$StoreLayoutPagesListResponse>,
-        callback: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>):
-        void;
+      params: Params$Resource$Storelayoutpages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreLayoutPagesListResponse>,
+      callback: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Storelayoutpages$List,
-        callback: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>):
-        void;
+      params: Params$Resource$Storelayoutpages$List,
+      callback: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Storelayoutpages$List|
-        BodyResponseCallback<Schema$StoreLayoutPagesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StoreLayoutPagesListResponse>,
-        callback?: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>):
-        void|GaxiosPromise<Schema$StoreLayoutPagesListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$List;
+      callback: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutpages$List
+        | BodyResponseCallback<Schema$StoreLayoutPagesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StoreLayoutPagesListResponse>,
+      callback?: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>
+    ): void | GaxiosPromise<Schema$StoreLayoutPagesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutpages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8016,28 +8500,31 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayoutPagesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$StoreLayoutPagesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * androidenterprise.storelayoutpages.patch
@@ -8055,25 +8542,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Storelayoutpages$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
+      params?: Params$Resource$Storelayoutpages$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StorePage>;
     patch(
-        params: Params$Resource$Storelayoutpages$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
+      params: Params$Resource$Storelayoutpages$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$StorePage>,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
     patch(
-        params: Params$Resource$Storelayoutpages$Patch,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
+      params: Params$Resource$Storelayoutpages$Patch,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$StorePage>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Storelayoutpages$Patch|
-        BodyResponseCallback<Schema$StorePage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StorePage>,
-        callback?: BodyResponseCallback<Schema$StorePage>):
-        void|GaxiosPromise<Schema$StorePage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutpages$Patch
+        | BodyResponseCallback<Schema$StorePage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StorePage>,
+      callback?: BodyResponseCallback<Schema$StorePage>
+    ): void | GaxiosPromise<Schema$StorePage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutpages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8090,18 +8582,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8109,7 +8602,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$StorePage>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.storelayoutpages.update
@@ -8126,25 +8618,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Storelayoutpages$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
+      params?: Params$Resource$Storelayoutpages$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StorePage>;
     update(
-        params: Params$Resource$Storelayoutpages$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
+      params: Params$Resource$Storelayoutpages$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$StorePage>,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
     update(
-        params: Params$Resource$Storelayoutpages$Update,
-        callback: BodyResponseCallback<Schema$StorePage>): void;
+      params: Params$Resource$Storelayoutpages$Update,
+      callback: BodyResponseCallback<Schema$StorePage>
+    ): void;
     update(callback: BodyResponseCallback<Schema$StorePage>): void;
     update(
-        paramsOrCallback?: Params$Resource$Storelayoutpages$Update|
-        BodyResponseCallback<Schema$StorePage>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StorePage>,
-        callback?: BodyResponseCallback<Schema$StorePage>):
-        void|GaxiosPromise<Schema$StorePage> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Update;
+      paramsOrCallback?:
+        | Params$Resource$Storelayoutpages$Update
+        | BodyResponseCallback<Schema$StorePage>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StorePage>,
+      callback?: BodyResponseCallback<Schema$StorePage>
+    ): void | GaxiosPromise<Schema$StorePage> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Storelayoutpages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8161,18 +8658,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8182,12 +8680,12 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutpages$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -8198,12 +8696,12 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Get extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -8214,12 +8712,12 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -8231,45 +8729,24 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StorePage;
   }
-  export interface Params$Resource$Storelayoutpages$List extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutpages$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Storelayoutpages$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the page.
-     */
-    pageId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$StorePage;
-  }
-  export interface Params$Resource$Storelayoutpages$Update extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -8285,14 +8762,33 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StorePage;
   }
+  export interface Params$Resource$Storelayoutpages$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the page.
+     */
+    pageId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StorePage;
+  }
 
   export class Resource$Users {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.users.delete
@@ -8307,21 +8803,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Users$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Users$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Users$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Users$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8339,18 +8841,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8358,7 +8861,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.generateAuthenticationToken
@@ -8378,26 +8880,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     generateAuthenticationToken(
-        params?: Params$Resource$Users$Generateauthenticationtoken,
-        options?: MethodOptions): GaxiosPromise<Schema$AuthenticationToken>;
+      params?: Params$Resource$Users$Generateauthenticationtoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuthenticationToken>;
     generateAuthenticationToken(
-        params: Params$Resource$Users$Generateauthenticationtoken,
-        options: MethodOptions|BodyResponseCallback<Schema$AuthenticationToken>,
-        callback: BodyResponseCallback<Schema$AuthenticationToken>): void;
+      params: Params$Resource$Users$Generateauthenticationtoken,
+      options: MethodOptions | BodyResponseCallback<Schema$AuthenticationToken>,
+      callback: BodyResponseCallback<Schema$AuthenticationToken>
+    ): void;
     generateAuthenticationToken(
-        params: Params$Resource$Users$Generateauthenticationtoken,
-        callback: BodyResponseCallback<Schema$AuthenticationToken>): void;
+      params: Params$Resource$Users$Generateauthenticationtoken,
+      callback: BodyResponseCallback<Schema$AuthenticationToken>
+    ): void;
     generateAuthenticationToken(
-        callback: BodyResponseCallback<Schema$AuthenticationToken>): void;
+      callback: BodyResponseCallback<Schema$AuthenticationToken>
+    ): void;
     generateAuthenticationToken(
-        paramsOrCallback?: Params$Resource$Users$Generateauthenticationtoken|
-        BodyResponseCallback<Schema$AuthenticationToken>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AuthenticationToken>,
-        callback?: BodyResponseCallback<Schema$AuthenticationToken>):
-        void|GaxiosPromise<Schema$AuthenticationToken> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Generateauthenticationtoken;
+      paramsOrCallback?:
+        | Params$Resource$Users$Generateauthenticationtoken
+        | BodyResponseCallback<Schema$AuthenticationToken>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AuthenticationToken>,
+      callback?: BodyResponseCallback<Schema$AuthenticationToken>
+    ): void | GaxiosPromise<Schema$AuthenticationToken> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Generateauthenticationtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8414,18 +8922,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AuthenticationToken>(parameters, callback);
@@ -8433,7 +8942,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$AuthenticationToken>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.generateToken
@@ -8451,25 +8959,30 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     generateToken(
-        params?: Params$Resource$Users$Generatetoken,
-        options?: MethodOptions): GaxiosPromise<Schema$UserToken>;
+      params?: Params$Resource$Users$Generatetoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserToken>;
     generateToken(
-        params: Params$Resource$Users$Generatetoken,
-        options: MethodOptions|BodyResponseCallback<Schema$UserToken>,
-        callback: BodyResponseCallback<Schema$UserToken>): void;
+      params: Params$Resource$Users$Generatetoken,
+      options: MethodOptions | BodyResponseCallback<Schema$UserToken>,
+      callback: BodyResponseCallback<Schema$UserToken>
+    ): void;
     generateToken(
-        params: Params$Resource$Users$Generatetoken,
-        callback: BodyResponseCallback<Schema$UserToken>): void;
+      params: Params$Resource$Users$Generatetoken,
+      callback: BodyResponseCallback<Schema$UserToken>
+    ): void;
     generateToken(callback: BodyResponseCallback<Schema$UserToken>): void;
     generateToken(
-        paramsOrCallback?: Params$Resource$Users$Generatetoken|
-        BodyResponseCallback<Schema$UserToken>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserToken>,
-        callback?: BodyResponseCallback<Schema$UserToken>):
-        void|GaxiosPromise<Schema$UserToken> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Generatetoken;
+      paramsOrCallback?:
+        | Params$Resource$Users$Generatetoken
+        | BodyResponseCallback<Schema$UserToken>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserToken>,
+      callback?: BodyResponseCallback<Schema$UserToken>
+    ): void | GaxiosPromise<Schema$UserToken> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Generatetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8486,18 +8999,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserToken>(parameters, callback);
@@ -8505,7 +9019,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$UserToken>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.get
@@ -8520,19 +9033,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Users$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$User>;
-    get(params: Params$Resource$Users$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback: BodyResponseCallback<Schema$User>): void;
-    get(params: Params$Resource$Users$Get,
-        callback: BodyResponseCallback<Schema$User>): void;
+    get(
+      params?: Params$Resource$Users$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    get(
+      params: Params$Resource$Users$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(
+      params: Params$Resource$Users$Get,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
     get(callback: BodyResponseCallback<Schema$User>): void;
-    get(paramsOrCallback?: Params$Resource$Users$Get|
-        BodyResponseCallback<Schema$User>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>):
-        void|GaxiosPromise<Schema$User> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Get
+        | BodyResponseCallback<Schema$User>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback?: BodyResponseCallback<Schema$User>
+    ): void | GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8550,18 +9071,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8569,7 +9091,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$User>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.getAvailableProductSet
@@ -8585,26 +9106,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     getAvailableProductSet(
-        params?: Params$Resource$Users$Getavailableproductset,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
+      params?: Params$Resource$Users$Getavailableproductset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductSet>;
     getAvailableProductSet(
-        params: Params$Resource$Users$Getavailableproductset,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
+      params: Params$Resource$Users$Getavailableproductset,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     getAvailableProductSet(
-        params: Params$Resource$Users$Getavailableproductset,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
-    getAvailableProductSet(callback: BodyResponseCallback<Schema$ProductSet>):
-        void;
+      params: Params$Resource$Users$Getavailableproductset,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     getAvailableProductSet(
-        paramsOrCallback?: Params$Resource$Users$Getavailableproductset|
-        BodyResponseCallback<Schema$ProductSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductSet>,
-        callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|GaxiosPromise<Schema$ProductSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Getavailableproductset;
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
+    getAvailableProductSet(
+      paramsOrCallback?:
+        | Params$Resource$Users$Getavailableproductset
+        | BodyResponseCallback<Schema$ProductSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductSet>,
+      callback?: BodyResponseCallback<Schema$ProductSet>
+    ): void | GaxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Getavailableproductset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8621,18 +9148,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -8640,7 +9168,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ProductSet>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.insert
@@ -8659,22 +9186,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Users$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$User>;
     insert(
-        params: Params$Resource$Users$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback: BodyResponseCallback<Schema$User>): void;
+      params?: Params$Resource$Users$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
     insert(
-        params: Params$Resource$Users$Insert,
-        callback: BodyResponseCallback<Schema$User>): void;
+      params: Params$Resource$Users$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    insert(
+      params: Params$Resource$Users$Insert,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$User>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Users$Insert|
-        BodyResponseCallback<Schema$User>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>):
-        void|GaxiosPromise<Schema$User> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Insert
+        | BodyResponseCallback<Schema$User>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback?: BodyResponseCallback<Schema$User>
+    ): void | GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8692,17 +9224,18 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/users')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8710,7 +9243,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$User>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.list
@@ -8728,23 +9260,29 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$List, options?: MethodOptions):
-        GaxiosPromise<Schema$UsersListResponse>;
     list(
-        params: Params$Resource$Users$List,
-        options: MethodOptions|BodyResponseCallback<Schema$UsersListResponse>,
-        callback: BodyResponseCallback<Schema$UsersListResponse>): void;
+      params?: Params$Resource$Users$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UsersListResponse>;
     list(
-        params: Params$Resource$Users$List,
-        callback: BodyResponseCallback<Schema$UsersListResponse>): void;
+      params: Params$Resource$Users$List,
+      options: MethodOptions | BodyResponseCallback<Schema$UsersListResponse>,
+      callback: BodyResponseCallback<Schema$UsersListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$List,
+      callback: BodyResponseCallback<Schema$UsersListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$UsersListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$List|
-        BodyResponseCallback<Schema$UsersListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UsersListResponse>,
-        callback?: BodyResponseCallback<Schema$UsersListResponse>):
-        void|GaxiosPromise<Schema$UsersListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Users$List
+        | BodyResponseCallback<Schema$UsersListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UsersListResponse>,
+      callback?: BodyResponseCallback<Schema$UsersListResponse>
+    ): void | GaxiosPromise<Schema$UsersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8762,17 +9300,18 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/users')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'email'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(parameters, callback);
@@ -8780,7 +9319,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$UsersListResponse>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.patch
@@ -8800,22 +9338,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Users$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$User>;
     patch(
-        params: Params$Resource$Users$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback: BodyResponseCallback<Schema$User>): void;
+      params?: Params$Resource$Users$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
     patch(
-        params: Params$Resource$Users$Patch,
-        callback: BodyResponseCallback<Schema$User>): void;
+      params: Params$Resource$Users$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Patch,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$User>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Users$Patch|
-        BodyResponseCallback<Schema$User>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>):
-        void|GaxiosPromise<Schema$User> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Patch
+        | BodyResponseCallback<Schema$User>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback?: BodyResponseCallback<Schema$User>
+    ): void | GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8833,18 +9376,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8852,7 +9396,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$User>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.revokeDeviceAccess
@@ -8870,23 +9413,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     revokeDeviceAccess(
-        params?: Params$Resource$Users$Revokedeviceaccess,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Revokedeviceaccess,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     revokeDeviceAccess(
-        params: Params$Resource$Users$Revokedeviceaccess,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Revokedeviceaccess,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     revokeDeviceAccess(
-        params: Params$Resource$Users$Revokedeviceaccess,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Revokedeviceaccess,
+      callback: BodyResponseCallback<void>
+    ): void;
     revokeDeviceAccess(callback: BodyResponseCallback<void>): void;
     revokeDeviceAccess(
-        paramsOrCallback?: Params$Resource$Users$Revokedeviceaccess|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Revokedeviceaccess;
+      paramsOrCallback?:
+        | Params$Resource$Users$Revokedeviceaccess
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Revokedeviceaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8903,18 +9451,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/deviceAccess')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/deviceAccess'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8922,7 +9471,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.revokeToken
@@ -8939,23 +9487,28 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     revokeToken(
-        params?: Params$Resource$Users$Revoketoken,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Users$Revoketoken,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     revokeToken(
-        params: Params$Resource$Users$Revoketoken,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Revoketoken,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     revokeToken(
-        params: Params$Resource$Users$Revoketoken,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Users$Revoketoken,
+      callback: BodyResponseCallback<void>
+    ): void;
     revokeToken(callback: BodyResponseCallback<void>): void;
     revokeToken(
-        paramsOrCallback?: Params$Resource$Users$Revoketoken|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Revoketoken;
+      paramsOrCallback?:
+        | Params$Resource$Users$Revoketoken
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Revoketoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8972,18 +9525,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8991,7 +9545,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.setAvailableProductSet
@@ -9011,26 +9564,32 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     setAvailableProductSet(
-        params?: Params$Resource$Users$Setavailableproductset,
-        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
+      params?: Params$Resource$Users$Setavailableproductset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductSet>;
     setAvailableProductSet(
-        params: Params$Resource$Users$Setavailableproductset,
-        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
+      params: Params$Resource$Users$Setavailableproductset,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductSet>,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     setAvailableProductSet(
-        params: Params$Resource$Users$Setavailableproductset,
-        callback: BodyResponseCallback<Schema$ProductSet>): void;
-    setAvailableProductSet(callback: BodyResponseCallback<Schema$ProductSet>):
-        void;
+      params: Params$Resource$Users$Setavailableproductset,
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
     setAvailableProductSet(
-        paramsOrCallback?: Params$Resource$Users$Setavailableproductset|
-        BodyResponseCallback<Schema$ProductSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProductSet>,
-        callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|GaxiosPromise<Schema$ProductSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Users$Setavailableproductset;
+      callback: BodyResponseCallback<Schema$ProductSet>
+    ): void;
+    setAvailableProductSet(
+      paramsOrCallback?:
+        | Params$Resource$Users$Setavailableproductset
+        | BodyResponseCallback<Schema$ProductSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductSet>,
+      callback?: BodyResponseCallback<Schema$ProductSet>
+    ): void | GaxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Setavailableproductset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9047,18 +9606,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -9066,7 +9626,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$ProductSet>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.users.update
@@ -9086,22 +9645,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Users$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$User>;
     update(
-        params: Params$Resource$Users$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback: BodyResponseCallback<Schema$User>): void;
+      params?: Params$Resource$Users$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
     update(
-        params: Params$Resource$Users$Update,
-        callback: BodyResponseCallback<Schema$User>): void;
+      params: Params$Resource$Users$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    update(
+      params: Params$Resource$Users$Update,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
     update(callback: BodyResponseCallback<Schema$User>): void;
     update(
-        paramsOrCallback?: Params$Resource$Users$Update|
-        BodyResponseCallback<Schema$User>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>):
-        void|GaxiosPromise<Schema$User> {
+      paramsOrCallback?:
+        | Params$Resource$Users$Update
+        | BodyResponseCallback<Schema$User>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback?: BodyResponseCallback<Schema$User>
+    ): void | GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9119,18 +9683,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -9144,7 +9709,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9155,12 +9720,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generateauthenticationtoken extends
-      StandardParameters {
+  export interface Params$Resource$Users$Generateauthenticationtoken
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9171,12 +9736,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generatetoken extends
-      StandardParameters {
+  export interface Params$Resource$Users$Generatetoken
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9191,7 +9756,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9202,12 +9767,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Getavailableproductset extends
-      StandardParameters {
+  export interface Params$Resource$Users$Getavailableproductset
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9222,7 +9787,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9238,7 +9803,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The exact primary email address of the user to look up.
@@ -9253,7 +9818,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9269,12 +9834,12 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$Revokedeviceaccess extends
-      StandardParameters {
+  export interface Params$Resource$Users$Revokedeviceaccess
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9285,12 +9850,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Revoketoken extends
-      StandardParameters {
+  export interface Params$Resource$Users$Revoketoken
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9301,12 +9866,12 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Setavailableproductset extends
-      StandardParameters {
+  export interface Params$Resource$Users$Setavailableproductset
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9326,7 +9891,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9343,13 +9908,11 @@ export namespace androidenterprise_v1 {
     requestBody?: Schema$User;
   }
 
-
   export class Resource$Webapps {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * androidenterprise.webapps.delete
@@ -9364,21 +9927,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Webapps$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Webapps$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Webapps$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Webapps$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Webapps$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Webapps$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Webapps$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Webapps$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9396,18 +9965,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9415,7 +9985,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.webapps.get
@@ -9430,19 +9999,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Webapps$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$WebApp>;
-    get(params: Params$Resource$Webapps$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
-    get(params: Params$Resource$Webapps$Get,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
+    get(
+      params?: Params$Resource$Webapps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WebApp>;
+    get(
+      params: Params$Resource$Webapps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
+    get(
+      params: Params$Resource$Webapps$Get,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
     get(callback: BodyResponseCallback<Schema$WebApp>): void;
-    get(paramsOrCallback?: Params$Resource$Webapps$Get|
-        BodyResponseCallback<Schema$WebApp>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback?: BodyResponseCallback<Schema$WebApp>):
-        void|GaxiosPromise<Schema$WebApp> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Webapps$Get
+        | BodyResponseCallback<Schema$WebApp>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback?: BodyResponseCallback<Schema$WebApp>
+    ): void | GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9460,18 +10037,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);
@@ -9479,7 +10057,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$WebApp>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.webapps.insert
@@ -9494,22 +10071,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Webapps$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$WebApp>;
     insert(
-        params: Params$Resource$Webapps$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
+      params?: Params$Resource$Webapps$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WebApp>;
     insert(
-        params: Params$Resource$Webapps$Insert,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
+      params: Params$Resource$Webapps$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
+    insert(
+      params: Params$Resource$Webapps$Insert,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$WebApp>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Webapps$Insert|
-        BodyResponseCallback<Schema$WebApp>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback?: BodyResponseCallback<Schema$WebApp>):
-        void|GaxiosPromise<Schema$WebApp> {
+      paramsOrCallback?:
+        | Params$Resource$Webapps$Insert
+        | BodyResponseCallback<Schema$WebApp>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback?: BodyResponseCallback<Schema$WebApp>
+    ): void | GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9527,17 +10109,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/webApps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/webApps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);
@@ -9545,7 +10129,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$WebApp>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.webapps.list
@@ -9559,23 +10142,29 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Webapps$List, options?: MethodOptions):
-        GaxiosPromise<Schema$WebAppsListResponse>;
     list(
-        params: Params$Resource$Webapps$List,
-        options: MethodOptions|BodyResponseCallback<Schema$WebAppsListResponse>,
-        callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+      params?: Params$Resource$Webapps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WebAppsListResponse>;
     list(
-        params: Params$Resource$Webapps$List,
-        callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+      params: Params$Resource$Webapps$List,
+      options: MethodOptions | BodyResponseCallback<Schema$WebAppsListResponse>,
+      callback: BodyResponseCallback<Schema$WebAppsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Webapps$List,
+      callback: BodyResponseCallback<Schema$WebAppsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Webapps$List|
-        BodyResponseCallback<Schema$WebAppsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WebAppsListResponse>,
-        callback?: BodyResponseCallback<Schema$WebAppsListResponse>):
-        void|GaxiosPromise<Schema$WebAppsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Webapps$List
+        | BodyResponseCallback<Schema$WebAppsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WebAppsListResponse>,
+      callback?: BodyResponseCallback<Schema$WebAppsListResponse>
+    ): void | GaxiosPromise<Schema$WebAppsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9593,17 +10182,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/androidenterprise/v1/enterprises/{enterpriseId}/webApps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/webApps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WebAppsListResponse>(parameters, callback);
@@ -9611,7 +10202,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$WebAppsListResponse>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.webapps.patch
@@ -9627,22 +10217,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: Params$Resource$Webapps$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$WebApp>;
     patch(
-        params: Params$Resource$Webapps$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
+      params?: Params$Resource$Webapps$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WebApp>;
     patch(
-        params: Params$Resource$Webapps$Patch,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
+      params: Params$Resource$Webapps$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
+    patch(
+      params: Params$Resource$Webapps$Patch,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$WebApp>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Webapps$Patch|
-        BodyResponseCallback<Schema$WebApp>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback?: BodyResponseCallback<Schema$WebApp>):
-        void|GaxiosPromise<Schema$WebApp> {
+      paramsOrCallback?:
+        | Params$Resource$Webapps$Patch
+        | BodyResponseCallback<Schema$WebApp>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback?: BodyResponseCallback<Schema$WebApp>
+    ): void | GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9660,18 +10255,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);
@@ -9679,7 +10275,6 @@ export namespace androidenterprise_v1 {
         return createAPIRequest<Schema$WebApp>(parameters);
       }
     }
-
 
     /**
      * androidenterprise.webapps.update
@@ -9695,22 +10290,27 @@ export namespace androidenterprise_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Webapps$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$WebApp>;
     update(
-        params: Params$Resource$Webapps$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
+      params?: Params$Resource$Webapps$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WebApp>;
     update(
-        params: Params$Resource$Webapps$Update,
-        callback: BodyResponseCallback<Schema$WebApp>): void;
+      params: Params$Resource$Webapps$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
+    update(
+      params: Params$Resource$Webapps$Update,
+      callback: BodyResponseCallback<Schema$WebApp>
+    ): void;
     update(callback: BodyResponseCallback<Schema$WebApp>): void;
     update(
-        paramsOrCallback?: Params$Resource$Webapps$Update|
-        BodyResponseCallback<Schema$WebApp>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
-        callback?: BodyResponseCallback<Schema$WebApp>):
-        void|GaxiosPromise<Schema$WebApp> {
+      paramsOrCallback?:
+        | Params$Resource$Webapps$Update
+        | BodyResponseCallback<Schema$WebApp>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WebApp>,
+      callback?: BodyResponseCallback<Schema$WebApp>
+    ): void | GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9728,18 +10328,19 @@ export namespace androidenterprise_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);
@@ -9753,7 +10354,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9768,7 +10369,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9783,7 +10384,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9799,7 +10400,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9810,7 +10411,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
@@ -9830,7 +10431,7 @@ export namespace androidenterprise_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the enterprise.
