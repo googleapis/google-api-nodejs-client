@@ -17,10 +17,7 @@ import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
-
-const assertRejects = require('assert-rejects');
 
 const googleapis = new GoogleApis();
 
@@ -51,7 +48,7 @@ describe('Compute client', () => {
 });
 
 async function testNoTokens(urlshortener: APIEndpoint, client: OAuth2Client) {
-  await assertRejects(
+  await assert.rejects(
     urlshortener.url.get({shortUrl: '123', auth: client}),
     /No access, refresh token or API key is set./
   );
@@ -307,7 +304,7 @@ describe('OAuth2 client', () => {
         REDIRECT_URI
       );
       oauth2client.credentials = {refresh_token: 'abc'};
-      await assertRejects(
+      await assert.rejects(
         oauth2client.revokeCredentials(),
         /Error: No access token to revoke./
       );
