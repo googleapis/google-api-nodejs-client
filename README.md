@@ -183,7 +183,7 @@ With the credentials set on your OAuth2 client - you're ready to go!
 Access tokens expire. This library will automatically use a refresh token to obtain a new access token if it is about to expire. An easy way to make sure you always store the most recent tokens is to use the `tokens` event:
 
 ```js
-oauth2client.on('tokens', (tokens) => {
+oauth2Client.on('tokens', (tokens) => {
   if (tokens.refresh_token) {
     // store the refresh_token in my database!
     console.log(tokens.refresh_token);
@@ -195,7 +195,7 @@ oauth2client.on('tokens', (tokens) => {
 To set the `refresh_token` at a later time, you can use the `setCredentials` method:
 
 ```js
-oauth2client.setCredentials({
+oauth2Client.setCredentials({
   refresh_token: `STORED_REFRESH_TOKEN`
 });
 ```
