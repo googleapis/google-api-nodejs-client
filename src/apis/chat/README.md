@@ -33,6 +33,30 @@ const { chat, auth } = Chat;
 </script>
 ```
 
+## Quick NodeJS example
+
+```js
+// Assuming that `GOOGLE_APPLICATION_CREDENTIALS="/app/.data/chatbot.json"` is set as an environment variable with the path to the json key that you downloaded when creating a service account for your bot.
+
+const {google} = require("googleapis")
+const SCOPES = ["https://www.googleapis.com/auth/chat.bot"]
+
+const YourModule = {
+  async execute(){
+    const auth = await google.auth.getClient({
+      scopes: SCOPES
+    })
+    const chat = google.chat({version: "v1", auth: auth})
+    console.log(chat)
+    const project = await google.auth.getProjectId()
+    const spaces = await chat.spaces.list()
+  }
+}
+
+// Some other place
+YourModule.execute()
+```
+
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/googleapis/google-api-nodejs-client/blob/master/LICENSE).
 
