@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace abusiveexperiencereport_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace abusiveexperiencereport_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace abusiveexperiencereport_v1 {
   /**
    * Abusive Experience Report API
    *
-   * Views Abusive Experience Report data, and gets a list of sites that have a
-   * significant number of abusive experiences.
+   * Views Abusive Experience Report data, and gets a list of sites that have a significant number of abusive experiences.
    *
    * @example
    * const {google} = require('googleapis');
@@ -114,7 +109,10 @@ export namespace abusiveexperiencereport_v1 {
     violatingSites: Resource$Violatingsites;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.sites = new Resource$Sites(this.context);
       this.violatingSites = new Resource$Violatingsites(this.context);
@@ -249,14 +247,7 @@ export namespace abusiveexperiencereport_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The required site name. This is the site property whose abusive
-     * experiences have been reviewed, and it must be URL-encoded. For example,
-     * sites/https%3A%2F%2Fwww.google.com. The server will return an error of
-     * BAD_REQUEST if this field is not filled in. Note that if the site
-     * property is not yet verified in Search Console, the reportUrl field
-     * returned by the API will lead to the verification page, prompting the
-     * user to go through that process before they can gain access to the
-     * Abusive Experience Report.
+     * The required site name. This is the site property whose abusive experiences have been reviewed, and it must be URL-encoded. For example, sites/https%3A%2F%2Fwww.google.com. The server will return an error of BAD_REQUEST if this field is not filled in. Note that if the site property is not yet verified in Search Console, the reportUrl field returned by the API will lead to the verification page, prompting the user to go through that process before they can gain access to the Abusive Experience Report.
      */
     name?: string;
   }

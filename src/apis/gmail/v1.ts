@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace gmail_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace gmail_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace gmail_v1 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.users = new Resource$Users(this.context);
     }
@@ -110,8 +110,7 @@ export namespace gmail_v1 {
      */
     disposition?: string;
     /**
-     * Email address to which all incoming messages are forwarded. This email
-     * address must be a verified member of the forwarding addresses.
+     * Email address to which all incoming messages are forwarded. This email address must be a verified member of the forwarding addresses.
      */
     emailAddress?: string;
     /**
@@ -131,8 +130,7 @@ export namespace gmail_v1 {
      */
     addLabelIds?: string[];
     /**
-     * The IDs of the messages to modify. There is a limit of 1000 ids per
-     * request.
+     * The IDs of the messages to modify. There is a limit of 1000 ids per request.
      */
     ids?: string[];
     /**
@@ -141,9 +139,7 @@ export namespace gmail_v1 {
     removeLabelIds?: string[];
   }
   /**
-   * Settings for a delegate. Delegates can read, send, and delete messages, as
-   * well as view and add contacts, for the delegator&#39;s account. See
-   * &quot;Set up mail delegation&quot; for more information about delegates.
+   * Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator&#39;s account. See &quot;Set up mail delegation&quot; for more information about delegates.
    */
   export interface Schema$Delegate {
     /**
@@ -151,8 +147,7 @@ export namespace gmail_v1 {
      */
     delegateEmail?: string;
     /**
-     * Indicates whether this address has been verified and can act as a
-     * delegate for the account. Read-only.
+     * Indicates whether this address has been verified and can act as a delegate for the account. Read-only.
      */
     verificationStatus?: string;
   }
@@ -170,8 +165,7 @@ export namespace gmail_v1 {
     message?: Schema$Message;
   }
   /**
-   * Resource definition for Gmail filters. Filters apply to specific messages
-   * instead of an entire email thread.
+   * Resource definition for Gmail filters. Filters apply to specific messages instead of an entire email thread.
    */
   export interface Schema$Filter {
     /**
@@ -221,20 +215,15 @@ export namespace gmail_v1 {
      */
     hasAttachment?: boolean;
     /**
-     * Only return messages not matching the specified query. Supports the same
-     * query format as the Gmail search box. For example,
-     * &quot;from:someuser@example.com rfc822msgid: is:unread&quot;.
+     * Only return messages not matching the specified query. Supports the same query format as the Gmail search box. For example, &quot;from:someuser@example.com rfc822msgid: is:unread&quot;.
      */
     negatedQuery?: string;
     /**
-     * Only return messages matching the specified query. Supports the same
-     * query format as the Gmail search box. For example,
-     * &quot;from:someuser@example.com rfc822msgid: is:unread&quot;.
+     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, &quot;from:someuser@example.com rfc822msgid: is:unread&quot;.
      */
     query?: string;
     /**
-     * The size of the entire RFC822 message in bytes, including all headers and
-     * attachments.
+     * The size of the entire RFC822 message in bytes, including all headers and attachments.
      */
     size?: number;
     /**
@@ -242,16 +231,11 @@ export namespace gmail_v1 {
      */
     sizeComparison?: string;
     /**
-     * Case-insensitive phrase found in the message&#39;s subject. Trailing and
-     * leading whitespace are be trimmed and adjacent spaces are collapsed.
+     * Case-insensitive phrase found in the message&#39;s subject. Trailing and leading whitespace are be trimmed and adjacent spaces are collapsed.
      */
     subject?: string;
     /**
-     * The recipient&#39;s display name or email address. Includes recipients in
-     * the &quot;to&quot;, &quot;cc&quot;, and &quot;bcc&quot; header fields.
-     * You can use simply the local part of the email address. For example,
-     * &quot;example&quot; and &quot;example@&quot; both match
-     * &quot;example@gmail.com&quot;. This field is case-insensitive.
+     * The recipient&#39;s display name or email address. Includes recipients in the &quot;to&quot;, &quot;cc&quot;, and &quot;bcc&quot; header fields. You can use simply the local part of the email address. For example, &quot;example&quot; and &quot;example@&quot; both match &quot;example@gmail.com&quot;. This field is case-insensitive.
      */
     to?: string;
   }
@@ -264,14 +248,12 @@ export namespace gmail_v1 {
      */
     forwardingEmail?: string;
     /**
-     * Indicates whether this address has been verified and is usable for
-     * forwarding. Read-only.
+     * Indicates whether this address has been verified and is usable for forwarding. Read-only.
      */
     verificationStatus?: string;
   }
   /**
-   * A record of a change to the user&#39;s mailbox. Each history change may
-   * affect multiple messages in multiple ways.
+   * A record of a change to the user&#39;s mailbox. Each history change may affect multiple messages in multiple ways.
    */
   export interface Schema$History {
     /**
@@ -287,9 +269,7 @@ export namespace gmail_v1 {
      */
     labelsRemoved?: Schema$HistoryLabelRemoved[];
     /**
-     * List of messages changed in this history record. The fields for specific
-     * change types, such as messagesAdded may duplicate messages in this field.
-     * We recommend using the specific change-type fields instead of this.
+     * List of messages changed in this history record. The fields for specific change types, such as messagesAdded may duplicate messages in this field. We recommend using the specific change-type fields instead of this.
      */
     messages?: Schema$Message[];
     /**
@@ -326,9 +306,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$ImapSettings {
     /**
-     * If this value is true, Gmail will immediately expunge a message when it
-     * is marked as deleted in IMAP. Otherwise, Gmail will wait for an update
-     * from the client before expunging messages marked as deleted.
+     * If this value is true, Gmail will immediately expunge a message when it is marked as deleted in IMAP. Otherwise, Gmail will wait for an update from the client before expunging messages marked as deleted.
      */
     autoExpunge?: boolean;
     /**
@@ -336,25 +314,20 @@ export namespace gmail_v1 {
      */
     enabled?: boolean;
     /**
-     * The action that will be executed on a message when it is marked as
-     * deleted and expunged from the last visible IMAP folder.
+     * The action that will be executed on a message when it is marked as deleted and expunged from the last visible IMAP folder.
      */
     expungeBehavior?: string;
     /**
-     * An optional limit on the number of messages that an IMAP folder may
-     * contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero
-     * is interpreted to mean that there is no limit.
+     * An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero is interpreted to mean that there is no limit.
      */
     maxFolderSize?: number;
   }
   /**
-   * Labels are used to categorize messages and threads within the user&#39;s
-   * mailbox.
+   * Labels are used to categorize messages and threads within the user&#39;s mailbox.
    */
   export interface Schema$Label {
     /**
-     * The color to assign to the label. Color is only available for labels that
-     * have their type set to user.
+     * The color to assign to the label. Color is only available for labels that have their type set to user.
      */
     color?: Schema$LabelColor;
     /**
@@ -366,8 +339,7 @@ export namespace gmail_v1 {
      */
     labelListVisibility?: string;
     /**
-     * The visibility of the label in the message list in the Gmail web
-     * interface.
+     * The visibility of the label in the message list in the Gmail web interface.
      */
     messageListVisibility?: string;
     /**
@@ -391,46 +363,28 @@ export namespace gmail_v1 {
      */
     threadsUnread?: number;
     /**
-     * The owner type for the label. User labels are created by the user and can
-     * be modified and deleted by the user and can be applied to any message or
-     * thread. System labels are internally created and cannot be added,
-     * modified, or deleted. System labels may be able to be applied to or
-     * removed from messages and threads under some circumstances but this is
-     * not guaranteed. For example, users can apply and remove the INBOX and
-     * UNREAD labels from messages and threads, but cannot apply or remove the
-     * DRAFTS or SENT labels from messages or threads.
+     * The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and remove the INBOX and UNREAD labels from messages and threads, but cannot apply or remove the DRAFTS or SENT labels from messages or threads.
      */
     type?: string;
   }
   export interface Schema$LabelColor {
     /**
-     * The background color represented as hex string #RRGGBB (ex #000000). This
-     * field is required in order to set the color of a label. Only the
-     * following predefined set of color values are allowed: #000000, #434343,
-     * #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, #fb4c2f, #ffad47,
-     * #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, #f6c5be, #ffe6c7,
-     * #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, #efa093, #ffd6a2,
-     * #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, #e66550, #ffbc6b,
-     * #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, #cc3a21, #eaa041,
-     * #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, #ac2b16, #cf8933,
-     * #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, #822111, #a46a21,
-     * #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c
+     * The background color represented as hex string #RRGGBB (ex #000000). This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: #000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, #fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, #f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, #efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, #e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, #cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, #ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, #822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c
      */
     backgroundColor?: string;
     /**
-     * The text color of the label, represented as hex string. This field is
-     * required in order to set the color of a label. Only the following
-     * predefined set of color values are allowed: #000000, #434343, #666666,
-     * #999999, #cccccc, #efefef, #f3f3f3, #ffffff, #fb4c2f, #ffad47, #fad165,
-     * #16a766, #43d692, #4a86e8, #a479e2, #f691b3, #f6c5be, #ffe6c7, #fef1d1,
-     * #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, #efa093, #ffd6a2, #fce8b3,
-     * #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, #e66550, #ffbc6b, #fcda83,
-     * #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, #cc3a21, #eaa041, #f2c960,
-     * #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, #ac2b16, #cf8933, #d5ae49,
-     * #0b804b, #2a9c68, #285bac, #653e9b, #b65775, #822111, #a46a21, #aa8831,
-     * #076239, #1a764d, #1c4587, #41236d, #83334c
+     * The text color of the label, represented as hex string. This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: #000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, #fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, #f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, #efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, #e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, #cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, #ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, #822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c
      */
     textColor?: string;
+  }
+  /**
+   * Language settings for an account. These settings correspond to the &quot;Language settings&quot; feature in the web interface.
+   */
+  export interface Schema$LanguageSettings {
+    /**
+     * The language to display Gmail in, formatted as an RFC 3066 Language Tag (for example en-GB, fr or ja for British English, French, or Japanese respectively).  The set of languages supported by Gmail evolves over time, so please refer to the &quot;Language&quot; dropdown in the Gmail settings  for all available options, as described in the language settings help article. A table of sample values is also provided in the Managing Language Settings guide   Not all Gmail clients can display the same set of languages. In the case that a user&#39;s display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).
+     */
+    displayLanguage?: string;
   }
   /**
    * Response for the ListDelegates method.
@@ -475,8 +429,7 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListHistoryResponse {
     /**
-     * List of history records. Any messages contained in the response will
-     * typically only have id and threadId fields populated.
+     * List of history records. Any messages contained in the response will typically only have id and threadId fields populated.
      */
     history?: Schema$History[];
     /**
@@ -496,9 +449,7 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListMessagesResponse {
     /**
-     * List of messages. Note that each message resource contains only an id and
-     * a threadId. Additional message details can be fetched using the
-     * messages.get method.
+     * List of messages. Note that each message resource contains only an id and a threadId. Additional message details can be fetched using the messages.get method.
      */
     messages?: Schema$Message[];
     /**
@@ -535,9 +486,7 @@ export namespace gmail_v1 {
      */
     resultSizeEstimate?: number;
     /**
-     * List of threads. Note that each thread resource does not contain a list
-     * of messages. The list of messages for a given thread can be fetched using
-     * the threads.get method.
+     * List of threads. Note that each thread resource does not contain a list of messages. The list of messages for a given thread can be fetched using the threads.get method.
      */
     threads?: Schema$Thread[];
   }
@@ -554,11 +503,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The internal message creation timestamp (epoch ms), which determines
-     * ordering in the inbox. For normal SMTP-received email, this represents
-     * the time the message was originally accepted by Google, which is more
-     * reliable than the Date header. However, for API-migrated mail, it can be
-     * configured by client to be based on the Date header.
+     * The internal message creation timestamp (epoch ms), which determines ordering in the inbox. For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the Date header. However, for API-migrated mail, it can be configured by client to be based on the Date header.
      */
     internalDate?: string;
     /**
@@ -570,9 +515,7 @@ export namespace gmail_v1 {
      */
     payload?: Schema$MessagePart;
     /**
-     * The entire email message in an RFC 2822 formatted and base64url encoded
-     * string. Returned in messages.get and drafts.get responses when the
-     * format=RAW parameter is supplied.
+     * The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in messages.get and drafts.get responses when the format=RAW parameter is supplied.
      */
     raw?: string;
     /**
@@ -584,11 +527,7 @@ export namespace gmail_v1 {
      */
     snippet?: string;
     /**
-     * The ID of the thread the message belongs to. To add a message or draft to
-     * a thread, the following criteria must be met:  - The requested threadId
-     * must be specified on the Message or Draft.Message you supply with your
-     * request.  - The References and In-Reply-To headers must be set in
-     * compliance with the RFC 2822 standard.  - The Subject headers must match.
+     * The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met:  - The requested threadId must be specified on the Message or Draft.Message you supply with your request.  - The References and In-Reply-To headers must be set in compliance with the RFC 2822 standard.  - The Subject headers must match.
      */
     threadId?: string;
   }
@@ -597,19 +536,15 @@ export namespace gmail_v1 {
    */
   export interface Schema$MessagePart {
     /**
-     * The message part body for this part, which may be empty for container
-     * MIME message parts.
+     * The message part body for this part, which may be empty for container MIME message parts.
      */
     body?: Schema$MessagePartBody;
     /**
-     * The filename of the attachment. Only present if this message part
-     * represents an attachment.
+     * The filename of the attachment. Only present if this message part represents an attachment.
      */
     filename?: string;
     /**
-     * List of headers on this message part. For the top-level message part,
-     * representing the entire message payload, it will contain the standard RFC
-     * 2822 email headers such as To, From, and Subject.
+     * List of headers on this message part. For the top-level message part, representing the entire message payload, it will contain the standard RFC 2822 email headers such as To, From, and Subject.
      */
     headers?: Schema$MessagePartHeader[];
     /**
@@ -621,10 +556,7 @@ export namespace gmail_v1 {
      */
     partId?: string;
     /**
-     * The child MIME message parts of this part. This only applies to container
-     * MIME message parts, for example multipart/*. For non- container MIME
-     * message part types, such as text/plain, this field is empty. For more
-     * information, see RFC 1521.
+     * The child MIME message parts of this part. This only applies to container MIME message parts, for example multipart/*. For non- container MIME message part types, such as text/plain, this field is empty. For more information, see RFC 1521.
      */
     parts?: Schema$MessagePart[];
   }
@@ -633,17 +565,11 @@ export namespace gmail_v1 {
    */
   export interface Schema$MessagePartBody {
     /**
-     * When present, contains the ID of an external attachment that can be
-     * retrieved in a separate messages.attachments.get request. When not
-     * present, the entire content of the message part body is contained in the
-     * data field.
+     * When present, contains the ID of an external attachment that can be retrieved in a separate messages.attachments.get request. When not present, the entire content of the message part body is contained in the data field.
      */
     attachmentId?: string;
     /**
-     * The body data of a MIME message part as a base64url encoded string. May
-     * be empty for MIME container types that have no message body or when the
-     * body data is sent as a separate attachment. An attachment ID is present
-     * if the body data is contained in a separate attachment.
+     * The body data of a MIME message part as a base64url encoded string. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment.
      */
     data?: string;
     /**
@@ -657,8 +583,7 @@ export namespace gmail_v1 {
      */
     name?: string;
     /**
-     * The value of the header after the : separator. For example,
-     * someuser@example.com.
+     * The value of the header after the : separator. For example, someuser@example.com.
      */
     value?: string;
   }
@@ -691,8 +616,7 @@ export namespace gmail_v1 {
      */
     accessWindow?: string;
     /**
-     * The action that will be executed on a message after it has been fetched
-     * via POP.
+     * The action that will be executed on a message after it has been fetched via POP.
      */
     disposition?: string;
   }
@@ -718,70 +642,43 @@ export namespace gmail_v1 {
     threadsTotal?: number;
   }
   /**
-   * Settings associated with a send-as alias, which can be either the primary
-   * login address associated with the account or a custom &quot;from&quot;
-   * address. Send-as aliases correspond to the &quot;Send Mail As&quot; feature
-   * in the web interface.
+   * Settings associated with a send-as alias, which can be either the primary login address associated with the account or a custom &quot;from&quot; address. Send-as aliases correspond to the &quot;Send Mail As&quot; feature in the web interface.
    */
   export interface Schema$SendAs {
     /**
-     * A name that appears in the &quot;From:&quot; header for mail sent using
-     * this alias. For custom &quot;from&quot; addresses, when this is empty,
-     * Gmail will populate the &quot;From:&quot; header with the name that is
-     * used for the primary address associated with the account. If the admin
-     * has disabled the ability for users to update their name format, requests
-     * to update this field for the primary login will silently fail.
+     * A name that appears in the &quot;From:&quot; header for mail sent using this alias. For custom &quot;from&quot; addresses, when this is empty, Gmail will populate the &quot;From:&quot; header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail.
      */
     displayName?: string;
     /**
-     * Whether this address is selected as the default &quot;From:&quot; address
-     * in situations such as composing a new message or sending a vacation
-     * auto-reply. Every Gmail account has exactly one default send-as address,
-     * so the only legal value that clients may write to this field is true.
-     * Changing this from false to true for an address will result in this field
-     * becoming false for the other previous default address.
+     * Whether this address is selected as the default &quot;From:&quot; address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is true. Changing this from false to true for an address will result in this field becoming false for the other previous default address.
      */
     isDefault?: boolean;
     /**
-     * Whether this address is the primary address used to login to the account.
-     * Every Gmail account has exactly one primary address, and it cannot be
-     * deleted from the collection of send-as aliases. This field is read-only.
+     * Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only.
      */
     isPrimary?: boolean;
     /**
-     * An optional email address that is included in a &quot;Reply-To:&quot;
-     * header for mail sent using this alias. If this is empty, Gmail will not
-     * generate a &quot;Reply-To:&quot; header.
+     * An optional email address that is included in a &quot;Reply-To:&quot; header for mail sent using this alias. If this is empty, Gmail will not generate a &quot;Reply-To:&quot; header.
      */
     replyToAddress?: string;
     /**
-     * The email address that appears in the &quot;From:&quot; header for mail
-     * sent using this alias. This is read-only for all operations except
-     * create.
+     * The email address that appears in the &quot;From:&quot; header for mail sent using this alias. This is read-only for all operations except create.
      */
     sendAsEmail?: string;
     /**
-     * An optional HTML signature that is included in messages composed with
-     * this alias in the Gmail web UI.
+     * An optional HTML signature that is included in messages composed with this alias in the Gmail web UI.
      */
     signature?: string;
     /**
-     * An optional SMTP service that will be used as an outbound relay for mail
-     * sent using this alias. If this is empty, outbound mail will be sent
-     * directly from Gmail&#39;s servers to the destination SMTP service. This
-     * setting only applies to custom &quot;from&quot; aliases.
+     * An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail&#39;s servers to the destination SMTP service. This setting only applies to custom &quot;from&quot; aliases.
      */
     smtpMsa?: Schema$SmtpMsa;
     /**
-     * Whether Gmail should  treat this address as an alias for the user&#39;s
-     * primary email address. This setting only applies to custom
-     * &quot;from&quot; aliases.
+     * Whether Gmail should  treat this address as an alias for the user&#39;s primary email address. This setting only applies to custom &quot;from&quot; aliases.
      */
     treatAsAlias?: boolean;
     /**
-     * Indicates whether this address has been verified for use as a send-as
-     * alias. Read-only. This setting only applies to custom &quot;from&quot;
-     * aliases.
+     * Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom &quot;from&quot; aliases.
      */
     verificationStatus?: string;
   }
@@ -802,8 +699,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * Whether this SmimeInfo is the default one for this user&#39;s send-as
-     * address.
+     * Whether this SmimeInfo is the default one for this user&#39;s send-as address.
      */
     isDefault?: boolean;
     /**
@@ -811,17 +707,11 @@ export namespace gmail_v1 {
      */
     issuerCn?: string;
     /**
-     * PEM formatted X509 concatenated certificate string (standard base64
-     * encoding). Format used for returning key, which includes public key as
-     * well as certificate chain (not private key).
+     * PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning key, which includes public key as well as certificate chain (not private key).
      */
     pem?: string;
     /**
-     * PKCS#12 format containing a single private/public key pair and
-     * certificate chain. This format is only accepted from client for creating
-     * a new SmimeInfo and is never returned, because the private key is not
-     * intended to be exported. PKCS#12 may be encrypted, in which case
-     * encryptedKeyPassword should be set appropriately.
+     * PKCS#12 format containing a single private/public key pair and certificate chain. This format is only accepted from client for creating a new SmimeInfo and is never returned, because the private key is not intended to be exported. PKCS#12 may be encrypted, in which case encryptedKeyPassword should be set appropriately.
      */
     pkcs12?: string;
   }
@@ -834,9 +724,7 @@ export namespace gmail_v1 {
      */
     host?: string;
     /**
-     * The password that will be used for authentication with the SMTP service.
-     * This is a write-only field that can be specified in requests to create or
-     * update SendAs settings; it is never populated in responses.
+     * The password that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses.
      */
     password?: string;
     /**
@@ -844,14 +732,11 @@ export namespace gmail_v1 {
      */
     port?: number;
     /**
-     * The protocol that will be used to secure communication with the SMTP
-     * service. Required.
+     * The protocol that will be used to secure communication with the SMTP service. Required.
      */
     securityMode?: string;
     /**
-     * The username that will be used for authentication with the SMTP service.
-     * This is a write-only field that can be specified in requests to create or
-     * update SendAs settings; it is never populated in responses.
+     * The username that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses.
      */
     username?: string;
   }
@@ -877,8 +762,7 @@ export namespace gmail_v1 {
     snippet?: string;
   }
   /**
-   * Vacation auto-reply settings for an account. These settings correspond to
-   * the &quot;Vacation responder&quot; feature in the web interface.
+   * Vacation auto-reply settings for an account. These settings correspond to the &quot;Vacation responder&quot; feature in the web interface.
    */
   export interface Schema$VacationSettings {
     /**
@@ -886,15 +770,11 @@ export namespace gmail_v1 {
      */
     enableAutoReply?: boolean;
     /**
-     * An optional end time for sending auto-replies (epoch ms). When this is
-     * specified, Gmail will automatically reply only to messages that it
-     * receives before the end time. If both startTime and endTime are
-     * specified, startTime must precede endTime.
+     * An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time. If both startTime and endTime are specified, startTime must precede endTime.
      */
     endTime?: string;
     /**
-     * Response body in HTML format. Gmail will sanitize the HTML before storing
-     * it.
+     * Response body in HTML format. Gmail will sanitize the HTML before storing it.
      */
     responseBodyHtml?: string;
     /**
@@ -902,27 +782,19 @@ export namespace gmail_v1 {
      */
     responseBodyPlainText?: string;
     /**
-     * Optional text to prepend to the subject line in vacation responses. In
-     * order to enable auto-replies, either the response subject or the response
-     * body must be nonempty.
+     * Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either the response subject or the response body must be nonempty.
      */
     responseSubject?: string;
     /**
-     * Flag that determines whether responses are sent to recipients who are not
-     * in the user&#39;s list of contacts.
+     * Flag that determines whether responses are sent to recipients who are not in the user&#39;s list of contacts.
      */
     restrictToContacts?: boolean;
     /**
-     * Flag that determines whether responses are sent to recipients who are
-     * outside of the user&#39;s domain. This feature is only available for G
-     * Suite users.
+     * Flag that determines whether responses are sent to recipients who are outside of the user&#39;s domain. This feature is only available for G Suite users.
      */
     restrictToDomain?: boolean;
     /**
-     * An optional start time for sending auto-replies (epoch ms). When this is
-     * specified, Gmail will automatically reply only to messages that it
-     * receives after the start time. If both startTime and endTime are
-     * specified, startTime must precede endTime.
+     * An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both startTime and endTime are specified, startTime must precede endTime.
      */
     startTime?: string;
   }
@@ -935,20 +807,11 @@ export namespace gmail_v1 {
      */
     labelFilterAction?: string;
     /**
-     * List of label_ids to restrict notifications about. By default, if
-     * unspecified, all changes are pushed out. If specified then dictates which
-     * labels are required for a push notification to be generated.
+     * List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out. If specified then dictates which labels are required for a push notification to be generated.
      */
     labelIds?: string[];
     /**
-     * A fully qualified Google Cloud Pub/Sub API topic name to publish the
-     * events to. This topic name **must** already exist in Cloud Pub/Sub and
-     * you **must** have already granted gmail &quot;publish&quot; permission on
-     * it. For example,
-     * &quot;projects/my-project-identifier/topics/my-topic-name&quot; (using
-     * the Cloud Pub/Sub &quot;v1&quot; topic naming format).  Note that the
-     * &quot;my-project-identifier&quot; portion must exactly match your Google
-     * developer project id (the one executing this watch request).
+     * A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail &quot;publish&quot; permission on it. For example, &quot;projects/my-project-identifier/topics/my-topic-name&quot; (using the Cloud Pub/Sub &quot;v1&quot; topic naming format).  Note that the &quot;my-project-identifier&quot; portion must exactly match your Google developer project id (the one executing this watch request).
      */
     topicName?: string;
   }
@@ -957,8 +820,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$WatchResponse {
     /**
-     * When Gmail will stop sending notifications for mailbox updates (epoch
-     * millis). Call watch again before this time to renew the watch.
+     * When Gmail will stop sending notifications for mailbox updates (epoch millis). Call watch again before this time to renew the watch.
      */
     expiration?: string;
     /**
@@ -1129,8 +991,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.watch
-     * @desc Set up or update a push notification watch on the given user
-     * mailbox.
+     * @desc Set up or update a push notification watch on the given user mailbox.
      * @alias gmail.users.watch
      * @memberOf! ()
      *
@@ -1210,8 +1071,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1222,8 +1082,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1234,8 +1093,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -1333,8 +1191,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.drafts.delete
-     * @desc Immediately and permanently deletes the specified draft. Does not
-     * simply trash it.
+     * @desc Immediately and permanently deletes the specified draft. Does not simply trash it.
      * @alias gmail.users.drafts.delete
      * @memberOf! ()
      *
@@ -1558,8 +1415,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.drafts.send
-     * @desc Sends the specified, existing draft to the recipients in the To,
-     * Cc, and Bcc headers.
+     * @desc Sends the specified, existing draft to the recipients in the To, Cc, and Bcc headers.
      * @alias gmail.users.drafts.send
      * @memberOf! ()
      *
@@ -1725,8 +1581,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -1762,8 +1617,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1782,8 +1636,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1807,14 +1660,11 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Only return draft messages matching the specified query. Supports the
-     * same query format as the Gmail search box. For example,
-     * "from:someuser@example.com rfc822msgid: is:unread".
+     * Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
      */
     q?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1826,8 +1676,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -1863,8 +1712,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -1897,8 +1745,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.history.list
-     * @desc Lists the history of all changes to the given mailbox. History
-     * results are returned in chronological order (increasing historyId).
+     * @desc Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing historyId).
      * @alias gmail.users.history.list
      * @memberOf! ()
      *
@@ -2000,22 +1847,11 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Returns history records after the specified startHistoryId. The
-     * supplied startHistoryId should be obtained from the historyId of a
-     * message, thread, or previous list response. History IDs increase
-     * chronologically but are not contiguous with random gaps in between valid
-     * IDs. Supplying an invalid or out of date startHistoryId typically returns
-     * an HTTP 404 error code. A historyId is typically valid for at least a
-     * week, but in some rare circumstances may be valid for only a few hours.
-     * If you receive an HTTP 404 error response, your application should
-     * perform a full sync. If you receive no nextPageToken in the response,
-     * there are no updates to retrieve and you can store the returned historyId
-     * for a future request.
+     * Required. Returns history records after the specified startHistoryId. The supplied startHistoryId should be obtained from the historyId of a message, thread, or previous list response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date startHistoryId typically returns an HTTP 404 error code. A historyId is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an HTTP 404 error response, your application should perform a full sync. If you receive no nextPageToken in the response, there are no updates to retrieve and you can store the returned historyId for a future request.
      */
     startHistoryId?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -2101,8 +1937,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.labels.delete
-     * @desc Immediately and permanently deletes the specified label and removes
-     * it from any messages and threads that it is applied to.
+     * @desc Immediately and permanently deletes the specified label and removes it from any messages and threads that it is applied to.
      * @alias gmail.users.labels.delete
      * @memberOf! ()
      *
@@ -2476,8 +2311,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -2498,8 +2332,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -2514,8 +2347,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -2527,8 +2359,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -2544,8 +2375,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -2566,8 +2396,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -2587,8 +2416,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.batchDelete
-     * @desc Deletes many messages by message ID. Provides no guarantees that
-     * messages were not already deleted or even existed at all.
+     * @desc Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.
      * @alias gmail.users.messages.batchDelete
      * @memberOf! ()
      *
@@ -2732,8 +2560,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.delete
-     * @desc Immediately and permanently deletes the specified message. This
-     * operation cannot be undone. Prefer messages.trash instead.
+     * @desc Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer messages.trash instead.
      * @alias gmail.users.messages.delete
      * @memberOf! ()
      *
@@ -2881,9 +2708,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.import
-     * @desc Imports a message into only this user's mailbox, with standard email
-     * delivery scanning and classification similar to receiving via SMTP. Does not
-     * send a message.
+     * @desc Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message.
      * @alias gmail.users.messages.import
      * @memberOf! ()
      *
@@ -3201,8 +3026,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.messages.send
-     * @desc Sends the specified message to the recipients in the To, Cc, and
-     * Bcc headers.
+     * @desc Sends the specified message to the recipients in the To, Cc, and Bcc headers.
      * @alias gmail.users.messages.send
      * @memberOf! ()
      *
@@ -3432,8 +3256,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3450,8 +3273,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3472,8 +3294,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3497,8 +3318,7 @@ export namespace gmail_v1 {
      */
     metadataHeaders?: string[];
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3510,8 +3330,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Mark the email as permanently deleted (not TRASH) and only visible in
-     * Google Vault to a Vault administrator. Only used for G Suite accounts.
+     * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
      */
     deleted?: boolean;
     /**
@@ -3519,18 +3338,15 @@ export namespace gmail_v1 {
      */
     internalDateSource?: string;
     /**
-     * Ignore the Gmail spam classifier decision and never mark this email as
-     * SPAM in the mailbox.
+     * Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
      */
     neverMarkSpam?: boolean;
     /**
-     * Process calendar invites in the email and add any extracted meetings to
-     * the Google Calendar for this user.
+     * Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
      */
     processForCalendar?: boolean;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3562,8 +3378,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Mark the email as permanently deleted (not TRASH) and only visible in
-     * Google Vault to a Vault administrator. Only used for G Suite accounts.
+     * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
      */
     deleted?: boolean;
     /**
@@ -3571,8 +3386,7 @@ export namespace gmail_v1 {
      */
     internalDateSource?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3608,8 +3422,7 @@ export namespace gmail_v1 {
      */
     includeSpamTrash?: boolean;
     /**
-     * Only return messages with labels that match all of the specified label
-     * IDs.
+     * Only return messages with labels that match all of the specified label IDs.
      */
     labelIds?: string[];
     /**
@@ -3621,16 +3434,11 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Only return messages matching the specified query. Supports the same
-     * query format as the Gmail search box. For example,
-     * "from:someuser@example.com rfc822msgid:<somemsgid@example.com>
-     * is:unread". Parameter cannot be used when accessing the api using the
-     * gmail.metadata scope.
+     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
      */
     q?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3646,8 +3454,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3664,8 +3471,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -3701,8 +3507,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3718,8 +3523,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3823,8 +3627,7 @@ export namespace gmail_v1 {
      */
     messageId?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -3995,6 +3798,79 @@ export namespace gmail_v1 {
     }
 
     /**
+     * gmail.users.settings.getLanguage
+     * @desc Gets language settings.
+     * @alias gmail.users.settings.getLanguage
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getLanguage(
+      params?: Params$Resource$Users$Settings$Getlanguage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LanguageSettings>;
+    getLanguage(
+      params: Params$Resource$Users$Settings$Getlanguage,
+      options: MethodOptions | BodyResponseCallback<Schema$LanguageSettings>,
+      callback: BodyResponseCallback<Schema$LanguageSettings>
+    ): void;
+    getLanguage(
+      params: Params$Resource$Users$Settings$Getlanguage,
+      callback: BodyResponseCallback<Schema$LanguageSettings>
+    ): void;
+    getLanguage(callback: BodyResponseCallback<Schema$LanguageSettings>): void;
+    getLanguage(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Getlanguage
+        | BodyResponseCallback<Schema$LanguageSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LanguageSettings>,
+      callback?: BodyResponseCallback<Schema$LanguageSettings>
+    ): void | GaxiosPromise<Schema$LanguageSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Getlanguage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Getlanguage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/language'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LanguageSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LanguageSettings>(parameters);
+      }
+    }
+
+    /**
      * gmail.users.settings.getPop
      * @desc Gets POP settings.
      * @alias gmail.users.settings.getPop
@@ -4143,10 +4019,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.updateAutoForwarding
-     * @desc Updates the auto-forwarding setting for the specified account. A
-     * verified forwarding address must be specified when auto-forwarding is
-     * enabled.  This method is only available to service account clients that
-     * have been delegated domain-wide authority.
+     * @desc Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.updateAutoForwarding
      * @memberOf! ()
      *
@@ -4292,6 +4165,82 @@ export namespace gmail_v1 {
         createAPIRequest<Schema$ImapSettings>(parameters, callback);
       } else {
         return createAPIRequest<Schema$ImapSettings>(parameters);
+      }
+    }
+
+    /**
+     * gmail.users.settings.updateLanguage
+     * @desc Updates language settings.  If successful, the return object contains the displayLanguage that was saved for the user, which may differ from the value passed into the request. This is because the requested displayLanguage may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
+     * @alias gmail.users.settings.updateLanguage
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+     * @param {().LanguageSettings} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateLanguage(
+      params?: Params$Resource$Users$Settings$Updatelanguage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LanguageSettings>;
+    updateLanguage(
+      params: Params$Resource$Users$Settings$Updatelanguage,
+      options: MethodOptions | BodyResponseCallback<Schema$LanguageSettings>,
+      callback: BodyResponseCallback<Schema$LanguageSettings>
+    ): void;
+    updateLanguage(
+      params: Params$Resource$Users$Settings$Updatelanguage,
+      callback: BodyResponseCallback<Schema$LanguageSettings>
+    ): void;
+    updateLanguage(
+      callback: BodyResponseCallback<Schema$LanguageSettings>
+    ): void;
+    updateLanguage(
+      paramsOrCallback?:
+        | Params$Resource$Users$Settings$Updatelanguage
+        | BodyResponseCallback<Schema$LanguageSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LanguageSettings>,
+      callback?: BodyResponseCallback<Schema$LanguageSettings>
+    ): void | GaxiosPromise<Schema$LanguageSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Settings$Updatelanguage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Settings$Updatelanguage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/gmail/v1/users/{userId}/settings/language'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LanguageSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LanguageSettings>(parameters);
       }
     }
 
@@ -4455,8 +4404,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -4468,8 +4416,19 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Settings$Getlanguage
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -4481,8 +4440,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -4494,8 +4452,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -4507,8 +4464,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -4525,8 +4481,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -4534,6 +4489,23 @@ export namespace gmail_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ImapSettings;
+  }
+  export interface Params$Resource$Users$Settings$Updatelanguage
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LanguageSettings;
   }
   export interface Params$Resource$Users$Settings$Updatepop
     extends StandardParameters {
@@ -4543,8 +4515,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -4561,8 +4532,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -4580,17 +4550,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.delegates.create
-     * @desc Adds a delegate with its verification status set directly to
-     * accepted, without sending any verification email. The delegate user must
-     * be a member of the same G Suite organization as the delegator user. Gmail
-     * imposes limtations on the number of delegates and delegators each user in
-     * a G Suite organization can have. These limits depend on your
-     * organization, but in general each user can have up to 25 delegates and up
-     * to 10 delegators.  Note that a delegate user must be referred to by their
-     * primary email address, and not an email alias.  Also note that when a new
-     * delegate is created, there may be up to a one minute delay before the new
-     * delegate is available for use.  This method is only available to service
-     * account clients that have been delegated domain-wide authority.
+     * @desc Adds a delegate with its verification status set directly to accepted, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user.  Gmail imposes limtations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.delegates.create
      * @memberOf! ()
      *
@@ -4662,11 +4622,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.delegates.delete
-     * @desc Removes the specified delegate (which can be of any verification
-     * status), and revokes any verification that may have been required for
-     * using it.  Note that a delegate user must be referred to by their primary
-     * email address, and not an email alias.  This method is only available to
-     * service account clients that have been delegated domain-wide authority.
+     * @desc Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required for using it.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.delegates.delete
      * @memberOf! ()
      *
@@ -4739,10 +4695,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.delegates.get
-     * @desc Gets the specified delegate.  Note that a delegate user must be
-     * referred to by their primary email address, and not an email alias.  This
-     * method is only available to service account clients that have been
-     * delegated domain-wide authority.
+     * @desc Gets the specified delegate.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.delegates.get
      * @memberOf! ()
      *
@@ -4815,9 +4768,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.delegates.list
-     * @desc Lists the delegates for the specified account.  This method is only
-     * available to service account clients that have been delegated domain-wide
-     * authority.
+     * @desc Lists the delegates for the specified account.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.delegates.list
      * @memberOf! ()
      *
@@ -4899,8 +4850,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -4921,8 +4871,7 @@ export namespace gmail_v1 {
      */
     delegateEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -4934,13 +4883,11 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The email address of the user whose delegate relationship is to be
-     * retrieved.
+     * The email address of the user whose delegate relationship is to be retrieved.
      */
     delegateEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -4952,8 +4899,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5262,8 +5208,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5284,8 +5229,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5301,8 +5245,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5314,8 +5257,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5328,12 +5270,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.forwardingAddresses.create
-     * @desc Creates a forwarding address. If ownership verification is
-     * required, a message will be sent to the recipient and the resource's
-     * verification status will be set to pending; otherwise, the resource will
-     * be created with verification status set to accepted.  This method is only
-     * available to service account clients that have been delegated domain-wide
-     * authority.
+     * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.forwardingAddresses.create
      * @memberOf! ()
      *
@@ -5407,10 +5344,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.forwardingAddresses.delete
-     * @desc Deletes the specified forwarding address and revokes any
-     * verification that may have been required.  This method is only available
-     * to service account clients that have been delegated domain-wide
-     * authority.
+     * @desc Deletes the specified forwarding address and revokes any verification that may have been required.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.forwardingAddresses.delete
      * @memberOf! ()
      *
@@ -5647,8 +5581,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -5669,8 +5602,7 @@ export namespace gmail_v1 {
      */
     forwardingEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5686,8 +5618,7 @@ export namespace gmail_v1 {
      */
     forwardingEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5699,8 +5630,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -5717,15 +5647,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.create
-     * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified,
-     * Gmail will attempt to connect to the SMTP service to validate the
-     * configuration before creating the alias. If ownership verification is
-     * required for the alias, a message will be sent to the email address and
-     * the resource's verification status will be set to pending; otherwise, the
-     * resource will be created with verification status set to accepted. If a
-     * signature is provided, Gmail will sanitize the HTML before saving it with
-     * the alias.  This method is only available to service account clients that
-     * have been delegated domain-wide authority.
+     * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.sendAs.create
      * @memberOf! ()
      *
@@ -5798,9 +5720,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.delete
-     * @desc Deletes the specified send-as alias. Revokes any verification that
-     * may have been required for using it.  This method is only available to
-     * service account clients that have been delegated domain-wide authority.
+     * @desc Deletes the specified send-as alias. Revokes any verification that may have been required for using it.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.sendAs.delete
      * @memberOf! ()
      *
@@ -5872,8 +5792,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.get
-     * @desc Gets the specified send-as alias. Fails with an HTTP 404 error if
-     * the specified address is not a member of the collection.
+     * @desc Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of the collection.
      * @alias gmail.users.settings.sendAs.get
      * @memberOf! ()
      *
@@ -5945,9 +5864,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.list
-     * @desc Lists the send-as aliases for the specified account. The result
-     * includes the primary send-as address associated with the account as well
-     * as any custom "from" aliases.
+     * @desc Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as well as any custom "from" aliases.
      * @alias gmail.users.settings.sendAs.list
      * @memberOf! ()
      *
@@ -6021,11 +5938,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.patch
-     * @desc Updates a send-as alias. If a signature is provided, Gmail will
-     * sanitize the HTML before saving it with the alias.  Addresses other than
-     * the primary address for the account can only be updated by service
-     * account clients that have been delegated domain-wide authority. This
-     * method supports patch semantics.
+     * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority. This method supports patch semantics.
      * @alias gmail.users.settings.sendAs.patch
      * @memberOf! ()
      *
@@ -6098,10 +6011,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.update
-     * @desc Updates a send-as alias. If a signature is provided, Gmail will
-     * sanitize the HTML before saving it with the alias.  Addresses other than
-     * the primary address for the account can only be updated by service
-     * account clients that have been delegated domain-wide authority.
+     * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.sendAs.update
      * @memberOf! ()
      *
@@ -6174,10 +6084,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.verify
-     * @desc Sends a verification email to the specified send-as alias address.
-     * The verification status must be pending.  This method is only available
-     * to service account clients that have been delegated domain-wide
-     * authority.
+     * @desc Sends a verification email to the specified send-as alias address. The verification status must be pending.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.sendAs.verify
      * @memberOf! ()
      *
@@ -6257,8 +6164,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -6279,8 +6185,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6296,8 +6201,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6309,8 +6213,7 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6326,8 +6229,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -6348,8 +6250,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -6370,8 +6271,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string;
     /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
+     * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6384,8 +6284,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.smimeInfo.delete
-     * @desc Deletes the specified S/MIME config for the specified send-as
-     * alias.
+     * @desc Deletes the specified S/MIME config for the specified send-as alias.
      * @alias gmail.users.settings.sendAs.smimeInfo.delete
      * @memberOf! ()
      *
@@ -6535,8 +6434,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.sendAs.smimeInfo.insert
-     * @desc Insert (upload) the given S/MIME config for the specified send-as
-     * alias. Note that pkcs12 format is required for the key.
+     * @desc Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key.
      * @alias gmail.users.settings.sendAs.smimeInfo.insert
      * @memberOf! ()
      *
@@ -6774,13 +6672,11 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The email address that appears in the "From:" header for mail sent using
-     * this alias.
+     * The email address that appears in the "From:" header for mail sent using this alias.
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6796,13 +6692,11 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The email address that appears in the "From:" header for mail sent using
-     * this alias.
+     * The email address that appears in the "From:" header for mail sent using this alias.
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6814,13 +6708,11 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The email address that appears in the "From:" header for mail sent using
-     * this alias.
+     * The email address that appears in the "From:" header for mail sent using this alias.
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -6837,13 +6729,11 @@ export namespace gmail_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The email address that appears in the "From:" header for mail sent using
-     * this alias.
+     * The email address that appears in the "From:" header for mail sent using this alias.
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6859,13 +6749,11 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The email address that appears in the "From:" header for mail sent using
-     * this alias.
+     * The email address that appears in the "From:" header for mail sent using this alias.
      */
     sendAsEmail?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -6878,8 +6766,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.threads.delete
-     * @desc Immediately and permanently deletes the specified thread. This
-     * operation cannot be undone. Prefer threads.trash instead.
+     * @desc Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer threads.trash instead.
      * @alias gmail.users.threads.delete
      * @memberOf! ()
      *
@@ -7106,8 +6993,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.threads.modify
-     * @desc Modifies the labels applied to the thread. This applies to all
-     * messages in the thread.
+     * @desc Modifies the labels applied to the thread. This applies to all messages in the thread.
      * @alias gmail.users.threads.modify
      * @memberOf! ()
      *
@@ -7335,8 +7221,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -7360,8 +7245,7 @@ export namespace gmail_v1 {
      */
     metadataHeaders?: string[];
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -7377,8 +7261,7 @@ export namespace gmail_v1 {
      */
     includeSpamTrash?: boolean;
     /**
-     * Only return threads with labels that match all of the specified label
-     * IDs.
+     * Only return threads with labels that match all of the specified label IDs.
      */
     labelIds?: string[];
     /**
@@ -7390,15 +7273,11 @@ export namespace gmail_v1 {
      */
     pageToken?: string;
     /**
-     * Only return threads matching the specified query. Supports the same query
-     * format as the Gmail search box. For example, "from:someuser@example.com
-     * rfc822msgid: is:unread". Parameter cannot be used when accessing the api
-     * using the gmail.metadata scope.
+     * Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
      */
     q?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -7414,8 +7293,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
 
@@ -7436,8 +7314,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -7453,8 +7330,7 @@ export namespace gmail_v1 {
      */
     id?: string;
     /**
-     * The user's email address. The special value me can be used to indicate
-     * the authenticated user.
+     * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }

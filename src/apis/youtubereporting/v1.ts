@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace youtubereporting_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace youtubereporting_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace youtubereporting_v1 {
   /**
    * YouTube Reporting API
    *
-   * Schedules reporting jobs containing your YouTube Analytics data and
-   * downloads the resulting bulk data reports in the form of CSV files.
+   * Schedules reporting jobs containing your YouTube Analytics data and downloads the resulting bulk data reports in the form of CSV files.
    *
    * @example
    * const {google} = require('googleapis');
@@ -115,7 +110,10 @@ export namespace youtubereporting_v1 {
     reportTypes: Resource$Reporttypes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.jobs = new Resource$Jobs(this.context);
       this.media = new Resource$Media(this.context);
@@ -124,11 +122,7 @@ export namespace youtubereporting_v1 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -471,8 +465,7 @@ export namespace youtubereporting_v1 {
      */
     createTime?: string;
     /**
-     * The date/time when this job will expire/expired. After a job expired, no
-     * new reports are generated.
+     * The date/time when this job will expire/expired. After a job expired, no new reports are generated.
      */
     expireTime?: string;
     /**
@@ -484,13 +477,11 @@ export namespace youtubereporting_v1 {
      */
     name?: string;
     /**
-     * The type of reports this job creates. Corresponds to the ID of a
-     * ReportType.
+     * The type of reports this job creates. Corresponds to the ID of a ReportType.
      */
     reportTypeId?: string;
     /**
-     * True if this a system-managed job that cannot be modified by the user;
-     * otherwise false.
+     * True if this a system-managed job that cannot be modified by the user; otherwise false.
      */
     systemManaged?: boolean;
   }
@@ -503,9 +494,7 @@ export namespace youtubereporting_v1 {
      */
     jobs?: Schema$Job[];
     /**
-     * A token to retrieve next page of results. Pass this value in the
-     * ListJobsRequest.page_token field in the subsequent call to `ListJobs`
-     * method to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in the ListJobsRequest.page_token field in the subsequent call to `ListJobs` method to retrieve the next page of results.
      */
     nextPageToken?: string;
   }
@@ -514,9 +503,7 @@ export namespace youtubereporting_v1 {
    */
   export interface Schema$ListReportsResponse {
     /**
-     * A token to retrieve next page of results. Pass this value in the
-     * ListReportsRequest.page_token field in the subsequent call to
-     * `ListReports` method to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in the ListReportsRequest.page_token field in the subsequent call to `ListReports` method to retrieve the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -529,9 +516,7 @@ export namespace youtubereporting_v1 {
    */
   export interface Schema$ListReportTypesResponse {
     /**
-     * A token to retrieve next page of results. Pass this value in the
-     * ListReportTypesRequest.page_token field in the subsequent call to
-     * `ListReportTypes` method to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in the ListReportTypesRequest.page_token field in the subsequent call to `ListReportTypes` method to retrieve the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -540,8 +525,7 @@ export namespace youtubereporting_v1 {
     reportTypes?: Schema$ReportType[];
   }
   /**
-   * A report&#39;s metadata including the URL from which the report itself can
-   * be downloaded.
+   * A report&#39;s metadata including the URL from which the report itself can be downloaded.
    */
   export interface Schema$Report {
     /**
@@ -553,8 +537,7 @@ export namespace youtubereporting_v1 {
      */
     downloadUrl?: string;
     /**
-     * The end of the time period that the report instance covers. The value is
-     * exclusive.
+     * The end of the time period that the report instance covers. The value is exclusive.
      */
     endTime?: string;
     /**
@@ -570,8 +553,7 @@ export namespace youtubereporting_v1 {
      */
     jobId?: string;
     /**
-     * The start of the time period that the report instance covers. The value
-     * is inclusive.
+     * The start of the time period that the report instance covers. The value is inclusive.
      */
     startTime?: string;
   }
@@ -592,9 +574,7 @@ export namespace youtubereporting_v1 {
      */
     name?: string;
     /**
-     * True if this a system-managed report type; otherwise false. Reporting
-     * jobs for system-managed report types are created automatically and can
-     * thus not be used in the `CreateJob` method.
+     * True if this a system-managed report type; otherwise false. Reporting jobs for system-managed report types are created automatically and can thus not be used in the `CreateJob` method.
      */
     systemManaged?: boolean;
   }
@@ -899,8 +879,7 @@ export namespace youtubereporting_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The content owner's external ID on which behalf the user is acting on. If
-     * not set, the user is acting for himself (his own channel).
+     * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
 
@@ -920,8 +899,7 @@ export namespace youtubereporting_v1 {
      */
     jobId?: string;
     /**
-     * The content owner's external ID on which behalf the user is acting on. If
-     * not set, the user is acting for himself (his own channel).
+     * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
   }
@@ -936,8 +914,7 @@ export namespace youtubereporting_v1 {
      */
     jobId?: string;
     /**
-     * The content owner's external ID on which behalf the user is acting on. If
-     * not set, the user is acting for himself (his own channel).
+     * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
   }
@@ -948,25 +925,19 @@ export namespace youtubereporting_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If set to true, also system-managed jobs will be returned; otherwise only
-     * user-created jobs will be returned. System-managed jobs can neither be
-     * modified nor deleted.
+     * If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
      */
     includeSystemManaged?: boolean;
     /**
-     * The content owner's external ID on which behalf the user is acting on. If
-     * not set, the user is acting for himself (his own channel).
+     * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
     /**
-     * Requested page size. Server may return fewer jobs than requested. If
-     * unspecified, server will pick an appropriate default.
+     * Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListReportTypesResponse.next_page_token
-     * returned in response to the previous call to the `ListJobs` method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
      */
     pageToken?: string;
   }
@@ -1053,8 +1024,7 @@ export namespace youtubereporting_v1 {
 
     /**
      * youtubereporting.jobs.reports.list
-     * @desc Lists reports created by a specific job. Returns NOT_FOUND if the
-     * job does not exist.
+     * @desc Lists reports created by a specific job. Returns NOT_FOUND if the job does not exist.
      * @alias youtubereporting.jobs.reports.list
      * @memberOf! ()
      *
@@ -1145,8 +1115,7 @@ export namespace youtubereporting_v1 {
      */
     jobId?: string;
     /**
-     * The content owner's external ID on which behalf the user is acting on. If
-     * not set, the user is acting for himself (his own channel).
+     * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
     /**
@@ -1170,29 +1139,23 @@ export namespace youtubereporting_v1 {
      */
     jobId?: string;
     /**
-     * The content owner's external ID on which behalf the user is acting on. If
-     * not set, the user is acting for himself (his own channel).
+     * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
     /**
-     * Requested page size. Server may return fewer report types than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListReportsResponse.next_page_token
-     * returned in response to the previous call to the `ListReports` method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.
      */
     pageToken?: string;
     /**
-     * If set, only reports whose start time is greater than or equal the
-     * specified date/time are returned.
+     * If set, only reports whose start time is greater than or equal the specified date/time are returned.
      */
     startTimeAtOrAfter?: string;
     /**
-     * If set, only reports whose start time is smaller than the specified
-     * date/time are returned.
+     * If set, only reports whose start time is smaller than the specified date/time are returned.
      */
     startTimeBefore?: string;
   }
@@ -1205,8 +1168,7 @@ export namespace youtubereporting_v1 {
 
     /**
      * youtubereporting.media.download
-     * @desc Method for media download. Download is supported on the URI
-     * `/v1/media/{+name}?alt=media`.
+     * @desc Method for media download. Download is supported on the URI `/v1/media/{+name}?alt=media`.
      * @alias youtubereporting.media.download
      * @memberOf! ()
      *
@@ -1381,26 +1343,19 @@ export namespace youtubereporting_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If set to true, also system-managed report types will be returned;
-     * otherwise only the report types that can be used to create new reporting
-     * jobs will be returned.
+     * If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
      */
     includeSystemManaged?: boolean;
     /**
-     * The content owner's external ID on which behalf the user is acting on. If
-     * not set, the user is acting for himself (his own channel).
+     * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
     /**
-     * Requested page size. Server may return fewer report types than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return.
-     * Typically, this is the value of ListReportTypesResponse.next_page_token
-     * returned in response to the previous call to the `ListReportTypes`
-     * method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
      */
     pageToken?: string;
   }

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace fusiontables_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace fusiontables_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,7 +97,10 @@ export namespace fusiontables_v2 {
     template: Resource$Template;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.column = new Resource$Column(this.context);
       this.query = new Resource$Query(this.context);
@@ -112,8 +112,7 @@ export namespace fusiontables_v2 {
   }
 
   /**
-   * Specifies the minimum and maximum values, the color, opacity, icon and
-   * weight of a bucket within a StyleSetting.
+   * Specifies the minimum and maximum values, the color, opacity, icon and weight of a bucket within a StyleSetting.
    */
   export interface Schema$Bucket {
     /**
@@ -125,13 +124,11 @@ export namespace fusiontables_v2 {
      */
     icon?: string;
     /**
-     * Maximum value in the selected column for a row to be styled according to
-     * the bucket color, opacity, icon, or weight.
+     * Maximum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
      */
     max?: number;
     /**
-     * Minimum value in the selected column for a row to be styled according to
-     * the bucket color, opacity, icon, or weight.
+     * Minimum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
      */
     min?: number;
     /**
@@ -148,8 +145,7 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$Column {
     /**
-     * Identifier of the base column. If present, this column is derived from
-     * the specified base column.
+     * Identifier of the base column. If present, this column is derived from the specified base column.
      */
     baseColumn?: {columnId?: number; tableIndex?: number};
     /**
@@ -169,41 +165,15 @@ export namespace fusiontables_v2 {
      */
     description?: string;
     /**
-     * Format pattern. Acceptable values are DT_DATE_MEDIUMe.g Dec 24, 2008
-     * DT_DATE_SHORTfor example 12/24/08 DT_DATE_TIME_MEDIUMfor example Dec 24,
-     * 2008 8:30:45 PM DT_DATE_TIME_SHORTfor example 12/24/08 8:30 PM
-     * DT_DAY_MONTH_2_DIGIT_YEARfor example 24/12/08
-     * DT_DAY_MONTH_2_DIGIT_YEAR_TIMEfor example 24/12/08 20:30
-     * DT_DAY_MONTH_2_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/08 8:30 PM
-     * DT_DAY_MONTH_4_DIGIT_YEARfor example 24/12/2008
-     * DT_DAY_MONTH_4_DIGIT_YEAR_TIMEfor example 24/12/2008 20:30
-     * DT_DAY_MONTH_4_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/2008 8:30 PM
-     * DT_ISO_YEAR_MONTH_DAYfor example 2008-12-24 DT_ISO_YEAR_MONTH_DAY_TIMEfor
-     * example 2008-12-24 20:30:45 DT_MONTH_DAY_4_DIGIT_YEARfor example
-     * 12/24/2008 DT_TIME_LONGfor example 8:30:45 PM UTC-6 DT_TIME_MEDIUMfor
-     * example 8:30:45 PM DT_TIME_SHORTfor example 8:30 PM DT_YEAR_ONLYfor
-     * example 2008 HIGHLIGHT_UNTYPED_CELLSHighlight cell data that does not
-     * match the data type NONENo formatting (default) NUMBER_CURRENCYfor
-     * example $1234.56 NUMBER_DEFAULTfor example 1,234.56 NUMBER_INTEGERfor
-     * example 1235 NUMBER_NO_SEPARATORfor example 1234.56 NUMBER_PERCENTfor
-     * example 123,456% NUMBER_SCIENTIFICfor example 1E3
-     * STRING_EIGHT_LINE_IMAGEDisplays thumbnail images as tall as eight lines
-     * of text STRING_FOUR_LINE_IMAGEDisplays thumbnail images as tall as four
-     * lines of text STRING_JSON_TEXTAllows editing of text as JSON in UI
-     * STRING_JSON_LISTAllows editing of text as a JSON list in UI
-     * STRING_LINKTreats cell as a link (must start with http:// or https://)
-     * STRING_ONE_LINE_IMAGEDisplays thumbnail images as tall as one line of
-     * text STRING_VIDEO_OR_MAPDisplay a video or map thumbnail
+     * Format pattern. Acceptable values are DT_DATE_MEDIUMe.g Dec 24, 2008 DT_DATE_SHORTfor example 12/24/08 DT_DATE_TIME_MEDIUMfor example Dec 24, 2008 8:30:45 PM DT_DATE_TIME_SHORTfor example 12/24/08 8:30 PM DT_DAY_MONTH_2_DIGIT_YEARfor example 24/12/08 DT_DAY_MONTH_2_DIGIT_YEAR_TIMEfor example 24/12/08 20:30 DT_DAY_MONTH_2_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/08 8:30 PM DT_DAY_MONTH_4_DIGIT_YEARfor example 24/12/2008 DT_DAY_MONTH_4_DIGIT_YEAR_TIMEfor example 24/12/2008 20:30 DT_DAY_MONTH_4_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/2008 8:30 PM DT_ISO_YEAR_MONTH_DAYfor example 2008-12-24 DT_ISO_YEAR_MONTH_DAY_TIMEfor example 2008-12-24 20:30:45 DT_MONTH_DAY_4_DIGIT_YEARfor example 12/24/2008 DT_TIME_LONGfor example 8:30:45 PM UTC-6 DT_TIME_MEDIUMfor example 8:30:45 PM DT_TIME_SHORTfor example 8:30 PM DT_YEAR_ONLYfor example 2008 HIGHLIGHT_UNTYPED_CELLSHighlight cell data that does not match the data type NONENo formatting (default) NUMBER_CURRENCYfor example $1234.56 NUMBER_DEFAULTfor example 1,234.56 NUMBER_INTEGERfor example 1235 NUMBER_NO_SEPARATORfor example 1234.56 NUMBER_PERCENTfor example 123,456% NUMBER_SCIENTIFICfor example 1E3 STRING_EIGHT_LINE_IMAGEDisplays thumbnail images as tall as eight lines of text STRING_FOUR_LINE_IMAGEDisplays thumbnail images as tall as four lines of text STRING_JSON_TEXTAllows editing of text as JSON in UI STRING_JSON_LISTAllows editing of text as a JSON list in UI STRING_LINKTreats cell as a link (must start with http:// or https://) STRING_ONE_LINE_IMAGEDisplays thumbnail images as tall as one line of text STRING_VIDEO_OR_MAPDisplay a video or map thumbnail
      */
     formatPattern?: string;
     /**
-     * Column graph predicate. Used to map table to graph data model
-     * (subject,predicate,object) See W3C Graph-based Data Model.
+     * Column graph predicate. Used to map table to graph data model (subject,predicate,object) See W3C Graph-based Data Model.
      */
     graphPredicate?: string;
     /**
-     * The kind of item this is. For a column, this is always
-     * fusiontables#column.
+     * The kind of item this is. For a column, this is always fusiontables#column.
      */
     kind?: string;
     /**
@@ -219,8 +189,7 @@ export namespace fusiontables_v2 {
      */
     validateData?: boolean;
     /**
-     * List of valid values used to validate data and supply a drop-down list of
-     * values in the web application.
+     * List of valid values used to validate data and supply a drop-down list of values in the web application.
      */
     validValues?: string[];
   }
@@ -233,13 +202,11 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$Column[];
     /**
-     * The kind of item this is. For a column list, this is always
-     * fusiontables#columnList.
+     * The kind of item this is. For a column list, this is always fusiontables#columnList.
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
     /**
@@ -266,8 +233,7 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$Import {
     /**
-     * The kind of item this is. For an import, this is always
-     * fusiontables#import.
+     * The kind of item this is. For an import, this is always fusiontables#import.
      */
     kind?: string;
     /**
@@ -297,8 +263,7 @@ export namespace fusiontables_v2 {
      */
     strokeColor?: string;
     /**
-     * Column-value, gradient or buckets styler that is used to determine the
-     * line color and opacity.
+     * Column-value, gradient or buckets styler that is used to determine the line color and opacity.
      */
     strokeColorStyler?: Schema$StyleFunction;
     /**
@@ -310,8 +275,7 @@ export namespace fusiontables_v2 {
      */
     strokeWeight?: number;
     /**
-     * Column-value or bucket styler that is used to determine the width of the
-     * line.
+     * Column-value or bucket styler that is used to determine the width of the line.
      */
     strokeWeightStyler?: Schema$StyleFunction;
   }
@@ -333,8 +297,7 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$PointStyle {
     /**
-     * Name of the icon. Use values defined in
-     * http://www.google.com/fusiontables/DataSource?dsrcid=308519
+     * Name of the icon. Use values defined in http://www.google.com/fusiontables/DataSource?dsrcid=308519
      */
     iconName?: string;
     /**
@@ -364,13 +327,11 @@ export namespace fusiontables_v2 {
      */
     fillColor?: string;
     /**
-     * Column-value, gradient, or bucket styler that is used to determine the
-     * interior color and opacity of the polygon.
+     * Column-value, gradient, or bucket styler that is used to determine the interior color and opacity of the polygon.
      */
     fillColorStyler?: Schema$StyleFunction;
     /**
-     * Opacity of the interior of the polygon: 0.0 (transparent) to 1.0
-     * (opaque).
+     * Opacity of the interior of the polygon: 0.0 (transparent) to 1.0 (opaque).
      */
     fillOpacity?: number;
     /**
@@ -378,8 +339,7 @@ export namespace fusiontables_v2 {
      */
     strokeColor?: string;
     /**
-     * Column-value, gradient or buckets styler that is used to determine the
-     * border color and opacity.
+     * Column-value, gradient or buckets styler that is used to determine the border color and opacity.
      */
     strokeColorStyler?: Schema$StyleFunction;
     /**
@@ -391,8 +351,7 @@ export namespace fusiontables_v2 {
      */
     strokeWeight?: number;
     /**
-     * Column-value or bucket styler that is used to determine the width of the
-     * polygon border.
+     * Column-value or bucket styler that is used to determine the width of the polygon border.
      */
     strokeWeightStyler?: Schema$StyleFunction;
   }
@@ -405,14 +364,11 @@ export namespace fusiontables_v2 {
      */
     columns?: string[];
     /**
-     * The kind of item this is. For responses to SQL queries, this is always
-     * fusiontables#sqlresponse.
+     * The kind of item this is. For responses to SQL queries, this is always fusiontables#sqlresponse.
      */
     kind?: string;
     /**
-     * The rows in the table. For each cell we print out whatever cell value
-     * (e.g., numeric, string) exists. Thus it is important that each cell
-     * contains only one value.
+     * The rows in the table. For each cell we print out whatever cell value (e.g., numeric, string) exists. Thus it is important that each cell contains only one value.
      */
     rows?: any[][];
   }
@@ -421,8 +377,7 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$StyleFunction {
     /**
-     * Bucket function that assigns a style based on the range a column value
-     * falls into.
+     * Bucket function that assigns a style based on the range a column value falls into.
      */
     buckets?: Schema$Bucket[];
     /**
@@ -430,8 +385,7 @@ export namespace fusiontables_v2 {
      */
     columnName?: string;
     /**
-     * Gradient function that interpolates a range of colors based on column
-     * value.
+     * Gradient function that interpolates a range of colors based on column value.
      */
     gradient?: {
       colors?: Array<{color?: string; opacity?: number}>;
@@ -439,26 +393,16 @@ export namespace fusiontables_v2 {
       min?: number;
     };
     /**
-     * Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the
-     * column value is to be used as is, i.e., the column values can have colors
-     * in #RRGGBBAA format or integer line widths or icon names;
-     * fusiontables#gradient if the styling of the row is to be based on
-     * applying the gradient function on the column value; or
-     * fusiontables#buckets if the styling is to based on the bucket into which
-     * the the column value falls.
+     * Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the column value is to be used as is, i.e., the column values can have colors in #RRGGBBAA format or integer line widths or icon names; fusiontables#gradient if the styling of the row is to be based on applying the gradient function on the column value; or fusiontables#buckets if the styling is to based on the bucket into which the the column value falls.
      */
     kind?: string;
   }
   /**
-   * Represents a complete StyleSettings object. The primary key is a
-   * combination of the tableId and a styleId.
+   * Represents a complete StyleSettings object. The primary key is a combination of the tableId and a styleId.
    */
   export interface Schema$StyleSetting {
     /**
-     * The kind of item this is. A StyleSetting contains the style definitions
-     * for points, lines, and polygons in a table. Since a table can have any
-     * one or all of them, a style definition can have point, line and polygon
-     * style definitions.
+     * The kind of item this is. A StyleSetting contains the style definitions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
      */
     kind?: string;
     /**
@@ -495,13 +439,11 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$StyleSetting[];
     /**
-     * The kind of item this is. For a style list, this is always
-     * fusiontables#styleSettingList .
+     * The kind of item this is. For a style list, this is always fusiontables#styleSettingList .
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more styles left.
+     * Token used to access the next page of this result. No token is displayed if there are no more styles left.
      */
     nextPageToken?: string;
     /**
@@ -575,19 +517,16 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$Table[];
     /**
-     * The kind of item this is. For table list, this is always
-     * fusiontables#tableList.
+     * The kind of item this is. For table list, this is always fusiontables#tableList.
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
   }
   /**
-   * A background task on a table, initiated for time- or resource-consuming
-   * operations such as changing column types or deleting all rows.
+   * A background task on a table, initiated for time- or resource-consuming operations such as changing column types or deleting all rows.
    */
   export interface Schema$Task {
     /**
@@ -599,8 +538,7 @@ export namespace fusiontables_v2 {
      */
     progress?: string;
     /**
-     * false while the table is busy with some other task. true if this
-     * background task is currently running.
+     * false while the table is busy with some other task. true if this background task is currently running.
      */
     started?: boolean;
     /**
@@ -625,8 +563,7 @@ export namespace fusiontables_v2 {
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
     /**
@@ -639,20 +576,15 @@ export namespace fusiontables_v2 {
    */
   export interface Schema$Template {
     /**
-     * List of columns from which the template is to be automatically
-     * constructed. Only one of body or automaticColumns can be specified.
+     * List of columns from which the template is to be automatically constructed. Only one of body or automaticColumns can be specified.
      */
     automaticColumnNames?: string[];
     /**
-     * Body of the template. It contains HTML with {column_name} to insert
-     * values from a particular column. The body is sanitized to remove certain
-     * tags, e.g., script. Only one of body or automaticColumns can be
-     * specified.
+     * Body of the template. It contains HTML with {column_name} to insert values from a particular column. The body is sanitized to remove certain tags, e.g., script. Only one of body or automaticColumns can be specified.
      */
     body?: string;
     /**
-     * The kind of item this is. For a template, this is always
-     * fusiontables#template.
+     * The kind of item this is. For a template, this is always fusiontables#template.
      */
     kind?: string;
     /**
@@ -664,8 +596,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
     /**
-     * Identifier for the template, unique within the context of a particular
-     * table.
+     * Identifier for the template, unique within the context of a particular table.
      */
     templateId?: number;
   }
@@ -678,13 +609,11 @@ export namespace fusiontables_v2 {
      */
     items?: Schema$Template[];
     /**
-     * The kind of item this is. For a template list, this is always
-     * fusiontables#templateList .
+     * The kind of item this is. For a template list, this is always fusiontables#templateList .
      */
     kind?: string;
     /**
-     * Token used to access the next page of this result. No token is displayed
-     * if there are no more pages left.
+     * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
     nextPageToken?: string;
     /**
@@ -988,8 +917,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.column.patch
-     * @desc Updates the name or type of an existing column. This method
-     * supports patch semantics.
+     * @desc Updates the name or type of an existing column. This method supports patch semantics.
      * @alias fusiontables.column.patch
      * @memberOf! ()
      *
@@ -1246,8 +1174,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.query.sql
-     * @desc Executes a Fusion Tables SQL statement, which can be any of  -
-     * SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE statement.
+     * @desc Executes a Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE statement.
      * @alias fusiontables.query.sql
      * @memberOf! ()
      *
@@ -1322,8 +1249,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.query.sqlGet
-     * @desc Executes a SQL statement which can be any of  - SELECT - SHOW -
-     * DESCRIBE
+     * @desc Executes a SQL statement which can be any of  - SELECT - SHOW - DESCRIBE
      * @alias fusiontables.query.sqlGet
      * @memberOf! ()
      *
@@ -1408,13 +1334,11 @@ export namespace fusiontables_v2 {
      */
     hdrs?: boolean;
     /**
-     * A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT -
-     * UPDATE - DELETE - SHOW - DESCRIBE - CREATE
+     * A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE
      */
     sql?: string;
     /**
-     * Whether typed values are returned in the (JSON) response: numbers for
-     * numeric values and parsed geometries for KML values. Default is true.
+     * Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
      */
     typed?: boolean;
   }
@@ -1433,8 +1357,7 @@ export namespace fusiontables_v2 {
      */
     sql?: string;
     /**
-     * Whether typed values are returned in the (JSON) response: numbers for
-     * numeric values and parsed geometries for KML values. Default is true.
+     * Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
      */
     typed?: boolean;
   }
@@ -2523,9 +2446,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.table.patch
-     * @desc Updates an existing table. Unless explicitly requested, only the
-     * name, description, and attribution will be updated. This method supports
-     * patch semantics.
+     * @desc Updates an existing table. Unless explicitly requested, only the name, description, and attribution will be updated. This method supports patch semantics.
      * @alias fusiontables.table.patch
      * @memberOf! ()
      *
@@ -2598,9 +2519,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.table.refetchSheet
-     * @desc Replaces rows of the table with the rows of the spreadsheet that is
-     * first imported from. Current rows remain visible until all replacement
-     * rows are ready.
+     * @desc Replaces rows of the table with the rows of the spreadsheet that is first imported from. Current rows remain visible until all replacement rows are ready.
      * @alias fusiontables.table.refetchSheet
      * @memberOf! ()
      *
@@ -2671,8 +2590,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.table.replaceRows
-     * @desc Replaces rows of an existing table. Current rows remain visible
-     * until all replacement rows are ready.
+     * @desc Replaces rows of an existing table. Current rows remain visible until all replacement rows are ready.
      * @alias fusiontables.table.replaceRows
      * @memberOf! ()
      *
@@ -2754,8 +2672,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.table.update
-     * @desc Updates an existing table. Unless explicitly requested, only the
-     * name, description, and attribution will be updated.
+     * @desc Updates an existing table. Unless explicitly requested, only the name, description, and attribution will be updated.
      * @alias fusiontables.table.update
      * @memberOf! ()
      *
@@ -2871,31 +2788,23 @@ export namespace fusiontables_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The delimiter used to separate cell values. This can only consist of a
-     * single character. Default is ,.
+     * The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
      */
     delimiter?: string;
     /**
-     * The encoding of the content. Default is UTF-8. Use auto-detect if you are
-     * unsure of the encoding.
+     * The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
      */
     encoding?: string;
     /**
-     * The index of the line up to which data will be imported. Default is to
-     * import the entire file. If endLine is negative, it is an offset from the
-     * end of the file; the imported content will exclude the last endLine
-     * lines.
+     * The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
      */
     endLine?: number;
     /**
-     * Whether the imported CSV must have the same number of values for each
-     * row. If false, rows with fewer values will be padded with empty values.
-     * Default is true.
+     * Whether the imported CSV must have the same number of values for each row. If false, rows with fewer values will be padded with empty values. Default is true.
      */
     isStrict?: boolean;
     /**
-     * The index of the first line from which to start importing, inclusive.
-     * Default is 0.
+     * The index of the first line from which to start importing, inclusive. Default is 0.
      */
     startLine?: number;
     /**
@@ -2926,13 +2835,11 @@ export namespace fusiontables_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The delimiter used to separate cell values. This can only consist of a
-     * single character. Default is ,.
+     * The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
      */
     delimiter?: string;
     /**
-     * The encoding of the content. Default is UTF-8. Use auto-detect if you are
-     * unsure of the encoding.
+     * The encoding of the content. Default is UTF-8. Use auto-detect if you are unsure of the encoding.
      */
     encoding?: string;
     /**
@@ -2988,9 +2895,7 @@ export namespace fusiontables_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether the view definition is also updated. The specified view
-     * definition replaces the existing one. Only a view can be updated with a
-     * new definition.
+     * Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      */
     replaceViewDefinition?: boolean;
     /**
@@ -3023,32 +2928,23 @@ export namespace fusiontables_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The delimiter used to separate cell values. This can only consist of a
-     * single character. Default is ,.
+     * The delimiter used to separate cell values. This can only consist of a single character. Default is ,.
      */
     delimiter?: string;
     /**
-     * The encoding of the content. Default is UTF-8. Use 'auto-detect' if you
-     * are unsure of the encoding.
+     * The encoding of the content. Default is UTF-8. Use 'auto-detect' if you are unsure of the encoding.
      */
     encoding?: string;
     /**
-     * The index of the line up to which data will be imported. Default is to
-     * import the entire file. If endLine is negative, it is an offset from the
-     * end of the file; the imported content will exclude the last endLine
-     * lines.
+     * The index of the line up to which data will be imported. Default is to import the entire file. If endLine is negative, it is an offset from the end of the file; the imported content will exclude the last endLine lines.
      */
     endLine?: number;
     /**
-     * Whether the imported CSV must have the same number of column values for
-     * each row. If true, throws an exception if the CSV does not have the same
-     * number of columns. If false, rows with fewer column values will be padded
-     * with empty values. Default is true.
+     * Whether the imported CSV must have the same number of column values for each row. If true, throws an exception if the CSV does not have the same number of columns. If false, rows with fewer column values will be padded with empty values. Default is true.
      */
     isStrict?: boolean;
     /**
-     * The index of the first line from which to start importing, inclusive.
-     * Default is 0.
+     * The index of the first line from which to start importing, inclusive. Default is 0.
      */
     startLine?: number;
     /**
@@ -3078,9 +2974,7 @@ export namespace fusiontables_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether the view definition is also updated. The specified view
-     * definition replaces the existing one. Only a view can be updated with a
-     * new definition.
+     * Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      */
     replaceViewDefinition?: boolean;
     /**
@@ -3102,8 +2996,7 @@ export namespace fusiontables_v2 {
 
     /**
      * fusiontables.task.delete
-     * @desc Deletes a specific task by its ID, unless that task has already
-     * started running.
+     * @desc Deletes a specific task by its ID, unless that task has already started running.
      * @alias fusiontables.task.delete
      * @memberOf! ()
      *

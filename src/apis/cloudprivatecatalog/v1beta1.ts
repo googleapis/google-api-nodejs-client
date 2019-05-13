@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace cloudprivatecatalog_v1beta1 {
   /**
    * Cloud Private Catalog API
    *
-   * Enable cloud users to discover enterprise catalogs and products in their
-   * organizations.
+   * Enable cloud users to discover enterprise catalogs and products in their organizations.
    *
    * @example
    * const {google} = require('googleapis');
@@ -115,7 +110,10 @@ export namespace cloudprivatecatalog_v1beta1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.folders = new Resource$Folders(this.context);
       this.organizations = new Resource$Organizations(this.context);
@@ -124,8 +122,7 @@ export namespace cloudprivatecatalog_v1beta1 {
   }
 
   /**
-   * The readonly representation of a catalog computed with a given resource
-   * context.
+   * The readonly representation of a catalog computed with a given resource context.
    */
   export interface Schema$GoogleCloudPrivatecatalogV1beta1Catalog {
     /**
@@ -141,8 +138,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     displayName?: string;
     /**
-     * Output only. The resource name of the target catalog, in the format of
-     * `catalogs/{catalog_id}&#39;.
+     * Output only. The resource name of the target catalog, in the format of `catalogs/{catalog_id}&#39;.
      */
     name?: string;
     /**
@@ -151,14 +147,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     updateTime?: string;
   }
   /**
-   * The readonly representation of a product computed with a given resource
-   * context.
+   * The readonly representation of a product computed with a given resource context.
    */
   export interface Schema$GoogleCloudPrivatecatalogV1beta1Product {
     /**
-     * Output only. The type of the product asset. It can be one of the
-     * following values:  * `google.deploymentmanager.Template` *
-     * `google.cloudprivatecatalog.ListingOnly`
+     * Output only. The type of the product asset. It can be one of the following values:  * `google.deploymentmanager.Template` * `google.cloudprivatecatalog.ListingOnly`
      */
     assetType?: string;
     /**
@@ -166,38 +159,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     createTime?: string;
     /**
-     * Output only. The display metadata to describe the product. The JSON
-     * schema of the metadata differs by Product.asset_type. When the type is
-     * `google.deploymentmanager.Template`, the schema is as follows:  ```
-     * &quot;$schema&quot;: http://json-schema.org/draft-04/schema# type: object
-     * properties:   name:     type: string     minLength: 1     maxLength: 64
-     * description:     type: string     minLength: 1     maxLength: 2048
-     * tagline:     type: string     minLength: 1     maxLength: 100
-     * support_info:     type: string     minLength: 1     maxLength: 2048
-     * creator:     type: string     minLength: 1     maxLength: 100
-     * documentation:     type: array     items:       type: object properties:
-     * url:           type: string           pattern:
-     * &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot;
-     * title:           type: string           minLength: 1           maxLength:
-     * 64         description:           type: string           minLength: 1
-     * maxLength: 2048 required: - name - description additionalProperties:
-     * false  ```  When the asset type is
-     * `google.cloudprivatecatalog.ListingOnly`, the schema is as follows:  ```
-     * &quot;$schema&quot;: http://json-schema.org/draft-04/schema# type: object
-     * properties:   name:     type: string     minLength: 1     maxLength: 64
-     * description:     type: string     minLength: 1     maxLength: 2048
-     * tagline:     type: string     minLength: 1     maxLength: 100
-     * support_info:     type: string     minLength: 1     maxLength: 2048
-     * creator:     type: string     minLength: 1     maxLength: 100
-     * documentation:     type: array     items:       type: object properties:
-     * url:           type: string           pattern:
-     * &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot;
-     * title:           type: string           minLength: 1           maxLength:
-     * 64         description:           type: string           minLength: 1
-     * maxLength: 2048   signup_url:     type: string     pattern:
-     * &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot;
-     * required: - name - description - signup_url additionalProperties: false
-     * ```
+     * Output only. The display metadata to describe the product. The JSON schema of the metadata differs by Product.asset_type. When the type is `google.deploymentmanager.Template`, the schema is as follows:  ``` &quot;$schema&quot;: http://json-schema.org/draft-04/schema# type: object properties:   name:     type: string     minLength: 1     maxLength: 64   description:     type: string     minLength: 1     maxLength: 2048   tagline:     type: string     minLength: 1     maxLength: 100   support_info:     type: string     minLength: 1     maxLength: 2048   creator:     type: string     minLength: 1     maxLength: 100   documentation:     type: array     items:       type: object       properties:         url:           type: string           pattern:           &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot;         title:           type: string           minLength: 1           maxLength: 64         description:           type: string           minLength: 1           maxLength: 2048 required: - name - description additionalProperties: false  ```  When the asset type is `google.cloudprivatecatalog.ListingOnly`, the schema is as follows:  ``` &quot;$schema&quot;: http://json-schema.org/draft-04/schema# type: object properties:   name:     type: string     minLength: 1     maxLength: 64   description:     type: string     minLength: 1     maxLength: 2048   tagline:     type: string     minLength: 1     maxLength: 100   support_info:     type: string     minLength: 1     maxLength: 2048   creator:     type: string     minLength: 1     maxLength: 100   documentation:     type: array     items:       type: object       properties:         url:           type: string           pattern:           &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot;         title:           type: string           minLength: 1           maxLength: 64         description:           type: string           minLength: 1           maxLength: 2048   signup_url:     type: string     pattern:     &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot; required: - name - description - signup_url additionalProperties: false ```
      */
     displayMetadata?: {[key: string]: any};
     /**
@@ -205,9 +167,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     iconUri?: string;
     /**
-     * Output only. The resource name of the target product, in the format of
-     * `products/a-z*[a-z0-9]&#39;.  A unique identifier for the product under a
-     * catalog.
+     * Output only. The resource name of the target product, in the format of `products/a-z*[a-z0-9]&#39;.  A unique identifier for the product under a catalog.
      */
     name?: string;
     /**
@@ -224,8 +184,7 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     catalogs?: Schema$GoogleCloudPrivatecatalogV1beta1Catalog[];
     /**
-     * A pagination token returned from a previous call to SearchCatalogs that
-     * indicates from where listing should continue. This field is optional.
+     * A pagination token returned from a previous call to SearchCatalogs that indicates from where listing should continue. This field is optional.
      */
     nextPageToken?: string;
   }
@@ -234,8 +193,7 @@ export namespace cloudprivatecatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudPrivatecatalogV1beta1SearchProductsResponse {
     /**
-     * A pagination token returned from a previous call to SearchProducts that
-     * indicates from where listing should continue. This field is optional.
+     * A pagination token returned from a previous call to SearchProducts that indicates from where listing should continue. This field is optional.
      */
     nextPageToken?: string;
     /**
@@ -248,8 +206,7 @@ export namespace cloudprivatecatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudPrivatecatalogV1beta1SearchVersionsResponse {
     /**
-     * A pagination token returned from a previous call to SearchVersions that
-     * indicates from where the listing should continue. This field is optional.
+     * A pagination token returned from a previous call to SearchVersions that indicates from where the listing should continue. This field is optional.
      */
     nextPageToken?: string;
     /**
@@ -258,14 +215,11 @@ export namespace cloudprivatecatalog_v1beta1 {
     versions?: Schema$GoogleCloudPrivatecatalogV1beta1Version[];
   }
   /**
-   * The consumer representation of a version which is a child resource under a
-   * `Product` with asset data.
+   * The consumer representation of a version which is a child resource under a `Product` with asset data.
    */
   export interface Schema$GoogleCloudPrivatecatalogV1beta1Version {
     /**
-     * Output only. The asset which has been validated and is ready to be
-     * provisioned. See google.cloud.privatecatalogproducer.v1beta.Version.asset
-     * for details.
+     * Output only. The asset which has been validated and is ready to be provisioned. See google.cloud.privatecatalogproducer.v1beta.Version.asset for details.
      */
     asset?: {[key: string]: any};
     /**
@@ -273,14 +227,11 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     createTime?: string;
     /**
-     * Output only. The user-supplied description of the version. Maximum of 256
-     * characters.
+     * Output only. The user-supplied description of the version. Maximum of 256 characters.
      */
     description?: string;
     /**
-     * Output only. The resource name of the version, in the format
-     * `catalogs/{catalog_id}/products/{product_id}/versions/a-z*[a-z0-9]&#39;.
-     * A unique identifier for the version under a product.
+     * Output only. The resource name of the version, in the format `catalogs/{catalog_id}/products/{product_id}/versions/a-z*[a-z0-9]&#39;.  A unique identifier for the version under a product.
      */
     name?: string;
     /**
@@ -310,8 +261,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.folders.catalogs.search
-     * @desc Search Catalog resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Catalog resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.folders.catalogs.search
      * @memberOf! ()
      *
@@ -426,20 +376,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchCatalogs that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchCatalogs that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the catalogs. The supported queries are:  * Get a
-     * single catalog: `name=catalogs/{catalog_id}`
+     * The query to filter the catalogs. The supported queries are:  * Get a single catalog: `name=catalogs/{catalog_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. It can be in following
-     * formats:  * `projects/{project_id}` * `folders/{folder_id}` *
-     * `organizations/{organization_id}`
+     * Required. The name of the resource context. It can be in following formats:  * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`
      */
     resource?: string;
   }
@@ -452,8 +397,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.folders.products.search
-     * @desc Search Product resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Product resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.folders.products.search
      * @memberOf! ()
      *
@@ -568,21 +512,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchProducts that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchProducts that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the products.  The supported queries are: * List
-     * products of all catalogs: empty * List products under a catalog:
-     * `parent=catalogs/{catalog_id}` * Get a product by name:
-     * `name=catalogs/{catalog_id}/products/{product_id}`
+     * The query to filter the products.  The supported queries are: * List products of all catalogs: empty * List products under a catalog: `parent=catalogs/{catalog_id}` * Get a product by name: `name=catalogs/{catalog_id}/products/{product_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. See
-     * SearchCatalogsRequest.resource for details.
+     * Required. The name of the resource context. See SearchCatalogsRequest.resource for details.
      */
     resource?: string;
   }
@@ -595,8 +533,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.folders.versions.search
-     * @desc Search Version resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Version resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.folders.versions.search
      * @memberOf! ()
      *
@@ -711,22 +648,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchVersions that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchVersions that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the versions. Required.  The supported queries are: *
-     * List versions under a product:
-     * `parent=catalogs/{catalog_id}/products/{product_id}` * Get a version by
-     * name:
-     * `name=catalogs/{catalog_id}/products/{product_id}/versions/{version_id}`
+     * The query to filter the versions. Required.  The supported queries are: * List versions under a product: `parent=catalogs/{catalog_id}/products/{product_id}` * Get a version by name: `name=catalogs/{catalog_id}/products/{product_id}/versions/{version_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. See
-     * SearchCatalogsRequest.resource for details.
+     * Required. The name of the resource context. See SearchCatalogsRequest.resource for details.
      */
     resource?: string;
   }
@@ -752,8 +682,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.organizations.catalogs.search
-     * @desc Search Catalog resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Catalog resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.organizations.catalogs.search
      * @memberOf! ()
      *
@@ -868,20 +797,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchCatalogs that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchCatalogs that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the catalogs. The supported queries are:  * Get a
-     * single catalog: `name=catalogs/{catalog_id}`
+     * The query to filter the catalogs. The supported queries are:  * Get a single catalog: `name=catalogs/{catalog_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. It can be in following
-     * formats:  * `projects/{project_id}` * `folders/{folder_id}` *
-     * `organizations/{organization_id}`
+     * Required. The name of the resource context. It can be in following formats:  * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`
      */
     resource?: string;
   }
@@ -894,8 +818,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.organizations.products.search
-     * @desc Search Product resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Product resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.organizations.products.search
      * @memberOf! ()
      *
@@ -1010,21 +933,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchProducts that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchProducts that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the products.  The supported queries are: * List
-     * products of all catalogs: empty * List products under a catalog:
-     * `parent=catalogs/{catalog_id}` * Get a product by name:
-     * `name=catalogs/{catalog_id}/products/{product_id}`
+     * The query to filter the products.  The supported queries are: * List products of all catalogs: empty * List products under a catalog: `parent=catalogs/{catalog_id}` * Get a product by name: `name=catalogs/{catalog_id}/products/{product_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. See
-     * SearchCatalogsRequest.resource for details.
+     * Required. The name of the resource context. See SearchCatalogsRequest.resource for details.
      */
     resource?: string;
   }
@@ -1037,8 +954,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.organizations.versions.search
-     * @desc Search Version resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Version resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.organizations.versions.search
      * @memberOf! ()
      *
@@ -1153,22 +1069,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchVersions that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchVersions that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the versions. Required.  The supported queries are: *
-     * List versions under a product:
-     * `parent=catalogs/{catalog_id}/products/{product_id}` * Get a version by
-     * name:
-     * `name=catalogs/{catalog_id}/products/{product_id}/versions/{version_id}`
+     * The query to filter the versions. Required.  The supported queries are: * List versions under a product: `parent=catalogs/{catalog_id}/products/{product_id}` * Get a version by name: `name=catalogs/{catalog_id}/products/{product_id}/versions/{version_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. See
-     * SearchCatalogsRequest.resource for details.
+     * Required. The name of the resource context. See SearchCatalogsRequest.resource for details.
      */
     resource?: string;
   }
@@ -1194,8 +1103,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.projects.catalogs.search
-     * @desc Search Catalog resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Catalog resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.projects.catalogs.search
      * @memberOf! ()
      *
@@ -1310,20 +1218,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchCatalogs that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchCatalogs that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the catalogs. The supported queries are:  * Get a
-     * single catalog: `name=catalogs/{catalog_id}`
+     * The query to filter the catalogs. The supported queries are:  * Get a single catalog: `name=catalogs/{catalog_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. It can be in following
-     * formats:  * `projects/{project_id}` * `folders/{folder_id}` *
-     * `organizations/{organization_id}`
+     * Required. The name of the resource context. It can be in following formats:  * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`
      */
     resource?: string;
   }
@@ -1336,8 +1239,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.projects.products.search
-     * @desc Search Product resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Product resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.projects.products.search
      * @memberOf! ()
      *
@@ -1452,21 +1354,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchProducts that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchProducts that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the products.  The supported queries are: * List
-     * products of all catalogs: empty * List products under a catalog:
-     * `parent=catalogs/{catalog_id}` * Get a product by name:
-     * `name=catalogs/{catalog_id}/products/{product_id}`
+     * The query to filter the products.  The supported queries are: * List products of all catalogs: empty * List products under a catalog: `parent=catalogs/{catalog_id}` * Get a product by name: `name=catalogs/{catalog_id}/products/{product_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. See
-     * SearchCatalogsRequest.resource for details.
+     * Required. The name of the resource context. See SearchCatalogsRequest.resource for details.
      */
     resource?: string;
   }
@@ -1479,8 +1375,7 @@ export namespace cloudprivatecatalog_v1beta1 {
 
     /**
      * cloudprivatecatalog.projects.versions.search
-     * @desc Search Version resources that consumers have access to, within the
-     * scope of the consumer cloud resource hierarchy context.
+     * @desc Search Version resources that consumers have access to, within the scope of the consumer cloud resource hierarchy context.
      * @alias cloudprivatecatalog.projects.versions.search
      * @memberOf! ()
      *
@@ -1595,22 +1490,15 @@ export namespace cloudprivatecatalog_v1beta1 {
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to SearchVersions that
-     * indicates where this listing should continue from. This field is
-     * optional.
+     * A pagination token returned from a previous call to SearchVersions that indicates where this listing should continue from. This field is optional.
      */
     pageToken?: string;
     /**
-     * The query to filter the versions. Required.  The supported queries are: *
-     * List versions under a product:
-     * `parent=catalogs/{catalog_id}/products/{product_id}` * Get a version by
-     * name:
-     * `name=catalogs/{catalog_id}/products/{product_id}/versions/{version_id}`
+     * The query to filter the versions. Required.  The supported queries are: * List versions under a product: `parent=catalogs/{catalog_id}/products/{product_id}` * Get a version by name: `name=catalogs/{catalog_id}/products/{product_id}/versions/{version_id}`
      */
     query?: string;
     /**
-     * Required. The name of the resource context. See
-     * SearchCatalogsRequest.resource for details.
+     * Required. The name of the resource context. See SearchCatalogsRequest.resource for details.
      */
     resource?: string;
   }

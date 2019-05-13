@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace kgsearch_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace kgsearch_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,20 +108,21 @@ export namespace kgsearch_v1 {
     entities: Resource$Entities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.entities = new Resource$Entities(this.context);
     }
   }
 
   /**
-   * Response message includes the context and a list of matching results which
-   * contain the detail of associated entities.
+   * Response message includes the context and a list of matching results which contain the detail of associated entities.
    */
   export interface Schema$SearchResponse {
     /**
-     * The local context applicable for the response. See more details at
-     * http://www.w3.org/TR/json-ld/#context-definitions.
+     * The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions.
      */
     '@context'?: any;
     /**
@@ -146,9 +143,7 @@ export namespace kgsearch_v1 {
 
     /**
      * kgsearch.entities.search
-     * @desc Searches Knowledge Graph for entities that match the constraints. A
-     * list of matched entities will be returned in response, which will be in
-     * JSON-LD format and compatible with http://schema.org
+     * @desc Searches Knowledge Graph for entities that match the constraints. A list of matched entities will be returned in response, which will be in JSON-LD format and compatible with http://schema.org
      * @alias kgsearch.entities.search
      * @memberOf! ()
      *
@@ -233,9 +228,7 @@ export namespace kgsearch_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The list of entity id to be used for search instead of query string. To
-     * specify multiple ids in the HTTP request, repeat the parameter in the URL
-     * as in ...?ids=A&ids=B
+     * The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B
      */
     ids?: string[];
     /**
@@ -243,8 +236,7 @@ export namespace kgsearch_v1 {
      */
     indent?: boolean;
     /**
-     * The list of language codes (defined in ISO 693) to run the query with,
-     * e.g. 'en'.
+     * The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.
      */
     languages?: string[];
     /**
@@ -260,9 +252,7 @@ export namespace kgsearch_v1 {
      */
     query?: string;
     /**
-     * Restricts returned entities with these types, e.g. Person (as defined in
-     * http://schema.org/Person). If multiple types are specified, returned
-     * entities will contain one or more of these types.
+     * Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types.
      */
     types?: string[];
   }

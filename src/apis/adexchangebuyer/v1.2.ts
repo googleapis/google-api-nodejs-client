@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,9 +75,7 @@ export namespace adexchangebuyer_v1_2 {
   /**
    * Ad Exchange Buyer API
    *
-   * Accesses your bidding-account information, submits creatives for
-   * validation, finds available direct deals, and retrieves performance
-   * reports.
+   * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
    *
    * @example
    * const {google} = require('googleapis');
@@ -98,7 +93,10 @@ export namespace adexchangebuyer_v1_2 {
     creatives: Resource$Creatives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.creatives = new Resource$Creatives(this.context);
@@ -118,8 +116,7 @@ export namespace adexchangebuyer_v1_2 {
       url?: string;
     }>;
     /**
-     * The nid parameter value used in cookie match requests. Please contact
-     * your technical account manager if you need to change this.
+     * The nid parameter value used in cookie match requests. Please contact your technical account manager if you need to change this.
      */
     cookieMatchingNid?: string;
     /**
@@ -135,25 +132,20 @@ export namespace adexchangebuyer_v1_2 {
      */
     kind?: string;
     /**
-     * The maximum number of active creatives that an account can have, where a
-     * creative is active if it was inserted or bid with in the last 30 days.
-     * Please contact your technical account manager if you need to change this.
+     * The maximum number of active creatives that an account can have, where a creative is active if it was inserted or bid with in the last 30 days. Please contact your technical account manager if you need to change this.
      */
     maximumActiveCreatives?: number;
     /**
-     * The sum of all bidderLocation.maximumQps values cannot exceed this.
-     * Please contact your technical account manager if you need to change this.
+     * The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.
      */
     maximumTotalQps?: number;
     /**
-     * The number of creatives that this account inserted or bid with in the
-     * last 30 days.
+     * The number of creatives that this account inserted or bid with in the last 30 days.
      */
     numberActiveCreatives?: number;
   }
   /**
-   * An account feed lists Ad Exchange buyer accounts that the user has access
-   * to. Each entry in the feed corresponds to a single buyer account.
+   * An account feed lists Ad Exchange buyer accounts that the user has access to. Each entry in the feed corresponds to a single buyer account.
    */
   export interface Schema$AccountsList {
     /**
@@ -174,8 +166,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     accountId?: number;
     /**
-     * Detected advertiser id, if any. Read-only. This field should not be set
-     * in requests.
+     * Detected advertiser id, if any. Read-only. This field should not be set in requests.
      */
     advertiserId?: string[];
     /**
@@ -187,9 +178,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     agencyId?: string;
     /**
-     * The last upload timestamp of this creative if it was uploaded via API.
-     * Read-only. The value of this field is generated, and will be ignored for
-     * uploads. (formatted RFC 3339 timestamp).
+     * The last upload timestamp of this creative if it was uploaded via API. Read-only. The value of this field is generated, and will be ignored for uploads. (formatted RFC 3339 timestamp).
      */
     apiUploadTimestamp?: string;
     /**
@@ -205,21 +194,15 @@ export namespace adexchangebuyer_v1_2 {
      */
     clickThroughUrl?: string[];
     /**
-     * Shows any corrections that were applied to this creative. Read-only. This
-     * field should not be set in requests.
+     * Shows any corrections that were applied to this creative. Read-only. This field should not be set in requests.
      */
     corrections?: Array<{details?: string[]; reason?: string}>;
     /**
-     * The reasons for disapproval, if any. Note that not all disapproval
-     * reasons may be categorized, so it is possible for the creative to have a
-     * status of DISAPPROVED with an empty list for disapproval_reasons. In this
-     * case, please reach out to your TAM to help debug the issue. Read-only.
-     * This field should not be set in requests.
+     * The reasons for disapproval, if any. Note that not all disapproval reasons may be categorized, so it is possible for the creative to have a status of DISAPPROVED with an empty list for disapproval_reasons. In this case, please reach out to your TAM to help debug the issue. Read-only. This field should not be set in requests.
      */
     disapprovalReasons?: Array<{details?: string[]; reason?: string}>;
     /**
-     * The filtering reasons for the creative. Read-only. This field should not
-     * be set in requests.
+     * The filtering reasons for the creative. Read-only. This field should not be set in requests.
      */
     filteringReasons?: {
       date?: string;
@@ -230,8 +213,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     height?: number;
     /**
-     * The HTML snippet that displays the ad when inserted in the web page. If
-     * set, videoURL should not be set.
+     * The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set.
      */
     HTMLSnippet?: string;
     /**
@@ -243,23 +225,19 @@ export namespace adexchangebuyer_v1_2 {
      */
     kind?: string;
     /**
-     * Detected product categories, if any. Read-only. This field should not be
-     * set in requests.
+     * Detected product categories, if any. Read-only. This field should not be set in requests.
      */
     productCategories?: number[];
     /**
-     * All restricted categories for the ads that may be shown from this
-     * snippet.
+     * All restricted categories for the ads that may be shown from this snippet.
      */
     restrictedCategories?: number[];
     /**
-     * Detected sensitive categories, if any. Read-only. This field should not
-     * be set in requests.
+     * Detected sensitive categories, if any. Read-only. This field should not be set in requests.
      */
     sensitiveCategories?: number[];
     /**
-     * Creative serving status. Read-only. This field should not be set in
-     * requests.
+     * Creative serving status. Read-only. This field should not be set in requests.
      */
     status?: string;
     /**
@@ -267,8 +245,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     vendorType?: number[];
     /**
-     * The version for this creative. Read-only. This field should not be set in
-     * requests.
+     * The version for this creative. Read-only. This field should not be set in requests.
      */
     version?: number;
     /**
@@ -281,9 +258,7 @@ export namespace adexchangebuyer_v1_2 {
     width?: number;
   }
   /**
-   * The creatives feed lists the active creatives for the Ad Exchange buyer
-   * accounts that the user has access to. Each entry in the feed corresponds to
-   * a single creative.
+   * The creatives feed lists the active creatives for the Ad Exchange buyer accounts that the user has access to. Each entry in the feed corresponds to a single creative.
    */
   export interface Schema$CreativesList {
     /**
@@ -295,9 +270,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through creatives. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -654,8 +627,7 @@ export namespace adexchangebuyer_v1_2 {
 
     /**
      * adexchangebuyer.creatives.get
-     * @desc Gets the status for a single creative. A creative will be available
-     * 30-40 minutes after submission.
+     * @desc Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
      * @alias adexchangebuyer.creatives.get
      * @memberOf! ()
      *
@@ -798,8 +770,7 @@ export namespace adexchangebuyer_v1_2 {
 
     /**
      * adexchangebuyer.creatives.list
-     * @desc Retrieves a list of the authenticated user's active creatives. A
-     * creative will be available 30-40 minutes after submission.
+     * @desc Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
      * @alias adexchangebuyer.creatives.list
      * @memberOf! ()
      *
@@ -906,14 +877,11 @@ export namespace adexchangebuyer_v1_2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Maximum number of entries returned on one result page. If not set, the
-     * default is 100. Optional.
+     * Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response. Optional.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
      */
     pageToken?: string;
     /**

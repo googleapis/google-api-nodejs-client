@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace indexing_v3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace indexing_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,7 +108,10 @@ export namespace indexing_v3 {
     urlNotifications: Resource$Urlnotifications;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.urlNotifications = new Resource$Urlnotifications(this.context);
     }
@@ -128,13 +127,11 @@ export namespace indexing_v3 {
     urlNotificationMetadata?: Schema$UrlNotificationMetadata;
   }
   /**
-   * `UrlNotification` is the resource used in all Indexing API calls. It
-   * describes one event in the life cycle of a Web Document.
+   * `UrlNotification` is the resource used in all Indexing API calls. It describes one event in the life cycle of a Web Document.
    */
   export interface Schema$UrlNotification {
     /**
-     * Creation timestamp for this notification. Users should _not_ specify it,
-     * the field is ignored at the request time.
+     * Creation timestamp for this notification. Users should _not_ specify it, the field is ignored at the request time.
      */
     notifyTime?: string;
     /**
@@ -142,15 +139,12 @@ export namespace indexing_v3 {
      */
     type?: string;
     /**
-     * The object of this notification. The URL must be owned by the publisher
-     * of this notification and, in case of `URL_UPDATED` notifications, it
-     * _must_ be crawlable by Google.
+     * The object of this notification. The URL must be owned by the publisher of this notification and, in case of `URL_UPDATED` notifications, it _must_ be crawlable by Google.
      */
     url?: string;
   }
   /**
-   * Summary of the most recent Indexing API notifications successfully
-   * received, for a given URL.
+   * Summary of the most recent Indexing API notifications successfully received, for a given URL.
    */
   export interface Schema$UrlNotificationMetadata {
     /**
@@ -175,10 +169,7 @@ export namespace indexing_v3 {
 
     /**
      * indexing.urlNotifications.getMetadata
-     * @desc Gets metadata about a Web Document. This method can _only_ be used
-     * to query URLs that were previously seen in successful Indexing API
-     * notifications. Includes the latest `UrlNotification` received via this
-     * API.
+     * @desc Gets metadata about a Web Document. This method can _only_ be used to query URLs that were previously seen in successful Indexing API notifications. Includes the latest `UrlNotification` received via this API.
      * @alias indexing.urlNotifications.getMetadata
      * @memberOf! ()
      *

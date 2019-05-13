@@ -69,6 +69,7 @@ import * as containeranalysis from './containeranalysis';
 import * as content from './content';
 import * as customsearch from './customsearch';
 import * as dataflow from './dataflow';
+import * as datafusion from './datafusion';
 import * as dataproc from './dataproc';
 import * as datastore from './datastore';
 import * as deploymentmanager from './deploymentmanager';
@@ -231,6 +232,7 @@ export const APIS: APIList = {
   content: content.VERSIONS,
   customsearch: customsearch.VERSIONS,
   dataflow: dataflow.VERSIONS,
+  datafusion: datafusion.VERSIONS,
   dataproc: dataproc.VERSIONS,
   datastore: datastore.VERSIONS,
   deploymentmanager: deploymentmanager.VERSIONS,
@@ -391,6 +393,7 @@ export class GeneratedAPIs {
   content = content.content;
   customsearch = customsearch.customsearch;
   dataflow = dataflow.dataflow;
+  datafusion = datafusion.datafusion;
   dataproc = dataproc.dataproc;
   datastore = datastore.datastore;
   deploymentmanager = deploymentmanager.deploymentmanager;

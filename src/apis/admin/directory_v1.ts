@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace admin_directory_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace admin_directory_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace admin_directory_v1 {
   /**
    * Admin Directory API
    *
-   * Manages enterprise resources such as users and groups, administrative
-   * notifications, security features, and more.
+   * Manages enterprise resources such as users and groups, administrative notifications, security features, and more.
    *
    * @example
    * const {google} = require('googleapis');
@@ -115,7 +111,10 @@ export namespace admin_directory_v1 {
     verificationCodes: Resource$Verificationcodes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.asps = new Resource$Asps(this.context);
       this.channels = new Resource$Channels(this.context);
@@ -163,8 +162,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string;
     /**
-     * Group&#39;s primary email (Read-only) User&#39;s primary email
-     * (Read-only)
+     * Group&#39;s primary email (Read-only) User&#39;s primary email (Read-only)
      */
     primaryEmail?: string;
   }
@@ -194,13 +192,11 @@ export namespace admin_directory_v1 {
      */
     blockedApiAccessBuckets?: string[];
     /**
-     * Boolean to indicate whether to enforce app access settings on Android
-     * Drive or not.
+     * Boolean to indicate whether to enforce app access settings on Android Drive or not.
      */
     enforceSettingsForAndroidDrive?: boolean;
     /**
-     * Error message provided by the Admin that will be shown to the user when
-     * an app is blocked.
+     * Error message provided by the Admin that will be shown to the user when an app is blocked.
      */
     errorMessage?: string;
     /**
@@ -208,8 +204,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string;
     /**
-     * Identifies the resource as an app access collection. Value:
-     * admin#directory#appaccesscollection
+     * Identifies the resource as an app access collection. Value: admin#directory#appaccesscollection
      */
     kind?: string;
     /**
@@ -217,8 +212,7 @@ export namespace admin_directory_v1 {
      */
     resourceId?: string;
     /**
-     * Resource name given by the customer while creating/updating. Should be
-     * unique under given customer.
+     * Resource name given by the customer while creating/updating. Should be unique under given customer.
      */
     resourceName?: string;
     /**
@@ -251,8 +245,7 @@ export namespace admin_directory_v1 {
      */
     lastTimeUsed?: string;
     /**
-     * The name of the application that the user, represented by their userId,
-     * entered when the ASP was created.
+     * The name of the application that the user, represented by their userId, entered when the ASP was created.
      */
     name?: string;
     /**
@@ -279,8 +272,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Building {
     /**
-     * The postal address of the building. See PostalAddress for details. Note
-     * that only a single address line and region code are required.
+     * The postal address of the building. See PostalAddress for details. Note that only a single address line and region code are required.
      */
     address?: Schema$BuildingAddress;
     /**
@@ -288,19 +280,15 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
-     * The building name as seen by users in Calendar. Must be unique for the
-     * customer. For example, &quot;NYC-CHEL&quot;. The maximum length is 100
-     * characters.
+     * The building name as seen by users in Calendar. Must be unique for the customer. For example, &quot;NYC-CHEL&quot;. The maximum length is 100 characters.
      */
     buildingName?: string;
     /**
-     * The geographic coordinates of the center of the building, expressed as
-     * latitude and longitude in decimal degrees.
+     * The geographic coordinates of the center of the building, expressed as latitude and longitude in decimal degrees.
      */
     coordinates?: Schema$BuildingCoordinates;
     /**
-     * A brief description of the building. For example, &quot;Chelsea
-     * Market&quot;.
+     * A brief description of the building. For example, &quot;Chelsea Market&quot;.
      */
     description?: string;
     /**
@@ -308,11 +296,7 @@ export namespace admin_directory_v1 {
      */
     etags?: string;
     /**
-     * The display names for all floors in this building. The floors are
-     * expected to be sorted in ascending order, from lowest floor to highest
-     * floor. For example, [&quot;B2&quot;, &quot;B1&quot;, &quot;L&quot;,
-     * &quot;1&quot;, &quot;2&quot;, &quot;2M&quot;, &quot;3&quot;,
-     * &quot;PH&quot;] Must contain at least one entry.
+     * The display names for all floors in this building. The floors are expected to be sorted in ascending order, from lowest floor to highest floor. For example, [&quot;B2&quot;, &quot;B1&quot;, &quot;L&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2M&quot;, &quot;3&quot;, &quot;PH&quot;] Must contain at least one entry.
      */
     floorNames?: string[];
     /**
@@ -329,20 +313,15 @@ export namespace admin_directory_v1 {
      */
     addressLines?: string[];
     /**
-     * Optional. Highest administrative subdivision which is used for postal
-     * addresses of a country or region.
+     * Optional. Highest administrative subdivision which is used for postal addresses of a country or region.
      */
     administrativeArea?: string;
     /**
-     * Optional. BCP-47 language code of the contents of this address (if
-     * known).
+     * Optional. BCP-47 language code of the contents of this address (if known).
      */
     languageCode?: string;
     /**
-     * Optional. Generally refers to the city/town portion of the address.
-     * Examples: US city, IT comune, UK post town. In regions of the world where
-     * localities are not well defined or do not fit into this structure well,
-     * leave locality empty and use addressLines.
+     * Optional. Generally refers to the city/town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave locality empty and use addressLines.
      */
     locality?: string;
     /**
@@ -388,8 +367,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -419,19 +397,15 @@ export namespace admin_directory_v1 {
      */
     floorSection?: string;
     /**
-     * The read-only auto-generated name of the calendar resource which includes
-     * metadata about the resource such as building name, floor, capacity, etc.
-     * For example, &quot;NYC-2-Training Room 1A (16)&quot;.
+     * The read-only auto-generated name of the calendar resource which includes metadata about the resource such as building name, floor, capacity, etc. For example, &quot;NYC-2-Training Room 1A (16)&quot;.
      */
     generatedResourceName?: string;
     /**
-     * The type of the resource. For calendar resources, the value is
-     * admin#directory#resources#calendars#CalendarResource.
+     * The type of the resource. For calendar resources, the value is admin#directory#resources#calendars#CalendarResource.
      */
     kind?: string;
     /**
-     * The category of the calendar resource. Either CONFERENCE_ROOM or OTHER.
-     * Legacy data is set to CATEGORY_UNKNOWN.
+     * The category of the calendar resource. Either CONFERENCE_ROOM or OTHER. Legacy data is set to CATEGORY_UNKNOWN.
      */
     resourceCategory?: string;
     /**
@@ -439,8 +413,7 @@ export namespace admin_directory_v1 {
      */
     resourceDescription?: string;
     /**
-     * The read-only email for the calendar resource. Generated as part of
-     * creating a new calendar resource.
+     * The read-only email for the calendar resource. Generated as part of creating a new calendar resource.
      */
     resourceEmail?: string;
     /**
@@ -448,8 +421,7 @@ export namespace admin_directory_v1 {
      */
     resourceId?: string;
     /**
-     * The name of the calendar resource. For example, &quot;Training Room
-     * 1A&quot;.
+     * The name of the calendar resource. For example, &quot;Training Room 1A&quot;.
      */
     resourceName?: string;
     /**
@@ -474,13 +446,11 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$CalendarResource[];
     /**
-     * Identifies this as a collection of CalendarResources. This is always
-     * admin#directory#resources#calendars#calendarResourcesList.
+     * Identifies this as a collection of CalendarResources. This is always admin#directory#resources#calendars#calendarResourcesList.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -493,8 +463,7 @@ export namespace admin_directory_v1 {
      */
     address?: string;
     /**
-     * Date and time of notification channel expiration, expressed as a Unix
-     * timestamp, in milliseconds. Optional.
+     * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
     expiration?: string;
     /**
@@ -502,8 +471,7 @@ export namespace admin_directory_v1 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a
-     * resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
      */
     kind?: string;
     /**
@@ -515,8 +483,7 @@ export namespace admin_directory_v1 {
      */
     payload?: boolean;
     /**
-     * An opaque ID that identifies the resource being watched on this channel.
-     * Stable across different API versions.
+     * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
     resourceId?: string;
     /**
@@ -524,8 +491,7 @@ export namespace admin_directory_v1 {
      */
     resourceUri?: string;
     /**
-     * An arbitrary string delivered to the target address with each
-     * notification delivered over this channel. Optional.
+     * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
     token?: string;
     /**
@@ -609,8 +575,7 @@ export namespace admin_directory_v1 {
      */
     lastEnrollmentTime?: string;
     /**
-     * Date and time the device was last synchronized with the policy settings
-     * in the G Suite administrator control panel (Read-only)
+     * Date and time the device was last synchronized with the policy settings in the G Suite administrator control panel (Read-only)
      */
     lastSync?: string;
     /**
@@ -618,8 +583,7 @@ export namespace admin_directory_v1 {
      */
     macAddress?: string;
     /**
-     * Mobile Equipment identifier for the 3G mobile card in the Chromebook
-     * (Read-only)
+     * Mobile Equipment identifier for the 3G mobile card in the Chromebook (Read-only)
      */
     meid?: string;
     /**
@@ -647,8 +611,7 @@ export namespace admin_directory_v1 {
      */
     platformVersion?: string;
     /**
-     * List of recent device users, in descending order by last login time
-     * (Read-only)
+     * List of recent device users, in descending order by last login time (Read-only)
      */
     recentUsers?: Array<{email?: string; type?: string}>;
     /**
@@ -691,8 +654,7 @@ export namespace admin_directory_v1 {
     willAutoRenew?: boolean;
   }
   /**
-   * JSON request template for firing actions on ChromeOs Device in Directory
-   * Devices API.
+   * JSON request template for firing actions on ChromeOs Device in Directory Devices API.
    */
   export interface Schema$ChromeOsDeviceAction {
     /**
@@ -702,8 +664,7 @@ export namespace admin_directory_v1 {
     deprovisionReason?: string;
   }
   /**
-   * JSON response template for List Chrome OS Devices operation in Directory
-   * API.
+   * JSON response template for List Chrome OS Devices operation in Directory API.
    */
   export interface Schema$ChromeOsDevices {
     /**
@@ -724,8 +685,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string;
   }
   /**
-   * JSON request template for moving ChromeOs Device to given OU in Directory
-   * Devices API.
+   * JSON request template for moving ChromeOs Device to given OU in Directory Devices API.
    */
   export interface Schema$ChromeOsMoveDevicesToOu {
     /**
@@ -738,8 +698,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Customer {
     /**
-     * The customer&#39;s secondary contact email address. This email address
-     * cannot be on the same domain as the customerDomain
+     * The customer&#39;s secondary contact email address. This email address cannot be on the same domain as the customerDomain
      */
     alternateEmail?: string;
     /**
@@ -747,8 +706,7 @@ export namespace admin_directory_v1 {
      */
     customerCreationTime?: string;
     /**
-     * The customer&#39;s primary domain name string. Do not include the www
-     * prefix when creating a new customer.
+     * The customer&#39;s primary domain name string. Do not include the www prefix when creating a new customer.
      */
     customerDomain?: string;
     /**
@@ -781,8 +739,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$CustomerPostalAddress {
     /**
-     * A customer&#39;s physical address. The address can be composed of one to
-     * three lines.
+     * A customer&#39;s physical address. The address can be composed of one to three lines.
      */
     addressLine1?: string;
     /**
@@ -798,13 +755,11 @@ export namespace admin_directory_v1 {
      */
     contactName?: string;
     /**
-     * This is a required property. For countryCode information see the ISO 3166
-     * country code elements.
+     * This is a required property. For countryCode information see the ISO 3166 country code elements.
      */
     countryCode?: string;
     /**
-     * Name of the locality. An example of a locality value is the city of San
-     * Francisco.
+     * Name of the locality. An example of a locality value is the city of San Francisco.
      */
     locality?: string;
     /**
@@ -812,14 +767,11 @@ export namespace admin_directory_v1 {
      */
     organizationName?: string;
     /**
-     * The postal code. A postalCode example is a postal zip code such as 10009.
-     * This is in accordance with -
-     * http://portablecontacts.net/draft-spec.html#address_element.
+     * The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element.
      */
     postalCode?: string;
     /**
-     * Name of the region. An example of a region value is NY for the state of
-     * New York.
+     * Name of the region. An example of a region value is NY for the state of New York.
      */
     region?: string;
   }
@@ -844,8 +796,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string;
     /**
-     * The parent domain name that the domain alias is associated with. This can
-     * either be a primary or secondary domain name within a customer.
+     * The parent domain name that the domain alias is associated with. This can either be a primary or secondary domain name within a customer.
      */
     parentDomainName?: string;
     /**
@@ -942,8 +893,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$FeatureInstance {
     /**
-     * The feature that this is an instance of. A calendar resource may have
-     * multiple instances of a feature.
+     * The feature that this is an instance of. A calendar resource may have multiple instances of a feature.
      */
     feature?: Schema$Feature;
   }
@@ -973,8 +923,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -1061,8 +1010,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string;
     /**
-     * Unique identifier of customer member (Read-only) Unique identifier of
-     * group (Read-only) Unique identifier of member (Read-only)
+     * Unique identifier of customer member (Read-only) Unique identifier of group (Read-only) Unique identifier of member (Read-only)
      */
     id?: string;
     /**
@@ -1108,8 +1056,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$MembersHasMember {
     /**
-     * Identifies whether the given user is a member of the group. Membership
-     * can be direct or nested.
+     * Identifies whether the given user is a member of the group. Membership can be direct or nested.
      */
     isMember?: boolean;
   }
@@ -1180,8 +1127,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string;
     /**
-     * Date and time the device was first synchronized with the policy settings
-     * in the G Suite administrator control panel (Read-only)
+     * Date and time the device was first synchronized with the policy settings in the G Suite administrator control panel (Read-only)
      */
     firstSync?: string;
     /**
@@ -1205,13 +1151,11 @@ export namespace admin_directory_v1 {
      */
     kind?: string;
     /**
-     * Date and time the device was last synchronized with the policy settings
-     * in the G Suite administrator control panel (Read-only)
+     * Date and time the device was last synchronized with the policy settings in the G Suite administrator control panel (Read-only)
      */
     lastSync?: string;
     /**
-     * Boolean indicating if this account is on owner/primary profile or not
-     * (Read-only)
+     * Boolean indicating if this account is on owner/primary profile or not (Read-only)
      */
     managedAccountIsOnOwnerProfile?: boolean;
     /**
@@ -1288,8 +1232,7 @@ export namespace admin_directory_v1 {
     wifiMacAddress?: string;
   }
   /**
-   * JSON request template for firing commands on Mobile Device in Directory
-   * Devices API.
+   * JSON request template for firing commands on Mobile Device in Directory Devices API.
    */
   export interface Schema$MobileDeviceAction {
     /**
@@ -1419,8 +1362,7 @@ export namespace admin_directory_v1 {
     parentOrgUnitPath?: string;
   }
   /**
-   * JSON response template for List Organization Units operation in Directory
-   * API.
+   * JSON response template for List Organization Units operation in Directory API.
    */
   export interface Schema$OrgUnits {
     /**
@@ -1441,9 +1383,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Privilege {
     /**
-     * A list of child privileges. Privileges for a service form a tree. Each
-     * privilege can have a list of child privileges; this list is empty for a
-     * leaf privilege.
+     * A list of child privileges. Privileges for a service form a tree. Each privilege can have a list of child privileges; this list is empty for a leaf privilege.
      */
     childPrivileges?: Schema$Privilege[];
     /**
@@ -1538,13 +1478,11 @@ export namespace admin_directory_v1 {
      */
     etag?: string;
     /**
-     * The type of the API resource. This is always
-     * admin#directory#roleAssignment.
+     * The type of the API resource. This is always admin#directory#roleAssignment.
      */
     kind?: string;
     /**
-     * If the role is restricted to an organization unit, this contains the ID
-     * for the organization unit the exercise of this role is restricted to.
+     * If the role is restricted to an organization unit, this contains the ID for the organization unit the exercise of this role is restricted to.
      */
     orgUnitId?: string;
     /**
@@ -1556,8 +1494,7 @@ export namespace admin_directory_v1 {
      */
     roleId?: string;
     /**
-     * The scope in which this role is assigned. Possible values are:  -
-     * CUSTOMER - ORG_UNIT
+     * The scope in which this role is assigned. Possible values are:  - CUSTOMER - ORG_UNIT
      */
     scopeType?: string;
   }
@@ -1574,8 +1511,7 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$RoleAssignment[];
     /**
-     * The type of the API resource. This is always
-     * admin#directory#roleAssignments.
+     * The type of the API resource. This is always admin#directory#roleAssignments.
      */
     kind?: string;
     nextPageToken?: string;
@@ -1664,15 +1600,11 @@ export namespace admin_directory_v1 {
      */
     multiValued?: boolean;
     /**
-     * Indexing spec for a numeric field. By default, only exact match queries
-     * will be supported for numeric fields. Setting the numericIndexingSpec
-     * allows range queries to be supported.
+     * Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the numericIndexingSpec allows range queries to be supported.
      */
     numericIndexingSpec?: {maxValue?: number; minValue?: number};
     /**
-     * Read ACLs on the field specifying who can view values of this field.
-     * Valid values are &quot;ALL_DOMAIN_USERS&quot; and
-     * &quot;ADMINS_AND_SELF&quot;.
+     * Read ACLs on the field specifying who can view values of this field. Valid values are &quot;ALL_DOMAIN_USERS&quot; and &quot;ADMINS_AND_SELF&quot;.
      */
     readAccessType?: string;
   }
@@ -1698,8 +1630,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Token {
     /**
-     * Whether the application is registered with Google. The value is true if
-     * the application has an anonymous Client ID.
+     * Whether the application is registered with Google. The value is true if the application has an anonymous Client ID.
      */
     anonymous?: boolean;
     /**
@@ -1719,8 +1650,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string;
     /**
-     * Whether the token is issued to an installed application. The value is
-     * true if the application is installed to a desktop or mobile device.
+     * Whether the token is issued to an installed application. The value is true if the application is installed to a desktop or mobile device.
      */
     nativeApp?: boolean;
     /**
@@ -1927,9 +1857,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserAbout {
     /**
-     * About entry can have a type which indicates the content type. It can
-     * either be plain or html. By default, notes contents are assumed to
-     * contain plain text.
+     * About entry can have a type which indicates the content type. It can either be plain or html. By default, notes contents are assumed to contain plain text.
      */
     contentType?: string;
     /**
@@ -1974,8 +1902,7 @@ export namespace admin_directory_v1 {
      */
     postalCode?: string;
     /**
-     * If this is user&#39;s primary address. Only one entry could be marked as
-     * primary.
+     * If this is user&#39;s primary address. Only one entry could be marked as primary.
      */
     primary?: boolean;
     /**
@@ -1983,9 +1910,7 @@ export namespace admin_directory_v1 {
      */
     region?: string;
     /**
-     * User supplied address was structured. Structured addresses are NOT
-     * supported at this time. You might be able to write structured addresses,
-     * but any values will eventually be clobbered.
+     * User supplied address was structured. Structured addresses are NOT supported at this time. You might be able to write structured addresses, but any values will eventually be clobbered.
      */
     sourceIsStructured?: boolean;
     /**
@@ -1993,17 +1918,12 @@ export namespace admin_directory_v1 {
      */
     streetAddress?: string;
     /**
-     * Each entry can have a type which indicates standard values of that entry.
-     * For example address could be of home, work etc. In addition to the
-     * standard type, an entry can have a custom type and can take any value.
-     * Such type should have the CUSTOM value as type and also have a customType
-     * value.
+     * Each entry can have a type which indicates standard values of that entry. For example address could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such type should have the CUSTOM value as type and also have a customType value.
      */
     type?: string;
   }
   /**
-   * JSON template for a set of custom properties (i.e. all fields in a
-   * particular schema)
+   * JSON template for a set of custom properties (i.e. all fields in a particular schema)
    */
   export interface Schema$UserCustomProperties {}
   /**
@@ -2019,15 +1939,11 @@ export namespace admin_directory_v1 {
      */
     customType?: string;
     /**
-     * If this is user&#39;s primary email. Only one entry could be marked as
-     * primary.
+     * If this is user&#39;s primary email. Only one entry could be marked as primary.
      */
     primary?: boolean;
     /**
-     * Each entry can have a type which indicates standard types of that entry.
-     * For example email could be of home, work etc. In addition to the standard
-     * type, an entry can have a custom type and can take any value Such types
-     * should have the CUSTOM value as type and also have a customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example email could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string;
   }
@@ -2050,9 +1966,7 @@ export namespace admin_directory_v1 {
   }
   export interface Schema$UserGender {
     /**
-     * AddressMeAs. A human-readable string containing the proper way to refer
-     * to the profile owner by humans, for example &quot;he/him/his&quot; or
-     * &quot;they/them/their&quot;.
+     * AddressMeAs. A human-readable string containing the proper way to refer to the profile owner by humans, for example &quot;he/him/his&quot; or &quot;they/them/their&quot;.
      */
     addressMeAs?: string;
     /**
@@ -2081,22 +1995,15 @@ export namespace admin_directory_v1 {
      */
     im?: string;
     /**
-     * If this is user&#39;s primary im. Only one entry could be marked as
-     * primary.
+     * If this is user&#39;s primary im. Only one entry could be marked as primary.
      */
     primary?: boolean;
     /**
-     * Protocol used in the instant messenger. It should be one of the values
-     * from ImProtocolTypes map. Similar to type, it can take a CUSTOM value and
-     * specify the custom name in customProtocol field.
+     * Protocol used in the instant messenger. It should be one of the values from ImProtocolTypes map. Similar to type, it can take a CUSTOM value and specify the custom name in customProtocol field.
      */
     protocol?: string;
     /**
-     * Each entry can have a type which indicates standard types of that entry.
-     * For example instant messengers could be of home, work etc. In addition to
-     * the standard type, an entry can have a custom type and can take any
-     * value. Such types should have the CUSTOM value as type and also have a
-     * customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string;
   }
@@ -2109,11 +2016,7 @@ export namespace admin_directory_v1 {
      */
     customType?: string;
     /**
-     * Each entry can have a type which indicates standard type of that entry.
-     * For example, keyword could be of type occupation or outlook. In addition
-     * to the standard type, an entry can have a custom type and can give it any
-     * name. Such types should have the CUSTOM value as type and also have a
-     * customType value.
+     * Each entry can have a type which indicates standard type of that entry. For example, keyword could be of type occupation or outlook. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string;
     /**
@@ -2126,14 +2029,11 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserLanguage {
     /**
-     * Other language. User can provide own language name if there is no
-     * corresponding Google III language code. If this is set LanguageCode
-     * can&#39;t be set
+     * Other language. User can provide own language name if there is no corresponding Google III language code. If this is set LanguageCode can&#39;t be set
      */
     customLanguage?: string;
     /**
-     * Language Code. Should be used for storing Google III LanguageCode string
-     * representation for language. Illegal values cause SchemaException.
+     * Language Code. Should be used for storing Google III LanguageCode string representation for language. Illegal values cause SchemaException.
      */
     languageCode?: string;
   }
@@ -2142,9 +2042,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserLocation {
     /**
-     * Textual location. This is most useful for display purposes to concisely
-     * describe the location. For example, &quot;Mountain View, CA&quot;,
-     * &quot;Near Seattle&quot;, &quot;US-NYC-9TH 9A209A&quot;.
+     * Textual location. This is most useful for display purposes to concisely describe the location. For example, &quot;Mountain View, CA&quot;, &quot;Near Seattle&quot;, &quot;US-NYC-9TH 9A209A&quot;.
      */
     area?: string;
     /**
@@ -2164,23 +2062,16 @@ export namespace admin_directory_v1 {
      */
     floorName?: string;
     /**
-     * Floor section. More specific location within the floor. For example, if a
-     * floor is divided into sections &quot;A&quot;, &quot;B&quot;, and
-     * &quot;C&quot;, this field would identify one of those values.
+     * Floor section. More specific location within the floor. For example, if a floor is divided into sections &quot;A&quot;, &quot;B&quot;, and &quot;C&quot;, this field would identify one of those values.
      */
     floorSection?: string;
     /**
-     * Each entry can have a type which indicates standard types of that entry.
-     * For example location could be of types default and desk. In addition to
-     * standard type, an entry can have a custom type and can give it any name.
-     * Such types should have &quot;custom&quot; as type and also have a
-     * customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type, an entry can have a custom type and can give it any name. Such types should have &quot;custom&quot; as type and also have a customType value.
      */
     type?: string;
   }
   /**
-   * JSON request template for setting/revoking admin status of a user in
-   * Directory API.
+   * JSON request template for setting/revoking admin status of a user in Directory API.
    */
   export interface Schema$UserMakeAdmin {
     /**
@@ -2254,11 +2145,7 @@ export namespace admin_directory_v1 {
      */
     title?: string;
     /**
-     * Each entry can have a type which indicates standard types of that entry.
-     * For example organization could be of school, work etc. In addition to the
-     * standard type, an entry can have a custom type and can give it any name.
-     * Such types should have the CUSTOM value as type and also have a
-     * CustomType value.
+     * Each entry can have a type which indicates standard types of that entry. For example organization could be of school, work etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a CustomType value.
      */
     type?: string;
   }
@@ -2275,11 +2162,7 @@ export namespace admin_directory_v1 {
      */
     primary?: boolean;
     /**
-     * Each entry can have a type which indicates standard types of that entry.
-     * For example phone could be of home_fax, work, mobile etc. In addition to
-     * the standard type, an entry can have a custom type and can give it any
-     * name. Such types should have the CUSTOM value as type and also have a
-     * customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example phone could be of home_fax, work, mobile etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string;
     /**
@@ -2325,8 +2208,7 @@ export namespace admin_directory_v1 {
     width?: number;
   }
   /**
-   * JSON template for a POSIX account entry. Description of the field family:
-   * go/fbs-posix.
+   * JSON template for a POSIX account entry. Description of the field family: go/fbs-posix.
    */
   export interface Schema$UserPosixAccount {
     /**
@@ -2379,8 +2261,7 @@ export namespace admin_directory_v1 {
      */
     customType?: string;
     /**
-     * The relation of the user. Some of the possible values are mother, father,
-     * sister, brother, manager, assistant, partner.
+     * The relation of the user. Some of the possible values are mother, father, sister, brother, manager, assistant, partner.
      */
     type?: string;
     /**
@@ -2452,11 +2333,7 @@ export namespace admin_directory_v1 {
      */
     primary?: boolean;
     /**
-     * Each entry can have a type which indicates standard types of that entry.
-     * For example website could be of home, work, blog etc. In addition to the
-     * standard type, an entry can have a custom type and can give it any name.
-     * Such types should have the CUSTOM value as type and also have a
-     * customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example website could be of home, work, blog etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
      */
     type?: string;
     /**
@@ -2473,8 +2350,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string;
     /**
-     * The type of the resource. This is always
-     * admin#directory#verificationCode.
+     * The type of the resource. This is always admin#directory#verificationCode.
      */
     kind?: string;
     /**
@@ -2482,14 +2358,12 @@ export namespace admin_directory_v1 {
      */
     userId?: string;
     /**
-     * A current verification code for the user. Invalidated or used
-     * verification codes are not returned as part of the result.
+     * A current verification code for the user. Invalidated or used verification codes are not returned as part of the result.
      */
     verificationCode?: string;
   }
   /**
-   * JSON response template for List verification codes operation in Directory
-   * API.
+   * JSON response template for List verification codes operation in Directory API.
    */
   export interface Schema$VerificationCodes {
     /**
@@ -2501,8 +2375,7 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$VerificationCode[];
     /**
-     * The type of the resource. This is always
-     * admin#directory#verificationCodesList.
+     * The type of the resource. This is always admin#directory#verificationCodesList.
      */
     kind?: string;
   }
@@ -2738,8 +2611,7 @@ export namespace admin_directory_v1 {
      */
     codeId?: number;
     /**
-     * Identifies the user in the API request. The value can be the user's
-     * primary email address, alias email address, or unique user ID.
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
@@ -2754,8 +2626,7 @@ export namespace admin_directory_v1 {
      */
     codeId?: number;
     /**
-     * Identifies the user in the API request. The value can be the user's
-     * primary email address, alias email address, or unique user ID.
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
@@ -2766,8 +2637,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifies the user in the API request. The value can be the user's
-     * primary email address, alias email address, or unique user ID.
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
@@ -3400,13 +3270,11 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at
-     * http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
+     * Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
      */
     query?: string;
     /**
-     * Whether to return results in ascending or descending order. Only of use
-     * when orderBy is also used
+     * Whether to return results in ascending or descending order. Only of use when orderBy is also used
      */
     sortOrder?: string;
   }
@@ -4687,8 +4555,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.groups.list
-     * @desc Retrieve all groups of a domain or of a user given a userKey
-     * (paginated)
+     * @desc Retrieve all groups of a domain or of a user given a userKey (paginated)
      * @alias directory.groups.list
      * @memberOf! ()
      *
@@ -4949,13 +4816,11 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Immutable ID of the G Suite account. In case of multi-domain, to fetch
-     * all groups for a customer, fill this field instead of domain.
+     * Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
      */
     customer?: string;
     /**
-     * Name of the domain. Fill this field to get groups from only this domain.
-     * To return all groups in a multi-domain fill customer field instead.
+     * Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
      */
     domain?: string;
     /**
@@ -4971,20 +4836,15 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is
-     * at
-     * https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
+     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
      */
     query?: string;
     /**
-     * Whether to return results in ascending or descending order. Only of use
-     * when orderBy is also used
+     * Whether to return results in ascending or descending order. Only of use when orderBy is also used
      */
     sortOrder?: string;
     /**
-     * Email or immutable Id of the user if only those groups are to be listed,
-     * the given user is a member of. If Id, it should match with id of user
-     * object
+     * Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
      */
     userKey?: string;
   }
@@ -4995,8 +4855,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of
-     * group object
+     * Email or immutable ID of the group. If ID, it should match with id of group object
      */
     groupKey?: string;
 
@@ -5012,8 +4871,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of
-     * group object
+     * Email or immutable ID of the group. If ID, it should match with id of group object
      */
     groupKey?: string;
 
@@ -5443,8 +5301,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.members.hasMember
-     * @desc Checks whether the given user is a member of the group. Membership
-     * can be direct or nested.
+     * @desc Checks whether the given user is a member of the group. Membership can be direct or nested.
      * @alias directory.members.hasMember
      * @memberOf! ()
      *
@@ -5664,8 +5521,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.members.patch
-     * @desc Update membership of a user in the specified group. This method
-     * supports patch semantics.
+     * @desc Update membership of a user in the specified group. This method supports patch semantics.
      * @alias directory.members.patch
      * @memberOf! ()
      *
@@ -5848,13 +5704,11 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifies the group in the API request. The value can be the group's
-     * email address, group alias, or the unique group ID.
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
     /**
-     * Identifies the user member in the API request. The value can be the
-     * user's primary email address, alias, or unique ID.
+     * Identifies the user member in the API request. The value can be the user's primary email address, alias, or unique ID.
      */
     memberKey?: string;
   }
@@ -5908,13 +5762,11 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of
-     * group object
+     * Email or immutable ID of the group. If ID, it should match with id of group object
      */
     groupKey?: string;
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of
-     * member object
+     * Email or immutable ID of the user. If ID, it should match with id of member object
      */
     memberKey?: string;
 
@@ -5930,13 +5782,11 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of
-     * group object
+     * Email or immutable ID of the group. If ID, it should match with id of group object
      */
     groupKey?: string;
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of
-     * member object
+     * Email or immutable ID of the user. If ID, it should match with id of member object
      */
     memberKey?: string;
 
@@ -6341,13 +6191,11 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at
-     * http://support.google.com/a/bin/answer.py?answer=1408863#search
+     * Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      */
     query?: string;
     /**
-     * Whether to return results in ascending or descending order. Only of use
-     * when orderBy is also used
+     * Whether to return results in ascending or descending order. Only of use when orderBy is also used
      */
     sortOrder?: string;
   }
@@ -6743,8 +6591,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. The customerId is also
-     * returned as part of the Users resource.
+     * The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
      */
     customer?: string;
     /**
@@ -6760,8 +6607,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. The customerId is also
-     * returned as part of the Users resource.
+     * The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
      */
     customer?: string;
     /**
@@ -6781,8 +6627,7 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
     /**
-     * The ISO 639-1 code of the language notifications are returned in. The
-     * default is English (en).
+     * The ISO 639-1 code of the language notifications are returned in. The default is English (en).
      */
     language?: string;
     /**
@@ -7559,8 +7404,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.resolvedAppAccessSettings.ListTrustedApps
-     * @desc Retrieves the list of apps trusted by the admin of the logged in
-     * user.
+     * @desc Retrieves the list of apps trusted by the admin of the logged in user.
      * @alias directory.resolvedAppAccessSettings.ListTrustedApps
      * @memberOf! ()
      *
@@ -8125,9 +7969,7 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -8143,9 +7985,7 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -8161,9 +8001,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -8180,9 +8018,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -8210,9 +8046,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -8237,9 +8071,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -8558,10 +8390,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.resources.calendars.patch
-     * @desc Updates a calendar resource.  This method supports patch semantics,
-     * meaning you only need to include the fields you wish to update. Fields
-     * that are not present in the request will be preserved. This method
-     * supports patch semantics.
+     * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved. This method supports patch semantics.
      * @alias directory.resources.calendars.patch
      * @memberOf! ()
      *
@@ -8637,9 +8466,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.resources.calendars.update
-     * @desc Updates a calendar resource.  This method supports patch semantics,
-     * meaning you only need to include the fields you wish to update. Fields
-     * that are not present in the request will be preserved.
+     * @desc Updates a calendar resource.  This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
      * @alias directory.resources.calendars.update
      * @memberOf! ()
      *
@@ -8726,9 +8553,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -8744,9 +8569,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -8758,9 +8581,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -8777,9 +8598,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -8787,12 +8606,7 @@ export namespace admin_directory_v1 {
      */
     maxResults?: number;
     /**
-     * Field(s) to sort results by in either ascending or descending order.
-     * Supported fields include resourceId, resourceName, capacity, buildingId,
-     * and floorName. If no order is specified, defaults to ascending. Should be
-     * of the form "field [asc|desc], field [asc|desc], ...". For example
-     * buildingId, capacity desc would return results sorted first by buildingId
-     * in ascending order then by capacity in descending order.
+     * Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
      */
     orderBy?: string;
     /**
@@ -8800,14 +8614,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * String query used to filter results. Should be of the form "field
-     * operator value" where field can be any of supported fields and operators
-     * can be any of supported operations. Operators include '=' for exact match
-     * and ':' for prefix match or HAS match where applicable. For prefix match,
-     * the value should always be followed by a *. Supported fields include
-     * generatedResourceName, name, buildingId, featureInstances.feature.name.
-     * For example buildingId=US-NYC-9TH AND
-     * featureInstances.feature.name:Phone.
+     * String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Supported fields include generatedResourceName, name, buildingId, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
      */
     query?: string;
   }
@@ -8823,9 +8630,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -8846,9 +8651,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -9388,9 +9191,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -9406,9 +9207,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -9424,9 +9223,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -9443,9 +9240,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -9465,9 +9260,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -9488,9 +9281,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -9511,9 +9302,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the customer's G Suite account. As an account
-     * administrator, you can also use the my_customer alias to represent your
-     * account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -9904,13 +9693,11 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * Immutable ID of a role. If included in the request, returns only role
-     * assignments containing this role ID.
+     * Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
      */
     roleId?: string;
     /**
-     * The user's primary email address, alias email address, or unique user ID.
-     * If included in the request, returns role assignments only for this user.
+     * The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
      */
     userKey?: string;
   }
@@ -11143,8 +10930,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.tokens.list
-     * @desc Returns the set of tokens specified user has issued to 3rd party
-     * applications.
+     * @desc Returns the set of tokens specified user has issued to 3rd party applications.
      * @alias directory.tokens.list
      * @memberOf! ()
      *
@@ -11224,8 +11010,7 @@ export namespace admin_directory_v1 {
      */
     clientId?: string;
     /**
-     * Identifies the user in the API request. The value can be the user's
-     * primary email address, alias email address, or unique user ID.
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
@@ -11240,8 +11025,7 @@ export namespace admin_directory_v1 {
      */
     clientId?: string;
     /**
-     * Identifies the user in the API request. The value can be the user's
-     * primary email address, alias email address, or unique user ID.
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
@@ -11252,8 +11036,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifies the user in the API request. The value can be the user's
-     * primary email address, alias email address, or unique user ID.
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
@@ -11954,8 +11737,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Comma-separated list of schema names. All fields from these schemas are
-     * fetched. This should only be set when projection=custom.
+     * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      */
     customFieldMask?: string;
     /**
@@ -11989,18 +11771,15 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Immutable ID of the G Suite account. In case of multi-domain, to fetch
-     * all users for a customer, fill this field instead of domain.
+     * Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      */
     customer?: string;
     /**
-     * Comma-separated list of schema names. All fields from these schemas are
-     * fetched. This should only be set when projection=custom.
+     * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      */
     customFieldMask?: string;
     /**
-     * Name of the domain. Fill this field to get users from only this domain.
-     * To return all users in a multi-domain fill customer field instead.
+     * Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      */
     domain?: string;
     /**
@@ -12024,9 +11803,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is
-     * at
-     * https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
      */
     query?: string;
     /**
@@ -12065,8 +11842,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of user
-     * object
+     * Email or immutable ID of the user. If ID, it should match with id of user object
      */
     userKey?: string;
 
@@ -12098,8 +11874,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of user
-     * object
+     * Email or immutable ID of the user. If ID, it should match with id of user object
      */
     userKey?: string;
 
@@ -12115,18 +11890,15 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Immutable ID of the G Suite account. In case of multi-domain, to fetch
-     * all users for a customer, fill this field instead of domain.
+     * Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      */
     customer?: string;
     /**
-     * Comma-separated list of schema names. All fields from these schemas are
-     * fetched. This should only be set when projection=custom.
+     * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      */
     customFieldMask?: string;
     /**
-     * Name of the domain. Fill this field to get users from only this domain.
-     * To return all users in a multi-domain fill customer field instead.
+     * Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      */
     domain?: string;
     /**
@@ -12150,9 +11922,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is
-     * at
-     * https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
      */
     query?: string;
     /**
@@ -13049,8 +12819,7 @@ export namespace admin_directory_v1 {
 
     /**
      * directory.verificationCodes.list
-     * @desc Returns the current set of valid backup verification codes for the
-     * specified user.
+     * @desc Returns the current set of valid backup verification codes for the specified user.
      * @alias directory.verificationCodes.list
      * @memberOf! ()
      *
@@ -13154,8 +12923,7 @@ export namespace admin_directory_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifies the user in the API request. The value can be the user's
-     * primary email address, alias email address, or unique user ID.
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }

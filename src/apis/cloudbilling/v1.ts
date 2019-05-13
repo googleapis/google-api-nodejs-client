@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace cloudbilling_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace cloudbilling_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace cloudbilling_v1 {
   /**
    * Cloud Billing API
    *
-   * Allows developers to manage billing for their Google Cloud Platform
-   * projects     programmatically.
+   * Allows developers to manage billing for their Google Cloud Platform projects     programmatically.
    *
    * @example
    * const {google} = require('googleapis');
@@ -115,7 +110,10 @@ export namespace cloudbilling_v1 {
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.billingAccounts = new Resource$Billingaccounts(this.context);
       this.projects = new Resource$Projects(this.context);
@@ -128,36 +126,14 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$AggregationInfo {
     /**
-     * The number of intervals to aggregate over. Example: If aggregation_level
-     * is &quot;DAILY&quot; and aggregation_count is 14, aggregation will be
-     * over 14 days.
+     * The number of intervals to aggregate over. Example: If aggregation_level is &quot;DAILY&quot; and aggregation_count is 14, aggregation will be over 14 days.
      */
     aggregationCount?: number;
     aggregationInterval?: string;
     aggregationLevel?: string;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration
-   * determines which permission types are logged, and what identities, if any,
-   * are exempted from logging. An AuditConfig must have one or more
-   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
-   * specific service, the union of the two AuditConfigs is used for that
-   * service: the log_types specified in each AuditConfig are enabled, and the
-   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
-   * multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {
-   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
-   * [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
-   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
-   * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] },
-   * {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
-   * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
-   * &quot;user:bar@gmail.com&quot;               ]             }           ] }
-   * ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and
-   * ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
-   * and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -165,25 +141,16 @@ export namespace cloudbilling_v1 {
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
     /**
-     * Specifies a service that will be enabled for audit logging. For example,
-     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
-     * special value that covers all services.
+     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: {
-   * &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [
-   * &quot;user:foo@gmail.com&quot;           ]         },         {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This
-   * enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while
-   * exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of
-     * permission. Follows the same format of Binding.members.
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
     /**
@@ -192,34 +159,23 @@ export namespace cloudbilling_v1 {
     logType?: string;
   }
   /**
-   * A billing account in [GCP Console](https://console.cloud.google.com/). You
-   * can assign a billing account to one or more projects.
+   * A billing account in [GCP Console](https://console.cloud.google.com/). You can assign a billing account to one or more projects.
    */
   export interface Schema$BillingAccount {
     /**
-     * The display name given to the billing account, such as `My Billing
-     * Account`. This name is displayed in the GCP Console.
+     * The display name given to the billing account, such as `My Billing Account`. This name is displayed in the GCP Console.
      */
     displayName?: string;
     /**
-     * If this account is a
-     * [subaccount](https://cloud.google.com/billing/docs/concepts), then this
-     * will be the resource name of the master billing account that it is being
-     * resold through. Otherwise this will be empty.
+     * If this account is a [subaccount](https://cloud.google.com/billing/docs/concepts), then this will be the resource name of the master billing account that it is being resold through. Otherwise this will be empty.
      */
     masterBillingAccount?: string;
     /**
-     * The resource name of the billing account. The resource name has the form
-     * `billingAccounts/{billing_account_id}`. For example,
-     * `billingAccounts/012345-567890-ABCDEF` would be the resource name for
-     * billing account `012345-567890-ABCDEF`.
+     * The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`.
      */
     name?: string;
     /**
-     * True if the billing account is open, and will therefore be charged for
-     * any usage on associated projects. False if the billing account is closed,
-     * and therefore projects associated with it will be unable to use paid
-     * services.
+     * True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.
      */
     open?: boolean;
   }
@@ -228,30 +184,15 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -260,15 +201,11 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$Category {
     /**
-     * The type of product the SKU refers to. Example: &quot;Compute&quot;,
-     * &quot;Storage&quot;, &quot;Network&quot;, &quot;ApplicationServices&quot;
-     * etc.
+     * The type of product the SKU refers to. Example: &quot;Compute&quot;, &quot;Storage&quot;, &quot;Network&quot;, &quot;ApplicationServices&quot; etc.
      */
     resourceFamily?: string;
     /**
-     * A group classification for related SKUs. Example: &quot;RAM&quot;,
-     * &quot;GPU&quot;, &quot;Prediction&quot;, &quot;Ops&quot;,
-     * &quot;GoogleEgress&quot; etc.
+     * A group classification for related SKUs. Example: &quot;RAM&quot;, &quot;GPU&quot;, &quot;Prediction&quot;, &quot;Ops&quot;, &quot;GoogleEgress&quot; etc.
      */
     resourceGroup?: string;
     /**
@@ -276,38 +213,28 @@ export namespace cloudbilling_v1 {
      */
     serviceDisplayName?: string;
     /**
-     * Represents how the SKU is consumed. Example: &quot;OnDemand&quot;,
-     * &quot;Preemptible&quot;, &quot;Commit1Mo&quot;, &quot;Commit1Yr&quot;
-     * etc.
+     * Represents how the SKU is consumed. Example: &quot;OnDemand&quot;, &quot;Preemptible&quot;, &quot;Commit1Mo&quot;, &quot;Commit1Yr&quot; etc.
      */
     usageType?: string;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
@@ -320,9 +247,7 @@ export namespace cloudbilling_v1 {
      */
     billingAccounts?: Schema$BillingAccount[];
     /**
-     * A token to retrieve the next page of results. To retrieve the next page,
-     * call `ListBillingAccounts` again with the `page_token` field set to this
-     * value. This field is empty if there are no more results to retrieve.
+     * A token to retrieve the next page of results. To retrieve the next page, call `ListBillingAccounts` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve.
      */
     nextPageToken?: string;
   }
@@ -331,14 +256,11 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$ListProjectBillingInfoResponse {
     /**
-     * A token to retrieve the next page of results. To retrieve the next page,
-     * call `ListProjectBillingInfo` again with the `page_token` field set to
-     * this value. This field is empty if there are no more results to retrieve.
+     * A token to retrieve the next page of results. To retrieve the next page, call `ListProjectBillingInfo` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve.
      */
     nextPageToken?: string;
     /**
-     * A list of `ProjectBillingInfo` resources representing the projects
-     * associated with the billing account.
+     * A list of `ProjectBillingInfo` resources representing the projects associated with the billing account.
      */
     projectBillingInfo?: Schema$ProjectBillingInfo[];
   }
@@ -347,9 +269,7 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$ListServicesResponse {
     /**
-     * A token to retrieve the next page of results. To retrieve the next page,
-     * call `ListServices` again with the `page_token` field set to this value.
-     * This field is empty if there are no more results to retrieve.
+     * A token to retrieve the next page of results. To retrieve the next page, call `ListServices` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve.
      */
     nextPageToken?: string;
     /**
@@ -362,9 +282,7 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$ListSkusResponse {
     /**
-     * A token to retrieve the next page of results. To retrieve the next page,
-     * call `ListSkus` again with the `page_token` field set to this value. This
-     * field is empty if there are no more results to retrieve.
+     * A token to retrieve the next page of results. To retrieve the next page, call `ListSkus` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve.
      */
     nextPageToken?: string;
     /**
@@ -381,39 +299,16 @@ export namespace cloudbilling_v1 {
      */
     currencyCode?: string;
     /**
-     * Number of nano (10^-9) units of the amount. The value must be between
-     * -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos`
-     * must be positive or zero. If `units` is zero, `nanos` can be positive,
-     * zero, or negative. If `units` is negative, `nanos` must be negative or
-     * zero. For example $-1.75 is represented as `units`=-1 and
-     * `nanos`=-750,000,000.
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
      */
     nanos?: number;
     /**
-     * The whole units of the amount. For example if `currencyCode` is
-     * `&quot;USD&quot;`, then 1 unit is one US dollar.
+     * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
      */
     units?: string;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -421,20 +316,11 @@ export namespace cloudbilling_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -443,24 +329,15 @@ export namespace cloudbilling_v1 {
     version?: number;
   }
   /**
-   * Expresses a mathematical pricing formula. For Example:-  `usage_unit: GBy`
-   * `tiered_rates:`    `[start_usage_amount: 20, unit_price: $10]`
-   * `[start_usage_amount: 100, unit_price: $5]`  The above expresses a pricing
-   * formula where the first 20GB is free, the next 80GB is priced at $10 per GB
-   * followed by $5 per GB for additional usage.
+   * Expresses a mathematical pricing formula. For Example:-  `usage_unit: GBy` `tiered_rates:`    `[start_usage_amount: 20, unit_price: $10]`    `[start_usage_amount: 100, unit_price: $5]`  The above expresses a pricing formula where the first 20GB is free, the next 80GB is priced at $10 per GB followed by $5 per GB for additional usage.
    */
   export interface Schema$PricingExpression {
     /**
-     * The base unit for the SKU which is the unit used in usage exports.
-     * Example: &quot;By&quot;
+     * The base unit for the SKU which is the unit used in usage exports. Example: &quot;By&quot;
      */
     baseUnit?: string;
     /**
-     * Conversion factor for converting from price per usage_unit to price per
-     * base_unit, and start_usage_amount to start_usage_amount in base_unit.
-     * unit_price / base_unit_conversion_factor = price per base_unit.
-     * start_usage_amount * base_unit_conversion_factor = start_usage_amount in
-     * base_unit.
+     * Conversion factor for converting from price per usage_unit to price per base_unit, and start_usage_amount to start_usage_amount in base_unit. unit_price / base_unit_conversion_factor = price per base_unit. start_usage_amount * base_unit_conversion_factor = start_usage_amount in base_unit.
      */
     baseUnitConversionFactor?: number;
     /**
@@ -468,26 +345,15 @@ export namespace cloudbilling_v1 {
      */
     baseUnitDescription?: string;
     /**
-     * The recommended quantity of units for displaying pricing info. When
-     * displaying pricing info it is recommended to display: (unit_price *
-     * display_quantity) per display_quantity usage_unit. This field does not
-     * affect the pricing formula and is for display purposes only. Example: If
-     * the unit_price is &quot;0.0001 USD&quot;, the usage_unit is
-     * &quot;GB&quot; and the display_quantity is &quot;1000&quot; then the
-     * recommended way of displaying the pricing info is &quot;0.10 USD per 1000
-     * GB&quot;
+     * The recommended quantity of units for displaying pricing info. When displaying pricing info it is recommended to display: (unit_price * display_quantity) per display_quantity usage_unit. This field does not affect the pricing formula and is for display purposes only. Example: If the unit_price is &quot;0.0001 USD&quot;, the usage_unit is &quot;GB&quot; and the display_quantity is &quot;1000&quot; then the recommended way of displaying the pricing info is &quot;0.10 USD per 1000 GB&quot;
      */
     displayQuantity?: number;
     /**
-     * The list of tiered rates for this pricing. The total cost is computed by
-     * applying each of the tiered rates on usage. This repeated list is sorted
-     * by ascending order of start_usage_amount.
+     * The list of tiered rates for this pricing. The total cost is computed by applying each of the tiered rates on usage. This repeated list is sorted by ascending order of start_usage_amount.
      */
     tieredRates?: Schema$TierRate[];
     /**
-     * The short hand for unit of usage this pricing is specified in. Example:
-     * usage_unit of &quot;GiBy&quot; means that usage is specified in
-     * &quot;Gibi Byte&quot;.
+     * The short hand for unit of usage this pricing is specified in. Example: usage_unit of &quot;GiBy&quot; means that usage is specified in &quot;Gibi Byte&quot;.
      */
     usageUnit?: string;
     /**
@@ -500,25 +366,15 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$PricingInfo {
     /**
-     * Aggregation Info. This can be left unspecified if the pricing expression
-     * doesn&#39;t require aggregation.
+     * Aggregation Info. This can be left unspecified if the pricing expression doesn&#39;t require aggregation.
      */
     aggregationInfo?: Schema$AggregationInfo;
     /**
-     * Conversion rate used for currency conversion, from USD to the currency
-     * specified in the request. This includes any surcharge collected for
-     * billing in non USD currency. If a currency is not specified in the
-     * request this defaults to 1.0. Example: USD * currency_conversion_rate =
-     * JPY
+     * Conversion rate used for currency conversion, from USD to the currency specified in the request. This includes any surcharge collected for billing in non USD currency. If a currency is not specified in the request this defaults to 1.0. Example: USD * currency_conversion_rate = JPY
      */
     currencyConversionRate?: number;
     /**
-     * The timestamp from which this pricing was effective within the requested
-     * time range. This is guaranteed to be greater than or equal to the
-     * start_time field in the request and less than the end_time field in the
-     * request. If a time range was not specified in the request this field will
-     * be equivalent to a time within the last 12 hours, indicating the latest
-     * pricing info.
+     * The timestamp from which this pricing was effective within the requested time range. This is guaranteed to be greater than or equal to the start_time field in the request and less than the end_time field in the request. If a time range was not specified in the request this field will be equivalent to a time within the last 12 hours, indicating the latest pricing info.
      */
     effectiveTime?: string;
     /**
@@ -526,41 +382,28 @@ export namespace cloudbilling_v1 {
      */
     pricingExpression?: Schema$PricingExpression;
     /**
-     * An optional human readable summary of the pricing information, has a
-     * maximum length of 256 characters.
+     * An optional human readable summary of the pricing information, has a maximum length of 256 characters.
      */
     summary?: string;
   }
   /**
-   * Encapsulation of billing information for a GCP Console project. A project
-   * has at most one associated billing account at a time (but a billing account
-   * can be assigned to multiple projects).
+   * Encapsulation of billing information for a GCP Console project. A project has at most one associated billing account at a time (but a billing account can be assigned to multiple projects).
    */
   export interface Schema$ProjectBillingInfo {
     /**
-     * The resource name of the billing account associated with the project, if
-     * any. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * The resource name of the billing account associated with the project, if any. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     billingAccountName?: string;
     /**
-     * True if the project is associated with an open billing account, to which
-     * usage on the project is charged. False if the project is associated with
-     * a closed billing account, or no billing account at all, and therefore
-     * cannot use paid services. This field is read-only.
+     * True if the project is associated with an open billing account, to which usage on the project is charged. False if the project is associated with a closed billing account, or no billing account at all, and therefore cannot use paid services. This field is read-only.
      */
     billingEnabled?: boolean;
     /**
-     * The resource name for the `ProjectBillingInfo`; has the form
-     * `projects/{project_id}/billingInfo`. For example, the resource name for
-     * the billing information for project `tokyo-rain-123` would be
-     * `projects/tokyo-rain-123/billingInfo`. This field is read-only.
+     * The resource name for the `ProjectBillingInfo`; has the form `projects/{project_id}/billingInfo`. For example, the resource name for the billing information for project `tokyo-rain-123` would be `projects/tokyo-rain-123/billingInfo`. This field is read-only.
      */
     name?: string;
     /**
-     * The ID of the project that this `ProjectBillingInfo` represents, such as
-     * `tokyo-rain-123`. This is a convenience field so that you don&#39;t need
-     * to parse the `name` field to obtain a project ID. This field is
-     * read-only.
+     * The ID of the project that this `ProjectBillingInfo` represents, such as `tokyo-rain-123`. This is a convenience field so that you don&#39;t need to parse the `name` field to obtain a project ID. This field is read-only.
      */
     projectId?: string;
   }
@@ -569,8 +412,7 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$Service {
     /**
-     * The business under which the service is offered. Ex.
-     * &quot;businessEntities/GCP&quot;, &quot;businessEntities/Maps&quot;
+     * The business under which the service is offered. Ex. &quot;businessEntities/GCP&quot;, &quot;businessEntities/Maps&quot;
      */
     businessEntityName?: string;
     /**
@@ -578,8 +420,7 @@ export namespace cloudbilling_v1 {
      */
     displayName?: string;
     /**
-     * The resource name for the service. Example:
-     * &quot;services/DA34-426B-A397&quot;
+     * The resource name for the service. Example: &quot;services/DA34-426B-A397&quot;
      */
     name?: string;
     /**
@@ -592,17 +433,11 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
-     * Only the fields in the mask will be modified. If no mask is provided, the
-     * following default mask is used: paths: &quot;bindings, etag&quot; This
-     * field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
     updateMask?: string;
   }
@@ -615,13 +450,11 @@ export namespace cloudbilling_v1 {
      */
     category?: Schema$Category;
     /**
-     * A human readable description of the SKU, has a maximum length of 256
-     * characters.
+     * A human readable description of the SKU, has a maximum length of 256 characters.
      */
     description?: string;
     /**
-     * The resource name for the SKU. Example:
-     * &quot;services/DA34-426B-A397/skus/AA95-CD31-42FE&quot;
+     * The resource name for the SKU. Example: &quot;services/DA34-426B-A397/skus/AA95-CD31-42FE&quot;
      */
     name?: string;
     /**
@@ -629,14 +462,11 @@ export namespace cloudbilling_v1 {
      */
     pricingInfo?: Schema$PricingInfo[];
     /**
-     * Identifies the service provider. This is &#39;Google&#39; for first party
-     * services in Google Cloud Platform.
+     * Identifies the service provider. This is &#39;Google&#39; for first party services in Google Cloud Platform.
      */
     serviceProviderName?: string;
     /**
-     * List of service regions this SKU is offered at. Example:
-     * &quot;asia-east1&quot; Service regions can be found at
-     * https://cloud.google.com/about/locations/
+     * List of service regions this SKU is offered at. Example: &quot;asia-east1&quot; Service regions can be found at https://cloud.google.com/about/locations/
      */
     serviceRegions?: string[];
     /**
@@ -649,10 +479,7 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -661,8 +488,7 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -671,14 +497,11 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$TierRate {
     /**
-     * Usage is priced at this rate only after this amount. Example:
-     * start_usage_amount of 10 indicates that the usage will be priced at the
-     * unit_price after the first 10 usage_units.
+     * Usage is priced at this rate only after this amount. Example: start_usage_amount of 10 indicates that the usage will be priced at the unit_price after the first 10 usage_units.
      */
     startUsageAmount?: number;
     /**
-     * The price per unit of usage. Example: unit_price of amount $10 indicates
-     * that each unit will cost $10.
+     * The price per unit of usage. Example: unit_price of amount $10 indicates that each unit will cost $10.
      */
     unitPrice?: Schema$Money;
   }
@@ -693,14 +516,7 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.create
-     * @desc Creates a billing account. This method can only be used to create
-     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts) by
-     * GCP resellers. When creating a subaccount, the current authenticated user
-     * must have the `billing.accounts.update` IAM permission on the master
-     * account, which is typically given to billing account
-     * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * This method will return an error if the master account has not been
-     * provisioned as a reseller account.
+     * @desc Creates a billing account. This method can only be used to create [billing subaccounts](https://cloud.google.com/billing/docs/concepts) by GCP resellers. When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the master account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the master account has not been provisioned as a reseller account.
      * @alias cloudbilling.billingAccounts.create
      * @memberOf! ()
      *
@@ -774,23 +590,19 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.get
-     * @desc Gets information about a billing account. The current authenticated
-     * user must be a [viewer of the billing
-     * account](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * @desc Gets information about a billing account. The current authenticated user must be a [viewer of the billing account](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -801,8 +613,7 @@ export namespace cloudbilling_v1 {
      *   var request = {
      *     // The resource name of the billing account to retrieve. For example,
      *     // `billingAccounts/012345-567890-ABCDEF`.
-     *     name: 'billingAccounts/my-billing-account',  // TODO: Update
-     * placeholder value.
+     *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -824,10 +635,9 @@ export namespace cloudbilling_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -902,10 +712,7 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.getIamPolicy
-     * @desc Gets the access control policy for a billing account. The caller
-     * must have the `billing.accounts.getIamPolicy` permission on the account,
-     * which is often given to billing account
-     * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * @desc Gets the access control policy for a billing account. The caller must have the `billing.accounts.getIamPolicy` permission on the account, which is often given to billing account [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @alias cloudbilling.billingAccounts.getIamPolicy
      * @memberOf! ()
      *
@@ -977,23 +784,19 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.list
-     * @desc Lists the billing accounts that the current authenticated user has
-     * permission to
-     * [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * @desc Lists the billing accounts that the current authenticated user has permission to [view](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1016,9 +819,8 @@ export namespace cloudbilling_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < billingAccountsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `billingAccountsPage`: console.log(JSON.stringify(billingAccountsPage[i],
-     * null, 2));
+     *       // TODO: Change code below to process each resource in `billingAccountsPage`:
+     *       console.log(JSON.stringify(billingAccountsPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -1036,10 +838,9 @@ export namespace cloudbilling_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1126,12 +927,7 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.patch
-     * @desc Updates a billing account's fields. Currently the only field that
-     * can be edited is `display_name`. The current authenticated user must have
-     * the `billing.accounts.update` IAM permission, which is typically given to
-     * the
-     * [administrator](https://cloud.google.com/billing/docs/how-to/billing-access)
-     * of the billing account.
+     * @desc Updates a billing account's fields. Currently the only field that can be edited is `display_name`. The current authenticated user must have the `billing.accounts.update` IAM permission, which is typically given to the [administrator](https://cloud.google.com/billing/docs/how-to/billing-access) of the billing account.
      * @alias cloudbilling.billingAccounts.patch
      * @memberOf! ()
      *
@@ -1204,10 +1000,7 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.setIamPolicy
-     * @desc Sets the access control policy for a billing account. Replaces any
-     * existing policy. The caller must have the `billing.accounts.setIamPolicy`
-     * permission on the account, which is often given to billing account
-     * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * @desc Sets the access control policy for a billing account. Replaces any existing policy. The caller must have the `billing.accounts.setIamPolicy` permission on the account, which is often given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @alias cloudbilling.billingAccounts.setIamPolicy
      * @memberOf! ()
      *
@@ -1280,10 +1073,7 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.testIamPermissions
-     * @desc Tests the access control policy for a billing account. This method
-     * takes the resource and a set of permissions as input and returns the
-     * subset of the input permissions that the caller is allowed for that
-     * resource.
+     * @desc Tests the access control policy for a billing account. This method takes the resource and a set of permissions as input and returns the subset of the input permissions that the caller is allowed for that resource.
      * @alias cloudbilling.billingAccounts.testIamPermissions
      * @memberOf! ()
      *
@@ -1384,8 +1174,7 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the billing account to retrieve. For example,
-     * `billingAccounts/012345-567890-ABCDEF`.
+     * The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     name?: string;
   }
@@ -1397,8 +1186,7 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -1410,23 +1198,15 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Options for how to filter the returned billing accounts. Currently this
-     * only supports filtering for
-     * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     * single provided reseller billing account. (e.g.
-     * "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean
-     * algebra and other fields are not currently supported.
+     * Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
      */
     filter?: string;
     /**
-     * Requested page size. The maximum page size is 100; this is also the
-     * default.
+     * Requested page size. The maximum page size is 100; this is also the default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to return. This should be a
-     * `next_page_token` value returned from a previous `ListBillingAccounts`
-     * call. If unspecified, the first page of results is returned.
+     * A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
   }
@@ -1442,8 +1222,7 @@ export namespace cloudbilling_v1 {
      */
     name?: string;
     /**
-     * The update mask applied to the resource. Only "display_name" is currently
-     * supported.
+     * The update mask applied to the resource. Only "display_name" is currently supported.
      */
     updateMask?: string;
 
@@ -1460,8 +1239,7 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1478,8 +1256,7 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1497,24 +1274,19 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.billingAccounts.projects.list
-     * @desc Lists the projects associated with a billing account. The current
-     * authenticated user must have the `billing.resourceAssociations.list` IAM
-     * permission, which is often given to billing account
-     * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+     * @desc Lists the projects associated with a billing account. The current authenticated user must have the `billing.resourceAssociations.list` IAM permission, which is often given to billing account [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1523,11 +1295,9 @@ export namespace cloudbilling_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The resource name of the billing account associated with the
-     * projects that
-     *     // you want to list. For example,
-     * `billingAccounts/012345-567890-ABCDEF`. name:
-     * 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
+     *     // The resource name of the billing account associated with the projects that
+     *     // you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     *     name: 'billingAccounts/my-billing-account',  // TODO: Update placeholder value.
      *
      *     auth: authClient,
      *   };
@@ -1543,8 +1313,7 @@ export namespace cloudbilling_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < projectBillingInfoPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `projectBillingInfoPage`:
+     *       // TODO: Change code below to process each resource in `projectBillingInfoPage`:
      *       console.log(JSON.stringify(projectBillingInfoPage[i], null, 2));
      *     }
      *
@@ -1563,10 +1332,9 @@ export namespace cloudbilling_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1662,20 +1430,15 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the billing account associated with the projects
-     * that you want to list. For example,
-     * `billingAccounts/012345-567890-ABCDEF`.
+     * The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     name?: string;
     /**
-     * Requested page size. The maximum page size is 100; this is also the
-     * default.
+     * Requested page size. The maximum page size is 100; this is also the default.
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to be returned. This should be a
-     * `next_page_token` value returned from a previous `ListProjectBillingInfo`
-     * call. If unspecified, the first page of results is returned.
+     * A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
   }
@@ -1688,24 +1451,19 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.projects.getBillingInfo
-     * @desc Gets the billing information for a project. The current
-     * authenticated user must have [permission to view the
-     * project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
-     * ).
+     * @desc Gets the billing information for a project. The current authenticated user must have [permission to view the project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo ).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1738,10 +1496,9 @@ export namespace cloudbilling_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1821,46 +1578,19 @@ export namespace cloudbilling_v1 {
 
     /**
      * cloudbilling.projects.updateBillingInfo
-     * @desc Sets or updates the billing account associated with a project. You
-     * specify the new billing account by setting the `billing_account_name` in
-     * the `ProjectBillingInfo` resource to the resource name of a billing
-     * account. Associating a project with an open billing account enables
-     * billing on the project and allows charges for resource usage. If the
-     * project already had a billing account, this method changes the billing
-     * account used for resource usage charges.  *Note:* Incurred charges that
-     * have not yet been reported in the transaction history of the GCP Console
-     * might be billed to the new billing account, even if the charge occurred
-     * before the new billing account was assigned to the project.  The current
-     * authenticated user must have ownership privileges for both the
-     * [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
-     * ) and the [billing
-     * account](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * You can disable billing on the project by setting the
-     * `billing_account_name` field to empty. This action disassociates the
-     * current billing account from the project. Any billable activity of your
-     * in-use services will stop, and your application could stop functioning as
-     * expected. Any unbilled charges to date will be billed to the previously
-     * associated account. The current authenticated user must be either an
-     * owner of the project or an owner of the billing account for the project.
-     * Note that associating a project with a *closed* billing account will have
-     * much the same effect as disabling billing on the project: any paid
-     * resources used by the project will be shut down. Thus, unless you wish to
-     * disable billing, you should always call this method with the name of an
-     * *open* billing account.
+     * @desc Sets or updates the billing account associated with a project. You specify the new billing account by setting the `billing_account_name` in the `ProjectBillingInfo` resource to the resource name of a billing account. Associating a project with an open billing account enables billing on the project and allows charges for resource usage. If the project already had a billing account, this method changes the billing account used for resource usage charges.  *Note:* Incurred charges that have not yet been reported in the transaction history of the GCP Console might be billed to the new billing account, even if the charge occurred before the new billing account was assigned to the project.  The current authenticated user must have ownership privileges for both the [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo ) and the [billing account](https://cloud.google.com/billing/docs/how-to/billing-access).  You can disable billing on the project by setting the `billing_account_name` field to empty. This action disassociates the current billing account from the project. Any billable activity of your in-use services will stop, and your application could stop functioning as expected. Any unbilled charges to date will be billed to the previously associated account. The current authenticated user must be either an owner of the project or an owner of the billing account for the project.  Note that associating a project with a *closed* billing account will have much the same effect as disabling billing on the project: any paid resources used by the project will be shut down. Thus, unless you wish to disable billing, you should always call this method with the name of an *open* billing account.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
      * // 1. If not already done, enable the Google Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1869,22 +1599,22 @@ export namespace cloudbilling_v1 {
      *
      * authorize(function(authClient) {
      *   var request = {
-     *     // The resource name of the project associated with the billing
-     * information
+     *     // The resource name of the project associated with the billing information
      *     // that you want to update. For example, `projects/tokyo-rain-123`.
      *     name: 'projects/my-project',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing
-     * properties
+     *       // TODO: Add desired properties to the request body. All existing properties
      *       // will be replaced.
      *     },
      *
      *     auth: authClient,
      *   };
      *
-     *   cloudbilling.projects.updateBillingInfo(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudbilling.projects.updateBillingInfo(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1898,10 +1628,9 @@ export namespace cloudbilling_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -1989,8 +1718,7 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the project for which billing information is
-     * retrieved. For example, `projects/tokyo-rain-123`.
+     * The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
      */
     name?: string;
   }
@@ -2002,8 +1730,7 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the project associated with the billing information
-     * that you want to update. For example, `projects/tokyo-rain-123`.
+     * The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
      */
     name?: string;
 
@@ -2030,14 +1757,12 @@ export namespace cloudbilling_v1 {
      * // 1. If not already done, enable the Google Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2060,8 +1785,8 @@ export namespace cloudbilling_v1 {
      *       return;
      *     }
      *     for (var i = 0; i < servicesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `servicesPage`: console.log(JSON.stringify(servicesPage[i], null, 2));
+     *       // TODO: Change code below to process each resource in `servicesPage`:
+     *       console.log(JSON.stringify(servicesPage[i], null, 2));
      *     }
      *
      *     if (response.nextPageToken) {
@@ -2079,10 +1804,9 @@ export namespace cloudbilling_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2169,9 +1893,7 @@ export namespace cloudbilling_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to return. This should be a
-     * `next_page_token` value returned from a previous `ListServices` call. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListServices` call. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
   }
@@ -2191,14 +1913,12 @@ export namespace cloudbilling_v1 {
      * // 1. If not already done, enable the Google Cloud Billing API
      * //    and check the quota for your project at
      * //    https://console.developers.google.com/apis/api/cloudbilling
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
+     * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
      * //    `gcloud beta auth application-default login`.
      * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2244,10 +1964,9 @@ export namespace cloudbilling_v1 {
      *       console.error('authentication failed: ', err);
      *       return;
      *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
      *     }
      *     callback(authClient);
      *   });
@@ -2334,18 +2053,11 @@ export namespace cloudbilling_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ISO 4217 currency code for the pricing info in the response proto.
-     * Will use the conversion rate as of start_time. Optional. If not specified
-     * USD will be used.
+     * The ISO 4217 currency code for the pricing info in the response proto. Will use the conversion rate as of start_time. Optional. If not specified USD will be used.
      */
     currencyCode?: string;
     /**
-     * Optional exclusive end time of the time range for which the pricing
-     * versions will be returned. Timestamps in the future are not allowed. The
-     * time range has to be within a single calendar month in
-     * America/Los_Angeles timezone. Time range as a whole is optional. If not
-     * specified, the latest pricing will be returned (up to 12 hours old at
-     * most).
+     * Optional exclusive end time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
      */
     endTime?: string;
     /**
@@ -2353,9 +2065,7 @@ export namespace cloudbilling_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results to return. This should be a
-     * `next_page_token` value returned from a previous `ListSkus` call. If
-     * unspecified, the first page of results is returned.
+     * A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListSkus` call. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
@@ -2363,12 +2073,7 @@ export namespace cloudbilling_v1 {
      */
     parent?: string;
     /**
-     * Optional inclusive start time of the time range for which the pricing
-     * versions will be returned. Timestamps in the future are not allowed. The
-     * time range has to be within a single calendar month in
-     * America/Los_Angeles timezone. Time range as a whole is optional. If not
-     * specified, the latest pricing will be returned (up to 12 hours old at
-     * most).
+     * Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
      */
     startTime?: string;
   }

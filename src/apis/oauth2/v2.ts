@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace oauth2_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace oauth2_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace oauth2_v2 {
     userinfo: Resource$Userinfo;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.userinfo = new Resource$Userinfo(this.context);
     }
@@ -257,13 +257,11 @@ export namespace oauth2_v2 {
      */
     access_type?: string;
     /**
-     * Who is the intended audience for this token. In general the same as
-     * issued_to.
+     * Who is the intended audience for this token. In general the same as issued_to.
      */
     audience?: string;
     /**
-     * The email address of the user. Present only if the email scope is present
-     * in the request.
+     * The email address of the user. Present only if the email scope is present in the request.
      */
     email?: string;
     /**
@@ -287,8 +285,7 @@ export namespace oauth2_v2 {
      */
     user_id?: string;
     /**
-     * Boolean flag which is true if the email address is verified. Present only
-     * if the email scope is present in the request.
+     * Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request.
      */
     verified_email?: boolean;
   }
@@ -334,8 +331,7 @@ export namespace oauth2_v2 {
      */
     picture?: string;
     /**
-     * Boolean flag which is true if the email address is verified. Always
-     * verified because we only return the user&#39;s primary email address.
+     * Boolean flag which is true if the email address is verified. Always verified because we only return the user&#39;s primary email address.
      */
     verified_email?: boolean;
   }

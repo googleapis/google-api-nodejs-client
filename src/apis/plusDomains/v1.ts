@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace plusDomains_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace plusDomains_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,7 +97,10 @@ export namespace plusDomains_v1 {
     people: Resource$People;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.activities = new Resource$Activities(this.context);
       this.audiences = new Resource$Audiences(this.context);
@@ -125,8 +125,7 @@ export namespace plusDomains_v1 {
      */
     items?: Schema$PlusDomainsAclentryResource[];
     /**
-     * Identifies this resource as a collection of access controls. Value:
-     * &quot;plus#acl&quot;.
+     * Identifies this resource as a collection of access controls. Value: &quot;plus#acl&quot;.
      */
     kind?: string;
   }
@@ -152,13 +151,11 @@ export namespace plusDomains_v1 {
      */
     address?: string;
     /**
-     * Additional content added by the person who shared this activity,
-     * applicable only when resharing an activity.
+     * Additional content added by the person who shared this activity, applicable only when resharing an activity.
      */
     annotation?: string;
     /**
-     * If this activity is a crosspost from another system, this property
-     * specifies the ID of the original activity.
+     * If this activity is a crosspost from another system, this property specifies the ID of the original activity.
      */
     crosspostSource?: string;
     /**
@@ -166,8 +163,7 @@ export namespace plusDomains_v1 {
      */
     etag?: string;
     /**
-     * Latitude and longitude where this activity occurred. Format is latitude
-     * followed by longitude, space separated.
+     * Latitude and longitude where this activity occurred. Format is latitude followed by longitude, space separated.
      */
     geocode?: string;
     /**
@@ -175,8 +171,7 @@ export namespace plusDomains_v1 {
      */
     id?: string;
     /**
-     * Identifies this resource as an activity. Value:
-     * &quot;plus#activity&quot;.
+     * Identifies this resource as an activity. Value: &quot;plus#activity&quot;.
      */
     kind?: string;
     /**
@@ -250,13 +245,11 @@ export namespace plusDomains_v1 {
      */
     provider?: {title?: string};
     /**
-     * The time at which this activity was initially published. Formatted as an
-     * RFC 3339 timestamp.
+     * The time at which this activity was initially published. Formatted as an RFC 3339 timestamp.
      */
     published?: string;
     /**
-     * Radius, in meters, of the region where this activity occurred, centered
-     * at the latitude and longitude identified in geocode.
+     * Radius, in meters, of the region where this activity occurred, centered at the latitude and longitude identified in geocode.
      */
     radius?: string;
     /**
@@ -264,8 +257,7 @@ export namespace plusDomains_v1 {
      */
     title?: string;
     /**
-     * The time at which this activity was last updated. Formatted as an RFC
-     * 3339 timestamp.
+     * The time at which this activity was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
     /**
@@ -273,10 +265,7 @@ export namespace plusDomains_v1 {
      */
     url?: string;
     /**
-     * This activity&#39;s verb, which indicates the action that was performed.
-     * Possible values include, but are not limited to, the following values: -
-     * &quot;post&quot; - Publish content to the stream.  - &quot;share&quot; -
-     * Reshare an activity.
+     * This activity&#39;s verb, which indicates the action that was performed. Possible values include, but are not limited to, the following values:   - &quot;post&quot; - Publish content to the stream.  - &quot;share&quot; - Reshare an activity.
      */
     verb?: string;
   }
@@ -294,8 +283,7 @@ export namespace plusDomains_v1 {
      */
     items?: Schema$Activity[];
     /**
-     * Identifies this resource as a collection of activities. Value:
-     * &quot;plus#activityFeed&quot;.
+     * Identifies this resource as a collection of activities. Value: &quot;plus#activityFeed&quot;.
      */
     kind?: string;
     /**
@@ -303,9 +291,7 @@ export namespace plusDomains_v1 {
      */
     nextLink?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -313,13 +299,11 @@ export namespace plusDomains_v1 {
      */
     selfLink?: string;
     /**
-     * The title of this collection of activities, which is a truncated portion
-     * of the content.
+     * The title of this collection of activities, which is a truncated portion of the content.
      */
     title?: string;
     /**
-     * The time at which this collection of activities was last updated.
-     * Formatted as an RFC 3339 timestamp.
+     * The time at which this collection of activities was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
   }
@@ -333,22 +317,15 @@ export namespace plusDomains_v1 {
      */
     item?: Schema$PlusDomainsAclentryResource;
     /**
-     * Identifies this resource as an audience. Value:
-     * &quot;plus#audience&quot;.
+     * Identifies this resource as an audience. Value: &quot;plus#audience&quot;.
      */
     kind?: string;
     /**
-     * The number of people in this circle. This only applies if entity_type is
-     * CIRCLE.
+     * The number of people in this circle. This only applies if entity_type is CIRCLE.
      */
     memberCount?: number;
     /**
-     * The circle members&#39; visibility as chosen by the owner of the circle.
-     * This only applies for items with &quot;item.type&quot; equals
-     * &quot;circle&quot;. Possible values are:   - &quot;public&quot; - Members
-     * are visible to the public.  - &quot;limited&quot; - Members are visible
-     * to a limited audience.  - &quot;private&quot; - Members are visible to
-     * the owner only.
+     * The circle members&#39; visibility as chosen by the owner of the circle. This only applies for items with &quot;item.type&quot; equals &quot;circle&quot;. Possible values are:   - &quot;public&quot; - Members are visible to the public.  - &quot;limited&quot; - Members are visible to a limited audience.  - &quot;private&quot; - Members are visible to the owner only.
      */
     visibility?: string;
   }
@@ -362,19 +339,15 @@ export namespace plusDomains_v1 {
      */
     items?: Schema$Audience[];
     /**
-     * Identifies this resource as a collection of audiences. Value:
-     * &quot;plus#audienceFeed&quot;.
+     * Identifies this resource as a collection of audiences. Value: &quot;plus#audienceFeed&quot;.
      */
     kind?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
-     * The total number of ACL entries. The number of entries in this response
-     * may be smaller due to paging.
+     * The total number of ACL entries. The number of entries in this response may be smaller due to paging.
      */
     totalItems?: number;
   }
@@ -418,8 +391,7 @@ export namespace plusDomains_v1 {
      */
     items?: Schema$Circle[];
     /**
-     * Identifies this resource as a collection of circles. Value:
-     * &quot;plus#circleFeed&quot;.
+     * Identifies this resource as a collection of circles. Value: &quot;plus#circleFeed&quot;.
      */
     kind?: string;
     /**
@@ -427,9 +399,7 @@ export namespace plusDomains_v1 {
      */
     nextLink?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -441,8 +411,7 @@ export namespace plusDomains_v1 {
      */
     title?: string;
     /**
-     * The total number of circles. The number of circles in this response may
-     * be smaller due to paging.
+     * The total number of circles. The number of circles in this response may be smaller due to paging.
      */
     totalItems?: number;
   }
@@ -483,8 +452,7 @@ export namespace plusDomains_v1 {
      */
     plusoners?: {totalItems?: number};
     /**
-     * The time at which this comment was initially published. Formatted as an
-     * RFC 3339 timestamp.
+     * The time at which this comment was initially published. Formatted as an RFC 3339 timestamp.
      */
     published?: string;
     /**
@@ -492,13 +460,11 @@ export namespace plusDomains_v1 {
      */
     selfLink?: string;
     /**
-     * The time at which this comment was last updated. Formatted as an RFC 3339
-     * timestamp.
+     * The time at which this comment was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
     /**
-     * This comment&#39;s verb, indicating what action was performed. Possible
-     * values are:   - &quot;post&quot; - Publish content to the stream.
+     * This comment&#39;s verb, indicating what action was performed. Possible values are:   - &quot;post&quot; - Publish content to the stream.
      */
     verb?: string;
   }
@@ -516,8 +482,7 @@ export namespace plusDomains_v1 {
      */
     items?: Schema$Comment[];
     /**
-     * Identifies this resource as a collection of comments. Value:
-     * &quot;plus#commentFeed&quot;.
+     * Identifies this resource as a collection of comments. Value: &quot;plus#commentFeed&quot;.
      */
     kind?: string;
     /**
@@ -525,9 +490,7 @@ export namespace plusDomains_v1 {
      */
     nextLink?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -535,8 +498,7 @@ export namespace plusDomains_v1 {
      */
     title?: string;
     /**
-     * The time at which this collection of comments was last updated. Formatted
-     * as an RFC 3339 timestamp.
+     * The time at which this collection of comments was last updated. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
   }
@@ -575,8 +537,7 @@ export namespace plusDomains_v1 {
      */
     kind?: string;
     /**
-     * The time at which this media was originally created in UTC. Formatted as
-     * an RFC 3339 timestamp that matches this example: 2010-11-25T14:30:27.655Z
+     * The time at which this media was originally created in UTC. Formatted as an RFC 3339 timestamp that matches this example: 2010-11-25T14:30:27.655Z
      */
     mediaCreatedTime?: string;
     /**
@@ -584,8 +545,7 @@ export namespace plusDomains_v1 {
      */
     mediaUrl?: string;
     /**
-     * The time at which this media was uploaded. Formatted as an RFC 3339
-     * timestamp.
+     * The time at which this media was uploaded. Formatted as an RFC 3339 timestamp.
      */
     published?: string;
     /**
@@ -593,9 +553,7 @@ export namespace plusDomains_v1 {
      */
     sizeBytes?: string;
     /**
-     * The list of video streams for this video. There might be several
-     * different streams available for a single video, either Flash or MPEG, of
-     * various sizes
+     * The list of video streams for this video. There might be several different streams available for a single video, either Flash or MPEG, of various sizes
      */
     streams?: Schema$Videostream[];
     /**
@@ -603,8 +561,7 @@ export namespace plusDomains_v1 {
      */
     summary?: string;
     /**
-     * The time at which this media was last updated. This includes changes to
-     * media metadata. Formatted as an RFC 3339 timestamp.
+     * The time at which this media was last updated. This includes changes to media metadata. Formatted as an RFC 3339 timestamp.
      */
     updated?: string;
     /**
@@ -616,11 +573,7 @@ export namespace plusDomains_v1 {
      */
     videoDuration?: string;
     /**
-     * The encoding status of this video. Possible values are:   -
-     * &quot;UPLOADING&quot; - Not all the video bytes have been received.  -
-     * &quot;PENDING&quot; - Video not yet processed.  - &quot;FAILED&quot; -
-     * Video processing failed.  - &quot;READY&quot; - A single video stream is
-     * playable.  - &quot;FINAL&quot; - All video streams are playable.
+     * The encoding status of this video. Possible values are:   - &quot;UPLOADING&quot; - Not all the video bytes have been received.  - &quot;PENDING&quot; - Video not yet processed.  - &quot;FAILED&quot; - Video processing failed.  - &quot;READY&quot; - A single video stream is playable.  - &quot;FINAL&quot; - All video streams are playable.
      */
     videoStatus?: string;
     /**
@@ -634,20 +587,15 @@ export namespace plusDomains_v1 {
      */
     etag?: string;
     /**
-     * The people in this page of results. Each item includes the id,
-     * displayName, image, and url for the person. To retrieve additional
-     * profile data, see the people.get method.
+     * The people in this page of results. Each item includes the id, displayName, image, and url for the person. To retrieve additional profile data, see the people.get method.
      */
     items?: Schema$Person[];
     /**
-     * Identifies this resource as a collection of people. Value:
-     * &quot;plus#peopleFeed&quot;.
+     * Identifies this resource as a collection of people. Value: &quot;plus#peopleFeed&quot;.
      */
     kind?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * Provide this value in a subsequent request to return the next page of
-     * results.
+     * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -659,9 +607,7 @@ export namespace plusDomains_v1 {
      */
     title?: string;
     /**
-     * The total number of people available in this list. The number of people
-     * in a response might be smaller due to paging. This might not be set for
-     * all collections.
+     * The total number of people available in this list. The number of people in a response might be smaller due to paging. This might not be set for all collections.
      */
     totalItems?: number;
   }
@@ -679,8 +625,7 @@ export namespace plusDomains_v1 {
      */
     braggingRights?: string;
     /**
-     * For followers who are visible, the number of people who have added this
-     * person or page to a circle.
+     * For followers who are visible, the number of people who have added this person or page to a circle.
      */
     circledByCount?: number;
     /**
@@ -700,17 +645,11 @@ export namespace plusDomains_v1 {
      */
     displayName?: string;
     /**
-     * The hosted domain name for the user&#39;s Google Apps account. For
-     * instance, example.com. The plus.profile.emails.read or email scope is
-     * needed to get this domain name.
+     * The hosted domain name for the user&#39;s Google Apps account. For instance, example.com. The plus.profile.emails.read or email scope is needed to get this domain name.
      */
     domain?: string;
     /**
-     * A list of email addresses that this person has, including their Google
-     * account email address, and the public verified email addresses on their
-     * Google+ profile. The plus.profile.emails.read scope is needed to retrieve
-     * these email addresses, or the email scope can be used to retrieve just
-     * the Google account email address.
+     * A list of email addresses that this person has, including their Google account email address, and the public verified email addresses on their Google+ profile. The plus.profile.emails.read scope is needed to retrieve these email addresses, or the email scope can be used to retrieve just the Google account email address.
      */
     emails?: Array<{type?: string; value?: string}>;
     /**
@@ -718,9 +657,7 @@ export namespace plusDomains_v1 {
      */
     etag?: string;
     /**
-     * The person&#39;s gender. Possible values include, but are not limited to,
-     * the following values:   - &quot;male&quot; - Male gender.  -
-     * &quot;female&quot; - Female gender.  - &quot;other&quot; - Other.
+     * The person&#39;s gender. Possible values include, but are not limited to, the following values:   - &quot;male&quot; - Male gender.  - &quot;female&quot; - Female gender.  - &quot;other&quot; - Other.
      */
     gender?: string;
     /**
@@ -740,8 +677,7 @@ export namespace plusDomains_v1 {
      */
     kind?: string;
     /**
-     * An object representation of the individual components of a person&#39;s
-     * name.
+     * An object representation of the individual components of a person&#39;s name.
      */
     name?: {
       familyName?: string;
@@ -756,9 +692,7 @@ export namespace plusDomains_v1 {
      */
     nickname?: string;
     /**
-     * Type of person within Google+. Possible values include, but are not
-     * limited to, the following values:   - &quot;person&quot; - represents an
-     * actual person.  - &quot;page&quot; - represents a page.
+     * Type of person within Google+. Possible values include, but are not limited to, the following values:   - &quot;person&quot; - represents an actual person.  - &quot;page&quot; - represents a page.
      */
     objectType?: string;
     /**
@@ -766,8 +700,7 @@ export namespace plusDomains_v1 {
      */
     occupation?: string;
     /**
-     * A list of current or past organizations with which this person is
-     * associated.
+     * A list of current or past organizations with which this person is associated.
      */
     organizations?: Array<{
       department?: string;
@@ -789,15 +722,7 @@ export namespace plusDomains_v1 {
      */
     plusOneCount?: number;
     /**
-     * The person&#39;s relationship status. Possible values include, but are
-     * not limited to, the following values:   - &quot;single&quot; - Person is
-     * single.  - &quot;in_a_relationship&quot; - Person is in a relationship.
-     * - &quot;engaged&quot; - Person is engaged.  - &quot;married&quot; -
-     * Person is married.  - &quot;its_complicated&quot; - The relationship is
-     * complicated.  - &quot;open_relationship&quot; - Person is in an open
-     * relationship.  - &quot;widowed&quot; - Person is widowed.  -
-     * &quot;in_domestic_partnership&quot; - Person is in a domestic
-     * partnership.  - &quot;in_civil_union&quot; - Person is in a civil union.
+     * The person&#39;s relationship status. Possible values include, but are not limited to, the following values:   - &quot;single&quot; - Person is single.  - &quot;in_a_relationship&quot; - Person is in a relationship.  - &quot;engaged&quot; - Person is engaged.  - &quot;married&quot; - Person is married.  - &quot;its_complicated&quot; - The relationship is complicated.  - &quot;open_relationship&quot; - Person is in an open relationship.  - &quot;widowed&quot; - Person is widowed.  - &quot;in_domestic_partnership&quot; - Person is in a domestic partnership.  - &quot;in_civil_union&quot; - Person is in a civil union.
      */
     relationshipStatus?: string;
     /**
@@ -849,20 +774,11 @@ export namespace plusDomains_v1 {
      */
     displayName?: string;
     /**
-     * The ID of the entry. For entries of type &quot;person&quot; or
-     * &quot;circle&quot;, this is the ID of the resource. For other types, this
-     * property is not set.
+     * The ID of the entry. For entries of type &quot;person&quot; or &quot;circle&quot;, this is the ID of the resource. For other types, this property is not set.
      */
     id?: string;
     /**
-     * The type of entry describing to whom access is granted. Possible values
-     * are:   - &quot;person&quot; - Access to an individual.  -
-     * &quot;circle&quot; - Access to members of a circle.  -
-     * &quot;myCircles&quot; - Access to members of all the person&#39;s
-     * circles.  - &quot;extendedCircles&quot; - Access to members of all the
-     * person&#39;s circles, plus all of the people in their circles.  -
-     * &quot;domain&quot; - Access to members of the person&#39;s Google Apps
-     * domain.  - &quot;public&quot; - Access to anyone on the web.
+     * The type of entry describing to whom access is granted. Possible values are:   - &quot;person&quot; - Access to an individual.  - &quot;circle&quot; - Access to members of a circle.  - &quot;myCircles&quot; - Access to members of all the person&#39;s circles.  - &quot;extendedCircles&quot; - Access to members of all the person&#39;s circles, plus all of the people in their circles.  - &quot;domain&quot; - Access to members of the person&#39;s Google Apps domain.  - &quot;public&quot; - Access to anyone on the web.
      */
     type?: string;
   }
@@ -893,8 +809,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.activities.get
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.activities.get
      * @memberOf! ()
      *
@@ -965,8 +880,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.activities.list
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.activities.list
      * @memberOf! ()
      *
@@ -1063,20 +977,15 @@ export namespace plusDomains_v1 {
      */
     collection?: string;
     /**
-     * The maximum number of activities to include in the response, which is
-     * used for paging. For any response, the actual number returned might be
-     * less than the specified maxResults.
+     * The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
-     * The ID of the user to get activities for. The special value "me" can be
-     * used to indicate the authenticated user.
+     * The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1089,8 +998,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.audiences.list
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.audiences.list
      * @memberOf! ()
      *
@@ -1170,20 +1078,15 @@ export namespace plusDomains_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of circles to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
-     * The ID of the user to get audiences for. The special value "me" can be
-     * used to indicate the authenticated user.
+     * The ID of the user to get audiences for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1196,8 +1099,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.circles.list
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.circles.list
      * @memberOf! ()
      *
@@ -1278,20 +1180,15 @@ export namespace plusDomains_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of circles to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
-     * The ID of the user to get circles for. The special value "me" can be used
-     * to indicate the authenticated user.
+     * The ID of the user to get circles for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1304,8 +1201,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.comments.get
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.comments.get
      * @memberOf! ()
      *
@@ -1376,8 +1272,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.comments.list
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.comments.list
      * @memberOf! ()
      *
@@ -1473,15 +1368,11 @@ export namespace plusDomains_v1 {
      */
     activityId?: string;
     /**
-     * The maximum number of comments to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
@@ -1498,8 +1389,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.media.insert
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.media.insert
      * @memberOf! ()
      *
@@ -1767,8 +1657,7 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.people.listByActivity
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for more details.
      * @alias plusDomains.people.listByActivity
      * @memberOf! ()
      *
@@ -1851,8 +1740,7 @@ export namespace plusDomains_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the person to get the profile for. The special value "me" can
-     * be used to indicate the authenticated user.
+     * The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1867,9 +1755,7 @@ export namespace plusDomains_v1 {
      */
     collection?: string;
     /**
-     * The maximum number of people to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -1877,14 +1763,11 @@ export namespace plusDomains_v1 {
      */
     orderBy?: string;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
     /**
-     * Get the collection of people for the person identified. Use "me" to
-     * indicate the authenticated user.
+     * Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
      */
     userId?: string;
   }
@@ -1904,15 +1787,11 @@ export namespace plusDomains_v1 {
      */
     collection?: string;
     /**
-     * The maximum number of people to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
+     * The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      */
     maxResults?: number;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
+     * The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }

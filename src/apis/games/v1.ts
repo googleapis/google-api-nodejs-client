@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace games_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace games_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -109,7 +106,10 @@ export namespace games_v1 {
     turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.achievementDefinitions = new Resource$Achievementdefinitions(
         this.context
@@ -136,9 +136,7 @@ export namespace games_v1 {
    */
   export interface Schema$AchievementDefinition {
     /**
-     * The type of the achievement. Possible values are:   -
-     * &quot;STANDARD&quot; - Achievement is either locked or unlocked.  -
-     * &quot;INCREMENTAL&quot; - Achievement is incremental.
+     * The type of the achievement. Possible values are:   - &quot;STANDARD&quot; - Achievement is either locked or unlocked.  - &quot;INCREMENTAL&quot; - Achievement is incremental.
      */
     achievementType?: string;
     /**
@@ -158,25 +156,19 @@ export namespace games_v1 {
      */
     id?: string;
     /**
-     * The initial state of the achievement. Possible values are:   -
-     * &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; -
-     * Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is
-     * unlocked.
+     * The initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
     initialState?: string;
     /**
-     * Indicates whether the revealed icon image being returned is a default
-     * image, or is provided by the game.
+     * Indicates whether the revealed icon image being returned is a default image, or is provided by the game.
      */
     isRevealedIconUrlDefault?: boolean;
     /**
-     * Indicates whether the unlocked icon image being returned is a default
-     * image, or is game-provided.
+     * Indicates whether the unlocked icon image being returned is a default image, or is game-provided.
      */
     isUnlockedIconUrlDefault?: boolean;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementDefinition.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementDefinition.
      */
     kind?: string;
     /**
@@ -205,8 +197,7 @@ export namespace games_v1 {
      */
     items?: Schema$AchievementDefinition[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementDefinitionsListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementDefinitionsListResponse.
      */
     kind?: string;
     /**
@@ -223,13 +214,11 @@ export namespace games_v1 {
      */
     currentSteps?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementIncrementResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementIncrementResponse.
      */
     kind?: string;
     /**
-     * Whether the current steps for the achievement has reached the number of
-     * steps required to unlock.
+     * Whether the current steps for the achievement has reached the number of steps required to unlock.
      */
     newlyUnlocked?: boolean;
   }
@@ -238,15 +227,11 @@ export namespace games_v1 {
    */
   export interface Schema$AchievementRevealResponse {
     /**
-     * The current state of the achievement for which a reveal was attempted.
-     * This might be UNLOCKED if the achievement was already unlocked. Possible
-     * values are:   - &quot;REVEALED&quot; - Achievement is revealed.  -
-     * &quot;UNLOCKED&quot; - Achievement is unlocked.
+     * The current state of the achievement for which a reveal was attempted. This might be UNLOCKED if the achievement was already unlocked. Possible values are:   - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
     currentState?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementRevealResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementRevealResponse.
      */
     kind?: string;
   }
@@ -259,13 +244,11 @@ export namespace games_v1 {
      */
     currentSteps?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementSetStepsAtLeastResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementSetStepsAtLeastResponse.
      */
     kind?: string;
     /**
-     * Whether the the current steps for the achievement has reached the number
-     * of steps required to unlock.
+     * Whether the the current steps for the achievement has reached the number of steps required to unlock.
      */
     newlyUnlocked?: boolean;
   }
@@ -274,13 +257,11 @@ export namespace games_v1 {
    */
   export interface Schema$AchievementUnlockResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementUnlockResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUnlockResponse.
      */
     kind?: string;
     /**
-     * Whether this achievement was newly unlocked (that is, whether the unlock
-     * request for the achievement was the first for the player).
+     * Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player).
      */
     newlyUnlocked?: boolean;
   }
@@ -289,8 +270,7 @@ export namespace games_v1 {
    */
   export interface Schema$AchievementUpdateMultipleRequest {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementUpdateMultipleRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateMultipleRequest.
      */
     kind?: string;
     /**
@@ -303,8 +283,7 @@ export namespace games_v1 {
    */
   export interface Schema$AchievementUpdateMultipleResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementUpdateListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateListResponse.
      */
     kind?: string;
     /**
@@ -321,26 +300,19 @@ export namespace games_v1 {
      */
     achievementId?: string;
     /**
-     * The payload if an update of type INCREMENT was requested for the
-     * achievement.
+     * The payload if an update of type INCREMENT was requested for the achievement.
      */
     incrementPayload?: Schema$GamesAchievementIncrement;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementUpdateRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateRequest.
      */
     kind?: string;
     /**
-     * The payload if an update of type SET_STEPS_AT_LEAST was requested for the
-     * achievement.
+     * The payload if an update of type SET_STEPS_AT_LEAST was requested for the achievement.
      */
     setStepsAtLeastPayload?: Schema$GamesAchievementSetStepsAtLeast;
     /**
-     * The type of update being applied. Possible values are:   -
-     * &quot;REVEAL&quot; - Achievement is revealed.  - &quot;UNLOCK&quot; -
-     * Achievement is unlocked.  - &quot;INCREMENT&quot; - Achievement is
-     * incremented.  - &quot;SET_STEPS_AT_LEAST&quot; - Achievement progress is
-     * set to at least the passed value.
+     * The type of update being applied. Possible values are:   - &quot;REVEAL&quot; - Achievement is revealed.  - &quot;UNLOCK&quot; - Achievement is unlocked.  - &quot;INCREMENT&quot; - Achievement is incremented.  - &quot;SET_STEPS_AT_LEAST&quot; - Achievement progress is set to at least the passed value.
      */
     updateType?: string;
   }
@@ -353,10 +325,7 @@ export namespace games_v1 {
      */
     achievementId?: string;
     /**
-     * The current state of the achievement. Possible values are:   -
-     * &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; -
-     * Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is
-     * unlocked.
+     * The current state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
     currentState?: string;
     /**
@@ -364,13 +333,11 @@ export namespace games_v1 {
      */
     currentSteps?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#achievementUpdateResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateResponse.
      */
     kind?: string;
     /**
-     * Whether this achievement was newly unlocked (that is, whether the unlock
-     * request for the achievement was the first for the player).
+     * Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player).
      */
     newlyUnlocked?: boolean;
     /**
@@ -387,8 +354,7 @@ export namespace games_v1 {
      */
     count?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#aggregateStats.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#aggregateStats.
      */
     kind?: string;
     /**
@@ -417,8 +383,7 @@ export namespace games_v1 {
      */
     displayName?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#anonymousPlayer.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#anonymousPlayer.
      */
     kind?: string;
   }
@@ -447,8 +412,7 @@ export namespace games_v1 {
      */
     description?: string;
     /**
-     * A list of features that have been enabled for the application. Possible
-     * values are:   - &quot;SNAPSHOTS&quot; - Snapshots has been enabled
+     * A list of features that have been enabled for the application. Possible values are:   - &quot;SNAPSHOTS&quot; - Snapshots has been enabled
      */
     enabledFeatures?: string[];
     /**
@@ -460,8 +424,7 @@ export namespace games_v1 {
      */
     instances?: Schema$Instance[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#application.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#application.
      */
     kind?: string;
     /**
@@ -477,8 +440,7 @@ export namespace games_v1 {
      */
     name?: string;
     /**
-     * A hint to the client UI for what color to use as an app-themed color. The
-     * color is given as an RGB triplet (e.g. &quot;E0E0E0&quot;).
+     * A hint to the client UI for what color to use as an app-themed color. The color is given as an RGB triplet (e.g. &quot;E0E0E0&quot;).
      */
     themeColor?: string;
   }
@@ -487,8 +449,7 @@ export namespace games_v1 {
    */
   export interface Schema$ApplicationCategory {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#applicationCategory.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#applicationCategory.
      */
     kind?: string;
     /**
@@ -501,18 +462,15 @@ export namespace games_v1 {
     secondary?: string;
   }
   /**
-   * This is a JSON template for a third party application verification response
-   * resource.
+   * This is a JSON template for a third party application verification response resource.
    */
   export interface Schema$ApplicationVerifyResponse {
     /**
-     * An alternate ID that was once used for the player that was issued the
-     * auth token used in this request. (This field is not normally populated.)
+     * An alternate ID that was once used for the player that was issued the auth token used in this request. (This field is not normally populated.)
      */
     alternate_player_id?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#applicationVerifyResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#applicationVerifyResponse.
      */
     kind?: string;
     /**
@@ -533,8 +491,7 @@ export namespace games_v1 {
      */
     experiencePoints?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#category.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#category.
      */
     kind?: string;
   }
@@ -547,8 +504,7 @@ export namespace games_v1 {
      */
     items?: Schema$Category[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#categoryListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#categoryListResponse.
      */
     kind?: string;
     /**
@@ -561,21 +517,11 @@ export namespace games_v1 {
    */
   export interface Schema$EventBatchRecordFailure {
     /**
-     * The cause for the update failure. Possible values are:   -
-     * &quot;TOO_LARGE&quot;: A batch request was issued with more events than
-     * are allowed in a single batch.  - &quot;TIME_PERIOD_EXPIRED&quot;: A
-     * batch was sent with data too far in the past to record.  -
-     * &quot;TIME_PERIOD_SHORT&quot;: A batch was sent with a time range that
-     * was too short.  - &quot;TIME_PERIOD_LONG&quot;: A batch was sent with a
-     * time range that was too long.  - &quot;ALREADY_UPDATED&quot;: An attempt
-     * was made to record a batch of data which was already seen.  -
-     * &quot;RECORD_RATE_HIGH&quot;: An attempt was made to record data faster
-     * than the server will apply updates.
+     * The cause for the update failure. Possible values are:   - &quot;TOO_LARGE&quot;: A batch request was issued with more events than are allowed in a single batch.  - &quot;TIME_PERIOD_EXPIRED&quot;: A batch was sent with data too far in the past to record.  - &quot;TIME_PERIOD_SHORT&quot;: A batch was sent with a time range that was too short.  - &quot;TIME_PERIOD_LONG&quot;: A batch was sent with a time range that was too long.  - &quot;ALREADY_UPDATED&quot;: An attempt was made to record a batch of data which was already seen.  - &quot;RECORD_RATE_HIGH&quot;: An attempt was made to record data faster than the server will apply updates.
      */
     failureCause?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventBatchRecordFailure.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventBatchRecordFailure.
      */
     kind?: string;
     /**
@@ -592,8 +538,7 @@ export namespace games_v1 {
      */
     childId?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventChild.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventChild.
      */
     kind?: string;
   }
@@ -622,20 +567,15 @@ export namespace games_v1 {
      */
     imageUrl?: string;
     /**
-     * Indicates whether the icon image being returned is a default image, or is
-     * game-provided.
+     * Indicates whether the icon image being returned is a default image, or is game-provided.
      */
     isDefaultImageUrl?: boolean;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventDefinition.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventDefinition.
      */
     kind?: string;
     /**
-     * The visibility of event being tracked in this definition. Possible values
-     * are:   - &quot;REVEALED&quot;: This event should be visible to all users.
-     * - &quot;HIDDEN&quot;: This event should only be shown to users that have
-     * recorded this event at least once.
+     * The visibility of event being tracked in this definition. Possible values are:   - &quot;REVEALED&quot;: This event should be visible to all users.  - &quot;HIDDEN&quot;: This event should only be shown to users that have recorded this event at least once.
      */
     visibility?: string;
   }
@@ -648,8 +588,7 @@ export namespace games_v1 {
      */
     items?: Schema$EventDefinition[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventDefinitionListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventDefinitionListResponse.
      */
     kind?: string;
     /**
@@ -662,18 +601,15 @@ export namespace games_v1 {
    */
   export interface Schema$EventPeriodRange {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventPeriodRange.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventPeriodRange.
      */
     kind?: string;
     /**
-     * The time when this update period ends, in millis, since 1970 UTC (Unix
-     * Epoch).
+     * The time when this update period ends, in millis, since 1970 UTC (Unix Epoch).
      */
     periodEndMillis?: string;
     /**
-     * The time when this update period begins, in millis, since 1970 UTC (Unix
-     * Epoch).
+     * The time when this update period begins, in millis, since 1970 UTC (Unix Epoch).
      */
     periodStartMillis?: string;
   }
@@ -682,8 +618,7 @@ export namespace games_v1 {
    */
   export interface Schema$EventPeriodUpdate {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventPeriodUpdate.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventPeriodUpdate.
      */
     kind?: string;
     /**
@@ -704,15 +639,11 @@ export namespace games_v1 {
      */
     eventId?: string;
     /**
-     * The cause for the update failure. Possible values are:   -
-     * &quot;NOT_FOUND&quot; - An attempt was made to set an event that was not
-     * defined.  - &quot;INVALID_UPDATE_VALUE&quot; - An attempt was made to
-     * increment an event by a non-positive value.
+     * The cause for the update failure. Possible values are:   - &quot;NOT_FOUND&quot; - An attempt was made to set an event that was not defined.  - &quot;INVALID_UPDATE_VALUE&quot; - An attempt was made to increment an event by a non-positive value.
      */
     failureCause?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventRecordFailure.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventRecordFailure.
      */
     kind?: string;
   }
@@ -721,13 +652,11 @@ export namespace games_v1 {
    */
   export interface Schema$EventRecordRequest {
     /**
-     * The current time when this update was sent, in milliseconds, since 1970
-     * UTC (Unix Epoch).
+     * The current time when this update was sent, in milliseconds, since 1970 UTC (Unix Epoch).
      */
     currentTimeMillis?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventRecordRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventRecordRequest.
      */
     kind?: string;
     /**
@@ -748,8 +677,7 @@ export namespace games_v1 {
      */
     definitionId?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventUpdateRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventUpdateRequest.
      */
     kind?: string;
     /**
@@ -770,8 +698,7 @@ export namespace games_v1 {
      */
     eventFailures?: Schema$EventRecordFailure[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#eventUpdateResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#eventUpdateResponse.
      */
     kind?: string;
     /**
@@ -780,13 +707,11 @@ export namespace games_v1 {
     playerEvents?: Schema$PlayerEvent[];
   }
   /**
-   * This is a JSON template for the payload to request to increment an
-   * achievement.
+   * This is a JSON template for the payload to request to increment an achievement.
    */
   export interface Schema$GamesAchievementIncrement {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#GamesAchievementIncrement.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#GamesAchievementIncrement.
      */
     kind?: string;
     /**
@@ -799,13 +724,11 @@ export namespace games_v1 {
     steps?: number;
   }
   /**
-   * This is a JSON template for the payload to request to increment an
-   * achievement.
+   * This is a JSON template for the payload to request to increment an achievement.
    */
   export interface Schema$GamesAchievementSetStepsAtLeast {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#GamesAchievementSetStepsAtLeast.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#GamesAchievementSetStepsAtLeast.
      */
     kind?: string;
     /**
@@ -822,8 +745,7 @@ export namespace games_v1 {
      */
     height?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#imageAsset.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#imageAsset.
      */
     kind?: string;
     /**
@@ -856,8 +778,7 @@ export namespace games_v1 {
      */
     iosInstance?: Schema$InstanceIosDetails;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#instance.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#instance.
      */
     kind?: string;
     /**
@@ -865,9 +786,7 @@ export namespace games_v1 {
      */
     name?: string;
     /**
-     * The platform type. Possible values are:   - &quot;ANDROID&quot; -
-     * Instance is for Android.  - &quot;IOS&quot; - Instance is for iOS  -
-     * &quot;WEB_APP&quot; - Instance is for Web App.
+     * The platform type. Possible values are:   - &quot;ANDROID&quot; - Instance is for Android.  - &quot;IOS&quot; - Instance is for iOS  - &quot;WEB_APP&quot; - Instance is for Web App.
      */
     platformType?: string;
     /**
@@ -892,8 +811,7 @@ export namespace games_v1 {
      */
     enablePiracyCheck?: boolean;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#instanceAndroidDetails.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#instanceAndroidDetails.
      */
     kind?: string;
     /**
@@ -918,18 +836,15 @@ export namespace games_v1 {
      */
     itunesAppId?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#instanceIosDetails.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#instanceIosDetails.
      */
     kind?: string;
     /**
-     * Indicates that this instance is the default for new installations on iPad
-     * devices.
+     * Indicates that this instance is the default for new installations on iPad devices.
      */
     preferredForIpad?: boolean;
     /**
-     * Indicates that this instance is the default for new installations on
-     * iPhone devices.
+     * Indicates that this instance is the default for new installations on iPhone devices.
      */
     preferredForIphone?: boolean;
     /**
@@ -946,8 +861,7 @@ export namespace games_v1 {
    */
   export interface Schema$InstanceWebDetails {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#instanceWebDetails.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#instanceWebDetails.
      */
     kind?: string;
     /**
@@ -972,13 +886,11 @@ export namespace games_v1 {
      */
     id?: string;
     /**
-     * Indicates whether the icon image being returned is a default image, or is
-     * game-provided.
+     * Indicates whether the icon image being returned is a default image, or is game-provided.
      */
     isIconUrlDefault?: boolean;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#leaderboard.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboard.
      */
     kind?: string;
     /**
@@ -986,10 +898,7 @@ export namespace games_v1 {
      */
     name?: string;
     /**
-     * How scores are ordered. Possible values are:   -
-     * &quot;LARGER_IS_BETTER&quot; - Larger values are better; scores are
-     * sorted in descending order.  - &quot;SMALLER_IS_BETTER&quot; - Smaller
-     * values are better; scores are sorted in ascending order.
+     * How scores are ordered. Possible values are:   - &quot;LARGER_IS_BETTER&quot; - Larger values are better; scores are sorted in descending order.  - &quot;SMALLER_IS_BETTER&quot; - Smaller values are better; scores are sorted in ascending order.
      */
     order?: string;
   }
@@ -1006,8 +915,7 @@ export namespace games_v1 {
      */
     formattedScoreRank?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#leaderboardEntry.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardEntry.
      */
     kind?: string;
     /**
@@ -1019,8 +927,7 @@ export namespace games_v1 {
      */
     scoreRank?: string;
     /**
-     * Additional information about the score. Values must contain no more than
-     * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string;
     /**
@@ -1028,15 +935,11 @@ export namespace games_v1 {
      */
     scoreValue?: string;
     /**
-     * The time span of this high score. Possible values are:   -
-     * &quot;ALL_TIME&quot; - The score is an all-time high score.  -
-     * &quot;WEEKLY&quot; - The score is a weekly high score.  -
-     * &quot;DAILY&quot; - The score is a daily high score.
+     * The time span of this high score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time high score.  - &quot;WEEKLY&quot; - The score is a weekly high score.  - &quot;DAILY&quot; - The score is a daily high score.
      */
     timeSpan?: string;
     /**
-     * The timestamp at which this score was recorded, in milliseconds since the
-     * epoch in UTC.
+     * The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.
      */
     writeTimestampMillis?: string;
   }
@@ -1049,8 +952,7 @@ export namespace games_v1 {
      */
     items?: Schema$Leaderboard[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#leaderboardListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardListResponse.
      */
     kind?: string;
     /**
@@ -1071,8 +973,7 @@ export namespace games_v1 {
      */
     formattedRank?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#leaderboardScoreRank.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardScoreRank.
      */
     kind?: string;
     /**
@@ -1093,8 +994,7 @@ export namespace games_v1 {
      */
     items?: Schema$LeaderboardEntry[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#leaderboardScores.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardScores.
      */
     kind?: string;
     /**
@@ -1106,11 +1006,7 @@ export namespace games_v1 {
      */
     numScores?: string;
     /**
-     * The score of the requesting player on the leaderboard. The player&#39;s
-     * score may appear both here and in the list of scores above. If you are
-     * viewing a public leaderboard and the player is not sharing their gameplay
-     * information publicly, the scoreRank and formattedScoreRank values will
-     * not be present.
+     * The score of the requesting player on the leaderboard. The player&#39;s score may appear both here and in the list of scores above. If you are viewing a public leaderboard and the player is not sharing their gameplay information publicly, the scoreRank and formattedScoreRank values will not be present.
      */
     playerScore?: Schema$LeaderboardEntry;
     /**
@@ -1123,13 +1019,11 @@ export namespace games_v1 {
    */
   export interface Schema$MetagameConfig {
     /**
-     * Current version of the metagame configuration data. When this data is
-     * updated, the version number will be increased by one.
+     * Current version of the metagame configuration data. When this data is updated, the version number will be increased by one.
      */
     currentVersion?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#metagameConfig.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#metagameConfig.
      */
     kind?: string;
     /**
@@ -1154,28 +1048,19 @@ export namespace games_v1 {
      */
     iosNetworkType?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#networkDiagnostics.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#networkDiagnostics.
      */
     kind?: string;
     /**
-     * The MCC+MNC code for the client&#39;s network connection. On Android:
-     * http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator()
-     * On iOS, see:
-     * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html
+     * The MCC+MNC code for the client&#39;s network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator() On iOS, see: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html
      */
     networkOperatorCode?: string;
     /**
-     * The name of the carrier of the client&#39;s network connection. On
-     * Android:
-     * http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName()
-     * On iOS:
-     * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName
+     * The name of the carrier of the client&#39;s network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName() On iOS: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName
      */
     networkOperatorName?: string;
     /**
-     * The amount of time in milliseconds it took for the client to establish a
-     * connection with the XMPP server.
+     * The amount of time in milliseconds it took for the client to establish a connection with the XMPP server.
      */
     registrationLatencyMillis?: number;
   }
@@ -1184,8 +1069,7 @@ export namespace games_v1 {
    */
   export interface Schema$ParticipantResult {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#participantResult.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#participantResult.
      */
     kind?: string;
     /**
@@ -1193,21 +1077,11 @@ export namespace games_v1 {
      */
     participantId?: string;
     /**
-     * The placement or ranking of the participant in the match results; a
-     * number from one to the number of participants in the match. Multiple
-     * participants may have the same placing value in case of a type.
+     * The placement or ranking of the participant in the match results; a number from one to the number of participants in the match. Multiple participants may have the same placing value in case of a type.
      */
     placing?: number;
     /**
-     * The result of the participant for this match. Possible values are:   -
-     * &quot;MATCH_RESULT_WIN&quot; - The participant won the match.  -
-     * &quot;MATCH_RESULT_LOSS&quot; - The participant lost the match.  -
-     * &quot;MATCH_RESULT_TIE&quot; - The participant tied the match.  -
-     * &quot;MATCH_RESULT_NONE&quot; - There was no winner for the match (nobody
-     * wins or loses this kind of game.)  - &quot;MATCH_RESULT_DISCONNECT&quot;
-     * - The participant disconnected / left during the match.  -
-     * &quot;MATCH_RESULT_DISAGREED&quot; - Different clients reported different
-     * results for this participant.
+     * The result of the participant for this match. Possible values are:   - &quot;MATCH_RESULT_WIN&quot; - The participant won the match.  - &quot;MATCH_RESULT_LOSS&quot; - The participant lost the match.  - &quot;MATCH_RESULT_TIE&quot; - The participant tied the match.  - &quot;MATCH_RESULT_NONE&quot; - There was no winner for the match (nobody wins or loses this kind of game.)  - &quot;MATCH_RESULT_DISCONNECT&quot; - The participant disconnected / left during the match.  - &quot;MATCH_RESULT_DISAGREED&quot; - Different clients reported different results for this participant.
      */
     result?: string;
   }
@@ -1224,8 +1098,7 @@ export namespace games_v1 {
      */
     bytesSent?: Schema$AggregateStats;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#peerChannelDiagnostics.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#peerChannelDiagnostics.
      */
     kind?: string;
     /**
@@ -1258,8 +1131,7 @@ export namespace games_v1 {
      */
     connectedTimestampMillis?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#peerSessionDiagnostics.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#peerSessionDiagnostics.
      */
     kind?: string;
     /**
@@ -1276,23 +1148,19 @@ export namespace games_v1 {
     unreliableChannel?: Schema$PeerChannelDiagnostics;
   }
   /**
-   * This is a JSON template for metadata about a player playing a game with the
-   * currently authenticated user.
+   * This is a JSON template for metadata about a player playing a game with the currently authenticated user.
    */
   export interface Schema$Played {
     /**
-     * True if the player was auto-matched with the currently authenticated
-     * user.
+     * True if the player was auto-matched with the currently authenticated user.
      */
     autoMatched?: boolean;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#played.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#played.
      */
     kind?: string;
     /**
-     * The last time the player played the game in milliseconds since the epoch
-     * in UTC.
+     * The last time the player played the game in milliseconds since the epoch in UTC.
      */
     timeMillis?: string;
   }
@@ -1321,26 +1189,19 @@ export namespace games_v1 {
      */
     experienceInfo?: Schema$PlayerExperienceInfo;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#player.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#player.
      */
     kind?: string;
     /**
-     * Details about the last time this player played a multiplayer game with
-     * the currently authenticated player. Populated for PLAYED_WITH player
-     * collection members.
+     * Details about the last time this player played a multiplayer game with the currently authenticated player. Populated for PLAYED_WITH player collection members.
      */
     lastPlayedWith?: Schema$Played;
     /**
-     * An object representation of the individual components of the player&#39;s
-     * name. For some players, these fields may not be present.
+     * An object representation of the individual components of the player&#39;s name. For some players, these fields may not be present.
      */
     name?: {familyName?: string; givenName?: string};
     /**
-     * The player ID that was used for this player the first time they signed
-     * into the game in question. This is only populated for calls to player.get
-     * for the requesting player, only if the player ID has subsequently
-     * changed, and only to clients that support remapping player IDs.
+     * The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs.
      */
     originalPlayerId?: string;
     /**
@@ -1348,8 +1209,7 @@ export namespace games_v1 {
      */
     playerId?: string;
     /**
-     * The player&#39;s profile settings. Controls whether or not the
-     * player&#39;s profile is visible to other players.
+     * The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
      */
     profileSettings?: Schema$ProfileSettings;
     /**
@@ -1362,9 +1222,7 @@ export namespace games_v1 {
    */
   export interface Schema$PlayerAchievement {
     /**
-     * The state of the achievement. Possible values are:   - &quot;HIDDEN&quot;
-     * - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is
-     * revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
+     * The state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
     achievementState?: string;
     /**
@@ -1372,9 +1230,7 @@ export namespace games_v1 {
      */
     currentSteps?: number;
     /**
-     * Experience points earned for the achievement. This field is absent for
-     * achievements that have not yet been unlocked and 0 for achievements that
-     * have been unlocked by testers but that are unpublished.
+     * Experience points earned for the achievement. This field is absent for achievements that have not yet been unlocked and 0 for achievements that have been unlocked by testers but that are unpublished.
      */
     experiencePoints?: string;
     /**
@@ -1386,8 +1242,7 @@ export namespace games_v1 {
      */
     id?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerAchievement.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerAchievement.
      */
     kind?: string;
     /**
@@ -1404,8 +1259,7 @@ export namespace games_v1 {
      */
     items?: Schema$PlayerAchievement[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerAchievementListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerAchievementListResponse.
      */
     kind?: string;
     /**
@@ -1422,14 +1276,11 @@ export namespace games_v1 {
      */
     definitionId?: string;
     /**
-     * The current number of times this event has occurred, as a string. The
-     * formatting of this string depends on the configuration of your event in
-     * the Play Games Developer Console.
+     * The current number of times this event has occurred, as a string. The formatting of this string depends on the configuration of your event in the Play Games Developer Console.
      */
     formattedNumEvents?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerEvent.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerEvent.
      */
     kind?: string;
     /**
@@ -1450,8 +1301,7 @@ export namespace games_v1 {
      */
     items?: Schema$PlayerEvent[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerEventListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerEventListResponse.
      */
     kind?: string;
     /**
@@ -1460,8 +1310,7 @@ export namespace games_v1 {
     nextPageToken?: string;
   }
   /**
-   * This is a JSON template for 1P/3P metadata about the player&#39;s
-   * experience.
+   * This is a JSON template for 1P/3P metadata about the player&#39;s experience.
    */
   export interface Schema$PlayerExperienceInfo {
     /**
@@ -1473,18 +1322,15 @@ export namespace games_v1 {
      */
     currentLevel?: Schema$PlayerLevel;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerExperienceInfo.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerExperienceInfo.
      */
     kind?: string;
     /**
-     * The timestamp when the player was leveled up, in millis since Unix epoch
-     * UTC.
+     * The timestamp when the player was leveled up, in millis since Unix epoch UTC.
      */
     lastLevelUpTimestampMillis?: string;
     /**
-     * The next level of the player. If the current level is the maximum level,
-     * this should be same as the current level.
+     * The next level of the player. If the current level is the maximum level, this should be same as the current level.
      */
     nextLevel?: Schema$PlayerLevel;
   }
@@ -1493,8 +1339,7 @@ export namespace games_v1 {
    */
   export interface Schema$PlayerLeaderboardScore {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerLeaderboardScore.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerLeaderboardScore.
      */
     kind?: string;
     /**
@@ -1502,8 +1347,7 @@ export namespace games_v1 {
      */
     leaderboard_id?: string;
     /**
-     * The public rank of the score in this leaderboard. This object will not be
-     * present if the user is not sharing their scores publicly.
+     * The public rank of the score in this leaderboard. This object will not be present if the user is not sharing their scores publicly.
      */
     publicRank?: Schema$LeaderboardScoreRank;
     /**
@@ -1511,8 +1355,7 @@ export namespace games_v1 {
      */
     scoreString?: string;
     /**
-     * Additional information about the score. Values must contain no more than
-     * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string;
     /**
@@ -1524,15 +1367,11 @@ export namespace games_v1 {
      */
     socialRank?: Schema$LeaderboardScoreRank;
     /**
-     * The time span of this score. Possible values are:   -
-     * &quot;ALL_TIME&quot; - The score is an all-time score.  -
-     * &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; -
-     * The score is a daily score.
+     * The time span of this score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
      */
     timeSpan?: string;
     /**
-     * The timestamp at which this score was recorded, in milliseconds since the
-     * epoch in UTC.
+     * The timestamp at which this score was recorded, in milliseconds since the epoch in UTC.
      */
     writeTimestamp?: string;
   }
@@ -1545,8 +1384,7 @@ export namespace games_v1 {
      */
     items?: Schema$PlayerLeaderboardScore[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerLeaderboardScoreListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerLeaderboardScoreListResponse.
      */
     kind?: string;
     /**
@@ -1563,8 +1401,7 @@ export namespace games_v1 {
    */
   export interface Schema$PlayerLevel {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerLevel.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerLevel.
      */
     kind?: string;
     /**
@@ -1589,8 +1426,7 @@ export namespace games_v1 {
      */
     items?: Schema$Player[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerListResponse.
      */
     kind?: string;
     /**
@@ -1607,8 +1443,7 @@ export namespace games_v1 {
      */
     formattedScore?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerScore.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerScore.
      */
     kind?: string;
     /**
@@ -1616,15 +1451,11 @@ export namespace games_v1 {
      */
     score?: string;
     /**
-     * Additional information about this score. Values will contain no more than
-     * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string;
     /**
-     * The time span for this player score. Possible values are:   -
-     * &quot;ALL_TIME&quot; - The score is an all-time score.  -
-     * &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; -
-     * The score is a daily score.
+     * The time span for this player score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
      */
     timeSpan?: string;
   }
@@ -1633,8 +1464,7 @@ export namespace games_v1 {
    */
   export interface Schema$PlayerScoreListResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerScoreListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerScoreListResponse.
      */
     kind?: string;
     /**
@@ -1647,10 +1477,7 @@ export namespace games_v1 {
    */
   export interface Schema$PlayerScoreResponse {
     /**
-     * The time spans where the submitted score is better than the existing
-     * score for that time span. Possible values are:   - &quot;ALL_TIME&quot; -
-     * The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a
-     * weekly score.  - &quot;DAILY&quot; - The score is a daily score.
+     * The time spans where the submitted score is better than the existing score for that time span. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
      */
     beatenScoreTimeSpans?: string[];
     /**
@@ -1658,8 +1485,7 @@ export namespace games_v1 {
      */
     formattedScore?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerScoreResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerScoreResponse.
      */
     kind?: string;
     /**
@@ -1667,15 +1493,11 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * Additional information about this score. Values will contain no more than
-     * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string;
     /**
-     * The scores in time spans that have not been beaten. As an example, the
-     * submitted score may be better than the player&#39;s DAILY score, but not
-     * better than the player&#39;s scores for the WEEKLY or ALL_TIME time
-     * spans.
+     * The scores in time spans that have not been beaten. As an example, the submitted score may be better than the player&#39;s DAILY score, but not better than the player&#39;s scores for the WEEKLY or ALL_TIME time spans.
      */
     unbeatenScores?: Schema$PlayerScore[];
   }
@@ -1684,8 +1506,7 @@ export namespace games_v1 {
    */
   export interface Schema$PlayerScoreSubmissionList {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#playerScoreSubmissionList.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#playerScoreSubmissionList.
      */
     kind?: string;
     /**
@@ -1698,13 +1519,11 @@ export namespace games_v1 {
    */
   export interface Schema$ProfileSettings {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#profileSettings.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#profileSettings.
      */
     kind?: string;
     /**
-     * The player&#39;s current profile visibility. This field is visible to
-     * both 1P and 3P APIs.
+     * The player&#39;s current profile visibility. This field is visible to both 1P and 3P APIs.
      */
     profileVisible?: boolean;
   }
@@ -1713,10 +1532,7 @@ export namespace games_v1 {
    */
   export interface Schema$PushToken {
     /**
-     * The revision of the client SDK used by your application, in the same
-     * format that&#39;s used by revisions.check. Used to send backward
-     * compatible messages. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible
-     * values of PLATFORM_TYPE are:   - IOS - Push token is for iOS
+     * The revision of the client SDK used by your application, in the same format that&#39;s used by revisions.check. Used to send backward compatible messages. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - IOS - Push token is for iOS
      */
     clientRevision?: string;
     /**
@@ -1724,8 +1540,7 @@ export namespace games_v1 {
      */
     id?: Schema$PushTokenId;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#pushToken.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#pushToken.
      */
     kind?: string;
     /**
@@ -1742,8 +1557,7 @@ export namespace games_v1 {
      */
     ios?: {apns_device_token?: string; apns_environment?: string};
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#pushTokenId.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#pushTokenId.
      */
     kind?: string;
   }
@@ -1752,8 +1566,7 @@ export namespace games_v1 {
    */
   export interface Schema$Quest {
     /**
-     * The timestamp at which the user accepted the quest in milliseconds since
-     * the epoch in UTC. Only present if the player has accepted the quest.
+     * The timestamp at which the user accepted the quest in milliseconds since the epoch in UTC. Only present if the player has accepted the quest.
      */
     acceptedTimestampMillis?: string;
     /**
@@ -1769,8 +1582,7 @@ export namespace games_v1 {
      */
     description?: string;
     /**
-     * The timestamp at which the quest ceases to be active in milliseconds
-     * since the epoch in UTC.
+     * The timestamp at which the quest ceases to be active in milliseconds since the epoch in UTC.
      */
     endTimestampMillis?: string;
     /**
@@ -1782,24 +1594,19 @@ export namespace games_v1 {
      */
     id?: string;
     /**
-     * Indicates whether the banner image being returned is a default image, or
-     * is game-provided.
+     * Indicates whether the banner image being returned is a default image, or is game-provided.
      */
     isDefaultBannerUrl?: boolean;
     /**
-     * Indicates whether the icon image being returned is a default image, or is
-     * game-provided.
+     * Indicates whether the icon image being returned is a default image, or is game-provided.
      */
     isDefaultIconUrl?: boolean;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#quest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#quest.
      */
     kind?: string;
     /**
-     * The timestamp at which the quest was last updated by the user in
-     * milliseconds since the epoch in UTC. Only present if the player has
-     * accepted the quest.
+     * The timestamp at which the quest was last updated by the user in milliseconds since the epoch in UTC. Only present if the player has accepted the quest.
      */
     lastUpdatedTimestampMillis?: string;
     /**
@@ -1811,25 +1618,15 @@ export namespace games_v1 {
      */
     name?: string;
     /**
-     * The timestamp at which the user should be notified that the quest will
-     * end soon in milliseconds since the epoch in UTC.
+     * The timestamp at which the user should be notified that the quest will end soon in milliseconds since the epoch in UTC.
      */
     notifyTimestampMillis?: string;
     /**
-     * The timestamp at which the quest becomes active in milliseconds since the
-     * epoch in UTC.
+     * The timestamp at which the quest becomes active in milliseconds since the epoch in UTC.
      */
     startTimestampMillis?: string;
     /**
-     * The state of the quest. Possible values are:   - &quot;UPCOMING&quot;:
-     * The quest is upcoming. The user can see the quest, but cannot accept it
-     * until it is open.  - &quot;OPEN&quot;: The quest is currently open and
-     * may be accepted at this time.  - &quot;ACCEPTED&quot;: The user is
-     * currently participating in this quest.  - &quot;COMPLETED&quot;: The user
-     * has completed the quest.  - &quot;FAILED&quot;: The quest was attempted
-     * but was not completed before the deadline expired.  -
-     * &quot;EXPIRED&quot;: The quest has expired and was not accepted.  -
-     * &quot;DELETED&quot;: The quest should be deleted from the local database.
+     * The state of the quest. Possible values are:   - &quot;UPCOMING&quot;: The quest is upcoming. The user can see the quest, but cannot accept it until it is open.  - &quot;OPEN&quot;: The quest is currently open and may be accepted at this time.  - &quot;ACCEPTED&quot;: The user is currently participating in this quest.  - &quot;COMPLETED&quot;: The user has completed the quest.  - &quot;FAILED&quot;: The quest was attempted but was not completed before the deadline expired.  - &quot;EXPIRED&quot;: The quest has expired and was not accepted.  - &quot;DELETED&quot;: The quest should be deleted from the local database.
      */
     state?: string;
   }
@@ -1838,14 +1635,11 @@ export namespace games_v1 {
    */
   export interface Schema$QuestContribution {
     /**
-     * The formatted value of the contribution as a string. Format depends on
-     * the configuration for the associated event definition in the Play Games
-     * Developer Console.
+     * The formatted value of the contribution as a string. Format depends on the configuration for the associated event definition in the Play Games Developer Console.
      */
     formattedValue?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#questContribution.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#questContribution.
      */
     kind?: string;
     /**
@@ -1858,15 +1652,11 @@ export namespace games_v1 {
    */
   export interface Schema$QuestCriterion {
     /**
-     * The total number of times the associated event must be incremented for
-     * the player to complete this quest.
+     * The total number of times the associated event must be incremented for the player to complete this quest.
      */
     completionContribution?: Schema$QuestContribution;
     /**
-     * The number of increments the player has made toward the completion count
-     * event increments required to complete the quest. This value will not
-     * exceed the completion contribution. There will be no currentContribution
-     * until the player has accepted the quest.
+     * The number of increments the player has made toward the completion count event increments required to complete the quest. This value will not exceed the completion contribution. There will be no currentContribution until the player has accepted the quest.
      */
     currentContribution?: Schema$QuestContribution;
     /**
@@ -1874,16 +1664,11 @@ export namespace games_v1 {
      */
     eventId?: string;
     /**
-     * The value of the event associated with this quest at the time that the
-     * quest was accepted. This value may change if event increments that took
-     * place before the start of quest are uploaded after the quest starts.
-     * There will be no initialPlayerProgress until the player has accepted the
-     * quest.
+     * The value of the event associated with this quest at the time that the quest was accepted. This value may change if event increments that took place before the start of quest are uploaded after the quest starts. There will be no initialPlayerProgress until the player has accepted the quest.
      */
     initialPlayerProgress?: Schema$QuestContribution;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#questCriterion.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#questCriterion.
      */
     kind?: string;
   }
@@ -1896,8 +1681,7 @@ export namespace games_v1 {
      */
     items?: Schema$Quest[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#questListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#questListResponse.
      */
     kind?: string;
     /**
@@ -1910,9 +1694,7 @@ export namespace games_v1 {
    */
   export interface Schema$QuestMilestone {
     /**
-     * The completion reward data of the milestone, represented as a
-     * Base64-encoded string. This is a developer-specified binary blob with
-     * size between 0 and 2 KB before encoding.
+     * The completion reward data of the milestone, represented as a Base64-encoded string. This is a developer-specified binary blob with size between 0 and 2 KB before encoding.
      */
     completionRewardData?: string;
     /**
@@ -1924,17 +1706,11 @@ export namespace games_v1 {
      */
     id?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#questMilestone.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#questMilestone.
      */
     kind?: string;
     /**
-     * The current state of the milestone. Possible values are:   -
-     * &quot;COMPLETED_NOT_CLAIMED&quot; - The milestone is complete, but has
-     * not yet been claimed.  - &quot;CLAIMED&quot; - The milestone is complete
-     * and has been claimed.  - &quot;NOT_COMPLETED&quot; - The milestone has
-     * not yet been completed.  - &quot;NOT_STARTED&quot; - The milestone is for
-     * a quest that has not yet been accepted.
+     * The current state of the milestone. Possible values are:   - &quot;COMPLETED_NOT_CLAIMED&quot; - The milestone is complete, but has not yet been claimed.  - &quot;CLAIMED&quot; - The milestone is complete and has been claimed.  - &quot;NOT_COMPLETED&quot; - The milestone has not yet been completed.  - &quot;NOT_STARTED&quot; - The milestone is for a quest that has not yet been accepted.
      */
     state?: string;
   }
@@ -1943,21 +1719,15 @@ export namespace games_v1 {
    */
   export interface Schema$RevisionCheckResponse {
     /**
-     * The version of the API this client revision should use when calling API
-     * methods.
+     * The version of the API this client revision should use when calling API methods.
      */
     apiVersion?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#revisionCheckResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#revisionCheckResponse.
      */
     kind?: string;
     /**
-     * The result of the revision check. Possible values are:   - &quot;OK&quot;
-     * - The revision being used is current.  - &quot;DEPRECATED&quot; - There
-     * is currently a newer version available, but the revision being used still
-     * works.  - &quot;INVALID&quot; - The revision being used is not supported
-     * in any released version.
+     * The result of the revision check. Possible values are:   - &quot;OK&quot; - The revision being used is current.  - &quot;DEPRECATED&quot; - There is currently a newer version available, but the revision being used still works.  - &quot;INVALID&quot; - The revision being used is not supported in any released version.
      */
     revisionStatus?: string;
   }
@@ -1974,8 +1744,7 @@ export namespace games_v1 {
      */
     autoMatchingCriteria?: Schema$RoomAutoMatchingCriteria;
     /**
-     * Auto-matching status for this room. Not set if the room is not currently
-     * in the auto-matching queue.
+     * Auto-matching status for this room. Not set if the room is not currently in the auto-matching queue.
      */
     autoMatchingStatus?: Schema$RoomAutoMatchStatus;
     /**
@@ -1983,19 +1752,15 @@ export namespace games_v1 {
      */
     creationDetails?: Schema$RoomModification;
     /**
-     * This short description is generated by our servers and worded relative to
-     * the player requesting the room. It is intended to be displayed when the
-     * room is shown in a list (that is, an invitation to a room.)
+     * This short description is generated by our servers and worded relative to the player requesting the room. It is intended to be displayed when the room is shown in a list (that is, an invitation to a room.)
      */
     description?: string;
     /**
-     * The ID of the participant that invited the user to the room. Not set if
-     * the user was not invited to the room.
+     * The ID of the participant that invited the user to the room. Not set if the user was not invited to the room.
      */
     inviterId?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#room.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#room.
      */
     kind?: string;
     /**
@@ -2003,8 +1768,7 @@ export namespace games_v1 {
      */
     lastUpdateDetails?: Schema$RoomModification;
     /**
-     * The participants involved in the room, along with their statuses.
-     * Includes participants who have left or declined invitations.
+     * The participants involved in the room, along with their statuses. Includes participants who have left or declined invitations.
      */
     participants?: Schema$RoomParticipant[];
     /**
@@ -2012,26 +1776,15 @@ export namespace games_v1 {
      */
     roomId?: string;
     /**
-     * The version of the room status: an increasing counter, used by the client
-     * to ignore out-of-order updates to room status.
+     * The version of the room status: an increasing counter, used by the client to ignore out-of-order updates to room status.
      */
     roomStatusVersion?: number;
     /**
-     * The status of the room. Possible values are:   -
-     * &quot;ROOM_INVITING&quot; - One or more players have been invited and not
-     * responded.  - &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to
-     * be filled by auto-matching.  - &quot;ROOM_CONNECTING&quot; - Players have
-     * joined and are connecting to each other (either before or after
-     * auto-matching).  - &quot;ROOM_ACTIVE&quot; - All players have joined and
-     * connected to each other.  - &quot;ROOM_DELETED&quot; - The room should no
-     * longer be shown on the client. Returned in sync calls when a player joins
-     * a room (as a tombstone), or for rooms where all joined participants have
-     * left.
+     * The status of the room. Possible values are:   - &quot;ROOM_INVITING&quot; - One or more players have been invited and not responded.  - &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to be filled by auto-matching.  - &quot;ROOM_CONNECTING&quot; - Players have joined and are connecting to each other (either before or after auto-matching).  - &quot;ROOM_ACTIVE&quot; - All players have joined and connected to each other.  - &quot;ROOM_DELETED&quot; - The room should no longer be shown on the client. Returned in sync calls when a player joins a room (as a tombstone), or for rooms where all joined participants have left.
      */
     status?: string;
     /**
-     * The variant / mode of the application being played; can be any integer
-     * value, or left blank.
+     * The variant / mode of the application being played; can be any integer value, or left blank.
      */
     variant?: number;
   }
@@ -2040,40 +1793,32 @@ export namespace games_v1 {
    */
   export interface Schema$RoomAutoMatchingCriteria {
     /**
-     * A bitmask indicating when auto-matches are valid. When ANDed with other
-     * exclusive bitmasks, the result must be zero. Can be used to support
-     * exclusive roles within a game.
+     * A bitmask indicating when auto-matches are valid. When ANDed with other exclusive bitmasks, the result must be zero. Can be used to support exclusive roles within a game.
      */
     exclusiveBitmask?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomAutoMatchingCriteria.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomAutoMatchingCriteria.
      */
     kind?: string;
     /**
-     * The maximum number of players that should be added to the room by
-     * auto-matching.
+     * The maximum number of players that should be added to the room by auto-matching.
      */
     maxAutoMatchingPlayers?: number;
     /**
-     * The minimum number of players that should be added to the room by
-     * auto-matching.
+     * The minimum number of players that should be added to the room by auto-matching.
      */
     minAutoMatchingPlayers?: number;
   }
   /**
-   * This is a JSON template for status of room automatching that is in
-   * progress.
+   * This is a JSON template for status of room automatching that is in progress.
    */
   export interface Schema$RoomAutoMatchStatus {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomAutoMatchStatus.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomAutoMatchStatus.
      */
     kind?: string;
     /**
-     * An estimate for the amount of time (in seconds) that auto-matching is
-     * expected to take to complete.
+     * An estimate for the amount of time (in seconds) that auto-matching is expected to take to complete.
      */
     waitEstimateSeconds?: number;
   }
@@ -2082,8 +1827,7 @@ export namespace games_v1 {
    */
   export interface Schema$RoomClientAddress {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomClientAddress.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomClientAddress.
      */
     kind?: string;
     /**
@@ -2112,8 +1856,7 @@ export namespace games_v1 {
      */
     invitedPlayerIds?: string[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomCreateRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomCreateRequest.
      */
     kind?: string;
     /**
@@ -2121,14 +1864,11 @@ export namespace games_v1 {
      */
     networkDiagnostics?: Schema$NetworkDiagnostics;
     /**
-     * A randomly generated numeric ID. This number is used at the server to
-     * ensure that the request is handled correctly across retries.
+     * A randomly generated numeric ID. This number is used at the server to ensure that the request is handled correctly across retries.
      */
     requestId?: string;
     /**
-     * The variant / mode of the application to be played. This can be any
-     * integer value, or left blank. You should use a small number of variants
-     * to keep the auto-matching pool as large as possible.
+     * The variant / mode of the application to be played. This can be any integer value, or left blank. You should use a small number of variants to keep the auto-matching pool as large as possible.
      */
     variant?: number;
   }
@@ -2145,8 +1885,7 @@ export namespace games_v1 {
      */
     clientAddress?: Schema$RoomClientAddress;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomJoinRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomJoinRequest.
      */
     kind?: string;
     /**
@@ -2159,13 +1898,11 @@ export namespace games_v1 {
    */
   export interface Schema$RoomLeaveDiagnostics {
     /**
-     * Android network subtype.
-     * http://developer.android.com/reference/android/net/NetworkInfo.html#getSubtype()
+     * Android network subtype. http://developer.android.com/reference/android/net/NetworkInfo.html#getSubtype()
      */
     androidNetworkSubtype?: number;
     /**
-     * Android network type.
-     * http://developer.android.com/reference/android/net/NetworkInfo.html#getType()
+     * Android network type. http://developer.android.com/reference/android/net/NetworkInfo.html#getType()
      */
     androidNetworkType?: number;
     /**
@@ -2173,23 +1910,15 @@ export namespace games_v1 {
      */
     iosNetworkType?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomLeaveDiagnostics.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomLeaveDiagnostics.
      */
     kind?: string;
     /**
-     * The MCC+MNC code for the client&#39;s network connection. On Android:
-     * http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator()
-     * On iOS, see:
-     * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html
+     * The MCC+MNC code for the client&#39;s network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator() On iOS, see: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html
      */
     networkOperatorCode?: string;
     /**
-     * The name of the carrier of the client&#39;s network connection. On
-     * Android:
-     * http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName()
-     * On iOS:
-     * https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName
+     * The name of the carrier of the client&#39;s network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName() On iOS: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName
      */
     networkOperatorName?: string;
     /**
@@ -2206,8 +1935,7 @@ export namespace games_v1 {
    */
   export interface Schema$RoomLeaveRequest {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomLeaveRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomLeaveRequest.
      */
     kind?: string;
     /**
@@ -2215,26 +1943,7 @@ export namespace games_v1 {
      */
     leaveDiagnostics?: Schema$RoomLeaveDiagnostics;
     /**
-     * Reason for leaving the match. Possible values are:   -
-     * &quot;PLAYER_LEFT&quot; - The player chose to leave the room..  -
-     * &quot;GAME_LEFT&quot; - The game chose to remove the player from the
-     * room.  - &quot;REALTIME_ABANDONED&quot; - The player switched to another
-     * application and abandoned the room.  -
-     * &quot;REALTIME_PEER_CONNECTION_FAILURE&quot; - The client was unable to
-     * establish a connection to other peer(s).  -
-     * &quot;REALTIME_SERVER_CONNECTION_FAILURE&quot; - The client was unable to
-     * communicate with the server.  - &quot;REALTIME_SERVER_ERROR&quot; - The
-     * client received an error response when it tried to communicate with the
-     * server.  - &quot;REALTIME_TIMEOUT&quot; - The client timed out while
-     * waiting for a room.  - &quot;REALTIME_CLIENT_DISCONNECTING&quot; - The
-     * client disconnects without first calling Leave.  -
-     * &quot;REALTIME_SIGN_OUT&quot; - The user signed out of G+ while in the
-     * room.  - &quot;REALTIME_GAME_CRASHED&quot; - The game crashed.  -
-     * &quot;REALTIME_ROOM_SERVICE_CRASHED&quot; - RoomAndroidService crashed.
-     * - &quot;REALTIME_DIFFERENT_CLIENT_ROOM_OPERATION&quot; - Another client
-     * is trying to enter a room.  -
-     * &quot;REALTIME_SAME_CLIENT_ROOM_OPERATION&quot; - The same client is
-     * trying to enter a new room.
+     * Reason for leaving the match. Possible values are:   - &quot;PLAYER_LEFT&quot; - The player chose to leave the room..  - &quot;GAME_LEFT&quot; - The game chose to remove the player from the room.  - &quot;REALTIME_ABANDONED&quot; - The player switched to another application and abandoned the room.  - &quot;REALTIME_PEER_CONNECTION_FAILURE&quot; - The client was unable to establish a connection to other peer(s).  - &quot;REALTIME_SERVER_CONNECTION_FAILURE&quot; - The client was unable to communicate with the server.  - &quot;REALTIME_SERVER_ERROR&quot; - The client received an error response when it tried to communicate with the server.  - &quot;REALTIME_TIMEOUT&quot; - The client timed out while waiting for a room.  - &quot;REALTIME_CLIENT_DISCONNECTING&quot; - The client disconnects without first calling Leave.  - &quot;REALTIME_SIGN_OUT&quot; - The user signed out of G+ while in the room.  - &quot;REALTIME_GAME_CRASHED&quot; - The game crashed.  - &quot;REALTIME_ROOM_SERVICE_CRASHED&quot; - RoomAndroidService crashed.  - &quot;REALTIME_DIFFERENT_CLIENT_ROOM_OPERATION&quot; - Another client is trying to enter a room.  - &quot;REALTIME_SAME_CLIENT_ROOM_OPERATION&quot; - The same client is trying to enter a new room.
      */
     reason?: string;
   }
@@ -2247,8 +1956,7 @@ export namespace games_v1 {
      */
     items?: Schema$Room[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomList.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomList.
      */
     kind?: string;
     /**
@@ -2261,13 +1969,11 @@ export namespace games_v1 {
    */
   export interface Schema$RoomModification {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomModification.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomModification.
      */
     kind?: string;
     /**
-     * The timestamp at which they modified the room, in milliseconds since the
-     * epoch in UTC.
+     * The timestamp at which they modified the room, in milliseconds since the epoch in UTC.
      */
     modifiedTimestampMillis?: string;
     /**
@@ -2280,17 +1986,11 @@ export namespace games_v1 {
    */
   export interface Schema$RoomP2PStatus {
     /**
-     * The amount of time in milliseconds it took to establish connections with
-     * this peer.
+     * The amount of time in milliseconds it took to establish connections with this peer.
      */
     connectionSetupLatencyMillis?: number;
     /**
-     * The error code in event of a failure. Possible values are:   -
-     * &quot;P2P_FAILED&quot; - The client failed to establish a P2P connection
-     * with the peer.  - &quot;PRESENCE_FAILED&quot; - The client failed to
-     * register to receive P2P connections.  - &quot;RELAY_SERVER_FAILED&quot; -
-     * The client received an error when trying to use the relay server to
-     * establish a P2P connection with the peer.
+     * The error code in event of a failure. Possible values are:   - &quot;P2P_FAILED&quot; - The client failed to establish a P2P connection with the peer.  - &quot;PRESENCE_FAILED&quot; - The client failed to register to receive P2P connections.  - &quot;RELAY_SERVER_FAILED&quot; - The client received an error when trying to use the relay server to establish a P2P connection with the peer.
      */
     error?: string;
     /**
@@ -2298,8 +1998,7 @@ export namespace games_v1 {
      */
     error_reason?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomP2PStatus.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomP2PStatus.
      */
     kind?: string;
     /**
@@ -2307,15 +2006,11 @@ export namespace games_v1 {
      */
     participantId?: string;
     /**
-     * The status of the peer in the room. Possible values are:   -
-     * &quot;CONNECTION_ESTABLISHED&quot; - The client established a P2P
-     * connection with the peer.  - &quot;CONNECTION_FAILED&quot; - The client
-     * failed to establish directed presence with the peer.
+     * The status of the peer in the room. Possible values are:   - &quot;CONNECTION_ESTABLISHED&quot; - The client established a P2P connection with the peer.  - &quot;CONNECTION_FAILED&quot; - The client failed to establish directed presence with the peer.
      */
     status?: string;
     /**
-     * The amount of time in milliseconds it took to send packets back and forth
-     * on the unreliable channel with this peer.
+     * The amount of time in milliseconds it took to send packets back and forth on the unreliable channel with this peer.
      */
     unreliableRoundtripLatencyMillis?: number;
   }
@@ -2324,8 +2019,7 @@ export namespace games_v1 {
    */
   export interface Schema$RoomP2PStatuses {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomP2PStatuses.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomP2PStatuses.
      */
     kind?: string;
     /**
@@ -2342,13 +2036,11 @@ export namespace games_v1 {
      */
     autoMatched?: boolean;
     /**
-     * Information about a player that has been anonymously auto-matched against
-     * the requesting player. (Either player or autoMatchedPlayer will be set.)
+     * Information about a player that has been anonymously auto-matched against the requesting player. (Either player or autoMatchedPlayer will be set.)
      */
     autoMatchedPlayer?: Schema$AnonymousPlayer;
     /**
-     * The capabilities which can be used when communicating with this
-     * participant.
+     * The capabilities which can be used when communicating with this participant.
      */
     capabilities?: string[];
     /**
@@ -2356,71 +2048,44 @@ export namespace games_v1 {
      */
     clientAddress?: Schema$RoomClientAddress;
     /**
-     * True if this participant is in the fully connected set of peers in the
-     * room.
+     * True if this participant is in the fully connected set of peers in the room.
      */
     connected?: boolean;
     /**
-     * An identifier for the participant in the scope of the room. Cannot be
-     * used to identify a player across rooms or in other contexts.
+     * An identifier for the participant in the scope of the room. Cannot be used to identify a player across rooms or in other contexts.
      */
     id?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomParticipant.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomParticipant.
      */
     kind?: string;
     /**
-     * The reason the participant left the room; populated if the participant
-     * status is PARTICIPANT_LEFT. Possible values are:   -
-     * &quot;PLAYER_LEFT&quot; - The player explicitly chose to leave the room.
-     * - &quot;GAME_LEFT&quot; - The game chose to remove the player from the
-     * room.  - &quot;ABANDONED&quot; - The player switched to another
-     * application and abandoned the room. - &quot;PEER_CONNECTION_FAILURE&quot;
-     * - The client was unable to establish or maintain a connection to other
-     * peer(s) in the room. - &quot;SERVER_ERROR&quot; - The client received an
-     * error response when it tried to communicate with the server.  -
-     * &quot;TIMEOUT&quot; - The client timed out while waiting for players to
-     * join and connect.  - &quot;PRESENCE_FAILURE&quot; - The client&#39;s XMPP
-     * connection ended abruptly.
+     * The reason the participant left the room; populated if the participant status is PARTICIPANT_LEFT. Possible values are:   - &quot;PLAYER_LEFT&quot; - The player explicitly chose to leave the room.  - &quot;GAME_LEFT&quot; - The game chose to remove the player from the room.  - &quot;ABANDONED&quot; - The player switched to another application and abandoned the room. - &quot;PEER_CONNECTION_FAILURE&quot; - The client was unable to establish or maintain a connection to other peer(s) in the room. - &quot;SERVER_ERROR&quot; - The client received an error response when it tried to communicate with the server.  - &quot;TIMEOUT&quot; - The client timed out while waiting for players to join and connect.  - &quot;PRESENCE_FAILURE&quot; - The client&#39;s XMPP connection ended abruptly.
      */
     leaveReason?: string;
     /**
-     * Information about the player. Not populated if this player was
-     * anonymously auto-matched against the requesting player. (Either player or
-     * autoMatchedPlayer will be set.)
+     * Information about the player. Not populated if this player was anonymously auto-matched against the requesting player. (Either player or autoMatchedPlayer will be set.)
      */
     player?: Schema$Player;
     /**
-     * The status of the participant with respect to the room. Possible values
-     * are:   - &quot;PARTICIPANT_INVITED&quot; - The participant has been
-     * invited to join the room, but has not yet responded.  -
-     * &quot;PARTICIPANT_JOINED&quot; - The participant has joined the room
-     * (either after creating it or accepting an invitation.)  -
-     * &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation
-     * to join the room.  - &quot;PARTICIPANT_LEFT&quot; - The participant
-     * joined the room and then left it.
+     * The status of the participant with respect to the room. Possible values are:   - &quot;PARTICIPANT_INVITED&quot; - The participant has been invited to join the room, but has not yet responded.  - &quot;PARTICIPANT_JOINED&quot; - The participant has joined the room (either after creating it or accepting an invitation.)  - &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation to join the room.  - &quot;PARTICIPANT_LEFT&quot; - The participant joined the room and then left it.
      */
     status?: string;
   }
   /**
-   * This is a JSON template for the status of a room that the player has
-   * joined.
+   * This is a JSON template for the status of a room that the player has joined.
    */
   export interface Schema$RoomStatus {
     /**
-     * Auto-matching status for this room. Not set if the room is not currently
-     * in the automatching queue.
+     * Auto-matching status for this room. Not set if the room is not currently in the automatching queue.
      */
     autoMatchingStatus?: Schema$RoomAutoMatchStatus;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#roomStatus.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#roomStatus.
      */
     kind?: string;
     /**
-     * The participants involved in the room, along with their statuses.
-     * Includes participants who have left or declined invitations.
+     * The participants involved in the room, along with their statuses. Includes participants who have left or declined invitations.
      */
     participants?: Schema$RoomParticipant[];
     /**
@@ -2428,19 +2093,11 @@ export namespace games_v1 {
      */
     roomId?: string;
     /**
-     * The status of the room. Possible values are:   -
-     * &quot;ROOM_INVITING&quot; - One or more players have been invited and not
-     * responded.  - &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to
-     * be filled by auto-matching.  - &quot;ROOM_CONNECTING&quot; - Players have
-     * joined are connecting to each other (either before or after
-     * auto-matching).  - &quot;ROOM_ACTIVE&quot; - All players have joined and
-     * connected to each other.  - &quot;ROOM_DELETED&quot; - All joined players
-     * have left.
+     * The status of the room. Possible values are:   - &quot;ROOM_INVITING&quot; - One or more players have been invited and not responded.  - &quot;ROOM_AUTO_MATCHING&quot; - One or more slots need to be filled by auto-matching.  - &quot;ROOM_CONNECTING&quot; - Players have joined are connecting to each other (either before or after auto-matching).  - &quot;ROOM_ACTIVE&quot; - All players have joined and connected to each other.  - &quot;ROOM_DELETED&quot; - All joined players have left.
      */
     status?: string;
     /**
-     * The version of the status for the room: an increasing counter, used by
-     * the client to ignore out-of-order updates to room status.
+     * The version of the status for the room: an increasing counter, used by the client to ignore out-of-order updates to room status.
      */
     statusVersion?: number;
   }
@@ -2449,8 +2106,7 @@ export namespace games_v1 {
    */
   export interface Schema$ScoreSubmission {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#scoreSubmission.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#scoreSubmission.
      */
     kind?: string;
     /**
@@ -2462,13 +2118,11 @@ export namespace games_v1 {
      */
     score?: string;
     /**
-     * Additional information about this score. Values will contain no more than
-     * 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string;
     /**
-     * Signature Values will contain URI-safe characters as defined by
-     * section 2.3 of RFC 3986.
+     * Signature Values will contain URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     signature?: string;
   }
@@ -2485,9 +2139,7 @@ export namespace games_v1 {
      */
     description?: string;
     /**
-     * The ID of the file underlying this snapshot in the Drive API. Only
-     * present if the snapshot is a view on a Drive file and the file is owned
-     * by the caller.
+     * The ID of the file underlying this snapshot in the Drive API. Only present if the snapshot is a view on a Drive file and the file is owned by the caller.
      */
     driveId?: string;
     /**
@@ -2499,18 +2151,15 @@ export namespace games_v1 {
      */
     id?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#snapshot.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#snapshot.
      */
     kind?: string;
     /**
-     * The timestamp (in millis since Unix epoch) of the last modification to
-     * this snapshot.
+     * The timestamp (in millis since Unix epoch) of the last modification to this snapshot.
      */
     lastModifiedMillis?: string;
     /**
-     * The progress value (64-bit integer set by developer) associated with this
-     * snapshot.
+     * The progress value (64-bit integer set by developer) associated with this snapshot.
      */
     progressValue?: string;
     /**
@@ -2518,8 +2167,7 @@ export namespace games_v1 {
      */
     title?: string;
     /**
-     * The type of this snapshot. Possible values are:   - &quot;SAVE_GAME&quot;
-     * - A snapshot representing a save game.
+     * The type of this snapshot. Possible values are:   - &quot;SAVE_GAME&quot; - A snapshot representing a save game.
      */
     type?: string;
     /**
@@ -2536,8 +2184,7 @@ export namespace games_v1 {
      */
     height?: number;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#snapshotImage.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#snapshotImage.
      */
     kind?: string;
     /**
@@ -2545,8 +2192,7 @@ export namespace games_v1 {
      */
     mime_type?: string;
     /**
-     * The URL of the image. This URL may be invalidated at any time and should
-     * not be cached.
+     * The URL of the image. This URL may be invalidated at any time and should not be cached.
      */
     url?: string;
     /**
@@ -2563,13 +2209,11 @@ export namespace games_v1 {
      */
     items?: Schema$Snapshot[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#snapshotListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#snapshotListResponse.
      */
     kind?: string;
     /**
-     * Token corresponding to the next page of results. If there are no more
-     * results, the token is omitted.
+     * Token corresponding to the next page of results. If there are no more results, the token is omitted.
      */
     nextPageToken?: string;
   }
@@ -2578,24 +2222,19 @@ export namespace games_v1 {
    */
   export interface Schema$TurnBasedAutoMatchingCriteria {
     /**
-     * A bitmask indicating when auto-matches are valid. When ANDed with other
-     * exclusive bitmasks, the result must be zero. Can be used to support
-     * exclusive roles within a game.
+     * A bitmask indicating when auto-matches are valid. When ANDed with other exclusive bitmasks, the result must be zero. Can be used to support exclusive roles within a game.
      */
     exclusiveBitmask?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedAutoMatchingCriteria.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedAutoMatchingCriteria.
      */
     kind?: string;
     /**
-     * The maximum number of players that should be added to the match by
-     * auto-matching.
+     * The maximum number of players that should be added to the match by auto-matching.
      */
     maxAutoMatchingPlayers?: number;
     /**
-     * The minimum number of players that should be added to the match by
-     * auto-matching.
+     * The minimum number of players that should be added to the match by auto-matching.
      */
     minAutoMatchingPlayers?: number;
   }
@@ -2620,19 +2259,15 @@ export namespace games_v1 {
      */
     data?: Schema$TurnBasedMatchData;
     /**
-     * This short description is generated by our servers based on turn state
-     * and is localized and worded relative to the player requesting the match.
-     * It is intended to be displayed when the match is shown in a list.
+     * This short description is generated by our servers based on turn state and is localized and worded relative to the player requesting the match. It is intended to be displayed when the match is shown in a list.
      */
     description?: string;
     /**
-     * The ID of the participant that invited the user to the match. Not set if
-     * the user was not invited to the match.
+     * The ID of the participant that invited the user to the match. Not set if the user was not invited to the match.
      */
     inviterId?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatch.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatch.
      */
     kind?: string;
     /**
@@ -2644,18 +2279,15 @@ export namespace games_v1 {
      */
     matchId?: string;
     /**
-     * The number of the match in a chain of rematches. Will be set to 1 for the
-     * first match and incremented by 1 for each rematch.
+     * The number of the match in a chain of rematches. Will be set to 1 for the first match and incremented by 1 for each rematch.
      */
     matchNumber?: number;
     /**
-     * The version of this match: an increasing counter, used to avoid
-     * out-of-date updates to the match.
+     * The version of this match: an increasing counter, used to avoid out-of-date updates to the match.
      */
     matchVersion?: number;
     /**
-     * The participants involved in the match, along with their statuses.
-     * Includes participants who have left or declined invitations.
+     * The participants involved in the match, along with their statuses. Includes participants who have left or declined invitations.
      */
     participants?: Schema$TurnBasedMatchParticipant[];
     /**
@@ -2663,13 +2295,11 @@ export namespace games_v1 {
      */
     pendingParticipantId?: string;
     /**
-     * The data / game state for the previous match; set for the first turn of
-     * rematches only.
+     * The data / game state for the previous match; set for the first turn of rematches only.
      */
     previousMatchData?: Schema$TurnBasedMatchData;
     /**
-     * The ID of a rematch of this match. Only set for completed matches that
-     * have been rematched.
+     * The ID of a rematch of this match. Only set for completed matches that have been rematched.
      */
     rematchId?: string;
     /**
@@ -2677,36 +2307,19 @@ export namespace games_v1 {
      */
     results?: Schema$ParticipantResult[];
     /**
-     * The status of the match. Possible values are:   -
-     * &quot;MATCH_AUTO_MATCHING&quot; - One or more slots need to be filled by
-     * auto-matching; the match cannot be established until they are filled.  -
-     * &quot;MATCH_ACTIVE&quot; - The match has started.  -
-     * &quot;MATCH_COMPLETE&quot; - The match has finished.  -
-     * &quot;MATCH_CANCELED&quot; - The match was canceled.  -
-     * &quot;MATCH_EXPIRED&quot; - The match expired due to inactivity.  -
-     * &quot;MATCH_DELETED&quot; - The match should no longer be shown on the
-     * client. Returned only for tombstones for matches when sync is called.
+     * The status of the match. Possible values are:   - &quot;MATCH_AUTO_MATCHING&quot; - One or more slots need to be filled by auto-matching; the match cannot be established until they are filled.  - &quot;MATCH_ACTIVE&quot; - The match has started.  - &quot;MATCH_COMPLETE&quot; - The match has finished.  - &quot;MATCH_CANCELED&quot; - The match was canceled.  - &quot;MATCH_EXPIRED&quot; - The match expired due to inactivity.  - &quot;MATCH_DELETED&quot; - The match should no longer be shown on the client. Returned only for tombstones for matches when sync is called.
      */
     status?: string;
     /**
-     * The status of the current user in the match. Derived from the match type,
-     * match status, the user&#39;s participant status, and the pending
-     * participant for the match. Possible values are:   -
-     * &quot;USER_INVITED&quot; - The user has been invited to join the match
-     * and has not responded yet.  - &quot;USER_AWAITING_TURN&quot; - The user
-     * is waiting for their turn.  - &quot;USER_TURN&quot; - The user has an
-     * action to take in the match.  - &quot;USER_MATCH_COMPLETED&quot; - The
-     * match has ended (it is completed, canceled, or expired.)
+     * The status of the current user in the match. Derived from the match type, match status, the user&#39;s participant status, and the pending participant for the match. Possible values are:   - &quot;USER_INVITED&quot; - The user has been invited to join the match and has not responded yet.  - &quot;USER_AWAITING_TURN&quot; - The user is waiting for their turn.  - &quot;USER_TURN&quot; - The user has an action to take in the match.  - &quot;USER_MATCH_COMPLETED&quot; - The match has ended (it is completed, canceled, or expired.)
      */
     userMatchStatus?: string;
     /**
-     * The variant / mode of the application being played; can be any integer
-     * value, or left blank.
+     * The variant / mode of the application being played; can be any integer value, or left blank.
      */
     variant?: number;
     /**
-     * The ID of another participant in the match that can be used when
-     * describing the participants the user is playing with.
+     * The ID of another participant in the match that can be used when describing the participants the user is playing with.
      */
     withParticipantId?: string;
   }
@@ -2723,19 +2336,15 @@ export namespace games_v1 {
      */
     invitedPlayerIds?: string[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchCreateRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchCreateRequest.
      */
     kind?: string;
     /**
-     * A randomly generated numeric ID. This number is used at the server to
-     * ensure that the request is handled correctly across retries.
+     * A randomly generated numeric ID. This number is used at the server to ensure that the request is handled correctly across retries.
      */
     requestId?: string;
     /**
-     * The variant / mode of the application to be played. This can be any
-     * integer value, or left blank. You should use a small number of variants
-     * to keep the auto-matching pool as large as possible.
+     * The variant / mode of the application to be played. This can be any integer value, or left blank. You should use a small number of variants to keep the auto-matching pool as large as possible.
      */
     variant?: number;
   }
@@ -2744,18 +2353,15 @@ export namespace games_v1 {
    */
   export interface Schema$TurnBasedMatchData {
     /**
-     * The byte representation of the data (limited to 128 kB), as a
-     * Base64-encoded string with the URL_SAFE encoding option.
+     * The byte representation of the data (limited to 128 kB), as a Base64-encoded string with the URL_SAFE encoding option.
      */
     data?: string;
     /**
-     * True if this match has data available but it wasn&#39;t returned in a
-     * list response; fetching the match individually will retrieve this data.
+     * True if this match has data available but it wasn&#39;t returned in a list response; fetching the match individually will retrieve this data.
      */
     dataAvailable?: boolean;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchData.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchData.
      */
     kind?: string;
   }
@@ -2764,13 +2370,11 @@ export namespace games_v1 {
    */
   export interface Schema$TurnBasedMatchDataRequest {
     /**
-     * The byte representation of the data (limited to 128 kB), as a
-     * Base64-encoded string with the URL_SAFE encoding option.
+     * The byte representation of the data (limited to 128 kB), as a Base64-encoded string with the URL_SAFE encoding option.
      */
     data?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchDataRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchDataRequest.
      */
     kind?: string;
   }
@@ -2783,8 +2387,7 @@ export namespace games_v1 {
      */
     items?: Schema$TurnBasedMatch[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchList.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchList.
      */
     kind?: string;
     /**
@@ -2797,13 +2400,11 @@ export namespace games_v1 {
    */
   export interface Schema$TurnBasedMatchModification {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchModification.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchModification.
      */
     kind?: string;
     /**
-     * The timestamp at which they modified the match, in milliseconds since the
-     * epoch in UTC.
+     * The timestamp at which they modified the match, in milliseconds since the epoch in UTC.
      */
     modifiedTimestampMillis?: string;
     /**
@@ -2820,41 +2421,23 @@ export namespace games_v1 {
      */
     autoMatched?: boolean;
     /**
-     * Information about a player that has been anonymously auto-matched against
-     * the requesting player. (Either player or autoMatchedPlayer will be set.)
+     * Information about a player that has been anonymously auto-matched against the requesting player. (Either player or autoMatchedPlayer will be set.)
      */
     autoMatchedPlayer?: Schema$AnonymousPlayer;
     /**
-     * An identifier for the participant in the scope of the match. Cannot be
-     * used to identify a player across matches or in other contexts.
+     * An identifier for the participant in the scope of the match. Cannot be used to identify a player across matches or in other contexts.
      */
     id?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchParticipant.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchParticipant.
      */
     kind?: string;
     /**
-     * Information about the player. Not populated if this player was
-     * anonymously auto-matched against the requesting player. (Either player or
-     * autoMatchedPlayer will be set.)
+     * Information about the player. Not populated if this player was anonymously auto-matched against the requesting player. (Either player or autoMatchedPlayer will be set.)
      */
     player?: Schema$Player;
     /**
-     * The status of the participant with respect to the match. Possible values
-     * are:   - &quot;PARTICIPANT_NOT_INVITED_YET&quot; - The participant is
-     * slated to be invited to the match, but the invitation has not been sent;
-     * the invite will be sent when it becomes their turn.  -
-     * &quot;PARTICIPANT_INVITED&quot; - The participant has been invited to
-     * join the match, but has not yet responded.  -
-     * &quot;PARTICIPANT_JOINED&quot; - The participant has joined the match
-     * (either after creating it or accepting an invitation.)  -
-     * &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation
-     * to join the match.  - &quot;PARTICIPANT_LEFT&quot; - The participant
-     * joined the match and then left it.  - &quot;PARTICIPANT_FINISHED&quot; -
-     * The participant finished playing in the match.  -
-     * &quot;PARTICIPANT_UNRESPONSIVE&quot; - The participant did not take their
-     * turn in the allotted time.
+     * The status of the participant with respect to the match. Possible values are:   - &quot;PARTICIPANT_NOT_INVITED_YET&quot; - The participant is slated to be invited to the match, but the invitation has not been sent; the invite will be sent when it becomes their turn.  - &quot;PARTICIPANT_INVITED&quot; - The participant has been invited to join the match, but has not yet responded.  - &quot;PARTICIPANT_JOINED&quot; - The participant has joined the match (either after creating it or accepting an invitation.)  - &quot;PARTICIPANT_DECLINED&quot; - The participant declined an invitation to join the match.  - &quot;PARTICIPANT_LEFT&quot; - The participant joined the match and then left it.  - &quot;PARTICIPANT_FINISHED&quot; - The participant finished playing in the match.  - &quot;PARTICIPANT_UNRESPONSIVE&quot; - The participant did not take their turn in the allotted time.
      */
     status?: string;
   }
@@ -2863,18 +2446,15 @@ export namespace games_v1 {
    */
   export interface Schema$TurnBasedMatchRematch {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchRematch.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchRematch.
      */
     kind?: string;
     /**
-     * The old match that the rematch was created from; will be updated such
-     * that the rematchId field will point at the new match.
+     * The old match that the rematch was created from; will be updated such that the rematchId field will point at the new match.
      */
     previousMatch?: Schema$TurnBasedMatch;
     /**
-     * The newly created match; a rematch of the old match with the same
-     * participants.
+     * The newly created match; a rematch of the old match with the same participants.
      */
     rematch?: Schema$TurnBasedMatch;
   }
@@ -2887,8 +2467,7 @@ export namespace games_v1 {
      */
     data?: Schema$TurnBasedMatchDataRequest;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchResults.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchResults.
      */
     kind?: string;
     /**
@@ -2901,8 +2480,7 @@ export namespace games_v1 {
     results?: Schema$ParticipantResult[];
   }
   /**
-   * This is a JSON template for a list of turn-based matches returned from a
-   * sync.
+   * This is a JSON template for a list of turn-based matches returned from a sync.
    */
   export interface Schema$TurnBasedMatchSync {
     /**
@@ -2910,13 +2488,11 @@ export namespace games_v1 {
      */
     items?: Schema$TurnBasedMatch[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchSync.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchSync.
      */
     kind?: string;
     /**
-     * True if there were more matches available to fetch at the time the
-     * response was generated (which were not returned due to page size limits.)
+     * True if there were more matches available to fetch at the time the response was generated (which were not returned due to page size limits.)
      */
     moreAvailable?: boolean;
     /**
@@ -2933,21 +2509,15 @@ export namespace games_v1 {
      */
     data?: Schema$TurnBasedMatchDataRequest;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string games#turnBasedMatchTurn.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchTurn.
      */
     kind?: string;
     /**
-     * The version of this match: an increasing counter, used to avoid
-     * out-of-date updates to the match.
+     * The version of this match: an increasing counter, used to avoid out-of-date updates to the match.
      */
     matchVersion?: number;
     /**
-     * The ID of the participant who should take their turn next. May be set to
-     * the current player&#39;s participant ID to update match state without
-     * changing the turn. If not set, the match will wait for other player(s) to
-     * join via automatching; this is only valid if automatch criteria is set on
-     * the match with remaining slots for automatched players.
+     * The ID of the participant who should take their turn next. May be set to the current player&#39;s participant ID to update match state without changing the turn. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
      */
     pendingParticipantId?: string;
     /**
@@ -3060,9 +2630,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of achievement resources to return in the response,
-     * used for paging. For any response, the actual number of achievement
-     * resources returned may be less than the specified maxResults.
+     * The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -3079,8 +2647,7 @@ export namespace games_v1 {
 
     /**
      * games.achievements.increment
-     * @desc Increments the steps of the achievement with the given ID for the
-     * currently authenticated player.
+     * @desc Increments the steps of the achievement with the given ID for the currently authenticated player.
      * @alias games.achievements.increment
      * @memberOf! ()
      *
@@ -3164,8 +2731,7 @@ export namespace games_v1 {
 
     /**
      * games.achievements.list
-     * @desc Lists the progress for all your application's achievements for the
-     * currently authenticated player.
+     * @desc Lists the progress for all your application's achievements for the currently authenticated player.
      * @alias games.achievements.list
      * @memberOf! ()
      *
@@ -3251,8 +2817,7 @@ export namespace games_v1 {
 
     /**
      * games.achievements.reveal
-     * @desc Sets the state of the achievement with the given ID to REVEALED for
-     * the currently authenticated player.
+     * @desc Sets the state of the achievement with the given ID to REVEALED for the currently authenticated player.
      * @alias games.achievements.reveal
      * @memberOf! ()
      *
@@ -3332,10 +2897,7 @@ export namespace games_v1 {
 
     /**
      * games.achievements.setStepsAtLeast
-     * @desc Sets the steps for the currently authenticated player towards
-     * unlocking an achievement. If the steps parameter is less than the current
-     * number of steps that the player already gained for the achievement, the
-     * achievement is not modified.
+     * @desc Sets the steps for the currently authenticated player towards unlocking an achievement. If the steps parameter is less than the current number of steps that the player already gained for the achievement, the achievement is not modified.
      * @alias games.achievements.setStepsAtLeast
      * @memberOf! ()
      *
@@ -3499,8 +3061,7 @@ export namespace games_v1 {
 
     /**
      * games.achievements.updateMultiple
-     * @desc Updates multiple achievements for the currently authenticated
-     * player.
+     * @desc Updates multiple achievements for the currently authenticated player.
      * @alias games.achievements.updateMultiple
      * @memberOf! ()
      *
@@ -3595,9 +3156,7 @@ export namespace games_v1 {
      */
     achievementId?: string;
     /**
-     * A randomly generated numeric ID for each request specified by the caller.
-     * This number is used at the server to ensure that the request is handled
-     * correctly across retries.
+     * A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
      */
     requestId?: string;
     /**
@@ -3617,9 +3176,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of achievement resources to return in the response,
-     * used for paging. For any response, the actual number of achievement
-     * resources returned may be less than the specified maxResults.
+     * The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -3627,13 +3184,11 @@ export namespace games_v1 {
      */
     pageToken?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
     /**
-     * Tells the server to return only achievements with the specified state. If
-     * this parameter isn't specified, all achievements are returned.
+     * Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
      */
     state?: string;
   }
@@ -3707,9 +3262,7 @@ export namespace games_v1 {
 
     /**
      * games.applications.get
-     * @desc Retrieves the metadata of the application with the given ID. If the
-     * requested application is not available for the specified platformType,
-     * the returned response will not include any instance data.
+     * @desc Retrieves the metadata of the application with the given ID. If the requested application is not available for the specified platformType, the returned response will not include any instance data.
      * @alias games.applications.get
      * @memberOf! ()
      *
@@ -3784,8 +3337,7 @@ export namespace games_v1 {
 
     /**
      * games.applications.played
-     * @desc Indicate that the the currently authenticated user is playing your
-     * application.
+     * @desc Indicate that the the currently authenticated user is playing your application.
      * @alias games.applications.played
      * @memberOf! ()
      *
@@ -3857,9 +3409,7 @@ export namespace games_v1 {
 
     /**
      * games.applications.verify
-     * @desc Verifies the auth token provided with this request is for the
-     * application with the specified ID, and returns the ID of the player it
-     * was granted for.
+     * @desc Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for.
      * @alias games.applications.verify
      * @memberOf! ()
      *
@@ -3990,8 +3540,7 @@ export namespace games_v1 {
 
     /**
      * games.events.listByPlayer
-     * @desc Returns a list showing the current progress on events in this
-     * application for the currently authenticated user.
+     * @desc Returns a list showing the current progress on events in this application for the currently authenticated user.
      * @alias games.events.listByPlayer
      * @memberOf! ()
      *
@@ -4151,8 +3700,7 @@ export namespace games_v1 {
 
     /**
      * games.events.record
-     * @desc Records a batch of changes to the number of times events have
-     * occurred for the currently authenticated user of this application.
+     * @desc Records a batch of changes to the number of times events have occurred for the currently authenticated user of this application.
      * @alias games.events.record
      * @memberOf! ()
      *
@@ -4234,9 +3782,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of events to return in the response, used for paging.
-     * For any response, the actual number of events to return may be less than
-     * the specified maxResults.
+     * The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -4256,9 +3802,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of event definitions to return in the response, used
-     * for paging. For any response, the actual number of event definitions to
-     * return may be less than the specified maxResults.
+     * The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -4469,9 +4013,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of leaderboards to return in the response. For any
-     * response, the actual number of leaderboards returned may be less than the
-     * specified maxResults.
+     * The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -4563,8 +4105,7 @@ export namespace games_v1 {
 
     /**
      * games.metagame.listCategoriesByPlayer
-     * @desc List play data aggregated per category for the player corresponding
-     * to playerId.
+     * @desc List play data aggregated per category for the player corresponding to playerId.
      * @alias games.metagame.listCategoriesByPlayer
      * @memberOf! ()
      *
@@ -4667,9 +4208,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of category resources to return in the response, used
-     * for paging. For any response, the actual number of category resources
-     * returned may be less than the specified maxResults.
+     * The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -4677,8 +4216,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
   }
@@ -4691,8 +4229,7 @@ export namespace games_v1 {
 
     /**
      * games.players.get
-     * @desc Retrieves the Player resource with the given ID. To retrieve the
-     * player for the currently authenticated user, set playerId to me.
+     * @desc Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set playerId to me.
      * @alias games.players.get
      * @memberOf! ()
      *
@@ -4849,8 +4386,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
   }
@@ -4869,9 +4405,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of player resources to return in the response, used
-     * for paging. For any response, the actual number of player resources
-     * returned may be less than the specified maxResults.
+     * The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -4888,8 +4422,7 @@ export namespace games_v1 {
 
     /**
      * games.pushtokens.remove
-     * @desc Removes a push token for the current user and application. Removing
-     * a non-existent push token will report success.
+     * @desc Removes a push token for the current user and application. Removing a non-existent push token will report success.
      * @alias games.pushtokens.remove
      * @memberOf! ()
      *
@@ -5065,9 +4598,7 @@ export namespace games_v1 {
 
     /**
      * games.questMilestones.claim
-     * @desc Report that a reward for the milestone corresponding to milestoneId
-     * for the quest corresponding to questId has been claimed by the currently
-     * authorized user.
+     * @desc Report that a reward for the milestone corresponding to milestoneId for the quest corresponding to questId has been claimed by the currently authorized user.
      * @alias games.questMilestones.claim
      * @memberOf! ()
      *
@@ -5156,8 +4687,7 @@ export namespace games_v1 {
      */
     questId?: string;
     /**
-     * A numeric ID to ensure that the request is handled correctly across
-     * retries. Your client application must generate this ID randomly.
+     * A numeric ID to ensure that the request is handled correctly across retries. Your client application must generate this ID randomly.
      */
     requestId?: string;
   }
@@ -5170,8 +4700,7 @@ export namespace games_v1 {
 
     /**
      * games.quests.accept
-     * @desc Indicates that the currently authorized user will participate in
-     * the quest.
+     * @desc Indicates that the currently authorized user will participate in the quest.
      * @alias games.quests.accept
      * @memberOf! ()
      *
@@ -5243,8 +4772,7 @@ export namespace games_v1 {
 
     /**
      * games.quests.list
-     * @desc Get a list of quests for your application and the currently
-     * authenticated player.
+     * @desc Get a list of quests for your application and the currently authenticated player.
      * @alias games.quests.list
      * @memberOf! ()
      *
@@ -5345,10 +4873,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of quest resources to return in the response, used for
-     * paging. For any response, the actual number of quest resources returned
-     * may be less than the specified maxResults. Acceptable values are 1 to 50,
-     * inclusive. (Default: 50).
+     * The maximum number of quest resources to return in the response, used for paging. For any response, the actual number of quest resources returned may be less than the specified maxResults. Acceptable values are 1 to 50, inclusive. (Default: 50).
      */
     maxResults?: number;
     /**
@@ -5356,8 +4881,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
   }
@@ -5451,10 +4975,7 @@ export namespace games_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The revision of the client SDK used by your application. Format:
-     * [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:
-     * - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is
-     * running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
+     * The revision of the client SDK used by your application. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
      */
     clientRevision?: string;
   }
@@ -5467,8 +4988,7 @@ export namespace games_v1 {
 
     /**
      * games.rooms.create
-     * @desc Create a room. For internal use by the Games SDK only. Calling this
-     * method directly is unsupported.
+     * @desc Create a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
      * @alias games.rooms.create
      * @memberOf! ()
      *
@@ -5540,8 +5060,7 @@ export namespace games_v1 {
 
     /**
      * games.rooms.decline
-     * @desc Decline an invitation to join a room. For internal use by the Games
-     * SDK only. Calling this method directly is unsupported.
+     * @desc Decline an invitation to join a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
      * @alias games.rooms.decline
      * @memberOf! ()
      *
@@ -5613,8 +5132,7 @@ export namespace games_v1 {
 
     /**
      * games.rooms.dismiss
-     * @desc Dismiss an invitation to join a room. For internal use by the Games
-     * SDK only. Calling this method directly is unsupported.
+     * @desc Dismiss an invitation to join a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
      * @alias games.rooms.dismiss
      * @memberOf! ()
      *
@@ -5757,8 +5275,7 @@ export namespace games_v1 {
 
     /**
      * games.rooms.join
-     * @desc Join a room. For internal use by the Games SDK only. Calling this
-     * method directly is unsupported.
+     * @desc Join a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
      * @alias games.rooms.join
      * @memberOf! ()
      *
@@ -5831,8 +5348,7 @@ export namespace games_v1 {
 
     /**
      * games.rooms.leave
-     * @desc Leave a room. For internal use by the Games SDK only. Calling this
-     * method directly is unsupported.
+     * @desc Leave a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
      * @alias games.rooms.leave
      * @memberOf! ()
      *
@@ -5975,9 +5491,7 @@ export namespace games_v1 {
 
     /**
      * games.rooms.reportStatus
-     * @desc Updates sent by a client reporting the status of peers in a room.
-     * For internal use by the Games SDK only. Calling this method directly is
-     * unsupported.
+     * @desc Updates sent by a client reporting the status of peers in a room. For internal use by the Games SDK only. Calling this method directly is unsupported.
      * @alias games.rooms.reportStatus
      * @memberOf! ()
      *
@@ -6160,9 +5674,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of rooms to return in the response, used for paging.
-     * For any response, the actual number of rooms to return may be less than
-     * the specified maxResults.
+     * The maximum number of rooms to return in the response, used for paging. For any response, the actual number of rooms to return may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -6200,11 +5712,7 @@ export namespace games_v1 {
 
     /**
      * games.scores.get
-     * @desc Get high scores, and optionally ranks, in leaderboards for the
-     * currently authenticated player. For a specific time span, leaderboardId
-     * can be set to ALL to retrieve data for all leaderboards in a given time
-     * span. NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in
-     * the same request; only one parameter may be set to 'ALL'.
+     * @desc Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, leaderboardId can be set to ALL to retrieve data for all leaderboards in a given time span. NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.
      * @alias games.scores.get
      * @memberOf! ()
      *
@@ -6370,8 +5878,7 @@ export namespace games_v1 {
 
     /**
      * games.scores.listWindow
-     * @desc Lists the scores in a leaderboard around (and including) a player's
-     * score.
+     * @desc Lists the scores in a leaderboard around (and including) a player's score.
      * @alias games.scores.listWindow
      * @memberOf! ()
      *
@@ -6612,8 +6119,7 @@ export namespace games_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The types of ranks to return. If the parameter is omitted, no ranks will
-     * be returned.
+     * The types of ranks to return. If the parameter is omitted, no ranks will be returned.
      */
     includeRankType?: string;
     /**
@@ -6621,14 +6127,11 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all
-     * leaderboards for this application.
+     * The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.
      */
     leaderboardId?: string;
     /**
-     * The maximum number of leaderboard scores to return in the response. For
-     * any response, the actual number of leaderboard scores returned may be
-     * less than the specified maxResults.
+     * The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -6636,8 +6139,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
     /**
@@ -6664,9 +6166,7 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * The maximum number of leaderboard scores to return in the response. For
-     * any response, the actual number of leaderboard scores returned may be
-     * less than the specified maxResults.
+     * The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -6698,9 +6198,7 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * The maximum number of leaderboard scores to return in the response. For
-     * any response, the actual number of leaderboard scores returned may be
-     * less than the specified maxResults.
+     * The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -6708,15 +6206,11 @@ export namespace games_v1 {
      */
     pageToken?: string;
     /**
-     * The preferred number of scores to return above the player's score. More
-     * scores may be returned if the player is at the bottom of the leaderboard;
-     * fewer may be returned if the player is at the top. Must be less than or
-     * equal to maxResults.
+     * The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
      */
     resultsAbove?: number;
     /**
-     * True if the top scores should be returned when the player is not in the
-     * leaderboard. Defaults to true.
+     * True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
      */
     returnTopIfAbsent?: boolean;
     /**
@@ -6739,18 +6233,11 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * The score you're submitting. The submitted score is ignored if it is
-     * worse than a previously submitted score, where worse depends on the
-     * leaderboard sort order. The meaning of the score value depends on the
-     * leaderboard format type. For fixed-point, the score represents the raw
-     * value. For time, the score represents elapsed time in milliseconds. For
-     * currency, the score represents a value in micro units.
+     * The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
      */
     score?: string;
     /**
-     * Additional information about the score you're submitting. Values must
-     * contain no more than 64 URI-safe characters as defined by section 2.3 of
-     * RFC 3986.
+     * Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
      */
     scoreTag?: string;
   }
@@ -6852,8 +6339,7 @@ export namespace games_v1 {
 
     /**
      * games.snapshots.list
-     * @desc Retrieves a list of snapshots created by your application for the
-     * player corresponding to the player ID.
+     * @desc Retrieves a list of snapshots created by your application for the player corresponding to the player ID.
      * @alias games.snapshots.list
      * @memberOf! ()
      *
@@ -6956,9 +6442,7 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of snapshot resources to return in the response, used
-     * for paging. For any response, the actual number of snapshot resources
-     * returned may be less than the specified maxResults.
+     * The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -6966,8 +6450,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
     /**
-     * A player ID. A value of me may be used in place of the authenticated
-     * player's ID.
+     * A player ID. A value of me may be used in place of the authenticated player's ID.
      */
     playerId?: string;
   }
@@ -7200,8 +6683,7 @@ export namespace games_v1 {
 
     /**
      * games.turnBasedMatches.dismiss
-     * @desc Dismiss a turn-based match from the match list. The match will no
-     * longer show up in the list and will not generate notifications.
+     * @desc Dismiss a turn-based match from the match list. The match will no longer show up in the list and will not generate notifications.
      * @alias games.turnBasedMatches.dismiss
      * @memberOf! ()
      *
@@ -7272,9 +6754,7 @@ export namespace games_v1 {
 
     /**
      * games.turnBasedMatches.finish
-     * @desc Finish a turn-based match. Each player should make this call once,
-     * after all results are in. Only the player whose turn it is may make the
-     * first call to Finish, and can pass in the final match state.
+     * @desc Finish a turn-based match. Each player should make this call once, after all results are in. Only the player whose turn it is may make the first call to Finish, and can pass in the final match state.
      * @alias games.turnBasedMatches.finish
      * @memberOf! ()
      *
@@ -7499,8 +6979,7 @@ export namespace games_v1 {
 
     /**
      * games.turnBasedMatches.leave
-     * @desc Leave a turn-based match when it is not the current player's turn,
-     * without canceling the match.
+     * @desc Leave a turn-based match when it is not the current player's turn, without canceling the match.
      * @alias games.turnBasedMatches.leave
      * @memberOf! ()
      *
@@ -7574,8 +7053,7 @@ export namespace games_v1 {
 
     /**
      * games.turnBasedMatches.leaveTurn
-     * @desc Leave a turn-based match during the current player's turn, without
-     * canceling the match.
+     * @desc Leave a turn-based match during the current player's turn, without canceling the match.
      * @alias games.turnBasedMatches.leaveTurn
      * @memberOf! ()
      *
@@ -7729,10 +7207,7 @@ export namespace games_v1 {
 
     /**
      * games.turnBasedMatches.rematch
-     * @desc Create a rematch of a match that was previously completed, with the
-     * same participants. This can be called by only one player on a match still
-     * in their list; the player must have called Finish first. Returns the
-     * newly created match; it will be the caller's turn.
+     * @desc Create a rematch of a match that was previously completed, with the same participants. This can be called by only one player on a match still in their list; the player must have called Finish first. Returns the newly created match; it will be the caller's turn.
      * @alias games.turnBasedMatches.rematch
      * @memberOf! ()
      *
@@ -7809,10 +7284,7 @@ export namespace games_v1 {
 
     /**
      * games.turnBasedMatches.sync
-     * @desc Returns turn-based matches the player is or was involved in that
-     * changed since the last sync call, with the least recent changes coming
-     * first. Matches that should be removed from the local cache will have a
-     * status of MATCH_DELETED.
+     * @desc Returns turn-based matches the player is or was involved in that changed since the last sync call, with the least recent changes coming first. Matches that should be removed from the local cache will have a status of MATCH_DELETED.
      * @alias games.turnBasedMatches.sync
      * @memberOf! ()
      *
@@ -8114,10 +7586,7 @@ export namespace games_v1 {
      */
     matchVersion?: number;
     /**
-     * The ID of another participant who should take their turn next. If not
-     * set, the match will wait for other player(s) to join via automatching;
-     * this is only valid if automatch criteria is set on the match with
-     * remaining slots for automatched players.
+     * The ID of another participant who should take their turn next. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
      */
     pendingParticipantId?: string;
   }
@@ -8129,11 +7598,7 @@ export namespace games_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * True if match data should be returned in the response. Note that not all
-     * data will necessarily be returned if include_match_data is true; the
-     * server may decide to only return data for some of the matches to limit
-     * download size for the client. The remainder of the data for these matches
-     * will be retrievable on request.
+     * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
     includeMatchData?: boolean;
     /**
@@ -8141,15 +7606,11 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of completed or canceled matches to return in the
-     * response. If not set, all matches returned could be completed or
-     * canceled.
+     * The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
      */
     maxCompletedMatches?: number;
     /**
-     * The maximum number of matches to return in the response, used for paging.
-     * For any response, the actual number of matches to return may be less than
-     * the specified maxResults.
+     * The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
      */
     maxResults?: number;
     /**
@@ -8173,9 +7634,7 @@ export namespace games_v1 {
      */
     matchId?: string;
     /**
-     * A randomly generated numeric ID for each request specified by the caller.
-     * This number is used at the server to ensure that the request is handled
-     * correctly across retries.
+     * A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
      */
     requestId?: string;
   }
@@ -8187,11 +7646,7 @@ export namespace games_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * True if match data should be returned in the response. Note that not all
-     * data will necessarily be returned if include_match_data is true; the
-     * server may decide to only return data for some of the matches to limit
-     * download size for the client. The remainder of the data for these matches
-     * will be retrievable on request.
+     * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
     includeMatchData?: boolean;
     /**
@@ -8199,15 +7654,11 @@ export namespace games_v1 {
      */
     language?: string;
     /**
-     * The maximum number of completed or canceled matches to return in the
-     * response. If not set, all matches returned could be completed or
-     * canceled.
+     * The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
      */
     maxCompletedMatches?: number;
     /**
-     * The maximum number of matches to return in the response, used for paging.
-     * For any response, the actual number of matches to return may be less than
-     * the specified maxResults.
+     * The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
      */
     maxResults?: number;
     /**

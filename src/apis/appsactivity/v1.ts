@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace appsactivity_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace appsactivity_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,16 +92,17 @@ export namespace appsactivity_v1 {
     activities: Resource$Activities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.activities = new Resource$Activities(this.context);
     }
   }
 
   /**
-   * An Activity resource is a combined view of multiple events. An activity has
-   * a list of individual events and a combined view of the common fields among
-   * all events.
+   * An Activity resource is a combined view of multiple events. An activity has a list of individual events and a combined view of the common fields among all events.
    */
   export interface Schema$Activity {
     /**
@@ -121,14 +119,11 @@ export namespace appsactivity_v1 {
    */
   export interface Schema$Event {
     /**
-     * Additional event types. Some events may have multiple types when multiple
-     * actions are part of a single event. For example, creating a document,
-     * renaming it, and sharing it may be part of a single file-creation event.
+     * Additional event types. Some events may have multiple types when multiple actions are part of a single event. For example, creating a document, renaming it, and sharing it may be part of a single file-creation event.
      */
     additionalEventTypes?: string[];
     /**
-     * The time at which the event occurred formatted as Unix time in
-     * milliseconds.
+     * The time at which the event occurred formatted as Unix time in milliseconds.
      */
     eventTimeMillis?: string;
     /**
@@ -136,13 +131,11 @@ export namespace appsactivity_v1 {
      */
     fromUserDeletion?: boolean;
     /**
-     * Extra information for move type events, such as changes in an
-     * object&#39;s parents.
+     * Extra information for move type events, such as changes in an object&#39;s parents.
      */
     move?: Schema$Move;
     /**
-     * Extra information for permissionChange type events, such as the user or
-     * group the new permission applies to.
+     * Extra information for permissionChange type events, such as the user or group the new permission applies to.
      */
     permissionChanges?: Schema$PermissionChange[];
     /**
@@ -163,8 +156,7 @@ export namespace appsactivity_v1 {
     user?: Schema$User;
   }
   /**
-   * The response from the list request. Contains a list of activities and a
-   * token to retrieve the next page of results.
+   * The response from the list request. Contains a list of activities and a token to retrieve the next page of results.
    */
   export interface Schema$ListActivitiesResponse {
     /**
@@ -177,8 +169,7 @@ export namespace appsactivity_v1 {
     nextPageToken?: string;
   }
   /**
-   * Contains information about changes in an object&#39;s parents as a result
-   * of a move type event.
+   * Contains information about changes in an object&#39;s parents as a result of a move type event.
    */
   export interface Schema$Move {
     /**
@@ -191,8 +182,7 @@ export namespace appsactivity_v1 {
     removedParents?: Schema$Parent[];
   }
   /**
-   * Contains information about a parent object. For example, a folder in Drive
-   * is a parent for all files within it.
+   * Contains information about a parent object. For example, a folder in Drive is a parent for all files within it.
    */
   export interface Schema$Parent {
     /**
@@ -209,9 +199,7 @@ export namespace appsactivity_v1 {
     title?: string;
   }
   /**
-   * Contains information about the permissions and type of access allowed with
-   * regards to a Google Drive object. This is a subset of the fields contained
-   * in a corresponding Drive Permissions object.
+   * Contains information about the permissions and type of access allowed with regards to a Google Drive object. This is a subset of the fields contained in a corresponding Drive Permissions object.
    */
   export interface Schema$Permission {
     /**
@@ -219,13 +207,11 @@ export namespace appsactivity_v1 {
      */
     name?: string;
     /**
-     * The ID for this permission. Corresponds to the Drive API&#39;s permission
-     * ID returned as part of the Drive Permissions resource.
+     * The ID for this permission. Corresponds to the Drive API&#39;s permission ID returned as part of the Drive Permissions resource.
      */
     permissionId?: string;
     /**
-     * Indicates the Google Drive permissions role. The role determines a
-     * user&#39;s ability to read, write, or comment on the file.
+     * Indicates the Google Drive permissions role. The role determines a user&#39;s ability to read, write, or comment on the file.
      */
     role?: string;
     /**
@@ -242,8 +228,7 @@ export namespace appsactivity_v1 {
     withLink?: boolean;
   }
   /**
-   * Contains information about a Drive object&#39;s permissions that changed as
-   * a result of a permissionChange type event.
+   * Contains information about a Drive object&#39;s permissions that changed as a result of a permissionChange type event.
    */
   export interface Schema$PermissionChange {
     /**
@@ -282,8 +267,7 @@ export namespace appsactivity_v1 {
    */
   export interface Schema$Target {
     /**
-     * The ID of the target. For example, in Google Drive, this is the file or
-     * folder ID.
+     * The ID of the target. For example, in Google Drive, this is the file or folder ID.
      */
     id?: string;
     /**
@@ -291,8 +275,7 @@ export namespace appsactivity_v1 {
      */
     mimeType?: string;
     /**
-     * The name of the target. For example, in Google Drive, this is the title
-     * of the file.
+     * The name of the target. For example, in Google Drive, this is the title of the file.
      */
     name?: string;
   }
@@ -301,8 +284,7 @@ export namespace appsactivity_v1 {
    */
   export interface Schema$User {
     /**
-     * A boolean which indicates whether the specified User was deleted. If
-     * true, name, photo and permission_id will be omitted.
+     * A boolean which indicates whether the specified User was deleted. If true, name, photo and permission_id will be omitted.
      */
     isDeleted?: boolean;
     /**
@@ -314,14 +296,11 @@ export namespace appsactivity_v1 {
      */
     name?: string;
     /**
-     * The permission ID associated with this user. Equivalent to the Drive
-     * API&#39;s permission ID for this user, returned as part of the Drive
-     * Permissions resource.
+     * The permission ID associated with this user. Equivalent to the Drive API&#39;s permission ID for this user, returned as part of the Drive Permissions resource.
      */
     permissionId?: string;
     /**
-     * The profile photo of the user. Not present if the user has no profile
-     * photo.
+     * The profile photo of the user. Not present if the user has no profile photo.
      */
     photo?: Schema$Photo;
   }
@@ -334,12 +313,7 @@ export namespace appsactivity_v1 {
 
     /**
      * appsactivity.activities.list
-     * @desc Returns a list of activities visible to the current logged in user.
-     * Visible activities are determined by the visibility settings of the
-     * object that was acted on, e.g. Drive files a user can see. An activity is
-     * a record of past events. Multiple events may be merged if they are
-     * similar. A request is scoped to activities from a given Google service
-     * using the source parameter.
+     * @desc Returns a list of activities visible to the current logged in user. Visible activities are determined by the visibility settings of the object that was acted on, e.g. Drive files a user can see. An activity is a record of past events. Multiple events may be merged if they are similar. A request is scoped to activities from a given Google service using the source parameter.
      * @alias appsactivity.activities.list
      * @memberOf! ()
      *
@@ -426,8 +400,7 @@ export namespace appsactivity_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifies the Drive folder containing the items for which to return
-     * activities.
+     * Identifies the Drive folder containing the items for which to return activities.
      */
     'drive.ancestorId'?: string;
     /**
@@ -435,13 +408,11 @@ export namespace appsactivity_v1 {
      */
     'drive.fileId'?: string;
     /**
-     * Indicates the strategy to use when grouping singleEvents items in the
-     * associated combinedEvent object.
+     * Indicates the strategy to use when grouping singleEvents items in the associated combinedEvent object.
      */
     groupingStrategy?: string;
     /**
-     * The maximum number of events to return on a page. The response includes a
-     * continuation token if there are more events.
+     * The maximum number of events to return on a page. The response includes a continuation token if there are more events.
      */
     pageSize?: number;
     /**
@@ -449,14 +420,11 @@ export namespace appsactivity_v1 {
      */
     pageToken?: string;
     /**
-     * The Google service from which to return activities. Possible values of
-     * source are:  - drive.google.com
+     * The Google service from which to return activities. Possible values of source are:  - drive.google.com
      */
     source?: string;
     /**
-     * The ID used for ACL checks (does not filter the resulting event list by
-     * the assigned value). Use the special value me to indicate the currently
-     * authenticated user.
+     * The ID used for ACL checks (does not filter the resulting event list by the assigned value). Use the special value me to indicate the currently authenticated user.
      */
     userId?: string;
   }

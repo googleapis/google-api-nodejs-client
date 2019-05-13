@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace datastore_v1beta3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace datastore_v1beta3 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace datastore_v1beta3 {
   /**
    * Cloud Datastore API
    *
-   * Accesses the schemaless NoSQL database to provide fully managed, robust,
-   * scalable storage for your application.
+   * Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,7 +108,10 @@ export namespace datastore_v1beta3 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -124,8 +122,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$AllocateIdsRequest {
     /**
-     * A list of keys with incomplete key paths for which to allocate IDs. No
-     * key may be reserved/read-only.
+     * A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
      */
     keys?: Schema$Key[];
   }
@@ -134,8 +131,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$AllocateIdsResponse {
     /**
-     * The keys specified in the request (in the same order), each with its key
-     * path completed with a newly allocated ID.
+     * The keys specified in the request (in the same order), each with its key path completed with a newly allocated ID.
      */
     keys?: Schema$Key[];
   }
@@ -144,8 +140,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$ArrayValue {
     /**
-     * Values in the array. The order of values in an array is preserved as long
-     * as all values have identical settings for &#39;exclude_from_indexes&#39;.
+     * Values in the array. The order of values in an array is preserved as long as all values have identical settings for &#39;exclude_from_indexes&#39;.
      */
     values?: Schema$Value[];
   }
@@ -176,19 +171,11 @@ export namespace datastore_v1beta3 {
      */
     mode?: string;
     /**
-     * The mutations to perform.  When mode is `TRANSACTIONAL`, mutations
-     * affecting a single entity are applied in order. The following sequences
-     * of mutations affecting a single entity are not permitted in a single
-     * `Commit` request:  - `insert` followed by `insert` - `update` followed by
-     * `insert` - `upsert` followed by `insert` - `delete` followed by `update`
-     * When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
-     * entity.
+     * The mutations to perform.  When mode is `TRANSACTIONAL`, mutations affecting a single entity are applied in order. The following sequences of mutations affecting a single entity are not permitted in a single `Commit` request:  - `insert` followed by `insert` - `update` followed by `insert` - `upsert` followed by `insert` - `delete` followed by `update`  When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single entity.
      */
     mutations?: Schema$Mutation[];
     /**
-     * The identifier of the transaction associated with the commit. A
-     * transaction identifier is returned by a call to
-     * Datastore.BeginTransaction.
+     * The identifier of the transaction associated with the commit. A transaction identifier is returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string;
   }
@@ -197,13 +184,11 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$CommitResponse {
     /**
-     * The number of index entries updated during the commit, or zero if none
-     * were updated.
+     * The number of index entries updated during the commit, or zero if none were updated.
      */
     indexUpdates?: number;
     /**
-     * The result of performing the mutations. The i-th mutation result
-     * corresponds to the i-th mutation in the request.
+     * The result of performing the mutations. The i-th mutation result corresponds to the i-th mutation in the request.
      */
     mutationResults?: Schema$MutationResult[];
   }
@@ -221,23 +206,15 @@ export namespace datastore_v1beta3 {
     op?: string;
   }
   /**
-   * A Datastore data object.  An entity is limited to 1 megabyte when stored.
-   * That _roughly_ corresponds to a limit of 1 megabyte for the serialized form
-   * of this message.
+   * A Datastore data object.  An entity is limited to 1 megabyte when stored. That _roughly_ corresponds to a limit of 1 megabyte for the serialized form of this message.
    */
   export interface Schema$Entity {
     /**
-     * The entity&#39;s key.  An entity must have a key, unless otherwise
-     * documented (for example, an entity in `Value.entity_value` may have no
-     * key). An entity&#39;s kind is its key path&#39;s last element&#39;s kind,
-     * or null if it has no key.
+     * The entity&#39;s key.  An entity must have a key, unless otherwise documented (for example, an entity in `Value.entity_value` may have no key). An entity&#39;s kind is its key path&#39;s last element&#39;s kind, or null if it has no key.
      */
     key?: Schema$Key;
     /**
-     * The entity&#39;s properties. The map&#39;s keys are property names. A
-     * property name matching regex `__.*__` is reserved. A reserved property
-     * name is forbidden in certain documented contexts. The name must not
-     * contain more than 500 characters. The name cannot be `&quot;&quot;`.
+     * The entity&#39;s properties. The map&#39;s keys are property names. A property name matching regex `__.*__` is reserved. A reserved property name is forbidden in certain documented contexts. The name must not contain more than 500 characters. The name cannot be `&quot;&quot;`.
      */
     properties?: {[key: string]: Schema$Value};
   }
@@ -246,8 +223,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$EntityResult {
     /**
-     * A cursor that points to the position after the result entity. Set only
-     * when the `EntityResult` is part of a `QueryResultBatch` message.
+     * A cursor that points to the position after the result entity. Set only when the `EntityResult` is part of a `QueryResultBatch` message.
      */
     cursor?: string;
     /**
@@ -255,11 +231,7 @@ export namespace datastore_v1beta3 {
      */
     entity?: Schema$Entity;
     /**
-     * The version of the entity, a strictly positive number that monotonically
-     * increases with changes to the entity.  This field is set for `FULL`
-     * entity results.  For missing entities in `LookupResponse`, this is the
-     * version of the snapshot that was used to look up the entity, and it is
-     * always set except for eventually consistent reads.
+     * The version of the entity, a strictly positive number that monotonically increases with changes to the entity.  This field is set for `FULL` entity results.  For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.
      */
     version?: string;
   }
@@ -285,13 +257,11 @@ export namespace datastore_v1beta3 {
      */
     endTime?: string;
     /**
-     * The client-assigned labels which were provided when the operation was
-     * created. May also include additional labels.
+     * The client-assigned labels which were provided when the operation was created. May also include additional labels.
      */
     labels?: {[key: string]: string};
     /**
-     * The type of the operation. Can be used as a filter in
-     * ListOperationsRequest.
+     * The type of the operation. Can be used as a filter in ListOperationsRequest.
      */
     operationType?: string;
     /**
@@ -304,16 +274,7 @@ export namespace datastore_v1beta3 {
     state?: string;
   }
   /**
-   * Identifies a subset of entities in a project. This is specified as
-   * combinations of kinds and namespaces (either or both of which may be all,
-   * as described in the following examples). Example usage:  Entire project:
-   * kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:
-   * kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar
-   * only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
-   * namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz
-   * namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
-   * namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:
-   * kinds=[], namespace_ids=[&#39;Baz&#39;]
+   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
    */
   export interface Schema$GoogleDatastoreAdminV1beta1EntityFilter {
     /**
@@ -321,11 +282,7 @@ export namespace datastore_v1beta3 {
      */
     kinds?: string[];
     /**
-     * An empty list represents all namespaces. This is the preferred usage for
-     * projects that don&#39;t use namespaces.  An empty string element
-     * represents the default namespace. This should be used if the project has
-     * data in non-default namespaces, but doesn&#39;t want to include them.
-     * Each namespace in this list must be unique.
+     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
     namespaceIds?: string[];
   }
@@ -342,11 +299,7 @@ export namespace datastore_v1beta3 {
      */
     entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
-     * Location for the export metadata and data files. This will be the same
-     * value as the
-     * google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix
-     * field. The final output location is provided in
-     * google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
+     * Location for the export metadata and data files. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix field. The final output location is provided in google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
      */
     outputUrlPrefix?: string;
     /**
@@ -359,15 +312,11 @@ export namespace datastore_v1beta3 {
     progressEntities?: Schema$GoogleDatastoreAdminV1beta1Progress;
   }
   /**
-   * The response for
-   * google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities.
+   * The response for google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities.
    */
   export interface Schema$GoogleDatastoreAdminV1beta1ExportEntitiesResponse {
     /**
-     * Location of the output metadata file. This can be used to begin an import
-     * into Cloud Datastore (this project or another project). See
-     * google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only
-     * present if the operation completed successfully.
+     * Location of the output metadata file. This can be used to begin an import into Cloud Datastore (this project or another project). See google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only present if the operation completed successfully.
      */
     outputUrl?: string;
   }
@@ -384,9 +333,7 @@ export namespace datastore_v1beta3 {
      */
     entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
-     * The location of the import metadata file. This will be the same value as
-     * the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url
-     * field.
+     * The location of the import metadata file. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field.
      */
     inputUrl?: string;
     /**
@@ -403,13 +350,11 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$GoogleDatastoreAdminV1beta1Progress {
     /**
-     * The amount of work that has been completed. Note that this may be greater
-     * than work_estimated.
+     * The amount of work that has been completed. Note that this may be greater than work_estimated.
      */
     workCompleted?: string;
     /**
-     * An estimate of how much work needs to be performed. May be zero if the
-     * work estimate is unavailable.
+     * An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
      */
     workEstimated?: string;
   }
@@ -422,13 +367,11 @@ export namespace datastore_v1beta3 {
      */
     endTime?: string;
     /**
-     * The client-assigned labels which were provided when the operation was
-     * created. May also include additional labels.
+     * The client-assigned labels which were provided when the operation was created. May also include additional labels.
      */
     labels?: {[key: string]: string};
     /**
-     * The type of the operation. Can be used as a filter in
-     * ListOperationsRequest.
+     * The type of the operation. Can be used as a filter in ListOperationsRequest.
      */
     operationType?: string;
     /**
@@ -441,16 +384,7 @@ export namespace datastore_v1beta3 {
     state?: string;
   }
   /**
-   * Identifies a subset of entities in a project. This is specified as
-   * combinations of kinds and namespaces (either or both of which may be all,
-   * as described in the following examples). Example usage:  Entire project:
-   * kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:
-   * kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar
-   * only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
-   * namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz
-   * namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
-   * namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:
-   * kinds=[], namespace_ids=[&#39;Baz&#39;]
+   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
    */
   export interface Schema$GoogleDatastoreAdminV1EntityFilter {
     /**
@@ -458,11 +392,7 @@ export namespace datastore_v1beta3 {
      */
     kinds?: string[];
     /**
-     * An empty list represents all namespaces. This is the preferred usage for
-     * projects that don&#39;t use namespaces.  An empty string element
-     * represents the default namespace. This should be used if the project has
-     * data in non-default namespaces, but doesn&#39;t want to include them.
-     * Each namespace in this list must be unique.
+     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
     namespaceIds?: string[];
   }
@@ -479,11 +409,7 @@ export namespace datastore_v1beta3 {
      */
     entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
-     * Location for the export metadata and data files. This will be the same
-     * value as the
-     * google.datastore.admin.v1.ExportEntitiesRequest.output_url_prefix field.
-     * The final output location is provided in
-     * google.datastore.admin.v1.ExportEntitiesResponse.output_url.
+     * Location for the export metadata and data files. This will be the same value as the google.datastore.admin.v1.ExportEntitiesRequest.output_url_prefix field. The final output location is provided in google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
     outputUrlPrefix?: string;
     /**
@@ -500,10 +426,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$GoogleDatastoreAdminV1ExportEntitiesResponse {
     /**
-     * Location of the output metadata file. This can be used to begin an import
-     * into Cloud Datastore (this project or another project). See
-     * google.datastore.admin.v1.ImportEntitiesRequest.input_url. Only present
-     * if the operation completed successfully.
+     * Location of the output metadata file. This can be used to begin an import into Cloud Datastore (this project or another project). See google.datastore.admin.v1.ImportEntitiesRequest.input_url. Only present if the operation completed successfully.
      */
     outputUrl?: string;
   }
@@ -520,8 +443,7 @@ export namespace datastore_v1beta3 {
      */
     entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
-     * The location of the import metadata file. This will be the same value as
-     * the google.datastore.admin.v1.ExportEntitiesResponse.output_url field.
+     * The location of the import metadata file. This will be the same value as the google.datastore.admin.v1.ExportEntitiesResponse.output_url field.
      */
     inputUrl?: string;
     /**
@@ -555,45 +477,32 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$GoogleDatastoreAdminV1Progress {
     /**
-     * The amount of work that has been completed. Note that this may be greater
-     * than work_estimated.
+     * The amount of work that has been completed. Note that this may be greater than work_estimated.
      */
     workCompleted?: string;
     /**
-     * An estimate of how much work needs to be performed. May be zero if the
-     * work estimate is unavailable.
+     * An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
      */
     workEstimated?: string;
   }
   /**
-   * A [GQL
-   * query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
+   * A [GQL query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
    */
   export interface Schema$GqlQuery {
     /**
-     * When false, the query string must not contain any literals and instead
-     * must bind all values. For example, `SELECT * FROM Kind WHERE a =
-     * &#39;string literal&#39;` is not allowed, while `SELECT * FROM Kind WHERE
-     * a = @value` is.
+     * When false, the query string must not contain any literals and instead must bind all values. For example, `SELECT * FROM Kind WHERE a = &#39;string literal&#39;` is not allowed, while `SELECT * FROM Kind WHERE a = @value` is.
      */
     allowLiterals?: boolean;
     /**
-     * For each non-reserved named binding site in the query string, there must
-     * be a named parameter with that name, but not necessarily the inverse. Key
-     * must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not
-     * be `&quot;&quot;`.
+     * For each non-reserved named binding site in the query string, there must be a named parameter with that name, but not necessarily the inverse.  Key must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not be `&quot;&quot;`.
      */
     namedBindings?: {[key: string]: Schema$GqlQueryParameter};
     /**
-     * Numbered binding site @1 references the first numbered parameter,
-     * effectively using 1-based indexing, rather than the usual 0.  For each
-     * binding site numbered i in `query_string`, there must be an i-th numbered
-     * parameter. The inverse must also be true.
+     * Numbered binding site @1 references the first numbered parameter, effectively using 1-based indexing, rather than the usual 0.  For each binding site numbered i in `query_string`, there must be an i-th numbered parameter. The inverse must also be true.
      */
     positionalBindings?: Schema$GqlQueryParameter[];
     /**
-     * A string of the format described
-     * [here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
+     * A string of the format described [here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
      */
     queryString?: string;
   }
@@ -611,31 +520,15 @@ export namespace datastore_v1beta3 {
     value?: Schema$Value;
   }
   /**
-   * A unique identifier for an entity. If a key&#39;s partition ID or any of
-   * its path kinds or names are reserved/read-only, the key is
-   * reserved/read-only. A reserved/read-only key is forbidden in certain
-   * documented contexts.
+   * A unique identifier for an entity. If a key&#39;s partition ID or any of its path kinds or names are reserved/read-only, the key is reserved/read-only. A reserved/read-only key is forbidden in certain documented contexts.
    */
   export interface Schema$Key {
     /**
-     * Entities are partitioned into subsets, currently identified by a project
-     * ID and namespace ID. Queries are scoped to a single partition.
+     * Entities are partitioned into subsets, currently identified by a project ID and namespace ID. Queries are scoped to a single partition.
      */
     partitionId?: Schema$PartitionId;
     /**
-     * The entity path. An entity path consists of one or more elements composed
-     * of a kind and a string or numerical identifier, which identify entities.
-     * The first element identifies a _root entity_, the second element
-     * identifies a _child_ of the root entity, the third element identifies a
-     * child of the second entity, and so forth. The entities identified by all
-     * prefixes of the path are called the element&#39;s _ancestors_.  An entity
-     * path is always fully complete: *all* of the entity&#39;s ancestors are
-     * required to be in the path along with the entity identifier itself. The
-     * only exception is that in some documented cases, the identifier in the
-     * last path element (for the entity) itself may be omitted. For example,
-     * the last path element of the key of `Mutation.insert` may have no
-     * identifier.  A path can never be empty, and a path can have at most 100
-     * elements.
+     * The entity path. An entity path consists of one or more elements composed of a kind and a string or numerical identifier, which identify entities. The first element identifies a _root entity_, the second element identifies a _child_ of the root entity, the third element identifies a child of the second entity, and so forth. The entities identified by all prefixes of the path are called the element&#39;s _ancestors_.  An entity path is always fully complete: *all* of the entity&#39;s ancestors are required to be in the path along with the entity identifier itself. The only exception is that in some documented cases, the identifier in the last path element (for the entity) itself may be omitted. For example, the last path element of the key of `Mutation.insert` may have no identifier.  A path can never be empty, and a path can have at most 100 elements.
      */
     path?: Schema$PathElement[];
   }
@@ -649,11 +542,7 @@ export namespace datastore_v1beta3 {
     name?: string;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a
-   * pair of doubles representing degrees latitude and degrees longitude. Unless
-   * specified otherwise, this must conform to the &lt;a
-   * href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84
-   * standard&lt;/a&gt;. Values must be within normalized ranges.
+   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
     /**
@@ -683,21 +572,15 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$LookupResponse {
     /**
-     * A list of keys that were not looked up due to resource constraints. The
-     * order of results in this field is undefined and has no relation to the
-     * order of the keys in the input.
+     * A list of keys that were not looked up due to resource constraints. The order of results in this field is undefined and has no relation to the order of the keys in the input.
      */
     deferred?: Schema$Key[];
     /**
-     * Entities found as `ResultType.FULL` entities. The order of results in
-     * this field is undefined and has no relation to the order of the keys in
-     * the input.
+     * Entities found as `ResultType.FULL` entities. The order of results in this field is undefined and has no relation to the order of the keys in the input.
      */
     found?: Schema$EntityResult[];
     /**
-     * Entities not found as `ResultType.KEY_ONLY` entities. The order of
-     * results in this field is undefined and has no relation to the order of
-     * the keys in the input.
+     * Entities not found as `ResultType.KEY_ONLY` entities. The order of results in this field is undefined and has no relation to the order of the keys in the input.
      */
     missing?: Schema$EntityResult[];
   }
@@ -706,28 +589,23 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$Mutation {
     /**
-     * The version of the entity that this mutation is being applied to. If this
-     * does not match the current version on the server, the mutation conflicts.
+     * The version of the entity that this mutation is being applied to. If this does not match the current version on the server, the mutation conflicts.
      */
     baseVersion?: string;
     /**
-     * The key of the entity to delete. The entity may or may not already exist.
-     * Must have a complete key path and must not be reserved/read-only.
+     * The key of the entity to delete. The entity may or may not already exist. Must have a complete key path and must not be reserved/read-only.
      */
     delete?: Schema$Key;
     /**
-     * The entity to insert. The entity must not already exist. The entity
-     * key&#39;s final path element may be incomplete.
+     * The entity to insert. The entity must not already exist. The entity key&#39;s final path element may be incomplete.
      */
     insert?: Schema$Entity;
     /**
-     * The entity to update. The entity must already exist. Must have a complete
-     * key path.
+     * The entity to update. The entity must already exist. Must have a complete key path.
      */
     update?: Schema$Entity;
     /**
-     * The entity to upsert. The entity may or may not already exist. The entity
-     * key&#39;s final path element may be incomplete.
+     * The entity to upsert. The entity may or may not already exist. The entity key&#39;s final path element may be incomplete.
      */
     upsert?: Schema$Entity;
   }
@@ -736,35 +614,20 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$MutationResult {
     /**
-     * Whether a conflict was detected for this mutation. Always false when a
-     * conflict detection strategy field is not set in the mutation.
+     * Whether a conflict was detected for this mutation. Always false when a conflict detection strategy field is not set in the mutation.
      */
     conflictDetected?: boolean;
     /**
-     * The automatically allocated key. Set only when the mutation allocated a
-     * key.
+     * The automatically allocated key. Set only when the mutation allocated a key.
      */
     key?: Schema$Key;
     /**
-     * The version of the entity on the server after processing the mutation. If
-     * the mutation doesn&#39;t change anything on the server, then the version
-     * will be the version of the current entity or, if no entity is present, a
-     * version that is strictly greater than the version of any previous entity
-     * and less than the version of any possible future entity.
+     * The version of the entity on the server after processing the mutation. If the mutation doesn&#39;t change anything on the server, then the version will be the version of the current entity or, if no entity is present, a version that is strictly greater than the version of any previous entity and less than the version of any possible future entity.
      */
     version?: string;
   }
   /**
-   * A partition ID identifies a grouping of entities. The grouping is always by
-   * project and namespace, however the namespace ID may be empty.  A partition
-   * ID contains several dimensions: project ID and namespace ID.  Partition
-   * dimensions:  - May be `&quot;&quot;`. - Must be valid UTF-8 bytes. - Must
-   * have values that match regex `[A-Za-z\d\.\-_]{1,100}` If the value of any
-   * dimension matches regex `__.*__`, the partition is reserved/read-only. A
-   * reserved/read-only partition ID is forbidden in certain documented
-   * contexts.  Foreign partition IDs (in which the project ID does not match
-   * the context project ID ) are discouraged. Reads and writes of foreign
-   * partition IDs may fail if the project is not in an active state.
+   * A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty.  A partition ID contains several dimensions: project ID and namespace ID.  Partition dimensions:  - May be `&quot;&quot;`. - Must be valid UTF-8 bytes. - Must have values that match regex `[A-Za-z\d\.\-_]{1,100}` If the value of any dimension matches regex `__.*__`, the partition is reserved/read-only. A reserved/read-only partition ID is forbidden in certain documented contexts.  Foreign partition IDs (in which the project ID does not match the context project ID ) are discouraged. Reads and writes of foreign partition IDs may fail if the project is not in an active state.
    */
   export interface Schema$PartitionId {
     /**
@@ -777,26 +640,19 @@ export namespace datastore_v1beta3 {
     projectId?: string;
   }
   /**
-   * A (kind, ID/name) pair used to construct a key path.  If either name or ID
-   * is set, the element is complete. If neither is set, the element is
-   * incomplete.
+   * A (kind, ID/name) pair used to construct a key path.  If either name or ID is set, the element is complete. If neither is set, the element is incomplete.
    */
   export interface Schema$PathElement {
     /**
-     * The auto-allocated ID of the entity. Never equal to zero. Values less
-     * than zero are discouraged and may not be supported in the future.
+     * The auto-allocated ID of the entity. Never equal to zero. Values less than zero are discouraged and may not be supported in the future.
      */
     id?: string;
     /**
-     * The kind of the entity. A kind matching regex `__.*__` is
-     * reserved/read-only. A kind must not contain more than 1500 bytes when
-     * UTF-8 encoded. Cannot be `&quot;&quot;`.
+     * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `&quot;&quot;`.
      */
     kind?: string;
     /**
-     * The name of the entity. A name matching regex `__.*__` is
-     * reserved/read-only. A name must not be more than 1500 bytes when UTF-8
-     * encoded. Cannot be `&quot;&quot;`.
+     * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `&quot;&quot;`.
      */
     name?: string;
   }
@@ -844,8 +700,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$PropertyReference {
     /**
-     * The name of the property. If name includes &quot;.&quot;s, it may be
-     * interpreted as a property name path.
+     * The name of the property. If name includes &quot;.&quot;s, it may be interpreted as a property name path.
      */
     name?: string;
   }
@@ -854,15 +709,11 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$Query {
     /**
-     * The properties to make distinct. The query results will contain the first
-     * result for each distinct combination of values for the given properties
-     * (if empty, all results are returned).
+     * The properties to make distinct. The query results will contain the first result for each distinct combination of values for the given properties (if empty, all results are returned).
      */
     distinctOn?: Schema$PropertyReference[];
     /**
-     * An ending point for the query results. Query cursors are returned in
-     * query result batches and [can only be used to limit the same
-     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * An ending point for the query results. Query cursors are returned in query result batches and [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      */
     endCursor?: string;
     /**
@@ -870,19 +721,15 @@ export namespace datastore_v1beta3 {
      */
     filter?: Schema$Filter;
     /**
-     * The kinds to query (if empty, returns entities of all kinds). Currently
-     * at most 1 kind may be specified.
+     * The kinds to query (if empty, returns entities of all kinds). Currently at most 1 kind may be specified.
      */
     kind?: Schema$KindExpression[];
     /**
-     * The maximum number of results to return. Applies after all other
-     * constraints. Optional. Unspecified is interpreted as no limit. Must be
-     * &gt;= 0 if specified.
+     * The maximum number of results to return. Applies after all other constraints. Optional. Unspecified is interpreted as no limit. Must be &gt;= 0 if specified.
      */
     limit?: number;
     /**
-     * The number of results to skip. Applies before limit, but after all other
-     * constraints. Optional. Must be &gt;= 0 if specified.
+     * The number of results to skip. Applies before limit, but after all other constraints. Optional. Must be &gt;= 0 if specified.
      */
     offset?: number;
     /**
@@ -894,9 +741,7 @@ export namespace datastore_v1beta3 {
      */
     projection?: Schema$Projection[];
     /**
-     * A starting point for the query results. Query cursors are returned in
-     * query result batches and [can only be used to continue the same
-     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * A starting point for the query results. Query cursors are returned in query result batches and [can only be used to continue the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      */
     startCursor?: string;
   }
@@ -921,8 +766,7 @@ export namespace datastore_v1beta3 {
      */
     moreResults?: string;
     /**
-     * A cursor that points to the position after the last skipped result. Will
-     * be set when `skipped_results` != 0.
+     * A cursor that points to the position after the last skipped result. Will be set when `skipped_results` != 0.
      */
     skippedCursor?: string;
     /**
@@ -930,14 +774,7 @@ export namespace datastore_v1beta3 {
      */
     skippedResults?: number;
     /**
-     * The version number of the snapshot this batch was returned from. This
-     * applies to the range of results from the query&#39;s `start_cursor` (or
-     * the beginning of the query if no cursor was given) to this batch&#39;s
-     * `end_cursor` (not the query&#39;s `end_cursor`).  In a single
-     * transaction, subsequent query result batches for the same query can have
-     * a greater snapshot version number. Each batch&#39;s snapshot version is
-     * valid for all preceding batches. The value will be zero for eventually
-     * consistent queries.
+     * The version number of the snapshot this batch was returned from. This applies to the range of results from the query&#39;s `start_cursor` (or the beginning of the query if no cursor was given) to this batch&#39;s `end_cursor` (not the query&#39;s `end_cursor`).  In a single transaction, subsequent query result batches for the same query can have a greater snapshot version number. Each batch&#39;s snapshot version is valid for all preceding batches. The value will be zero for eventually consistent queries.
      */
     snapshotVersion?: string;
   }
@@ -950,13 +787,11 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$ReadOptions {
     /**
-     * The non-transactional read consistency to use. Cannot be set to `STRONG`
-     * for global queries.
+     * The non-transactional read consistency to use. Cannot be set to `STRONG` for global queries.
      */
     readConsistency?: string;
     /**
-     * The identifier of the transaction in which to read. A transaction
-     * identifier is returned by a call to Datastore.BeginTransaction.
+     * The identifier of the transaction in which to read. A transaction identifier is returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string;
   }
@@ -978,8 +813,7 @@ export namespace datastore_v1beta3 {
      */
     databaseId?: string;
     /**
-     * A list of keys with complete key paths whose numeric IDs should not be
-     * auto-allocated.
+     * A list of keys with complete key paths whose numeric IDs should not be auto-allocated.
      */
     keys?: Schema$Key[];
   }
@@ -992,8 +826,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$RollbackRequest {
     /**
-     * The transaction identifier, returned by a call to
-     * Datastore.BeginTransaction.
+     * The transaction identifier, returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string;
   }
@@ -1010,9 +843,7 @@ export namespace datastore_v1beta3 {
      */
     gqlQuery?: Schema$GqlQuery;
     /**
-     * Entities are partitioned into subsets, identified by a partition ID.
-     * Queries are scoped to a single partition. This partition ID is normalized
-     * with the standard default context partition ID.
+     * Entities are partitioned into subsets, identified by a partition ID. Queries are scoped to a single partition. This partition ID is normalized with the standard default context partition ID.
      */
     partitionId?: Schema$PartitionId;
     /**
@@ -1038,9 +869,7 @@ export namespace datastore_v1beta3 {
     query?: Schema$Query;
   }
   /**
-   * Options for beginning a new transaction.  Transactions can be created
-   * explicitly with calls to Datastore.BeginTransaction or implicitly by
-   * setting ReadOptions.new_transaction in read requests.
+   * Options for beginning a new transaction.  Transactions can be created explicitly with calls to Datastore.BeginTransaction or implicitly by setting ReadOptions.new_transaction in read requests.
    */
   export interface Schema$TransactionOptions {
     /**
@@ -1053,20 +882,15 @@ export namespace datastore_v1beta3 {
     readWrite?: Schema$ReadWrite;
   }
   /**
-   * A message that can hold any of the supported value types and associated
-   * metadata.
+   * A message that can hold any of the supported value types and associated metadata.
    */
   export interface Schema$Value {
     /**
-     * An array value. Cannot contain another array value. A `Value` instance
-     * that sets field `array_value` must not set fields `meaning` or
-     * `exclude_from_indexes`.
+     * An array value. Cannot contain another array value. A `Value` instance that sets field `array_value` must not set fields `meaning` or `exclude_from_indexes`.
      */
     arrayValue?: Schema$ArrayValue;
     /**
-     * A blob value. May have at most 1,000,000 bytes. When
-     * `exclude_from_indexes` is false, may have at most 1500 bytes. In JSON
-     * requests, must be base64-encoded.
+     * A blob value. May have at most 1,000,000 bytes. When `exclude_from_indexes` is false, may have at most 1500 bytes. In JSON requests, must be base64-encoded.
      */
     blobValue?: string;
     /**
@@ -1078,13 +902,11 @@ export namespace datastore_v1beta3 {
      */
     doubleValue?: number;
     /**
-     * An entity value.  - May have no key. - May have a key with an incomplete
-     * key path. - May have a reserved/read-only key.
+     * An entity value.  - May have no key. - May have a key with an incomplete key path. - May have a reserved/read-only key.
      */
     entityValue?: Schema$Entity;
     /**
-     * If the value should be excluded from all indexes including those defined
-     * explicitly.
+     * If the value should be excluded from all indexes including those defined explicitly.
      */
     excludeFromIndexes?: boolean;
     /**
@@ -1108,14 +930,11 @@ export namespace datastore_v1beta3 {
      */
     nullValue?: string;
     /**
-     * A UTF-8 encoded string value. When `exclude_from_indexes` is false (it is
-     * indexed) , may have at most 1500 bytes. Otherwise, may be set to at least
-     * 1,000,000 bytes.
+     * A UTF-8 encoded string value. When `exclude_from_indexes` is false (it is indexed) , may have at most 1500 bytes. Otherwise, may be set to at least 1,000,000 bytes.
      */
     stringValue?: string;
     /**
-     * A timestamp value. When stored in the Datastore, precise only to
-     * microseconds; any additional precision is rounded down.
+     * A timestamp value. When stored in the Datastore, precise only to microseconds; any additional precision is rounded down.
      */
     timestampValue?: string;
   }
@@ -1128,8 +947,7 @@ export namespace datastore_v1beta3 {
 
     /**
      * datastore.projects.allocateIds
-     * @desc Allocates IDs for the given keys, which is useful for referencing
-     * an entity before it is inserted.
+     * @desc Allocates IDs for the given keys, which is useful for referencing an entity before it is inserted.
      * @alias datastore.projects.allocateIds
      * @memberOf! ()
      *
@@ -1283,8 +1101,7 @@ export namespace datastore_v1beta3 {
 
     /**
      * datastore.projects.commit
-     * @desc Commits a transaction, optionally creating, deleting or modifying
-     * some entities.
+     * @desc Commits a transaction, optionally creating, deleting or modifying some entities.
      * @alias datastore.projects.commit
      * @memberOf! ()
      *
@@ -1432,8 +1249,7 @@ export namespace datastore_v1beta3 {
 
     /**
      * datastore.projects.reserveIds
-     * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud
-     * Datastore.
+     * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud Datastore.
      * @alias datastore.projects.reserveIds
      * @memberOf! ()
      *

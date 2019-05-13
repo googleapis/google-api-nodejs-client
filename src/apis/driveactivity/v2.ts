@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace driveactivity_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace driveactivity_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,7 +108,10 @@ export namespace driveactivity_v2 {
     activity: Resource$Activity;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.activity = new Resource$Activity(this.context);
     }
@@ -123,8 +122,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Action {
     /**
-     * The actor responsible for this action (or empty if all actors are
-     * responsible).
+     * The actor responsible for this action (or empty if all actors are responsible).
      */
     actor?: Schema$Actor;
     /**
@@ -132,9 +130,7 @@ export namespace driveactivity_v2 {
      */
     detail?: Schema$ActionDetail;
     /**
-     * The target this action affects (or empty if affecting all targets). This
-     * represents the state of the target immediately after this action
-     * occurred.
+     * The target this action affects (or empty if affecting all targets). This represents the state of the target immediately after this action occurred.
      */
     target?: Schema$Target;
     /**
@@ -225,8 +221,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Administrator {}
   /**
-   * Empty message representing an anonymous user or indicating the
-   * authenticated user should be anonymized.
+   * Empty message representing an anonymous user or indicating the authenticated user should be anonymized.
    */
   export interface Schema$AnonymousUser {}
   /**
@@ -273,11 +268,7 @@ export namespace driveactivity_v2 {
     suggestion?: Schema$Suggestion;
   }
   /**
-   * How the individual activities are consolidated. A set of activities may be
-   * consolidated into one combined activity if they are related in some way,
-   * such as one actor performing the same action on multiple targets, or
-   * multiple actors performing the same action on a single target. The strategy
-   * defines the rules for which activities are related.
+   * How the individual activities are consolidated. A set of activities may be consolidated into one combined activity if they are related in some way, such as one actor performing the same action on multiple targets, or multiple actors performing the same action on a single target. The strategy defines the rules for which activities are related.
    */
   export interface Schema$ConsolidationStrategy {
     /**
@@ -303,18 +294,15 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Create {
     /**
-     * If present, indicates the object was created by copying an existing Drive
-     * object.
+     * If present, indicates the object was created by copying an existing Drive object.
      */
     copy?: Schema$Copy;
     /**
-     * If present, indicates the object was newly created (e.g. as a blank
-     * document), not derived from a Drive object or external object.
+     * If present, indicates the object was newly created (e.g. as a blank document), not derived from a Drive object or external object.
      */
     new?: Schema$New;
     /**
-     * If present, indicates the object originated externally and was uploaded
-     * to Drive.
+     * If present, indicates the object originated externally and was uploaded to Drive.
      */
     upload?: Schema$Upload;
   }
@@ -358,9 +346,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Drive {
     /**
-     * The resource name of the shared drive. The format is
-     * &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific
-     * collection ID for this resource name.
+     * The resource name of the shared drive. The format is &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific collection ID for this resource name.
      */
     name?: string;
     /**
@@ -373,12 +359,7 @@ export namespace driveactivity_v2 {
     title?: string;
   }
   /**
-   * A single Drive activity comprising one or more Actions by one or more
-   * Actors on one or more Targets. Some Action groupings occur spontaneously,
-   * such as moving an item into a shared folder triggering a permission change.
-   * Other groupings of related Actions, such as multiple Actors editing one
-   * item or moving multiple files into a new folder, are controlled by the
-   * selection of a ConsolidationStrategy in the QueryDriveActivityRequest.
+   * A single Drive activity comprising one or more Actions by one or more Actors on one or more Targets. Some Action groupings occur spontaneously, such as moving an item into a shared folder triggering a permission change. Other groupings of related Actions, such as multiple Actors editing one item or moving multiple files into a new folder, are controlled by the selection of a ConsolidationStrategy in the QueryDriveActivityRequest.
    */
   export interface Schema$DriveActivity {
     /**
@@ -390,15 +371,11 @@ export namespace driveactivity_v2 {
      */
     actors?: Schema$Actor[];
     /**
-     * Key information about the primary action for this activity. This is
-     * either representative, or the most important, of all actions in the
-     * activity, according to the ConsolidationStrategy in the request.
+     * Key information about the primary action for this activity. This is either representative, or the most important, of all actions in the activity, according to the ConsolidationStrategy in the request.
      */
     primaryActionDetail?: Schema$ActionDetail;
     /**
-     * All Drive objects this activity is about (e.g. file, folder, Team Drive).
-     * This represents the state of the target immediately after the actions
-     * occurred.
+     * All Google Drive objects this activity is about (e.g. file, folder, drive). This represents the state of the target immediately after the actions occurred.
      */
     targets?: Schema$Target[];
     /**
@@ -444,8 +421,7 @@ export namespace driveactivity_v2 {
      */
     folder?: Schema$Folder;
     /**
-     * The MIME type of the Drive item.  See
-     * https://developers.google.com/drive/v3/web/mime-types.
+     * The MIME type of the Drive item.  See https://developers.google.com/drive/v3/web/mime-types.
      */
     mimeType?: string;
     /**
@@ -495,9 +471,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$DriveReference {
     /**
-     * The resource name of the shared drive. The format is
-     * &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific
-     * collection ID for this resource name.
+     * The resource name of the shared drive. The format is &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific collection ID for this resource name.
      */
     name?: string;
     /**
@@ -518,21 +492,15 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$FileComment {
     /**
-     * The comment in the discussion thread. This identifier is an opaque string
-     * compatible with the Drive API; see
-     * https://developers.google.com/drive/v3/reference/comments/get
+     * The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/drive/v3/reference/comments/get
      */
     legacyCommentId?: string;
     /**
-     * The discussion thread to which the comment was added. This identifier is
-     * an opaque string compatible with the Drive API and references the first
-     * comment in a discussion; see
-     * https://developers.google.com/drive/v3/reference/comments/get
+     * The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/drive/v3/reference/comments/get
      */
     legacyDiscussionId?: string;
     /**
-     * The link to the discussion thread containing this comment, for example,
-     * &quot;https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID&quot;.
+     * The link to the discussion thread containing this comment, for example, &quot;https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID&quot;.
      */
     linkToDiscussion?: string;
     /**
@@ -563,8 +531,7 @@ export namespace driveactivity_v2 {
     title?: string;
   }
   /**
-   * Information about an impersonation, where an admin acts on behalf of an end
-   * user. Information about the acting admin is not currently available.
+   * Information about an impersonation, where an admin acts on behalf of an end user. Information about the acting admin is not currently available.
    */
   export interface Schema$Impersonation {
     /**
@@ -581,18 +548,12 @@ export namespace driveactivity_v2 {
      */
     isCurrentUser?: boolean;
     /**
-     * The identifier for this user that can be used with the People API to get
-     * more information. The format is &quot;people/ACCOUNT_ID&quot;. See
-     * https://developers.google.com/people/.
+     * The identifier for this user that can be used with the People API to get more information. The format is &quot;people/ACCOUNT_ID&quot;. See https://developers.google.com/people/.
      */
     personName?: string;
   }
   /**
-   * A strategy which consolidates activities using the grouping rules from the
-   * legacy V1 Activity API. Similar actions occurring within a window of time
-   * can be grouped across multiple targets (such as moving a set of files at
-   * once) or multiple actors (such as several users editing the same item).
-   * Grouping rules for this strategy are specific to each type of action.
+   * A strategy which consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action.
    */
   export interface Schema$Legacy {}
   /**
@@ -642,8 +603,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Permission {
     /**
-     * If true, the item can be discovered (e.g. in the user&#39;s &quot;Shared
-     * with me&quot; collection) without needing a link to the item.
+     * If true, the item can be discovered (e.g. in the user&#39;s &quot;Shared with me&quot; collection) without needing a link to the item.
      */
     allowDiscovery?: boolean;
     /**
@@ -659,10 +619,7 @@ export namespace driveactivity_v2 {
      */
     group?: Schema$Group;
     /**
-     * Indicates the &lt;a
-     * href=&quot;/drive/web/manage-sharing#roles&quot;&gt;Google Drive
-     * permissions role&lt;/a&gt;. The role determines a user&#39;s ability to
-     * read, write, and comment on items.
+     * Indicates the &lt;a href=&quot;/drive/web/manage-sharing#roles&quot;&gt;Google Drive permissions role&lt;/a&gt;. The role determines a user&#39;s ability to read, write, and comment on items.
      */
     role?: string;
     /**
@@ -697,45 +654,27 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$QueryDriveActivityRequest {
     /**
-     * Return activities for this Drive folder and all children and descendants.
-     * The format is &quot;items/ITEM_ID&quot;.
+     * Return activities for this Drive folder and all children and descendants. The format is &quot;items/ITEM_ID&quot;.
      */
     ancestorName?: string;
     /**
-     * Details on how to consolidate related actions that make up the activity.
-     * If not set, then related actions will not be consolidated.
+     * Details on how to consolidate related actions that make up the activity. If not set, then related actions will not be consolidated.
      */
     consolidationStrategy?: Schema$ConsolidationStrategy;
     /**
-     * The filtering for items returned from this query request. The format of
-     * the filter string is a sequence of expressions, joined by an optional
-     * &quot;AND&quot;, where each expression is of the form &quot;field
-     * operator value&quot;.  Supported fields:    - &lt;tt&gt;time&lt;/tt&gt;:
-     * Uses numerical operators on date values either in     terms of
-     * milliseconds since Jan 1, 1970 or in RFC 3339 format.     Examples: -
-     * &lt;tt&gt;time &gt; 1452409200000 AND time &lt;= 1492812924310&lt;/tt&gt;
-     * - &lt;tt&gt;time &gt;= &quot;2016-01-10T01:02:03-05:00&quot;&lt;/tt&gt;
-     * - &lt;tt&gt;detail.action_detail_case&lt;/tt&gt;: Uses the
-     * &quot;has&quot; operator (:) and     either a singular value or a list of
-     * allowed action types enclosed in     parentheses.     Examples:       -
-     * &lt;tt&gt;detail.action_detail_case: RENAME&lt;/tt&gt;       -
-     * &lt;tt&gt;detail.action_detail_case:(CREATE UPLOAD)&lt;/tt&gt;       -
-     * &lt;tt&gt;-detail.action_detail_case:MOVE&lt;/tt&gt;
+     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional &quot;AND&quot;, where each expression is of the form &quot;field operator value&quot;.  Supported fields:    - &lt;tt&gt;time&lt;/tt&gt;: Uses numerical operators on date values either in     terms of milliseconds since Jan 1, 1970 or in RFC 3339 format.     Examples:       - &lt;tt&gt;time &gt; 1452409200000 AND time &lt;= 1492812924310&lt;/tt&gt;       - &lt;tt&gt;time &gt;= &quot;2016-01-10T01:02:03-05:00&quot;&lt;/tt&gt;    - &lt;tt&gt;detail.action_detail_case&lt;/tt&gt;: Uses the &quot;has&quot; operator (:) and     either a singular value or a list of allowed action types enclosed in     parentheses.     Examples:       - &lt;tt&gt;detail.action_detail_case: RENAME&lt;/tt&gt;       - &lt;tt&gt;detail.action_detail_case:(CREATE UPLOAD)&lt;/tt&gt;       - &lt;tt&gt;-detail.action_detail_case:MOVE&lt;/tt&gt;
      */
     filter?: string;
     /**
-     * Return activities for this Drive item. The format is
-     * &quot;items/ITEM_ID&quot;.
+     * Return activities for this Drive item. The format is &quot;items/ITEM_ID&quot;.
      */
     itemName?: string;
     /**
-     * The requested number of activity to return. If not set, a default value
-     * will be used.
+     * The requested number of activity to return. If not set, a default value will be used.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous QueryDriveActivity
-     * request, if any.
+     * The next_page_token value returned from a previous QueryDriveActivity request, if any.
      */
     pageToken?: string;
   }
@@ -748,8 +687,7 @@ export namespace driveactivity_v2 {
      */
     activities?: Schema$DriveActivity[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }

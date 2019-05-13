@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace firebaserules_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace firebaserules_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace firebaserules_v1 {
   /**
    * Firebase Rules API
    *
-   * Creates and manages rules that determine when a Firebase Rules-enabled
-   * service should permit a request.
+   * Creates and manages rules that determine when a Firebase Rules-enabled service should permit a request.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,7 +108,10 @@ export namespace firebaserules_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -133,11 +131,7 @@ export namespace firebaserules_v1 {
     exactValue?: any;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
@@ -158,8 +152,7 @@ export namespace firebaserules_v1 {
     name?: string;
   }
   /**
-   * Represents a service-defined function call that was invoked during test
-   * execution.
+   * Represents a service-defined function call that was invoked during test execution.
    */
   export interface Schema$FunctionCall {
     /**
@@ -172,24 +165,15 @@ export namespace firebaserules_v1 {
     function?: string;
   }
   /**
-   * Mock function definition.  Mocks must refer to a function declared by the
-   * target service. The type of the function args and result will be inferred
-   * at test time. If either the arg or result values are not compatible with
-   * function type declaration, the request will be considered invalid.  More
-   * than one `FunctionMock` may be provided for a given function name so long
-   * as the `Arg` matchers are distinct. There may be only one function for a
-   * given overload where all `Arg` values are `Arg.any_value`.
+   * Mock function definition.  Mocks must refer to a function declared by the target service. The type of the function args and result will be inferred at test time. If either the arg or result values are not compatible with function type declaration, the request will be considered invalid.  More than one `FunctionMock` may be provided for a given function name so long as the `Arg` matchers are distinct. There may be only one function for a given overload where all `Arg` values are `Arg.any_value`.
    */
   export interface Schema$FunctionMock {
     /**
-     * The list of `Arg` values to match. The order in which the arguments are
-     * provided is the order in which they must appear in the function
-     * invocation.
+     * The list of `Arg` values to match. The order in which the arguments are provided is the order in which they must appear in the function invocation.
      */
     args?: Schema$Arg[];
     /**
-     * The name of the function.  The function name must match one provided by a
-     * service declaration.
+     * The name of the function.  The function name must match one provided by a service declaration.
      */
     function?: string;
     /**
@@ -218,9 +202,7 @@ export namespace firebaserules_v1 {
      */
     rulesetName?: string;
     /**
-     * Optional, indicates the freshness of the result. The response is
-     * guaranteed to be the latest within an interval up to the sync_time
-     * (inclusive).
+     * Optional, indicates the freshness of the result. The response is guaranteed to be the latest within an interval up to the sync_time (inclusive).
      */
     syncTime?: string;
     /**
@@ -250,8 +232,7 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$ListReleasesResponse {
     /**
-     * The pagination token to retrieve the next page of results. If the value
-     * is empty, no further results remain.
+     * The pagination token to retrieve the next page of results. If the value is empty, no further results remain.
      */
     nextPageToken?: string;
     /**
@@ -264,8 +245,7 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$ListRulesetsResponse {
     /**
-     * The pagination token to retrieve the next page of results. If the value
-     * is empty, no further results remain.
+     * The pagination token to retrieve the next page of results. If the value is empty, no further results remain.
      */
     nextPageToken?: string;
     /**
@@ -274,8 +254,7 @@ export namespace firebaserules_v1 {
     rulesets?: Schema$Ruleset[];
   }
   /**
-   * `Release` is a named reference to a `Ruleset`. Once a `Release` refers to a
-   * `Ruleset`, rules-enabled services will be able to enforce the `Ruleset`.
+   * `Release` is a named reference to a `Ruleset`. Once a `Release` refers to a `Ruleset`, rules-enabled services will be able to enforce the `Ruleset`.
    */
   export interface Schema$Release {
     /**
@@ -283,27 +262,11 @@ export namespace firebaserules_v1 {
      */
     createTime?: string;
     /**
-     * Resource name for the `Release`.  `Release` names may be structured
-     * `app1/prod/v2` or flat `app1_prod_v2` which affords developers a great
-     * deal of flexibility in mapping the name to the style that best fits their
-     * existing development practices. For example, a name could refer to an
-     * environment, an app, a version, or some combination of three.  In the
-     * table below, for the project name `projects/foo`, the following relative
-     * release paths show how flat and structured names might be chosen to match
-     * a desired development / deployment strategy.  Use Case     | Flat Name |
-     * Structured Name -------------|---------------------|----------------
-     * Environments | releases/qa         | releases/qa Apps         |
-     * releases/app1_qa    | releases/app1/qa Versions     | releases/app1_v2_qa
-     * | releases/app1/v2/qa  The delimiter between the release name path
-     * elements can be almost anything and it should work equally well with the
-     * release name list filter, but in many ways the structured paths provide a
-     * clearer picture of the relationship between `Release` instances.  Format:
-     * `projects/{project_id}/releases/{release_id}`
+     * Resource name for the `Release`.  `Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2` which affords developers a great deal of flexibility in mapping the name to the style that best fits their existing development practices. For example, a name could refer to an environment, an app, a version, or some combination of three.  In the table below, for the project name `projects/foo`, the following relative release paths show how flat and structured names might be chosen to match a desired development / deployment strategy.  Use Case     | Flat Name           | Structured Name -------------|---------------------|---------------- Environments | releases/qa         | releases/qa Apps         | releases/app1_qa    | releases/app1/qa Versions     | releases/app1_v2_qa | releases/app1/v2/qa  The delimiter between the release name path elements can be almost anything and it should work equally well with the release name list filter, but in many ways the structured paths provide a clearer picture of the relationship between `Release` instances.  Format: `projects/{project_id}/releases/{release_id}`
      */
     name?: string;
     /**
-     * Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must
-     * exist the `Release` to be created.
+     * Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.
      */
     rulesetName?: string;
     /**
@@ -320,14 +283,12 @@ export namespace firebaserules_v1 {
      */
     undefined?: Schema$Empty;
     /**
-     * The result is an actual value. The type of the value must match that of
-     * the type declared by the service.
+     * The result is an actual value. The type of the value must match that of the type declared by the service.
      */
     value?: any;
   }
   /**
-   * `Ruleset` is an immutable copy of `Source` with a globally unique
-   * identifier and a creation time.
+   * `Ruleset` is an immutable copy of `Source` with a globally unique identifier and a creation time.
    */
   export interface Schema$Ruleset {
     /**
@@ -335,8 +296,7 @@ export namespace firebaserules_v1 {
      */
     createTime?: string;
     /**
-     * Name of the `Ruleset`. The ruleset_id is auto generated by the service.
-     * Format: `projects/{project_id}/rulesets/{ruleset_id}` Output only.
+     * Name of the `Ruleset`. The ruleset_id is auto generated by the service. Format: `projects/{project_id}/rulesets/{ruleset_id}` Output only.
      */
     name?: string;
     /**
@@ -354,8 +314,7 @@ export namespace firebaserules_v1 {
     files?: Schema$File[];
   }
   /**
-   * Position in the `Source` content including its line, column number, and an
-   * index of the `File` in the `Source` message. Used for debug purposes.
+   * Position in the `Source` content including its line, column number, and an index of the `File` in the `Source` message. Used for debug purposes.
    */
   export interface Schema$SourcePosition {
     /**
@@ -372,13 +331,7 @@ export namespace firebaserules_v1 {
     line?: number;
   }
   /**
-   * `TestCase` messages provide the request context and an expectation as to
-   * whether the given context will be allowed or denied. Test cases may specify
-   * the `request`, `resource`, and `function_mocks` to mock a function call to
-   * a service-provided function.  The `request` object represents context
-   * present at request-time.  The `resource` is the value of the target
-   * resource as it appears in persistent storage before the request is
-   * executed.
+   * `TestCase` messages provide the request context and an expectation as to whether the given context will be allowed or denied. Test cases may specify the `request`, `resource`, and `function_mocks` to mock a function call to a service-provided function.  The `request` object represents context present at request-time.  The `resource` is the value of the target resource as it appears in persistent storage before the request is executed.
    */
   export interface Schema$TestCase {
     /**
@@ -386,57 +339,32 @@ export namespace firebaserules_v1 {
      */
     expectation?: string;
     /**
-     * Optional function mocks for service-defined functions. If not set, any
-     * service defined function is expected to return an error, which may or may
-     * not influence the test outcome.
+     * Optional function mocks for service-defined functions. If not set, any service defined function is expected to return an error, which may or may not influence the test outcome.
      */
     functionMocks?: Schema$FunctionMock[];
     /**
-     * Request context.  The exact format of the request context is
-     * service-dependent. See the appropriate service documentation for
-     * information about the supported fields and types on the request.
-     * Minimally, all services support the following fields and types:  Request
-     * field  | Type ---------------|----------------- auth.uid       | `string`
-     * auth.token     | `map&lt;string, string&gt;` headers        |
-     * `map&lt;string, string&gt;` method         | `string` params         |
-     * `map&lt;string, string&gt;` path           | `string` time           |
-     * `google.protobuf.Timestamp`  If the request value is not well-formed for
-     * the service, the request will be rejected as an invalid argument.
+     * Request context.  The exact format of the request context is service-dependent. See the appropriate service documentation for information about the supported fields and types on the request. Minimally, all services support the following fields and types:  Request field  | Type ---------------|----------------- auth.uid       | `string` auth.token     | `map&lt;string, string&gt;` headers        | `map&lt;string, string&gt;` method         | `string` params         | `map&lt;string, string&gt;` path           | `string` time           | `google.protobuf.Timestamp`  If the request value is not well-formed for the service, the request will be rejected as an invalid argument.
      */
     request?: any;
     /**
-     * Optional resource value as it appears in persistent storage before the
-     * request is fulfilled.  The resource type depends on the `request.path`
-     * value.
+     * Optional resource value as it appears in persistent storage before the request is fulfilled.  The resource type depends on the `request.path` value.
      */
     resource?: any;
   }
   /**
-   * Test result message containing the state of the test as well as a
-   * description and source position for test failures.
+   * Test result message containing the state of the test as well as a description and source position for test failures.
    */
   export interface Schema$TestResult {
     /**
-     * Debug messages related to test execution issues encountered during
-     * evaluation.  Debug messages may be related to too many or too few
-     * invocations of function mocks or to runtime errors that occur during
-     * evaluation.  For example: ```Unable to read variable [name:
-     * &quot;resource&quot;]```
+     * Debug messages related to test execution issues encountered during evaluation.  Debug messages may be related to too many or too few invocations of function mocks or to runtime errors that occur during evaluation.  For example: ```Unable to read variable [name: &quot;resource&quot;]```
      */
     debugMessages?: string[];
     /**
-     * Position in the `Source` or `Ruleset` where the principle runtime error
-     * occurs.  Evaluation of an expression may result in an error. Rules are
-     * deny by default, so a `DENY` expectation when an error is generated is
-     * valid. When there is a `DENY` with an error, the `SourcePosition` is
-     * returned.  E.g. `error_position { line: 19 column: 37 }`
+     * Position in the `Source` or `Ruleset` where the principle runtime error occurs.  Evaluation of an expression may result in an error. Rules are deny by default, so a `DENY` expectation when an error is generated is valid. When there is a `DENY` with an error, the `SourcePosition` is returned.  E.g. `error_position { line: 19 column: 37 }`
      */
     errorPosition?: Schema$SourcePosition;
     /**
-     * The set of function calls made to service-defined methods.  Function
-     * calls are included in the order in which they are encountered during
-     * evaluation, are provided for both mocked and unmocked functions, and
-     * included on the response regardless of the test `state`.
+     * The set of function calls made to service-defined methods.  Function calls are included in the order in which they are encountered during evaluation, are provided for both mocked and unmocked functions, and included on the response regardless of the test `state`.
      */
     functionCalls?: Schema$FunctionCall[];
     /**
@@ -444,11 +372,7 @@ export namespace firebaserules_v1 {
      */
     state?: string;
     /**
-     * The set of visited permission expressions for a given test. This returns
-     * the positions and evaluation results of all visited permission
-     * expressions which were relevant to the test case, e.g. ``` match /path {
-     * allow read if: &lt;expr&gt; } ``` For a detailed report of the
-     * intermediate evaluation states, see the `expression_reports` field
+     * The set of visited permission expressions for a given test. This returns the positions and evaluation results of all visited permission expressions which were relevant to the test case, e.g. ``` match /path {   allow read if: &lt;expr&gt; } ``` For a detailed report of the intermediate evaluation states, see the `expression_reports` field
      */
     visitedExpressions?: Schema$VisitedExpression[];
   }
@@ -457,8 +381,7 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$TestRulesetRequest {
     /**
-     * Optional `Source` to be checked for correctness.  This field must not be
-     * set when the resource name refers to a `Ruleset`.
+     * Optional `Source` to be checked for correctness.  This field must not be set when the resource name refers to a `Ruleset`.
      */
     source?: Schema$Source;
     /**
@@ -471,22 +394,16 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$TestRulesetResponse {
     /**
-     * Syntactic and semantic `Source` issues of varying severity. Issues of
-     * `ERROR` severity will prevent tests from executing.
+     * Syntactic and semantic `Source` issues of varying severity. Issues of `ERROR` severity will prevent tests from executing.
      */
     issues?: Schema$Issue[];
     /**
-     * The set of test results given the test cases in the `TestSuite`. The
-     * results will appear in the same order as the test cases appear in the
-     * `TestSuite`.
+     * The set of test results given the test cases in the `TestSuite`. The results will appear in the same order as the test cases appear in the `TestSuite`.
      */
     testResults?: Schema$TestResult[];
   }
   /**
-   * `TestSuite` is a collection of `TestCase` instances that validate the
-   * logical correctness of a `Ruleset`. The `TestSuite` may be referenced
-   * in-line within a `TestRuleset` invocation or as part of a `Release` object
-   * as a pre-release check.
+   * `TestSuite` is a collection of `TestCase` instances that validate the logical correctness of a `Ruleset`. The `TestSuite` may be referenced in-line within a `TestRuleset` invocation or as part of a `Release` object as a pre-release check.
    */
   export interface Schema$TestSuite {
     /**
@@ -533,19 +450,7 @@ export namespace firebaserules_v1 {
 
     /**
      * firebaserules.projects.test
-     * @desc Test `Source` for syntactic and semantic correctness. Issues
-     * present, if any, will be returned to the caller with a description,
-     * severity, and source location.  The test method may be executed with
-     * `Source` or a `Ruleset` name. Passing `Source` is useful for unit testing
-     * new rules. Passing a `Ruleset` name is useful for regression testing an
-     * existing rule.  The following is an example of `Source` that permits
-     * users to upload images to a bucket bearing their user id and matching the
-     * correct metadata:  _*Example*_      // Users are allowed to subscribe and
-     * unsubscribe to the blog.     service firebase.storage {       match
-     * /users/{userId}/images/{imageName} {           allow write: if userId ==
-     * request.auth.uid               && (imageName.matches('*.png$') ||
-     * imageName.matches('*.jpg$'))               &&
-     * resource.mimeType.matches('^image/')       }     }
+     * @desc Test `Source` for syntactic and semantic correctness. Issues present, if any, will be returned to the caller with a description, severity, and source location.  The test method may be executed with `Source` or a `Ruleset` name. Passing `Source` is useful for unit testing new rules. Passing a `Ruleset` name is useful for regression testing an existing rule.  The following is an example of `Source` that permits users to upload images to a bucket bearing their user id and matching the correct metadata:  _*Example*_      // Users are allowed to subscribe and unsubscribe to the blog.     service firebase.storage {       match /users/{userId}/images/{imageName} {           allow write: if userId == request.auth.uid               && (imageName.matches('*.png$')               || imageName.matches('*.jpg$'))               && resource.mimeType.matches('^image/')       }     }
      * @alias firebaserules.projects.test
      * @memberOf! ()
      *
@@ -623,11 +528,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Tests may either provide `source` or a `Ruleset` resource name.  For
-     * tests against `source`, the resource name must refer to the project:
-     * Format: `projects/{project_id}`  For tests against a `Ruleset`, this must
-     * be the `Ruleset` resource name: Format:
-     * `projects/{project_id}/rulesets/{ruleset_id}`
+     * Tests may either provide `source` or a `Ruleset` resource name.  For tests against `source`, the resource name must refer to the project: Format: `projects/{project_id}`  For tests against a `Ruleset`, this must be the `Ruleset` resource name: Format: `projects/{project_id}/rulesets/{ruleset_id}`
      */
     name?: string;
 
@@ -645,21 +546,7 @@ export namespace firebaserules_v1 {
 
     /**
      * firebaserules.projects.releases.create
-     * @desc Create a `Release`.  Release names should reflect the developer's
-     * deployment practices. For example, the release name may include the
-     * environment name, application name, application version, or any other
-     * name meaningful to the developer. Once a `Release` refers to a `Ruleset`,
-     * the rules can be enforced by Firebase Rules-enabled services.  More than
-     * one `Release` may be 'live' concurrently. Consider the following three
-     * `Release` names for `projects/foo` and the `Ruleset` to which they refer.
-     * Release Name                    | Ruleset Name
-     * --------------------------------|------------- projects/foo/releases/prod
-     * | projects/foo/rulesets/uuid123 projects/foo/releases/prod/beta |
-     * projects/foo/rulesets/uuid123 projects/foo/releases/prod/v23  |
-     * projects/foo/rulesets/uuid456  The table reflects the `Ruleset` rollout
-     * in progress. The `prod` and `prod/beta` releases refer to the same
-     * `Ruleset`. However, `prod/v23` refers to a new `Ruleset`. The `Ruleset`
-     * reference for a `Release` may be updated using the UpdateRelease method.
+     * @desc Create a `Release`.  Release names should reflect the developer's deployment practices. For example, the release name may include the environment name, application name, application version, or any other name meaningful to the developer. Once a `Release` refers to a `Ruleset`, the rules can be enforced by Firebase Rules-enabled services.  More than one `Release` may be 'live' concurrently. Consider the following three `Release` names for `projects/foo` and the `Ruleset` to which they refer.  Release Name                    | Ruleset Name --------------------------------|------------- projects/foo/releases/prod      | projects/foo/rulesets/uuid123 projects/foo/releases/prod/beta | projects/foo/rulesets/uuid123 projects/foo/releases/prod/v23  | projects/foo/rulesets/uuid456  The table reflects the `Ruleset` rollout in progress. The `prod` and `prod/beta` releases refer to the same `Ruleset`. However, `prod/v23` refers to a new `Ruleset`. The `Ruleset` reference for a `Release` may be updated using the UpdateRelease method.
      * @alias firebaserules.projects.releases.create
      * @memberOf! ()
      *
@@ -958,9 +845,7 @@ export namespace firebaserules_v1 {
 
     /**
      * firebaserules.projects.releases.list
-     * @desc List the `Release` values for a project. This list may optionally
-     * be filtered by `Release` name, `Ruleset` name, `TestSuite` name, or any
-     * combination thereof.
+     * @desc List the `Release` values for a project. This list may optionally be filtered by `Release` name, `Ruleset` name, `TestSuite` name, or any combination thereof.
      * @alias firebaserules.projects.releases.list
      * @memberOf! ()
      *
@@ -1040,9 +925,7 @@ export namespace firebaserules_v1 {
 
     /**
      * firebaserules.projects.releases.patch
-     * @desc Update a `Release` via PATCH.  Only updates to the `ruleset_name`
-     * and `test_suite_name` fields will be honored. `Release` rename is not
-     * supported. To create a `Release` use the CreateRelease method.
+     * @desc Update a `Release` via PATCH.  Only updates to the `ruleset_name` and `test_suite_name` fields will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method.
      * @alias firebaserules.projects.releases.patch
      * @memberOf! ()
      *
@@ -1120,8 +1003,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name for the project which owns this `Release`.  Format:
-     * `projects/{project_id}`
+     * Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
      */
     name?: string;
 
@@ -1138,8 +1020,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name for the `Release` to delete.  Format:
-     * `projects/{project_id}/releases/{release_id}`
+     * Resource name for the `Release` to delete.  Format: `projects/{project_id}/releases/{release_id}`
      */
     name?: string;
   }
@@ -1151,8 +1032,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the `Release`.  Format:
-     * `projects/{project_id}/releases/{release_id}`
+     * Resource name of the `Release`.  Format: `projects/{project_id}/releases/{release_id}`
      */
     name?: string;
   }
@@ -1164,13 +1044,11 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The requested runtime executable version. Defaults to
-     * FIREBASE_RULES_EXECUTABLE_V1.
+     * The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
      */
     executableVersion?: string;
     /**
-     * Resource name of the `Release`.  Format:
-     * `projects/{project_id}/releases/{release_id}`
+     * Resource name of the `Release`.  Format: `projects/{project_id}/releases/{release_id}`
      */
     name?: string;
   }
@@ -1182,24 +1060,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * `Release` filter. The list method supports filters with restrictions on
-     * the `Release.name`, `Release.ruleset_name`, and
-     * `Release.test_suite_name`.  Example 1: A filter of 'name=prod*' might
-     * return `Release`s with names within 'projects/foo' prefixed with 'prod':
-     * Name                          | Ruleset Name
-     * ------------------------------|------------- projects/foo/releases/prod
-     * | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 |
-     * projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 |
-     * projects/foo/rulesets/uuid8888  Example 2: A filter of `name=prod*
-     * ruleset_name=uuid1234` would return only `Release` instances for
-     * 'projects/foo' with names prefixed with 'prod' referring to the same
-     * `Ruleset` name of 'uuid1234':  Name                          | Ruleset
-     * Name ------------------------------|-------------
-     * projects/foo/releases/prod    | projects/foo/rulesets/1234
-     * projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the
-     * examples, the filter parameters refer to the search filters are relative
-     * to the project. Fully qualified prefixed may also be used. e.g.
-     * `test_suite_name=projects/foo/testsuites/uuid1`
+     * `Release` filter. The list method supports filters with restrictions on the `Release.name`, `Release.ruleset_name`, and `Release.test_suite_name`.  Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888  Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used. e.g. `test_suite_name=projects/foo/testsuites/uuid1`
      */
     filter?: string;
     /**
@@ -1207,11 +1068,7 @@ export namespace firebaserules_v1 {
      */
     name?: string;
     /**
-     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is
-     * just a hint and the service may choose to load fewer than `page_size`
-     * results due to the size of the output. To traverse all of the releases,
-     * the caller should iterate until the `page_token` on the response is
-     * empty.
+     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.
      */
     pageSize?: number;
     /**
@@ -1227,8 +1084,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name for the project which owns this `Release`.  Format:
-     * `projects/{project_id}`
+     * Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
      */
     name?: string;
 
@@ -1246,11 +1102,7 @@ export namespace firebaserules_v1 {
 
     /**
      * firebaserules.projects.rulesets.create
-     * @desc Create a `Ruleset` from `Source`.  The `Ruleset` is given a unique
-     * generated name which is returned to the caller. `Source` containing
-     * syntactic or semantics errors will result in an error response indicating
-     * the first error encountered. For a detailed view of `Source` issues, use
-     * TestRuleset.
+     * @desc Create a `Ruleset` from `Source`.  The `Ruleset` is given a unique generated name which is returned to the caller. `Source` containing syntactic or semantics errors will result in an error response indicating the first error encountered. For a detailed view of `Source` issues, use TestRuleset.
      * @alias firebaserules.projects.rulesets.create
      * @memberOf! ()
      *
@@ -1324,8 +1176,7 @@ export namespace firebaserules_v1 {
 
     /**
      * firebaserules.projects.rulesets.delete
-     * @desc Delete a `Ruleset` by resource name.  If the `Ruleset` is
-     * referenced by a `Release` the operation will fail.
+     * @desc Delete a `Ruleset` by resource name.  If the `Ruleset` is referenced by a `Release` the operation will fail.
      * @alias firebaserules.projects.rulesets.delete
      * @memberOf! ()
      *
@@ -1465,9 +1316,7 @@ export namespace firebaserules_v1 {
 
     /**
      * firebaserules.projects.rulesets.list
-     * @desc List `Ruleset` metadata only and optionally filter the results by
-     * `Ruleset` name.  The full `Source` contents of a `Ruleset` may be
-     * retrieved with GetRuleset.
+     * @desc List `Ruleset` metadata only and optionally filter the results by `Ruleset` name.  The full `Source` contents of a `Ruleset` may be retrieved with GetRuleset.
      * @alias firebaserules.projects.rulesets.list
      * @memberOf! ()
      *
@@ -1554,8 +1403,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name for Project which owns this `Ruleset`.  Format:
-     * `projects/{project_id}`
+     * Resource name for Project which owns this `Ruleset`.  Format: `projects/{project_id}`
      */
     name?: string;
 
@@ -1572,8 +1420,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name for the ruleset to delete.  Format:
-     * `projects/{project_id}/rulesets/{ruleset_id}`
+     * Resource name for the ruleset to delete.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
      */
     name?: string;
   }
@@ -1585,8 +1432,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name for the ruleset to get.  Format:
-     * `projects/{project_id}/rulesets/{ruleset_id}`
+     * Resource name for the ruleset to get.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
      */
     name?: string;
   }
@@ -1598,11 +1444,7 @@ export namespace firebaserules_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * `Ruleset` filter. The list method supports filters with restrictions on
-     * `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date`
-     * function which parses strings that conform to the RFC 3339 date/time
-     * specifications.  Example: `create_time > date("2017-01-01T00:00:00Z") AND
-     * name=UUID-*`
+     * `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications.  Example: `create_time > date("2017-01-01T00:00:00Z") AND name=UUID-*`
      */
     filter?: string;
     /**
@@ -1610,10 +1452,7 @@ export namespace firebaserules_v1 {
      */
     name?: string;
     /**
-     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is
-     * just a hint and the service may choose to load less than `page_size` due
-     * to the size of the output. To traverse all of the releases, caller should
-     * iterate until the `page_token` is empty.
+     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
      */
     pageSize?: number;
     /**

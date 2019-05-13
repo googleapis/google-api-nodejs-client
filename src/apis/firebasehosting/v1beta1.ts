@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace firebasehosting_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace firebasehosting_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,9 +91,7 @@ export namespace firebasehosting_v1beta1 {
   /**
    * Firebase Hosting API
    *
-   * The Firebase Hosting REST API enables programmatic and customizable
-   * deployments to your Firebase-hosted sites. Use this REST API to deploy new
-   * or updated hosting configurations and content files.
+   * The Firebase Hosting REST API enables programmatic and customizable deployments to your Firebase-hosted sites. Use this REST API to deploy new or updated hosting configurations and content files.
    *
    * @example
    * const {google} = require('googleapis');
@@ -114,15 +108,17 @@ export namespace firebasehosting_v1beta1 {
     sites: Resource$Sites;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.sites = new Resource$Sites(this.context);
     }
   }
 
   /**
-   * Contains metadata about the user who performed an action, such as creating
-   * a release or finalizing a version.
+   * Contains metadata about the user who performed an action, such as creating a release or finalizing a version.
    */
   export interface Schema$ActingUser {
     /**
@@ -130,8 +126,7 @@ export namespace firebasehosting_v1beta1 {
      */
     email?: string;
     /**
-     * A profile image URL for the user. May not be present if the user has
-     * changed their email address or deleted their account.
+     * A profile image URL for the user. May not be present if the user has changed their email address or deleted their account.
      */
     imageUrl?: string;
   }
@@ -144,8 +139,7 @@ export namespace firebasehosting_v1beta1 {
      */
     domainName?: string;
     /**
-     * The value that must be present as a TXT record on the domain name to
-     * satisfy the challenge.
+     * The value that must be present as a TXT record on the domain name to satisfy the challenge.
      */
     token?: string;
   }
@@ -154,27 +148,20 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$CertHttpChallenge {
     /**
-     * The URL path on which to serve the specified token to satisfy the
-     * certificate challenge.
+     * The URL path on which to serve the specified token to satisfy the certificate challenge.
      */
     path?: string;
     /**
-     * The token to serve at the specified URL path to satisfy the certificate
-     * challenge.
+     * The token to serve at the specified URL path to satisfy the certificate challenge.
      */
     token?: string;
   }
   /**
-   * A configured rewrite that directs requests to a Cloud Run service. If the
-   * Cloud Run service does not exist when setting or updating your Firebase
-   * Hosting configuration, then the request fails. Any errors from the Cloud
-   * Run service are passed to the end user (for example, if you delete a
-   * service, any requests directed to that service receive a `404` error).
+   * A configured rewrite that directs requests to a Cloud Run service. If the Cloud Run service does not exist when setting or updating your Firebase Hosting configuration, then the request fails. Any errors from the Cloud Run service are passed to the end user (for example, if you delete a service, any requests directed to that service receive a `404` error).
    */
   export interface Schema$CloudRunRewrite {
     /**
-     * Optional. User-provided region where the Cloud Run service is
-     * hosted.&lt;br&gt; Defaults to `us-central1` if not supplied.
+     * Optional. User-provided region where the Cloud Run service is hosted.&lt;br&gt; Defaults to `us-central1` if not supplied.
      */
     region?: string;
     /**
@@ -195,8 +182,7 @@ export namespace firebasehosting_v1beta1 {
      */
     domainRedirect?: Schema$DomainRedirect;
     /**
-     * Output only. Information about the provisioning of certificates and the
-     * health of the DNS resolution for the domain.
+     * Output only. Information about the provisioning of certificates and the health of the DNS resolution for the domain.
      */
     provisioning?: Schema$DomainProvisioning;
     /**
@@ -217,8 +203,7 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$DomainProvisioning {
     /**
-     * The TXT records (for the certificate challenge) that were found at the
-     * last DNS fetch.
+     * The TXT records (for the certificate challenge) that were found at the last DNS fetch.
      */
     certChallengeDiscoveredTxt?: string[];
     /**
@@ -230,8 +215,7 @@ export namespace firebasehosting_v1beta1 {
      */
     certChallengeHttp?: Schema$CertHttpChallenge;
     /**
-     * The certificate provisioning status; updated when Firebase Hosting
-     * provisions an SSL certificate for the domain.
+     * The certificate provisioning status; updated when Firebase Hosting provisions an SSL certificate for the domain.
      */
     certStatus?: string;
     /**
@@ -252,9 +236,7 @@ export namespace firebasehosting_v1beta1 {
     expectedIps?: string[];
   }
   /**
-   * Defines the behavior of a domain-level redirect. Domain redirects preserve
-   * the path of the redirect but replace the requested domain with the one
-   * specified in the redirect configuration.
+   * Defines the behavior of a domain-level redirect. Domain redirects preserve the path of the redirect but replace the requested domain with the one specified in the redirect configuration.
    */
   export interface Schema$DomainRedirect {
     /**
@@ -267,22 +249,15 @@ export namespace firebasehosting_v1beta1 {
     type?: string;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * A [`header`](/docs/hosting/full-config#headers) defines custom headers to
-   * add to a response should the request URL path match the pattern.
+   * A [`header`](/docs/hosting/full-config#headers) defines custom headers to add to a response should the request URL path match the pattern.
    */
   export interface Schema$Header {
     /**
-     * Required. The user-supplied [glob
-     * pattern](/docs/hosting/full-config#glob_pattern_matching) to match
-     * against the request URL path.
+     * Required. The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string;
     /**
@@ -302,10 +277,7 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Schema$ListReleasesResponse {
     /**
-     * If there are additional releases remaining beyond the ones in this
-     * response, then supply this token in the next
-     * [`list`](../sites.versions.files/list) call to continue with the next set
-     * of releases.
+     * If there are additional releases remaining beyond the ones in this response, then supply this token in the next [`list`](../sites.versions.files/list) call to continue with the next set of releases.
      */
     nextPageToken?: string;
     /**
@@ -325,70 +297,47 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Schema$PopulateVersionFilesRequest {
     /**
-     * A set of file paths to the hashes corresponding to assets that should be
-     * added to the version. Note that a file path to an empty hash will remove
-     * the path from the version. Calculate a hash by Gzipping the file then
-     * taking the SHA256 hash of the newly compressed file.
+     * A set of file paths to the hashes corresponding to assets that should be added to the version. Note that a file path to an empty hash will remove the path from the version. Calculate a hash by Gzipping the file then taking the SHA256 hash of the newly compressed file.
      */
     files?: {[key: string]: string};
   }
   export interface Schema$PopulateVersionFilesResponse {
     /**
-     * The content hashes of the specified files that need to be uploaded to the
-     * specified endpoint.
+     * The content hashes of the specified files that need to be uploaded to the specified endpoint.
      */
     uploadRequiredHashes?: string[];
     /**
-     * The URL to which the files should be uploaded, in the format:
-     * &lt;br&gt;&quot;https://upload-firebasehosting.googleapis.com/upload/sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;/files&quot;.
-     * &lt;br&gt;Perform a multipart `POST` of the Gzipped file contents to the
-     * URL using a forward slash and the hash of the file appended to the end.
+     * The URL to which the files should be uploaded, in the format: &lt;br&gt;&quot;https://upload-firebasehosting.googleapis.com/upload/sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;/files&quot;. &lt;br&gt;Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
      */
     uploadUrl?: string;
   }
   /**
-   * A [`redirect`](/docs/hosting/full-config#redirects) represents the
-   * configuration for returning an HTTP redirect response given a matching
-   * request URL path.
+   * A [`redirect`](/docs/hosting/full-config#redirects) represents the configuration for returning an HTTP redirect response given a matching request URL path.
    */
   export interface Schema$Redirect {
     /**
-     * Required. The user-supplied [glob
-     * pattern](/docs/hosting/full-config#glob_pattern_matching) to match
-     * against the request URL path.
+     * Required. The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string;
     /**
-     * Required. The value to put in the HTTP location header of the response.
-     * &lt;br&gt;The location can contain capture group values from the pattern
-     * using a `:` prefix to identify the segment and an optional `*` to capture
-     * the rest of the URL. For example: &lt;code&gt;&quot;glob&quot;:
-     * &quot;/:capture*&quot;, &lt;br&gt;&quot;statusCode&quot;: 301,
-     * &lt;br&gt;&quot;location&quot;:
-     * &quot;https://example.com/foo/:capture&quot;&lt;/code&gt;
+     * Required. The value to put in the HTTP location header of the response. &lt;br&gt;The location can contain capture group values from the pattern using a `:` prefix to identify the segment and an optional `*` to capture the rest of the URL. For example: &lt;code&gt;&quot;glob&quot;: &quot;/:capture*&quot;, &lt;br&gt;&quot;statusCode&quot;: 301, &lt;br&gt;&quot;location&quot;: &quot;https://example.com/foo/:capture&quot;&lt;/code&gt;
      */
     location?: string;
     /**
-     * Required. The status HTTP code to return in the response. It must be a
-     * valid 3xx status code.
+     * Required. The status HTTP code to return in the response. It must be a valid 3xx status code.
      */
     statusCode?: number;
   }
   /**
-   * A `Release` is a particular [collection of configurations and
-   * files](sites.versions) that is set to be public at a particular time.
+   * A `Release` is a particular [collection of configurations and files](sites.versions) that is set to be public at a particular time.
    */
   export interface Schema$Release {
     /**
-     * The deploy description when the release was created. The value can be up
-     * to 512&amp;nbsp;characters.
+     * The deploy description when the release was created. The value can be up to 512&amp;nbsp;characters.
      */
     message?: string;
     /**
-     * Output only. The unique identifier for the release, in the format:
-     * &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/releases/&lt;var&gt;releaseID&lt;/var&gt;&lt;/code&gt;
-     * This name is provided in the response body when you call the
-     * [`CreateRelease`](sites.releases/create) endpoint.
+     * Output only. The unique identifier for the release, in the format: &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/releases/&lt;var&gt;releaseID&lt;/var&gt;&lt;/code&gt; This name is provided in the response body when you call the [`CreateRelease`](sites.releases/create) endpoint.
      */
     name?: string;
     /**
@@ -400,8 +349,7 @@ export namespace firebasehosting_v1beta1 {
      */
     releaseUser?: Schema$ActingUser;
     /**
-     * Explains the reason for the release. &lt;br&gt;Specify a value for this
-     * field only when creating a `SITE_DISABLE` type release.
+     * Explains the reason for the release. &lt;br&gt;Specify a value for this field only when creating a `SITE_DISABLE` type release.
      */
     type?: string;
     /**
@@ -410,10 +358,7 @@ export namespace firebasehosting_v1beta1 {
     version?: Schema$Version;
   }
   /**
-   * A [`rewrite`](/docs/hosting/full-config#rewrites) represents an internal
-   * content rewrite on the version. If the pattern matches, the request will be
-   * handled as if it were to the destination path specified in the
-   * configuration.
+   * A [`rewrite`](/docs/hosting/full-config#rewrites) represents an internal content rewrite on the version. If the pattern matches, the request will be handled as if it were to the destination path specified in the configuration.
    */
   export interface Schema$Rewrite {
     /**
@@ -421,14 +366,11 @@ export namespace firebasehosting_v1beta1 {
      */
     dynamicLinks?: boolean;
     /**
-     * The function to proxy requests to. Must match the exported function name
-     * exactly.
+     * The function to proxy requests to. Must match the exported function name exactly.
      */
     function?: string;
     /**
-     * Required. The user-supplied [glob
-     * pattern](/docs/hosting/full-config#glob_pattern_matching) to match
-     * against the request URL path.
+     * Required. The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string;
     /**
@@ -441,10 +383,7 @@ export namespace firebasehosting_v1beta1 {
     run?: Schema$CloudRunRewrite;
   }
   /**
-   * The configuration for how incoming requests to a site should be routed and
-   * processed before serving content. The patterns are matched and applied
-   * according to a specific [priority
-   * order](/docs/hosting/full-config#hosting_priority_order).
+   * The configuration for how incoming requests to a site should be routed and processed before serving content. The patterns are matched and applied according to a specific [priority order](/docs/hosting/full-config#hosting_priority_order).
    */
   export interface Schema$ServingConfig {
     /**
@@ -456,18 +395,15 @@ export namespace firebasehosting_v1beta1 {
      */
     cleanUrls?: boolean;
     /**
-     * A list of custom response headers that are added to the content if the
-     * request URL path matches the glob.
+     * A list of custom response headers that are added to the content if the request URL path matches the glob.
      */
     headers?: Schema$Header[];
     /**
-     * A list of globs that will cause the response to redirect to another
-     * location.
+     * A list of globs that will cause the response to redirect to another location.
      */
     redirects?: Schema$Redirect[];
     /**
-     * A list of rewrites that will act as if the service were given the
-     * destination URL.
+     * A list of rewrites that will act as if the service were given the destination URL.
      */
     rewrites?: Schema$Rewrite[];
     /**
@@ -476,27 +412,20 @@ export namespace firebasehosting_v1beta1 {
     trailingSlashBehavior?: string;
   }
   /**
-   * A `SiteConfig` contains metadata associated with a specific site that
-   * controls Firebase Hosting serving behavior
+   * A `SiteConfig` contains metadata associated with a specific site that controls Firebase Hosting serving behavior
    */
   export interface Schema$SiteConfig {
     /**
-     * The number of FINALIZED versions that will be held for a site before
-     * automatic deletion. When a new version is deployed, content for versions
-     * in storage in excess of this number will be deleted, and will no longer
-     * be billed for storage usage. Oldest versions will be deleted first; sites
-     * are created with an unlimited number of max_versions by default.
+     * The number of FINALIZED versions that will be held for a site before automatic deletion. When a new version is deployed, content for versions in storage in excess of this number will be deleted, and will no longer be billed for storage usage. Oldest versions will be deleted first; sites are created with an unlimited number of max_versions by default.
      */
     maxVersions?: string;
   }
   /**
-   * A `Version` is the collection of configuration and [static
-   * files](sites.versions.files) that determine how a site is displayed.
+   * A `Version` is the collection of configuration and [static files](sites.versions.files) that determine how a site is displayed.
    */
   export interface Schema$Version {
     /**
-     * The configuration for the behavior of the site. This configuration exists
-     * in the [`firebase.json`](/docs/cli/#the_firebasejson_file) file.
+     * The configuration for the behavior of the site. This configuration exists in the [`firebase.json`](/docs/cli/#the_firebasejson_file) file.
      */
     config?: Schema$ServingConfig;
     /**
@@ -516,8 +445,7 @@ export namespace firebasehosting_v1beta1 {
      */
     deleteUser?: Schema$ActingUser;
     /**
-     * Output only. The total number of files associated with the version.
-     * &lt;br&gt;This value is calculated after a version is `FINALIZED`.
+     * Output only. The total number of files associated with the version. &lt;br&gt;This value is calculated after a version is `FINALIZED`.
      */
     fileCount?: string;
     /**
@@ -533,28 +461,15 @@ export namespace firebasehosting_v1beta1 {
      */
     labels?: {[key: string]: string};
     /**
-     * The unique identifier for a version, in the format:
-     * &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;&lt;/code&gt;
-     * This name is provided in the response body when you call the
-     * [`CreateVersion`](../sites.versions/create) endpoint.
+     * The unique identifier for a version, in the format: &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;&lt;/code&gt; This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
     /**
-     * The deploy status of a version. &lt;br&gt; &lt;br&gt;For a successful
-     * deploy, call the [`CreateVersion`](sites.versions/create) endpoint to
-     * make a new version (`CREATED` status), [upload all desired
-     * files](sites.versions/populateFiles) to the version, then
-     * [update](sites.versions/patch) the version to the `FINALIZED` status.
-     * &lt;br&gt; &lt;br&gt;Note that if you leave the version in the `CREATED`
-     * state for more than 12&amp;nbsp;hours, the system will automatically mark
-     * the version as `ABANDONED`. &lt;br&gt; &lt;br&gt;You can also change the
-     * status of a version to `DELETED` by calling the
-     * [`DeleteVersion`](sites.versions/delete) endpoint.
+     * The deploy status of a version. &lt;br&gt; &lt;br&gt;For a successful deploy, call the [`CreateVersion`](sites.versions/create) endpoint to make a new version (`CREATED` status), [upload all desired files](sites.versions/populateFiles) to the version, then [update](sites.versions/patch) the version to the `FINALIZED` status. &lt;br&gt; &lt;br&gt;Note that if you leave the version in the `CREATED` state for more than 12&amp;nbsp;hours, the system will automatically mark the version as `ABANDONED`. &lt;br&gt; &lt;br&gt;You can also change the status of a version to `DELETED` by calling the [`DeleteVersion`](sites.versions/delete) endpoint.
      */
     status?: string;
     /**
-     * Output only. The total stored bytesize of the version. &lt;br&gt;This
-     * value is calculated after a version is `FINALIZED`.
+     * Output only. The total stored bytesize of the version. &lt;br&gt;This value is calculated after a version is `FINALIZED`.
      */
     versionBytes?: string;
   }
@@ -571,9 +486,7 @@ export namespace firebasehosting_v1beta1 {
      */
     path?: string;
     /**
-     * Output only. The current status of a particular file in the specified
-     * version. &lt;br&gt;The value will be either `pending upload` or
-     * `uploaded`.
+     * Output only. The current status of a particular file in the specified version. &lt;br&gt;The value will be either `pending upload` or `uploaded`.
      */
     status?: string;
   }
@@ -743,8 +656,7 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The site for which to get the SiteConfig, in the format:
-     * <code>sites/<var>site-name</var>/config</code>
+     * Required. The site for which to get the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
     name?: string;
   }
@@ -756,15 +668,11 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The site for which to update the SiteConfig, in the format:
-     * <code>sites/<var>site-name</var>/config</code>
+     * Required. The site for which to update the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
     name?: string;
     /**
-     * A set of field names from your [site configuration](../sites.SiteConfig)
-     * that you want to update. <br>A field will be overwritten if, and only if,
-     * it's in the mask. <br>If a mask is not provided then a default mask of
-     * only [`max_versions`](../sites.SiteConfig.max_versions) will be used.
+     * A set of field names from your [site configuration](../sites.SiteConfig) that you want to update. <br>A field will be overwritten if, and only if, it's in the mask. <br>If a mask is not provided then a default mask of only [`max_versions`](../sites.SiteConfig.max_versions) will be used.
      */
     updateMask?: string;
 
@@ -1073,8 +981,7 @@ export namespace firebasehosting_v1beta1 {
 
     /**
      * firebasehosting.sites.domains.update
-     * @desc Updates the specified domain mapping, creating the mapping as if it
-     * does not exist.
+     * @desc Updates the specified domain mapping, creating the mapping as if it does not exist.
      * @alias firebasehosting.sites.domains.update
      * @memberOf! ()
      *
@@ -1152,8 +1059,7 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The parent to create the domain association for, in the format:
-     * <code>sites/<var>site-name</var></code>
+     * Required. The parent to create the domain association for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
 
@@ -1202,8 +1108,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent for which to list domains, in the format:
-     * <code>sites/<var>site-name</var></code>
+     * Required. The parent for which to list domains, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
   }
@@ -1215,8 +1120,7 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the domain association to update or create, if an
-     * association doesn't already exist.
+     * Required. The name of the domain association to update or create, if an association doesn't already exist.
      */
     name?: string;
 
@@ -1234,8 +1138,7 @@ export namespace firebasehosting_v1beta1 {
 
     /**
      * firebasehosting.sites.releases.create
-     * @desc Creates a new release which makes the content of the specified
-     * version actively display on the site.
+     * @desc Creates a new release which makes the content of the specified version actively display on the site.
      * @alias firebasehosting.sites.releases.create
      * @memberOf! ()
      *
@@ -1396,17 +1299,11 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The site that the release belongs to, in the format:
-     * <code>sites/<var>site-name</var></code>
+     * The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
     /**
-     * The unique identifier for a version, in the format:
-     * <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code>
-     * The <var>site-name</var> in this version identifier must match the
-     * <var>site-name</var> in the `parent` parameter. <br> <br>This query
-     * parameter must be empty if the `type` field in the request body is
-     * `SITE_DISABLE`.
+     * The unique identifier for a version, in the format: <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code> The <var>site-name</var> in this version identifier must match the <var>site-name</var> in the `parent` parameter. <br> <br>This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -1431,8 +1328,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent for which to list files, in the format:
-     * <code>sites/<var>site-name</var></code>
+     * Required. The parent for which to list files, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
   }
@@ -1593,12 +1489,7 @@ export namespace firebasehosting_v1beta1 {
 
     /**
      * firebasehosting.sites.versions.patch
-     * @desc Updates the specified metadata for a version. Note that this method
-     * will fail with `FAILED_PRECONDITION` in the event of an invalid state
-     * transition. The only valid transition for a version is currently from a
-     * `CREATED` status to a `FINALIZED` status. Use
-     * [`DeleteVersion`](../sites.versions/delete) to set the status of a
-     * version to `DELETED`.
+     * @desc Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
      * @alias firebasehosting.sites.versions.patch
      * @memberOf! ()
      *
@@ -1762,18 +1653,15 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The parent to create the version for, in the format:
-     * <code>sites/<var>site-name</var></code>
+     * Required. The parent to create the version for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
     /**
-     * The self-reported size of the version. This value is used for a
-     * pre-emptive quota check for legacy version uploads.
+     * The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
      */
     sizeBytes?: string;
     /**
-     * A unique id for the new version. This is only specified for legacy
-     * version creations.
+     * A unique id for the new version. This is only specified for legacy version creations.
      */
     versionId?: string;
 
@@ -1790,8 +1678,7 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the version to be deleted, in the format:
-     * <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     * Required. The name of the version to be deleted, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
     name?: string;
   }
@@ -1803,17 +1690,11 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique identifier for a version, in the format:
-     * <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
-     * This name is provided in the response body when you call the
-     * [`CreateVersion`](../sites.versions/create) endpoint.
+     * The unique identifier for a version, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code> This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
     /**
-     * A set of field names from your [version](../sites.versions) that you want
-     * to update. <br>A field will be overwritten if, and only if, it's in the
-     * mask. <br>If a mask is not provided then a default mask of only
-     * [`status`](../sites.versions#Version.FIELDS.status) will be used.
+     * A set of field names from your [version](../sites.versions) that you want to update. <br>A field will be overwritten if, and only if, it's in the mask. <br>If a mask is not provided then a default mask of only [`status`](../sites.versions#Version.FIELDS.status) will be used.
      */
     updateMask?: string;
 
@@ -1830,8 +1711,7 @@ export namespace firebasehosting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The version to add files to, in the format:
-     * <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     * Required. The version to add files to, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
     parent?: string;
 
@@ -1940,14 +1820,11 @@ export namespace firebasehosting_v1beta1 {
      */
     pageSize?: number;
     /**
-     * The next_page_token from a previous request, if provided. This will be
-     * the encoded version of a
-     * firebase.hosting.proto.metadata.ListFilesPageToken.
+     * The next_page_token from a previous request, if provided. This will be the encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
      */
     pageToken?: string;
     /**
-     * Required. The parent to list files for, in the format:
-     * <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
+     * Required. The parent to list files for, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
     parent?: string;
     /**

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace adsensehost_v4_1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace adsensehost_v4_1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace adsensehost_v4_1 {
   /**
    * AdSense Host API
    *
-   * Generates performance reports, generates ad codes, and provides publisher
-   * management capabilities for AdSense Hosts.
+   * Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -101,7 +97,10 @@ export namespace adsensehost_v4_1 {
     urlchannels: Resource$Urlchannels;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.adclients = new Resource$Adclients(this.context);
@@ -158,8 +157,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE
-     * report dimension.
+     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
      */
     productCode?: string;
     /**
@@ -181,9 +179,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through ad clients. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -199,9 +195,7 @@ export namespace adsensehost_v4_1 {
   }
   export interface Schema$AdStyle {
     /**
-     * The colors included in the style. These are represented as six
-     * hexadecimal characters, similar to HTML color codes, but without the
-     * leading hash.
+     * The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
      */
     colors?: {
       background?: string;
@@ -211,8 +205,7 @@ export namespace adsensehost_v4_1 {
       url?: string;
     };
     /**
-     * The style of the corners in the ad (deprecated: never populated,
-     * ignored).
+     * The style of the corners in the ad (deprecated: never populated, ignored).
      */
     corners?: string;
     /**
@@ -230,8 +223,7 @@ export namespace adsensehost_v4_1 {
      */
     code?: string;
     /**
-     * Settings specific to content ads (AFC) and highend mobile content ads
-     * (AFMC - deprecated).
+     * Settings specific to content ads (AFC) and highend mobile content ads (AFMC - deprecated).
      */
     contentAdsSettings?: {
       backupOption?: {color?: string; type?: string; url?: string};
@@ -243,8 +235,7 @@ export namespace adsensehost_v4_1 {
      */
     customStyle?: Schema$AdStyle;
     /**
-     * Unique identifier of this ad unit. This should be considered an opaque
-     * identifier; it is not safe to rely on it being in any particular format.
+     * Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -265,11 +256,7 @@ export namespace adsensehost_v4_1 {
      */
     name?: string;
     /**
-     * Status of this ad unit. Possible values are: NEW: Indicates that the ad
-     * unit was created within the last seven days and does not yet have any
-     * activity associated with it.  ACTIVE: Indicates that there has been
-     * activity on this ad unit in the last seven days.  INACTIVE: Indicates
-     * that there has been no activity on this ad unit in the last seven days.
+     * Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
      */
     status?: string;
   }
@@ -287,16 +274,13 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through ad units. To retrieve the next
-     * page of results, set the next request&#39;s &quot;pageToken&quot; value
-     * to this.
+     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
   export interface Schema$AssociationSession {
     /**
-     * Hosted account id of the associated publisher after association. Present
-     * if status is ACCEPTED.
+     * Hosted account id of the associated publisher after association. Present if status is ACCEPTED.
      */
     accountId?: string;
     /**
@@ -308,23 +292,19 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * The products to associate with the user. Options: AFC, AFG, AFV, AFS
-     * (deprecated), AFMC (deprecated)
+     * The products to associate with the user. Options: AFC, AFG, AFV, AFS (deprecated), AFMC (deprecated)
      */
     productCodes?: string[];
     /**
-     * Redirect URL of this association session. Used to redirect users into the
-     * AdSense association flow.
+     * Redirect URL of this association session. Used to redirect users into the AdSense association flow.
      */
     redirectUrl?: string;
     /**
-     * Status of the completed association, available once the association
-     * callback token has been verified. One of ACCEPTED, REJECTED, or ERROR.
+     * Status of the completed association, available once the association callback token has been verified. One of ACCEPTED, REJECTED, or ERROR.
      */
     status?: string;
     /**
-     * The preferred locale of the user themselves when going through the
-     * AdSense association flow.
+     * The preferred locale of the user themselves when going through the AdSense association flow.
      */
     userLocale?: string;
     /**
@@ -342,9 +322,7 @@ export namespace adsensehost_v4_1 {
      */
     code?: string;
     /**
-     * Unique identifier of this custom channel. This should be considered an
-     * opaque identifier; it is not safe to rely on it being in any particular
-     * format.
+     * Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -370,22 +348,17 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through custom channels. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot;
-     * value to this.
+     * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
   export interface Schema$Report {
     /**
-     * The averages of the report. This is the same length as any other row in
-     * the report; cells corresponding to dimension columns are empty.
+     * The averages of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
     averages?: string[];
     /**
-     * The header information of the columns requested in the report. This is a
-     * list of headers; one for each dimension in the request, followed by one
-     * for each metric in the request.
+     * The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
      */
     headers?: Array<{currency?: string; name?: string; type?: string}>;
     /**
@@ -393,21 +366,15 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * The output rows of the report. Each row is a list of cells; one for each
-     * dimension in the request, followed by one for each metric in the request.
-     * The dimension cells contain strings, and the metric cells contain
-     * numbers.
+     * The output rows of the report. Each row is a list of cells; one for each dimension in the request, followed by one for each metric in the request. The dimension cells contain strings, and the metric cells contain numbers.
      */
     rows?: string[][];
     /**
-     * The total number of rows matched by the report request. Fewer rows may be
-     * returned in the response due to being limited by the row count requested
-     * or the report row limit.
+     * The total number of rows matched by the report request. Fewer rows may be returned in the response due to being limited by the row count requested or the report row limit.
      */
     totalMatchedRows?: string;
     /**
-     * The totals of the report. This is the same length as any other row in the
-     * report; cells corresponding to dimension columns are empty.
+     * The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
     totals?: string[];
     /**
@@ -417,9 +384,7 @@ export namespace adsensehost_v4_1 {
   }
   export interface Schema$UrlChannel {
     /**
-     * Unique identifier of this URL channel. This should be considered an
-     * opaque identifier; it is not safe to rely on it being in any particular
-     * format.
+     * Unique identifier of this URL channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
     id?: string;
     /**
@@ -427,8 +392,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or
-     * &quot;https://&quot;. Example: www.example.com/home
+     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
      */
     urlPattern?: string;
   }
@@ -446,9 +410,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string;
     /**
-     * Continuation token used to page through URL channels. To retrieve the
-     * next page of results, set the next request&#39;s &quot;pageToken&quot;
-     * value to this.
+     * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
     nextPageToken?: string;
   }
@@ -538,8 +500,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.list
-     * @desc List hosted accounts associated with this AdSense account by ad
-     * client id.
+     * @desc List hosted accounts associated with this AdSense account by ad client id.
      * @alias adsensehost.accounts.list
      * @memberOf! ()
      *
@@ -640,8 +601,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.adclients.get
-     * @desc Get information about one of the ad clients in the specified
-     * publisher's AdSense account.
+     * @desc Get information about one of the ad clients in the specified publisher's AdSense account.
      * @alias adsensehost.accounts.adclients.get
      * @memberOf! ()
      *
@@ -816,14 +776,11 @@ export namespace adsensehost_v4_1 {
      */
     accountId?: string;
     /**
-     * The maximum number of ad clients to include in the response, used for
-     * paging.
+     * The maximum number of ad clients to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -836,8 +793,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.adunits.delete
-     * @desc Delete the specified ad unit from the specified publisher AdSense
-     * account.
+     * @desc Delete the specified ad unit from the specified publisher AdSense account.
      * @alias adsensehost.accounts.adunits.delete
      * @memberOf! ()
      *
@@ -985,8 +941,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.adunits.getAdCode
-     * @desc Get ad code for the specified ad unit, attaching the specified host
-     * custom channels.
+     * @desc Get ad code for the specified ad unit, attaching the specified host custom channels.
      * @alias adsensehost.accounts.adunits.getAdCode
      * @memberOf! ()
      *
@@ -1061,8 +1016,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.adunits.insert
-     * @desc Insert the supplied ad unit into the specified publisher AdSense
-     * account.
+     * @desc Insert the supplied ad unit into the specified publisher AdSense account.
      * @alias adsensehost.accounts.adunits.insert
      * @memberOf! ()
      *
@@ -1212,8 +1166,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.adunits.patch
-     * @desc Update the supplied ad unit in the specified publisher AdSense
-     * account. This method supports patch semantics.
+     * @desc Update the supplied ad unit in the specified publisher AdSense account. This method supports patch semantics.
      * @alias adsensehost.accounts.adunits.patch
      * @memberOf! ()
      *
@@ -1288,8 +1241,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.adunits.update
-     * @desc Update the supplied ad unit in the specified publisher AdSense
-     * account.
+     * @desc Update the supplied ad unit in the specified publisher AdSense account.
      * @alias adsensehost.accounts.adunits.update
      * @memberOf! ()
      *
@@ -1467,14 +1419,11 @@ export namespace adsensehost_v4_1 {
      */
     includeInactive?: boolean;
     /**
-     * The maximum number of ad units to include in the response, used for
-     * paging.
+     * The maximum number of ad units to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad units. To retrieve the next
-     * page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1533,9 +1482,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.accounts.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the
-     * query parameters. Returns the result as JSON; to retrieve output in CSV
-     * format specify "alt=csv" as a query parameter.
+     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @alias adsensehost.accounts.reports.generate
      * @memberOf! ()
      *
@@ -1638,8 +1585,7 @@ export namespace adsensehost_v4_1 {
      */
     filter?: string[];
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -1651,9 +1597,7 @@ export namespace adsensehost_v4_1 {
      */
     metric?: string[];
     /**
-     * The name of a dimension or metric to sort the resulting report on,
-     * optionally prefixed with "+" to sort ascending or "-" to sort descending.
-     * If no prefix is specified, the column is sorted ascending.
+     * The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
      */
     sort?: string[];
     /**
@@ -1674,8 +1618,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.adclients.get
-     * @desc Get information about one of the ad clients in the Host AdSense
-     * account.
+     * @desc Get information about one of the ad clients in the Host AdSense account.
      * @alias adsensehost.adclients.get
      * @memberOf! ()
      *
@@ -1837,14 +1780,11 @@ export namespace adsensehost_v4_1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of ad clients to include in the response, used for
-     * paging.
+     * The maximum number of ad clients to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through ad clients. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -1857,8 +1797,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.associationsessions.start
-     * @desc Create an association session for initiating an association with an
-     * AdSense user.
+     * @desc Create an association session for initiating an association with an AdSense user.
      * @alias adsensehost.associationsessions.start
      * @memberOf! ()
      *
@@ -1934,8 +1873,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.associationsessions.verify
-     * @desc Verify an association session after the association callback
-     * returns from AdSense signup.
+     * @desc Verify an association session after the association callback returns from AdSense signup.
      * @alias adsensehost.associationsessions.verify
      * @memberOf! ()
      *
@@ -2353,8 +2291,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.customchannels.patch
-     * @desc Update a custom channel in the host AdSense account. This method
-     * supports patch semantics.
+     * @desc Update a custom channel in the host AdSense account. This method supports patch semantics.
      * @alias adsensehost.customchannels.patch
      * @memberOf! ()
      *
@@ -2565,14 +2502,11 @@ export namespace adsensehost_v4_1 {
      */
     adClientId?: string;
     /**
-     * The maximum number of custom channels to include in the response, used
-     * for paging.
+     * The maximum number of custom channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through custom channels. To retrieve
-     * the next page, set this parameter to the value of "nextPageToken" from
-     * the previous response.
+     * A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }
@@ -2623,9 +2557,7 @@ export namespace adsensehost_v4_1 {
 
     /**
      * adsensehost.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the
-     * query parameters. Returns the result as JSON; to retrieve output in CSV
-     * format specify "alt=csv" as a query parameter.
+     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @alias adsensehost.reports.generate
      * @memberOf! ()
      *
@@ -2722,8 +2654,7 @@ export namespace adsensehost_v4_1 {
      */
     filter?: string[];
     /**
-     * Optional locale to use for translating report output to a local language.
-     * Defaults to "en_US" if not specified.
+     * Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
      */
     locale?: string;
     /**
@@ -2735,9 +2666,7 @@ export namespace adsensehost_v4_1 {
      */
     metric?: string[];
     /**
-     * The name of a dimension or metric to sort the resulting report on,
-     * optionally prefixed with "+" to sort ascending or "-" to sort descending.
-     * If no prefix is specified, the column is sorted ascending.
+     * The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
      */
     sort?: string[];
     /**
@@ -3024,14 +2953,11 @@ export namespace adsensehost_v4_1 {
      */
     adClientId?: string;
     /**
-     * The maximum number of URL channels to include in the response, used for
-     * paging.
+     * The maximum number of URL channels to include in the response, used for paging.
      */
     maxResults?: number;
     /**
-     * A continuation token, used to page through URL channels. To retrieve the
-     * next page, set this parameter to the value of "nextPageToken" from the
-     * previous response.
+     * A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
      */
     pageToken?: string;
   }

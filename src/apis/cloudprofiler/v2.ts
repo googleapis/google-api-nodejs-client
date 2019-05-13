@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace cloudprofiler_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace cloudprofiler_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -112,17 +108,17 @@ export namespace cloudprofiler_v2 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * CreateProfileRequest describes a profile resource online creation request.
-   * The deployment field must be populated. The profile_type specifies the list
-   * of profile types supported by the agent. The creation call will hang until
-   * a profile of one of these types needs to be collected.
+   * CreateProfileRequest describes a profile resource online creation request. The deployment field must be populated. The profile_type specifies the list of profile types supported by the agent. The creation call will hang until a profile of one of these types needs to be collected.
    */
   export interface Schema$CreateProfileRequest {
     /**
@@ -139,30 +135,15 @@ export namespace cloudprofiler_v2 {
    */
   export interface Schema$Deployment {
     /**
-     * Labels identify the deployment within the user universe and same target.
-     * Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
-     * Value for an individual label must be &lt;= 512 bytes, the total size of
-     * all label names and values must be &lt;= 1024 bytes.  Label named
-     * &quot;language&quot; can be used to record the programming language of
-     * the profiled deployment. The standard choices for the value include
-     * &quot;java&quot;, &quot;go&quot;, &quot;python&quot;, &quot;ruby&quot;,
-     * &quot;nodejs&quot;, &quot;php&quot;, &quot;dotnet&quot;.  For deployments
-     * running on Google Cloud Platform, &quot;zone&quot; or &quot;region&quot;
-     * label should be present describing the deployment location. An example of
-     * a zone is &quot;us-central1-a&quot;, an example of a region is
-     * &quot;us-central1&quot; or &quot;us-central&quot;.
+     * Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be &lt;= 512 bytes, the total size of all label names and values must be &lt;= 1024 bytes.  Label named &quot;language&quot; can be used to record the programming language of the profiled deployment. The standard choices for the value include &quot;java&quot;, &quot;go&quot;, &quot;python&quot;, &quot;ruby&quot;, &quot;nodejs&quot;, &quot;php&quot;, &quot;dotnet&quot;.  For deployments running on Google Cloud Platform, &quot;zone&quot; or &quot;region&quot; label should be present describing the deployment location. An example of a zone is &quot;us-central1-a&quot;, an example of a region is &quot;us-central1&quot; or &quot;us-central&quot;.
      */
     labels?: {[key: string]: string};
     /**
-     * Project ID is the ID of a cloud project. Validation regex:
-     * `^a-z{4,61}[a-z0-9]$`.
+     * Project ID is the ID of a cloud project. Validation regex: `^a-z{4,61}[a-z0-9]$`.
      */
     projectId?: string;
     /**
-     * Target is the service name used to group related deployments: * Service
-     * name for GAE Flex / Standard. * Cluster and container name for GKE. *
-     * User-specified string for direct GCE profiling (e.g. Java). * Job name
-     * for Dataflow. Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
+     * Target is the service name used to group related deployments: * Service name for GAE Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct GCE profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
      */
     target?: string;
   }
@@ -175,18 +156,11 @@ export namespace cloudprofiler_v2 {
      */
     deployment?: Schema$Deployment;
     /**
-     * Duration of the profiling session. Input (for the offline mode) or output
-     * (for the online mode). The field represents requested profiling duration.
-     * It may slightly differ from the effective profiling duration, which is
-     * recorded in the profile data, in case the profiling can&#39;t be stopped
-     * immediately (e.g. in case stopping the profiling is handled
-     * asynchronously).
+     * Duration of the profiling session. Input (for the offline mode) or output (for the online mode). The field represents requested profiling duration. It may slightly differ from the effective profiling duration, which is recorded in the profile data, in case the profiling can&#39;t be stopped immediately (e.g. in case stopping the profiling is handled asynchronously).
      */
     duration?: string;
     /**
-     * Input only. Labels associated to this specific profile. These labels will
-     * get merged with the deployment labels for the final data set.  See
-     * documentation on deployment labels for validation rules and limits.
+     * Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set.  See documentation on deployment labels for validation rules and limits.
      */
     labels?: {[key: string]: string};
     /**
@@ -194,14 +168,11 @@ export namespace cloudprofiler_v2 {
      */
     name?: string;
     /**
-     * Input only. Profile bytes, as a gzip compressed serialized proto, the
-     * format is
-     * https://github.com/google/pprof/blob/master/proto/profile.proto.
+     * Input only. Profile bytes, as a gzip compressed serialized proto, the format is https://github.com/google/pprof/blob/master/proto/profile.proto.
      */
     profileBytes?: string;
     /**
-     * Type of profile. For offline mode, this must be specified when creating
-     * the profile. For online mode it is assigned and returned by the server.
+     * Type of profile. For offline mode, this must be specified when creating the profile. For online mode it is assigned and returned by the server.
      */
     profileType?: string;
   }
@@ -223,16 +194,7 @@ export namespace cloudprofiler_v2 {
 
     /**
      * cloudprofiler.projects.profiles.create
-     * @desc CreateProfile creates a new profile resource in the online mode.
-     * The server ensures that the new profiles are created at a constant rate
-     * per deployment, so the creation request may hang for some time until the
-     * next profile session is available.  The request may fail with ABORTED
-     * error if the creation is not available within ~1m, the response will
-     * indicate the duration of the backoff the client should take before
-     * attempting creating a profile again. The backoff duration is returned in
-     * google.rpc.RetryInfo extension on the response status. To a gRPC client,
-     * the extension will be return as a binary-serialized proto in the trailing
-     * metadata item named "google.rpc.retryinfo-bin".
+     * @desc CreateProfile creates a new profile resource in the online mode.  The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available.  The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named "google.rpc.retryinfo-bin".
      * @alias cloudprofiler.projects.profiles.create
      * @memberOf! ()
      *
@@ -306,9 +268,7 @@ export namespace cloudprofiler_v2 {
 
     /**
      * cloudprofiler.projects.profiles.createOffline
-     * @desc CreateOfflineProfile creates a new profile resource in the offline
-     * mode. The client provides the profile to create along with the profile
-     * bytes, the server records it.
+     * @desc CreateOfflineProfile creates a new profile resource in the offline mode. The client provides the profile to create along with the profile bytes, the server records it.
      * @alias cloudprofiler.projects.profiles.createOffline
      * @memberOf! ()
      *
@@ -382,10 +342,7 @@ export namespace cloudprofiler_v2 {
 
     /**
      * cloudprofiler.projects.profiles.patch
-     * @desc UpdateProfile updates the profile bytes and labels on the profile
-     * resource created in the online mode. Updating the bytes for profiles
-     * created in the offline mode is currently not supported: the profile
-     * content must be provided at the time of the profile creation.
+     * @desc UpdateProfile updates the profile bytes and labels on the profile resource created in the online mode. Updating the bytes for profiles created in the offline mode is currently not supported: the profile content must be provided at the time of the profile creation.
      * @alias cloudprofiler.projects.profiles.patch
      * @memberOf! ()
      *
@@ -502,10 +459,7 @@ export namespace cloudprofiler_v2 {
      */
     name?: string;
     /**
-     * Field mask used to specify the fields to be overwritten. Currently only
-     * profile_bytes and labels fields are supported by UpdateProfile, so only
-     * those fields can be specified in the mask. When no mask is provided, all
-     * fields are overwritten.
+     * Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten.
      */
     updateMask?: string;
 

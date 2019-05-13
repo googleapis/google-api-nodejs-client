@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace androidpublisher_v2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace androidpublisher_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -99,7 +96,10 @@ export namespace androidpublisher_v2 {
     reviews: Resource$Reviews;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.edits = new Resource$Edits(this.context);
       this.inappproducts = new Resource$Inappproducts(this.context);
@@ -124,13 +124,11 @@ export namespace androidpublisher_v2 {
    */
   export interface Schema$ApkBinary {
     /**
-     * A sha1 hash of the APK payload, encoded as a hex string and matching the
-     * output of the sha1sum command.
+     * A sha1 hash of the APK payload, encoded as a hex string and matching the output of the sha1sum command.
      */
     sha1?: string;
     /**
-     * A sha256 hash of the APK payload, encoded as a hex string and matching
-     * the output of the sha256sum command.
+     * A sha256 hash of the APK payload, encoded as a hex string and matching the output of the sha256sum command.
      */
     sha256?: string;
   }
@@ -146,8 +144,7 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$ApkListingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;androidpublisher#apkListingsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#apkListingsListResponse&quot;.
      */
     kind?: string;
     listings?: Schema$ApkListing[];
@@ -167,8 +164,7 @@ export namespace androidpublisher_v2 {
   export interface Schema$ApksListResponse {
     apks?: Schema$Apk[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;androidpublisher#apksListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#apksListResponse&quot;.
      */
     kind?: string;
   }
@@ -191,13 +187,11 @@ export namespace androidpublisher_v2 {
     defaultLanguage?: string;
   }
   /**
-   * Represents an edit of an app. An edit allows clients to make multiple
-   * changes before committing them in one operation.
+   * Represents an edit of an app. An edit allows clients to make multiple changes before committing them in one operation.
    */
   export interface Schema$AppEdit {
     /**
-     * The time at which the edit will expire and will be no longer valid for
-     * use in any subsequent API calls (encoded as seconds since the Epoch).
+     * The time at which the edit will expire and will be no longer valid for use in any subsequent API calls (encoded as seconds since the Epoch).
      */
     expiryTimeSeconds?: string;
     /**
@@ -207,26 +201,22 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$Bundle {
     /**
-     * A sha1 hash of the upload payload, encoded as a hex string and matching
-     * the output of the sha1sum command.
+     * A sha1 hash of the upload payload, encoded as a hex string and matching the output of the sha1sum command.
      */
     sha1?: string;
     /**
-     * A sha256 hash of the upload payload, encoded as a hex string and matching
-     * the output of the sha256sum command.
+     * A sha256 hash of the upload payload, encoded as a hex string and matching the output of the sha256sum command.
      */
     sha256?: string;
     /**
-     * The version code of the Android App Bundle. As specified in the Android
-     * App Bundle&#39;s base module APK manifest file.
+     * The version code of the Android App Bundle. As specified in the Android App Bundle&#39;s base module APK manifest file.
      */
     versionCode?: number;
   }
   export interface Schema$BundlesListResponse {
     bundles?: Schema$Bundle[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;androidpublisher#bundlesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#bundlesListResponse&quot;.
      */
     kind?: string;
   }
@@ -284,8 +274,7 @@ export namespace androidpublisher_v2 {
      */
     manufacturer?: string;
     /**
-     * Comma separated list of native platforms (e.g. &quot;arm&quot;,
-     * &quot;arm7&quot;)
+     * Comma separated list of native platforms (e.g. &quot;arm&quot;, &quot;arm7&quot;)
      */
     nativePlatform?: string;
     /**
@@ -311,14 +300,11 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$ExpansionFile {
     /**
-     * If set this field indicates that this APK has an Expansion File uploaded
-     * to it: this APK does not reference another APK&#39;s Expansion File. The
-     * field&#39;s value is the size of the uploaded Expansion File in bytes.
+     * If set this field indicates that this APK has an Expansion File uploaded to it: this APK does not reference another APK&#39;s Expansion File. The field&#39;s value is the size of the uploaded Expansion File in bytes.
      */
     fileSize?: string;
     /**
-     * If set this APK&#39;s Expansion File references another APK&#39;s
-     * Expansion File. The file_size field will not be set.
+     * If set this APK&#39;s Expansion File references another APK&#39;s Expansion File. The file_size field will not be set.
      */
     referencesVersion?: number;
   }
@@ -326,10 +312,7 @@ export namespace androidpublisher_v2 {
     expansionFile?: Schema$ExpansionFile;
   }
   /**
-   * Defines an APK available for this application that is hosted externally and
-   * not uploaded to Google Play. This function is only available to enterprises
-   * who are using Google Play for Work, and whos application is restricted to
-   * the enterprise private channel
+   * Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to enterprises who are using Google Play for Work, and whos application is restricted to the enterprise private channel
    */
   export interface Schema$ExternallyHostedApk {
     /**
@@ -337,8 +320,7 @@ export namespace androidpublisher_v2 {
      */
     applicationLabel?: string;
     /**
-     * A certificate (or array of certificates if a certificate-chain is used)
-     * used to signed this APK, represented as a base64 encoded byte array.
+     * A certificate (or array of certificates if a certificate-chain is used) used to signed this APK, represented as a base64 encoded byte array.
      */
     certificateBase64s?: string[];
     /**
@@ -346,13 +328,11 @@ export namespace androidpublisher_v2 {
      */
     externallyHostedUrl?: string;
     /**
-     * The SHA1 checksum of this APK, represented as a base64 encoded byte
-     * array.
+     * The SHA1 checksum of this APK, represented as a base64 encoded byte array.
      */
     fileSha1Base64?: string;
     /**
-     * The SHA256 checksum of this APK, represented as a base64 encoded byte
-     * array.
+     * The SHA256 checksum of this APK, represented as a base64 encoded byte array.
      */
     fileSha256Base64?: string;
     /**
@@ -434,20 +414,15 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$InAppProduct {
     /**
-     * The default language of the localized data, as defined by BCP 47. e.g.
-     * &quot;en-US&quot;, &quot;en-GB&quot;.
+     * The default language of the localized data, as defined by BCP 47. e.g. &quot;en-US&quot;, &quot;en-GB&quot;.
      */
     defaultLanguage?: string;
     /**
-     * Default price cannot be zero. In-app products can never be free. Default
-     * price is always in the developer&#39;s Checkout merchant currency.
+     * Default price cannot be zero. In-app products can never be free. Default price is always in the developer&#39;s Checkout merchant currency.
      */
     defaultPrice?: Schema$Price;
     /**
-     * Grace period of the subscription, specified in ISO 8601 format. It will
-     * allow developers to give their subscribers a grace period when the
-     * payment for the new recurrence period is declined. Acceptable values =
-     * &quot;P3D&quot; (three days) and &quot;P7D&quot; (seven days)
+     * Grace period of the subscription, specified in ISO 8601 format. It will allow developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values = &quot;P3D&quot; (three days) and &quot;P7D&quot; (seven days)
      */
     gracePeriod?: string;
     /**
@@ -459,8 +434,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
     /**
-     * Prices per buyer region. None of these prices should be zero. In-app
-     * products can never be free.
+     * Prices per buyer region. None of these prices should be zero. In-app products can never be free.
      */
     prices?: {[key: string]: Schema$Price};
     /**
@@ -468,8 +442,7 @@ export namespace androidpublisher_v2 {
      */
     purchaseType?: string;
     /**
-     * Definition of a season for a seasonal subscription. Can be defined only
-     * for yearly subscriptions.
+     * Definition of a season for a seasonal subscription. Can be defined only for yearly subscriptions.
      */
     season?: Schema$Season;
     /**
@@ -478,16 +451,11 @@ export namespace androidpublisher_v2 {
     sku?: string;
     status?: string;
     /**
-     * Subscription period, specified in ISO 8601 format. Acceptable values are
-     * &quot;P1W&quot; (one week), &quot;P1M&quot; (one month), &quot;P3M&quot;
-     * (three months), &quot;P6M&quot; (six months), and &quot;P1Y&quot; (one
-     * year).
+     * Subscription period, specified in ISO 8601 format. Acceptable values are &quot;P1W&quot; (one week), &quot;P1M&quot; (one month), &quot;P3M&quot; (three months), &quot;P6M&quot; (six months), and &quot;P1Y&quot; (one year).
      */
     subscriptionPeriod?: string;
     /**
-     * Trial period, specified in ISO 8601 format. Acceptable values are
-     * anything between &quot;P7D&quot; (seven days) and &quot;P999D&quot; (999
-     * days). Seasonal subscriptions cannot have a trial period.
+     * Trial period, specified in ISO 8601 format. Acceptable values are anything between &quot;P7D&quot; (seven days) and &quot;P999D&quot; (999 days). Seasonal subscriptions cannot have a trial period.
      */
     trialPeriod?: string;
   }
@@ -498,8 +466,7 @@ export namespace androidpublisher_v2 {
   export interface Schema$InappproductsListResponse {
     inappproduct?: Schema$InAppProduct[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;androidpublisher#inappproductsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#inappproductsListResponse&quot;.
      */
     kind?: string;
     pageInfo?: Schema$PageInfo;
@@ -511,13 +478,11 @@ export namespace androidpublisher_v2 {
      */
     fullDescription?: string;
     /**
-     * Language localization code (for example, &quot;de-AT&quot; for Austrian
-     * German).
+     * Language localization code (for example, &quot;de-AT&quot; for Austrian German).
      */
     language?: string;
     /**
-     * Short description of the app (previously known as promo text); this may
-     * be up to 80 characters in length.
+     * Short description of the app (previously known as promo text); this may be up to 80 characters in length.
      */
     shortDescription?: string;
     /**
@@ -531,16 +496,14 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$ListingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;androidpublisher#listingsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#listingsListResponse&quot;.
      */
     kind?: string;
     listings?: Schema$Listing[];
   }
   export interface Schema$MonthDay {
     /**
-     * Day of a month, value in [1, 31] range. Valid range depends on the
-     * specified month.
+     * Day of a month, value in [1, 31] range. Valid range depends on the specified month.
      */
     day?: number;
     /**
@@ -559,29 +522,24 @@ export namespace androidpublisher_v2 {
      */
     currency?: string;
     /**
-     * The price in millionths of the currency base unit represented as a
-     * string.
+     * The price in millionths of the currency base unit represented as a string.
      */
     priceMicros?: string;
   }
   /**
-   * A ProductPurchase resource indicates the status of a user&#39;s inapp
-   * product purchase.
+   * A ProductPurchase resource indicates the status of a user&#39;s inapp product purchase.
    */
   export interface Schema$ProductPurchase {
     /**
-     * The consumption state of the inapp product. Possible values are:   - Yet
-     * to be consumed  - Consumed
+     * The consumption state of the inapp product. Possible values are:   - Yet to be consumed  - Consumed
      */
     consumptionState?: number;
     /**
-     * A developer-specified string that contains supplemental information about
-     * an order.
+     * A developer-specified string that contains supplemental information about an order.
      */
     developerPayload?: string;
     /**
-     * This kind represents an inappPurchase object in the androidpublisher
-     * service.
+     * This kind represents an inappPurchase object in the androidpublisher service.
      */
     kind?: string;
     /**
@@ -589,30 +547,21 @@ export namespace androidpublisher_v2 {
      */
     orderId?: string;
     /**
-     * The purchase state of the order. Possible values are:   - Purchased  -
-     * Canceled
+     * The purchase state of the order. Possible values are:   - Purchased  - Canceled
      */
     purchaseState?: number;
     /**
-     * The time the product was purchased, in milliseconds since the epoch (Jan
-     * 1, 1970).
+     * The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
      */
     purchaseTimeMillis?: string;
     /**
-     * The type of purchase of the inapp product. This field is only set if this
-     * purchase was not made using the standard in-app billing flow. Possible
-     * values are:   - Test (i.e. purchased from a license testing account)  -
-     * Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching
-     * a video ad instead of paying)
+     * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching a video ad instead of paying)
      */
     purchaseType?: number;
   }
   export interface Schema$Prorate {
     /**
-     * Default price cannot be zero and must be less than the full subscription
-     * price. Default price is always in the developer&#39;s Checkout merchant
-     * currency. Targeted countries have their prices set automatically based on
-     * the default_price.
+     * Default price cannot be zero and must be less than the full subscription price. Default price is always in the developer&#39;s Checkout merchant currency. Targeted countries have their prices set automatically based on the default_price.
      */
     defaultPrice?: Schema$Price;
     /**
@@ -651,8 +600,7 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$ReviewsReplyRequest {
     /**
-     * The text to set as the reply. Replies of more than approximately 350
-     * characters will be rejected. HTML tags will be stripped.
+     * The text to set as the reply. Replies of more than approximately 350 characters will be rejected. HTML tags will be stripped.
      */
     replyText?: string;
   }
@@ -665,10 +613,7 @@ export namespace androidpublisher_v2 {
      */
     end?: Schema$MonthDay;
     /**
-     * Optionally present list of prorations for the season. Each proration is a
-     * one-off discounted entry into a subscription. Each proration contains the
-     * first date on which the discount is available and the new pricing
-     * information.
+     * Optionally present list of prorations for the season. Each proration is a one-off discounted entry into a subscription. Each proration contains the first date on which the discount is available and the new pricing information.
      */
     prorations?: Schema$Prorate[];
     /**
@@ -677,189 +622,130 @@ export namespace androidpublisher_v2 {
     start?: Schema$MonthDay;
   }
   /**
-   * Information provided by the user when they complete the subscription
-   * cancellation flow (cancellation reason survey).
+   * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
    */
   export interface Schema$SubscriptionCancelSurveyResult {
     /**
-     * The cancellation reason the user chose in the survey. Possible values
-     * are:   - Other  - I don&#39;t use this service enough  - Technical issues
-     * - Cost-related reasons  - I found a better app
+     * The cancellation reason the user chose in the survey. Possible values are:   - Other  - I don&#39;t use this service enough  - Technical issues  - Cost-related reasons  - I found a better app
      */
     cancelSurveyReason?: number;
     /**
-     * The customized input cancel reason from the user. Only present when
-     * cancelReason is 0.
+     * The customized input cancel reason from the user. Only present when cancelReason is 0.
      */
     userInputCancelReason?: string;
   }
   /**
-   * A SubscriptionDeferralInfo contains the data needed to defer a subscription
-   * purchase to a future expiry time.
+   * A SubscriptionDeferralInfo contains the data needed to defer a subscription purchase to a future expiry time.
    */
   export interface Schema$SubscriptionDeferralInfo {
     /**
-     * The desired next expiry time to assign to the subscription, in
-     * milliseconds since the Epoch. The given time must be later/greater than
-     * the current expiry time for the subscription.
+     * The desired next expiry time to assign to the subscription, in milliseconds since the Epoch. The given time must be later/greater than the current expiry time for the subscription.
      */
     desiredExpiryTimeMillis?: string;
     /**
-     * The expected expiry time for the subscription. If the current expiry time
-     * for the subscription is not the value specified here, the deferral will
-     * not occur.
+     * The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
      */
     expectedExpiryTimeMillis?: string;
   }
   /**
-   * Contains the price change information for a subscription that can be used
-   * to control the user journey for the price change in the app. This can be in
-   * the form of seeking confirmation from the user or tailoring the experience
-   * for a successful conversion.
+   * Contains the price change information for a subscription that can be used to control the user journey for the price change in the app. This can be in the form of seeking confirmation from the user or tailoring the experience for a successful conversion.
    */
   export interface Schema$SubscriptionPriceChange {
     /**
-     * The new price the subscription will renew with if the price change is
-     * accepted by the user.
+     * The new price the subscription will renew with if the price change is accepted by the user.
      */
     newPrice?: Schema$Price;
     /**
-     * The current state of the price change. Possible values are:   -
-     * Outstanding: State for a pending price change waiting for the user to
-     * agree. In this state, you can optionally seek confirmation from the user
-     * using the In-App API.  - Accepted: State for an accepted price change
-     * that the subscription will renew with unless it&#39;s canceled. The price
-     * change takes effect on a future date when the subscription renews. Note
-     * that the change might not occur when the subscription is renewed next.
+     * The current state of the price change. Possible values are:   - Outstanding: State for a pending price change waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the In-App API.  - Accepted: State for an accepted price change that the subscription will renew with unless it&#39;s canceled. The price change takes effect on a future date when the subscription renews. Note that the change might not occur when the subscription is renewed next.
      */
     state?: number;
   }
   /**
-   * A SubscriptionPurchase resource indicates the status of a user&#39;s
-   * subscription purchase.
+   * A SubscriptionPurchase resource indicates the status of a user&#39;s subscription purchase.
    */
   export interface Schema$SubscriptionPurchase {
     /**
-     * Whether the subscription will automatically be renewed when it reaches
-     * its current expiry time.
+     * Whether the subscription will automatically be renewed when it reaches its current expiry time.
      */
     autoRenewing?: boolean;
     /**
-     * The reason why a subscription was canceled or is not auto-renewing.
-     * Possible values are:   - User canceled the subscription  - Subscription
-     * was canceled by the system, for example because of a billing problem  -
-     * Subscription was replaced with a new subscription  - Subscription was
-     * canceled by the developer
+     * The reason why a subscription was canceled or is not auto-renewing. Possible values are:   - User canceled the subscription  - Subscription was canceled by the system, for example because of a billing problem  - Subscription was replaced with a new subscription  - Subscription was canceled by the developer
      */
     cancelReason?: number;
     /**
-     * Information provided by the user when they complete the subscription
-     * cancellation flow (cancellation reason survey).
+     * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
      */
     cancelSurveyResult?: Schema$SubscriptionCancelSurveyResult;
     /**
-     * ISO 3166-1 alpha-2 billing country/region code of the user at the time
-     * the subscription was granted.
+     * ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
      */
     countryCode?: string;
     /**
-     * A developer-specified string that contains supplemental information about
-     * an order.
+     * A developer-specified string that contains supplemental information about an order.
      */
     developerPayload?: string;
     /**
-     * The email address of the user when the subscription was purchased. Only
-     * present for purchases made with &#39;Subscribe with Google&#39;.
+     * The email address of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     emailAddress?: string;
     /**
-     * Time at which the subscription will expire, in milliseconds since the
-     * Epoch.
+     * Time at which the subscription will expire, in milliseconds since the Epoch.
      */
     expiryTimeMillis?: string;
     /**
-     * The family name of the user when the subscription was purchased. Only
-     * present for purchases made with &#39;Subscribe with Google&#39;.
+     * The family name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     familyName?: string;
     /**
-     * The given name of the user when the subscription was purchased. Only
-     * present for purchases made with &#39;Subscribe with Google&#39;.
+     * The given name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     givenName?: string;
     /**
-     * This kind represents a subscriptionPurchase object in the
-     * androidpublisher service.
+     * This kind represents a subscriptionPurchase object in the androidpublisher service.
      */
     kind?: string;
     /**
-     * The purchase token of the originating purchase if this subscription is
-     * one of the following:   - Re-signup of a canceled but non-lapsed
-     * subscription  - Upgrade/downgrade from a previous subscription  For
-     * example, suppose a user originally signs up and you receive purchase
-     * token X, then the user cancels and goes through the resignup flow (before
-     * their subscription lapses) and you receive purchase token Y, and finally
-     * the user upgrades their subscription and you receive purchase token Z. If
-     * you call this API with purchase token Z, this field will be set to Y. If
-     * you call this API with purchase token Y, this field will be set to X. If
-     * you call this API with purchase token X, this field will not be set.
+     * The purchase token of the originating purchase if this subscription is one of the following:   - Re-signup of a canceled but non-lapsed subscription  - Upgrade/downgrade from a previous subscription  For example, suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z, this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you call this API with purchase token X, this field will not be set.
      */
     linkedPurchaseToken?: string;
     /**
-     * The order id of the latest recurring order associated with the purchase
-     * of the subscription.
+     * The order id of the latest recurring order associated with the purchase of the subscription.
      */
     orderId?: string;
     /**
-     * The payment state of the subscription. Possible values are:   - Payment
-     * pending  - Payment received  - Free trial  - Pending deferred
-     * upgrade/downgrade
+     * The payment state of the subscription. Possible values are:   - Payment pending  - Payment received  - Free trial  - Pending deferred upgrade/downgrade
      */
     paymentState?: number;
     /**
-     * Price of the subscription, not including tax. Price is expressed in
-     * micro-units, where 1,000,000 micro-units represents one unit of the
-     * currency. For example, if the subscription price is €1.99,
-     * price_amount_micros is 1990000.
+     * Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
      */
     priceAmountMicros?: string;
     /**
-     * The latest price change information available. This is present only when
-     * there is an upcoming price change for the subscription yet to be applied.
-     * Once the subscription renews with the new price or the subscription is
-     * canceled, no price change information will be returned.
+     * The latest price change information available. This is present only when there is an upcoming price change for the subscription yet to be applied.  Once the subscription renews with the new price or the subscription is canceled, no price change information will be returned.
      */
     priceChange?: Schema$SubscriptionPriceChange;
     /**
-     * ISO 4217 currency code for the subscription price. For example, if the
-     * price is specified in British pounds sterling, price_currency_code is
-     * &quot;GBP&quot;.
+     * ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
      */
     priceCurrencyCode?: string;
     /**
-     * The profile id of the user when the subscription was purchased. Only
-     * present for purchases made with &#39;Subscribe with Google&#39;.
+     * The profile id of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     profileId?: string;
     /**
-     * The profile name of the user when the subscription was purchased. Only
-     * present for purchases made with &#39;Subscribe with Google&#39;.
+     * The profile name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     profileName?: string;
     /**
-     * The type of purchase of the subscription. This field is only set if this
-     * purchase was not made using the standard in-app billing flow. Possible
-     * values are:   - Test (i.e. purchased from a license testing account)
+     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
      */
     purchaseType?: number;
     /**
-     * Time at which the subscription was granted, in milliseconds since the
-     * Epoch.
+     * Time at which the subscription was granted, in milliseconds since the Epoch.
      */
     startTimeMillis?: string;
     /**
-     * The time at which the subscription was canceled by the user, in
-     * milliseconds since the epoch. Only present if cancelReason is 0.
+     * The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present if cancelReason is 0.
      */
     userCancellationTimeMillis?: string;
   }
@@ -894,39 +780,32 @@ export namespace androidpublisher_v2 {
     track?: string;
     userFraction?: number;
     /**
-     * Version codes to make active on this track. Note that this list should
-     * contain all versions you wish to be active, including those you wish to
-     * retain from previous releases.
+     * Version codes to make active on this track. Note that this list should contain all versions you wish to be active, including those you wish to retain from previous releases.
      */
     versionCodes?: number[];
   }
   export interface Schema$TracksListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;androidpublisher#tracksListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;androidpublisher#tracksListResponse&quot;.
      */
     kind?: string;
     tracks?: Schema$Track[];
   }
   export interface Schema$UserComment {
     /**
-     * Integer Android SDK version of the user&#39;s device at the time the
-     * review was written, e.g. 23 is Marshmallow. May be absent.
+     * Integer Android SDK version of the user&#39;s device at the time the review was written, e.g. 23 is Marshmallow. May be absent.
      */
     androidOsVersion?: number;
     /**
-     * Integer version code of the app as installed at the time the review was
-     * written. May be absent.
+     * Integer version code of the app as installed at the time the review was written. May be absent.
      */
     appVersionCode?: number;
     /**
-     * String version name of the app as installed at the time the review was
-     * written. May be absent.
+     * String version name of the app as installed at the time the review was written. May be absent.
      */
     appVersionName?: string;
     /**
-     * Codename for the reviewer&#39;s device, e.g. klte, flounder. May be
-     * absent.
+     * Codename for the reviewer&#39;s device, e.g. klte, flounder. May be absent.
      */
     device?: string;
     /**
@@ -938,14 +817,11 @@ export namespace androidpublisher_v2 {
      */
     lastModified?: Schema$Timestamp;
     /**
-     * Untranslated text of the review, in the case where the review has been
-     * translated. If the review has not been translated this is left blank.
+     * Untranslated text of the review, in the case where the review has been translated. If the review has not been translated this is left blank.
      */
     originalText?: string;
     /**
-     * Language code for the reviewer. This is taken from the device settings so
-     * is not guaranteed to match the language the review is written in. May be
-     * absent.
+     * Language code for the reviewer. This is taken from the device settings so is not guaranteed to match the language the review is written in. May be absent.
      */
     reviewerLanguage?: string;
     /**
@@ -953,9 +829,7 @@ export namespace androidpublisher_v2 {
      */
     starRating?: number;
     /**
-     * The content of the comment, i.e. review body. In some cases users have
-     * been able to write a review with separate title and body; in those cases
-     * the title and body are concatenated and separated by a tab character.
+     * The content of the comment, i.e. review body. In some cases users have been able to write a review with separate title and body; in those cases the title and body are concatenated and separated by a tab character.
      */
     text?: string;
     /**
@@ -968,28 +842,23 @@ export namespace androidpublisher_v2 {
     thumbsUpCount?: number;
   }
   /**
-   * A VoidedPurchase resource indicates a purchase that was either
-   * canceled/refunded/charged-back.
+   * A VoidedPurchase resource indicates a purchase that was either canceled/refunded/charged-back.
    */
   export interface Schema$VoidedPurchase {
     /**
-     * This kind represents a voided purchase object in the androidpublisher
-     * service.
+     * This kind represents a voided purchase object in the androidpublisher service.
      */
     kind?: string;
     /**
-     * The time at which the purchase was made, in milliseconds since the epoch
-     * (Jan 1, 1970).
+     * The time at which the purchase was made, in milliseconds since the epoch (Jan 1, 1970).
      */
     purchaseTimeMillis?: string;
     /**
-     * The token that was generated when a purchase was made. This uniquely
-     * identifies a purchase.
+     * The token that was generated when a purchase was made. This uniquely identifies a purchase.
      */
     purchaseToken?: string;
     /**
-     * The time at which the purchase was canceled/refunded/charged-back, in
-     * milliseconds since the epoch (Jan 1, 1970).
+     * The time at which the purchase was canceled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970).
      */
     voidedTimeMillis?: string;
   }
@@ -1101,9 +970,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.delete
-     * @desc Deletes an edit for an app. Creating a new edit will automatically
-     * delete any of your previous edits so this method need only be called if
-     * you want to preemptively abandon an edit.
+     * @desc Deletes an edit for an app. Creating a new edit will automatically delete any of your previous edits so this method need only be called if you want to preemptively abandon an edit.
      * @alias androidpublisher.edits.delete
      * @memberOf! ()
      *
@@ -1175,9 +1042,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.get
-     * @desc Returns information about the edit specified. Calls will fail if
-     * the edit is no long active (e.g. has been deleted, superseded or
-     * expired).
+     * @desc Returns information about the edit specified. Calls will fail if the edit is no long active (e.g. has been deleted, superseded or expired).
      * @alias androidpublisher.edits.get
      * @memberOf! ()
      *
@@ -1249,8 +1114,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.insert
-     * @desc Creates a new edit for an app, populated with the app's current
-     * state.
+     * @desc Creates a new edit for an app, populated with the app's current state.
      * @alias androidpublisher.edits.insert
      * @memberOf! ()
      *
@@ -1321,8 +1185,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.validate
-     * @desc Checks that the edit can be successfully committed. The edit's
-     * changes are not applied to the live app.
+     * @desc Checks that the edit can be successfully committed. The edit's changes are not applied to the live app.
      * @alias androidpublisher.edits.validate
      * @memberOf! ()
      *
@@ -1404,8 +1267,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -1420,8 +1282,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -1436,8 +1297,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -1448,8 +1308,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -1469,8 +1328,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -1483,8 +1341,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.apklistings.delete
-     * @desc Deletes the APK-specific localized listing for a specified APK and
-     * language code.
+     * @desc Deletes the APK-specific localized listing for a specified APK and language code.
      * @alias androidpublisher.edits.apklistings.delete
      * @memberOf! ()
      *
@@ -1559,8 +1416,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.apklistings.deleteall
-     * @desc Deletes all the APK-specific localized listings for a specified
-     * APK.
+     * @desc Deletes all the APK-specific localized listings for a specified APK.
      * @alias androidpublisher.edits.apklistings.deleteall
      * @memberOf! ()
      *
@@ -1634,8 +1490,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.apklistings.get
-     * @desc Fetches the APK-specific localized listing for a specified APK and
-     * language code.
+     * @desc Fetches the APK-specific localized listing for a specified APK and language code.
      * @alias androidpublisher.edits.apklistings.get
      * @memberOf! ()
      *
@@ -1790,8 +1645,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.apklistings.patch
-     * @desc Updates or creates the APK-specific localized listing for a
-     * specified APK and language code. This method supports patch semantics.
+     * @desc Updates or creates the APK-specific localized listing for a specified APK and language code. This method supports patch semantics.
      * @alias androidpublisher.edits.apklistings.patch
      * @memberOf! ()
      *
@@ -1869,8 +1723,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.apklistings.update
-     * @desc Updates or creates the APK-specific localized listing for a
-     * specified APK and language code.
+     * @desc Updates or creates the APK-specific localized listing for a specified APK and language code.
      * @alias androidpublisher.edits.apklistings.update
      * @memberOf! ()
      *
@@ -1955,8 +1808,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The APK version code whose APK-specific listings should be read or
-     * modified.
+     * The APK version code whose APK-specific listings should be read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -1964,14 +1816,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the APK-specific localized
-     * listing to read or modify. For example, to select Austrian German, pass
-     * "de-AT".
+     * The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -1983,8 +1832,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The APK version code whose APK-specific listings should be read or
-     * modified.
+     * The APK version code whose APK-specific listings should be read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -1992,8 +1840,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -2005,8 +1852,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The APK version code whose APK-specific listings should be read or
-     * modified.
+     * The APK version code whose APK-specific listings should be read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -2014,14 +1860,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the APK-specific localized
-     * listing to read or modify. For example, to select Austrian German, pass
-     * "de-AT".
+     * The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -2033,8 +1876,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The APK version code whose APK-specific listings should be read or
-     * modified.
+     * The APK version code whose APK-specific listings should be read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -2042,8 +1884,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -2055,8 +1896,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The APK version code whose APK-specific listings should be read or
-     * modified.
+     * The APK version code whose APK-specific listings should be read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -2064,14 +1904,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the APK-specific localized
-     * listing to read or modify. For example, to select Austrian German, pass
-     * "de-AT".
+     * The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -2088,8 +1925,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The APK version code whose APK-specific listings should be read or
-     * modified.
+     * The APK version code whose APK-specific listings should be read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -2097,14 +1933,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the APK-specific localized
-     * listing to read or modify. For example, to select Austrian German, pass
-     * "de-AT".
+     * The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -2122,10 +1955,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.apks.addexternallyhosted
-     * @desc Creates a new APK without uploading the APK itself to Google Play,
-     * instead hosting the APK at a specified URL. This function is only
-     * available to enterprises using Google Play for Work whose application is
-     * configured to restrict distribution to the enterprise domain.
+     * @desc Creates a new APK without uploading the APK itself to Google Play, instead hosting the APK at a specified URL. This function is only available to enterprises using Google Play for Work whose application is configured to restrict distribution to the enterprise domain.
      * @alias androidpublisher.edits.apks.addexternallyhosted
      * @memberOf! ()
      *
@@ -2373,8 +2203,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -2394,8 +2223,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -2411,8 +2239,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -2514,12 +2341,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.bundles.upload
-     * @desc Uploads a new Android App Bundle to this edit. If you are using the
-     * Google API client libraries, please increase the timeout of the http
-     * request before calling this endpoint (a timeout of 2 minutes is
-     * recommended). See:
-     * https://developers.google.com/api-client-library/java/google-api-java-client/errors
-     * for an example in java.
+     * @desc Uploads a new Android App Bundle to this edit. If you are using the Google API client libraries, please increase the timeout of the http request before calling this endpoint (a timeout of 2 minutes is recommended). See: https://developers.google.com/api-client-library/java/google-api-java-client/errors for an example in java.
      * @alias androidpublisher.edits.bundles.upload
      * @memberOf! ()
      *
@@ -2611,8 +2433,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -2624,9 +2445,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Must be set to true if the bundle installation may trigger a warning on
-     * user devices (for example, if installation size may be over a threshold,
-     * typically 100 MB).
+     * Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      */
     ackBundleInstallationWarning?: boolean;
     /**
@@ -2634,8 +2453,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -2663,8 +2481,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.deobfuscationfiles.upload
-     * @desc Uploads the deobfuscation file of the specified APK. If a
-     * deobfuscation file already exists, it will be replaced.
+     * @desc Uploads the deobfuscation file of the specified APK. If a deobfuscation file already exists, it will be replaced.
      * @alias androidpublisher.edits.deobfuscationfiles.upload
      * @memberOf! ()
      *
@@ -2786,8 +2603,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier of the Android app for which the deobfuscatiuon files
-     * are being uploaded; for example, "com.spiffygame".
+     * Unique identifier of the Android app for which the deobfuscatiuon files are being uploaded; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -2815,8 +2631,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.details.get
-     * @desc Fetches app details for this edit. This includes the default
-     * language and developer support contact information.
+     * @desc Fetches app details for this edit. This includes the default language and developer support contact information.
      * @alias androidpublisher.edits.details.get
      * @memberOf! ()
      *
@@ -2891,8 +2706,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.details.patch
-     * @desc Updates app details for this edit. This method supports patch
-     * semantics.
+     * @desc Updates app details for this edit. This method supports patch semantics.
      * @alias androidpublisher.edits.details.patch
      * @memberOf! ()
      *
@@ -3055,8 +2869,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -3072,8 +2885,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -3094,8 +2906,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -3200,9 +3011,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.expansionfiles.patch
-     * @desc Updates the APK's Expansion File configuration to reference another
-     * APK's Expansion Files. To add a new Expansion File use the Upload method.
-     * This method supports patch semantics.
+     * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method. This method supports patch semantics.
      * @alias androidpublisher.edits.expansionfiles.patch
      * @memberOf! ()
      *
@@ -3290,8 +3099,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.expansionfiles.update
-     * @desc Updates the APK's Expansion File configuration to reference another
-     * APK's Expansion Files. To add a new Expansion File use the Upload method.
+     * @desc Updates the APK's Expansion File configuration to reference another APK's Expansion Files. To add a new Expansion File use the Upload method.
      * @alias androidpublisher.edits.expansionfiles.update
      * @memberOf! ()
      *
@@ -3489,8 +3297,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The version code of the APK whose Expansion File configuration is being
-     * read or modified.
+     * The version code of the APK whose Expansion File configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -3502,8 +3309,7 @@ export namespace androidpublisher_v2 {
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -3515,8 +3321,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The version code of the APK whose Expansion File configuration is being
-     * read or modified.
+     * The version code of the APK whose Expansion File configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -3528,8 +3333,7 @@ export namespace androidpublisher_v2 {
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -3546,8 +3350,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The version code of the APK whose Expansion File configuration is being
-     * read or modified.
+     * The version code of the APK whose Expansion File configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -3559,8 +3362,7 @@ export namespace androidpublisher_v2 {
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -3577,8 +3379,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The version code of the APK whose Expansion File configuration is being
-     * read or modified.
+     * The version code of the APK whose Expansion File configuration is being read or modified.
      */
     apkVersionCode?: number;
     /**
@@ -3590,8 +3391,7 @@ export namespace androidpublisher_v2 {
      */
     expansionFileType?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -3865,8 +3665,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.images.upload
-     * @desc Uploads a new image and adds it to the list of images for the
-     * specified language and image type.
+     * @desc Uploads a new image and adds it to the list of images for the specified language and image type.
      * @alias androidpublisher.edits.images.upload
      * @memberOf! ()
      *
@@ -3963,8 +3762,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier an image within the set of images attached to this
-     * edit.
+     * Unique identifier an image within the set of images attached to this edit.
      */
     imageId?: string;
     /**
@@ -3972,14 +3770,11 @@ export namespace androidpublisher_v2 {
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose
-     * images are to read or modified. For example, to select Austrian German,
-     * pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -3999,14 +3794,11 @@ export namespace androidpublisher_v2 {
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose
-     * images are to read or modified. For example, to select Austrian German,
-     * pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -4026,14 +3818,11 @@ export namespace androidpublisher_v2 {
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose
-     * images are to read or modified. For example, to select Austrian German,
-     * pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -4053,14 +3842,11 @@ export namespace androidpublisher_v2 {
      */
     imageType?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing whose
-     * images are to read or modified. For example, to select Austrian German,
-     * pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -4386,8 +4172,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.listings.patch
-     * @desc Creates or updates a localized store listing. This method supports
-     * patch semantics.
+     * @desc Creates or updates a localized store listing. This method supports patch semantics.
      * @alias androidpublisher.edits.listings.patch
      * @memberOf! ()
      *
@@ -4548,13 +4333,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to
-     * read or modify. For example, to select Austrian German, pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -4570,8 +4353,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -4587,13 +4369,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to
-     * read or modify. For example, to select Austrian German, pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -4609,8 +4389,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -4626,13 +4405,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to
-     * read or modify. For example, to select Austrian German, pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -4653,13 +4430,11 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * The language code (a BCP-47 language tag) of the localized listing to
-     * read or modify. For example, to select Austrian German, pass "de-AT".
+     * The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
      */
     language?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
 
@@ -4909,8 +4684,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -4930,8 +4704,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -4956,8 +4729,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -4979,8 +4751,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.tracks.get
-     * @desc Fetches the track configuration for the specified track type.
-     * Includes the APK version codes that are in this track.
+     * @desc Fetches the track configuration for the specified track type. Includes the APK version codes that are in this track.
      * @alias androidpublisher.edits.tracks.get
      * @memberOf! ()
      *
@@ -5128,8 +4899,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.tracks.patch
-     * @desc Updates the track configuration for the specified track type. This
-     * method supports patch semantics.
+     * @desc Updates the track configuration for the specified track type. This method supports patch semantics.
      * @alias androidpublisher.edits.tracks.patch
      * @memberOf! ()
      *
@@ -5289,8 +5059,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -5310,8 +5079,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
   }
@@ -5327,8 +5095,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -5353,8 +5120,7 @@ export namespace androidpublisher_v2 {
      */
     editId?: string;
     /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -5600,8 +5366,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.inappproducts.list
-     * @desc List all the in-app products for an Android app, both subscriptions
-     * and managed in-app products..
+     * @desc List all the in-app products for an Android app, both subscriptions and managed in-app products..
      * @alias androidpublisher.inappproducts.list
      * @memberOf! ()
      *
@@ -5685,8 +5450,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.inappproducts.patch
-     * @desc Updates the details of an in-app product. This method supports
-     * patch semantics.
+     * @desc Updates the details of an in-app product. This method supports patch semantics.
      * @alias androidpublisher.inappproducts.patch
      * @memberOf! ()
      *
@@ -5847,8 +5611,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Unique identifier for the Android app with the in-app product; for
-     * example, "com.spiffygame".
+     * Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -5880,9 +5643,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If true the prices for all regions targeted by the parent app that don't
-     * have a price specified for this in-app product will be auto converted to
-     * the target currency based on the default price. Defaults to false.
+     * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
     /**
@@ -5907,8 +5668,7 @@ export namespace androidpublisher_v2 {
      */
     maxResults?: number;
     /**
-     * Unique identifier for the Android app with in-app products; for example,
-     * "com.spiffygame".
+     * Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -5928,14 +5688,11 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If true the prices for all regions targeted by the parent app that don't
-     * have a price specified for this in-app product will be auto converted to
-     * the target currency based on the default price. Defaults to false.
+     * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
     /**
-     * Unique identifier for the Android app with the in-app product; for
-     * example, "com.spiffygame".
+     * Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -5956,14 +5713,11 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If true the prices for all regions targeted by the parent app that don't
-     * have a price specified for this in-app product will be auto converted to
-     * the target currency based on the default price. Defaults to false.
+     * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
     /**
-     * Unique identifier for the Android app with the in-app product; for
-     * example, "com.spiffygame".
+     * Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -6064,20 +5818,15 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The order ID provided to the user when the subscription or in-app order
-     * was purchased.
+     * The order ID provided to the user when the subscription or in-app order was purchased.
      */
     orderId?: string;
     /**
-     * The package name of the application for which this subscription or in-app
-     * item was purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
-     * Whether to revoke the purchased item. If set to true, access to the
-     * subscription or in-app item will be terminated immediately. If the item
-     * is a recurring subscription, all future payments will also be terminated.
-     * Consumed in-app items need to be handled by developer's app. (optional)
+     * Whether to revoke the purchased item. If set to true, access to the subscription or in-app item will be terminated immediately. If the item is a recurring subscription, all future payments will also be terminated. Consumed in-app items need to be handled by developer's app. (optional)
      */
     revoke?: boolean;
   }
@@ -6188,8 +5937,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application the inapp product was sold in (for
-     * example, 'com.some.thing').
+     * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -6197,8 +5945,7 @@ export namespace androidpublisher_v2 {
      */
     productId?: string;
     /**
-     * The token provided to the user's device when the inapp product was
-     * purchased.
+     * The token provided to the user's device when the inapp product was purchased.
      */
     token?: string;
   }
@@ -6211,8 +5958,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.purchases.subscriptions.cancel
-     * @desc Cancels a user's subscription purchase. The subscription remains
-     * valid until its expiration time.
+     * @desc Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
      * @alias androidpublisher.purchases.subscriptions.cancel
      * @memberOf! ()
      *
@@ -6286,8 +6032,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.purchases.subscriptions.defer
-     * @desc Defers a user's subscription purchase until a specified future
-     * expiration time.
+     * @desc Defers a user's subscription purchase until a specified future expiration time.
      * @alias androidpublisher.purchases.subscriptions.defer
      * @memberOf! ()
      *
@@ -6373,8 +6118,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.purchases.subscriptions.get
-     * @desc Checks whether a user's subscription purchase is valid and returns
-     * its expiry time.
+     * @desc Checks whether a user's subscription purchase is valid and returns its expiry time.
      * @alias androidpublisher.purchases.subscriptions.get
      * @memberOf! ()
      *
@@ -6452,8 +6196,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.purchases.subscriptions.refund
-     * @desc Refunds a user's subscription purchase, but the subscription
-     * remains valid until its expiration time and it will continue to recur.
+     * @desc Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.
      * @alias androidpublisher.purchases.subscriptions.refund
      * @memberOf! ()
      *
@@ -6527,9 +6270,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.purchases.subscriptions.revoke
-     * @desc Refunds and immediately revokes a user's subscription purchase.
-     * Access to the subscription will be terminated immediately and it will
-     * stop recurring.
+     * @desc Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.
      * @alias androidpublisher.purchases.subscriptions.revoke
      * @memberOf! ()
      *
@@ -6610,8 +6351,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application for which this subscription was
-     * purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -6619,8 +6359,7 @@ export namespace androidpublisher_v2 {
      */
     subscriptionId?: string;
     /**
-     * The token provided to the user's device when the subscription was
-     * purchased.
+     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }
@@ -6632,8 +6371,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application for which this subscription was
-     * purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -6641,8 +6379,7 @@ export namespace androidpublisher_v2 {
      */
     subscriptionId?: string;
     /**
-     * The token provided to the user's device when the subscription was
-     * purchased.
+     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
 
@@ -6659,8 +6396,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application for which this subscription was
-     * purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -6668,8 +6404,7 @@ export namespace androidpublisher_v2 {
      */
     subscriptionId?: string;
     /**
-     * The token provided to the user's device when the subscription was
-     * purchased.
+     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }
@@ -6681,8 +6416,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application for which this subscription was
-     * purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -6690,8 +6424,7 @@ export namespace androidpublisher_v2 {
      */
     subscriptionId?: string;
     /**
-     * The token provided to the user's device when the subscription was
-     * purchased.
+     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }
@@ -6703,8 +6436,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The package name of the application for which this subscription was
-     * purchased (for example, 'com.some.thing').
+     * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -6712,8 +6444,7 @@ export namespace androidpublisher_v2 {
      */
     subscriptionId?: string;
     /**
-     * The token provided to the user's device when the subscription was
-     * purchased.
+     * The token provided to the user's device when the subscription was purchased.
      */
     token?: string;
   }
@@ -6819,12 +6550,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The time, in milliseconds since the Epoch, of the newest voided in-app
-     * product purchase that you want to see in the response. The value of this
-     * parameter cannot be greater than the current time and is ignored if a
-     * pagination token is set. Default value is current time. Note: This filter
-     * is applied on the time at which the record is seen as voided by our
-     * systems and not the actual voided time returned in the response.
+     * The time, in milliseconds since the Epoch, of the newest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
     endTime?: string;
     /**
@@ -6832,8 +6558,7 @@ export namespace androidpublisher_v2 {
      */
     maxResults?: number;
     /**
-     * The package name of the application for which voided purchases need to be
-     * returned (for example, 'com.some.thing').
+     * The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
      */
     packageName?: string;
     /**
@@ -6841,12 +6566,7 @@ export namespace androidpublisher_v2 {
      */
     startIndex?: number;
     /**
-     * The time, in milliseconds since the Epoch, of the oldest voided in-app
-     * product purchase that you want to see in the response. The value of this
-     * parameter cannot be older than 30 days and is ignored if a pagination
-     * token is set. Default value is current time minus 30 days. Note: This
-     * filter is applied on the time at which the record is seen as voided by
-     * our systems and not the actual voided time returned in the response.
+     * The time, in milliseconds since the Epoch, of the oldest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
     startTime?: string;
     /**
@@ -6936,8 +6656,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.reviews.list
-     * @desc Returns a list of reviews. Only reviews from last week will be
-     * returned.
+     * @desc Returns a list of reviews. Only reviews from last week will be returned.
      * @alias androidpublisher.reviews.list
      * @memberOf! ()
      *
@@ -7097,8 +6816,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Unique identifier for the Android app for which we want reviews; for
-     * example, "com.spiffygame".
+     * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -7121,8 +6839,7 @@ export namespace androidpublisher_v2 {
      */
     maxResults?: number;
     /**
-     * Unique identifier for the Android app for which we want reviews; for
-     * example, "com.spiffygame".
+     * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      */
     packageName?: string;
     /**
@@ -7145,8 +6862,7 @@ export namespace androidpublisher_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Unique identifier for the Android app for which we want reviews; for
-     * example, "com.spiffygame".
+     * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      */
     packageName?: string;
     /**

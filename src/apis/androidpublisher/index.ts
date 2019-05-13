@@ -14,9 +14,8 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-
-import {androidpublisher_v1} from './v1';
 import {androidpublisher_v1_1} from './v1.1';
+import {androidpublisher_v1} from './v1';
 import {androidpublisher_v2} from './v2';
 import {androidpublisher_v3} from './v3';
 
