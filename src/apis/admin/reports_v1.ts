@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace admin_reports_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace admin_reports_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -78,8 +75,7 @@ export namespace admin_reports_v1 {
   /**
    * Admin Reports API
    *
-   * Fetches reports for the administrators of G Suite customers about the
-   * usage, collaboration, security, and risk for their users.
+   * Fetches reports for the administrators of G Suite customers about the usage, collaboration, security, and risk for their users.
    *
    * @example
    * const {google} = require('googleapis');
@@ -100,7 +96,10 @@ export namespace admin_reports_v1 {
     userUsageReport: Resource$Userusagereport;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.activities = new Resource$Activities(this.context);
       this.channels = new Resource$Channels(this.context);
@@ -196,8 +195,7 @@ export namespace admin_reports_v1 {
      */
     address?: string;
     /**
-     * Date and time of notification channel expiration, expressed as a Unix
-     * timestamp, in milliseconds. Optional.
+     * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
     expiration?: string;
     /**
@@ -205,8 +203,7 @@ export namespace admin_reports_v1 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a
-     * resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
      */
     kind?: string;
     /**
@@ -218,8 +215,7 @@ export namespace admin_reports_v1 {
      */
     payload?: boolean;
     /**
-     * An opaque ID that identifies the resource being watched on this channel.
-     * Stable across different API versions.
+     * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
     resourceId?: string;
     /**
@@ -227,8 +223,7 @@ export namespace admin_reports_v1 {
      */
     resourceUri?: string;
     /**
-     * An arbitrary string delivered to the target address with each
-     * notification delivered over this channel. Optional.
+     * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
     token?: string;
     /**
@@ -312,8 +307,7 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.activities.list
-     * @desc Retrieves a list of activities for a specific customer and
-     * application.
+     * @desc Retrieves a list of activities for a specific customer and application.
      * @alias reports.activities.list
      * @memberOf! ()
      *
@@ -484,8 +478,7 @@ export namespace admin_reports_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * IP Address of host where the event was performed. Supports both IPv4 and
-     * IPv6 addresses.
+     * IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
      */
     actorIpAddress?: string;
     /**
@@ -505,8 +498,7 @@ export namespace admin_reports_v1 {
      */
     eventName?: string;
     /**
-     * Event parameters in the form [parameter1 name][operator][parameter1
-     * value],[parameter2 name][operator][parameter2 value],...
+     * Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
      */
     filters?: string;
     /**
@@ -514,8 +506,7 @@ export namespace admin_reports_v1 {
      */
     maxResults?: number;
     /**
-     * the organizational unit's(OU) ID to filter activities from users
-     * belonging to a specific OU or one of its sub-OU(s)
+     * the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
      */
     orgUnitID?: string;
     /**
@@ -527,9 +518,7 @@ export namespace admin_reports_v1 {
      */
     startTime?: string;
     /**
-     * Represents the profile id or the user email for which the data should be
-     * filtered. When 'all' is specified as the userKey, it returns usageReports
-     * for all users.
+     * Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
      */
     userKey?: string;
   }
@@ -540,8 +529,7 @@ export namespace admin_reports_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * IP Address of host where the event was performed. Supports both IPv4 and
-     * IPv6 addresses.
+     * IP Address of host where the event was performed. Supports both IPv4 and IPv6 addresses.
      */
     actorIpAddress?: string;
     /**
@@ -561,8 +549,7 @@ export namespace admin_reports_v1 {
      */
     eventName?: string;
     /**
-     * Event parameters in the form [parameter1 name][operator][parameter1
-     * value],[parameter2 name][operator][parameter2 value],...
+     * Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
      */
     filters?: string;
     /**
@@ -570,8 +557,7 @@ export namespace admin_reports_v1 {
      */
     maxResults?: number;
     /**
-     * the organizational unit's(OU) ID to filter activities from users
-     * belonging to a specific OU or one of its sub-OU(s)
+     * the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
      */
     orgUnitID?: string;
     /**
@@ -583,9 +569,7 @@ export namespace admin_reports_v1 {
      */
     startTime?: string;
     /**
-     * Represents the profile id or the user email for which the data should be
-     * filtered. When 'all' is specified as the userKey, it returns usageReports
-     * for all users.
+     * Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
      */
     userKey?: string;
 
@@ -692,8 +676,7 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.customerUsageReports.get
-     * @desc Retrieves a report which is a collection of properties / statistics
-     * for a specific customer.
+     * @desc Retrieves a report which is a collection of properties / statistics for a specific customer.
      * @alias reports.customerUsageReports.get
      * @memberOf! ()
      *
@@ -781,8 +764,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date in yyyy-mm-dd format for which the data is to be
-     * fetched.
+     * Represents the date in yyyy-mm-dd format for which the data is to be fetched.
      */
     date?: string;
     /**
@@ -790,8 +772,7 @@ export namespace admin_reports_v1 {
      */
     pageToken?: string;
     /**
-     * Represents the application name, parameter name pairs to fetch in csv as
-     * app_name1:param_name1, app_name2:param_name2.
+     * Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      */
     parameters?: string;
   }
@@ -804,8 +785,7 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.entityUsageReports.get
-     * @desc Retrieves a report which is a collection of properties / statistics
-     * for a set of objects.
+     * @desc Retrieves a report which is a collection of properties / statistics for a set of objects.
      * @alias reports.entityUsageReports.get
      * @memberOf! ()
      *
@@ -897,8 +877,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date in yyyy-mm-dd format for which the data is to be
-     * fetched.
+     * Represents the date in yyyy-mm-dd format for which the data is to be fetched.
      */
     date?: string;
     /**
@@ -922,8 +901,7 @@ export namespace admin_reports_v1 {
      */
     pageToken?: string;
     /**
-     * Represents the application name, parameter name pairs to fetch in csv as
-     * app_name1:param_name1, app_name2:param_name2.
+     * Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      */
     parameters?: string;
   }
@@ -936,8 +914,7 @@ export namespace admin_reports_v1 {
 
     /**
      * reports.userUsageReport.get
-     * @desc Retrieves a report which is a collection of properties / statistics
-     * for a set of users.
+     * @desc Retrieves a report which is a collection of properties / statistics for a set of users.
      * @alias reports.userUsageReport.get
      * @memberOf! ()
      *
@@ -1028,8 +1005,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date in yyyy-mm-dd format for which the data is to be
-     * fetched.
+     * Represents the date in yyyy-mm-dd format for which the data is to be fetched.
      */
     date?: string;
     /**
@@ -1041,8 +1017,7 @@ export namespace admin_reports_v1 {
      */
     maxResults?: number;
     /**
-     * the organizational unit's ID to filter usage parameters from users
-     * belonging to a specific OU or one of its sub-OU(s).
+     * the organizational unit's ID to filter usage parameters from users belonging to a specific OU or one of its sub-OU(s).
      */
     orgUnitID?: string;
     /**
@@ -1050,13 +1025,11 @@ export namespace admin_reports_v1 {
      */
     pageToken?: string;
     /**
-     * Represents the application name, parameter name pairs to fetch in csv as
-     * app_name1:param_name1, app_name2:param_name2.
+     * Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      */
     parameters?: string;
     /**
-     * Represents the profile id or the user email for which the data should be
-     * filtered.
+     * Represents the profile id or the user email for which the data should be filtered.
      */
     userKey?: string;
   }

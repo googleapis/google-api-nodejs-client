@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace storage_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace storage_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -98,7 +95,10 @@ export namespace storage_v1beta1 {
     objects: Resource$Objects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.bucketAccessControls = new Resource$Bucketaccesscontrols(
         this.context
@@ -132,13 +132,11 @@ export namespace storage_v1beta1 {
      */
     kind?: string;
     /**
-     * The location of the bucket. Object data for objects in the bucket resides
-     * in physical storage in this location. Can be US or EU. Defaults to US.
+     * The location of the bucket. Object data for objects in the bucket resides in physical storage in this location. Can be US or EU. Defaults to US.
      */
     location?: string;
     /**
-     * The owner of the bucket. This will always be the project team&#39;s owner
-     * group.
+     * The owner of the bucket. This will always be the project team&#39;s owner group.
      */
     owner?: {entity?: string; entityId?: string};
     /**
@@ -175,13 +173,7 @@ export namespace storage_v1beta1 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user
-     * liz@example.com would be user-liz@example.com.  - The group
-     * example@googlegroups.com would be group-example@googlegroups.com.  - To
-     * refer to all members of the Google Apps for Business domain example.com,
-     * the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -193,8 +185,7 @@ export namespace storage_v1beta1 {
      */
     id?: string;
     /**
-     * The kind of item this is. For bucket access control entries, this is
-     * always storage#bucketAccessControl.
+     * The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
      */
     kind?: string;
     /**
@@ -215,8 +206,7 @@ export namespace storage_v1beta1 {
      */
     items?: Schema$BucketAccessControl[];
     /**
-     * The kind of item this is. For lists of bucket access control entries,
-     * this is always storage#bucketAccessControls.
+     * The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
      */
     kind?: string;
   }
@@ -229,13 +219,11 @@ export namespace storage_v1beta1 {
      */
     items?: Schema$Bucket[];
     /**
-     * The kind of item this is. For lists of buckets, this is always
-     * storage#buckets.
+     * The kind of item this is. For lists of buckets, this is always storage#buckets.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -276,8 +264,7 @@ export namespace storage_v1beta1 {
      */
     kind?: string;
     /**
-     * Object media data. Provided on your behalf when uploading raw media or
-     * multipart/related with an auxiliary media part.
+     * Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.
      */
     media?: {
       algorithm?: string;
@@ -322,13 +309,7 @@ export namespace storage_v1beta1 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user
-     * liz@example.com would be user-liz@example.com.  - The group
-     * example@googlegroups.com would be group-example@googlegroups.com.  - To
-     * refer to all members of the Google Apps for Business domain example.com,
-     * the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -340,8 +321,7 @@ export namespace storage_v1beta1 {
      */
     id?: string;
     /**
-     * The kind of item this is. For object access control entries, this is
-     * always storage#objectAccessControl.
+     * The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
      */
     kind?: string;
     /**
@@ -366,8 +346,7 @@ export namespace storage_v1beta1 {
      */
     items?: Schema$ObjectAccessControl[];
     /**
-     * The kind of item this is. For lists of object access control entries,
-     * this is always storage#objectAccessControls.
+     * The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
      */
     kind?: string;
   }
@@ -380,18 +359,15 @@ export namespace storage_v1beta1 {
      */
     items?: Schema$Object[];
     /**
-     * The kind of item this is. For lists of objects, this is always
-     * storage#objects.
+     * The kind of item this is. For lists of objects, this is always storage#objects.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
-     * The list of prefixes of objects matching-but-not-listed up to and
-     * including the requested delimiter.
+     * The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
      */
     prefixes?: string[];
   }
@@ -404,8 +380,7 @@ export namespace storage_v1beta1 {
 
     /**
      * storage.bucketAccessControls.delete
-     * @desc Deletes the ACL entry for the specified entity on the specified
-     * bucket.
+     * @desc Deletes the ACL entry for the specified entity on the specified bucket.
      * @alias storage.bucketAccessControls.delete
      * @memberOf! ()
      *
@@ -478,8 +453,7 @@ export namespace storage_v1beta1 {
 
     /**
      * storage.bucketAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * bucket.
+     * @desc Returns the ACL entry for the specified entity on the specified bucket.
      * @alias storage.bucketAccessControls.get
      * @memberOf! ()
      *
@@ -705,8 +679,7 @@ export namespace storage_v1beta1 {
 
     /**
      * storage.bucketAccessControls.patch
-     * @desc Updates an ACL entry on the specified bucket. This method supports
-     * patch semantics.
+     * @desc Updates an ACL entry on the specified bucket. This method supports patch semantics.
      * @alias storage.bucketAccessControls.patch
      * @memberOf! ()
      *
@@ -869,8 +842,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
@@ -886,8 +858,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
@@ -932,8 +903,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -954,8 +924,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -1434,9 +1403,7 @@ export namespace storage_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Set of properties to return. Defaults to no_acl, unless the bucket
-     * resource specifies acl or defaultObjectAcl properties, when it defaults
-     * to full.
+     * Set of properties to return. Defaults to no_acl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      */
     projection?: string;
 
@@ -1456,8 +1423,7 @@ export namespace storage_v1beta1 {
      */
     'max-results'?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -1518,8 +1484,7 @@ export namespace storage_v1beta1 {
 
     /**
      * storage.objectAccessControls.delete
-     * @desc Deletes the ACL entry for the specified entity on the specified
-     * object.
+     * @desc Deletes the ACL entry for the specified entity on the specified object.
      * @alias storage.objectAccessControls.delete
      * @memberOf! ()
      *
@@ -1592,8 +1557,7 @@ export namespace storage_v1beta1 {
 
     /**
      * storage.objectAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * object.
+     * @desc Returns the ACL entry for the specified entity on the specified object.
      * @alias storage.objectAccessControls.get
      * @memberOf! ()
      *
@@ -1819,8 +1783,7 @@ export namespace storage_v1beta1 {
 
     /**
      * storage.objectAccessControls.patch
-     * @desc Updates an ACL entry on the specified object. This method supports
-     * patch semantics.
+     * @desc Updates an ACL entry on the specified object. This method supports patch semantics.
      * @alias storage.objectAccessControls.patch
      * @memberOf! ()
      *
@@ -1983,8 +1946,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
@@ -2004,8 +1966,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
@@ -2062,8 +2023,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
@@ -2088,8 +2048,7 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
@@ -2413,8 +2372,7 @@ export namespace storage_v1beta1 {
 
     /**
      * storage.objects.patch
-     * @desc Updates a data blob's associated metadata. This method supports
-     * patch semantics.
+     * @desc Updates a data blob's associated metadata. This method supports patch semantics.
      * @alias storage.objects.patch
      * @memberOf! ()
      *
@@ -2602,18 +2560,15 @@ export namespace storage_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
     bucket?: string;
     /**
-     * Name of the object. Required when the object metadata is not otherwise
-     * provided. Overrides the object metadata's name value, if any.
+     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      */
     name?: string;
     /**
-     * Set of properties to return. Defaults to no_acl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to no_acl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
 
@@ -2648,21 +2603,15 @@ export namespace storage_v1beta1 {
      */
     bucket?: string;
     /**
-     * Returns results in a directory-like mode. items will contain only objects
-     * whose names, aside from the prefix, do not contain delimiter. Objects
-     * whose names, aside from the prefix, contain delimiter will have their
-     * name, truncated after the delimiter, returned in prefixes. Duplicate
-     * prefixes are omitted.
+     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
      */
     delimiter?: string;
     /**
-     * Maximum number of items plus prefixes to return. As duplicate prefixes
-     * are omitted, fewer total results may be returned than requested.
+     * Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
      */
     'max-results'?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**

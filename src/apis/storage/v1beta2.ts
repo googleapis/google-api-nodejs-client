@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace storage_v1beta2 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace storage_v1beta2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,7 +97,10 @@ export namespace storage_v1beta2 {
     objects: Resource$Objects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.bucketAccessControls = new Resource$Bucketaccesscontrols(
         this.context
@@ -151,8 +151,7 @@ export namespace storage_v1beta2 {
      */
     kind?: string;
     /**
-     * The bucket&#39;s lifecycle configuration. See object lifecycle management
-     * for more information.
+     * The bucket&#39;s lifecycle configuration. See object lifecycle management for more information.
      */
     lifecycle?: {
       rule?: Array<{
@@ -166,14 +165,11 @@ export namespace storage_v1beta2 {
       }>;
     };
     /**
-     * The location of the bucket. Object data for objects in the bucket resides
-     * in physical storage within this region. Typical values are US and EU.
-     * Defaults to US. See the developer&#39;s guide for the authoritative list.
+     * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Typical values are US and EU. Defaults to US. See the developer&#39;s guide for the authoritative list.
      */
     location?: string;
     /**
-     * The bucket&#39;s logging configuration, which defines the destination
-     * bucket and optional name prefix for the current bucket&#39;s logs.
+     * The bucket&#39;s logging configuration, which defines the destination bucket and optional name prefix for the current bucket&#39;s logs.
      */
     logging?: {logBucket?: string; logObjectPrefix?: string};
     /**
@@ -185,8 +181,7 @@ export namespace storage_v1beta2 {
      */
     name?: string;
     /**
-     * The owner of the bucket. This is always the project team&#39;s owner
-     * group.
+     * The owner of the bucket. This is always the project team&#39;s owner group.
      */
     owner?: {entity?: string; entityId?: string};
     /**
@@ -194,10 +189,7 @@ export namespace storage_v1beta2 {
      */
     selfLink?: string;
     /**
-     * The bucket&#39;s storage class. This defines how objects in the bucket
-     * are stored and determines the SLA and the cost of storage. Typical values
-     * are STANDARD and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD. See
-     * the developer&#39;s guide for the authoritative list.
+     * The bucket&#39;s storage class. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Typical values are STANDARD and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD. See the developer&#39;s guide for the authoritative list.
      */
     storageClass?: string;
     /**
@@ -230,13 +222,7 @@ export namespace storage_v1beta2 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user
-     * liz@example.com would be user-liz@example.com.  - The group
-     * example@googlegroups.com would be group-example@googlegroups.com.  - To
-     * refer to all members of the Google Apps for Business domain example.com,
-     * the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -252,8 +238,7 @@ export namespace storage_v1beta2 {
      */
     id?: string;
     /**
-     * The kind of item this is. For bucket access control entries, this is
-     * always storage#bucketAccessControl.
+     * The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
      */
     kind?: string;
     /**
@@ -274,8 +259,7 @@ export namespace storage_v1beta2 {
      */
     items?: Schema$BucketAccessControl[];
     /**
-     * The kind of item this is. For lists of bucket access control entries,
-     * this is always storage#bucketAccessControls.
+     * The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
      */
     kind?: string;
   }
@@ -288,13 +272,11 @@ export namespace storage_v1beta2 {
      */
     items?: Schema$Bucket[];
     /**
-     * The kind of item this is. For lists of buckets, this is always
-     * storage#buckets.
+     * The kind of item this is. For lists of buckets, this is always storage#buckets.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
   }
@@ -307,8 +289,7 @@ export namespace storage_v1beta2 {
      */
     address?: string;
     /**
-     * Date and time of notification channel expiration, expressed as a Unix
-     * timestamp, in milliseconds. Optional.
+     * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
     expiration?: string;
     /**
@@ -316,8 +297,7 @@ export namespace storage_v1beta2 {
      */
     id?: string;
     /**
-     * Identifies this as a notification channel used to watch for changes to a
-     * resource. Value: the fixed string &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
      */
     kind?: string;
     /**
@@ -329,8 +309,7 @@ export namespace storage_v1beta2 {
      */
     payload?: boolean;
     /**
-     * An opaque ID that identifies the resource being watched on this channel.
-     * Stable across different API versions.
+     * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
     resourceId?: string;
     /**
@@ -338,8 +317,7 @@ export namespace storage_v1beta2 {
      */
     resourceUri?: string;
     /**
-     * An arbitrary string delivered to the target address with each
-     * notification delivered over this channel. Optional.
+     * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
     token?: string;
     /**
@@ -360,8 +338,7 @@ export namespace storage_v1beta2 {
      */
     kind?: string;
     /**
-     * The list of source objects that will be concatenated into a single
-     * object.
+     * The list of source objects that will be concatenated into a single object.
      */
     sourceObjects?: Array<{
       generation?: string;
@@ -386,8 +363,7 @@ export namespace storage_v1beta2 {
      */
     cacheControl?: string;
     /**
-     * Number of underlying components that make up this object. Components are
-     * accumulated by compose operations and are limited to a count of 32.
+     * Number of underlying components that make up this object. Components are accumulated by compose operations and are limited to a count of 32.
      */
     componentCount?: number;
     /**
@@ -407,8 +383,7 @@ export namespace storage_v1beta2 {
      */
     contentType?: string;
     /**
-     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using
-     * base64.
+     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64.
      */
     crc32c?: string;
     /**
@@ -440,9 +415,7 @@ export namespace storage_v1beta2 {
      */
     metadata?: {[key: string]: string};
     /**
-     * The generation of the metadata for this object at this generation. Used
-     * for metadata versioning. Has no meaning outside of the context of this
-     * generation.
+     * The generation of the metadata for this object at this generation. Used for metadata versioning. Has no meaning outside of the context of this generation.
      */
     metageneration?: string;
     /**
@@ -466,8 +439,7 @@ export namespace storage_v1beta2 {
      */
     storageClass?: string;
     /**
-     * Deletion time of the object in RFC 3339 format. Will be returned if and
-     * only if this version of the object has been deleted.
+     * Deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
      */
     timeDeleted?: string;
     /**
@@ -492,13 +464,7 @@ export namespace storage_v1beta2 {
      */
     email?: string;
     /**
-     * The entity holding the permission, in one of the following forms:  -
-     * user-userId  - user-email  - group-groupId  - group-email  -
-     * domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user
-     * liz@example.com would be user-liz@example.com.  - The group
-     * example@googlegroups.com would be group-example@googlegroups.com.  - To
-     * refer to all members of the Google Apps for Business domain example.com,
-     * the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string;
     /**
@@ -518,8 +484,7 @@ export namespace storage_v1beta2 {
      */
     id?: string;
     /**
-     * The kind of item this is. For object access control entries, this is
-     * always storage#objectAccessControl.
+     * The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
      */
     kind?: string;
     /**
@@ -544,8 +509,7 @@ export namespace storage_v1beta2 {
      */
     items?: any[];
     /**
-     * The kind of item this is. For lists of object access control entries,
-     * this is always storage#objectAccessControls.
+     * The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
      */
     kind?: string;
   }
@@ -558,18 +522,15 @@ export namespace storage_v1beta2 {
      */
     items?: Schema$Object[];
     /**
-     * The kind of item this is. For lists of objects, this is always
-     * storage#objects.
+     * The kind of item this is. For lists of objects, this is always storage#objects.
      */
     kind?: string;
     /**
-     * The continuation token, used to page through large result sets. Provide
-     * this value in a subsequent request to return the next page of results.
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
     /**
-     * The list of prefixes of objects matching-but-not-listed up to and
-     * including the requested delimiter.
+     * The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
      */
     prefixes?: string[];
   }
@@ -582,8 +543,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.bucketAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the
-     * specified bucket.
+     * @desc Permanently deletes the ACL entry for the specified entity on the specified bucket.
      * @alias storage.bucketAccessControls.delete
      * @memberOf! ()
      *
@@ -656,8 +616,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.bucketAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * bucket.
+     * @desc Returns the ACL entry for the specified entity on the specified bucket.
      * @alias storage.bucketAccessControls.get
      * @memberOf! ()
      *
@@ -883,8 +842,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.bucketAccessControls.patch
-     * @desc Updates an ACL entry on the specified bucket. This method supports
-     * patch semantics.
+     * @desc Updates an ACL entry on the specified bucket. This method supports patch semantics.
      * @alias storage.bucketAccessControls.patch
      * @memberOf! ()
      *
@@ -1047,8 +1005,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
@@ -1064,8 +1021,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
@@ -1110,8 +1066,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -1132,8 +1087,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -1599,13 +1553,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
   }
@@ -1620,13 +1572,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -1645,9 +1595,7 @@ export namespace storage_v1beta2 {
      */
     project?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the bucket
-     * resource specifies acl or defaultObjectAcl properties, when it defaults
-     * to full.
+     * Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      */
     projection?: string;
 
@@ -1667,8 +1615,7 @@ export namespace storage_v1beta2 {
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -1691,13 +1638,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -1721,13 +1666,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration matches the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the return of the bucket metadata conditional on whether the
-     * bucket's current metageneration does not match the given value.
+     * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -1839,8 +1782,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.defaultObjectAccessControls.delete
-     * @desc Permanently deletes the default object ACL entry for the specified
-     * entity on the specified bucket.
+     * @desc Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
      * @alias storage.defaultObjectAccessControls.delete
      * @memberOf! ()
      *
@@ -1912,8 +1854,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.defaultObjectAccessControls.get
-     * @desc Returns the default object ACL entry for the specified entity on
-     * the specified bucket.
+     * @desc Returns the default object ACL entry for the specified entity on the specified bucket.
      * @alias storage.defaultObjectAccessControls.get
      * @memberOf! ()
      *
@@ -2138,8 +2079,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.defaultObjectAccessControls.patch
-     * @desc Updates a default object ACL entry on the specified bucket. This
-     * method supports patch semantics.
+     * @desc Updates a default object ACL entry on the specified bucket. This method supports patch semantics.
      * @alias storage.defaultObjectAccessControls.patch
      * @memberOf! ()
      *
@@ -2300,8 +2240,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
@@ -2317,8 +2256,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
   }
@@ -2351,13 +2289,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * If present, only return default ACL listing if the bucket's current
-     * metageneration matches this value.
+     * If present, only return default ACL listing if the bucket's current metageneration matches this value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * If present, only return default ACL listing if the bucket's current
-     * metageneration does not match the given value.
+     * If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
   }
@@ -2373,8 +2309,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -2395,8 +2330,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
 
@@ -2414,8 +2348,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.objectAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the
-     * specified object.
+     * @desc Permanently deletes the ACL entry for the specified entity on the specified object.
      * @alias storage.objectAccessControls.delete
      * @memberOf! ()
      *
@@ -2489,8 +2422,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.objectAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified
-     * object.
+     * @desc Returns the ACL entry for the specified entity on the specified object.
      * @alias storage.objectAccessControls.get
      * @memberOf! ()
      *
@@ -2719,8 +2651,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.objectAccessControls.patch
-     * @desc Updates an ACL entry on the specified object. This method supports
-     * patch semantics.
+     * @desc Updates an ACL entry on the specified object. This method supports patch semantics.
      * @alias storage.objectAccessControls.patch
      * @memberOf! ()
      *
@@ -2885,13 +2816,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2911,13 +2840,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2937,8 +2864,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2963,8 +2889,7 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -2984,13 +2909,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -3015,13 +2938,11 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * The entity holding the permission. Can be user-userId, user-emailAddress,
-     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
     entity?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
@@ -3043,8 +2964,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.objects.compose
-     * @desc Concatenates a list of existing objects into a new object in the
-     * same bucket.
+     * @desc Concatenates a list of existing objects into a new object in the same bucket.
      * @alias storage.objects.compose
      * @memberOf! ()
      *
@@ -3119,8 +3039,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.objects.copy
-     * @desc Copies an object to a destination in the same location. Optionally
-     * overrides metadata.
+     * @desc Copies an object to a destination in the same location. Optionally overrides metadata.
      * @alias storage.objects.copy
      * @memberOf! ()
      *
@@ -3215,9 +3134,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.objects.delete
-     * @desc Deletes data blobs and associated metadata. Deletions are permanent
-     * if versioning is not enabled for the bucket, or if the generation
-     * parameter is used.
+     * @desc Deletes data blobs and associated metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
      * @alias storage.objects.delete
      * @memberOf! ()
      *
@@ -3534,8 +3451,7 @@ export namespace storage_v1beta2 {
 
     /**
      * storage.objects.patch
-     * @desc Updates a data blob's associated metadata. This method supports
-     * patch semantics.
+     * @desc Updates a data blob's associated metadata. This method supports patch semantics.
      * @alias storage.objects.patch
      * @memberOf! ()
      *
@@ -3777,8 +3693,7 @@ export namespace storage_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket containing the source objects. The destination object
-     * is stored in this bucket.
+     * Name of the bucket containing the source objects. The destination object is stored in this bucket.
      */
     destinationBucket?: string;
     /**
@@ -3786,13 +3701,11 @@ export namespace storage_v1beta2 {
      */
     destinationObject?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
 
@@ -3808,58 +3721,47 @@ export namespace storage_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
     destinationBucket?: string;
     /**
-     * Name of the new object. Required when the object metadata is not
-     * otherwise provided. Overrides the object metadata's name value, if any.
+     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      */
     destinationObject?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current generation matches the given value.
+     * Makes the operation conditional on whether the destination object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current generation does not match the given value.
+     * Makes the operation conditional on whether the destination object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration matches the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the destination object's
-     * current metageneration does not match the given value.
+     * Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's generation
-     * matches the given value.
+     * Makes the operation conditional on whether the source object's generation matches the given value.
      */
     ifSourceGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's generation
-     * does not match the given value.
+     * Makes the operation conditional on whether the source object's generation does not match the given value.
      */
     ifSourceGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the source object's current metageneration matches the given value.
      */
     ifSourceMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the source object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the source object's current metageneration does not match the given value.
      */
     ifSourceMetagenerationNotMatch?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
     /**
@@ -3867,8 +3769,7 @@ export namespace storage_v1beta2 {
      */
     sourceBucket?: string;
     /**
-     * If present, selects a specific revision of the source object (as opposed
-     * to the latest version, the default).
+     * If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      */
     sourceGeneration?: string;
     /**
@@ -3892,28 +3793,23 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * If present, permanently deletes a specific revision of this object (as
-     * opposed to the latest version, the default).
+     * If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3932,28 +3828,23 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's generation
-     * matches the given value.
+     * Makes the operation conditional on whether the object's generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's generation does
-     * not match the given value.
+     * Makes the operation conditional on whether the object's generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -3972,38 +3863,31 @@ export namespace storage_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object. Overrides the
-     * provided object metadata's bucket value, if any.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
      */
     bucket?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. Required when the object metadata is not otherwise
-     * provided. Overrides the object metadata's name value, if any.
+     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      */
     name?: string;
     /**
-     * Set of properties to return. Defaults to noAcl, unless the object
-     * resource specifies the acl property, when it defaults to full.
+     * Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
      */
     projection?: string;
 
@@ -4038,21 +3922,15 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * Returns results in a directory-like mode. items will contain only objects
-     * whose names, aside from the prefix, do not contain delimiter. Objects
-     * whose names, aside from the prefix, contain delimiter will have their
-     * name, truncated after the delimiter, returned in prefixes. Duplicate
-     * prefixes are omitted.
+     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
      */
     delimiter?: string;
     /**
-     * Maximum number of items plus prefixes to return. As duplicate prefixes
-     * are omitted, fewer total results may be returned than requested.
+     * Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**
@@ -4079,28 +3957,23 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -4128,28 +4001,23 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * If present, selects a specific revision of this object (as opposed to the
-     * latest version, the default).
+     * If present, selects a specific revision of this object (as opposed to the latest version, the default).
      */
     generation?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation matches the given value.
+     * Makes the operation conditional on whether the object's current generation matches the given value.
      */
     ifGenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * generation does not match the given value.
+     * Makes the operation conditional on whether the object's current generation does not match the given value.
      */
     ifGenerationNotMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration matches the given value.
+     * Makes the operation conditional on whether the object's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
     /**
-     * Makes the operation conditional on whether the object's current
-     * metageneration does not match the given value.
+     * Makes the operation conditional on whether the object's current metageneration does not match the given value.
      */
     ifMetagenerationNotMatch?: string;
     /**
@@ -4177,21 +4045,15 @@ export namespace storage_v1beta2 {
      */
     bucket?: string;
     /**
-     * Returns results in a directory-like mode. items will contain only objects
-     * whose names, aside from the prefix, do not contain delimiter. Objects
-     * whose names, aside from the prefix, contain delimiter will have their
-     * name, truncated after the delimiter, returned in prefixes. Duplicate
-     * prefixes are omitted.
+     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
      */
     delimiter?: string;
     /**
-     * Maximum number of items plus prefixes to return. As duplicate prefixes
-     * are omitted, fewer total results may be returned than requested.
+     * Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
      */
     maxResults?: number;
     /**
-     * A previously-returned page token representing part of the larger set of
-     * results to view.
+     * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
     /**

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace appstate_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace appstate_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace appstate_v1 {
     states: Resource$States;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.states = new Resource$States(this.context);
     }
@@ -114,8 +114,7 @@ export namespace appstate_v1 {
      */
     data?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string appstate#getResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string appstate#getResponse.
      */
     kind?: string;
     /**
@@ -132,8 +131,7 @@ export namespace appstate_v1 {
      */
     items?: Schema$GetResponse[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string appstate#listResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string appstate#listResponse.
      */
     kind?: string;
     /**
@@ -150,8 +148,7 @@ export namespace appstate_v1 {
      */
     data?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string appstate#updateRequest.
+     * Uniquely identifies the type of this resource. Value is always the fixed string appstate#updateRequest.
      */
     kind?: string;
   }
@@ -164,8 +161,7 @@ export namespace appstate_v1 {
      */
     currentStateVersion?: string;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed
-     * string appstate#writeResult.
+     * Uniquely identifies the type of this resource. Value is always the fixed string appstate#writeResult.
      */
     kind?: string;
     /**
@@ -182,9 +178,7 @@ export namespace appstate_v1 {
 
     /**
      * appstate.states.clear
-     * @desc Clears (sets to empty) the data for the passed key if and only if
-     * the passed version matches the currently stored version. This method
-     * results in a conflict error on version mismatch.
+     * @desc Clears (sets to empty) the data for the passed key if and only if the passed version matches the currently stored version. This method results in a conflict error on version mismatch.
      * @alias appstate.states.clear
      * @memberOf! ()
      *
@@ -258,11 +252,7 @@ export namespace appstate_v1 {
 
     /**
      * appstate.states.delete
-     * @desc Deletes a key and the data associated with it. The key is removed
-     * and no longer counts against the key quota. Note that since this method
-     * is not safe in the face of concurrent modifications, it should only be
-     * used for development and testing purposes. Invoking this method in
-     * shipping code can result in data loss and data corruption.
+     * @desc Deletes a key and the data associated with it. The key is removed and no longer counts against the key quota. Note that since this method is not safe in the face of concurrent modifications, it should only be used for development and testing purposes. Invoking this method in shipping code can result in data loss and data corruption.
      * @alias appstate.states.delete
      * @memberOf! ()
      *
@@ -333,8 +323,7 @@ export namespace appstate_v1 {
 
     /**
      * appstate.states.get
-     * @desc Retrieves the data corresponding to the passed key. If the key does
-     * not exist on the server, an HTTP 404 will be returned.
+     * @desc Retrieves the data corresponding to the passed key. If the key does not exist on the server, an HTTP 404 will be returned.
      * @alias appstate.states.get
      * @memberOf! ()
      *
@@ -480,9 +469,7 @@ export namespace appstate_v1 {
 
     /**
      * appstate.states.update
-     * @desc Update the data associated with the input key if and only if the
-     * passed version matches the currently stored version. This method is safe
-     * in the face of concurrent writes. Maximum per-key size is 128KB.
+     * @desc Update the data associated with the input key if and only if the passed version matches the currently stored version. This method is safe in the face of concurrent writes. Maximum per-key size is 128KB.
      * @alias appstate.states.update
      * @memberOf! ()
      *
@@ -563,8 +550,7 @@ export namespace appstate_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The version of the data to be cleared. Version strings are returned by
-     * the server.
+     * The version of the data to be cleared. Version strings are returned by the server.
      */
     currentDataVersion?: string;
     /**
@@ -612,10 +598,7 @@ export namespace appstate_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The version of the app state your application is attempting to update. If
-     * this does not match the current version, this method will return a
-     * conflict error. If there is no data stored on the server for this key,
-     * the update will succeed irrespective of the value of this parameter.
+     * The version of the app state your application is attempting to update. If this does not match the current version, this method will return a conflict error. If there is no data stored on the server for this key, the update will succeed irrespective of the value of this parameter.
      */
     currentStateVersion?: string;
     /**

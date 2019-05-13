@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace analytics_v2_4 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace analytics_v2_4 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -96,7 +93,10 @@ export namespace analytics_v2_4 {
     management: Resource$Management;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.data = new Resource$Data(this.context);
       this.management = new Resource$Management(this.context);
@@ -195,23 +195,19 @@ export namespace analytics_v2_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A comma-separated list of Analytics dimensions. E.g.,
-     * 'ga:browser,ga:city'.
+     * A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
      */
     dimensions?: string;
     /**
-     * End date for fetching report data. All requests should specify an end
-     * date formatted as YYYY-MM-DD.
+     * End date for fetching report data. All requests should specify an end date formatted as YYYY-MM-DD.
      */
     'end-date'?: string;
     /**
-     * A comma-separated list of dimension or metric filters to be applied to
-     * the report data.
+     * A comma-separated list of dimension or metric filters to be applied to the report data.
      */
     filters?: string;
     /**
-     * Unique table ID for retrieving report data. Table ID is of the form
-     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     * Unique table ID for retrieving report data. Table ID is of the form ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
     ids?: string;
     /**
@@ -219,9 +215,7 @@ export namespace analytics_v2_4 {
      */
     'max-results'?: number;
     /**
-     * A comma-separated list of Analytics metrics. E.g.,
-     * 'ga:sessions,ga:pageviews'. At least one metric must be specified to
-     * retrieve a valid Analytics report.
+     * A comma-separated list of Analytics metrics. E.g., 'ga:sessions,ga:pageviews'. At least one metric must be specified to retrieve a valid Analytics report.
      */
     metrics?: string;
     /**
@@ -229,18 +223,15 @@ export namespace analytics_v2_4 {
      */
     segment?: string;
     /**
-     * A comma-separated list of dimensions or metrics that determine the sort
-     * order for the report data.
+     * A comma-separated list of dimensions or metrics that determine the sort order for the report data.
      */
     sort?: string;
     /**
-     * Start date for fetching report data. All requests should specify a start
-     * date formatted as YYYY-MM-DD.
+     * Start date for fetching report data. All requests should specify a start date formatted as YYYY-MM-DD.
      */
     'start-date'?: string;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -354,8 +345,7 @@ export namespace analytics_v2_4 {
      */
     'max-results'?: number;
     /**
-     * An index of the first account to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -451,8 +441,7 @@ export namespace analytics_v2_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Account ID to retrieve goals for. Can either be a specific account ID or
-     * '~all', which refers to all the accounts that user has access to.
+     * Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
     accountId?: string;
     /**
@@ -460,20 +449,15 @@ export namespace analytics_v2_4 {
      */
     'max-results'?: number;
     /**
-     * View (Profile) ID to retrieve goals for. Can either be a specific view
-     * (profile) ID or '~all', which refers to all the views (profiles) that
-     * user has access to.
+     * View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
      */
     profileId?: string;
     /**
-     * An index of the first goal to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property ID to retrieve goals for. Can either be a specific web
-     * property ID or '~all', which refers to all the web properties that user
-     * has access to.
+     * Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
      */
     webPropertyId?: string;
   }
@@ -568,9 +552,7 @@ export namespace analytics_v2_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Account ID for the views (profiles) to retrieve. Can either be a specific
-     * account ID or '~all', which refers to all the accounts to which the user
-     * has access.
+     * Account ID for the views (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
      */
     accountId?: string;
     /**
@@ -578,14 +560,11 @@ export namespace analytics_v2_4 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property ID for the views (profiles) to retrieve. Can either be a
-     * specific web property ID or '~all', which refers to all the web
-     * properties to which the user has access.
+     * Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
      */
     webPropertyId?: string;
   }
@@ -682,8 +661,7 @@ export namespace analytics_v2_4 {
      */
     'max-results'?: number;
     /**
-     * An index of the first advanced segment to retrieve. Use this parameter as
-     * a pagination mechanism along with the max-results parameter.
+     * An index of the first advanced segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }
@@ -777,9 +755,7 @@ export namespace analytics_v2_4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Account ID to retrieve web properties for. Can either be a specific
-     * account ID or '~all', which refers to all the accounts that user has
-     * access to.
+     * Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
     accountId?: string;
     /**
@@ -787,8 +763,7 @@ export namespace analytics_v2_4 {
      */
     'max-results'?: number;
     /**
-     * An index of the first entity to retrieve. Use this parameter as a
-     * pagination mechanism along with the max-results parameter.
+     * An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
   }

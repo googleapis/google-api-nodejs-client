@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace dialogflow_v2beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace dialogflow_v2beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace dialogflow_v2beta1 {
   /**
    * Dialogflow API
    *
-   * Builds conversational interfaces (for example, chatbots, and voice-powered
-   * apps and devices).
+   * Builds conversational interfaces (for example, chatbots, and voice-powered apps and devices).
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,7 +108,10 @@ export namespace dialogflow_v2beta1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -142,33 +140,19 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Agent {
     /**
-     * Optional. The URI of the agent&#39;s avatar. Avatars are used throughout
-     * the Dialogflow console and in the self-hosted [Web
-     * Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo)
-     * integration.
+     * Optional. The URI of the agent&#39;s avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo) integration.
      */
     avatarUri?: string;
     /**
-     * Optional. To filter out false positive results and still get variety in
-     * matched natural language inputs for your agent, you can tune the machine
-     * learning classification threshold. If the returned score value is less
-     * than the threshold value, then a fallback intent will be triggered or, if
-     * there are no fallback intents defined, no intent will be triggered. The
-     * score values range from 0.0 (completely uncertain) to 1.0 (completely
-     * certain). If set to 0.0, the default of 0.3 is used.
+     * Optional. To filter out false positive results and still get variety in matched natural language inputs for your agent, you can tune the machine learning classification threshold. If the returned score value is less than the threshold value, then a fallback intent will be triggered or, if there are no fallback intents defined, no intent will be triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used.
      */
     classificationThreshold?: number;
     /**
-     * Required. The default language of the agent as a language tag. See
-     * [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * for a list of the currently supported language codes. This field cannot
-     * be set by the `Update` method.
+     * Required. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the `Update` method.
      */
     defaultLanguageCode?: string;
     /**
-     * Optional. The description of this agent. The maximum length is 500
-     * characters. If exceeded, the request is rejected.
+     * Optional. The description of this agent. The maximum length is 500 characters. If exceeded, the request is rejected.
      */
     description?: string;
     /**
@@ -184,19 +168,15 @@ export namespace dialogflow_v2beta1 {
      */
     matchMode?: string;
     /**
-     * Required. The project of this agent. Format: `projects/&lt;Project
-     * ID&gt;`.
+     * Required. The project of this agent. Format: `projects/&lt;Project ID&gt;`.
      */
     parent?: string;
     /**
-     * Optional. The list of all languages supported by this agent (except for
-     * the `default_language_code`).
+     * Optional. The list of all languages supported by this agent (except for the `default_language_code`).
      */
     supportedLanguageCodes?: string[];
     /**
-     * Required. The time zone of this agent from the [time zone
-     * database](https://www.iana.org/time-zones), e.g., America/New_York,
-     * Europe/Paris.
+     * Required. The time zone of this agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
     timeZone?: string;
   }
@@ -209,11 +189,7 @@ export namespace dialogflow_v2beta1 {
      */
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
-     * Optional. The language of entity synonyms defined in `entities`. If not
-     * specified, the agent&#39;s default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
   }
@@ -222,17 +198,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest {
     /**
-     * Required. The canonical `values` of the entities to delete. Note that
-     * these are not fully-qualified names, i.e. they don&#39;t start with
-     * `projects/&lt;Project ID&gt;`.
+     * Required. The canonical `values` of the entities to delete. Note that these are not fully-qualified names, i.e. they don&#39;t start with `projects/&lt;Project ID&gt;`.
      */
     entityValues?: string[];
     /**
-     * Optional. The language of entity synonyms defined in `entities`. If not
-     * specified, the agent&#39;s default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
   }
@@ -241,8 +211,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest {
     /**
-     * Required. The names entity types to delete. All names must point to the
-     * same agent as `parent`.
+     * Required. The names entity types to delete. All names must point to the same agent as `parent`.
      */
     entityTypeNames?: string[];
   }
@@ -251,8 +220,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest {
     /**
-     * Required. The collection of intents to delete. Only intent `name` must be
-     * filled in.
+     * Required. The collection of intents to delete. Only intent `name` must be filled in.
      */
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
   }
@@ -265,11 +233,7 @@ export namespace dialogflow_v2beta1 {
      */
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
-     * Optional. The language of entity synonyms defined in `entities`. If not
-     * specified, the agent&#39;s default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of entity synonyms defined in `entities`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -286,18 +250,11 @@ export namespace dialogflow_v2beta1 {
      */
     entityTypeBatchInline?: Schema$GoogleCloudDialogflowV2beta1EntityTypeBatch;
     /**
-     * The URI to a Google Cloud Storage file containing entity types to update
-     * or create. The file format can either be a serialized proto (of
-     * EntityBatch type) or a JSON object. Note: The URI must start with
-     * &quot;gs://&quot;.
+     * The URI to a Google Cloud Storage file containing entity types to update or create. The file format can either be a serialized proto (of EntityBatch type) or a JSON object. Note: The URI must start with &quot;gs://&quot;.
      */
     entityTypeBatchUri?: string;
     /**
-     * Optional. The language of entity synonyms defined in `entity_types`. If
-     * not specified, the agent&#39;s default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of entity synonyms defined in `entity_types`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -323,9 +280,7 @@ export namespace dialogflow_v2beta1 {
      */
     intentBatchInline?: Schema$GoogleCloudDialogflowV2beta1IntentBatch;
     /**
-     * The URI to a Google Cloud Storage file containing intents to update or
-     * create. The file format can either be a serialized proto (of IntentBatch
-     * type) or JSON object. Note: The URI must start with &quot;gs://&quot;.
+     * The URI to a Google Cloud Storage file containing intents to update or create. The file format can either be a serialized proto (of IntentBatch type) or JSON object. Note: The URI must start with &quot;gs://&quot;.
      */
     intentBatchUri?: string;
     /**
@@ -333,12 +288,7 @@ export namespace dialogflow_v2beta1 {
      */
     intentView?: string;
     /**
-     * Optional. The language of training phrases, parameters and rich messages
-     * defined in `intents`. If not specified, the agent&#39;s default language
-     * is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of training phrases, parameters and rich messages defined in `intents`. If not specified, the agent&#39;s default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
@@ -360,30 +310,15 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Context {
     /**
-     * Optional. The number of conversational query requests after which the
-     * context expires. If set to `0` (the default) the context expires
-     * immediately. Contexts expire automatically after 20 minutes if there are
-     * no matching queries.
+     * Optional. The number of conversational query requests after which the context expires. If set to `0` (the default) the context expires immediately. Contexts expire automatically after 20 minutes if there are no matching queries.
      */
     lifespanCount?: number;
     /**
-     * Required. The unique identifier of the context. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project
-     * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User
-     * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.  The
-     * `Context ID` is always converted to lowercase, may only contain
-     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If
-     * `Environment ID` is not specified, we assume default &#39;draft&#39;
-     * environment. If `User ID` is not specified, we assume default &#39;-&#39;
-     * user.
+     * Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user.
      */
     name?: string;
     /**
-     * Optional. The collection of parameters associated with this context.
-     * Refer to [this
-     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
-     * for syntax.
+     * Optional. The collection of parameters associated with this context. Refer to [this doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters) for syntax.
      */
     parameters?: {[key: string]: any};
   }
@@ -392,22 +327,15 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1DetectIntentRequest {
     /**
-     * Optional. The natural language speech audio to be processed. This field
-     * should be populated iff `query_input` is set to an input audio config. A
-     * single request can contain up to 1 minute of speech audio data.
+     * Optional. The natural language speech audio to be processed. This field should be populated iff `query_input` is set to an input audio config. A single request can contain up to 1 minute of speech audio data.
      */
     inputAudio?: string;
     /**
-     * Optional. Instructs the speech synthesizer how to generate the output
-     * audio. If this field is not set and agent-level speech synthesizer is not
-     * configured, no output audio is generated.
+     * Optional. Instructs the speech synthesizer how to generate the output audio. If this field is not set and agent-level speech synthesizer is not configured, no output audio is generated.
      */
     outputAudioConfig?: Schema$GoogleCloudDialogflowV2beta1OutputAudioConfig;
     /**
-     * Required. The input specification. It can be set to:  1.  an audio config
-     * which instructs the speech recognizer how to process the speech audio, 2.
-     * a conversational query in the form of text, or  3.  an event that
-     * specifies which intent to trigger.
+     * Required. The input specification. It can be set to:  1.  an audio config     which instructs the speech recognizer how to process the speech audio,  2.  a conversational query in the form of text, or  3.  an event that specifies which intent to trigger.
      */
     queryInput?: Schema$GoogleCloudDialogflowV2beta1QueryInput;
     /**
@@ -420,39 +348,23 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse {
     /**
-     * If Knowledge Connectors are enabled, there could be more than one result
-     * returned for a given query or event, and this field will contain all
-     * results except for the top one, which is captured in query_result. The
-     * alternative results are ordered by decreasing
-     * `QueryResult.intent_detection_confidence`. If Knowledge Connectors are
-     * disabled, this field will be empty until multiple responses for regular
-     * intents are supported, at which point those additional results will be
-     * surfaced here.
+     * If Knowledge Connectors are enabled, there could be more than one result returned for a given query or event, and this field will contain all results except for the top one, which is captured in query_result. The alternative results are ordered by decreasing `QueryResult.intent_detection_confidence`. If Knowledge Connectors are disabled, this field will be empty until multiple responses for regular intents are supported, at which point those additional results will be surfaced here.
      */
     alternativeQueryResults?: Schema$GoogleCloudDialogflowV2beta1QueryResult[];
     /**
-     * The audio data bytes encoded as specified in the request. Note: The
-     * output audio is generated based on the values of default platform text
-     * responses found in the `query_result.fulfillment_messages` field. If
-     * multiple default text responses exist, they will be concatenated when
-     * generating audio. If no default platform text responses exist, the
-     * generated audio content will be empty.
+     * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.fulfillment_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty.
      */
     outputAudio?: string;
     /**
-     * Instructs the speech synthesizer how to generate the output audio. This
-     * field is populated from the agent-level speech synthesizer configuration,
-     * if enabled.
+     * Instructs the speech synthesizer how to generate the output audio. This field is populated from the agent-level speech synthesizer configuration, if enabled.
      */
     outputAudioConfig?: Schema$GoogleCloudDialogflowV2beta1OutputAudioConfig;
     /**
-     * The selected results of the conversational query or event processing. See
-     * `alternative_query_results` for additional potential results.
+     * The selected results of the conversational query or event processing. See `alternative_query_results` for additional potential results.
      */
     queryResult?: Schema$GoogleCloudDialogflowV2beta1QueryResult;
     /**
-     * The unique identifier of the response. It can be used to locate a
-     * response in the training example set or for reporting issues.
+     * The unique identifier of the response. It can be used to locate a response in the training example set or for reporting issues.
      */
     responseId?: string;
     /**
@@ -461,30 +373,19 @@ export namespace dialogflow_v2beta1 {
     webhookStatus?: Schema$GoogleRpcStatus;
   }
   /**
-   * A document resource.  Note: resource
-   * `projects.agent.knowledgeBases.documents` is deprecated, please use
-   * `projects.knowledgeBases.documents` instead.
+   * A document resource.  Note: resource `projects.agent.knowledgeBases.documents` is deprecated, please use `projects.knowledgeBases.documents` instead.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Document {
     /**
-     * The raw content of the document. This field is only permitted for
-     * EXTRACTIVE_QA and FAQ knowledge types. Note: This field is in the process
-     * of being deprecated, please use raw_content instead.
+     * The raw content of the document. This field is only permitted for EXTRACTIVE_QA and FAQ knowledge types. Note: This field is in the process of being deprecated, please use raw_content instead.
      */
     content?: string;
     /**
-     * The URI where the file content is located.  For documents stored in
-     * Google Cloud Storage, these URIs must have the form
-     * `gs://&lt;bucket-name&gt;/&lt;object-name&gt;`.  NOTE: External URLs must
-     * correspond to public webpages, i.e., they must be indexed by Google
-     * Search. In particular, URLs for showing documents in Google Cloud Storage
-     * (i.e. the URL in your browser) are not supported. Instead use the `gs://`
-     * format URI described above.
+     * The URI where the file content is located.  For documents stored in Google Cloud Storage, these URIs must have the form `gs://&lt;bucket-name&gt;/&lt;object-name&gt;`.  NOTE: External URLs must correspond to public webpages, i.e., they must be indexed by Google Search. In particular, URLs for showing documents in Google Cloud Storage (i.e. the URL in your browser) are not supported. Instead use the `gs://` format URI described above.
      */
     contentUri?: string;
     /**
-     * Required. The display name of the document. The name must be 1024 bytes
-     * or less; otherwise, the creation request fails.
+     * Required. The display name of the document. The name must be 1024 bytes or less; otherwise, the creation request fails.
      */
     displayName?: string;
     /**
@@ -496,26 +397,20 @@ export namespace dialogflow_v2beta1 {
      */
     mimeType?: string;
     /**
-     * The document resource name. The name must be empty when creating a
-     * document. Format: `projects/&lt;Project
-     * ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;/documents/&lt;Document
-     * ID&gt;`.
+     * The document resource name. The name must be empty when creating a document. Format: `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;/documents/&lt;Document ID&gt;`.
      */
     name?: string;
     /**
-     * The raw content of the document. This field is only permitted for
-     * EXTRACTIVE_QA and FAQ knowledge types.
+     * The raw content of the document. This field is only permitted for EXTRACTIVE_QA and FAQ knowledge types.
      */
     rawContent?: string;
   }
   /**
-   * Represents an entity type. Entity types serve as a tool for extracting
-   * parameter values from natural language queries.
+   * Represents an entity type. Entity types serve as a tool for extracting parameter values from natural language queries.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EntityType {
     /**
-     * Optional. Indicates whether the entity type can be automatically
-     * expanded.
+     * Optional. Indicates whether the entity type can be automatically expanded.
      */
     autoExpansionMode?: string;
     /**
@@ -523,8 +418,7 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. The collection of entity entries associated with the entity
-     * type.
+     * Optional. The collection of entity entries associated with the entity type.
      */
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
@@ -532,10 +426,7 @@ export namespace dialogflow_v2beta1 {
      */
     kind?: string;
     /**
-     * The unique identifier of the entity type. Required for
-     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
-     * methods. Format: `projects/&lt;Project
-     * ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
+     * The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
      */
     name?: string;
   }
@@ -553,36 +444,20 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity {
     /**
-     * Required. A collection of value synonyms. For example, if the entity type
-     * is *vegetable*, and `value` is *scallions*, a synonym could be *green
-     * onions*.  For `KIND_LIST` entity types:  *   This collection must contain
-     * exactly one synonym equal to `value`.
+     * Required. A collection of value synonyms. For example, if the entity type is *vegetable*, and `value` is *scallions*, a synonym could be *green onions*.  For `KIND_LIST` entity types:  *   This collection must contain exactly one synonym equal to `value`.
      */
     synonyms?: string[];
     /**
-     * Required. The primary value associated with this entity entry. For
-     * example, if the entity type is *vegetable*, the value could be
-     * *scallions*.  For `KIND_MAP` entity types:  *   A canonical value to be
-     * used in place of synonyms.  For `KIND_LIST` entity types:  *   A string
-     * that can contain references to other entity types (with or     without
-     * aliases).
+     * Required. The primary value associated with this entity entry. For example, if the entity type is *vegetable*, the value could be *scallions*.  For `KIND_MAP` entity types:  *   A canonical value to be used in place of synonyms.  For `KIND_LIST` entity types:  *   A string that can contain references to other entity types (with or     without aliases).
      */
     value?: string;
   }
   /**
-   * Events allow for matching intents by event name instead of the natural
-   * language input. For instance, input `&lt;event: { name:
-   * &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;` can
-   * trigger a personalized welcome response. The parameter `name` may be used
-   * by the agent in the response: `&quot;Hello #welcome_event.name! What can I
-   * do for you today?&quot;`.
+   * Events allow for matching intents by event name instead of the natural language input. For instance, input `&lt;event: { name: &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `&quot;Hello #welcome_event.name! What can I do for you today?&quot;`.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EventInput {
     /**
-     * Required. The language of this query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * for a list of the currently supported language codes. Note that queries
-     * in the same session do not necessarily need to specify the same language.
+     * Required. The language of this query. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -599,11 +474,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ExportAgentRequest {
     /**
-     * Optional. The [Google Cloud
-     * Storage](https://cloud.google.com/storage/docs/) URI to export the agent
-     * to. The format of this URI must be
-     * `gs://&lt;bucket-name&gt;/&lt;object-name&gt;`. If left unspecified, the
-     * serialized agent is returned inline.
+     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the agent to. The format of this URI must be `gs://&lt;bucket-name&gt;/&lt;object-name&gt;`. If left unspecified, the serialized agent is returned inline.
      */
     agentUri?: string;
   }
@@ -612,21 +483,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ExportAgentResponse {
     /**
-     * The exported agent.  Example for how to export an agent to a zip file via
-     * a command line: &lt;pre&gt;curl \
-     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\
-     * -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * application-default   print-access-token) \   -H &#39;Accept:
-     * application/json&#39; \   -H &#39;Content-Type: application/json&#39; \
-     * --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed
-     * -e &#39;s/.*&quot;agentContent&quot;:
-     * &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt;
-     * &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
+     * The exported agent.  Example for how to export an agent to a zip file via a command line: &lt;pre&gt;curl \   &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\   -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth application-default   print-access-token) \   -H &#39;Accept: application/json&#39; \   -H &#39;Content-Type: application/json&#39; \   --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed -e &#39;s/.*&quot;agentContent&quot;: &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt; &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
-     * The URI to a file containing the exported agent. This field is populated
-     * only if `agent_uri` is specified in `ExportAgentRequest`.
+     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in `ExportAgentRequest`.
      */
     agentUri?: string;
   }
@@ -635,25 +496,16 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ImportAgentRequest {
     /**
-     * The agent to import.  Example for how to import an agent via the command
-     * line: &lt;pre&gt;curl \
-     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:import\
-     * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * application-default    print-access-token) \    -H &#39;Accept:
-     * application/json&#39; \    -H &#39;Content-Type: application/json&#39; \
-     * --compressed \    --data-binary &quot;{       &#39;agentContent&#39;:
-     * &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;
-     * }&quot;&lt;/pre&gt;
+     * The agent to import.  Example for how to import an agent via the command line: &lt;pre&gt;curl \   &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:import\    -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth application-default    print-access-token) \    -H &#39;Accept: application/json&#39; \    -H &#39;Content-Type: application/json&#39; \    --compressed \    --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;    }&quot;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
-     * The URI to a Google Cloud Storage file containing the agent to import.
-     * Note: The URI must start with &quot;gs://&quot;.
+     * The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with &quot;gs://&quot;.
      */
     agentUri?: string;
   }
   /**
-   * Instructs the speech recognizer how to process the audio content.
+   * Instructs the speech recognizer on how to process the audio content.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1InputAudioConfig {
     /**
@@ -661,54 +513,36 @@ export namespace dialogflow_v2beta1 {
      */
     audioEncoding?: string;
     /**
-     * Required. The language of the supplied audio. Dialogflow does not do
-     * translations. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * for a list of the currently supported language codes. Note that queries
-     * in the same session do not necessarily need to specify the same language.
+     * Required. The language of the supplied audio. Dialogflow does not do translations. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
-     * Optional. Which Speech model to select for the given request. Select the
-     * model best suited to your domain to get best results. If a model is not
-     * explicitly specified, then we auto-select a model based on the parameters
-     * in the InputAudioConfig. If enhanced speech model is enabled for the
-     * agent and an enhanced version of the specified model for the language
-     * does not exist, then the speech is recognized using the standard version
-     * of the specified model. Refer to [Cloud Speech API
-     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
-     * for more details.
+     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.
      */
     model?: string;
     /**
-     * Optional. The collection of phrase hints which are used to boost accuracy
-     * of speech recognition. Refer to [Cloud Speech API
-     * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
-     * for more details.
+     * Optional. Which variant of the Speech model to use.
+     */
+    modelVariant?: string;
+    /**
+     * Optional. The collection of phrase hints which are used to boost accuracy of speech recognition. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
      */
     phraseHints?: string[];
     /**
-     * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to [Cloud Speech API
-     * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
-     * more details.
+     * Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
     sampleRateHertz?: number;
   }
   /**
-   * Represents an intent. Intents convert a number of user expressions or
-   * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics.
+   * Represents an intent. Intents convert a number of user expressions or patterns into an action. An action is an extraction of a user command or sentence semantics.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
     /**
-     * Optional. The name of the action associated with the intent. Note: The
-     * action name must not contain whitespaces.
+     * Optional. The name of the action associated with the intent. Note: The action name must not contain whitespaces.
      */
     action?: string;
     /**
-     * Optional. The list of platforms for which the first response will be
-     * taken from among the messages assigned to the DEFAULT_PLATFORM.
+     * Optional. The list of platforms for which the first response will be taken from among the messages assigned to the DEFAULT_PLATFORM.
      */
     defaultResponsePlatforms?: string[];
     /**
@@ -716,27 +550,19 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. Indicates that this intent ends an interaction. Some
-     * integrations (e.g., Actions on Google or Dialogflow phone gateway) use
-     * this information to close interaction with an end user. Default is false.
+     * Optional. Indicates that this intent ends an interaction. Some integrations (e.g., Actions on Google or Dialogflow phone gateway) use this information to close interaction with an end user. Default is false.
      */
     endInteraction?: boolean;
     /**
-     * Optional. The collection of event names that trigger the intent. If the
-     * collection of input contexts is not empty, all of the contexts must be
-     * present in the active user session for an event to trigger this intent.
+     * Optional. The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the contexts must be present in the active user session for an event to trigger this intent.
      */
     events?: string[];
     /**
-     * Read-only. Information about all followup intents that have this intent
-     * as a direct or indirect parent. We populate this field only in the
-     * output.
+     * Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
      */
     followupIntentInfo?: Schema$GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[];
     /**
-     * Optional. The list of context names required for this intent to be
-     * triggered. Format: `projects/&lt;Project
-     * ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
+     * Optional. The list of context names required for this intent to be triggered. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      */
     inputContextNames?: string[];
     /**
@@ -744,41 +570,23 @@ export namespace dialogflow_v2beta1 {
      */
     isFallback?: boolean;
     /**
-     * Optional. The collection of rich messages corresponding to the `Response`
-     * field in the Dialogflow console.
+     * Optional. The collection of rich messages corresponding to the `Response` field in the Dialogflow console.
      */
     messages?: Schema$GoogleCloudDialogflowV2beta1IntentMessage[];
     /**
-     * Optional. Indicates whether Machine Learning is disabled for the intent.
-     * Note: If `ml_disabled` setting is set to true, then this intent is not
-     * taken into account during inference in `ML ONLY` match mode. Also,
-     * auto-markup in the UI is turned off.
+     * Optional. Indicates whether Machine Learning is disabled for the intent. Note: If `ml_disabled` setting is set to true, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off.
      */
     mlDisabled?: boolean;
     /**
-     * Optional. Indicates whether Machine Learning is enabled for the intent.
-     * Note: If `ml_enabled` setting is set to false, then this intent is not
-     * taken into account during inference in `ML ONLY` match mode. Also,
-     * auto-markup in the UI is turned off. DEPRECATED! Please use `ml_disabled`
-     * field instead. NOTE: If both `ml_enabled` and `ml_disabled` are either
-     * not set or false, then the default value is determined as follows: -
-     * Before April 15th, 2018 the default is:   ml_enabled = false /
-     * ml_disabled = true. - After April 15th, 2018 the default is:   ml_enabled
-     * = true / ml_disabled = false.
+     * Optional. Indicates whether Machine Learning is enabled for the intent. Note: If `ml_enabled` setting is set to false, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off. DEPRECATED! Please use `ml_disabled` field instead. NOTE: If both `ml_enabled` and `ml_disabled` are either not set or false, then the default value is determined as follows: - Before April 15th, 2018 the default is:   ml_enabled = false / ml_disabled = true. - After April 15th, 2018 the default is:   ml_enabled = true / ml_disabled = false.
      */
     mlEnabled?: boolean;
     /**
-     * The unique identifier of this intent. Required for Intents.UpdateIntent
-     * and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project
-     * ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string;
     /**
-     * Optional. The collection of contexts that are activated when the intent
-     * is matched. Context messages in this collection should not set the
-     * parameters field. Setting the `lifespan_count` to 0 will reset the
-     * context when the intent is matched. Format: `projects/&lt;Project
-     * ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
+     * Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the `lifespan_count` to 0 will reset the context when the intent is matched. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
@@ -786,30 +594,19 @@ export namespace dialogflow_v2beta1 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2beta1IntentParameter[];
     /**
-     * Read-only after creation. The unique identifier of the parent intent in
-     * the chain of followup intents. You can set this field when creating an
-     * intent, for example with CreateIntent or BatchUpdateIntents, in order to
-     * make this intent a followup intent.  It identifies the parent followup
-     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
-     * ID&gt;`.
+     * Read-only after creation. The unique identifier of the parent intent in the chain of followup intents. You can set this field when creating an intent, for example with CreateIntent or BatchUpdateIntents, in order to make this intent a followup intent.  It identifies the parent followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
     /**
-     * Optional. The priority of this intent. Higher numbers represent higher
-     * priorities. If this is zero or unspecified, we use the default priority
-     * 500000.  Negative numbers mean that the intent is disabled.
+     * Optional. The priority of this intent. Higher numbers represent higher priorities. If this is zero or unspecified, we use the default priority 500000.  Negative numbers mean that the intent is disabled.
      */
     priority?: number;
     /**
-     * Optional. Indicates whether to delete all contexts in the current session
-     * when this intent is matched.
+     * Optional. Indicates whether to delete all contexts in the current session when this intent is matched.
      */
     resetContexts?: boolean;
     /**
-     * Read-only. The unique identifier of the root intent in the chain of
-     * followup intents. It identifies the correct followup intents chain for
-     * this intent. We populate this field only in the output.  Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output.  Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string;
     /**
@@ -835,13 +632,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo {
     /**
-     * The unique identifier of the followup intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of the followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     followupIntentName?: string;
     /**
-     * The unique identifier of the followup intent&#39;s parent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of the followup intent&#39;s parent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
   }
@@ -874,9 +669,7 @@ export namespace dialogflow_v2beta1 {
      */
     listSelect?: Schema$GoogleCloudDialogflowV2beta1IntentMessageListSelect;
     /**
-     * Returns a response containing a custom, platform-specific payload. See
-     * the Intent.Message.Platform type for a description of the structure that
-     * may be required for your platform.
+     * Returns a response containing a custom, platform-specific payload. See the Intent.Message.Platform type for a description of the structure that may be required for your platform.
      */
     payload?: {[key: string]: any};
     /**
@@ -1028,8 +821,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageImage {
     /**
-     * A text description of the image to be used for accessibility, e.g.,
-     * screen readers. Required if image_uri is set for CarouselSelect.
+     * A text description of the image to be used for accessibility, e.g., screen readers. Required if image_uri is set for CarouselSelect.
      */
     accessibilityText?: string;
     /**
@@ -1038,8 +830,7 @@ export namespace dialogflow_v2beta1 {
     imageUri?: string;
   }
   /**
-   * The suggestion chip message that allows the user to jump out to the app or
-   * website associated with this agent.
+   * The suggestion chip message that allows the user to jump out to the app or website associated with this agent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageLinkOutSuggestion {
     /**
@@ -1047,8 +838,7 @@ export namespace dialogflow_v2beta1 {
      */
     destinationName?: string;
     /**
-     * Required. The URI of the app or site to open when the user taps the
-     * suggestion chip.
+     * Required. The URI of the app or site to open when the user taps the suggestion chip.
      */
     uri?: string;
   }
@@ -1104,13 +894,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo {
     /**
-     * Required. A unique key that will be sent back to the agent if this
-     * response is given.
+     * Required. A unique key that will be sent back to the agent if this response is given.
      */
     key?: string;
     /**
-     * Optional. A list of synonyms that can also be used to trigger this item
-     * in dialog.
+     * Optional. A list of synonyms that can also be used to trigger this item in dialog.
      */
     synonyms?: string[];
   }
@@ -1123,22 +911,16 @@ export namespace dialogflow_v2beta1 {
      */
     displayText?: string;
     /**
-     * One of text_to_speech or ssml must be provided. Structured spoken
-     * response to the user in the SSML format. Mutually exclusive with
-     * text_to_speech.
+     * One of text_to_speech or ssml must be provided. Structured spoken response to the user in the SSML format. Mutually exclusive with text_to_speech.
      */
     ssml?: string;
     /**
-     * One of text_to_speech or ssml must be provided. The plain text of the
-     * speech output. Mutually exclusive with ssml.
+     * One of text_to_speech or ssml must be provided. The plain text of the speech output. Mutually exclusive with ssml.
      */
     textToSpeech?: string;
   }
   /**
-   * The collection of simple response candidates. This message in
-   * `QueryResult.fulfillment_messages` and
-   * `WebhookResponse.fulfillment_messages` should contain only one
-   * `SimpleResponse`.
+   * The collection of simple response candidates. This message in `QueryResult.fulfillment_messages` and `WebhookResponse.fulfillment_messages` should contain only one `SimpleResponse`.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageSimpleResponses {
     /**
@@ -1147,8 +929,7 @@ export namespace dialogflow_v2beta1 {
     simpleResponses?: Schema$GoogleCloudDialogflowV2beta1IntentMessageSimpleResponse[];
   }
   /**
-   * The suggestion chip message that the user can tap to quickly post a reply
-   * to the conversation.
+   * The suggestion chip message that the user can tap to quickly post a reply to the conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageSuggestion {
     /**
@@ -1170,30 +951,16 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonyPlayAudio {
     /**
-     * Required. URI to a Google Cloud Storage object containing the audio to
-     * play, e.g., &quot;gs://bucket/object&quot;. The object must contain a
-     * single channel (mono) of linear PCM audio (2 bytes / sample) at 8kHz.
-     * This object must be readable by the `service-&lt;Project
-     * Number&gt;@gcp-sa-dialogflow.iam.gserviceaccount.com` service account
-     * where &lt;Project Number&gt; is the number of the Telephony Gateway
-     * project (usually the same as the Dialogflow agent project). If the Google
-     * Cloud Storage bucket is in the Telephony Gateway project, this permission
-     * is added by default when enabling the Dialogflow V2 API.  For audio from
-     * other sources, consider using the `TelephonySynthesizeSpeech` message
-     * with SSML.
+     * Required. URI to a Google Cloud Storage object containing the audio to play, e.g., &quot;gs://bucket/object&quot;. The object must contain a single channel (mono) of linear PCM audio (2 bytes / sample) at 8kHz.  This object must be readable by the `service-&lt;Project Number&gt;@gcp-sa-dialogflow.iam.gserviceaccount.com` service account where &lt;Project Number&gt; is the number of the Telephony Gateway project (usually the same as the Dialogflow agent project). If the Google Cloud Storage bucket is in the Telephony Gateway project, this permission is added by default when enabling the Dialogflow V2 API.  For audio from other sources, consider using the `TelephonySynthesizeSpeech` message with SSML.
      */
     audioUri?: string;
   }
   /**
-   * Synthesizes speech and plays back the synthesized audio to the caller in
-   * Telephony Gateway.  Telephony Gateway takes the synthesizer settings from
-   * `DetectIntentResponse.output_audio_config` which can either be set at
-   * request-level or can come from the agent-level synthesizer config.
+   * Synthesizes speech and plays back the synthesized audio to the caller in Telephony Gateway.  Telephony Gateway takes the synthesizer settings from `DetectIntentResponse.output_audio_config` which can either be set at request-level or can come from the agent-level synthesizer config.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonySynthesizeSpeech {
     /**
-     * The SSML to be synthesized. For more information, see
-     * [SSML](https://developers.google.com/actions/reference/ssml).
+     * The SSML to be synthesized. For more information, see [SSML](https://developers.google.com/actions/reference/ssml).
      */
     ssml?: string;
     /**
@@ -1206,9 +973,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall {
     /**
-     * Required. The phone number to transfer the call to in [E.164
-     * format](https://en.wikipedia.org/wiki/E.164).  We currently only allow
-     * transferring to US numbers (+1xxxyyyzzzz).
+     * Required. The phone number to transfer the call to in [E.164 format](https://en.wikipedia.org/wiki/E.164).  We currently only allow transferring to US numbers (+1xxxyyyzzzz).
      */
     phoneNumber?: string;
   }
@@ -1226,9 +991,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentParameter {
     /**
-     * Optional. The default value to use when the `value` yields an empty
-     * result. Default values can be extracted from contexts by using the
-     * following syntax: `#context_name.parameter_name`.
+     * Optional. The default value to use when the `value` yields an empty result. Default values can be extracted from contexts by using the following syntax: `#context_name.parameter_name`.
      */
     defaultValue?: string;
     /**
@@ -1236,9 +999,7 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. The name of the entity type, prefixed with `@`, that describes
-     * values of the parameter. If the parameter is required, this must be
-     * provided.
+     * Optional. The name of the entity type, prefixed with `@`, that describes values of the parameter. If the parameter is required, this must be provided.
      */
     entityTypeDisplayName?: string;
     /**
@@ -1246,8 +1007,7 @@ export namespace dialogflow_v2beta1 {
      */
     isList?: boolean;
     /**
-     * Optional. Indicates whether the parameter is required. That is, whether
-     * the intent cannot be completed without collecting the parameter value.
+     * Optional. Indicates whether the parameter is required. That is, whether the intent cannot be completed without collecting the parameter value.
      */
     mandatory?: boolean;
     /**
@@ -1255,15 +1015,11 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string;
     /**
-     * Optional. The collection of prompts that the agent can present to the
-     * user in order to collect value for the parameter.
+     * Optional. The collection of prompts that the agent can present to the user in order to collect value for the parameter.
      */
     prompts?: string[];
     /**
-     * Optional. The definition of the parameter value. It can be: - a constant
-     * string, - a parameter value defined as `$parameter_name`, - an original
-     * parameter value defined as `$parameter_name.original`, - a parameter
-     * value from some context defined as   `#context_name.parameter_name`.
+     * Optional. The definition of the parameter value. It can be: - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as   `#context_name.parameter_name`.
      */
     value?: string;
   }
@@ -1276,24 +1032,11 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string;
     /**
-     * Required. The ordered list of training phrase parts. The parts are
-     * concatenated in order to form the training phrase.  Note: The API does
-     * not automatically annotate training phrases like the Dialogflow Console
-     * does.  Note: Do not forget to include whitespace at part boundaries, so
-     * the training phrase is well formatted when the parts are concatenated. If
-     * the training phrase does not need to be annotated with parameters, you
-     * just need a single part with only the Part.text field set.  If you want
-     * to annotate the training phrase, you must create multiple parts, where
-     * the fields of each part are populated in one of two ways:  - `Part.text`
-     * is set to a part of the phrase that has no parameters. -   `Part.text` is
-     * set to a part of the phrase that you want to annotate,     and the
-     * `entity_type`, `alias`, and `user_defined` fields are all     set.
+     * Required. The ordered list of training phrase parts. The parts are concatenated in order to form the training phrase.  Note: The API does not automatically annotate training phrases like the Dialogflow Console does.  Note: Do not forget to include whitespace at part boundaries, so the training phrase is well formatted when the parts are concatenated.  If the training phrase does not need to be annotated with parameters, you just need a single part with only the Part.text field set.  If you want to annotate the training phrase, you must create multiple parts, where the fields of each part are populated in one of two ways:  -   `Part.text` is set to a part of the phrase that has no parameters. -   `Part.text` is set to a part of the phrase that you want to annotate,     and the `entity_type`, `alias`, and `user_defined` fields are all     set.
      */
     parts?: Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart[];
     /**
-     * Optional. Indicates how many times this example was added to the intent.
-     * Each time a developer adds an existing sample by editing an intent or
-     * training, this counter is increased.
+     * Optional. Indicates how many times this example was added to the intent. Each time a developer adds an existing sample by editing an intent or training, this counter is increased.
      */
     timesAddedCount?: number;
     /**
@@ -1306,14 +1049,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart {
     /**
-     * Optional. The parameter name for the value extracted from the annotated
-     * part of the example. This field is required for annotated parts of the
-     * training phrase.
+     * Optional. The parameter name for the value extracted from the annotated part of the example. This field is required for annotated parts of the training phrase.
      */
     alias?: string;
     /**
-     * Optional. The entity type name prefixed with `@`. This field is required
-     * for annotated parts of the training phrase.
+     * Optional. The entity type name prefixed with `@`. This field is required for annotated parts of the training phrase.
      */
     entityType?: string;
     /**
@@ -1321,10 +1061,7 @@ export namespace dialogflow_v2beta1 {
      */
     text?: string;
     /**
-     * Optional. Indicates whether the text was manually annotated. This field
-     * is set to true when the Dialogflow Console is used to manually annotate
-     * the part. When creating an annotated part with the API, you must set this
-     * to true.
+     * Optional. Indicates whether the text was manually annotated. This field is set to true when the Dialogflow Console is used to manually annotate the part. When creating an annotated part with the API, you must set this to true.
      */
     userDefined?: boolean;
   }
@@ -1342,56 +1079,36 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer {
     /**
-     * The piece of text from the `source` knowledge base document that answers
-     * this conversational query.
+     * The piece of text from the `source` knowledge base document that answers this conversational query.
      */
     answer?: string;
     /**
-     * The corresponding FAQ question if the answer was extracted from a FAQ
-     * Document, empty otherwise.
+     * The corresponding FAQ question if the answer was extracted from a FAQ Document, empty otherwise.
      */
     faqQuestion?: string;
     /**
-     * The system&#39;s confidence score that this Knowledge answer is a good
-     * match for this conversational query. The range is from 0.0 (completely
-     * uncertain) to 1.0 (completely certain). Note: The confidence score is
-     * likely to vary somewhat (possibly even for identical requests), as the
-     * underlying model is under constant improvement. It may be deprecated in
-     * the future. We recommend using `match_confidence_level` which should be
-     * generally more stable.
+     * The system&#39;s confidence score that this Knowledge answer is a good match for this conversational query. The range is from 0.0 (completely uncertain) to 1.0 (completely certain). Note: The confidence score is likely to vary somewhat (possibly even for identical requests), as the underlying model is under constant improvement. It may be deprecated in the future. We recommend using `match_confidence_level` which should be generally more stable.
      */
     matchConfidence?: number;
     /**
-     * The system&#39;s confidence level that this knowledge answer is a good
-     * match for this conversational query. NOTE: The confidence level for a
-     * given `&lt;query, answer&gt;` pair may change without notice, as it
-     * depends on models that are constantly being improved. However, it will
-     * change less frequently than the confidence score below, and should be
-     * preferred for referencing the quality of an answer.
+     * The system&#39;s confidence level that this knowledge answer is a good match for this conversational query. NOTE: The confidence level for a given `&lt;query, answer&gt;` pair may change without notice, as it depends on models that are constantly being improved. However, it will change less frequently than the confidence score below, and should be preferred for referencing the quality of an answer.
      */
     matchConfidenceLevel?: string;
     /**
-     * Indicates which Knowledge Document this answer was extracted from.
-     * Format: `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base
-     * ID&gt;/documents/&lt;Document ID&gt;`.
+     * Indicates which Knowledge Document this answer was extracted from. Format: `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;/documents/&lt;Document ID&gt;`.
      */
     source?: string;
   }
   /**
-   * Represents knowledge base resource.  Note: resource
-   * `projects.agent.knowledgeBases` is deprecated, please use
-   * `projects.knowledgeBases` instead.
+   * Represents knowledge base resource.  Note: resource `projects.agent.knowledgeBases` is deprecated, please use `projects.knowledgeBases` instead.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeBase {
     /**
-     * Required. The display name of the knowledge base. The name must be 1024
-     * bytes or less; otherwise, the creation request fails.
+     * Required. The display name of the knowledge base. The name must be 1024 bytes or less; otherwise, the creation request fails.
      */
     displayName?: string;
     /**
-     * The knowledge base resource name. The name must be empty when creating a
-     * knowledge base. Format: `projects/&lt;Project
-     * ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;`.
+     * The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;`.
      */
     name?: string;
   }
@@ -1409,13 +1126,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListContextsResponse {
     /**
-     * The list of contexts. There will be a maximum number of items returned
-     * based on the page_size field in the request.
+     * The list of contexts. There will be a maximum number of items returned based on the page_size field in the request.
      */
     contexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -1428,8 +1143,7 @@ export namespace dialogflow_v2beta1 {
      */
     documents?: Schema$GoogleCloudDialogflowV2beta1Document[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -1438,13 +1152,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse {
     /**
-     * The list of agent entity types. There will be a maximum number of items
-     * returned based on the page_size field in the request.
+     * The list of agent entity types. There will be a maximum number of items returned based on the page_size field in the request.
      */
     entityTypes?: Schema$GoogleCloudDialogflowV2beta1EntityType[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -1453,13 +1165,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse {
     /**
-     * The list of agent intents. There will be a maximum number of items
-     * returned based on the page_size field in the request.
+     * The list of agent intents. There will be a maximum number of items returned based on the page_size field in the request.
      */
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -1472,8 +1182,7 @@ export namespace dialogflow_v2beta1 {
      */
     knowledgeBases?: Schema$GoogleCloudDialogflowV2beta1KnowledgeBase[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
@@ -1482,41 +1191,28 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse {
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
     /**
-     * The list of session entity types. There will be a maximum number of items
-     * returned based on the page_size field in the request.
+     * The list of session entity types. There will be a maximum number of items returned based on the page_size field in the request.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
   }
   /**
-   * Represents the contents of the original request that was passed to the
-   * `[Streaming]DetectIntent` call.
+   * Represents the contents of the original request that was passed to the `[Streaming]DetectIntent` call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of the `QueryParameters.payload`
-     * field passed in the request. Some integrations that query a Dialogflow
-     * agent may provide additional information in the payload.  In particular
-     * for the Telephony Gateway this field has the form: &lt;pre&gt;{
-     * &quot;telephony&quot;: {    &quot;caller_id&quot;:
-     * &quot;+18558363987&quot;  } }&lt;/pre&gt; Note: The caller ID field
-     * (`caller_id`) will be redacted for Standard Edition agents and populated
-     * with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164)
-     * for Enterprise Edition agents.
+     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload.  In particular for the Telephony Gateway this field has the form: &lt;pre&gt;{  &quot;telephony&quot;: {    &quot;caller_id&quot;: &quot;+18558363987&quot;  } }&lt;/pre&gt; Note: The caller ID field (`caller_id`) will be redacted for Standard Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
      */
     payload?: {[key: string]: any};
     /**
-     * The source of this request, e.g., `google`, `facebook`, `slack`. It is
-     * set by Dialogflow-owned servers.
+     * The source of this request, e.g., `google`, `facebook`, `slack`. It is set by Dialogflow-owned servers.
      */
     source?: string;
     /**
-     * Optional. The version of the protocol used for this request. This field
-     * is AoG-specific.
+     * Optional. The version of the protocol used for this request. This field is AoG-specific.
      */
     version?: string;
   }
@@ -1529,11 +1225,7 @@ export namespace dialogflow_v2beta1 {
      */
     audioEncoding?: string;
     /**
-     * Optional. The synthesis sample rate (in hertz) for this audio. If not
-     * provided, then the synthesizer will use the default sample rate based on
-     * the audio encoding. If this is different from the voice&#39;s natural
-     * sample rate, then the synthesizer will honor this request by converting
-     * to the desired sample rate (which might result in worse audio quality).
+     * Optional. The synthesis sample rate (in hertz) for this audio. If not provided, then the synthesizer will use the default sample rate based on the audio encoding. If this is different from the voice&#39;s natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality).
      */
     sampleRateHertz?: number;
     /**
@@ -1542,10 +1234,7 @@ export namespace dialogflow_v2beta1 {
     synthesizeSpeechConfig?: Schema$GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig;
   }
   /**
-   * Represents the query input. It can contain either:  1.  An audio config
-   * which     instructs the speech recognizer how to process the speech audio.
-   * 2.  A conversational query in the form of text,.  3.  An event that
-   * specifies which intent to trigger.
+   * Represents the query input. It can contain either:  1.  An audio config which     instructs the speech recognizer how to process the speech audio.  2.  A conversational query in the form of text,.  3.  An event that specifies which intent to trigger.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1QueryInput {
     /**
@@ -1566,8 +1255,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1QueryParameters {
     /**
-     * Optional. The collection of contexts to be activated before this query is
-     * executed.
+     * Optional. The collection of contexts to be activated before this query is executed.
      */
     contexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
@@ -1575,38 +1263,27 @@ export namespace dialogflow_v2beta1 {
      */
     geoLocation?: Schema$GoogleTypeLatLng;
     /**
-     * Optional. KnowledgeBases to get alternative results from. If not set, the
-     * KnowledgeBases enabled in the agent (through UI) will be used. Format:
-     * `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;`.
+     * Optional. KnowledgeBases to get alternative results from. If not set, the KnowledgeBases enabled in the agent (through UI) will be used. Format:  `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base ID&gt;`.
      */
     knowledgeBaseNames?: string[];
     /**
-     * Optional. This field can be used to pass custom data into the webhook
-     * associated with the agent. Arbitrary JSON objects are supported.
+     * Optional. This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported.
      */
     payload?: {[key: string]: any};
     /**
-     * Optional. Specifies whether to delete all contexts in the current session
-     * before the new ones are activated.
+     * Optional. Specifies whether to delete all contexts in the current session before the new ones are activated.
      */
     resetContexts?: boolean;
     /**
-     * Optional. Configures the type of sentiment analysis to perform. If not
-     * provided, sentiment analysis is not performed. Note: Sentiment Analysis
-     * is only currently available for Enterprise Edition agents.
+     * Optional. Configures the type of sentiment analysis to perform. If not provided, sentiment analysis is not performed. Note: Sentiment Analysis is only currently available for Enterprise Edition agents.
      */
     sentimentAnalysisRequestConfig?: Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisRequestConfig;
     /**
-     * Optional. Additional session entity types to replace or extend developer
-     * entity types with. The entity synonyms apply to all languages and persist
-     * for the session of this query.
+     * Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session of this query.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
     /**
-     * Optional. The time zone of this conversational query from the [time zone
-     * database](https://www.iana.org/time-zones), e.g., America/New_York,
-     * Europe/Paris. If not provided, the time zone specified in agent settings
-     * is used.
+     * Optional. The time zone of this conversational query from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. If not provided, the time zone specified in agent settings is used.
      */
     timeZone?: string;
   }
@@ -1619,16 +1296,11 @@ export namespace dialogflow_v2beta1 {
      */
     action?: string;
     /**
-     * This field is set to: - `false` if the matched intent has required
-     * parameters and not all of    the required parameter values have been
-     * collected. - `true` if all required parameter values have been collected,
-     * or if the    matched intent doesn&#39;t contain any required parameters.
+     * This field is set to: - `false` if the matched intent has required parameters and not all of    the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the    matched intent doesn&#39;t contain any required parameters.
      */
     allRequiredParamsPresent?: boolean;
     /**
-     * The free-form diagnostic info. For example, this field could contain
-     * webhook call latency. The string keys of the Struct&#39;s fields map can
-     * change without notice.
+     * The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct&#39;s fields map can change without notice.
      */
     diagnosticInfo?: {[key: string]: any};
     /**
@@ -1636,39 +1308,27 @@ export namespace dialogflow_v2beta1 {
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2beta1IntentMessage[];
     /**
-     * The text to be pronounced to the user or shown on the screen. Note: This
-     * is a legacy field, `fulfillment_messages` should be preferred.
+     * The text to be pronounced to the user or shown on the screen. Note: This is a legacy field, `fulfillment_messages` should be preferred.
      */
     fulfillmentText?: string;
     /**
-     * The intent that matched the conversational query. Some, not all fields
-     * are filled in this message, including but not limited to: `name`,
-     * `display_name` and `webhook_state`.
+     * The intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: `name`, `display_name` and `webhook_state`.
      */
     intent?: Schema$GoogleCloudDialogflowV2beta1Intent;
     /**
-     * The intent detection confidence. Values range from 0.0 (completely
-     * uncertain) to 1.0 (completely certain). If there are `multiple
-     * knowledge_answers` messages, this value is set to the greatest
-     * `knowledgeAnswers.match_confidence` value in the list.
+     * The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). If there are `multiple knowledge_answers` messages, this value is set to the greatest `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
-     * The result from Knowledge Connector (if any), ordered by decreasing
-     * `KnowledgeAnswers.match_confidence`.
+     * The result from Knowledge Connector (if any), ordered by decreasing `KnowledgeAnswers.match_confidence`.
      */
     knowledgeAnswers?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswers;
     /**
-     * The language that was triggered during intent detection. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * for a list of the currently supported language codes.
+     * The language that was triggered during intent detection. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes.
      */
     languageCode?: string;
     /**
-     * The collection of output contexts. If applicable,
-     * `output_contexts.parameters` contains entries with name `&lt;parameter
-     * name&gt;.original` containing the original parameter values before the
-     * query.
+     * The collection of output contexts. If applicable, `output_contexts.parameters` contains entries with name `&lt;parameter name&gt;.original` containing the original parameter values before the query.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
@@ -1676,37 +1336,23 @@ export namespace dialogflow_v2beta1 {
      */
     parameters?: {[key: string]: any};
     /**
-     * The original conversational query text: - If natural language text was
-     * provided as input, `query_text` contains   a copy of the input. - If
-     * natural language speech audio was provided as input, `query_text`
-     * contains the speech recognition result. If speech recognizer produced
-     * multiple alternatives, a particular one is picked. - If an event was
-     * provided as input, `query_text` is not set.
+     * The original conversational query text: - If natural language text was provided as input, `query_text` contains   a copy of the input. - If natural language speech audio was provided as input, `query_text`   contains the speech recognition result. If speech recognizer produced   multiple alternatives, a particular one is picked. - If an event was provided as input, `query_text` is not set.
      */
     queryText?: string;
     /**
-     * The sentiment analysis result, which depends on the
-     * `sentiment_analysis_request_config` specified in the request.
+     * The sentiment analysis result, which depends on the `sentiment_analysis_request_config` specified in the request.
      */
     sentimentAnalysisResult?: Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult;
     /**
-     * The Speech recognition confidence between 0.0 and 1.0. A higher number
-     * indicates an estimated greater likelihood that the recognized words are
-     * correct. The default of 0.0 is a sentinel value indicating that
-     * confidence was not set.  This field is not guaranteed to be accurate or
-     * set. In particular this field isn&#39;t set for StreamingDetectIntent
-     * since the streaming endpoint has separate confidence estimates per
-     * portion of the audio in StreamingRecognitionResult.
+     * The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set.  This field is not guaranteed to be accurate or set. In particular this field isn&#39;t set for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number;
     /**
-     * If the query was fulfilled by a webhook call, this field is set to the
-     * value of the `payload` field returned in the webhook response.
+     * If the query was fulfilled by a webhook call, this field is set to the value of the `payload` field returned in the webhook response.
      */
     webhookPayload?: {[key: string]: any};
     /**
-     * If the query was fulfilled by a webhook call, this field is set to the
-     * value of the `source` field returned in the webhook response.
+     * If the query was fulfilled by a webhook call, this field is set to the value of the `source` field returned in the webhook response.
      */
     webhookSource?: string;
   }
@@ -1719,20 +1365,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1RestoreAgentRequest {
     /**
-     * The agent to restore.  Example for how to restore an agent via the
-     * command line: &lt;pre&gt;curl \
-     * &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:restore\
-     * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * application-default    print-access-token) \    -H &#39;Accept:
-     * application/json&#39; \    -H &#39;Content-Type: application/json&#39; \
-     * --compressed \    --data-binary &quot;{        &#39;agentContent&#39;:
-     * &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;
-     * }&quot;&lt;/pre&gt;
+     * The agent to restore.  Example for how to restore an agent via the command line: &lt;pre&gt;curl \   &#39;https://dialogflow.googleapis.com/v2beta1/projects/&amp;lt;project_name&amp;gt;/agent:restore\    -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth application-default    print-access-token) \    -H &#39;Accept: application/json&#39; \    -H &#39;Content-Type: application/json&#39; \    --compressed \    --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &amp;lt;agent zip file&amp;gt; | base64 -w 0)&#39;    }&quot;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
-     * The URI to a Google Cloud Storage file containing the agent to restore.
-     * Note: The URI must start with &quot;gs://&quot;.
+     * The URI to a Google Cloud Storage file containing the agent to restore. Note: The URI must start with &quot;gs://&quot;.
      */
     agentUri?: string;
   }
@@ -1741,30 +1378,24 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse {
     /**
-     * The list of agents. There will be a maximum number of items returned
-     * based on the page_size field in the request.
+     * The list of agents. There will be a maximum number of items returned based on the page_size field in the request.
      */
     agents?: Schema$GoogleCloudDialogflowV2beta1Agent[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit
-   * of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Sentiment {
     /**
-     * A non-negative number in the [0, +inf) range, which represents the
-     * absolute magnitude of sentiment, regardless of score (positive or
-     * negative).
+     * A non-negative number in the [0, +inf) range, which represents the absolute magnitude of sentiment, regardless of score (positive or negative).
      */
     magnitude?: number;
     /**
-     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-     * sentiment).
+     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive sentiment).
      */
     score?: number;
   }
@@ -1773,15 +1404,12 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisRequestConfig {
     /**
-     * Optional. Instructs the service to perform sentiment analysis on
-     * `query_text`. If not provided, sentiment analysis is not performed on
-     * `query_text`.
+     * Optional. Instructs the service to perform sentiment analysis on `query_text`. If not provided, sentiment analysis is not performed on `query_text`.
      */
     analyzeQueryTextSentiment?: boolean;
   }
   /**
-   * The result of sentiment analysis as configured by
-   * `sentiment_analysis_request_config`.
+   * The result of sentiment analysis as configured by `sentiment_analysis_request_config`.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult {
     /**
@@ -1790,33 +1418,19 @@ export namespace dialogflow_v2beta1 {
     queryTextSentiment?: Schema$GoogleCloudDialogflowV2beta1Sentiment;
   }
   /**
-   * Represents a session entity type.  Extends or replaces a developer entity
-   * type at the user session level (we refer to the entity types defined at the
-   * agent level as &quot;developer entity types&quot;).  Note: session entity
-   * types apply to all queries, regardless of the language.
+   * Represents a session entity type.  Extends or replaces a developer entity type at the user session level (we refer to the entity types defined at the agent level as &quot;developer entity types&quot;).  Note: session entity types apply to all queries, regardless of the language.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SessionEntityType {
     /**
-     * Required. The collection of entities associated with this session entity
-     * type.
+     * Required. The collection of entities associated with this session entity type.
      */
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
-     * Required. Indicates whether the additional data should override or
-     * supplement the developer entity type definition.
+     * Required. Indicates whether the additional data should override or supplement the developer entity type definition.
      */
     entityOverrideMode?: string;
     /**
-     * Required. The unique identifier of this session entity type. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
-     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`, or
-     * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment
-     * ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session
-     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. If `Environment ID`
-     * is not specified, we assume default &#39;draft&#39; environment. If `User
-     * ID` is not specified, we assume default &#39;-&#39; user.  `&lt;Entity
-     * Type Display Name&gt;` must be the display name of an existing entity
-     * type in the same agent that will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`, or `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user.  `&lt;Entity Type Display Name&gt;` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string;
   }
@@ -1825,22 +1439,15 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig {
     /**
-     * Optional. An identifier which selects &#39;audio effects&#39; profiles
-     * that are applied on (post synthesized) text to speech. Effects are
-     * applied on top of each other in the order they are given.
+     * Optional. An identifier which selects &#39;audio effects&#39; profiles that are applied on (post synthesized) text to speech. Effects are applied on top of each other in the order they are given.
      */
     effectsProfileId?: string[];
     /**
-     * Optional. Speaking pitch, in the range [-20.0, 20.0]. 20 means increase
-     * 20 semitones from the original pitch. -20 means decrease 20 semitones
-     * from the original pitch.
+     * Optional. Speaking pitch, in the range [-20.0, 20.0]. 20 means increase 20 semitones from the original pitch. -20 means decrease 20 semitones from the original pitch.
      */
     pitch?: number;
     /**
-     * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the
-     * normal native speed supported by the specific voice. 2.0 is twice as
-     * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
-     * speed. Any other values &lt; 0.25 or &gt; 4.0 will return an error.
+     * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other values &lt; 0.25 or &gt; 4.0 will return an error.
      */
     speakingRate?: number;
     /**
@@ -1848,14 +1455,7 @@ export namespace dialogflow_v2beta1 {
      */
     voice?: Schema$GoogleCloudDialogflowV2beta1VoiceSelectionParams;
     /**
-     * Optional. Volume gain (in dB) of the normal native volume supported by
-     * the specific voice, in the range [-96.0, 16.0]. If unset, or set to a
-     * value of 0.0 (dB), will play at normal native signal amplitude. A value
-     * of -6.0 (dB) will play at approximately half the amplitude of the normal
-     * native signal amplitude. A value of +6.0 (dB) will play at approximately
-     * twice the amplitude of the normal native signal amplitude. We strongly
-     * recommend not to exceed +10 (dB) as there&#39;s usually no effective
-     * increase in loudness for any value greater than that.
+     * Optional. Volume gain (in dB) of the normal native volume supported by the specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of 0.0 (dB), will play at normal native signal amplitude. A value of -6.0 (dB) will play at approximately half the amplitude of the normal native signal amplitude. A value of +6.0 (dB) will play at approximately twice the amplitude of the normal native signal amplitude. We strongly recommend not to exceed +10 (dB) as there&#39;s usually no effective increase in loudness for any value greater than that.
      */
     volumeGainDb?: number;
   }
@@ -1864,15 +1464,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1TextInput {
     /**
-     * Required. The language of this conversational query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * for a list of the currently supported language codes. Note that queries
-     * in the same session do not necessarily need to specify the same language.
+     * Required. The language of this conversational query. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text
-     * length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
      */
     text?: string;
   }
@@ -1885,17 +1481,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1VoiceSelectionParams {
     /**
-     * Optional. The name of the voice. If not set, the service will choose a
-     * voice based on the other parameters such as language_code and gender.
+     * Optional. The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and gender.
      */
     name?: string;
     /**
-     * Optional. The preferred gender of the voice. If not set, the service will
-     * choose a voice based on the other parameters such as language_code and
-     * name. Note that this is only a preference, not requirement. If a voice of
-     * the appropriate gender is not available, the synthesizer should
-     * substitute a voice with a different gender rather than failing the
-     * request.
+     * Optional. The preferred gender of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and name. Note that this is only a preference, not requirement. If a voice of the appropriate gender is not available, the synthesizer should substitute a voice with a different gender rather than failing the request.
      */
     ssmlGender?: string;
   }
@@ -1908,26 +1498,19 @@ export namespace dialogflow_v2beta1 {
      */
     alternativeQueryResults?: Schema$GoogleCloudDialogflowV2beta1QueryResult[];
     /**
-     * Optional. The contents of the original request that was passed to
-     * `[Streaming]DetectIntent` call.
+     * Optional. The contents of the original request that was passed to `[Streaming]DetectIntent` call.
      */
     originalDetectIntentRequest?: Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest;
     /**
-     * The result of the conversational query or event processing. Contains the
-     * same value as `[Streaming]DetectIntentResponse.query_result`.
+     * The result of the conversational query or event processing. Contains the same value as `[Streaming]DetectIntentResponse.query_result`.
      */
     queryResult?: Schema$GoogleCloudDialogflowV2beta1QueryResult;
     /**
-     * The unique identifier of the response. Contains the same value as
-     * `[Streaming]DetectIntentResponse.response_id`.
+     * The unique identifier of the response. Contains the same value as `[Streaming]DetectIntentResponse.response_id`.
      */
     responseId?: string;
     /**
-     * The unique identifier of detectIntent request session. Can be used to
-     * identify end-user inside webhook implementation. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
-     * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment
-     * ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;`.
+     * The unique identifier of detectIntent request session. Can be used to identify end-user inside webhook implementation. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;`.
      */
     session?: string;
   }
@@ -1936,43 +1519,27 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookResponse {
     /**
-     * Optional. Indicates that this intent ends an interaction. Some
-     * integrations (e.g., Actions on Google or Dialogflow phone gateway) use
-     * this information to close interaction with an end user. Default is false.
+     * Optional. Indicates that this intent ends an interaction. Some integrations (e.g., Actions on Google or Dialogflow phone gateway) use this information to close interaction with an end user. Default is false.
      */
     endInteraction?: boolean;
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent`
-     * call internally with the specified event as input.
+     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2beta1EventInput;
     /**
-     * Optional. The collection of rich messages to present to the user. This
-     * value is passed directly to `QueryResult.fulfillment_messages`.
+     * Optional. The collection of rich messages to present to the user. This value is passed directly to `QueryResult.fulfillment_messages`.
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2beta1IntentMessage[];
     /**
-     * Optional. The text to be shown on the screen. This value is passed
-     * directly to `QueryResult.fulfillment_text`.
+     * Optional. The text to be shown on the screen. This value is passed directly to `QueryResult.fulfillment_text`.
      */
     fulfillmentText?: string;
     /**
-     * Optional. The collection of output contexts. This value is passed
-     * directly to `QueryResult.output_contexts`.
+     * Optional. The collection of output contexts. This value is passed directly to `QueryResult.output_contexts`.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_payload`.
-     * See the related `fulfillment_messages[i].payload field`, which may be
-     * used as an alternative to this field.  This field can be used for Actions
-     * on Google responses. It should have a structure similar to the JSON
-     * message shown here. For more information, see [Actions on Google Webhook
-     * Format](https://developers.google.com/actions/dialogflow/webhook)
-     * &lt;pre&gt;{   &quot;google&quot;: {     &quot;expectUserResponse&quot;:
-     * true,     &quot;richResponse&quot;: {       &quot;items&quot;: [ {
-     * &quot;simpleResponse&quot;: {             &quot;textToSpeech&quot;:
-     * &quot;this is a simple response&quot;           }         }       ]     }
-     * } }&lt;/pre&gt;
+     * Optional. This value is passed directly to `QueryResult.webhook_payload`. See the related `fulfillment_messages[i].payload field`, which may be used as an alternative to this field.  This field can be used for Actions on Google responses. It should have a structure similar to the JSON message shown here. For more information, see [Actions on Google Webhook Format](https://developers.google.com/actions/dialogflow/webhook) &lt;pre&gt;{   &quot;google&quot;: {     &quot;expectUserResponse&quot;: true,     &quot;richResponse&quot;: {       &quot;items&quot;: [         {           &quot;simpleResponse&quot;: {             &quot;textToSpeech&quot;: &quot;this is a simple response&quot;           }         }       ]     }   } }&lt;/pre&gt;
      */
     payload?: {[key: string]: any};
     /**
@@ -1985,36 +1552,24 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2Context {
     /**
-     * Optional. The number of conversational query requests after which the
-     * context expires. If set to `0` (the default) the context expires
-     * immediately. Contexts expire automatically after 20 minutes if there are
-     * no matching queries.
+     * Optional. The number of conversational query requests after which the context expires. If set to `0` (the default) the context expires immediately. Contexts expire automatically after 20 minutes if there are no matching queries.
      */
     lifespanCount?: number;
     /**
-     * Required. The unique identifier of the context. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`.  The `Context ID` is always
-     * converted to lowercase, may only contain characters in [a-zA-Z0-9_-%] and
-     * may be at most 250 bytes long.
+     * Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.  The `Context ID` is always converted to lowercase, may only contain characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      */
     name?: string;
     /**
-     * Optional. The collection of parameters associated with this context.
-     * Refer to [this
-     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
-     * for syntax.
+     * Optional. The collection of parameters associated with this context. Refer to [this doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters) for syntax.
      */
     parameters?: {[key: string]: any};
   }
   /**
-   * Represents an entity type. Entity types serve as a tool for extracting
-   * parameter values from natural language queries.
+   * Represents an entity type. Entity types serve as a tool for extracting parameter values from natural language queries.
    */
   export interface Schema$GoogleCloudDialogflowV2EntityType {
     /**
-     * Optional. Indicates whether the entity type can be automatically
-     * expanded.
+     * Optional. Indicates whether the entity type can be automatically expanded.
      */
     autoExpansionMode?: string;
     /**
@@ -2022,8 +1577,7 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. The collection of entity entries associated with the entity
-     * type.
+     * Optional. The collection of entity entries associated with the entity type.
      */
     entities?: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
     /**
@@ -2031,10 +1585,7 @@ export namespace dialogflow_v2beta1 {
      */
     kind?: string;
     /**
-     * The unique identifier of the entity type. Required for
-     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
-     * methods. Format: `projects/&lt;Project
-     * ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
+     * The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
      */
     name?: string;
   }
@@ -2043,36 +1594,20 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2EntityTypeEntity {
     /**
-     * Required. A collection of value synonyms. For example, if the entity type
-     * is *vegetable*, and `value` is *scallions*, a synonym could be *green
-     * onions*.  For `KIND_LIST` entity types:  *   This collection must contain
-     * exactly one synonym equal to `value`.
+     * Required. A collection of value synonyms. For example, if the entity type is *vegetable*, and `value` is *scallions*, a synonym could be *green onions*.  For `KIND_LIST` entity types:  *   This collection must contain exactly one synonym equal to `value`.
      */
     synonyms?: string[];
     /**
-     * Required. The primary value associated with this entity entry. For
-     * example, if the entity type is *vegetable*, the value could be
-     * *scallions*.  For `KIND_MAP` entity types:  *   A canonical value to be
-     * used in place of synonyms.  For `KIND_LIST` entity types:  *   A string
-     * that can contain references to other entity types (with or     without
-     * aliases).
+     * Required. The primary value associated with this entity entry. For example, if the entity type is *vegetable*, the value could be *scallions*.  For `KIND_MAP` entity types:  *   A canonical value to be used in place of synonyms.  For `KIND_LIST` entity types:  *   A string that can contain references to other entity types (with or     without aliases).
      */
     value?: string;
   }
   /**
-   * Events allow for matching intents by event name instead of the natural
-   * language input. For instance, input `&lt;event: { name:
-   * &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;` can
-   * trigger a personalized welcome response. The parameter `name` may be used
-   * by the agent in the response: `&quot;Hello #welcome_event.name! What can I
-   * do for you today?&quot;`.
+   * Events allow for matching intents by event name instead of the natural language input. For instance, input `&lt;event: { name: &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `&quot;Hello #welcome_event.name! What can I do for you today?&quot;`.
    */
   export interface Schema$GoogleCloudDialogflowV2EventInput {
     /**
-     * Required. The language of this query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * for a list of the currently supported language codes. Note that queries
-     * in the same session do not necessarily need to specify the same language.
+     * Required. The language of this query. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -2089,38 +1624,24 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2ExportAgentResponse {
     /**
-     * The exported agent.  Example for how to export an agent to a zip file via
-     * a command line: &lt;pre&gt;curl \
-     * &#39;https://dialogflow.googleapis.com/v2/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\
-     * -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth
-     * application-default   print-access-token) \   -H &#39;Accept:
-     * application/json&#39; \   -H &#39;Content-Type: application/json&#39; \
-     * --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed
-     * -e &#39;s/.*&quot;agentContent&quot;:
-     * &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt;
-     * &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
+     * The exported agent.  Example for how to export an agent to a zip file via a command line: &lt;pre&gt;curl \   &#39;https://dialogflow.googleapis.com/v2/projects/&amp;lt;project_name&amp;gt;/agent:export&#39;\   -X POST \   -H &#39;Authorization: Bearer &#39;$(gcloud auth application-default   print-access-token) \   -H &#39;Accept: application/json&#39; \   -H &#39;Content-Type: application/json&#39; \   --compressed \   --data-binary &#39;{}&#39; \ | grep agentContent | sed -e &#39;s/.*&quot;agentContent&quot;: &quot;\([^&quot;]*\)&quot;.x/\1/&#39; \ | base64 --decode &gt; &amp;lt;agent zip file&amp;gt;&lt;/pre&gt;
      */
     agentContent?: string;
     /**
-     * The URI to a file containing the exported agent. This field is populated
-     * only if `agent_uri` is specified in `ExportAgentRequest`.
+     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in `ExportAgentRequest`.
      */
     agentUri?: string;
   }
   /**
-   * Represents an intent. Intents convert a number of user expressions or
-   * patterns into an action. An action is an extraction of a user command or
-   * sentence semantics.
+   * Represents an intent. Intents convert a number of user expressions or patterns into an action. An action is an extraction of a user command or sentence semantics.
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
     /**
-     * Optional. The name of the action associated with the intent. Note: The
-     * action name must not contain whitespaces.
+     * Optional. The name of the action associated with the intent. Note: The action name must not contain whitespaces.
      */
     action?: string;
     /**
-     * Optional. The list of platforms for which the first response will be
-     * taken from among the messages assigned to the DEFAULT_PLATFORM.
+     * Optional. The list of platforms for which the first response will be taken from among the messages assigned to the DEFAULT_PLATFORM.
      */
     defaultResponsePlatforms?: string[];
     /**
@@ -2128,21 +1649,15 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. The collection of event names that trigger the intent. If the
-     * collection of input contexts is not empty, all of the contexts must be
-     * present in the active user session for an event to trigger this intent.
+     * Optional. The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the contexts must be present in the active user session for an event to trigger this intent.
      */
     events?: string[];
     /**
-     * Read-only. Information about all followup intents that have this intent
-     * as a direct or indirect parent. We populate this field only in the
-     * output.
+     * Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
      */
     followupIntentInfo?: Schema$GoogleCloudDialogflowV2IntentFollowupIntentInfo[];
     /**
-     * Optional. The list of context names required for this intent to be
-     * triggered. Format: `projects/&lt;Project
-     * ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
+     * Optional. The list of context names required for this intent to be triggered. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      */
     inputContextNames?: string[];
     /**
@@ -2150,29 +1665,19 @@ export namespace dialogflow_v2beta1 {
      */
     isFallback?: boolean;
     /**
-     * Optional. The collection of rich messages corresponding to the `Response`
-     * field in the Dialogflow console.
+     * Optional. The collection of rich messages corresponding to the `Response` field in the Dialogflow console.
      */
     messages?: Schema$GoogleCloudDialogflowV2IntentMessage[];
     /**
-     * Optional. Indicates whether Machine Learning is disabled for the intent.
-     * Note: If `ml_diabled` setting is set to true, then this intent is not
-     * taken into account during inference in `ML ONLY` match mode. Also,
-     * auto-markup in the UI is turned off.
+     * Optional. Indicates whether Machine Learning is disabled for the intent. Note: If `ml_diabled` setting is set to true, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off.
      */
     mlDisabled?: boolean;
     /**
-     * The unique identifier of this intent. Required for Intents.UpdateIntent
-     * and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project
-     * ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string;
     /**
-     * Optional. The collection of contexts that are activated when the intent
-     * is matched. Context messages in this collection should not set the
-     * parameters field. Setting the `lifespan_count` to 0 will reset the
-     * context when the intent is matched. Format: `projects/&lt;Project
-     * ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
+     * Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the `lifespan_count` to 0 will reset the context when the intent is matched. Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
@@ -2180,30 +1685,19 @@ export namespace dialogflow_v2beta1 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2IntentParameter[];
     /**
-     * Read-only after creation. The unique identifier of the parent intent in
-     * the chain of followup intents. You can set this field when creating an
-     * intent, for example with CreateIntent or BatchUpdateIntents, in order to
-     * make this intent a followup intent.  It identifies the parent followup
-     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
-     * ID&gt;`.
+     * Read-only after creation. The unique identifier of the parent intent in the chain of followup intents. You can set this field when creating an intent, for example with CreateIntent or BatchUpdateIntents, in order to make this intent a followup intent.  It identifies the parent followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
     /**
-     * Optional. The priority of this intent. Higher numbers represent higher
-     * priorities. If this is zero or unspecified, we use the default priority
-     * 500000.  Negative numbers mean that the intent is disabled.
+     * Optional. The priority of this intent. Higher numbers represent higher priorities. If this is zero or unspecified, we use the default priority 500000.  Negative numbers mean that the intent is disabled.
      */
     priority?: number;
     /**
-     * Optional. Indicates whether to delete all contexts in the current session
-     * when this intent is matched.
+     * Optional. Indicates whether to delete all contexts in the current session when this intent is matched.
      */
     resetContexts?: boolean;
     /**
-     * Read-only. The unique identifier of the root intent in the chain of
-     * followup intents. It identifies the correct followup intents chain for
-     * this intent. We populate this field only in the output.  Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output.  Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string;
     /**
@@ -2220,13 +1714,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2IntentFollowupIntentInfo {
     /**
-     * The unique identifier of the followup intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of the followup intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     followupIntentName?: string;
     /**
-     * The unique identifier of the followup intent&#39;s parent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of the followup intent&#39;s parent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
   }
@@ -2259,9 +1751,7 @@ export namespace dialogflow_v2beta1 {
      */
     listSelect?: Schema$GoogleCloudDialogflowV2IntentMessageListSelect;
     /**
-     * Returns a response containing a custom, platform-specific payload. See
-     * the Intent.Message.Platform type for a description of the structure that
-     * may be required for your platform.
+     * Returns a response containing a custom, platform-specific payload. See the Intent.Message.Platform type for a description of the structure that may be required for your platform.
      */
     payload?: {[key: string]: any};
     /**
@@ -2401,8 +1891,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2IntentMessageImage {
     /**
-     * Optional. A text description of the image to be used for accessibility,
-     * e.g., screen readers.
+     * Optional. A text description of the image to be used for accessibility, e.g., screen readers.
      */
     accessibilityText?: string;
     /**
@@ -2411,8 +1900,7 @@ export namespace dialogflow_v2beta1 {
     imageUri?: string;
   }
   /**
-   * The suggestion chip message that allows the user to jump out to the app or
-   * website associated with this agent.
+   * The suggestion chip message that allows the user to jump out to the app or website associated with this agent.
    */
   export interface Schema$GoogleCloudDialogflowV2IntentMessageLinkOutSuggestion {
     /**
@@ -2420,8 +1908,7 @@ export namespace dialogflow_v2beta1 {
      */
     destinationName?: string;
     /**
-     * Required. The URI of the app or site to open when the user taps the
-     * suggestion chip.
+     * Required. The URI of the app or site to open when the user taps the suggestion chip.
      */
     uri?: string;
   }
@@ -2477,13 +1964,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2IntentMessageSelectItemInfo {
     /**
-     * Required. A unique key that will be sent back to the agent if this
-     * response is given.
+     * Required. A unique key that will be sent back to the agent if this response is given.
      */
     key?: string;
     /**
-     * Optional. A list of synonyms that can also be used to trigger this item
-     * in dialog.
+     * Optional. A list of synonyms that can also be used to trigger this item in dialog.
      */
     synonyms?: string[];
   }
@@ -2496,22 +1981,16 @@ export namespace dialogflow_v2beta1 {
      */
     displayText?: string;
     /**
-     * One of text_to_speech or ssml must be provided. Structured spoken
-     * response to the user in the SSML format. Mutually exclusive with
-     * text_to_speech.
+     * One of text_to_speech or ssml must be provided. Structured spoken response to the user in the SSML format. Mutually exclusive with text_to_speech.
      */
     ssml?: string;
     /**
-     * One of text_to_speech or ssml must be provided. The plain text of the
-     * speech output. Mutually exclusive with ssml.
+     * One of text_to_speech or ssml must be provided. The plain text of the speech output. Mutually exclusive with ssml.
      */
     textToSpeech?: string;
   }
   /**
-   * The collection of simple response candidates. This message in
-   * `QueryResult.fulfillment_messages` and
-   * `WebhookResponse.fulfillment_messages` should contain only one
-   * `SimpleResponse`.
+   * The collection of simple response candidates. This message in `QueryResult.fulfillment_messages` and `WebhookResponse.fulfillment_messages` should contain only one `SimpleResponse`.
    */
   export interface Schema$GoogleCloudDialogflowV2IntentMessageSimpleResponses {
     /**
@@ -2520,8 +1999,7 @@ export namespace dialogflow_v2beta1 {
     simpleResponses?: Schema$GoogleCloudDialogflowV2IntentMessageSimpleResponse[];
   }
   /**
-   * The suggestion chip message that the user can tap to quickly post a reply
-   * to the conversation.
+   * The suggestion chip message that the user can tap to quickly post a reply to the conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2IntentMessageSuggestion {
     /**
@@ -2552,9 +2030,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2IntentParameter {
     /**
-     * Optional. The default value to use when the `value` yields an empty
-     * result. Default values can be extracted from contexts by using the
-     * following syntax: `#context_name.parameter_name`.
+     * Optional. The default value to use when the `value` yields an empty result. Default values can be extracted from contexts by using the following syntax: `#context_name.parameter_name`.
      */
     defaultValue?: string;
     /**
@@ -2562,9 +2038,7 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. The name of the entity type, prefixed with `@`, that describes
-     * values of the parameter. If the parameter is required, this must be
-     * provided.
+     * Optional. The name of the entity type, prefixed with `@`, that describes values of the parameter. If the parameter is required, this must be provided.
      */
     entityTypeDisplayName?: string;
     /**
@@ -2572,8 +2046,7 @@ export namespace dialogflow_v2beta1 {
      */
     isList?: boolean;
     /**
-     * Optional. Indicates whether the parameter is required. That is, whether
-     * the intent cannot be completed without collecting the parameter value.
+     * Optional. Indicates whether the parameter is required. That is, whether the intent cannot be completed without collecting the parameter value.
      */
     mandatory?: boolean;
     /**
@@ -2581,15 +2054,11 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string;
     /**
-     * Optional. The collection of prompts that the agent can present to the
-     * user in order to collect value for the parameter.
+     * Optional. The collection of prompts that the agent can present to the user in order to collect value for the parameter.
      */
     prompts?: string[];
     /**
-     * Optional. The definition of the parameter value. It can be: - a constant
-     * string, - a parameter value defined as `$parameter_name`, - an original
-     * parameter value defined as `$parameter_name.original`, - a parameter
-     * value from some context defined as   `#context_name.parameter_name`.
+     * Optional. The definition of the parameter value. It can be: - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as   `#context_name.parameter_name`.
      */
     value?: string;
   }
@@ -2602,24 +2071,11 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string;
     /**
-     * Required. The ordered list of training phrase parts. The parts are
-     * concatenated in order to form the training phrase.  Note: The API does
-     * not automatically annotate training phrases like the Dialogflow Console
-     * does.  Note: Do not forget to include whitespace at part boundaries, so
-     * the training phrase is well formatted when the parts are concatenated. If
-     * the training phrase does not need to be annotated with parameters, you
-     * just need a single part with only the Part.text field set.  If you want
-     * to annotate the training phrase, you must create multiple parts, where
-     * the fields of each part are populated in one of two ways:  - `Part.text`
-     * is set to a part of the phrase that has no parameters. -   `Part.text` is
-     * set to a part of the phrase that you want to annotate,     and the
-     * `entity_type`, `alias`, and `user_defined` fields are all     set.
+     * Required. The ordered list of training phrase parts. The parts are concatenated in order to form the training phrase.  Note: The API does not automatically annotate training phrases like the Dialogflow Console does.  Note: Do not forget to include whitespace at part boundaries, so the training phrase is well formatted when the parts are concatenated.  If the training phrase does not need to be annotated with parameters, you just need a single part with only the Part.text field set.  If you want to annotate the training phrase, you must create multiple parts, where the fields of each part are populated in one of two ways:  -   `Part.text` is set to a part of the phrase that has no parameters. -   `Part.text` is set to a part of the phrase that you want to annotate,     and the `entity_type`, `alias`, and `user_defined` fields are all     set.
      */
     parts?: Schema$GoogleCloudDialogflowV2IntentTrainingPhrasePart[];
     /**
-     * Optional. Indicates how many times this example was added to the intent.
-     * Each time a developer adds an existing sample by editing an intent or
-     * training, this counter is increased.
+     * Optional. Indicates how many times this example was added to the intent. Each time a developer adds an existing sample by editing an intent or training, this counter is increased.
      */
     timesAddedCount?: number;
     /**
@@ -2632,14 +2088,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2IntentTrainingPhrasePart {
     /**
-     * Optional. The parameter name for the value extracted from the annotated
-     * part of the example. This field is required for annotated parts of the
-     * training phrase.
+     * Optional. The parameter name for the value extracted from the annotated part of the example. This field is required for annotated parts of the training phrase.
      */
     alias?: string;
     /**
-     * Optional. The entity type name prefixed with `@`. This field is required
-     * for annotated parts of the training phrase.
+     * Optional. The entity type name prefixed with `@`. This field is required for annotated parts of the training phrase.
      */
     entityType?: string;
     /**
@@ -2647,38 +2100,24 @@ export namespace dialogflow_v2beta1 {
      */
     text?: string;
     /**
-     * Optional. Indicates whether the text was manually annotated. This field
-     * is set to true when the Dialogflow Console is used to manually annotate
-     * the part. When creating an annotated part with the API, you must set this
-     * to true.
+     * Optional. Indicates whether the text was manually annotated. This field is set to true when the Dialogflow Console is used to manually annotate the part. When creating an annotated part with the API, you must set this to true.
      */
     userDefined?: boolean;
   }
   /**
-   * Represents the contents of the original request that was passed to the
-   * `[Streaming]DetectIntent` call.
+   * Represents the contents of the original request that was passed to the `[Streaming]DetectIntent` call.
    */
   export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of the `QueryParameters.payload`
-     * field passed in the request. Some integrations that query a Dialogflow
-     * agent may provide additional information in the payload.  In particular
-     * for the Telephony Gateway this field has the form: &lt;pre&gt;{
-     * &quot;telephony&quot;: {    &quot;caller_id&quot;:
-     * &quot;+18558363987&quot;  } }&lt;/pre&gt; Note: The caller ID field
-     * (`caller_id`) will be redacted for Standard Edition agents and populated
-     * with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164)
-     * for Enterprise Edition agents.
+     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload.  In particular for the Telephony Gateway this field has the form: &lt;pre&gt;{  &quot;telephony&quot;: {    &quot;caller_id&quot;: &quot;+18558363987&quot;  } }&lt;/pre&gt; Note: The caller ID field (`caller_id`) will be redacted for Standard Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Enterprise Edition agents.
      */
     payload?: {[key: string]: any};
     /**
-     * The source of this request, e.g., `google`, `facebook`, `slack`. It is
-     * set by Dialogflow-owned servers.
+     * The source of this request, e.g., `google`, `facebook`, `slack`. It is set by Dialogflow-owned servers.
      */
     source?: string;
     /**
-     * Optional. The version of the protocol used for this request. This field
-     * is AoG-specific.
+     * Optional. The version of the protocol used for this request. This field is AoG-specific.
      */
     version?: string;
   }
@@ -2691,16 +2130,11 @@ export namespace dialogflow_v2beta1 {
      */
     action?: string;
     /**
-     * This field is set to: - `false` if the matched intent has required
-     * parameters and not all of    the required parameter values have been
-     * collected. - `true` if all required parameter values have been collected,
-     * or if the    matched intent doesn&#39;t contain any required parameters.
+     * This field is set to: - `false` if the matched intent has required parameters and not all of    the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the    matched intent doesn&#39;t contain any required parameters.
      */
     allRequiredParamsPresent?: boolean;
     /**
-     * The free-form diagnostic info. For example, this field could contain
-     * webhook call latency. The string keys of the Struct&#39;s fields map can
-     * change without notice.
+     * The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct&#39;s fields map can change without notice.
      */
     diagnosticInfo?: {[key: string]: any};
     /**
@@ -2708,34 +2142,23 @@ export namespace dialogflow_v2beta1 {
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2IntentMessage[];
     /**
-     * The text to be pronounced to the user or shown on the screen. Note: This
-     * is a legacy field, `fulfillment_messages` should be preferred.
+     * The text to be pronounced to the user or shown on the screen. Note: This is a legacy field, `fulfillment_messages` should be preferred.
      */
     fulfillmentText?: string;
     /**
-     * The intent that matched the conversational query. Some, not all fields
-     * are filled in this message, including but not limited to: `name`,
-     * `display_name` and `webhook_state`.
+     * The intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: `name`, `display_name` and `webhook_state`.
      */
     intent?: Schema$GoogleCloudDialogflowV2Intent;
     /**
-     * The intent detection confidence. Values range from 0.0 (completely
-     * uncertain) to 1.0 (completely certain). If there are `multiple
-     * knowledge_answers` messages, this value is set to the greatest
-     * `knowledgeAnswers.match_confidence` value in the list.
+     * The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). If there are `multiple knowledge_answers` messages, this value is set to the greatest `knowledgeAnswers.match_confidence` value in the list.
      */
     intentDetectionConfidence?: number;
     /**
-     * The language that was triggered during intent detection. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * for a list of the currently supported language codes.
+     * The language that was triggered during intent detection. See [Language Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) for a list of the currently supported language codes.
      */
     languageCode?: string;
     /**
-     * The collection of output contexts. If applicable,
-     * `output_contexts.parameters` contains entries with name `&lt;parameter
-     * name&gt;.original` containing the original parameter values before the
-     * query.
+     * The collection of output contexts. If applicable, `output_contexts.parameters` contains entries with name `&lt;parameter name&gt;.original` containing the original parameter values before the query.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
@@ -2743,60 +2166,41 @@ export namespace dialogflow_v2beta1 {
      */
     parameters?: {[key: string]: any};
     /**
-     * The original conversational query text: - If natural language text was
-     * provided as input, `query_text` contains   a copy of the input. - If
-     * natural language speech audio was provided as input, `query_text`
-     * contains the speech recognition result. If speech recognizer produced
-     * multiple alternatives, a particular one is picked. - If an event was
-     * provided as input, `query_text` is not set.
+     * The original conversational query text: - If natural language text was provided as input, `query_text` contains   a copy of the input. - If natural language speech audio was provided as input, `query_text`   contains the speech recognition result. If speech recognizer produced   multiple alternatives, a particular one is picked. - If an event was provided as input, `query_text` is not set.
      */
     queryText?: string;
     /**
-     * The sentiment analysis result, which depends on the
-     * `sentiment_analysis_request_config` specified in the request.
+     * The sentiment analysis result, which depends on the `sentiment_analysis_request_config` specified in the request.
      */
     sentimentAnalysisResult?: Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
     /**
-     * The Speech recognition confidence between 0.0 and 1.0. A higher number
-     * indicates an estimated greater likelihood that the recognized words are
-     * correct. The default of 0.0 is a sentinel value indicating that
-     * confidence was not set.  This field is not guaranteed to be accurate or
-     * set. In particular this field isn&#39;t set for StreamingDetectIntent
-     * since the streaming endpoint has separate confidence estimates per
-     * portion of the audio in StreamingRecognitionResult.
+     * The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set.  This field is not guaranteed to be accurate or set. In particular this field isn&#39;t set for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number;
     /**
-     * If the query was fulfilled by a webhook call, this field is set to the
-     * value of the `payload` field returned in the webhook response.
+     * If the query was fulfilled by a webhook call, this field is set to the value of the `payload` field returned in the webhook response.
      */
     webhookPayload?: {[key: string]: any};
     /**
-     * If the query was fulfilled by a webhook call, this field is set to the
-     * value of the `source` field returned in the webhook response.
+     * If the query was fulfilled by a webhook call, this field is set to the value of the `source` field returned in the webhook response.
      */
     webhookSource?: string;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit
-   * of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
    */
   export interface Schema$GoogleCloudDialogflowV2Sentiment {
     /**
-     * A non-negative number in the [0, +inf) range, which represents the
-     * absolute magnitude of sentiment, regardless of score (positive or
-     * negative).
+     * A non-negative number in the [0, +inf) range, which represents the absolute magnitude of sentiment, regardless of score (positive or negative).
      */
     magnitude?: number;
     /**
-     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-     * sentiment).
+     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive sentiment).
      */
     score?: number;
   }
   /**
-   * The result of sentiment analysis as configured by
-   * `sentiment_analysis_request_config`.
+   * The result of sentiment analysis as configured by `sentiment_analysis_request_config`.
    */
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     /**
@@ -2809,26 +2213,19 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2WebhookRequest {
     /**
-     * Optional. The contents of the original request that was passed to
-     * `[Streaming]DetectIntent` call.
+     * Optional. The contents of the original request that was passed to `[Streaming]DetectIntent` call.
      */
     originalDetectIntentRequest?: Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest;
     /**
-     * The result of the conversational query or event processing. Contains the
-     * same value as `[Streaming]DetectIntentResponse.query_result`.
+     * The result of the conversational query or event processing. Contains the same value as `[Streaming]DetectIntentResponse.query_result`.
      */
     queryResult?: Schema$GoogleCloudDialogflowV2QueryResult;
     /**
-     * The unique identifier of the response. Contains the same value as
-     * `[Streaming]DetectIntentResponse.response_id`.
+     * The unique identifier of the response. Contains the same value as `[Streaming]DetectIntentResponse.response_id`.
      */
     responseId?: string;
     /**
-     * The unique identifier of detectIntent request session. Can be used to
-     * identify end-user inside webhook implementation. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
-     * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment
-     * ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;`.
+     * The unique identifier of detectIntent request session. Can be used to identify end-user inside webhook implementation. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;`.
      */
     session?: string;
   }
@@ -2837,37 +2234,23 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2WebhookResponse {
     /**
-     * Optional. Makes the platform immediately invoke another `DetectIntent`
-     * call internally with the specified event as input.
+     * Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input.
      */
     followupEventInput?: Schema$GoogleCloudDialogflowV2EventInput;
     /**
-     * Optional. The collection of rich messages to present to the user. This
-     * value is passed directly to `QueryResult.fulfillment_messages`.
+     * Optional. The collection of rich messages to present to the user. This value is passed directly to `QueryResult.fulfillment_messages`.
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2IntentMessage[];
     /**
-     * Optional. The text to be shown on the screen. This value is passed
-     * directly to `QueryResult.fulfillment_text`.
+     * Optional. The text to be shown on the screen. This value is passed directly to `QueryResult.fulfillment_text`.
      */
     fulfillmentText?: string;
     /**
-     * Optional. The collection of output contexts. This value is passed
-     * directly to `QueryResult.output_contexts`.
+     * Optional. The collection of output contexts. This value is passed directly to `QueryResult.output_contexts`.
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
-     * Optional. This value is passed directly to `QueryResult.webhook_payload`.
-     * See the related `fulfillment_messages[i].payload field`, which may be
-     * used as an alternative to this field.  This field can be used for Actions
-     * on Google responses. It should have a structure similar to the JSON
-     * message shown here. For more information, see [Actions on Google Webhook
-     * Format](https://developers.google.com/actions/dialogflow/webhook)
-     * &lt;pre&gt;{   &quot;google&quot;: {     &quot;expectUserResponse&quot;:
-     * true,     &quot;richResponse&quot;: {       &quot;items&quot;: [ {
-     * &quot;simpleResponse&quot;: {             &quot;textToSpeech&quot;:
-     * &quot;this is a simple response&quot;           }         }       ]     }
-     * } }&lt;/pre&gt;
+     * Optional. This value is passed directly to `QueryResult.webhook_payload`. See the related `fulfillment_messages[i].payload field`, which may be used as an alternative to this field.  This field can be used for Actions on Google responses. It should have a structure similar to the JSON message shown here. For more information, see [Actions on Google Webhook Format](https://developers.google.com/actions/dialogflow/webhook) &lt;pre&gt;{   &quot;google&quot;: {     &quot;expectUserResponse&quot;: true,     &quot;richResponse&quot;: {       &quot;items&quot;: [         {           &quot;simpleResponse&quot;: {             &quot;textToSpeech&quot;: &quot;this is a simple response&quot;           }         }       ]     }   } }&lt;/pre&gt;
      */
     payload?: {[key: string]: any};
     /**
@@ -2876,14 +2259,11 @@ export namespace dialogflow_v2beta1 {
     source?: string;
   }
   /**
-   * This resource represents a long-running operation that is the result of a
-   * network API call.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$GoogleLongrunningOperation {
     /**
-     * If the value is `false`, it means the operation is still in progress. If
-     * `true`, the operation is completed, and either `error` or `response` is
-     * available.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
     done?: boolean;
     /**
@@ -2891,72 +2271,24 @@ export namespace dialogflow_v2beta1 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service
-     * that originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
-     * The normal response of the operation in case of success.  If the original
-     * method returns no data on success, such as `Delete`, the response is
-     * `google.protobuf.Empty`.  If the original method is standard
-     * `Get`/`Create`/`Update`, the response should be the resource.  For other
-     * methods, the response should have the type `XxxResponse`, where `Xxx` is
-     * the original method name.  For example, if the original method name is
-     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any};
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$GoogleRpcStatus {
     /**
@@ -2964,23 +2296,16 @@ export namespace dialogflow_v2beta1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a
-   * pair of doubles representing degrees latitude and degrees longitude. Unless
-   * specified otherwise, this must conform to the &lt;a
-   * href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84
-   * standard&lt;/a&gt;. Values must be within normalized ranges.
+   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
    */
   export interface Schema$GoogleTypeLatLng {
     /**
@@ -3097,8 +2422,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project that the agent to fetch is associated with. Format:
-     * `projects/<Project ID>`.
+     * Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
   }
@@ -3125,8 +2449,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.export
-     * @desc Exports the specified agent to a ZIP file.   Operation <response:
-     * ExportAgentResponse>
+     * @desc Exports the specified agent to a ZIP file.   Operation <response: ExportAgentResponse>
      * @alias dialogflow.projects.agent.export
      * @memberOf! ()
      *
@@ -3208,10 +2531,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.import
-     * @desc Imports the specified agent from a ZIP file.  Uploads new intents and
-     * entity types without deleting the existing ones. Intents and entity types
-     * with the same name are replaced with the new versions from
-     * ImportAgentRequest.   Operation <response: google.protobuf.Empty>
+     * @desc Imports the specified agent from a ZIP file.  Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest.   Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.import
      * @memberOf! ()
      *
@@ -3375,11 +2695,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.search
-     * @desc Returns the list of agents.  Since there is at most one
-     * conversational agent per project, this method is useful primarily for
-     * listing all agents across projects the caller has access to. One can
-     * achieve that with a wildcard project collection id "-". Refer to [List
-     * Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+     * @desc Returns the list of agents.  Since there is at most one conversational agent per project, this method is useful primarily for listing all agents across projects the caller has access to. One can achieve that with a wildcard project collection id "-". Refer to [List Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
      * @alias dialogflow.projects.agent.search
      * @memberOf! ()
      *
@@ -3479,8 +2795,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.train
-     * @desc Trains the specified agent.   Operation <response:
-     * google.protobuf.Empty>
+     * @desc Trains the specified agent.   Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.train
      * @memberOf! ()
      *
@@ -3569,8 +2884,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project that the agent to export is associated with.
-     * Format: `projects/<Project ID>`.
+     * Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
 
@@ -3587,8 +2901,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project that the agent to import is associated with.
-     * Format: `projects/<Project ID>`.
+     * Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
 
@@ -3605,8 +2918,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project that the agent to restore is associated with.
-     * Format: `projects/<Project ID>`.
+     * Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
 
@@ -3623,18 +2935,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The project to list agents from. Format: `projects/<Project ID
-     * or '-'>`.
+     * Required. The project to list agents from. Format: `projects/<Project ID or '-'>`.
      */
     parent?: string;
   }
@@ -3646,8 +2955,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project that the agent to train is associated with. Format:
-     * `projects/<Project ID>`.
+     * Required. The project that the agent to train is associated with. Format: `projects/<Project ID>`.
      */
     parent?: string;
 
@@ -3669,8 +2977,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.entityTypes.batchDelete
-     * @desc Deletes entity types in the specified agent.  Operation <response:
-     * google.protobuf.Empty>
+     * @desc Deletes entity types in the specified agent.  Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.batchDelete
      * @memberOf! ()
      *
@@ -3751,8 +3058,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.entityTypes.batchUpdate
-     * @desc Updates/Creates multiple entity types in the specified agent.
-     * Operation <response: BatchUpdateEntityTypesResponse>
+     * @desc Updates/Creates multiple entity types in the specified agent.  Operation <response: BatchUpdateEntityTypesResponse>
      * @alias dialogflow.projects.agent.entityTypes.batchUpdate
      * @memberOf! ()
      *
@@ -4287,8 +3593,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the agent to delete all entities types for. Format:
-     * `projects/<Project ID>/agent`.
+     * Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
 
@@ -4305,8 +3610,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the agent to update or create entity types in.
-     * Format: `projects/<Project ID>/agent`.
+     * Required. The name of the agent to update or create entity types in. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
 
@@ -4323,16 +3627,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language of entity synonyms defined in `entity_type`. If
-     * not specified, the agent's default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * Required. The agent to create a entity type for. Format:
-     * `projects/<Project ID>/agent`.
+     * Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
 
@@ -4349,8 +3648,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to delete. Format:
-     * `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      */
     name?: string;
   }
@@ -4362,16 +3660,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language to retrieve entity synonyms for. If not specified,
-     * the agent's default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * Required. The name of the entity type. Format: `projects/<Project
-     * ID>/agent/entityTypes/<EntityType ID>`.
+     * Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      */
     name?: string;
   }
@@ -4383,26 +3676,19 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language to list entity synonyms for. If not specified, the
-     * agent's default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The agent to list all entity types from. Format:
-     * `projects/<Project ID>/agent`.
+     * Required. The agent to list all entity types from. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
   }
@@ -4414,18 +3700,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The language of entity synonyms defined in `entity_type`. If
-     * not specified, the agent's default language is used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * The unique identifier of the entity type. Required for
-     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
-     * methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
-     * ID>`.
+     * The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     name?: string;
     /**
@@ -4447,8 +3726,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchCreate
-     * @desc Creates multiple new entities in the specified entity type.
-     * Operation <response: google.protobuf.Empty>
+     * @desc Creates multiple new entities in the specified entity type.  Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchCreate
      * @memberOf! ()
      *
@@ -4530,8 +3808,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchDelete
-     * @desc Deletes entities in the specified entity type.  Operation
-     * <response: google.protobuf.Empty>
+     * @desc Deletes entities in the specified entity type.  Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchDelete
      * @memberOf! ()
      *
@@ -4613,10 +3890,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchUpdate
-     * @desc Updates or creates multiple entities in the specified entity type.
-     * This method does not affect entities in the entity type that aren't
-     * explicitly specified in the request.  Operation <response:
-     * google.protobuf.Empty>
+     * @desc Updates or creates multiple entities in the specified entity type. This method does not affect entities in the entity type that aren't explicitly specified in the request.  Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchUpdate
      * @memberOf! ()
      *
@@ -4705,8 +3979,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to create entities in. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
 
@@ -4723,8 +3996,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to delete entries for. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to delete entries for. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
 
@@ -4741,8 +4013,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to update or create entities in.
-     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to update or create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
 
@@ -4789,8 +4060,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.deleteContexts
      * @desc Deletes all active contexts in the specified session.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.deleteContexts
+     * @alias dialogflow.projects.agent.environments.users.sessions.deleteContexts
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -4865,10 +4135,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.environments.users.sessions.detectIntent
-     * @desc Processes a natural language query and returns structured,
-     * actionable data as a result. This method is not idempotent, because it
-     * may cause contexts and session entity types to be updated, which in turn
-     * might affect results of future queries.
+     * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries.
      * @alias dialogflow.projects.agent.environments.users.sessions.detectIntent
      * @memberOf! ()
      *
@@ -4974,11 +4241,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session to delete all contexts from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. If `Environment ID` is not specified we assume default 'draft'
-     * environment. If `User ID` is not specified, we assume default '-' user.
+     * Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -4990,15 +4253,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session this query is sent to. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`, or
-     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we
-     * assume default 'draft' environment. If `User ID` is not specified, we are
-     * using "-". It’s up to the API caller to choose an appropriate `Session
-     * ID` and `User Id`. They can be a random numbers or some type of user and
-     * session identifiers (preferably hashed). The length of the `Session ID`
-     * and `User ID` must not exceed 36 characters.
+     * Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It’s up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      */
     session?: string;
 
@@ -5016,10 +4271,8 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.create
-     * @desc Creates a context.  If the specified context already exists,
-     * overrides the context.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.contexts.create
+     * @desc Creates a context.  If the specified context already exists, overrides the context.
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5105,8 +4358,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.delete
      * @desc Deletes the specified context.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.contexts.delete
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5259,8 +4511,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.list
      * @desc Returns the list of all contexts in the specified session.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.contexts.list
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5360,8 +4611,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.contexts.patch
      * @desc Updates the specified context.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.contexts.patch
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5451,11 +4701,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The session to create a context for. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
-     * environment. If `User ID` is not specified, we assume default '-' user.
+     * Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -5472,12 +4718,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the context to delete. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
-     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
-     * not specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -5489,12 +4730,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the context. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
-     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
-     * not specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -5506,21 +4742,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The session to list all contexts from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
-     * environment. If `User ID` is not specified, we assume default '-' user.
+     * Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -5532,14 +4762,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The unique identifier of the context. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
-     * ID>`, or `projects/<Project ID>/agent/environments/<Environment
-     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The
-     * `Context ID` is always converted to lowercase, may only contain
-     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If
-     * `Environment ID` is not specified, we assume default 'draft' environment.
-     * If `User ID` is not specified, we assume default '-' user.
+     * Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
     /**
@@ -5561,10 +4784,8 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.create
-     * @desc Creates a session entity type.  If the specified session entity
-     * type already exists, overrides the session entity type.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.entityTypes.create
+     * @desc Creates a session entity type.  If the specified session entity type already exists, overrides the session entity type.
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5664,8 +4885,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.delete
      * @desc Deletes the specified session entity type.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.entityTypes.delete
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5736,8 +4956,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.get
      * @desc Retrieves the specified session entity type.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.entityTypes.get
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5832,10 +5051,8 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.list
-     * @desc Returns the list of all session entity types in the specified
-     * session.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.entityTypes.list
+     * @desc Returns the list of all session entity types in the specified session.
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -5937,8 +5154,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * dialogflow.projects.agent.environments.users.sessions.entityTypes.patch
      * @desc Updates the specified session entity type.
-     * @alias
-     * dialogflow.projects.agent.environments.users.sessions.entityTypes.patch
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -6042,12 +5258,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The session to create a session entity type for. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
-     * default 'draft' environment. If `User ID` is not specified, we assume
-     * default '-' user.
+     * Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -6064,13 +5275,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to delete. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
-     * Type Display Name>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
-     * specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -6082,12 +5287,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session entity type. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`
-     * or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If
-     * `Environment ID` is not specified, we assume default 'draft' environment.
-     * If `User ID` is not specified, we assume default '-' user.
+     * Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -6099,22 +5299,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The session to list all session entity types from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
-     * default 'draft' environment. If `User ID` is not specified, we assume
-     * default '-' user.
+     * Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -6126,15 +5319,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The unique identifier of this session entity type. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
-     * Type Display Name>`, or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
-     * specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.  `<Entity Type Display Name>` must
-     * be the display name of an existing entity type in the same agent that
-     * will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string;
     /**
@@ -6156,8 +5341,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.intents.batchDelete
-     * @desc Deletes intents in the specified agent.  Operation <response:
-     * google.protobuf.Empty>
+     * @desc Deletes intents in the specified agent.  Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.intents.batchDelete
      * @memberOf! ()
      *
@@ -6239,8 +5423,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.intents.batchUpdate
-     * @desc Updates/Creates multiple intents in the specified agent.  Operation
-     * <response: BatchUpdateIntentsResponse>
+     * @desc Updates/Creates multiple intents in the specified agent.  Operation <response: BatchUpdateIntentsResponse>
      * @alias dialogflow.projects.agent.intents.batchUpdate
      * @memberOf! ()
      *
@@ -6408,8 +5591,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.intents.delete
-     * @desc Deletes the specified intent and its direct or indirect followup
-     * intents.
+     * @desc Deletes the specified intent and its direct or indirect followup intents.
      * @alias dialogflow.projects.agent.intents.delete
      * @memberOf! ()
      *
@@ -6755,8 +5937,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the agent to delete all entities types for. Format:
-     * `projects/<Project ID>/agent`.
+     * Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
 
@@ -6773,8 +5954,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the agent to update or create intents in. Format:
-     * `projects/<Project ID>/agent`.
+     * Required. The name of the agent to update or create intents in. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
 
@@ -6795,17 +5975,11 @@ export namespace dialogflow_v2beta1 {
      */
     intentView?: string;
     /**
-     * Optional. The language of training phrases, parameters and rich messages
-     * defined in `intent`. If not specified, the agent's default language is
-     * used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * Required. The agent to create a intent for. Format: `projects/<Project
-     * ID>/agent`.
+     * Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
 
@@ -6822,9 +5996,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the intent to delete. If this intent has direct or
-     * indirect followup intents, we also delete them.  Format:
-     * `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them.  Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
   }
@@ -6840,17 +6012,11 @@ export namespace dialogflow_v2beta1 {
      */
     intentView?: string;
     /**
-     * Optional. The language to retrieve training phrases, parameters and rich
-     * messages for. If not specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * Required. The name of the intent. Format: `projects/<Project
-     * ID>/agent/intents/<Intent ID>`.
+     * Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
   }
@@ -6866,27 +6032,19 @@ export namespace dialogflow_v2beta1 {
      */
     intentView?: string;
     /**
-     * Optional. The language to list training phrases, parameters and rich
-     * messages for. If not specified, the agent's default language is used.
-     * [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The agent to list all intents from. Format: `projects/<Project
-     * ID>/agent`.
+     * Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`.
      */
     parent?: string;
   }
@@ -6902,18 +6060,11 @@ export namespace dialogflow_v2beta1 {
      */
     intentView?: string;
     /**
-     * Optional. The language of training phrases, parameters and rich messages
-     * defined in `intent`. If not specified, the agent's default language is
-     * used. [Many
-     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
-     * are supported. Note: languages must be enabled in the agent before they
-     * can be used.
+     * Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**
-     * The unique identifier of this intent. Required for Intents.UpdateIntent
-     * and Intents.BatchUpdateIntents methods. Format: `projects/<Project
-     * ID>/agent/intents/<Intent ID>`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
     /**
@@ -7408,8 +6559,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project to create a knowledge base for. Format:
-     * `projects/<Project ID>`.
+     * Required. The project to create a knowledge base for. Format: `projects/<Project ID>`.
      */
     parent?: string;
 
@@ -7426,13 +6576,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. Force deletes the knowledge base. When set to true, any
-     * documents in the knowledge base are also deleted.
+     * Optional. Force deletes the knowledge base. When set to true, any documents in the knowledge base are also deleted.
      */
     force?: boolean;
     /**
-     * Required. The name of the knowledge base to delete. Format:
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The name of the knowledge base to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     name?: string;
   }
@@ -7444,8 +6592,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the knowledge base to retrieve. Format
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The name of the knowledge base to retrieve. Format `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     name?: string;
   }
@@ -7457,18 +6604,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 10 and at most 100.
+     * Optional. The maximum number of items to return in a single page. By default 10 and at most 100.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The project to list of knowledge bases for. Format:
-     * `projects/<Project ID>`.
+     * Required. The project to list of knowledge bases for. Format: `projects/<Project ID>`.
      */
     parent?: string;
   }
@@ -7480,15 +6624,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The knowledge base resource name. The name must be empty when creating a
-     * knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge
-     * Base ID>`.
+     * The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     name?: string;
     /**
-     * Optional. Not specified means `update all`. Currently, only
-     * `display_name` can be updated, an InvalidArgument will be returned for
-     * attempting to update other fields.
+     * Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
      */
     updateMask?: string;
 
@@ -7506,8 +6646,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.create
-     * @desc Creates a new document.  Operation <response: Document, metadata:
-     * KnowledgeOperationMetadata>
+     * @desc Creates a new document.  Operation <response: Document,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.agent.knowledgeBases.documents.create
      * @memberOf! ()
      *
@@ -7589,8 +6728,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.delete
-     * @desc Deletes the specified document.  Operation <response:
-     * google.protobuf.Empty,            metadata: KnowledgeOperationMetadata>
+     * @desc Deletes the specified document.  Operation <response: google.protobuf.Empty,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.agent.knowledgeBases.documents.delete
      * @memberOf! ()
      *
@@ -7856,8 +6994,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.patch
-     * @desc Updates the specified document. Operation <response: Document,
-     * metadata: KnowledgeOperationMetadata>
+     * @desc Updates the specified document. Operation <response: Document,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.agent.knowledgeBases.documents.patch
      * @memberOf! ()
      *
@@ -7937,12 +7074,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.knowledgeBases.documents.reload
-     * @desc Reloads the specified document from its specified source,
-     * content_uri or content. The previously loaded content of the document
-     * will be deleted. Note: Even when the content of the document has not
-     * changed, there still may be side effects because of internal
-     * implementation changes. Operation <response: Document, metadata:
-     * KnowledgeOperationMetadata>
+     * @desc Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Operation <response: Document,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.agent.knowledgeBases.documents.reload
      * @memberOf! ()
      *
@@ -8031,8 +7163,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The knoweldge base to create a document for. Format:
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
@@ -8049,8 +7180,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to delete. Format: `projects/<Project
-     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
   }
@@ -8062,8 +7192,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the document to retrieve. Format `projects/<Project
-     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * Required. The name of the document to retrieve. Format `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
   }
@@ -8075,18 +7204,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 10 and at most 100.
+     * Optional. The maximum number of items to return in a single page. By default 10 and at most 100.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The knowledge base to list all documents for. Format:
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knowledge base to list all documents for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
   }
@@ -8098,15 +7224,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The document resource name. The name must be empty when creating a
-     * document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
-     * ID>/documents/<Document ID>`.
+     * The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
     /**
-     * Optional. Not specified means `update all`. Currently, only
-     * `display_name` can be updated, an InvalidArgument will be returned for
-     * attempting to update other fields.
+     * Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
      */
     updateMask?: string;
 
@@ -8123,8 +7245,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to reload. Format: `projects/<Project
-     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      */
     name?: string;
 
@@ -8226,10 +7347,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.sessions.detectIntent
-     * @desc Processes a natural language query and returns structured,
-     * actionable data as a result. This method is not idempotent, because it
-     * may cause contexts and session entity types to be updated, which in turn
-     * might affect results of future queries.
+     * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries.
      * @alias dialogflow.projects.agent.sessions.detectIntent
      * @memberOf! ()
      *
@@ -8335,11 +7453,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session to delete all contexts from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. If `Environment ID` is not specified we assume default 'draft'
-     * environment. If `User ID` is not specified, we assume default '-' user.
+     * Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -8351,15 +7465,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session this query is sent to. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`, or
-     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we
-     * assume default 'draft' environment. If `User ID` is not specified, we are
-     * using "-". It’s up to the API caller to choose an appropriate `Session
-     * ID` and `User Id`. They can be a random numbers or some type of user and
-     * session identifiers (preferably hashed). The length of the `Session ID`
-     * and `User ID` must not exceed 36 characters.
+     * Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It’s up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random numbers or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      */
     session?: string;
 
@@ -8377,8 +7483,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.sessions.contexts.create
-     * @desc Creates a context.  If the specified context already exists,
-     * overrides the context.
+     * @desc Creates a context.  If the specified context already exists, overrides the context.
      * @alias dialogflow.projects.agent.sessions.contexts.create
      * @memberOf! ()
      *
@@ -8808,11 +7913,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The session to create a context for. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
-     * environment. If `User ID` is not specified, we assume default '-' user.
+     * Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -8829,12 +7930,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the context to delete. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
-     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
-     * not specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -8846,12 +7942,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the context. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or
-     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is
-     * not specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -8863,21 +7954,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The session to list all contexts from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>`. If `Environment ID` is not specified, we assume default 'draft'
-     * environment. If `User ID` is not specified, we assume default '-' user.
+     * Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -8889,14 +7974,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The unique identifier of the context. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
-     * ID>`, or `projects/<Project ID>/agent/environments/<Environment
-     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The
-     * `Context ID` is always converted to lowercase, may only contain
-     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If
-     * `Environment ID` is not specified, we assume default 'draft' environment.
-     * If `User ID` is not specified, we assume default '-' user.
+     * Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
     /**
@@ -8918,8 +7996,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.sessions.entityTypes.create
-     * @desc Creates a session entity type.  If the specified session entity
-     * type already exists, overrides the session entity type.
+     * @desc Creates a session entity type.  If the specified session entity type already exists, overrides the session entity type.
      * @alias dialogflow.projects.agent.sessions.entityTypes.create
      * @memberOf! ()
      *
@@ -9186,8 +8263,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.agent.sessions.entityTypes.list
-     * @desc Returns the list of all session entity types in the specified
-     * session.
+     * @desc Returns the list of all session entity types in the specified session.
      * @alias dialogflow.projects.agent.sessions.entityTypes.list
      * @memberOf! ()
      *
@@ -9394,12 +8470,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The session to create a session entity type for. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
-     * default 'draft' environment. If `User ID` is not specified, we assume
-     * default '-' user.
+     * Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -9416,13 +8487,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to delete. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
-     * Type Display Name>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
-     * specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -9434,12 +8499,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session entity type. Format: `projects/<Project
-     * ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`
-     * or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     * ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If
-     * `Environment ID` is not specified, we assume default 'draft' environment.
-     * If `User ID` is not specified, we assume default '-' user.
+     * Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -9451,22 +8511,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 100 and at most 1000.
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The session to list all session entity types from. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/
-     * sessions/<Session ID>`. If `Environment ID` is not specified, we assume
-     * default 'draft' environment. If `User ID` is not specified, we assume
-     * default '-' user.
+     * Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -9478,15 +8531,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The unique identifier of this session entity type. Format:
-     * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
-     * Type Display Name>`, or `projects/<Project
-     * ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     * ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not
-     * specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.  `<Entity Type Display Name>` must
-     * be the display name of an existing entity type in the same agent that
-     * will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string;
     /**
@@ -9981,8 +9026,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project to create a knowledge base for. Format:
-     * `projects/<Project ID>`.
+     * Required. The project to create a knowledge base for. Format: `projects/<Project ID>`.
      */
     parent?: string;
 
@@ -9999,13 +9043,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. Force deletes the knowledge base. When set to true, any
-     * documents in the knowledge base are also deleted.
+     * Optional. Force deletes the knowledge base. When set to true, any documents in the knowledge base are also deleted.
      */
     force?: boolean;
     /**
-     * Required. The name of the knowledge base to delete. Format:
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The name of the knowledge base to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     name?: string;
   }
@@ -10017,8 +9059,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the knowledge base to retrieve. Format
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The name of the knowledge base to retrieve. Format `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     name?: string;
   }
@@ -10030,18 +9071,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 10 and at most 100.
+     * Optional. The maximum number of items to return in a single page. By default 10 and at most 100.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The project to list of knowledge bases for. Format:
-     * `projects/<Project ID>`.
+     * Required. The project to list of knowledge bases for. Format: `projects/<Project ID>`.
      */
     parent?: string;
   }
@@ -10053,15 +9091,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The knowledge base resource name. The name must be empty when creating a
-     * knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge
-     * Base ID>`.
+     * The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     name?: string;
     /**
-     * Optional. Not specified means `update all`. Currently, only
-     * `display_name` can be updated, an InvalidArgument will be returned for
-     * attempting to update other fields.
+     * Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
      */
     updateMask?: string;
 
@@ -10079,8 +9113,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.knowledgeBases.documents.create
-     * @desc Creates a new document.  Operation <response: Document, metadata:
-     * KnowledgeOperationMetadata>
+     * @desc Creates a new document.  Operation <response: Document,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.knowledgeBases.documents.create
      * @memberOf! ()
      *
@@ -10162,8 +9195,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.knowledgeBases.documents.delete
-     * @desc Deletes the specified document.  Operation <response:
-     * google.protobuf.Empty,            metadata: KnowledgeOperationMetadata>
+     * @desc Deletes the specified document.  Operation <response: google.protobuf.Empty,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.knowledgeBases.documents.delete
      * @memberOf! ()
      *
@@ -10429,8 +9461,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.knowledgeBases.documents.patch
-     * @desc Updates the specified document. Operation <response: Document,
-     * metadata: KnowledgeOperationMetadata>
+     * @desc Updates the specified document. Operation <response: Document,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.knowledgeBases.documents.patch
      * @memberOf! ()
      *
@@ -10510,12 +9541,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.knowledgeBases.documents.reload
-     * @desc Reloads the specified document from its specified source,
-     * content_uri or content. The previously loaded content of the document
-     * will be deleted. Note: Even when the content of the document has not
-     * changed, there still may be side effects because of internal
-     * implementation changes. Operation <response: Document, metadata:
-     * KnowledgeOperationMetadata>
+     * @desc Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Operation <response: Document,            metadata: KnowledgeOperationMetadata>
      * @alias dialogflow.projects.knowledgeBases.documents.reload
      * @memberOf! ()
      *
@@ -10604,8 +9630,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The knoweldge base to create a document for. Format:
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
@@ -10622,8 +9647,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to delete. Format: `projects/<Project
-     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * The name of the document to delete. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
   }
@@ -10635,8 +9659,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the document to retrieve. Format `projects/<Project
-     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * Required. The name of the document to retrieve. Format `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
   }
@@ -10648,18 +9671,15 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The maximum number of items to return in a single page. By
-     * default 10 and at most 100.
+     * Optional. The maximum number of items to return in a single page. By default 10 and at most 100.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous list
-     * request.
+     * Optional. The next_page_token value returned from a previous list request.
      */
     pageToken?: string;
     /**
-     * Required. The knowledge base to list all documents for. Format:
-     * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knowledge base to list all documents for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
   }
@@ -10671,15 +9691,11 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The document resource name. The name must be empty when creating a
-     * document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
-     * ID>/documents/<Document ID>`.
+     * The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      */
     name?: string;
     /**
-     * Optional. Not specified means `update all`. Currently, only
-     * `display_name` can be updated, an InvalidArgument will be returned for
-     * attempting to update other fields.
+     * Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
      */
     updateMask?: string;
 
@@ -10696,8 +9712,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the document to reload. Format: `projects/<Project
-     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      */
     name?: string;
 
@@ -10715,9 +9730,7 @@ export namespace dialogflow_v2beta1 {
 
     /**
      * dialogflow.projects.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
-     * this method to poll the operation result at intervals as recommended by
-     * the API service.
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @alias dialogflow.projects.operations.get
      * @memberOf! ()
      *

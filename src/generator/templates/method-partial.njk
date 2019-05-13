@@ -68,7 +68,7 @@
     {% if m.mediaUpload.protocols.simple.path %}mediaUrl: (rootUrl + {{ ('/' + m.mediaUpload.protocols.simple.path)|buildurl|safe }}).replace(/([^:]\/)\/+/g, '$1'),{% endif %}
     requiredParams: [{% if m.parameterOrder.length %}'{{ m.parameterOrder|join("', '")|safe }}'{% endif %}],
     pathParams: [{% if pathParams.length %}'{{ pathParams|join("', '")|safe }}'{% endif %}],
-    context: this.context
+    context: this.context,
   };
   {% set responseType = "Schema$" + m.response.$ref|default() %}
   if (callback) {

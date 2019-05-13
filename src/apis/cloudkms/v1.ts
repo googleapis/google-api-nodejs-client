@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace cloudkms_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace cloudkms_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace cloudkms_v1 {
   /**
    * Cloud Key Management Service (KMS) API
    *
-   * Manages keys and performs cryptographic operations in a central cloud
-   * service, for direct use by other cloud resources and applications.
+   * Manages keys and performs cryptographic operations in a central cloud service, for direct use by other cloud resources and applications.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,7 +108,10 @@ export namespace cloudkms_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.projects = new Resource$Projects(this.context);
     }
@@ -124,8 +122,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$AsymmetricDecryptRequest {
     /**
-     * Required. The data encrypted with the named CryptoKeyVersion&#39;s public
-     * key using OAEP.
+     * Required. The data encrypted with the named CryptoKeyVersion&#39;s public key using OAEP.
      */
     ciphertext?: string;
   }
@@ -143,9 +140,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$AsymmetricSignRequest {
     /**
-     * Required. The digest of the data to sign. The digest must be produced
-     * with the same digest algorithm as specified by the key version&#39;s
-     * algorithm.
+     * Required. The digest of the data to sign. The digest must be produced with the same digest algorithm as specified by the key version&#39;s algorithm.
      */
     digest?: Schema$Digest;
   }
@@ -159,27 +154,7 @@ export namespace cloudkms_v1 {
     signature?: string;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration
-   * determines which permission types are logged, and what identities, if any,
-   * are exempted from logging. An AuditConfig must have one or more
-   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
-   * specific service, the union of the two AuditConfigs is used for that
-   * service: the log_types specified in each AuditConfig are enabled, and the
-   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
-   * multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {
-   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
-   * [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
-   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
-   * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] },
-   * {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
-   * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
-   * &quot;user:bar@gmail.com&quot;               ]             }           ] }
-   * ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and
-   * ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
-   * and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -187,25 +162,16 @@ export namespace cloudkms_v1 {
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
     /**
-     * Specifies a service that will be enabled for audit logging. For example,
-     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
-     * special value that covers all services.
+     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: {
-   * &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [
-   * &quot;user:foo@gmail.com&quot;           ]         },         {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This
-   * enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while
-   * exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of
-     * permission. Follows the same format of Binding.members.
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
     /**
@@ -218,37 +184,20 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
   /**
-   * A CryptoKey represents a logical key that can be used for cryptographic
-   * operations.  A CryptoKey is made up of one or more versions, which
-   * represent the actual key material used in cryptographic operations.
+   * A CryptoKey represents a logical key that can be used for cryptographic operations.  A CryptoKey is made up of one or more versions, which represent the actual key material used in cryptographic operations.
    */
   export interface Schema$CryptoKey {
     /**
@@ -256,30 +205,19 @@ export namespace cloudkms_v1 {
      */
     createTime?: string;
     /**
-     * Labels with user-defined metadata. For more information, see [Labeling
-     * Keys](/kms/docs/labeling-keys).
+     * Labels with user-defined metadata. For more information, see [Labeling Keys](/kms/docs/labeling-keys).
      */
     labels?: {[key: string]: string};
     /**
-     * Output only. The resource name for this CryptoKey in the format
-     * `projects/x/locations/x/keyRings/x/cryptoKeys/x.
+     * Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x.
      */
     name?: string;
     /**
-     * At next_rotation_time, the Key Management Service will automatically:  1.
-     * Create a new version of this CryptoKey. 2. Mark the new version as
-     * primary.  Key rotations performed manually via CreateCryptoKeyVersion and
-     * UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time.  Keys
-     * with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys,
-     * this field must be omitted.
+     * At next_rotation_time, the Key Management Service will automatically:  1. Create a new version of this CryptoKey. 2. Mark the new version as primary.  Key rotations performed manually via CreateCryptoKeyVersion and UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time.  Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
      */
     nextRotationTime?: string;
     /**
-     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will
-     * be used by Encrypt when this CryptoKey is given in EncryptRequest.name.
-     * The CryptoKey&#39;s primary version can be updated via
-     * UpdateCryptoKeyPrimaryVersion.  All keys with purpose ENCRYPT_DECRYPT
-     * have a primary. For other keys, this field will be omitted.
+     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name.  The CryptoKey&#39;s primary version can be updated via UpdateCryptoKeyPrimaryVersion.  All keys with purpose ENCRYPT_DECRYPT have a primary. For other keys, this field will be omitted.
      */
     primary?: Schema$CryptoKeyVersion;
     /**
@@ -287,39 +225,24 @@ export namespace cloudkms_v1 {
      */
     purpose?: string;
     /**
-     * next_rotation_time will be advanced by this period when the service
-     * automatically rotates a key. Must be at least one day.  If
-     * rotation_period is set, next_rotation_time must also be set.  Keys with
-     * purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this
-     * field must be omitted.
+     * next_rotation_time will be advanced by this period when the service automatically rotates a key. Must be at least one day.  If rotation_period is set, next_rotation_time must also be set.  Keys with purpose ENCRYPT_DECRYPT support automatic rotation. For other keys, this field must be omitted.
      */
     rotationPeriod?: string;
     /**
-     * A template describing settings for new CryptoKeyVersion instances. The
-     * properties of new CryptoKeyVersion instances created by either
-     * CreateCryptoKeyVersion or auto-rotation are controlled by this template.
+     * A template describing settings for new CryptoKeyVersion instances. The properties of new CryptoKeyVersion instances created by either CreateCryptoKeyVersion or auto-rotation are controlled by this template.
      */
     versionTemplate?: Schema$CryptoKeyVersionTemplate;
   }
   /**
-   * A CryptoKeyVersion represents an individual cryptographic key, and the
-   * associated key material.  An ENABLED version can be used for cryptographic
-   * operations.  For security reasons, the raw cryptographic key material
-   * represented by a CryptoKeyVersion can never be viewed or exported. It can
-   * only be used to encrypt, decrypt, or sign data when an authorized user or
-   * application invokes Cloud KMS.
+   * A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.  An ENABLED version can be used for cryptographic operations.  For security reasons, the raw cryptographic key material represented by a CryptoKeyVersion can never be viewed or exported. It can only be used to encrypt, decrypt, or sign data when an authorized user or application invokes Cloud KMS.
    */
   export interface Schema$CryptoKeyVersion {
     /**
-     * Output only. The CryptoKeyVersionAlgorithm that this CryptoKeyVersion
-     * supports.
+     * Output only. The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.
      */
     algorithm?: string;
     /**
-     * Output only. Statement that was generated and signed by the HSM at key
-     * creation time. Use this statement to verify attributes of the key as
-     * stored on the HSM, independently of Google. Only provided for key
-     * versions with protection_level HSM.
+     * Output only. Statement that was generated and signed by the HSM at key creation time. Use this statement to verify attributes of the key as stored on the HSM, independently of Google. Only provided for key versions with protection_level HSM.
      */
     attestation?: Schema$KeyOperationAttestation;
     /**
@@ -327,28 +250,23 @@ export namespace cloudkms_v1 {
      */
     createTime?: string;
     /**
-     * Output only. The time this CryptoKeyVersion&#39;s key material was
-     * destroyed. Only present if state is DESTROYED.
+     * Output only. The time this CryptoKeyVersion&#39;s key material was destroyed. Only present if state is DESTROYED.
      */
     destroyEventTime?: string;
     /**
-     * Output only. The time this CryptoKeyVersion&#39;s key material is
-     * scheduled for destruction. Only present if state is DESTROY_SCHEDULED.
+     * Output only. The time this CryptoKeyVersion&#39;s key material is scheduled for destruction. Only present if state is DESTROY_SCHEDULED.
      */
     destroyTime?: string;
     /**
-     * Output only. The time this CryptoKeyVersion&#39;s key material was
-     * generated.
+     * Output only. The time this CryptoKeyVersion&#39;s key material was generated.
      */
     generateTime?: string;
     /**
-     * Output only. The resource name for this CryptoKeyVersion in the format
-     * `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
+     * Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
      */
     name?: string;
     /**
-     * Output only. The ProtectionLevel describing how crypto operations are
-     * performed with this CryptoKeyVersion.
+     * Output only. The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion.
      */
     protectionLevel?: string;
     /**
@@ -357,21 +275,15 @@ export namespace cloudkms_v1 {
     state?: string;
   }
   /**
-   * A CryptoKeyVersionTemplate specifies the properties to use when creating a
-   * new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or
-   * automatically as a result of auto-rotation.
+   * A CryptoKeyVersionTemplate specifies the properties to use when creating a new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or automatically as a result of auto-rotation.
    */
   export interface Schema$CryptoKeyVersionTemplate {
     /**
-     * Required. Algorithm to use when creating a CryptoKeyVersion based on this
-     * template.  For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is
-     * implied if both this field is omitted and CryptoKey.purpose is
-     * ENCRYPT_DECRYPT.
+     * Required. Algorithm to use when creating a CryptoKeyVersion based on this template.  For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both this field is omitted and CryptoKey.purpose is ENCRYPT_DECRYPT.
      */
     algorithm?: string;
     /**
-     * ProtectionLevel to use when creating a CryptoKeyVersion based on this
-     * template. Immutable. Defaults to SOFTWARE.
+     * ProtectionLevel to use when creating a CryptoKeyVersion based on this template. Immutable. Defaults to SOFTWARE.
      */
     protectionLevel?: string;
   }
@@ -380,13 +292,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$DecryptRequest {
     /**
-     * Optional data that must match the data originally supplied in
-     * EncryptRequest.additional_authenticated_data.
+     * Optional data that must match the data originally supplied in EncryptRequest.additional_authenticated_data.
      */
     additionalAuthenticatedData?: string;
     /**
-     * Required. The encrypted data originally returned in
-     * EncryptResponse.ciphertext.
+     * Required. The encrypted data originally returned in EncryptResponse.ciphertext.
      */
     ciphertext?: string;
   }
@@ -425,20 +335,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$EncryptRequest {
     /**
-     * Optional data that, if specified, must also be provided during decryption
-     * through DecryptRequest.additional_authenticated_data.  The maximum size
-     * depends on the key version&#39;s protection_level. For SOFTWARE keys, the
-     * AAD must be no larger than 64KiB. For HSM keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     additionalAuthenticatedData?: string;
     /**
-     * Required. The data to encrypt. Must be no larger than 64KiB.  The maximum
-     * size depends on the key version&#39;s protection_level. For SOFTWARE
-     * keys, the plaintext must be no larger than 64KiB. For HSM keys, the
-     * combined length of the plaintext and additional_authenticated_data fields
-     * must be no larger than 8KiB.
+     * Required. The data to encrypt. Must be no larger than 64KiB.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     plaintext?: string;
   }
@@ -456,43 +357,32 @@ export namespace cloudkms_v1 {
     name?: string;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
   /**
-   * Contains an HSM-generated attestation about a key operation. For more
-   * information, see [Verifying attestations]
-   * (https://cloud.google.com/kms/docs/attest-key).
+   * Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key).
    */
   export interface Schema$KeyOperationAttestation {
     /**
-     * Output only. The attestation data provided by the HSM when the key
-     * operation was performed.
+     * Output only. The attestation data provided by the HSM when the key operation was performed.
      */
     content?: string;
     /**
@@ -509,8 +399,7 @@ export namespace cloudkms_v1 {
      */
     createTime?: string;
     /**
-     * Output only. The resource name for the KeyRing in the format
-     * `projects/x/locations/x/keyRings/x.
+     * Output only. The resource name for the KeyRing in the format `projects/x/locations/x/keyRings/x.
      */
     name?: string;
   }
@@ -523,8 +412,7 @@ export namespace cloudkms_v1 {
      */
     cryptoKeys?: Schema$CryptoKey[];
     /**
-     * A token to retrieve next page of results. Pass this value in
-     * ListCryptoKeysRequest.page_token to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in ListCryptoKeysRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -541,9 +429,7 @@ export namespace cloudkms_v1 {
      */
     cryptoKeyVersions?: Schema$CryptoKeyVersion[];
     /**
-     * A token to retrieve next page of results. Pass this value in
-     * ListCryptoKeyVersionsRequest.page_token to retrieve the next page of
-     * results.
+     * A token to retrieve next page of results. Pass this value in ListCryptoKeyVersionsRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -560,8 +446,7 @@ export namespace cloudkms_v1 {
      */
     keyRings?: Schema$KeyRing[];
     /**
-     * A token to retrieve next page of results. Pass this value in
-     * ListKeyRingsRequest.page_token to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in ListKeyRingsRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string;
     /**
@@ -587,13 +472,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For
-     * example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
     displayName?: string;
     /**
-     * Cross-service attributes for the location. For example
-     * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: {[key: string]: string};
     /**
@@ -601,13 +484,11 @@ export namespace cloudkms_v1 {
      */
     locationId?: string;
     /**
-     * Service-specific metadata. For example the available capacity at the
-     * given location.
+     * Service-specific metadata. For example the available capacity at the given location.
      */
     metadata?: {[key: string]: any};
     /**
-     * Resource name for the location, which may vary between implementations.
-     * For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
     name?: string;
   }
@@ -616,30 +497,12 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$LocationMetadata {
     /**
-     * Indicates whether CryptoKeys with protection_level HSM can be created in
-     * this location.
+     * Indicates whether CryptoKeys with protection_level HSM can be created in this location.
      */
     hsmAvailable?: boolean;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -647,20 +510,11 @@ export namespace cloudkms_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -677,11 +531,7 @@ export namespace cloudkms_v1 {
      */
     algorithm?: string;
     /**
-     * The public key, encoded in PEM format. For more information, see the [RFC
-     * 7468](https://tools.ietf.org/html/rfc7468) sections for [General
-     * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
-     * [Textual Encoding of Subject Public Key Info]
-     * (https://tools.ietf.org/html/rfc7468#section-13).
+     * The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).
      */
     pem?: string;
   }
@@ -694,17 +544,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
-     * Only the fields in the mask will be modified. If no mask is provided, the
-     * following default mask is used: paths: &quot;bindings, etag&quot; This
-     * field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
     updateMask?: string;
   }
@@ -713,10 +557,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -725,8 +566,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -1102,8 +942,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias cloudkms.projects.locations.keyRings.getIamPolicy
      * @memberOf! ()
      *
@@ -1253,8 +1092,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias cloudkms.projects.locations.keyRings.setIamPolicy
      * @memberOf! ()
      *
@@ -1327,11 +1165,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias cloudkms.projects.locations.keyRings.testIamPermissions
      * @memberOf! ()
      *
@@ -1420,13 +1254,11 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. It must be unique within a location and match the regular
-     * expression `[a-zA-Z0-9_-]{1,63}`
+     * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
     keyRingId?: string;
     /**
-     * Required. The resource name of the location associated with the KeyRings,
-     * in the format `projects/x/locations/x`.
+     * Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -1455,8 +1287,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -1468,20 +1299,15 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional limit on the number of KeyRings to include in the response.
-     * Further KeyRings can subsequently be obtained by including the
-     * ListKeyRingsResponse.next_page_token in a subsequent request.  If
-     * unspecified, the server will pick an appropriate default.
+     * Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via
-     * ListKeyRingsResponse.next_page_token.
+     * Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the location associated with the KeyRings,
-     * in the format `projects/x/locations/x`.
+     * Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
      */
     parent?: string;
   }
@@ -1493,8 +1319,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1511,8 +1336,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -1534,8 +1358,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.create
-     * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose and
-     * CryptoKey.version_template.algorithm are required.
+     * @desc Create a new CryptoKey within a KeyRing.  CryptoKey.purpose and CryptoKey.version_template.algorithm are required.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.create
      * @memberOf! ()
      *
@@ -1611,8 +1434,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
-     * @desc Decrypts data that was protected by Encrypt. The CryptoKey.purpose
-     * must be ENCRYPT_DECRYPT.
+     * @desc Decrypts data that was protected by Encrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.decrypt
      * @memberOf! ()
      *
@@ -1687,8 +1509,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
-     * @desc Encrypts data, so that it can only be recovered by a call to
-     * Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
+     * @desc Encrypts data, so that it can only be recovered by a call to Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.encrypt
      * @memberOf! ()
      *
@@ -1763,8 +1584,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.get
-     * @desc Returns metadata for a given CryptoKey, as well as its primary
-     * CryptoKeyVersion.
+     * @desc Returns metadata for a given CryptoKey, as well as its primary CryptoKeyVersion.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.get
      * @memberOf! ()
      *
@@ -1835,8 +1655,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy
      * @memberOf! ()
      *
@@ -2060,8 +1879,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
      * @memberOf! ()
      *
@@ -2134,11 +1952,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions
      * @memberOf! ()
      *
@@ -2220,10 +2034,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
-     * @desc Update the version of a CryptoKey that will be used in Encrypt.
-     * Returns an error if called on an asymmetric key.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
+     * @desc Update the version of a CryptoKey that will be used in Encrypt.  Returns an error if called on an asymmetric key.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2306,8 +2118,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. It must be unique within a KeyRing and match the regular
-     * expression `[a-zA-Z0-9_-]{1,63}`
+     * Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      */
     cryptoKeyId?: string;
     /**
@@ -2328,8 +2139,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the CryptoKey to use for decryption. The
-     * server will choose the appropriate version.
+     * Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
      */
     name?: string;
 
@@ -2346,9 +2156,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the CryptoKey or CryptoKeyVersion to use
-     * for encryption.  If a CryptoKey is specified, the server will use its
-     * primary version.
+     * Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
      */
     name?: string;
 
@@ -2377,8 +2185,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -2390,20 +2197,15 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional limit on the number of CryptoKeys to include in the response.
-     * Further CryptoKeys can subsequently be obtained by including the
-     * ListCryptoKeysResponse.next_page_token in a subsequent request.  If
-     * unspecified, the server will pick an appropriate default.
+     * Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via
-     * ListCryptoKeysResponse.next_page_token.
+     * Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the KeyRing to list, in the format
-     * `projects/x/locations/x/keyRings/x`.
+     * Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      */
     parent?: string;
     /**
@@ -2419,8 +2221,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. The resource name for this CryptoKey in the format
-     * `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     name?: string;
     /**
@@ -2441,8 +2242,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2459,8 +2259,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2495,11 +2294,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
-     * @desc Decrypts data that was encrypted with a public key retrieved from
-     * GetPublicKey corresponding to a CryptoKeyVersion with CryptoKey.purpose
-     * ASYMMETRIC_DECRYPT.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
+     * @desc Decrypts data that was encrypted with a public key retrieved from GetPublicKey corresponding to a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_DECRYPT.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2580,11 +2376,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
-     * @desc Signs data using a CryptoKeyVersion with CryptoKey.purpose
-     * ASYMMETRIC_SIGN, producing a signature that can be verified with the
-     * public key retrieved from GetPublicKey.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
+     * @desc Signs data using a CryptoKeyVersion with CryptoKey.purpose ASYMMETRIC_SIGN, producing a signature that can be verified with the public key retrieved from GetPublicKey.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2662,10 +2455,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
-     * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will
-     * assign the next sequential id. If unset, state will be set to ENABLED.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
+     * @desc Create a new CryptoKeyVersion in a CryptoKey.  The server will assign the next sequential id. If unset, state will be set to ENABLED.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2739,14 +2530,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
-     * @desc Schedule a CryptoKeyVersion for destruction.  Upon calling this
-     * method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and
-     * destroy_time will be set to a time 24 hours in the future, at which point
-     * the state will be changed to DESTROYED, and the key material will be
-     * irrevocably destroyed.  Before the destroy_time is reached,
-     * RestoreCryptoKeyVersion may be called to reverse the process.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
+     * @desc Schedule a CryptoKeyVersion for destruction.  Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed.  Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2821,8 +2606,7 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
      * @desc Returns metadata for a given CryptoKeyVersion.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2892,10 +2676,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
-     * @desc Returns the public key for the given CryptoKeyVersion. The
-     * CryptoKey.purpose must be ASYMMETRIC_SIGN or ASYMMETRIC_DECRYPT.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
+     * @desc Returns the public key for the given CryptoKeyVersion. The CryptoKey.purpose must be ASYMMETRIC_SIGN or ASYMMETRIC_DECRYPT.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2969,8 +2751,7 @@ export namespace cloudkms_v1 {
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @desc Lists CryptoKeyVersions.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3055,11 +2836,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
-     * @desc Update a CryptoKeyVersion's metadata.  state may be changed between
-     * ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and
-     * RestoreCryptoKeyVersion to move between other states.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
+     * @desc Update a CryptoKeyVersion's metadata.  state may be changed between ENABLED and DISABLED using this method. See DestroyCryptoKeyVersion and RestoreCryptoKeyVersion to move between other states.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3131,11 +2909,8 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
-     * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state.  Upon
-     * restoration of the CryptoKeyVersion, state will be set to DISABLED, and
-     * destroy_time will be cleared.
-     * @alias
-     * cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
+     * @desc Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state.  Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.
+     * @alias cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -3216,8 +2991,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the CryptoKeyVersion to use for
-     * decryption.
+     * Required. The resource name of the CryptoKeyVersion to use for decryption.
      */
     name?: string;
 
@@ -3251,8 +3025,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the CryptoKey associated with the
-     * CryptoKeyVersions.
+     * Required. The name of the CryptoKey associated with the CryptoKeyVersions.
      */
     parent?: string;
 
@@ -3310,21 +3083,15 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional limit on the number of CryptoKeyVersions to include in the
-     * response. Further CryptoKeyVersions can subsequently be obtained by
-     * including the ListCryptoKeyVersionsResponse.next_page_token in a
-     * subsequent request. If unspecified, the server will pick an appropriate
-     * default.
+     * Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via
-     * ListCryptoKeyVersionsResponse.next_page_token.
+     * Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the CryptoKey to list, in the format
-     * `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     parent?: string;
     /**
@@ -3340,8 +3107,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Output only. The resource name for this CryptoKeyVersion in the format
-     * `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+     * Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
      */
     name?: string;
     /**
@@ -3380,8 +3146,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @alias cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
      * @memberOf! ()
      *
@@ -3453,8 +3218,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
      * @memberOf! ()
      *
@@ -3527,11 +3291,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
      * @memberOf! ()
      *
@@ -3620,8 +3380,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
   }
@@ -3633,8 +3392,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -3651,8 +3409,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 

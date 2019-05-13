@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace securitycenter_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace securitycenter_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,8 +91,7 @@ export namespace securitycenter_v1beta1 {
   /**
    * Cloud Security Command Center API
    *
-   * Cloud Security Command Center API provides access to temporal views of
-   * assets and findings within an organization.
+   * Cloud Security Command Center API provides access to temporal views of assets and findings within an organization.
    *
    * @example
    * const {google} = require('googleapis');
@@ -113,18 +108,17 @@ export namespace securitycenter_v1beta1 {
     organizations: Resource$Organizations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.organizations = new Resource$Organizations(this.context);
     }
   }
 
   /**
-   * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google
-   * Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that
-   * captures information about a single GCP resource. All modifications to an
-   * Asset are only within the context of Cloud SCC and don&#39;t affect the
-   * referenced GCP resource.
+   * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that captures information about a single GCP resource. All modifications to an Asset are only within the context of Cloud SCC and don&#39;t affect the referenced GCP resource.
    */
   export interface Schema$Asset {
     /**
@@ -132,29 +126,23 @@ export namespace securitycenter_v1beta1 {
      */
     createTime?: string;
     /**
-     * The relative resource name of this asset. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: &quot;organizations/123/assets/456&quot;.
+     * The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/assets/456&quot;.
      */
     name?: string;
     /**
-     * Resource managed properties. These properties are managed and defined by
-     * the GCP resource and cannot be modified by the user.
+     * Resource managed properties. These properties are managed and defined by the GCP resource and cannot be modified by the user.
      */
     resourceProperties?: {[key: string]: any};
     /**
-     * Cloud SCC managed properties. These properties are managed by Cloud SCC
-     * and cannot be modified by the user.
+     * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
      */
     securityCenterProperties?: Schema$SecurityCenterProperties;
     /**
-     * User specified security marks. These marks are entirely managed by the
-     * user and come from the SecurityMarks resource that belongs to the asset.
+     * User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the asset.
      */
     securityMarks?: Schema$SecurityMarks;
     /**
-     * The time at which the asset was last updated, added, or deleted in Cloud
-     * SCC.
+     * The time at which the asset was last updated, added, or deleted in Cloud SCC.
      */
     updateTime?: string;
   }
@@ -172,27 +160,7 @@ export namespace securitycenter_v1beta1 {
     projectIds?: string[];
   }
   /**
-   * Specifies the audit configuration for a service. The configuration
-   * determines which permission types are logged, and what identities, if any,
-   * are exempted from logging. An AuditConfig must have one or more
-   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
-   * specific service, the union of the two AuditConfigs is used for that
-   * service: the log_types specified in each AuditConfig are enabled, and the
-   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
-   * multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {
-   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
-   * [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
-   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
-   * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] },
-   * {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
-   * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
-   * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
-   * &quot;user:bar@gmail.com&quot;               ]             }           ] }
-   * ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and
-   * ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
-   * and bar@gmail.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:foo@gmail.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:bar@gmail.com&quot;               ]             }           ]         }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -200,25 +168,16 @@ export namespace securitycenter_v1beta1 {
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
     /**
-     * Specifies a service that will be enabled for audit logging. For example,
-     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
-     * special value that covers all services.
+     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: {
-   * &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;:
-   * &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [
-   * &quot;user:foo@gmail.com&quot;           ]         },         {
-   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This
-   * enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while
-   * exempting foo@gmail.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of
-     * permission. Follows the same format of Binding.members.
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[];
     /**
@@ -231,30 +190,15 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: An unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied condition will not allow user access via current binding. Different bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource.
-     * `members` can have the following values:  * `allUsers`: A special
-     * identifier that represents anyone who is    on the internet; with or
-     * without a Google account.  * `allAuthenticatedUsers`: A special
-     * identifier that represents anyone    who is authenticated with a Google
-     * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com` .
-     * * `serviceAccount:{emailid}`: An email address that represents a service
-     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
-     * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
-     * (primary) that represents all the    users of that domain. For example,
-     * `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[];
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`.
+     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -263,54 +207,36 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated
-   * empty messages in your APIs. A typical example is to use it as the request
-   * or the response type of an API method. For instance:      service Foo { rpc
-   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
-   * representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account
-   * presence&quot;     description: &quot;Determines whether the request has a
-   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which
-     * describes the expression, e.g. when hovered over it in a UI.
+     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string;
     /**
-     * Textual representation of an expression in Common Expression Language
-     * syntax.  The application context of the containing message determines
-     * which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
     expression?: string;
     /**
-     * An optional string indicating the location of the expression for error
-     * reporting, e.g. a file name and a position in the file.
+     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string;
     /**
-     * An optional title for the expression, i.e. a short string describing its
-     * purpose. This can be used e.g. in UIs which allow to enter the
-     * expression.
+     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string;
   }
   /**
-   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record
-   * of assessment data (security, risk, health or privacy) ingested into Cloud
-   * SCC for presentation, notification, analysis, policy testing, and
-   * enforcement. For example, an XSS vulnerability in an App Engine application
-   * is a finding.
+   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
    */
   export interface Schema$Finding {
     /**
-     * The additional taxonomy group within findings from a given source. This
-     * field is immutable after creation time. Example:
-     * &quot;XSS_FLASH_INJECTION&quot;
+     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
      */
     category?: string;
     /**
@@ -318,48 +244,31 @@ export namespace securitycenter_v1beta1 {
      */
     createTime?: string;
     /**
-     * The time at which the event took place. For example, if the finding
-     * represents an open firewall it would capture the time the open firewall
-     * was detected.
+     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the open firewall was detected.
      */
     eventTime?: string;
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC
-     * where additional information about the finding can be found. This field
-     * is guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
     externalUri?: string;
     /**
-     * The relative resource name of this finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: &quot;organizations/123/sources/456/findings/789&quot;
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/sources/456/findings/789&quot;
      */
     name?: string;
     /**
-     * The relative resource name of the source the finding belongs to. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * This field is immutable after creation time. For example:
-     * &quot;organizations/123/sources/456&quot;
+     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/123/sources/456&quot;
      */
     parent?: string;
     /**
-     * The full resource name of the Google Cloud Platform (GCP) resource this
-     * finding is for. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name
-     * This field is immutable after creation time.
+     * The full resource name of the Google Cloud Platform (GCP) resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name This field is immutable after creation time.
      */
     resourceName?: string;
     /**
-     * Output only. User specified security marks. These marks are entirely
-     * managed by the user and come from the SecurityMarks resource that belongs
-     * to the finding.
+     * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
     securityMarks?: Schema$SecurityMarks;
     /**
-     * Source specific properties. These properties are managed by the source
-     * that writes the finding. The key names in the source_properties map must
-     * be between 1 and 255 characters, and must start with a letter and contain
-     * alphanumeric characters or underscores only.
+     * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
      */
     sourceProperties?: {[key: string]: any};
     /**
@@ -402,70 +311,27 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GroupAssetsRequest {
     /**
-     * When compare_duration is set, the Asset&#39;s &quot;state&quot; property
-     * is updated to indicate whether the asset was added, removed, or remained
-     * present during the compare_duration period of time that precedes the
-     * read_time. This is the time between (read_time - compare_duration) and
-     * read_time.  The state value is derived based on the presence of the asset
-     * at the two points in time. Intermediate state changes between the two
-     * times don&#39;t affect the result. For example, the results aren&#39;t
-     * affected if the asset is removed and re-created again.  Possible
-     * &quot;state&quot; values when compare_duration is specified:  *
-     * &quot;ADDED&quot;: indicates that the asset was not present before
-     * compare_duration, but present at reference_time. * &quot;REMOVED&quot;:
-     * indicates that the asset was present at the start of compare_duration,
-     * but not present at reference_time. * &quot;ACTIVE&quot;: indicates that
-     * the asset was present at both the              start and the end of the
-     * time period defined by              compare_duration and reference_time.
-     * This field is ignored if `state` is not a field in `group_by`.
+     * When compare_duration is set, the Asset&#39;s &quot;state&quot; property is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don&#39;t affect the result. For example, the results aren&#39;t affected if the asset is removed and re-created again.  Possible &quot;state&quot; values when compare_duration is specified:  * &quot;ADDED&quot;: indicates that the asset was not present before              compare_duration, but present at reference_time. * &quot;REMOVED&quot;: indicates that the asset was present at the start of              compare_duration, but not present at reference_time. * &quot;ACTIVE&quot;: indicates that the asset was present at both the              start and the end of the time period defined by              compare_duration and reference_time.  This field is ignored if `state` is not a field in `group_by`.
      */
     compareDuration?: string;
     /**
-     * Expression that defines the filter to apply across assets. The expression
-     * is a list of zero or more restrictions combined via logical operators
-     * `AND` and `OR`. Parentheses are not supported, and `OR` has higher
-     * precedence than `AND`.  Restrictions have the form `&lt;field&gt;
-     * &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of
-     * them to indicate negation. The fields map to those defined in the Asset
-     * resource. Examples include:  * name *
-     * security_center_properties.resource_name * resource_properties.a_property
-     * * security_marks.marks.marka  The supported operators are:  * `=` for all
-     * value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. *
-     * `:`, meaning substring matching, for strings.  The supported value types
-     * are:  * string literals in quotes. * integer literals without quotes. *
-     * boolean literals `true` and `false` without quotes.  For example,
-     * `resource_properties.size = 100` is a valid filter string.
+     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are not supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  For example, `resource_properties.size = 100` is a valid filter string.
      */
     filter?: string;
     /**
-     * Expression that defines what assets fields to use for grouping. The
-     * string value should follow SQL syntax: comma separated list of fields.
-     * For example:
-     * &quot;security_center_properties.resource_project,security_center_properties.project&quot;.
-     * The following fields are supported when compare_duration is not set:  *
-     * security_center_properties.resource_project *
-     * security_center_properties.resource_type *
-     * security_center_properties.resource_parent  The following fields are
-     * supported when compare_duration is set:  *
-     * security_center_properties.resource_type
+     * Expression that defines what assets fields to use for grouping. The string value should follow SQL syntax: comma separated list of fields. For example: &quot;security_center_properties.resource_project,security_center_properties.project&quot;.  The following fields are supported when compare_duration is not set:  * security_center_properties.resource_project * security_center_properties.resource_type * security_center_properties.resource_parent  The following fields are supported when compare_duration is set:  * security_center_properties.resource_type
      */
     groupBy?: string;
     /**
-     * The maximum number of results to return in a single response. Default is
-     * 10, minimum is 1, maximum is 1000.
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `GroupAssetsResponse`; indicates that this
-     * is a continuation of a prior `GroupAssets` call, and that the system
-     * should return the next page of data.
+     * The value returned by the last `GroupAssetsResponse`; indicates that this is a continuation of a prior `GroupAssets` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * Time used as a reference point when filtering assets. The filter is
-     * limited to assets existing at the supplied time and their values are
-     * those at that specific time. Absence of this field will default to the
-     * API&#39;s version of NOW.
+     * Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API&#39;s version of NOW.
      */
     readTime?: string;
   }
@@ -474,14 +340,11 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GroupAssetsResponse {
     /**
-     * Group results. There exists an element for each existing unique
-     * combination of property/values. The element contains a count for the
-     * number of times those specific property/values appear.
+     * Group results. There exists an element for each existing unique combination of property/values. The element contains a count for the number of times those specific property/values appear.
      */
     groupByResults?: Schema$GroupResult[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results.
+     * Token to retrieve the next page of results, or empty if there are no more results.
      */
     nextPageToken?: string;
     /**
@@ -494,44 +357,23 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GroupFindingsRequest {
     /**
-     * Expression that defines the filter to apply across findings. The
-     * expression is a list of one or more restrictions combined via logical
-     * operators `AND` and `OR`. Parentheses are not supported, and `OR` has
-     * higher precedence than `AND`.  Restrictions have the form `&lt;field&gt;
-     * &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of
-     * them to indicate negation. Examples include:   * name  *
-     * source_properties.a_property  * security_marks.marks.marka  The supported
-     * operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`,
-     * `&lt;=` for integer values. * `:`, meaning substring matching, for
-     * strings.  The supported value types are:  * string literals in quotes. *
-     * integer literals without quotes. * boolean literals `true` and `false`
-     * without quotes.  For example, `source_properties.size = 100` is a valid
-     * filter string.
+     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are not supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  For example, `source_properties.size = 100` is a valid filter string.
      */
     filter?: string;
     /**
-     * Expression that defines what assets fields to use for grouping (including
-     * `state`). The string value should follow SQL syntax: comma separated list
-     * of fields. For example: &quot;parent,resource_name&quot;.  The following
-     * fields are supported:  * resource_name * category * state * parent
+     * Expression that defines what assets fields to use for grouping (including `state`). The string value should follow SQL syntax: comma separated list of fields. For example: &quot;parent,resource_name&quot;.  The following fields are supported:  * resource_name * category * state * parent
      */
     groupBy?: string;
     /**
-     * The maximum number of results to return in a single response. Default is
-     * 10, minimum is 1, maximum is 1000.
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `GroupFindingsResponse`; indicates that
-     * this is a continuation of a prior `GroupFindings` call, and that the
-     * system should return the next page of data.
+     * The value returned by the last `GroupFindingsResponse`; indicates that this is a continuation of a prior `GroupFindings` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * Time used as a reference point when filtering findings. The filter is
-     * limited to findings existing at the supplied time and their values are
-     * those at that specific time. Absence of this field will default to the
-     * API&#39;s version of NOW.
+     * Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API&#39;s version of NOW.
      */
     readTime?: string;
   }
@@ -540,14 +382,11 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GroupFindingsResponse {
     /**
-     * Group results. There exists an element for each existing unique
-     * combination of property/values. The element contains a count for the
-     * number of times those specific property/values appear.
+     * Group results. There exists an element for each existing unique combination of property/values. The element contains a count for the number of times those specific property/values appear.
      */
     groupByResults?: Schema$GroupResult[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results.
+     * Token to retrieve the next page of results, or empty if there are no more results.
      */
     nextPageToken?: string;
     /**
@@ -577,8 +416,7 @@ export namespace securitycenter_v1beta1 {
      */
     listAssetsResults?: Schema$ListAssetsResult[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results.
+     * Token to retrieve the next page of results, or empty if there are no more results.
      */
     nextPageToken?: string;
     /**
@@ -612,8 +450,7 @@ export namespace securitycenter_v1beta1 {
      */
     findings?: Schema$Finding[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results.
+     * Token to retrieve the next page of results, or empty if there are no more results.
      */
     nextPageToken?: string;
     /**
@@ -643,8 +480,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$ListSourcesResponse {
     /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results.
+     * Token to retrieve the next page of results, or empty if there are no more results.
      */
     nextPageToken?: string;
     /**
@@ -653,14 +489,11 @@ export namespace securitycenter_v1beta1 {
     sources?: Schema$Source[];
   }
   /**
-   * This resource represents a long-running operation that is the result of a
-   * network API call.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
     /**
-     * If the value is `false`, it means the operation is still in progress. If
-     * `true`, the operation is completed, and either `error` or `response` is
-     * available.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
     done?: boolean;
     /**
@@ -668,32 +501,20 @@ export namespace securitycenter_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
     metadata?: {[key: string]: any};
     /**
-     * The server-assigned name, which is only unique within the same service
-     * that originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
     name?: string;
     /**
-     * The normal response of the operation in case of success.  If the original
-     * method returns no data on success, such as `Delete`, the response is
-     * `google.protobuf.Empty`.  If the original method is standard
-     * `Get`/`Create`/`Update`, the response should be the resource.  For other
-     * methods, the response should have the type `XxxResponse`, where `Xxx` is
-     * the original method name.  For example, if the original method name is
-     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any};
   }
   /**
-   * User specified settings that are attached to the Cloud Security Command
-   * Center (Cloud SCC) organization.
+   * User specified settings that are attached to the Cloud Security Command Center (Cloud SCC) organization.
    */
   export interface Schema$OrganizationSettings {
     /**
@@ -701,38 +522,16 @@ export namespace securitycenter_v1beta1 {
      */
     assetDiscoveryConfig?: Schema$AssetDiscoveryConfig;
     /**
-     * A flag that indicates if Asset Discovery should be enabled. If the flag
-     * is set to `true`, then discovery of assets will occur. If it is set to
-     * `false, all historical assets will remain, but discovery of future assets
-     * will not occur.
+     * A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false, all historical assets will remain, but discovery of future assets will not occur.
      */
     enableAssetDiscovery?: boolean;
     /**
-     * The relative resource name of the settings. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: &quot;organizations/123/organizationSettings&quot;.
+     * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/organizationSettings&quot;.
      */
     name?: string;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to
-   * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `binding` binds a list of `members` to
-   * a `role`, where the members can be user accounts, Google groups, Google
-   * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
-   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
-   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
-   * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
-   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
-   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
-   * Example**      bindings:     - members:       - user:mike@example.com -
-   * group:admins@example.com       - domain:google.com       -
-   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
-   * roles/owner     - members:       - user:sean@example.com       role:
-   * roles/viewer   For a description of IAM and its features, see the [IAM
-   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -740,20 +539,11 @@ export namespace securitycenter_v1beta1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members
-     * will result in an error.
+     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help
-     * prevent simultaneous updates of a policy from overwriting each other. It
-     * is strongly suggested that systems make use of the `etag` in the
-     * read-modify-write cycle to perform policy updates in order to avoid race
-     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
-     * systems are expected to put that etag in the request to `setIamPolicy` to
-     * ensure that their change will be applied to the same version of the
-     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
-     * existing policy is overwritten blindly.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
     etag?: string;
     /**
@@ -766,14 +556,11 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$RunAssetDiscoveryRequest {}
   /**
-   * Cloud SCC managed properties. These properties are managed by Cloud SCC and
-   * cannot be modified by the user.
+   * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
    */
   export interface Schema$SecurityCenterProperties {
     /**
-     * The full resource name of the GCP resource this asset represents. This
-     * field is immutable after create time. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * The full resource name of the GCP resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     resourceName?: string;
     /**
@@ -781,43 +568,28 @@ export namespace securitycenter_v1beta1 {
      */
     resourceOwners?: string[];
     /**
-     * The full resource name of the immediate parent of the resource. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * The full resource name of the immediate parent of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     resourceParent?: string;
     /**
-     * The full resource name of the project the resource belongs to. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * The full resource name of the project the resource belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     resourceProject?: string;
     /**
-     * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and
-     * ORGANIZATION. This is a case insensitive field defined by Cloud SCC
-     * and/or the producer of the resource and is immutable after create time.
+     * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Cloud SCC and/or the producer of the resource and is immutable after create time.
      */
     resourceType?: string;
   }
   /**
-   * User specified security marks that are attached to the parent Cloud
-   * Security Command Center (Cloud SCC) resource. Security marks are scoped
-   * within a Cloud SCC organization -- they can be modified and viewed by all
-   * users who have proper permissions on the organization.
+   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
    */
   export interface Schema$SecurityMarks {
     /**
-     * Mutable user specified security marks belonging to the parent resource.
-     * Constraints are as follows:   - Keys and values are treated as case
-     * insensitive   - Keys must be between 1 - 256 characters (inclusive)   -
-     * Keys must be letters, numbers, underscores, or dashes   - Values have
-     * leading and trailing whitespace trimmed, remaining     characters must be
-     * between 1 - 4096 characters (inclusive)
+     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:   - Keys and values are treated as case insensitive   - Keys must be between 1 - 256 characters (inclusive)   - Keys must be letters, numbers, underscores, or dashes   - Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
      */
     marks?: {[key: string]: string};
     /**
-     * The relative resource name of the SecurityMarks. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Examples: &quot;organizations/123/assets/456/securityMarks&quot;
-     * &quot;organizations/123/sources/456/findings/789/securityMarks&quot;.
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/123/assets/456/securityMarks&quot; &quot;organizations/123/sources/456/findings/789/securityMarks&quot;.
      */
     name?: string;
   }
@@ -839,87 +611,33 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$SetIamPolicyRequest {
     /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size
-     * of the policy is limited to a few 10s of KB. An empty policy is a valid
-     * policy but certain Cloud Platform services (such as Projects) might
-     * reject them.
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
-     * Only the fields in the mask will be modified. If no mask is provided, the
-     * following default mask is used: paths: &quot;bindings, etag&quot; This
-     * field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
     updateMask?: string;
   }
   /**
-   * Cloud Security Command Center&#39;s (Cloud SCC) finding source. A finding
-   * source is an entity or a mechanism that can produce a finding. A source is
-   * like a container of findings that come from the same scanner, logger,
-   * monitor, etc.
+   * Cloud Security Command Center&#39;s (Cloud SCC) finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, etc.
    */
   export interface Schema$Source {
     /**
-     * The description of the source (max of 1024 characters). Example:
-     * &quot;Cloud Security Scanner is a web security scanner for common
-     * vulnerabilities in App Engine applications. It can automatically scan and
-     * detect four common vulnerabilities, including cross-site-scripting (XSS),
-     * Flash injection, mixed content (HTTP in HTTPS), and outdated/insecure
-     * libraries.&quot;
+     * The description of the source (max of 1024 characters). Example: &quot;Cloud Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated/insecure libraries.&quot;
      */
     description?: string;
     /**
-     * The source’s display name. A source’s display name must be unique amongst
-     * its siblings, for example, two sources with the same parent can&#39;t
-     * share the same display name. The display name must start and end with a
-     * letter or digit, may contain letters, digits, spaces, hyphens, and
-     * underscores, and can be no longer than 32 characters. This is captured by
-     * the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,30}[\p{L}\p{N}])?.
+     * The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources with the same parent can&#39;t share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters. This is captured by the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,30}[\p{L}\p{N}])?.
      */
     displayName?: string;
     /**
-     * The relative resource name of this source. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: &quot;organizations/123/sources/456&quot;
+     * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/sources/456&quot;
      */
     name?: string;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for
-   * different programming environments, including REST APIs and RPC APIs. It is
-   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
-   * - Simple to use and understand for most users - Flexible enough to meet
-   * unexpected needs  # Overview  The `Status` message contains three pieces of
-   * data: error code, error message, and error details. The error code should
-   * be an enum value of google.rpc.Code, but it may accept additional error
-   * codes if needed.  The error message should be a developer-facing English
-   * message that helps developers *understand* and *resolve* the error. If a
-   * localized user-facing error message is needed, put the localized message in
-   * the error details or localize it in the client. The optional error details
-   * may contain arbitrary information about the error. There is a predefined
-   * set of error detail types in the package `google.rpc` that can be used for
-   * common error conditions.  # Language mapping  The `Status` message is the
-   * logical representation of the error model, but it is not necessarily the
-   * actual wire format. When the `Status` message is exposed in different
-   * client libraries and different wire protocols, it can be mapped
-   * differently. For example, it will likely be mapped to some exceptions in
-   * Java, but more likely mapped to some error codes in C.  # Other uses  The
-   * error model and the `Status` message can be used in a variety of
-   * environments, either with or without APIs, to provide a consistent
-   * developer experience across different environments.  Example uses of this
-   * error model include:  - Partial errors. If a service needs to return
-   * partial errors to the client,     it may embed the `Status` in the normal
-   * response to indicate the partial     errors.  - Workflow errors. A typical
-   * workflow has multiple steps. Each step may     have a `Status` message for
-   * error reporting.  - Batch operations. If a client uses batch request and
-   * batch response, the     `Status` message should be used directly inside
-   * batch response, one for     each error sub-response.  - Asynchronous
-   * operations. If an API call embeds asynchronous operation     results in its
-   * response, the status of those operations should be     represented directly
-   * using the `Status` message.  - Logging. If some API errors are stored in
-   * logs, the message `Status` could     be used directly after any stripping
-   * needed for security/privacy reasons.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). The error model is designed to be:  - Simple to use and understand for most users - Flexible enough to meet unexpected needs  # Overview  The `Status` message contains three pieces of data: error code, error message, and error details. The error code should be an enum value of google.rpc.Code, but it may accept additional error codes if needed.  The error message should be a developer-facing English message that helps developers *understand* and *resolve* the error. If a localized user-facing error message is needed, put the localized message in the error details or localize it in the client. The optional error details may contain arbitrary information about the error. There is a predefined set of error detail types in the package `google.rpc` that can be used for common error conditions.  # Language mapping  The `Status` message is the logical representation of the error model, but it is not necessarily the actual wire format. When the `Status` message is exposed in different client libraries and different wire protocols, it can be mapped differently. For example, it will likely be mapped to some exceptions in Java, but more likely mapped to some error codes in C.  # Other uses  The error model and the `Status` message can be used in a variety of environments, either with or without APIs, to provide a consistent developer experience across different environments.  Example uses of this error model include:  - Partial errors. If a service needs to return partial errors to the client,     it may embed the `Status` in the normal response to indicate the partial     errors.  - Workflow errors. A typical workflow has multiple steps. Each step may     have a `Status` message for error reporting.  - Batch operations. If a client uses batch request and batch response, the     `Status` message should be used directly inside batch response, one for     each error sub-response.  - Asynchronous operations. If an API call embeds asynchronous operation     results in its response, the status of those operations should be     represented directly using the `Status` message.  - Logging. If some API errors are stored in logs, the message `Status` could     be used directly after any stripping needed for security/privacy reasons.
    */
   export interface Schema$Status {
     /**
@@ -927,14 +645,11 @@ export namespace securitycenter_v1beta1 {
      */
     code?: number;
     /**
-     * A list of messages that carry the error details.  There is a common set
-     * of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
     details?: Array<{[key: string]: any}>;
     /**
-     * A developer-facing error message, which should be in English. Any
-     * user-facing error message should be localized and sent in the
-     * google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
   }
@@ -943,10 +658,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with
-     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
-     * For more information see [IAM
-     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[];
   }
@@ -955,8 +667,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$TestIamPermissionsResponse {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is
-     * allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[];
   }
@@ -1136,8 +847,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the organization to get organization settings for. Its format is
-     * "organizations/[organization_id]/organizationSettings".
+     * Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
      */
     name?: string;
   }
@@ -1149,9 +859,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the settings. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: "organizations/123/organizationSettings".
+     * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/organizationSettings".
      */
     name?: string;
     /**
@@ -1173,8 +881,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.assets.group
-     * @desc Filters an organization's assets and  groups them by their
-     * specified properties.
+     * @desc Filters an organization's assets and  groups them by their specified properties.
      * @alias securitycenter.organizations.assets.group
      * @memberOf! ()
      *
@@ -1332,10 +1039,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.assets.runDiscovery
-     * @desc Runs asset discovery. The discovery is tracked with a long-running
-     * operation.  This API can only be called with limited frequency for an
-     * organization. If it is called too frequently the caller will receive a
-     * TOO_MANY_REQUESTS error.
+     * @desc Runs asset discovery. The discovery is tracked with a long-running operation.  This API can only be called with limited frequency for an organization. If it is called too frequently the caller will receive a TOO_MANY_REQUESTS error.
      * @alias securitycenter.organizations.assets.runDiscovery
      * @memberOf! ()
      *
@@ -1495,8 +1199,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the organization to groupBy. Its format is
-     * "organizations/[organization_id]".
+     * Name of the organization to groupBy. Its format is "organizations/[organization_id]".
      */
     parent?: string;
 
@@ -1513,79 +1216,35 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When compare_duration is set, the ListAssetResult's "state" attribute is
-     * updated to indicate whether the asset was added, removed, or remained
-     * present during the compare_duration period of time that precedes the
-     * read_time. This is the time between (read_time - compare_duration) and
-     * read_time.  The state value is derived based on the presence of the asset
-     * at the two points in time. Intermediate state changes between the two
-     * times don't affect the result. For example, the results aren't affected
-     * if the asset is removed and re-created again.  Possible "state" values
-     * when compare_duration is specified:  * "ADDED": indicates that the asset
-     * was not present before              compare_duration, but present at
-     * read_time. * "REMOVED": indicates that the asset was present at the start
-     * of              compare_duration, but not present at read_time. *
-     * "ACTIVE": indicates that the asset was present at both the start and the
-     * end of the time period defined by              compare_duration and
-     * read_time.  If compare_duration is not specified, then the only possible
-     * state is "UNUSED", which indicates that the asset is present at
-     * read_time.
+     * When compare_duration is set, the ListAssetResult's "state" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again.  Possible "state" values when compare_duration is specified:  * "ADDED": indicates that the asset was not present before              compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of              compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the              start and the end of the time period defined by              compare_duration and read_time.  If compare_duration is not specified, then the only possible state is "UNUSED", which indicates that the asset is present at read_time.
      */
     compareDuration?: string;
     /**
-     * Optional.  A field mask to specify the ListAssetsResult fields to be
-     * listed in the response. An empty field mask will list all fields.
+     * Optional.  A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
      */
     fieldMask?: string;
     /**
-     * Expression that defines the filter to apply across assets. The expression
-     * is a list of zero or more restrictions combined via logical operators
-     * `AND` and `OR`. Parentheses are not supported, and `OR` has higher
-     * precedence than `AND`.  Restrictions have the form `<field> <operator>
-     * <value>` and may have a `-` character in front of them to indicate
-     * negation. The fields map to those defined in the Asset resource. Examples
-     * include:  * name * security_center_properties.resource_name *
-     * resource_properties.a_property * security_marks.marks.marka  The
-     * supported operators are:  * `=` for all value types. * `>`, `<`, `>=`,
-     * `<=` for integer values. * `:`, meaning substring matching, for strings.
-     * The supported value types are:  * string literals in quotes. * integer
-     * literals without quotes. * boolean literals `true` and `false` without
-     * quotes.  For example, `resource_properties.size = 100` is a valid filter
-     * string.
+     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are not supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  For example, `resource_properties.size = 100` is a valid filter string.
      */
     filter?: string;
     /**
-     * Expression that defines what fields and order to use for sorting. The
-     * string value should follow SQL syntax: comma separated list of fields.
-     * For example: "name,resource_properties.a_property". The default sorting
-     * order is ascending. To specify descending order for a field, a suffix "
-     * desc" should be appended to the field name. For example: "name
-     * desc,resource_properties.a_property". Redundant space characters in the
-     * syntax are insignificant. "name desc,resource_properties.a_property" and
-     * " name     desc  ,   resource_properties.a_property  " are equivalent.
+     * Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,resource_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,resource_properties.a_property" and " name     desc  ,   resource_properties.a_property  " are equivalent.
      */
     orderBy?: string;
     /**
-     * The maximum number of results to return in a single response. Default is
-     * 10, minimum is 1, maximum is 1000.
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListAssetsResponse`; indicates that this
-     * is a continuation of a prior `ListAssets` call, and that the system
-     * should return the next page of data.
+     * The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id]".
+     * Name of the organization assets should belong to. Its format is "organizations/[organization_id]".
      */
     parent?: string;
     /**
-     * Time used as a reference point when filtering assets. The filter is
-     * limited to assets existing at the supplied time and their values are
-     * those at that specific time. Absence of this field will default to the
-     * API's version of NOW.
+     * Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      */
     readTime?: string;
   }
@@ -1597,8 +1256,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the organization to run asset discovery for. Its format is
-     * "organizations/[organization_id]".
+     * Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
      */
     parent?: string;
 
@@ -1615,10 +1273,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the SecurityMarks. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Examples: "organizations/123/assets/456/securityMarks"
-     * "organizations/123/sources/456/findings/789/securityMarks".
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/123/assets/456/securityMarks" "organizations/123/sources/456/findings/789/securityMarks".
      */
     name?: string;
     /**
@@ -1644,15 +1299,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The
-     * server makes a best effort to cancel the operation, but success is not
-     * guaranteed.  If the server doesn't support this method, it returns
-     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
-     * or other methods to check whether the cancellation succeeded or whether
-     * the operation completed despite cancellation. On successful cancellation,
-     * the operation is not deleted; instead, it becomes an operation with an
-     * Operation.error value with a google.rpc.Status.code of 1, corresponding
-     * to `Code.CANCELLED`.
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @alias securitycenter.organizations.operations.cancel
      * @memberOf! ()
      *
@@ -1726,10 +1373,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the
-     * client is no longer interested in the operation result. It does not
-     * cancel the operation. If the server doesn't support this method, it
-     * returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @alias securitycenter.organizations.operations.delete
      * @memberOf! ()
      *
@@ -1799,9 +1443,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
-     * this method to poll the operation result at intervals as recommended by
-     * the API service.
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @alias securitycenter.organizations.operations.get
      * @memberOf! ()
      *
@@ -1873,15 +1515,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If
-     * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
-     * the `name` binding allows API services to override the binding to use
-     * different resource name schemes, such as `users/x/operations`. To
-     * override the binding, API services can add a binding such as
-     * `"/v1/{name=users/x}/operations"` to their service configuration. For
-     * backwards compatibility, the default name includes the operations
-     * collection id, however overriding users must ensure the name binding is
-     * the parent resource, without the operations collection id.
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @alias securitycenter.organizations.operations.list
      * @memberOf! ()
      *
@@ -2564,8 +2198,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the new source's parent. Its format should be
-     * "organizations/[organization_id]".
+     * Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
      */
     parent?: string;
 
@@ -2582,8 +2215,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Relative resource name of the source. Its format is
-     * "organizations/[organization_id]/source/[source_id]".
+     * Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
      */
     name?: string;
   }
@@ -2595,8 +2227,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2613,19 +2244,15 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of results to return in a single response. Default is
-     * 10, minimum is 1, maximum is 1000.
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListSourcesResponse`; indicates that this
-     * is a continuation of a prior `ListSources` call, and that the system
-     * should return the next page of data.
+     * The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * Resource name of the parent of sources to list. Its format should be
-     * "organizations/[organization_id]".
+     * Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]".
      */
     parent?: string;
   }
@@ -2637,9 +2264,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of this source. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: "organizations/123/sources/456"
+     * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456"
      */
     name?: string;
     /**
@@ -2660,8 +2285,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2678,8 +2302,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
 
@@ -2697,8 +2320,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.create
-     * @desc Creates a finding. The corresponding source must exist for finding
-     * creation to succeed.
+     * @desc Creates a finding. The corresponding source must exist for finding creation to succeed.
      * @alias securitycenter.organizations.sources.findings.create
      * @memberOf! ()
      *
@@ -2773,9 +2395,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.group
-     * @desc Filters an organization or source's findings and  groups them by
-     * their specified properties.  To group across all sources provide a `-` as
-     * the source id. Example: /v1beta1/organizations/123/sources/-/findings
+     * @desc Filters an organization or source's findings and  groups them by their specified properties.  To group across all sources provide a `-` as the source id. Example: /v1beta1/organizations/123/sources/-/findings
      * @alias securitycenter.organizations.sources.findings.group
      * @memberOf! ()
      *
@@ -2853,9 +2473,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.list
-     * @desc Lists an organization or source's findings.  To list across all
-     * sources provide a `-` as the source id. Example:
-     * /v1beta1/organizations/123/sources/-/findings
+     * @desc Lists an organization or source's findings.  To list across all sources provide a `-` as the source id. Example: /v1beta1/organizations/123/sources/-/findings
      * @alias securitycenter.organizations.sources.findings.list
      * @memberOf! ()
      *
@@ -2938,8 +2556,7 @@ export namespace securitycenter_v1beta1 {
 
     /**
      * securitycenter.organizations.sources.findings.patch
-     * @desc Creates or updates a finding. The corresponding source must exist
-     * for a finding creation to succeed.
+     * @desc Creates or updates a finding. The corresponding source must exist for a finding creation to succeed.
      * @alias securitycenter.organizations.sources.findings.patch
      * @memberOf! ()
      *
@@ -3169,14 +2786,11 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Unique identifier provided by the client within the parent scope. It must
-     * be alphanumeric and less than or equal to 32 characters and greater than
-     * 0 characters in length.
+     * Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      */
     findingId?: string;
     /**
-     * Resource name of the new finding's parent. Its format should be
-     * "organizations/[organization_id]/sources/[source_id]".
+     * Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
      */
     parent?: string;
 
@@ -3193,10 +2807,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the source to groupBy. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To groupBy across
-     * all sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/123/sources/-
      */
     parent?: string;
 
@@ -3213,60 +2824,31 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional.  A field mask to specify the Finding fields to be listed in the
-     * response. An empty field mask will list all fields.
+     * Optional.  A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      */
     fieldMask?: string;
     /**
-     * Expression that defines the filter to apply across findings. The
-     * expression is a list of one or more restrictions combined via logical
-     * operators `AND` and `OR`. Parentheses are not supported, and `OR` has
-     * higher precedence than `AND`.  Restrictions have the form `<field>
-     * <operator> <value>` and may have a `-` character in front of them to
-     * indicate negation. Examples include:   * name  *
-     * source_properties.a_property  * security_marks.marks.marka  The supported
-     * operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for
-     * integer values. * `:`, meaning substring matching, for strings.  The
-     * supported value types are:  * string literals in quotes. * integer
-     * literals without quotes. * boolean literals `true` and `false` without
-     * quotes.  For example, `source_properties.size = 100` is a valid filter
-     * string.
+     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are not supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  For example, `source_properties.size = 100` is a valid filter string.
      */
     filter?: string;
     /**
-     * Expression that defines what fields and order to use for sorting. The
-     * string value should follow SQL syntax: comma separated list of fields.
-     * For example: "name,resource_properties.a_property". The default sorting
-     * order is ascending. To specify descending order for a field, a suffix "
-     * desc" should be appended to the field name. For example: "name
-     * desc,source_properties.a_property". Redundant space characters in the
-     * syntax are insignificant. "name desc,source_properties.a_property" and "
-     * name     desc  ,   source_properties.a_property  " are equivalent.
+     * Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,source_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,source_properties.a_property" and " name     desc  ,   source_properties.a_property  " are equivalent.
      */
     orderBy?: string;
     /**
-     * The maximum number of results to return in a single response. Default is
-     * 10, minimum is 1, maximum is 1000.
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListFindingsResponse`; indicates that
-     * this is a continuation of a prior `ListFindings` call, and that the
-     * system should return the next page of data.
+     * The value returned by the last `ListFindingsResponse`; indicates that this is a continuation of a prior `ListFindings` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
-     * Name of the source the findings belong to. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To list across all
-     * sources provide a source_id of `-`. For example:
-     * organizations/123/sources/-
+     * Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/123/sources/-
      */
     parent?: string;
     /**
-     * Time used as a reference point when filtering findings. The filter is
-     * limited to findings existing at the supplied time and their values are
-     * those at that specific time. Absence of this field will default to the
-     * API's version of NOW.
+     * Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      */
     readTime?: string;
   }
@@ -3278,14 +2860,11 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of this finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: "organizations/123/sources/456/findings/789"
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456/findings/789"
      */
     name?: string;
     /**
-     * The FieldMask to use when updating the finding resource. This field
-     * should not be specified when creating a finding.
+     * The FieldMask to use when updating the finding resource. This field should not be specified when creating a finding.
      */
     updateMask?: string;
 
@@ -3302,9 +2881,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the finding. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Example: "organizations/123/sources/456/finding/789".
+     * The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456/finding/789".
      */
     name?: string;
 
@@ -3321,10 +2898,7 @@ export namespace securitycenter_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the SecurityMarks. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * Examples: "organizations/123/assets/456/securityMarks"
-     * "organizations/123/sources/456/findings/789/securityMarks".
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/123/assets/456/securityMarks" "organizations/123/sources/456/findings/789/securityMarks".
      */
     name?: string;
     /**

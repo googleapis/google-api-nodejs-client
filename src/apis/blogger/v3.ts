@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace blogger_v3 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace blogger_v3 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -102,7 +99,10 @@ export namespace blogger_v3 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.blogs = new Resource$Blogs(this.context);
       this.blogUserInfos = new Resource$Bloguserinfos(this.context);
@@ -201,8 +201,7 @@ export namespace blogger_v3 {
      */
     photosAlbumKey?: string;
     /**
-     * Access permissions that the user has for the blog (ADMIN, AUTHOR, or
-     * READER).
+     * Access permissions that the user has for the blog (ADMIN, AUTHOR, or READER).
      */
     role?: string;
     /**
@@ -340,8 +339,7 @@ export namespace blogger_v3 {
      */
     status?: string;
     /**
-     * The title of this entity. This is the name displayed in the Admin user
-     * interface.
+     * The title of this entity. This is the name displayed in the Admin user interface.
      */
     title?: string;
     /**
@@ -821,8 +819,7 @@ export namespace blogger_v3 {
      */
     maxPosts?: number;
     /**
-     * Access level with which to view the blog. Note that some fields require
-     * elevated access.
+     * Access level with which to view the blog. Note that some fields require elevated access.
      */
     view?: string;
   }
@@ -837,8 +834,7 @@ export namespace blogger_v3 {
      */
     url?: string;
     /**
-     * Access level with which to view the blog. Note that some fields require
-     * elevated access.
+     * Access level with which to view the blog. Note that some fields require elevated access.
      */
     view?: string;
   }
@@ -849,29 +845,23 @@ export namespace blogger_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Whether the response is a list of blogs with per-user information instead
-     * of just blogs.
+     * Whether the response is a list of blogs with per-user information instead of just blogs.
      */
     fetchUserInfo?: boolean;
     /**
-     * User access types for blogs to include in the results, e.g. AUTHOR will
-     * return blogs where the user has author level access. If no roles are
-     * specified, defaults to ADMIN and AUTHOR roles.
+     * User access types for blogs to include in the results, e.g. AUTHOR will return blogs where the user has author level access. If no roles are specified, defaults to ADMIN and AUTHOR roles.
      */
     role?: string[];
     /**
-     * Blog statuses to include in the result (default: Live blogs only). Note
-     * that ADMIN access is required to view deleted blogs.
+     * Blog statuses to include in the result (default: Live blogs only). Note that ADMIN access is required to view deleted blogs.
      */
     status?: string[];
     /**
-     * ID of the user whose blogs are to be fetched. Either the word 'self'
-     * (sans quote marks) or the user's profile identifier.
+     * ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
      */
     userId?: string;
     /**
-     * Access level with which to view the blogs. Note that some fields require
-     * elevated access.
+     * Access level with which to view the blogs. Note that some fields require elevated access.
      */
     view?: string;
   }
@@ -974,8 +964,7 @@ export namespace blogger_v3 {
      */
     maxPosts?: number;
     /**
-     * ID of the user whose blogs are to be fetched. Either the word 'self'
-     * (sans quote marks) or the user's profile identifier.
+     * ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
      */
     userId?: string;
   }
@@ -1288,8 +1277,7 @@ export namespace blogger_v3 {
 
     /**
      * blogger.comments.listByBlog
-     * @desc Retrieves the comments for a blog, across all posts, possibly
-     * filtered.
+     * @desc Retrieves the comments for a blog, across all posts, possibly filtered.
      * @alias blogger.comments.listByBlog
      * @memberOf! ()
      *
@@ -1573,10 +1561,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
     /**
-     * Access level for the requested comment (default: READER). Note that some
-     * comments will require elevated permissions, for example comments where
-     * the parent posts which is in a draft state, or comments that are pending
-     * moderation.
+     * Access level for the requested comment (default: READER). Note that some comments will require elevated permissions, for example comments where the parent posts which is in a draft state, or comments that are pending moderation.
      */
     view?: string;
   }
@@ -1619,8 +1604,7 @@ export namespace blogger_v3 {
      */
     status?: string[];
     /**
-     * Access level with which to view the returned result. Note that some
-     * fields require elevated access.
+     * Access level with which to view the returned result. Note that some fields require elevated access.
      */
     view?: string;
   }
@@ -1925,8 +1909,7 @@ export namespace blogger_v3 {
 
     /**
      * blogger.pages.list
-     * @desc Retrieves the pages for a blog, optionally including non-LIVE
-     * statuses.
+     * @desc Retrieves the pages for a blog, optionally including non-LIVE statuses.
      * @alias blogger.pages.list
      * @memberOf! ()
      *
@@ -2372,8 +2355,7 @@ export namespace blogger_v3 {
      */
     status?: string[];
     /**
-     * Access level with which to view the returned result. Note that some
-     * fields require elevated access.
+     * Access level with which to view the returned result. Note that some fields require elevated access.
      */
     view?: string;
   }
@@ -2392,13 +2374,11 @@ export namespace blogger_v3 {
      */
     pageId?: string;
     /**
-     * Whether a publish action should be performed when the page is updated
-     * (default: false).
+     * Whether a publish action should be performed when the page is updated (default: false).
      */
     publish?: boolean;
     /**
-     * Whether a revert action should be performed when the page is updated
-     * (default: false).
+     * Whether a revert action should be performed when the page is updated (default: false).
      */
     revert?: boolean;
 
@@ -2452,13 +2432,11 @@ export namespace blogger_v3 {
      */
     pageId?: string;
     /**
-     * Whether a publish action should be performed when the page is updated
-     * (default: false).
+     * Whether a publish action should be performed when the page is updated (default: false).
      */
     publish?: boolean;
     /**
-     * Whether a revert action should be performed when the page is updated
-     * (default: false).
+     * Whether a revert action should be performed when the page is updated (default: false).
      */
     revert?: boolean;
 
@@ -3026,8 +3004,7 @@ export namespace blogger_v3 {
 
     /**
      * blogger.posts.publish
-     * @desc Publishes a draft post, optionally at the specific time of the
-     * given publishDate parameter.
+     * @desc Publishes a draft post, optionally at the specific time of the given publishDate parameter.
      * @alias blogger.posts.publish
      * @memberOf! ()
      *
@@ -3346,9 +3323,7 @@ export namespace blogger_v3 {
      */
     blogId?: string;
     /**
-     * Whether the body content of the post is included (default: true). This
-     * should be set to false when the post bodies are not required, to help
-     * minimize traffic.
+     * Whether the body content of the post is included (default: true). This should be set to false when the post bodies are not required, to help minimize traffic.
      */
     fetchBody?: boolean;
     /**
@@ -3364,8 +3339,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
     /**
-     * Access level with which to view the returned result. Note that some
-     * fields require elevated access.
+     * Access level with which to view the returned result. Note that some fields require elevated access.
      */
     view?: string;
   }
@@ -3388,8 +3362,7 @@ export namespace blogger_v3 {
      */
     path?: string;
     /**
-     * Access level with which to view the returned result. Note that some
-     * fields require elevated access.
+     * Access level with which to view the returned result. Note that some fields require elevated access.
      */
     view?: string;
   }
@@ -3404,13 +3377,11 @@ export namespace blogger_v3 {
      */
     blogId?: string;
     /**
-     * Whether the body content of the post is included with the result
-     * (default: true).
+     * Whether the body content of the post is included with the result (default: true).
      */
     fetchBody?: boolean;
     /**
-     * Whether image URL metadata for each post is included in the returned
-     * result (default: false).
+     * Whether image URL metadata for each post is included in the returned result (default: false).
      */
     fetchImages?: boolean;
     /**
@@ -3438,9 +3409,7 @@ export namespace blogger_v3 {
      */
     endDate?: string;
     /**
-     * Whether the body content of posts is included (default: true). This
-     * should be set to false when the post bodies are not required, to help
-     * minimize traffic.
+     * Whether the body content of posts is included (default: true). This should be set to false when the post bodies are not required, to help minimize traffic.
      */
     fetchBodies?: boolean;
     /**
@@ -3472,8 +3441,7 @@ export namespace blogger_v3 {
      */
     status?: string[];
     /**
-     * Access level with which to view the returned result. Note that some
-     * fields require escalated access.
+     * Access level with which to view the returned result. Note that some fields require escalated access.
      */
     view?: string;
   }
@@ -3488,13 +3456,11 @@ export namespace blogger_v3 {
      */
     blogId?: string;
     /**
-     * Whether the body content of the post is included with the result
-     * (default: true).
+     * Whether the body content of the post is included with the result (default: true).
      */
     fetchBody?: boolean;
     /**
-     * Whether image URL metadata for each post is included in the returned
-     * result (default: false).
+     * Whether image URL metadata for each post is included in the returned result (default: false).
      */
     fetchImages?: boolean;
     /**
@@ -3506,13 +3472,11 @@ export namespace blogger_v3 {
      */
     postId?: string;
     /**
-     * Whether a publish action should be performed when the post is updated
-     * (default: false).
+     * Whether a publish action should be performed when the post is updated (default: false).
      */
     publish?: boolean;
     /**
-     * Whether a revert action should be performed when the post is updated
-     * (default: false).
+     * Whether a revert action should be performed when the post is updated (default: false).
      */
     revert?: boolean;
 
@@ -3536,10 +3500,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
     /**
-     * Optional date and time to schedule the publishing of the Blog. If no
-     * publishDate parameter is given, the post is either published at the a
-     * previously saved schedule date (if present), or the current time. If a
-     * future date is given, the post will be scheduled to be published.
+     * Optional date and time to schedule the publishing of the Blog. If no publishDate parameter is given, the post is either published at the a previously saved schedule date (if present), or the current time. If a future date is given, the post will be scheduled to be published.
      */
     publishDate?: string;
   }
@@ -3569,9 +3530,7 @@ export namespace blogger_v3 {
      */
     blogId?: string;
     /**
-     * Whether the body content of posts is included (default: true). This
-     * should be set to false when the post bodies are not required, to help
-     * minimize traffic.
+     * Whether the body content of posts is included (default: true). This should be set to false when the post bodies are not required, to help minimize traffic.
      */
     fetchBodies?: boolean;
     /**
@@ -3594,13 +3553,11 @@ export namespace blogger_v3 {
      */
     blogId?: string;
     /**
-     * Whether the body content of the post is included with the result
-     * (default: true).
+     * Whether the body content of the post is included with the result (default: true).
      */
     fetchBody?: boolean;
     /**
-     * Whether image URL metadata for each post is included in the returned
-     * result (default: false).
+     * Whether image URL metadata for each post is included in the returned result (default: false).
      */
     fetchImages?: boolean;
     /**
@@ -3612,13 +3569,11 @@ export namespace blogger_v3 {
      */
     postId?: string;
     /**
-     * Whether a publish action should be performed when the post is updated
-     * (default: false).
+     * Whether a publish action should be performed when the post is updated (default: false).
      */
     publish?: boolean;
     /**
-     * Whether a revert action should be performed when the post is updated
-     * (default: false).
+     * Whether a revert action should be performed when the post is updated (default: false).
      */
     revert?: boolean;
 
@@ -3636,9 +3591,7 @@ export namespace blogger_v3 {
 
     /**
      * blogger.postUserInfos.get
-     * @desc Gets one post and user info pair, by post ID and user ID. The post
-     * user info contains per-user information about the post, such as access
-     * rights, specific to the user.
+     * @desc Gets one post and user info pair, by post ID and user ID. The post user info contains per-user information about the post, such as access rights, specific to the user.
      * @alias blogger.postUserInfos.get
      * @memberOf! ()
      *
@@ -3715,9 +3668,7 @@ export namespace blogger_v3 {
 
     /**
      * blogger.postUserInfos.list
-     * @desc Retrieves a list of post and post user info pairs, possibly
-     * filtered. The post user info contains per-user information about the
-     * post, such as access rights, specific to the user.
+     * @desc Retrieves a list of post and post user info pairs, possibly filtered. The post user info contains per-user information about the post, such as access rights, specific to the user.
      * @alias blogger.postUserInfos.list
      * @memberOf! ()
      *
@@ -3819,8 +3770,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
     /**
-     * ID of the user for the per-user information to be fetched. Either the
-     * word 'self' (sans quote marks) or the user's profile identifier.
+     * ID of the user for the per-user information to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
      */
     userId?: string;
   }
@@ -3868,13 +3818,11 @@ export namespace blogger_v3 {
      */
     status?: string[];
     /**
-     * ID of the user for the per-user information to be fetched. Either the
-     * word 'self' (sans quote marks) or the user's profile identifier.
+     * ID of the user for the per-user information to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
      */
     userId?: string;
     /**
-     * Access level with which to view the returned result. Note that some
-     * fields require elevated access.
+     * Access level with which to view the returned result. Note that some fields require elevated access.
      */
     view?: string;
   }

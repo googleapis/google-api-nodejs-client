@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace mirror_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace mirror_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -100,7 +97,10 @@ export namespace mirror_v1 {
     timeline: Resource$Timeline;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.accounts = new Resource$Accounts(this.context);
       this.contacts = new Resource$Contacts(this.context);
@@ -121,8 +121,7 @@ export namespace mirror_v1 {
     userData?: Schema$UserData[];
   }
   /**
-   * Represents media content, such as a photo, that can be attached to a
-   * timeline item.
+   * Represents media content, such as a photo, that can be attached to a timeline item.
    */
   export interface Schema$Attachment {
     /**
@@ -138,15 +137,12 @@ export namespace mirror_v1 {
      */
     id?: string;
     /**
-     * Indicates that the contentUrl is not available because the attachment
-     * content is still being processed. If the caller wishes to retrieve the
-     * content, it should try again later.
+     * Indicates that the contentUrl is not available because the attachment content is still being processed. If the caller wishes to retrieve the content, it should try again later.
      */
     isProcessingContent?: boolean;
   }
   /**
-   * A list of Attachments. This is the response from the server to GET requests
-   * on the attachments collection.
+   * A list of Attachments. This is the response from the server to GET requests on the attachments collection.
    */
   export interface Schema$AttachmentsListResponse {
     /**
@@ -167,11 +163,7 @@ export namespace mirror_v1 {
    */
   export interface Schema$Command {
     /**
-     * The type of operation this command corresponds to. Allowed values are: -
-     * TAKE_A_NOTE - Shares a timeline item with the transcription of user
-     * speech from the &quot;Take a note&quot; voice menu command.   -
-     * POST_AN_UPDATE - Shares a timeline item with the transcription of user
-     * speech from the &quot;Post an update&quot; voice menu command.
+     * The type of operation this command corresponds to. Allowed values are:   - TAKE_A_NOTE - Shares a timeline item with the transcription of user speech from the &quot;Take a note&quot; voice menu command.   - POST_AN_UPDATE - Shares a timeline item with the transcription of user speech from the &quot;Post an update&quot; voice menu command.
      */
     type?: string;
   }
@@ -180,17 +172,11 @@ export namespace mirror_v1 {
    */
   export interface Schema$Contact {
     /**
-     * A list of voice menu commands that a contact can handle. Glass shows up
-     * to three contacts for each voice menu command. If there are more than
-     * that, the three contacts with the highest priority are shown for that
-     * particular command.
+     * A list of voice menu commands that a contact can handle. Glass shows up to three contacts for each voice menu command. If there are more than that, the three contacts with the highest priority are shown for that particular command.
      */
     acceptCommands?: Schema$Command[];
     /**
-     * A list of MIME types that a contact supports. The contact will be shown
-     * to the user if any of its acceptTypes matches any of the types of the
-     * attachments on the item. If no acceptTypes are given, the contact will be
-     * shown for all items.
+     * A list of MIME types that a contact supports. The contact will be shown to the user if any of its acceptTypes matches any of the types of the attachments on the item. If no acceptTypes are given, the contact will be shown for all items.
      */
     acceptTypes?: string[];
     /**
@@ -198,14 +184,11 @@ export namespace mirror_v1 {
      */
     displayName?: string;
     /**
-     * An ID for this contact. This is generated by the application and is
-     * treated as an opaque token.
+     * An ID for this contact. This is generated by the application and is treated as an opaque token.
      */
     id?: string;
     /**
-     * Set of image URLs to display for a contact. Most contacts will have a
-     * single image, but a &quot;group&quot; contact may include up to 8 image
-     * URLs and they will be resized and cropped into a mosaic on the client.
+     * Set of image URLs to display for a contact. Most contacts will have a single image, but a &quot;group&quot; contact may include up to 8 image URLs and they will be resized and cropped into a mosaic on the client.
      */
     imageUrls?: string[];
     /**
@@ -213,44 +196,32 @@ export namespace mirror_v1 {
      */
     kind?: string;
     /**
-     * Primary phone number for the contact. This can be a fully-qualified
-     * number, with country calling code and area code, or a local number.
+     * Primary phone number for the contact. This can be a fully-qualified number, with country calling code and area code, or a local number.
      */
     phoneNumber?: string;
     /**
-     * Priority for the contact to determine ordering in a list of contacts.
-     * Contacts with higher priorities will be shown before ones with lower
-     * priorities.
+     * Priority for the contact to determine ordering in a list of contacts. Contacts with higher priorities will be shown before ones with lower priorities.
      */
     priority?: number;
     /**
-     * A list of sharing features that a contact can handle. Allowed values are:
-     * - ADD_CAPTION
+     * A list of sharing features that a contact can handle. Allowed values are:   - ADD_CAPTION
      */
     sharingFeatures?: string[];
     /**
-     * The ID of the application that created this contact. This is populated by
-     * the API
+     * The ID of the application that created this contact. This is populated by the API
      */
     source?: string;
     /**
-     * Name of this contact as it should be pronounced. If this contact&#39;s
-     * name must be spoken as part of a voice disambiguation menu, this name is
-     * used as the expected pronunciation. This is useful for contact names with
-     * unpronounceable characters or whose display spelling is otherwise not
-     * phonetic.
+     * Name of this contact as it should be pronounced. If this contact&#39;s name must be spoken as part of a voice disambiguation menu, this name is used as the expected pronunciation. This is useful for contact names with unpronounceable characters or whose display spelling is otherwise not phonetic.
      */
     speakableName?: string;
     /**
-     * The type for this contact. This is used for sorting in UIs. Allowed
-     * values are:   - INDIVIDUAL - Represents a single person. This is the
-     * default.  - GROUP - Represents more than a single person.
+     * The type for this contact. This is used for sorting in UIs. Allowed values are:   - INDIVIDUAL - Represents a single person. This is the default.  - GROUP - Represents more than a single person.
      */
     type?: string;
   }
   /**
-   * A list of Contacts representing contacts. This is the response from the
-   * server to GET requests on the contacts collection.
+   * A list of Contacts representing contacts. This is the response from the server to GET requests on the contacts collection.
    */
   export interface Schema$ContactsListResponse {
     /**
@@ -275,8 +246,7 @@ export namespace mirror_v1 {
      */
     address?: string;
     /**
-     * The name to be displayed. This may be a business name or a user-defined
-     * place, such as &quot;Home&quot;.
+     * The name to be displayed. This may be a business name or a user-defined place, such as &quot;Home&quot;.
      */
     displayName?: string;
     /**
@@ -296,14 +266,12 @@ export namespace mirror_v1 {
      */
     longitude?: number;
     /**
-     * The time at which this location was captured, formatted according to RFC
-     * 3339.
+     * The time at which this location was captured, formatted according to RFC 3339.
      */
     timestamp?: string;
   }
   /**
-   * A list of Locations. This is the response from the server to GET requests
-   * on the locations collection.
+   * A list of Locations. This is the response from the server to GET requests on the locations collection.
    */
   export interface Schema$LocationsListResponse {
     /**
@@ -320,67 +288,27 @@ export namespace mirror_v1 {
    */
   export interface Schema$MenuItem {
     /**
-     * Controls the behavior when the user picks the menu option. Allowed values
-     * are:   - CUSTOM - Custom action set by the service. When the user selects
-     * this menuItem, the API triggers a notification to your callbackUrl with
-     * the userActions.type set to CUSTOM and the userActions.payload set to the
-     * ID of this menu item. This is the default value.  - Built-in actions:   -
-     * REPLY - Initiate a reply to the timeline item using the voice recording
-     * UI. The creator attribute must be set in the timeline item for this menu
-     * to be available.  - REPLY_ALL - Same behavior as REPLY. The original
-     * timeline item&#39;s recipients will be added to the reply item.  - DELETE
-     * - Delete the timeline item.  - SHARE - Share the timeline item with the
-     * available contacts.  - READ_ALOUD - Read the timeline item&#39;s
-     * speakableText aloud; if this field is not set, read the text field; if
-     * none of those fields are set, this menu item is ignored.  -
-     * GET_MEDIA_INPUT - Allow users to provide media payloads to Glassware from
-     * a menu item (currently, only transcribed text from voice input is
-     * supported). Subscribe to notifications when users invoke this menu item
-     * to receive the timeline item ID. Retrieve the media from the timeline
-     * item in the payload property.  - VOICE_CALL - Initiate a phone call using
-     * the timeline item&#39;s creator.phoneNumber attribute as recipient.  -
-     * NAVIGATE - Navigate to the timeline item&#39;s location.  - TOGGLE_PINNED
-     * - Toggle the isPinned state of the timeline item.  - OPEN_URI - Open the
-     * payload of the menu item in the browser.  - PLAY_VIDEO - Open the payload
-     * of the menu item in the Glass video player.  - SEND_MESSAGE - Initiate
-     * sending a message to the timeline item&#39;s creator:   - If the
-     * creator.phoneNumber is set and Glass is connected to an Android phone,
-     * the message is an SMS.  - Otherwise, if the creator.email is set, the
-     * message is an email.
+     * Controls the behavior when the user picks the menu option. Allowed values are:   - CUSTOM - Custom action set by the service. When the user selects this menuItem, the API triggers a notification to your callbackUrl with the userActions.type set to CUSTOM and the userActions.payload set to the ID of this menu item. This is the default value.  - Built-in actions:   - REPLY - Initiate a reply to the timeline item using the voice recording UI. The creator attribute must be set in the timeline item for this menu to be available.  - REPLY_ALL - Same behavior as REPLY. The original timeline item&#39;s recipients will be added to the reply item.  - DELETE - Delete the timeline item.  - SHARE - Share the timeline item with the available contacts.  - READ_ALOUD - Read the timeline item&#39;s speakableText aloud; if this field is not set, read the text field; if none of those fields are set, this menu item is ignored.  - GET_MEDIA_INPUT - Allow users to provide media payloads to Glassware from a menu item (currently, only transcribed text from voice input is supported). Subscribe to notifications when users invoke this menu item to receive the timeline item ID. Retrieve the media from the timeline item in the payload property.  - VOICE_CALL - Initiate a phone call using the timeline item&#39;s creator.phoneNumber attribute as recipient.  - NAVIGATE - Navigate to the timeline item&#39;s location.  - TOGGLE_PINNED - Toggle the isPinned state of the timeline item.  - OPEN_URI - Open the payload of the menu item in the browser.  - PLAY_VIDEO - Open the payload of the menu item in the Glass video player.  - SEND_MESSAGE - Initiate sending a message to the timeline item&#39;s creator:   - If the creator.phoneNumber is set and Glass is connected to an Android phone, the message is an SMS.  - Otherwise, if the creator.email is set, the message is an email.
      */
     action?: string;
     /**
-     * The ContextualMenus.Command associated with this MenuItem (e.g.
-     * READ_ALOUD). The voice label for this command will be displayed in the
-     * voice menu and the touch label will be displayed in the touch menu. Note
-     * that the default menu value&#39;s display name will be overriden if you
-     * specify this property. Values that do not correspond to a
-     * ContextualMenus.Command name will be ignored.
+     * The ContextualMenus.Command associated with this MenuItem (e.g. READ_ALOUD). The voice label for this command will be displayed in the voice menu and the touch label will be displayed in the touch menu. Note that the default menu value&#39;s display name will be overriden if you specify this property. Values that do not correspond to a ContextualMenus.Command name will be ignored.
      */
     contextual_command?: string;
     /**
-     * The ID for this menu item. This is generated by the application and is
-     * treated as an opaque token.
+     * The ID for this menu item. This is generated by the application and is treated as an opaque token.
      */
     id?: string;
     /**
-     * A generic payload whose meaning changes depending on this MenuItem&#39;s
-     * action.   - When the action is OPEN_URI, the payload is the URL of the
-     * website to view.  - When the action is PLAY_VIDEO, the payload is the
-     * streaming URL of the video  - When the action is GET_MEDIA_INPUT, the
-     * payload is the text transcription of a user&#39;s speech input
+     * A generic payload whose meaning changes depending on this MenuItem&#39;s action.   - When the action is OPEN_URI, the payload is the URL of the website to view.  - When the action is PLAY_VIDEO, the payload is the streaming URL of the video  - When the action is GET_MEDIA_INPUT, the payload is the text transcription of a user&#39;s speech input
      */
     payload?: string;
     /**
-     * If set to true on a CUSTOM menu item, that item will be removed from the
-     * menu after it is selected.
+     * If set to true on a CUSTOM menu item, that item will be removed from the menu after it is selected.
      */
     removeWhenSelected?: boolean;
     /**
-     * For CUSTOM items, a list of values controlling the appearance of the menu
-     * item in each of its states. A value for the DEFAULT state must be
-     * provided. If the PENDING or CONFIRMED states are missing, they will not
-     * be shown.
+     * For CUSTOM items, a list of values controlling the appearance of the menu item in each of its states. A value for the DEFAULT state must be provided. If the PENDING or CONFIRMED states are missing, they will not be shown.
      */
     values?: Schema$MenuValue[];
   }
@@ -389,9 +317,7 @@ export namespace mirror_v1 {
    */
   export interface Schema$MenuValue {
     /**
-     * The name to display for the menu item. If you specify this property for a
-     * built-in menu item, the default contextual voice command for that menu
-     * item is not shown.
+     * The name to display for the menu item. If you specify this property for a built-in menu item, the default contextual voice command for that menu item is not shown.
      */
     displayName?: string;
     /**
@@ -399,11 +325,7 @@ export namespace mirror_v1 {
      */
     iconUrl?: string;
     /**
-     * The state that this value applies to. Allowed values are:   - DEFAULT -
-     * Default value shown when displayed in the menuItems list.  - PENDING -
-     * Value shown when the menuItem has been selected by the user but can still
-     * be cancelled.  - CONFIRMED - Value shown when the menuItem has been
-     * selected by the user and can no longer be cancelled.
+     * The state that this value applies to. Allowed values are:   - DEFAULT - Default value shown when displayed in the menuItems list.  - PENDING - Value shown when the menuItem has been selected by the user but can still be cancelled.  - CONFIRMED - Value shown when the menuItem has been selected by the user and can no longer be cancelled.
      */
     state?: string;
   }
@@ -428,13 +350,11 @@ export namespace mirror_v1 {
      */
     userActions?: Schema$UserAction[];
     /**
-     * The user token provided by the service when it subscribed for
-     * notifications.
+     * The user token provided by the service when it subscribed for notifications.
      */
     userToken?: string;
     /**
-     * The secret verify token provided by the service when it subscribed for
-     * notifications.
+     * The secret verify token provided by the service when it subscribed for notifications.
      */
     verifyToken?: string;
   }
@@ -447,9 +367,7 @@ export namespace mirror_v1 {
      */
     deliveryTime?: string;
     /**
-     * Describes how important the notification is. Allowed values are:   -
-     * DEFAULT - Notifications of default importance. A chime will be played to
-     * alert users.
+     * Describes how important the notification is. Allowed values are:   - DEFAULT - Notifications of default importance. A chime will be played to alert users.
      */
     level?: string;
   }
@@ -458,11 +376,7 @@ export namespace mirror_v1 {
    */
   export interface Schema$Setting {
     /**
-     * The setting&#39;s ID. The following IDs are valid:   - locale - The key
-     * to the user’s language/locale (BCP 47 identifier) that Glassware should
-     * use to render localized content.   - timezone - The key to the user’s
-     * current time zone region as defined in the tz database. Example:
-     * America/Los_Angeles.
+     * The setting&#39;s ID. The following IDs are valid:   - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.   - timezone - The key to the user’s current time zone region as defined in the tz database. Example: America/Los_Angeles.
      */
     id?: string;
     /**
@@ -479,14 +393,11 @@ export namespace mirror_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * The URL where notifications should be delivered (must start with
-     * https://).
+     * The URL where notifications should be delivered (must start with https://).
      */
     callbackUrl?: string;
     /**
-     * The collection to subscribe to. Allowed values are:   - timeline -
-     * Changes in the timeline including insertion, deletion, and updates.  -
-     * locations - Location updates.  - settings - Settings updates.
+     * The collection to subscribe to. Allowed values are:   - timeline - Changes in the timeline including insertion, deletion, and updates.  - locations - Location updates.  - settings - Settings updates.
      */
     collection?: string;
     /**
@@ -498,37 +409,28 @@ export namespace mirror_v1 {
      */
     kind?: string;
     /**
-     * Container object for notifications. This is not populated in the
-     * Subscription resource.
+     * Container object for notifications. This is not populated in the Subscription resource.
      */
     notification?: Schema$Notification;
     /**
-     * A list of operations that should be subscribed to. An empty list
-     * indicates that all operations on the collection should be subscribed to.
-     * Allowed values are:   - UPDATE - The item has been updated.  - INSERT - A
-     * new item has been inserted.  - DELETE - The item has been deleted.  -
-     * MENU_ACTION - A custom menu item has been triggered by the user.
+     * A list of operations that should be subscribed to. An empty list indicates that all operations on the collection should be subscribed to. Allowed values are:   - UPDATE - The item has been updated.  - INSERT - A new item has been inserted.  - DELETE - The item has been deleted.  - MENU_ACTION - A custom menu item has been triggered by the user.
      */
     operation?: string[];
     /**
-     * The time at which this subscription was last modified, formatted
-     * according to RFC 3339.
+     * The time at which this subscription was last modified, formatted according to RFC 3339.
      */
     updated?: string;
     /**
-     * An opaque token sent to the subscriber in notifications so that it can
-     * determine the ID of the user.
+     * An opaque token sent to the subscriber in notifications so that it can determine the ID of the user.
      */
     userToken?: string;
     /**
-     * A secret token sent to the subscriber in notifications so that it can
-     * verify that the notification was generated by Google.
+     * A secret token sent to the subscriber in notifications so that it can verify that the notification was generated by Google.
      */
     verifyToken?: string;
   }
   /**
-   * A list of Subscriptions. This is the response from the server to GET
-   * requests on the subscription collection.
+   * A list of Subscriptions. This is the response from the server to GET requests on the subscription collection.
    */
   export interface Schema$SubscriptionsListResponse {
     /**
@@ -541,29 +443,19 @@ export namespace mirror_v1 {
     kind?: string;
   }
   /**
-   * Each item in the user&#39;s timeline is represented as a TimelineItem JSON
-   * structure, described below.
+   * Each item in the user&#39;s timeline is represented as a TimelineItem JSON structure, described below.
    */
   export interface Schema$TimelineItem {
     /**
-     * A list of media attachments associated with this item. As a convenience,
-     * you can refer to attachments in your HTML payloads with the attachment or
-     * cid scheme. For example:   - attachment: &lt;img
-     * src=&quot;attachment:attachment_index&quot;&gt; where attachment_index is
-     * the 0-based index of this array.  - cid: &lt;img
-     * src=&quot;cid:attachment_id&quot;&gt; where attachment_id is the ID of
-     * the attachment.
+     * A list of media attachments associated with this item. As a convenience, you can refer to attachments in your HTML payloads with the attachment or cid scheme. For example:   - attachment: &lt;img src=&quot;attachment:attachment_index&quot;&gt; where attachment_index is the 0-based index of this array.  - cid: &lt;img src=&quot;cid:attachment_id&quot;&gt; where attachment_id is the ID of the attachment.
      */
     attachments?: Schema$Attachment[];
     /**
-     * The bundle ID for this item. Services can specify a bundleId to group
-     * many items together. They appear under a single top-level item on the
-     * device.
+     * The bundle ID for this item. Services can specify a bundleId to group many items together. They appear under a single top-level item on the device.
      */
     bundleId?: string;
     /**
-     * A canonical URL pointing to the canonical/high quality version of the
-     * data represented by the timeline item.
+     * A canonical URL pointing to the canonical/high quality version of the data represented by the timeline item.
      */
     canonicalUrl?: string;
     /**
@@ -575,11 +467,7 @@ export namespace mirror_v1 {
      */
     creator?: Schema$Contact;
     /**
-     * The time that should be displayed when this item is viewed in the
-     * timeline, formatted according to RFC 3339. This user&#39;s timeline is
-     * sorted chronologically on display time, so this will also determine where
-     * the item is displayed in the timeline. If not set by the service, the
-     * display time defaults to the updated time.
+     * The time that should be displayed when this item is viewed in the timeline, formatted according to RFC 3339. This user&#39;s timeline is sorted chronologically on display time, so this will also determine where the item is displayed in the timeline. If not set by the service, the display time defaults to the updated time.
      */
     displayTime?: string;
     /**
@@ -587,19 +475,7 @@ export namespace mirror_v1 {
      */
     etag?: string;
     /**
-     * HTML content for this item. If both text and html are provided for an
-     * item, the html will be rendered in the timeline. Allowed HTML elements -
-     * You can use these elements in your timeline cards.   - Headers: h1, h2,
-     * h3, h4, h5, h6  - Images: img  - Lists: li, ol, ul  - HTML5 semantics:
-     * article, aside, details, figure, figcaption, footer, header, nav,
-     * section, summary, time  - Structural: blockquote, br, div, hr, p, span  -
-     * Style: b, big, center, em, i, u, s, small, strike, strong, style, sub,
-     * sup  - Tables: table, tbody, td, tfoot, th, thead, tr   Blocked HTML
-     * elements: These elements and their contents are removed from HTML
-     * payloads.   - Document headers: head, title  - Embeds: audio, embed,
-     * object, source, video  - Frames: frame, frameset  - Scripting: applet,
-     * script   Other elements: Any elements that aren&#39;t listed are removed,
-     * but their contents are preserved.
+     * HTML content for this item. If both text and html are provided for an item, the html will be rendered in the timeline. Allowed HTML elements - You can use these elements in your timeline cards.   - Headers: h1, h2, h3, h4, h5, h6  - Images: img  - Lists: li, ol, ul  - HTML5 semantics: article, aside, details, figure, figcaption, footer, header, nav, section, summary, time  - Structural: blockquote, br, div, hr, p, span  - Style: b, big, center, em, i, u, s, small, strike, strong, style, sub, sup  - Tables: table, tbody, td, tfoot, th, thead, tr   Blocked HTML elements: These elements and their contents are removed from HTML payloads.   - Document headers: head, title  - Embeds: audio, embed, object, source, video  - Frames: frame, frameset  - Scripting: applet, script   Other elements: Any elements that aren&#39;t listed are removed, but their contents are preserved.
      */
     html?: string;
     /**
@@ -607,32 +483,19 @@ export namespace mirror_v1 {
      */
     id?: string;
     /**
-     * If this item was generated as a reply to another item, this field will be
-     * set to the ID of the item being replied to. This can be used to attach a
-     * reply to the appropriate conversation or post.
+     * If this item was generated as a reply to another item, this field will be set to the ID of the item being replied to. This can be used to attach a reply to the appropriate conversation or post.
      */
     inReplyTo?: string;
     /**
-     * Whether this item is a bundle cover.  If an item is marked as a bundle
-     * cover, it will be the entry point to the bundle of items that have the
-     * same bundleId as that item. It will be shown only on the main timeline —
-     * not within the opened bundle.  On the main timeline, items that are shown
-     * are:   - Items that have isBundleCover set to true   - Items that do not
-     * have a bundleId  In a bundle sub-timeline, items that are shown are:   -
-     * Items that have the bundleId in question AND isBundleCover set to false
+     * Whether this item is a bundle cover.  If an item is marked as a bundle cover, it will be the entry point to the bundle of items that have the same bundleId as that item. It will be shown only on the main timeline — not within the opened bundle.  On the main timeline, items that are shown are:   - Items that have isBundleCover set to true   - Items that do not have a bundleId  In a bundle sub-timeline, items that are shown are:   - Items that have the bundleId in question AND isBundleCover set to false
      */
     isBundleCover?: boolean;
     /**
-     * When true, indicates this item is deleted, and only the ID property is
-     * set.
+     * When true, indicates this item is deleted, and only the ID property is set.
      */
     isDeleted?: boolean;
     /**
-     * When true, indicates this item is pinned, which means it&#39;s grouped
-     * alongside &quot;active&quot; items like navigation and hangouts, on the
-     * opposite side of the home screen from historical (non-pinned) timeline
-     * items. You can allow the user to toggle the value of this property with
-     * the TOGGLE_PINNED built-in menu item.
+     * When true, indicates this item is pinned, which means it&#39;s grouped alongside &quot;active&quot; items like navigation and hangouts, on the opposite side of the home screen from historical (non-pinned) timeline items. You can allow the user to toggle the value of this property with the TOGGLE_PINNED built-in menu item.
      */
     isPinned?: boolean;
     /**
@@ -644,19 +507,15 @@ export namespace mirror_v1 {
      */
     location?: Schema$Location;
     /**
-     * A list of menu items that will be presented to the user when this item is
-     * selected in the timeline.
+     * A list of menu items that will be presented to the user when this item is selected in the timeline.
      */
     menuItems?: Schema$MenuItem[];
     /**
-     * Controls how notifications for this item are presented on the device. If
-     * this is missing, no notification will be generated.
+     * Controls how notifications for this item are presented on the device. If this is missing, no notification will be generated.
      */
     notification?: Schema$NotificationConfig;
     /**
-     * For pinned items, this determines the order in which the item is
-     * displayed in the timeline, with a higher score appearing closer to the
-     * clock. Note: setting this field is currently not supported.
+     * For pinned items, this determines the order in which the item is displayed in the timeline, with a higher score appearing closer to the clock. Note: setting this field is currently not supported.
      */
     pinScore?: number;
     /**
@@ -668,30 +527,15 @@ export namespace mirror_v1 {
      */
     selfLink?: string;
     /**
-     * Opaque string you can use to map a timeline item to data in your own
-     * service.
+     * Opaque string you can use to map a timeline item to data in your own service.
      */
     sourceItemId?: string;
     /**
-     * The speakable version of the content of this item. Along with the
-     * READ_ALOUD menu item, use this field to provide text that would be
-     * clearer when read aloud, or to provide extended information to what is
-     * displayed visually on Glass.  Glassware should also specify the
-     * speakableType field, which will be spoken before this text in cases where
-     * the additional context is useful, for example when the user requests that
-     * the item be read aloud following a notification.
+     * The speakable version of the content of this item. Along with the READ_ALOUD menu item, use this field to provide text that would be clearer when read aloud, or to provide extended information to what is displayed visually on Glass.  Glassware should also specify the speakableType field, which will be spoken before this text in cases where the additional context is useful, for example when the user requests that the item be read aloud following a notification.
      */
     speakableText?: string;
     /**
-     * A speakable description of the type of this item. This will be announced
-     * to the user prior to reading the content of the item in cases where the
-     * additional context is useful, for example when the user requests that the
-     * item be read aloud following a notification.  This should be a short,
-     * simple noun phrase such as &quot;Email&quot;, &quot;Text message&quot;,
-     * or &quot;Daily Planet News Update&quot;.  Glassware are encouraged to
-     * populate this field for every timeline item, even if the item does not
-     * contain speakableText or text so that the user can learn the type of the
-     * item without looking at the screen.
+     * A speakable description of the type of this item. This will be announced to the user prior to reading the content of the item in cases where the additional context is useful, for example when the user requests that the item be read aloud following a notification.  This should be a short, simple noun phrase such as &quot;Email&quot;, &quot;Text message&quot;, or &quot;Daily Planet News Update&quot;.  Glassware are encouraged to populate this field for every timeline item, even if the item does not contain speakableText or text so that the user can learn the type of the item without looking at the screen.
      */
     speakableType?: string;
     /**
@@ -703,14 +547,12 @@ export namespace mirror_v1 {
      */
     title?: string;
     /**
-     * The time at which this item was last modified, formatted according to RFC
-     * 3339.
+     * The time at which this item was last modified, formatted according to RFC 3339.
      */
     updated?: string;
   }
   /**
-   * A list of timeline items. This is the response from the server to GET
-   * requests on the timeline collection.
+   * A list of timeline items. This is the response from the server to GET requests on the timeline collection.
    */
   export interface Schema$TimelineListResponse {
     /**
@@ -722,8 +564,7 @@ export namespace mirror_v1 {
      */
     kind?: string;
     /**
-     * The next page token. Provide this as the pageToken parameter in the
-     * request to retrieve the next page of results.
+     * The next page token. Provide this as the pageToken parameter in the request to retrieve the next page of results.
      */
     nextPageToken?: string;
   }
@@ -732,19 +573,11 @@ export namespace mirror_v1 {
    */
   export interface Schema$UserAction {
     /**
-     * An optional payload for the action.  For actions of type CUSTOM, this is
-     * the ID of the custom menu item that was selected.
+     * An optional payload for the action.  For actions of type CUSTOM, this is the ID of the custom menu item that was selected.
      */
     payload?: string;
     /**
-     * The type of action. The value of this can be:   - SHARE - the user shared
-     * an item.  - REPLY - the user replied to an item.  - REPLY_ALL - the user
-     * replied to all recipients of an item.  - CUSTOM - the user selected a
-     * custom menu item on the timeline item.  - DELETE - the user deleted the
-     * item.  - PIN - the user pinned the item.  - UNPIN - the user unpinned the
-     * item.  - LAUNCH - the user initiated a voice command.  In the future,
-     * additional types may be added. UserActions with unrecognized types should
-     * be ignored.
+     * The type of action. The value of this can be:   - SHARE - the user shared an item.  - REPLY - the user replied to an item.  - REPLY_ALL - the user replied to all recipients of an item.  - CUSTOM - the user selected a custom menu item on the timeline item.  - DELETE - the user deleted the item.  - PIN - the user pinned the item.  - UNPIN - the user unpinned the item.  - LAUNCH - the user initiated a voice command.  In the future, additional types may be added. UserActions with unrecognized types should be ignored.
      */
     type?: string;
   }
@@ -1624,11 +1457,7 @@ export namespace mirror_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the setting. The following IDs are valid:  - locale - The key
-     * to the user’s language/locale (BCP 47 identifier) that Glassware should
-     * use to render localized content.  - timezone - The key to the user’s
-     * current time zone region as defined in the tz database. Example:
-     * America/Los_Angeles.
+     * The ID of the setting. The following IDs are valid:  - locale - The key to the user’s language/locale (BCP 47 identifier) that Glassware should use to render localized content.  - timezone - The key to the user’s current time zone region as defined in the tz database. Example: America/Los_Angeles.
      */
     id?: string;
   }
@@ -1787,8 +1616,7 @@ export namespace mirror_v1 {
 
     /**
      * mirror.subscriptions.list
-     * @desc Retrieves a list of subscriptions for the authenticated user and
-     * service.
+     * @desc Retrieves a list of subscriptions for the authenticated user and service.
      * @alias mirror.subscriptions.list
      * @memberOf! ()
      *
@@ -2306,8 +2134,7 @@ export namespace mirror_v1 {
 
     /**
      * mirror.timeline.patch
-     * @desc Updates a timeline item in place. This method supports patch
-     * semantics.
+     * @desc Updates a timeline item in place. This method supports patch semantics.
      * @alias mirror.timeline.patch
      * @memberOf! ()
      *
@@ -2673,8 +2500,7 @@ export namespace mirror_v1 {
 
     /**
      * mirror.timeline.attachments.get
-     * @desc Retrieves an attachment on a timeline item by item ID and
-     * attachment ID.
+     * @desc Retrieves an attachment on a timeline item by item ID and attachment ID.
      * @alias mirror.timeline.attachments.get
      * @memberOf! ()
      *

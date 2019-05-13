@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -51,9 +51,7 @@ export namespace urlshortener_v1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -65,8 +63,7 @@ export namespace urlshortener_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not
-     * exceed 40 characters.
+     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -95,7 +92,10 @@ export namespace urlshortener_v1 {
     url: Resource$Url;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.url = new Resource$Url(this.context);
     }
@@ -103,14 +103,11 @@ export namespace urlshortener_v1 {
 
   export interface Schema$AnalyticsSnapshot {
     /**
-     * Top browsers, e.g. &quot;Chrome&quot;; sorted by (descending) click
-     * counts. Only present if this data is available.
+     * Top browsers, e.g. &quot;Chrome&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     browsers?: Schema$StringCount[];
     /**
-     * Top countries (expressed as country codes), e.g. &quot;US&quot; or
-     * &quot;DE&quot;; sorted by (descending) click counts. Only present if this
-     * data is available.
+     * Top countries (expressed as country codes), e.g. &quot;US&quot; or &quot;DE&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     countries?: Schema$StringCount[];
     /**
@@ -118,13 +115,11 @@ export namespace urlshortener_v1 {
      */
     longUrlClicks?: string;
     /**
-     * Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending)
-     * click counts. Only present if this data is available.
+     * Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     platforms?: Schema$StringCount[];
     /**
-     * Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by
-     * (descending) click counts. Only present if this data is available.
+     * Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
     referrers?: Schema$StringCount[];
     /**
@@ -156,26 +151,21 @@ export namespace urlshortener_v1 {
   }
   export interface Schema$StringCount {
     /**
-     * Number of clicks for this top entry, e.g. for this particular country or
-     * browser.
+     * Number of clicks for this top entry, e.g. for this particular country or browser.
      */
     count?: string;
     /**
-     * Label assigned to this top entry, e.g. &quot;US&quot; or
-     * &quot;Chrome&quot;.
+     * Label assigned to this top entry, e.g. &quot;US&quot; or &quot;Chrome&quot;.
      */
     id?: string;
   }
   export interface Schema$Url {
     /**
-     * A summary of the click analytics for the short and long URL. Might not be
-     * present if not requested or currently unavailable.
+     * A summary of the click analytics for the short and long URL. Might not be present if not requested or currently unavailable.
      */
     analytics?: Schema$AnalyticsSummary;
     /**
-     * Time the short URL was created; ISO 8601 representation using the
-     * yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g.
-     * &quot;2010-10-14T19:01:24.944+00:00&quot;.
+     * Time the short URL was created; ISO 8601 representation using the yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g. &quot;2010-10-14T19:01:24.944+00:00&quot;.
      */
     created?: string;
     /**
@@ -187,15 +177,11 @@ export namespace urlshortener_v1 {
      */
     kind?: string;
     /**
-     * Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present
-     * if the status is &quot;REMOVED&quot;.
+     * Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present if the status is &quot;REMOVED&quot;.
      */
     longUrl?: string;
     /**
-     * Status of the target URL. Possible values: &quot;OK&quot;,
-     * &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL
-     * might be marked &quot;REMOVED&quot; if it was flagged as spam, for
-     * example.
+     * Status of the target URL. Possible values: &quot;OK&quot;, &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL might be marked &quot;REMOVED&quot; if it was flagged as spam, for example.
      */
     status?: string;
   }
@@ -205,9 +191,7 @@ export namespace urlshortener_v1 {
      */
     items?: Schema$Url[];
     /**
-     * Number of items returned with each full &quot;page&quot; of results. Note
-     * that the last page could have fewer items than the
-     * &quot;itemsPerPage&quot; value.
+     * Number of items returned with each full &quot;page&quot; of results. Note that the last page could have fewer items than the &quot;itemsPerPage&quot; value.
      */
     itemsPerPage?: number;
     /**
@@ -219,8 +203,7 @@ export namespace urlshortener_v1 {
      */
     nextPageToken?: string;
     /**
-     * Total number of short URLs associated with this user (may be
-     * approximate).
+     * Total number of short URLs associated with this user (may be approximate).
      */
     totalItems?: number;
   }

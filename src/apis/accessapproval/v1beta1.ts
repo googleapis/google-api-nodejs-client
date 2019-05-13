@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import {GaxiosPromise} from 'gaxios';
 import {
-  Compute,
-  JWT,
   OAuth2Client,
+  JWT,
+  Compute,
   UserRefreshClient,
 } from 'google-auth-library';
 import {
-  APIRequestContext,
-  BodyResponseCallback,
-  createAPIRequest,
-  GlobalOptions,
   GoogleConfigurable,
+  createAPIRequest,
   MethodOptions,
+  GlobalOptions,
+  BodyResponseCallback,
+  APIRequestContext,
 } from 'googleapis-common';
+import {GaxiosPromise} from 'gaxios';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -63,9 +63,7 @@ export namespace accessapproval_v1beta1 {
      */
     fields?: string;
     /**
-     * API key. Your API key identifies your project and provides you with API
-     * access, quota, and reports. Required unless you provide an OAuth 2.0
-     * token.
+     * API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
      */
     key?: string;
     /**
@@ -77,9 +75,7 @@ export namespace accessapproval_v1beta1 {
      */
     prettyPrint?: boolean;
     /**
-     * Available to use for quota purposes for server-side applications. Can be
-     * any arbitrary string assigned to a user, but should not exceed 40
-     * characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
@@ -114,7 +110,10 @@ export namespace accessapproval_v1beta1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this.context = {_options: options || {}, google};
+      this.context = {
+        _options: options || {},
+        google,
+      };
 
       this.folders = new Resource$Folders(this.context);
       this.organizations = new Resource$Organizations(this.context);
@@ -127,18 +126,11 @@ export namespace accessapproval_v1beta1 {
    */
   export interface Schema$AccessApprovalSettings {
     /**
-     * The resource name of the settings. Format is one of: &lt;ol&gt;
-     * &lt;li&gt;&quot;projects/{project_id}/accessApprovalSettings&quot;&lt;/li&gt;
-     * &lt;li&gt;&quot;folders/{folder_id}/accessApprovalSettings&quot;&lt;/li&gt;
-     * &lt;li&gt;&quot;organizations/{organization_id}/accessApprovalSettings&quot;&lt;/li&gt;
-     * &lt;ol&gt;
+     * The resource name of the settings. Format is one of: &lt;ol&gt;   &lt;li&gt;&quot;projects/{project_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;folders/{folder_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;organizations/{organization_id}/accessApprovalSettings&quot;&lt;/li&gt; &lt;ol&gt;
      */
     name?: string;
     /**
-     * A list of email addresses to which notifications relating to approval
-     * requests should be sent. Notifications relating to a resource will be
-     * sent to all emails in the settings of ancestor resources of that
-     * resource.
+     * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource.
      */
     notificationEmails?: string[];
   }
@@ -147,29 +139,11 @@ export namespace accessapproval_v1beta1 {
    */
   export interface Schema$AccessLocations {
     /**
-     * The &quot;home office&quot; location of the principal. A two-letter
-     * country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot;
-     * or &quot;GB&quot; or a region code. In some limited situations Google
-     * systems may refer refer to a region code instead of a country code.
-     * Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;
-     * &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;
-     * &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North
-     * America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;
-     * &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any
-     * location&lt;/li&gt; &lt;/ol&gt;
+     * The &quot;home office&quot; location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
      */
     principalOfficeCountry?: string;
     /**
-     * Physical location of the principal at the time of the access. A
-     * two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;,
-     * &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited
-     * situations Google systems may refer refer to a region code instead of a
-     * country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI:
-     * Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE:
-     * Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM:
-     * North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;
-     * &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any
-     * location&lt;/li&gt; &lt;/ol&gt;
+     * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
      */
     principalPhysicalLocationCountry?: string;
   }
@@ -196,14 +170,11 @@ export namespace accessapproval_v1beta1 {
      */
     dismiss?: Schema$DismissDecision;
     /**
-     * The resource name of the request. Format is
-     * &quot;{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}&quot;.
+     * The resource name of the request. Format is &quot;{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}&quot;.
      */
     name?: string;
     /**
-     * The requested expiration for the approval. If the request is approved,
-     * access will be granted from the time of approval until the expiration
-     * time.
+     * The requested expiration for the approval. If the request is approved, access will be granted from the time of approval until the expiration time.
      */
     requestedExpiration?: string;
     /**
@@ -215,16 +186,13 @@ export namespace accessapproval_v1beta1 {
      */
     requestedReason?: Schema$AccessReason;
     /**
-     * The resource for which approval is being requested. The format of the
-     * resource name is defined at
-     * https://cloud.google.com/apis/design/resource_names. The resource name
-     * here may either be a &quot;full&quot; resource name (e.g.
-     * &quot;//library.googleapis.com/shelves/shelf1/books/book2&quot;) or a
-     * &quot;relative&quot; resource name (e.g.
-     * &quot;shelves/shelf1/books/book2&quot;) as described in the resource name
-     * specification.
+     * The resource for which approval is being requested. The format of the resource name is defined at https://cloud.google.com/apis/design/resource_names. The resource name here may either be a &quot;full&quot; resource name (e.g. &quot;//library.googleapis.com/shelves/shelf1/books/book2&quot;) or a &quot;relative&quot; resource name (e.g. &quot;shelves/shelf1/books/book2&quot;) as described in the resource name specification.
      */
     requestedResourceName?: string;
+    /**
+     * Properties related to the resource represented by requested_resource_name.
+     */
+    requestedResourceProperties?: Schema$ResourceProperties;
     /**
      * The time at which approval was requested.
      */
@@ -274,10 +242,18 @@ export namespace accessapproval_v1beta1 {
      */
     approvalRequests?: Schema$ApprovalRequest[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no
-     * more.
+     * Token to retrieve the next page of results, or empty if there are no more.
      */
     nextPageToken?: string;
+  }
+  /**
+   * The properties associated with the resource of the request.
+   */
+  export interface Schema$ResourceProperties {
+    /**
+     * Whether an approval will exclude the descendants of the resource being requested.
+     */
+    excludesDescendants?: boolean;
   }
 
   export class Resource$Folders {
@@ -292,8 +268,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.folders.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or
-     * organization.
+     * @desc Gets the settings associated with a project, folder, or organization.
      * @alias accessapproval.folders.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -369,8 +344,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.folders.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or
-     * organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
      * @alias accessapproval.folders.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -466,10 +440,7 @@ export namespace accessapproval_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the settings. Format is one of: <ol>
-     * <li>"projects/{project_id}/accessApprovalSettings"</li>
-     * <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     * <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
 
@@ -487,9 +458,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.folders.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns
-     * NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if
-     * the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.folders.approvalRequests.approve
      * @memberOf! ()
      *
@@ -565,11 +534,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.folders.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE:
-     * This does not deny access to the resource if another request has been
-     * made and approved. It is equivalent in effect to ignoring the request
-     * altogether.  Returns NOT_FOUND if the request does not exist.  Returns
-     * FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.folders.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -645,8 +610,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.folders.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not
-     * exist.
+     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @alias accessapproval.folders.approvalRequests.get
      * @memberOf! ()
      *
@@ -718,9 +682,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.folders.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or
-     * organization. Approval requests can be filtered by state (pending,
-     * active, dismissed). The order is reverse chronological.
+     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @alias accessapproval.folders.approvalRequests.list
      * @memberOf! ()
      *
@@ -860,12 +822,7 @@ export namespace accessapproval_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the
-     * following values: <ol>   <li>[not set]: Requests that are pending or have
-     * active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only
-     * pending requests.</li>   <li>ACTIVE: Only active (i.e. currently
-     * approved) requests.</li>   <li>DISMISSED: Only dismissed (including
-     * expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -877,8 +834,7 @@ export namespace accessapproval_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      */
     parent?: string;
   }
@@ -895,8 +851,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.organizations.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or
-     * organization.
+     * @desc Gets the settings associated with a project, folder, or organization.
      * @alias accessapproval.organizations.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -972,8 +927,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.organizations.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or
-     * organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
      * @alias accessapproval.organizations.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1069,10 +1023,7 @@ export namespace accessapproval_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the settings. Format is one of: <ol>
-     * <li>"projects/{project_id}/accessApprovalSettings"</li>
-     * <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     * <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
 
@@ -1090,9 +1041,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.organizations.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns
-     * NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if
-     * the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.organizations.approvalRequests.approve
      * @memberOf! ()
      *
@@ -1168,11 +1117,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.organizations.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE:
-     * This does not deny access to the resource if another request has been
-     * made and approved. It is equivalent in effect to ignoring the request
-     * altogether.  Returns NOT_FOUND if the request does not exist.  Returns
-     * FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.organizations.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -1248,8 +1193,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.organizations.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not
-     * exist.
+     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @alias accessapproval.organizations.approvalRequests.get
      * @memberOf! ()
      *
@@ -1321,9 +1265,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.organizations.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or
-     * organization. Approval requests can be filtered by state (pending,
-     * active, dismissed). The order is reverse chronological.
+     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @alias accessapproval.organizations.approvalRequests.list
      * @memberOf! ()
      *
@@ -1463,12 +1405,7 @@ export namespace accessapproval_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the
-     * following values: <ol>   <li>[not set]: Requests that are pending or have
-     * active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only
-     * pending requests.</li>   <li>ACTIVE: Only active (i.e. currently
-     * approved) requests.</li>   <li>DISMISSED: Only dismissed (including
-     * expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -1480,8 +1417,7 @@ export namespace accessapproval_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      */
     parent?: string;
   }
@@ -1498,8 +1434,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.projects.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or
-     * organization.
+     * @desc Gets the settings associated with a project, folder, or organization.
      * @alias accessapproval.projects.getAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1575,8 +1510,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.projects.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or
-     * organization. Completely replaces the existing settings.
+     * @desc Updates the settings associated with a project, folder, or organization. Completely replaces the existing settings.
      * @alias accessapproval.projects.updateAccessApprovalSettings
      * @memberOf! ()
      *
@@ -1672,10 +1606,7 @@ export namespace accessapproval_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the settings. Format is one of: <ol>
-     * <li>"projects/{project_id}/accessApprovalSettings"</li>
-     * <li>"folders/{folder_id}/accessApprovalSettings"</li>
-     * <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
+     * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
     name?: string;
 
@@ -1693,9 +1624,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.projects.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns
-     * NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if
-     * the request exists but is not in a pending state.
+     * @desc Approves a request and returns the updated ApprovalRequest.  Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.projects.approvalRequests.approve
      * @memberOf! ()
      *
@@ -1771,11 +1700,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.projects.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE:
-     * This does not deny access to the resource if another request has been
-     * made and approved. It is equivalent in effect to ignoring the request
-     * altogether.  Returns NOT_FOUND if the request does not exist.  Returns
-     * FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * @desc Dismisses a request. Returns the updated ApprovalRequest.  NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether.  Returns NOT_FOUND if the request does not exist.  Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @alias accessapproval.projects.approvalRequests.dismiss
      * @memberOf! ()
      *
@@ -1851,8 +1776,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.projects.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not
-     * exist.
+     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @alias accessapproval.projects.approvalRequests.get
      * @memberOf! ()
      *
@@ -1924,9 +1848,7 @@ export namespace accessapproval_v1beta1 {
 
     /**
      * accessapproval.projects.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or
-     * organization. Approval requests can be filtered by state (pending,
-     * active, dismissed). The order is reverse chronological.
+     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @alias accessapproval.projects.approvalRequests.list
      * @memberOf! ()
      *
@@ -2066,12 +1988,7 @@ export namespace accessapproval_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A filter on the type of approval requests to retrieve. Must be one of the
-     * following values: <ol>   <li>[not set]: Requests that are pending or have
-     * active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only
-     * pending requests.</li>   <li>ACTIVE: Only active (i.e. currently
-     * approved) requests.</li>   <li>DISMISSED: Only dismissed (including
-     * expired) requests.</li> </ol>
+     * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
     filter?: string;
     /**
@@ -2083,8 +2000,7 @@ export namespace accessapproval_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project_id}", "folders/{folder_id}", or "organizations/{organization_id}".
      */
     parent?: string;
   }
